@@ -1,0 +1,11 @@
+---
+---
+
+@charset "utf-8";
+
+@font-face {
+    font-family: 'OCR-A';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://gwen-interpreter.github.io/assets/webfonts/OCRA.ttf');
+}
