@@ -4,15 +4,129 @@ layout: home
 <script src="http://localhost:35729/livereload.js"></script>
 {%- include header.html -%}
 
-<div class="jumbotron landing-jumbotron">
-  <div class="row">
-    <div class="col-md-5 offset-md-7">
+<div class="container-fluid">
+  <div class="row light-pink-bg">
+    <div class="col-5">
+      <img src="assets/img/gwen-logo-10.svg" class="img-fluid">
+    </div>
+    <div class="col-6">
+      <br />
+      <br />
+      <br />
+      <br />
       <h1>gwen</h1>
       <hr />
-      <h4>Automation without all the development pain.</h4>
+      <h3>Automation without all the programming</h3>
       <br />
+      <a class="btn btn-danger btn-lg" href="https://github.com/gwen-interpreter/gwen-web/wiki/Installation">Get started</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
       <br />
-      <a class="btn btn-danger btn-lg" href="https://github.com/gwen-interpreter/gwen-web/wiki/Getting-Started">Get Started</a>
+      <div class="media">
+        <img class="mr-3" src="assets/img/gwen-icon-feature.svg">
+        <div class="media-body">
+          <h4 class="mt-0"><span class="badge badge badge-danger">1</span> <u class="text-danger">G</u>iven a Gherkin feature</h4>
+          <b>Business specifications</b>
+          <br />
+          Declarative Gherkin specifications describe feature requirements and expected behaviours.
+        </div>
+      </div>
+      <br />
+    </div>
+    <div class="col-4">
+      <br />
+      <div class="media">
+        <img class="mr-3" src="assets/img/gwen-icon-meta.svg">
+        <div class="media-body">
+          <h4 class="mt-0"><span class="badge badge badge-danger">2</span> <u class="text-danger">W</u>hen I write Gwen meta</h4>
+          <b>Automation specifications</b>
+          <br />
+          Imperative Gherkin specifications describe automation bindings and executable step definitions.
+        </div>
+      </div>
+      <br />
+    </div>
+    <div class="col-4">
+      <br />
+      <div class="media">
+        <img class="mr-3" src="assets/img/gwen-icon-logo.svg">
+        <div class="media-body">
+          <h4 class="mt-0"><span class="badge badge badge-danger">3</span> Th<u class="text-danger">en</u> Gwen will automate</h4>
+          <b>Executable specifications</b>
+          <br />
+          Gwen binds feature specifications to meta specifications and executes them to achieve automation.
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+  <div class="row bg-light">
+    <div class="col-2">
+      <br />
+      <h4>Core features</h4>
+      <br />
+        <ul>
+          <li><a class="text-danger" href="https://cucumber.io/docs/reference">Gherkin</a> interpreter</li>
+          <li><a class="text-danger" href="https://github.com/gwen-interpreter/gwen/wiki/REPL-Console">REPL console</a></li>
+          <li><a class="text-danger" href="https://github.com/gwen-interpreter/gwen/wiki/Execution-Modes#serial-execution">Serial</a> execution</li>
+          <li><a class="text-danger" href="https://github.com/gwen-interpreter/gwen/wiki/Execution-Modes#parallel-execution">Parallel</a> execution</li>
+          <li><a class="text-danger" href="https://github.com/gwen-interpreter/gwen/wiki/Execution-Modes#dry-run-validation">Dry run</a> validation</li>
+          <li><a class="text-danger" href="https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports">Evaluation reports</a></li>
+          <li>Composable <a class="text-danger" href="https://github.com/gwen-interpreter/gwen/wiki/Meta-Features#composable-step-definitions">StepDefs</a></li>
+        </ul>
+    </div>
+    <div class="col-3">
+      <br />
+      <h4>Web automation</h4>
+      <br />
+        <ul>
+          <li>Built on <a class="text-danger" href="http://www.seleniumhq.org/projects/webdriver">Selenium</a></li>
+          <li>Predefined <a class="text-danger" href="https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL">web DSL</a></li>
+          <li><a class="text-danger" href="https://github.com/gwen-interpreter/gwen-web/wiki/Screenshot-Capture-and-Slideshows">Screenshots and slideshows</a></li>
+          <li>Shareable <a class="text-danger" href="https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/">workspaces</a></li>
+          <li>Remote grid or cloud execution</li>
+          <li><a class="text-danger" href="https://gweninterpreter.wordpress.com/2016/03/08/nopageobjects-theres-no-long-way-to-go-were-already-there/">No page objects</a></li>
+          <li>No Selenium coding</li>
+        </ul>
+    </div>
+    <div class="col-3">
+      <br />
+      <h4>Specifications in</h4>
+      <h4>Automation out</h4>
+      <br />
+      <pre style="font-size: 9pt">
+ Feature: Google search feature
+
+Scenario: Perform a google search
+    Given I have Google in my browser
+     When I do a search for "Gwen automation"
+     Then the first result should open a Gwen page</pre>
+   </div>
+   <div class="col-4">
+   <br />
+     <pre style="font-size: 9pt">
+ Feature: Google search <a class="text-danger" href="https://github.com/gwen-interpreter/gwen/wiki/Meta-Features">meta</a>
+
+@StepDef
+Scenario: I have Google in my browser
+    Given I start a new browser
+     When I navigate to "http://www.google.com"
+     Then the page title should be "Google"
+
+@StepDef
+Scenario: I do a search for "<query>"
+    Given the search field can be located by name "q"
+     When I enter "$<query>" in the search field
+     Then the page title should contain "$<query>"
+
+@StepDef
+Scenario: the first result should open a Gwen page
+    Given the first match can be located by css selector ".r > a"
+     When I click the first match
+     Then the current URL should contain "gwen-interpreter"</pre>
     </div>
   </div>
 </div>
+{%- include footer.html -%}
