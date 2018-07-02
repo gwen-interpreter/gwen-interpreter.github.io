@@ -9,7 +9,7 @@ layout: home
       <table class="table borderless">
         <tr>
           <td align="right">
-            <img src="assets/img/gwen-logo-10.svg" style="max-width: 240px; max-height:240px;"/>
+            <img src="assets/img/gwen-logo-10.svg" class="mg-responsive" style="max-width: 15vh; max-height:15vh;"/>
           </td>
         </tr>
       </table>
@@ -38,12 +38,14 @@ layout: home
               <div class="row">
                 <div class="col-lg-12 col-xl-8 offset-xl-3 d-flex align-items-center">
                   <div class="d-flex align-items-center">
-                    <img src="assets/img/gwen-icon-feature.png" width="120px" height="120px">
+                      <img src="assets/img/gwen-icon-feature.png" style="width: 9.4vh; height:9.4vh;">
                     <div>
-                      <ul>
-                        <li class="ml-3"><span class="badge badge-light">Gherkin feature</span></li>
-                        <li>1. Take a feature specification that describes behaviour.</li>
+                      <ul style="margin-bottom: 0">
+                        <li class="badge badge-light">Gherkin feature</span></li>
                       </ul>
+                      <ol start="1">
+                        <li>Take a feature specification that describes behaviour.</li>
+                      </ol>
                     </div>
                   </div>
                 </div>
@@ -57,12 +59,14 @@ layout: home
               <div class="row">
                 <div class="col-lg-12 col-xl-8 offset-xl-3 d-flex align-items-center">
                   <div class="d-flex align-items-center">
-                    <img src="assets/img/gwen-icon-meta.png" width="120px" height="120px">
+                    <img src="assets/img/gwen-icon-meta.png" style="width: 9.4vh; height:9.4vh;">
                     <div>
-                      <ul>
-                        <li class="ml-3"><span class="badge badge-light">Gwen meta</span></li>
-                        <li>2. Write a Gherkin specification to describe automation.</li>
+                      <ul style="margin-bottom: 0">
+                        <li class="badge badge-light">Gwen meta</span></li>
                       </ul>
+                      <ol start="2">
+                        <li>Write a Gherkin specification to describe automation.</li>
+                      </ol>
                     </div>
                   </div>
                 </div>
@@ -76,12 +80,14 @@ layout: home
               <div class="row">
                 <div class="col-lg-12 col-xl-8 offset-xl-3 d-flex align-items-center">
                   <div class="d-flex align-items-center">
-                    <img src="assets/img/gwen-icon-logo.svg" width="120px" height="120px">
+                    <img src="assets/img/gwen-icon-logo.svg" style="width: 9.4vh; height:9.4vh;">
                     <div>
-                      <ul>
-                        <li class="ml-3"><span class="badge badge-light">Gherkin interpreter</span></li>
-                        <li>3. Launch Gwen to bind the feature to meta and execute.</li>
+                      <ul style="margin-bottom: 0">
+                        <li class="badge badge-light">Gherkin interpreter</span></li>
                       </ul>
+                      <ol start="3">
+                        <li>Launch Gwen to bind the feature to meta and execute.</li>
+                      </ol>
                     </div>
                   </div>
                 </div>
@@ -98,40 +104,40 @@ layout: home
           <td class="bg-dark">
             <div class="container-fluid">
               <div class="row">
-                <div class="col-lg-0 col-xl-2">
+                <div class="col-md-0 col-lg-1 col-xl-3">
                 </div>
-                <div class="col-lg-12 col-xl-8">
+                <div class="col-md-12 col-lg-10 col-xl-6">
                   <div class="container-fluid">
                     <div class="row">
-                      <div class="col-6 d-flex" style="justify-content: center;">
-                        <ul class="text-light instructions">
-                          <li>Install <a class="text-light quick-start-link" href="https://java.com/en/download/help/download_options.xml">Java</a> 8+</li>
-                          <li><a class="text-light quick-start-link" href="https://github.com/gwen-interpreter/gwen-web/releases/latest">Download</a> gwen-workspace.zip</li>
-                          <li>Extract zip into a directory</li>
-                          <li>Open terminal in directory and run:
-                            <div class="container-fluid">
-                              <div class="row">
-                                <div class="col-3">
-                                  Linux:
-                                </div>
-                                <div class="col-9">
-                                  <span class="code">chmod -R u+x gwen*</span>
-                                  <br />
-                                  <span class="code">./gwen -b</span>
-                                </div>
+                      <div class="col-6 text-light instructions nowrap">
+                          Install <a class="text-light quick-start-link" href="https://java.com/en/download/help/download_options.xml">Java</a> 8+
+                          <br />
+                          <a class="text-light quick-start-link" href="https://github.com/gwen-interpreter/gwen-web/releases/latest">Download</a> gwen-workspace.zip
+                          <br />
+                          Extract zip into a directory
+                          <br />
+                          Open terminal in directory &amp; run:
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col-2">
+                                Linux:
                               </div>
-                              <div class="row">
-                                <div class="col-3">
-                                  Win:
-                                </div>
-                                <div class="col-9">
-                                  <span class="code">gwen -b</span>
-                                </div>
+                              <div class="col-10">
+                                &nbsp;<span class="code">chmod -R u+x gwen*</span>
+                                <br />
+                                &nbsp;<span class="code">./gwen -b</span>
                               </div>
                             </div>
-                          </li>
-                          <li><a class="text-light quick-start-link" href="https://github.com/gwen-interpreter/gwen-web/wiki/Getting-Started">Start using Gwen</a></li>
-                        </ul>
+                            <div class="row">
+                              <div class="col-2">
+                                Win:
+                              </div>
+                              <div class="col-10">
+                                &nbsp; <span class="code">gwen -b</span>
+                              </div>
+                            </div>
+                          </div>
+                          <a class="text-light quick-start-link" href="https://github.com/gwen-interpreter/gwen-web/wiki/Getting-Started">Start using Gwen</a>
                       </div>
                       <div class="col-6 d-flex" style="justify-content: center;">
                         <pre class="ascii-art">
