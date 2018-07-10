@@ -52,6 +52,7 @@ a.light-link:hover
 
 .gwen-logo
     height: 15vh
+    width: 15vh
 
 .no-padding
     padding: 0 0 0 0
@@ -108,6 +109,12 @@ a.light-link:hover
     color: #00ff00
     line-height: 1.25
 
+.landscape
+    display: block
+
+.portrait
+    display: none
+
 @media (max-width: 991.98px) and (orientation: landscape)
     body
         font-size: 3.08vh
@@ -121,6 +128,7 @@ a.light-link:hover
     ul
         font-size: 4.29vh
     .gwen-logo
+        width: 24.75vh
         height: 24.75vh
     .table td
         padding: 1.65vh 1.65vh
@@ -142,20 +150,21 @@ a.light-link:hover
     .ascii-art
         font-size: 3.3vmin
 
-@media (min-width: 575.98px) and (orientation: portrait)
+@media (orientation: portrait)
     body
         font-size: 1.232vh
     h1
-        font-size: 6.237vh
-        +ocra-font(-1.0395vh)
+        font-size: 5.3vh
+        +ocra-font(-0.9vh)
     h2
-        font-size: 3.402vh
+        font-size: 3vh
     h3
         font-size: 2.457vh
     ul
         font-size: 2.457vh
     .gwen-logo
-        height: 14.175vh
+        width: 11vh
+        height: 11vh
     .table td
         padding: 0.945vh 0.945vh
     .navbar
@@ -166,7 +175,7 @@ a.light-link:hover
         width: 9.9225vh
         height: 9.9225vh
     .item-point
-        font-size: 2.6082vh
+        font-size: 2.5vh
     .badge
         font-size: 2.1735vh
     .instructions
@@ -175,3 +184,7 @@ a.light-link:hover
         font-size: 2.59vmin
     .ascii-art
         font-size: 2.1vmin
+    .landscape
+        display: none
+    .portrait
+        display: block
