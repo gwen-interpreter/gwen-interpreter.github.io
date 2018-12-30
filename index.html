@@ -96,15 +96,26 @@ layout: home
                     </tr>
                   </table>
                 </td>
-                <td class="icon-logo align-middle">
+                <td class="icon-logo">
                   <div class="media">
                     <img class="icon-logo" src="assets/img/gwen-attractor.png">
                   </div>
                 </td>
               </tr>
               <tr>
-                <td class="align-top" colspan="2">
-                  <a class="btn btn-danger join-button" href="https://gwenify.com">Join our user network</a>
+                <td class="align-middle">
+                  <table>
+                    <tr>
+                      <td style="padding: 0.3vh 0.3vh;">
+                        <span class="badge badge-light">Known users</span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle" colspan="2" align="center">
+                  {%- include users.html -%}
                 </td>
               </tr>
             </table>
@@ -174,4 +185,4 @@ Welcome to Gwen</pre>
   </div>
 </div>
 {%- include footer.html -%}
-{%- include users.html -%}
+
