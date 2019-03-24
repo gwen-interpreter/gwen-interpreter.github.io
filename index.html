@@ -104,10 +104,13 @@ layout: home
               </tr>
               <tr>
                 <td class="align-middle">
-                  <table>
+                  <table width="100%">
                     <tr>
                       <td style="padding: 0.3vh 0.3vh;">
                           <a name="known-users"></a><span class="badge badge-light">Known users</span>
+                      </td>
+                      <td style="padding: 0 0;">
+                          <a class="btn btn-danger join-button" href="https://gwenify.com">Join user network</a>
                       </td>
                     </tr>
                   </table>
@@ -116,6 +119,22 @@ layout: home
               <tr>
                 <td class="align-middle" colspan="2" align="center">
                   {%- include users.html -%}
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle">
+                  <table>
+                    <tr>
+                      <td style="padding: 0.3vh 0.3vh;">
+                          <a name="integrations"></a><span class="badge badge-light">Integrates with</span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle" colspan="2" align="center">
+                  {%- include integrations.html -%}
                 </td>
               </tr>
             </table>
