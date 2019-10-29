@@ -51,12 +51,12 @@ layout: home
                           <dd>Drive web automation with <a class="text-primary primary-link" href="https://cucumber.io/docs/gherkin/reference/">feature specifcations</a> like this (Gherkin):</dd>
                           <div class="jumbotron spec-container">
                                 <pre>
-  <span style="color:darkred">Feature:</span> Google search
+  <span style="color:darkred;">Feature:</span> Google search
 
- <span style="color:darkred">Scenario:</span> Lucky Google search
-     <span style="color:darkred">Given</span> I have Google in my browser                    <span style="color:darkgray">(1)</span>
-      <span style="color:darkred">When</span> I do a search for "Gwen automation"            <span style="color:darkgray">(2)</span>
-      <span style="color:darkred">Then</span> I should land on a Gwen page                   <span style="color:darkgray">(3)</span>
+ <span style="color:darkred;">Scenario:</span> Lucky Google search
+     <span style="color:darkred;">Given</span> I have Google in my browser                    <span style="color:darkgray;">(1)</span>
+      <span style="color:darkred;">When</span> I do a search for "Gwen automation"            <span style="color:darkgray;">(2)</span>
+      <span style="color:darkred;">Then</span> I should land on a Gwen page                   <span style="color:darkgray;">(3)</span>
                           </div>
                         </dl>
                       </td>
@@ -78,25 +78,25 @@ layout: home
                           <dd>With automation glue in <a class="text-primary primary-link" href="https://github.com/gwen-interpreter/gwen/wiki/Meta-Features">meta specifications</a> like this (also Gherkin):</dd>
                           <div class="jumbotron spec-container">
                             <pre>
-  <span style="color:darkred">Feature:</span> Google search meta
+  <span style="color:darkred;">Feature:</span> Google search meta
                         
- <span style="color:darkred">@StepDef</span>
- <span style="color:darkred">Scenario:</span> I have Google in my browser                    <span style="color:darkgray">(1)</span>
-     <span style="color:darkred">Given</span> I start a new browser
-      <span style="color:darkred">When</span> I navigate to "http://www.google.com"
-      <span style="color:darkred">Then</span> the page title should be "Google"
+ <span style="color:darkred;">@StepDef</span>
+ <span style="color:darkred;">Scenario:</span> I have Google in my browser                    <span style="color:darkgray;">(1)</span>
+     <span style="color:darkred;">Given</span> I start a new browser
+      <span style="color:darkred;">When</span> I navigate to "http://www.google.com"
+      <span style="color:darkred;">Then</span> the page title should be "Google"
                         
- <span style="color:darkred">@StepDef</span>
- <span style="color:darkred">Scenario:</span> I do a search for "&lt;query&gt;"                    <span style="color:darkgray">(2)</span>
-     <span style="color:darkred">Given</span> the search field can be located by name "q"
-       <span style="color:darkred">And</span> link 1 can be located by css selector ".r > a"
-      <span style="color:darkred">When</span> I enter "$<query>" in the search field
-       <span style="color:darkred">And</span> I click link 1
-      <span style="color:darkred">Then</span> the page title should not be "Google"
+ <span style="color:darkred;">@StepDef</span>
+ <span style="color:darkred;">Scenario:</span> I do a search for "<span style="font-weight: bold;">&lt;query&gt;</span>"                    <span style="color:darkgray;">(2)</span>
+     <span style="color:darkred;">Given</span> <span style="font-weight: bold; ">the search field</span> can be located by name "q"
+       <span style="color:darkred;">And</span> <span style="font-weight: bold;">link 1</span> can be located by css selector ".r > a"
+      <span style="color:darkred;">When</span> I enter "<span style="font-weight: bold;">$&lt;query&gt;</span>" in <span style="font-weight: bold;">the search field</span>
+       <span style="color:darkred;">And</span> I click <span style="font-weight: bold;">link 1</span>
+      <span style="color:darkred;">Then</span> the page title should not be "Google"
                                                
- <span style="color:darkred">@StepDef</span>
- <span style="color:darkred">Scenario:</span> I should land on a Gwen page                   <span style="color:darkgray">(3)</span>
-      <span style="color:darkred">Then</span> the current URL should match regex ".+[G|g]wen.*"</pre>
+ <span style="color:darkred;">@StepDef</span>
+ <span style="color:darkred;">Scenario:</span> I should land on a Gwen page                   <span style="color:darkgray;">(3)</span>
+      <span style="color:darkred;">Then</span> the current URL should match regex ".+[G|g]wen.*"</pre>
                         </div>
                         </dl>
                       </td>
