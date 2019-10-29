@@ -54,9 +54,9 @@ layout: home
   <span style="color:darkred">Feature:</span> Google search
 
  <span style="color:darkred">Scenario:</span> Lucky Google search
-     <span style="color:darkred">Given</span> I have Google in my browser <span class="badge badge-pill badge-secondary">1</span>
-      <span style="color:darkred">When</span> I do a search for "Gwen automation" <span class="badge badge-pill badge-secondary">2</span>
-      <span style="color:darkred">Then</span> I should land on a Gwen page <span class="badge badge-pill badge-secondary">3</span></pre>
+     <span style="color:darkred">Given</span> I have Google in my browser                    <span style="color:darkgray">(1)</span>
+      <span style="color:darkred">When</span> I do a search for "Gwen automation"            <span style="color:darkgray">(2)</span>
+      <span style="color:darkred">Then</span> I should land on a Gwen page                   <span style="color:darkgray">(3)</span>
                           </div>
                         </dl>
                       </td>
@@ -81,13 +81,13 @@ layout: home
   <span style="color:darkred">Feature:</span> Google search meta
                         
  <span style="color:darkred">@StepDef</span>
- <span style="color:darkred">Scenario:</span> I have Google in my browser <span class="badge badge-pill badge-secondary">1</span>
+ <span style="color:darkred">Scenario:</span> I have Google in my browser                    <span style="color:darkgray">(1)</span>
      <span style="color:darkred">Given</span> I start a new browser
       <span style="color:darkred">When</span> I navigate to "http://www.google.com"
       <span style="color:darkred">Then</span> the page title should be "Google"
                         
  <span style="color:darkred">@StepDef</span>
- <span style="color:darkred">Scenario:</span> I do a search for "&lt;query&gt;" <span class="badge badge-pill badge-secondary">2</span>
+ <span style="color:darkred">Scenario:</span> I do a search for "&lt;query&gt;"                    <span style="color:darkgray">(2)</span>
      <span style="color:darkred">Given</span> the search field can be located by name "q"
        <span style="color:darkred">And</span> link 1 can be located by css selector ".r > a"
       <span style="color:darkred">When</span> I enter "$<query>" in the search field
@@ -95,7 +95,7 @@ layout: home
       <span style="color:darkred">Then</span> the page title should not be "Google"
                                                
  <span style="color:darkred">@StepDef</span>
- <span style="color:darkred">Scenario:</span> I should land on a Gwen page <span class="badge badge-pill badge-secondary">3</span>
+ <span style="color:darkred">Scenario:</span> I should land on a Gwen page                   <span style="color:darkgray">(3)</span>
       <span style="color:darkred">Then</span> the current URL should match regex ".+[G|g]wen.*"</pre>
                         </div>
                         </dl>
