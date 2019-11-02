@@ -56,7 +56,7 @@ layout: home
  <span style="color:darkred;">Scenario:</span> Lucky Google search
      <span style="color:darkred;">Given</span> I have Google in my browser                    <span style="color:darkgray;">(1)</span>
       <span style="color:darkred;">When</span> I do a search for "Gwen automation"            <span style="color:darkgray;">(2)</span>
-      <span style="color:darkred;">Then</span> I should land on a Gwen page                   <span style="color:darkgray;">(3)</span></pre>
+      <span style="color:darkred;">Then</span> I should find a Gwen page                      <span style="color:darkgray;">(3)</span></pre>
                           </div>
                         </dl>
                       </td>
@@ -90,13 +90,13 @@ layout: home
  <span style="color:darkred;">@StepDef</span>
  <span style="color:darkred;">Scenario:</span> I do a search for "<span style="font-weight: bold;">&lt;query&gt;</span>"                    <span style="color:darkgray;">(2)</span>
      <span style="color:darkred;">Given</span> <span style="font-weight: bold; ">the search field</span> can be located by name "q"
-       <span style="color:darkred;">And</span> <span style="font-weight: bold;">link 1</span> can be located by css selector ".r > a"
       <span style="color:darkred;">When</span> I enter "<span style="font-weight: bold;">$&lt;query&gt;</span>" in <span style="font-weight: bold;">the search field</span>
-       <span style="color:darkred;">And</span> I click <span style="font-weight: bold;">link 1</span>
-      <span style="color:darkred;">Then</span> the page title should not be "Google"
+      <span style="color:darkred;">Then</span> the page title should contain "<span style="font-weight: bold;">$&lt;query&gt;</span>"
                                                
  <span style="color:darkred;">@StepDef</span>
- <span style="color:darkred;">Scenario:</span> I should land on a Gwen page                   <span style="color:darkgray;">(3)</span>
+ <span style="color:darkred;">Scenario:</span> I should find a Gwen page                      <span style="color:darkgray;">(3)</span>
+     <span style="color:darkred;">Given</span> <span style="font-weight: bold;">link 1</span> can be located by css selector ".r > a"
+      <span style="color:darkred;">When</span> I click <span style="font-weight: bold;">link 1</span>
       <span style="color:darkred;">Then</span> the current URL should match regex ".+[G|g]wen.*"</pre>
                             </div>
                           </dd>
