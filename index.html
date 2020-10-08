@@ -18,9 +18,13 @@ layout: home
                         <img src="assets/img/gwen-logo-10.png" class="gwen-logo" />&nbsp;
                       </td>
                       <td align="left" class="align-bottom" style="padding: 0 0 0 5px;">
-                        <img src="assets/img/gwen-blue.png" class="gwen-text" />
-                        <br/><br/>
-                        <h2>Behaviour Driven Automation (BDA)</h2>
+                        <p><img src="assets/img/gwen-blue.png" class="gwen-text" /></p>
+                        <h2>Behaviour Driven Automation</h2>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="right" colspan="2" class="align-middle" style="padding: 0 0 0 0;">
+                        <span class="float-right item-point blue-font">without all the coding</span>
                       </td>
                     </tr>
                   </table>
@@ -49,15 +53,15 @@ layout: home
                     <tr>
                       <td style="padding: 0.3vh 0.3vh; padding-left: 1em;">
                         <dl class="item-point">
-                          <dd>Drive web based tests and online processes with declarative Gherkin <div class="conditional-break"></div><a class="text-primary primary-link" href="https://cucumber.io/docs/gherkin/reference/">feature</a> specs that describe behaviour..</dd>
+                          <dd>Drive web automation with Gherkin <a class="text-primary primary-link" href="https://cucumber.io/docs/gherkin/reference/">features</a> that describe behaviour</dd>
                           <div class="jumbotron spec-container">
                                 <pre>
   <span style="color:darkred;">Feature:</span> Google search
 
  <span style="color:darkred;">Scenario:</span> Lucky Google search
-     <span style="color:darkred;">Given</span> I have Google in my browser                    <span style="color:darkgray;">(1)</span>
-      <span style="color:darkred;">When</span> I do a search for "Gwen automation"            <span style="color:darkgray;">(2)</span>
-      <span style="color:darkred;">Then</span> I should find a Gwen page                      <span style="color:darkgray;">(3)</span></pre>
+     <span style="color:darkred;">Given</span> I have Google in my browser
+      <span style="color:darkred;">When</span> I do a search for "Gwen automation"
+      <span style="color:darkred;">Then</span> I should find a Gwen page</pre>
                           </div>
                         </dl>
                       </td>
@@ -76,28 +80,28 @@ layout: home
                     <tr>
                       <td style="padding: 0.3vh 0.3vh; padding-left: 1em;">
                         <dl class="item-point">
-                          <dd>..by defining locators and step definitions in separate and imperative <div class="conditional-break"></div>Gherkin <a class="text-primary primary-link" href="https://github.com/gwen-interpreter/gwen/wiki/Meta-Features">meta</a> specs that describe automation.</dd>
+                          <dd>By defining Gherkin <a class="text-primary primary-link" href="https://github.com/gwen-interpreter/gwen/wiki/Meta-Features">meta features</a> that describe browser operations</dd>
                           <dd>
                             <div class="jumbotron spec-container">
                             <pre>
   <span style="color:darkred;">Feature:</span> Google search meta (automation glue)
                         
  <span style="color:darkred;">@StepDef</span>
- <span style="color:darkred;">Scenario:</span> I have Google in my browser                    <span style="color:darkgray;">(1)</span>
+ <span style="color:darkred;">Scenario:</span> I have Google in my browser
      <span style="color:darkred;">Given</span> I start a new browser
       <span style="color:darkred;">When</span> I navigate to "http://www.google.com"
       <span style="color:darkred;">Then</span> the page title should be "Google"
                         
  <span style="color:darkred;">@StepDef</span>
- <span style="color:darkred;">Scenario:</span> I do a search for "<span style="font-weight: bold;">&lt;query&gt;</span>"                    <span style="color:darkgray;">(2)</span>
+ <span style="color:darkred;">Scenario:</span> I do a search for "<span style="font-weight: bold;">&lt;query&gt;</span>"
      <span style="color:darkred;">Given</span> <span style="font-weight: bold; ">the search field</span> can be located by name "q"
       <span style="color:darkred;">When</span> I enter "<span style="font-weight: bold;">$&lt;query&gt;</span>" in <span style="font-weight: bold;">the search field</span>
       <span style="color:darkred;">Then</span> the page title should contain "<span style="font-weight: bold;">$&lt;query&gt;</span>"
                                                
  <span style="color:darkred;">@StepDef</span>
- <span style="color:darkred;">Scenario:</span> I should find a Gwen page                      <span style="color:darkgray;">(3)</span>
-     <span style="color:darkred;">Given</span> <span style="font-weight: bold;">link 1</span> can be located by css selector ".rc a"
-      <span style="color:darkred;">When</span> I click <span style="font-weight: bold;">link 1</span>
+ <span style="color:darkred;">Scenario:</span> I should find a Gwen page
+     <span style="color:darkred;">Given</span> <span style="font-weight: bold;">match 1</span> can be located by css selector ".rc a"
+      <span style="color:darkred;">When</span> I click <span style="font-weight: bold;">match 1</span>
       <span style="color:darkred;">Then</span> the current URL should match regex ".+[G|g]wen.*"</pre>
                             </div>
                           </dd>
@@ -119,7 +123,7 @@ layout: home
                       <td style="padding: 0.3vh 0.3vh; padding-left: 1em;">
                         <dl class="item-point">
                           <dd>
-                            Launch <a class="text-primary primary-link" href="https://github.com/gwen-interpreter/gwen-web">Gwen</a></a> to bind the meta and execute the feature without <div class="conditional-break"></div>developing any framework, page objects or selenium code.
+                            Launch <a class="text-primary primary-link" href="https://github.com/gwen-interpreter/gwen-web">Gwen</a></a> to execute the feature without developing any <div class="conditional-break"></div>framework, page objects or selenium code.
                           </dd>
                         </dl>
                       </td>
