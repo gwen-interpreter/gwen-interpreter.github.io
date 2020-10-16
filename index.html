@@ -63,34 +63,34 @@ layout: home
                           <dd>
                             <div class="jumbotron spec-container">
                             <pre>
- Feature: Todo Meta (automation glue)
+  Feature: Todo Meta (automation glue)
                         
-<span style="color:gray;">@StepDef</span>
-Scenario: <span style="color:red;">a new todo list</span>
-    Given <span style="font-weight: bold;">the heading</span> can be located by tag name "h1"
-     When I navigate to "http://todomvc.com/examples/react"
-     Then <span style="font-weight: bold;">the heading</span> should be "todos"
+ <span style="color:gray;">@StepDef</span>
+ Scenario: <span style="color:red;">a new todo list</span>
+     Given <span style="font-weight: bold;">the heading</span> can be located by tag name "h1"
+      When I navigate to "http://todomvc.com/examples/react"
+      Then <span style="font-weight: bold;">the heading</span> should be "todos"
                         
  <span style="color:gray;">@StepDef</span>
  <span style="color:gray;">@DataTable(horizontal="<span style="color: green; font-weight: bold;">item</span>")</span>
-Scenario: <span style="color:green;">the following items are added</span>
-        * <span style="color: green;">I add a todo item</span> for each data record
+ Scenario: <span style="color:green;">the following items are added</span>
+         * <span style="color: green;">I add a todo item</span> for each data record
                                                
  <span style="color:gray;">@StepDef</span>
-Scenario: <span style="color: green;">I add a todo item</span>
-    Given <span style="font-weight: bold;">the item</span> is "${data[<span style="color: green; font-weight: bold;">item</span>]}"
-      And <span style="font-weight: bold;">the todo field</span> can be located by class name "new-todo"
-     When I enter <span style="font-weight: bold;">the item</span> in <span style="font-weight: bold;">the todo field</span>
-     Then <span style="font-weight: bold;">the added item</span> can be located by xpath
-          """
-          //label[contains(.,'${<span style="font-weight: bold;">the item</span>}')]/preceding-sibling::input
-          """
-      And <span style="font-weight: bold;">the added item</span> should be unticked
+ Scenario: <span style="color: green;">I add a todo item</span>
+     Given <span style="font-weight: bold;">the item</span> is "${data[<span style="color: green; font-weight: bold;">item</span>]}"
+       And <span style="font-weight: bold;">the todo field</span> can be located by class name "new-todo"
+      When I enter <span style="font-weight: bold;">the item</span> in <span style="font-weight: bold;">the todo field</span>
+      Then <span style="font-weight: bold;">the added item</span> can be located by xpath
+           """
+           //label[contains(.,'${<span style="font-weight: bold;">the item</span>}')]/preceding-sibling::input
+           """
+       And <span style="font-weight: bold;">the added item</span> should be unticked
 
  <span style="color:gray;">@StepDef</span>
-Scenario: <span style="color:blue;">the list will have </span><span style="color:blue; font-weight: bold;">&lt;expected&gt;</span><span style="color:blue;"> items</span></span>
-    Given <span style="font-weight: bold;">actual</span> can be located by css selector ".todo-count > strong"
-     Then <span style="font-weight: bold;">actual</span> should be "$<span style="color:blue; font-weight: bold;">&lt;expected&gt;</span>"</div>
+ Scenario: <span style="color:blue;">the list will have </span><span style="color:blue; font-weight: bold;">&lt;expected&gt;</span><span style="color:blue;"> items</span></span>
+     Given <span style="font-weight: bold;">actual</span> can be located by css selector ".todo-count > strong"
+      Then <span style="font-weight: bold;">actual</span> should be "$<span style="color:blue; font-weight: bold;">&lt;expected&gt;</span>"</div>
                           </dd>
                           <dd>
                             Launch <a class="text-primary primary-link" href="https://github.com/gwen-interpreter/gwen-web">Gwen</a></a> to execute your feature without developing any<div class="conditional-break"></div> framework, page objects or Selenium code.
