@@ -19,7 +19,7 @@ layout: home
                       </td>
                       <td align="left" class="align-bottom" style="padding: 0 0 0 5px;">
                         <p><img src="assets/img/gwen-blue.png" class="gwen-text" /></p>
-                        <h2>Behaviour Driven Automation</h2>
+                        <h2>Behaviour driven automation</h2>
                       </td>
                     </tr>
                     <tr>
@@ -44,86 +44,91 @@ layout: home
             <table>
               <tr>
                 <td class="align-middle" style="padding-bottom: 0;">
-                  <table>
-                    <tr>
-                      <td style="padding: 0.3vh 0.3vh;">
-                        <span class="badge badge-light">Feature</span>
-                      </td>
-                    </tr>
+                  <table width="100%">
                     <tr>
                       <td style="padding: 0.3vh 0.3vh; padding-left: 1em;">
                         <dl class="item-point">
-                          <dd>Drive web automation with Gherkin <a class="text-primary primary-link" href="https://cucumber.io/docs/gherkin/reference/">features</a> that describe behaviour</dd>
+                          <dd>Take your <a class="text-primary primary-link" href="https://cucumber.io/docs/gherkin/reference/">Gherkin feature</a> that describes behaviour</dd>
                           <div class="jumbotron spec-container">
                                 <pre>
-  <span style="color:darkred;">Feature:</span> Google search
-
- <span style="color:darkred;">Scenario:</span> Lucky Google search
-     <span style="color:darkred;">Given</span> I have Google in my browser
-      <span style="color:darkred;">When</span> I do a search for "Gwen automation"
-      <span style="color:darkred;">Then</span> I should find a Gwen page</pre>
-                          </div>
-                        </dl>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td class="align-middle" style="padding-bottom: 0;">
-                  <table>
-                    <tr>
-                      <td style="padding: 0.3vh 0.3vh">
-                        <span class="badge badge-light">Meta</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="padding: 0.3vh 0.3vh; padding-left: 1em;">
-                        <dl class="item-point">
-                          <dd>By defining Gherkin <a class="text-primary primary-link" href="https://github.com/gwen-interpreter/gwen/wiki/Meta-Features">meta features</a> that describe browser operations</dd>
+   Feature: Todo
+ 
+  Scenario: Create todo list
+      Given <span style="color:red;">a new todo list</span>
+       When <span style="color:green;">the following items are added</span>
+            | Get the milk  |
+            | Walk the dog  |
+       Then <span style="color:blue;">the list will have 2 items</span></div>
+                          <dd>Write <a class="text-primary primary-link" href="https://github.com/gwen-interpreter/gwen/wiki/Meta-Features">Gwen meta</a> to define your step definitions</dd>
                           <dd>
                             <div class="jumbotron spec-container">
                             <pre>
-  <span style="color:darkred;">Feature:</span> Google search meta (automation glue)
+ Feature: Todo Meta (automation glue)
                         
- <span style="color:darkred;">@StepDef</span>
- <span style="color:darkred;">Scenario:</span> I have Google in my browser
-     <span style="color:darkred;">Given</span> I start a new browser
-      <span style="color:darkred;">When</span> I navigate to "http://www.google.com"
-      <span style="color:darkred;">Then</span> the page title should be "Google"
+<span style="color:gray;">@StepDef</span>
+Scenario: <span style="color:red;">a new todo list</span>
+    Given <span style="font-weight: bold;">the heading</span> can be located by tag name "h1"
+     When I navigate to "http://todomvc.com/examples/react"
+     Then <span style="font-weight: bold;">the heading</span> should be "todos"
                         
- <span style="color:darkred;">@StepDef</span>
- <span style="color:darkred;">Scenario:</span> I do a search for "<span style="font-weight: bold;">&lt;query&gt;</span>"
-     <span style="color:darkred;">Given</span> <span style="font-weight: bold; ">the search field</span> can be located by name "q"
-      <span style="color:darkred;">When</span> I enter "<span style="font-weight: bold;">$&lt;query&gt;</span>" in <span style="font-weight: bold;">the search field</span>
-      <span style="color:darkred;">Then</span> the page title should contain "<span style="font-weight: bold;">$&lt;query&gt;</span>"
+ <span style="color:gray;">@StepDef</span>
+ <span style="color:gray;">@DataTable(horizontal="<span style="color: green; font-weight: bold;">item</span>")</span>
+Scenario: <span style="color:green;">the following items are added</span>
+        * <span style="color: green;">I add a todo item</span> for each data record
                                                
- <span style="color:darkred;">@StepDef</span>
- <span style="color:darkred;">Scenario:</span> I should find a Gwen page
-     <span style="color:darkred;">Given</span> <span style="font-weight: bold;">match 1</span> can be located by css selector ".rc a"
-      <span style="color:darkred;">When</span> I click <span style="font-weight: bold;">match 1</span>
-      <span style="color:darkred;">Then</span> the current URL should match regex ".+[G|g]wen.*"</pre>
-                            </div>
+ <span style="color:gray;">@StepDef</span>
+Scenario: <span style="color: green;">I add a todo item</span>
+    Given <span style="font-weight: bold;">the item</span> is "${data[<span style="color: green; font-weight: bold;">item</span>]}"
+      And <span style="font-weight: bold;">the todo field</span> can be located by class name "new-todo"
+     When I enter <span style="font-weight: bold;">the item</span> in <span style="font-weight: bold;">the todo field</span>
+     Then <span style="font-weight: bold;">the added item</span> can be located by xpath
+          """
+          //label[contains(.,'${<span style="font-weight: bold;">the item</span>}')]/preceding-sibling::input
+          """
+      And <span style="font-weight: bold;">the added item</span> should be unticked
+
+ <span style="color:gray;">@StepDef</span>
+Scenario: <span style="color:blue;">the list will have </span><span style="color:blue; font-weight: bold;">&lt;expected&gt;</span><span style="color:blue;"> items</span></span>
+    Given <span style="font-weight: bold;">actual</span> can be located by css selector ".todo-count > strong"
+     Then <span style="font-weight: bold;">actual</span> should be "$<span style="color:blue; font-weight: bold;">&lt;expected&gt;</span>"</div>
                           </dd>
-                        </dl>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td class="align-middle">
-                  <table>
-                    <tr>
-                      <td style="padding: 0.3vh 0.3vh;">
-                        <span class="badge badge-light">Gwen</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="padding: 0.3vh 0.3vh; padding-left: 1em;">
-                        <dl class="item-point">
                           <dd>
-                            Launch <a class="text-primary primary-link" href="https://github.com/gwen-interpreter/gwen-web">Gwen</a></a> to execute the feature without developing any <div class="conditional-break"></div>framework, page objects or selenium code.
+                            Launch <a class="text-primary primary-link" href="https://github.com/gwen-interpreter/gwen-web">Gwen</a></a> to execute your feature without developing any<div class="conditional-break"></div> framework, page objects or Selenium code.
+                            <br><br>
+                          </dd>
+                          <dd class="align-middle bg-danger">
+                              <table width="100%">
+                                  <tr>
+                                      <td align="center">
+                                          <a class="item-point text-light light-link" style="font-weight:normal;" href="https://github.com/gwen-interpreter/gwen-web/wiki/Getting-Started">Get started</a>
+                                      </td>
+                                      <td align="center">
+                                          <a class="item-point text-light light-link" style="font-weight:normal;" href="https://gwenify.com">Get support</a>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                              </table>
+                          </dd>
+                          <dd>
+                            <table width="100%">
+                              <tr>
+                                  <td class="align-middle" align="center">
+                                    <br>
+                                    {%- include users.html -%}
+                                  </td>
+                              </tr>
+                              <tr>
+                            </table>
+                          </dd>
+                          <dd>
+                            <table width="100%">
+                              <tr>
+                                  <td class="align-middle" align="center">
+                                    {%- include integrations.html -%}
+                                  </td>
+                              </tr>
+                              <tr>
+                            </table>
                           </dd>
                         </dl>
                       </td>
@@ -131,54 +136,6 @@ layout: home
                   </table>
                 </td>
               </tr>
-              <tr>
-                  <td class="align-middle bg-danger" colspan="2" align="center">
-                      <table width="80%">
-                          <tr>
-                              <td align="center">
-                                  <a class="item-point text-light light-link" style="font-weight:normal;" href="https://github.com/gwen-interpreter/gwen-web/wiki/Getting-Started">Get started</a>
-                              </td>
-                              <td align="center">
-                                  <a class="item-point text-light light-link" style="font-weight:normal;" href="https://gwenify.com">Get support</a>
-                              </td>
-                          </tr>
-                          <tr>
-                      </table>
-                  </td>
-              </tr>
-              <tr>
-                <td class="align-middle">
-                  <table width="100%">
-                    <tr>
-                      <td style="padding: 0.3vh 0.3vh;">
-                          <br><a name="known-users"></a><span class="badge badge-light">Users</span>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td class="align-middle" colspan="2" align="center">
-                  {%- include users.html -%}
-                </td>
-              </tr>
-              <tr>
-                  <td class="align-middle">
-                    <table width="100%">
-                      <tr>
-                        <td style="padding: 0.3vh 0.3vh;">
-                            <br><a name="known-users"></a><span class="badge badge-light">Integration</span>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="align-middle" colspan="2" align="center">
-                    {%- include integrations.html -%}
-                  </td>
-                </tr>
-  
             </table>
           </td>
         </tr>
