@@ -5,3 +5,7 @@ _site/
 
 .nix-gems/
 default.nix
+
+.vscode/
+.metals/
+
