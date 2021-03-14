@@ -9,19 +9,27 @@ layout: home
       <table class="table container-fluid">
         <tr>
           <td align="center">
+            <br>
             <table>
               <tr>
                 <td align="left" style="padding-left:0;">
                   <table>
                     <tr>
                       <td align="right" class="align-middle" style="padding: 0 0 0 0;">
-                        <img src="assets/img/gwen-logo-10.png" class="gwen-logo" />&nbsp;
+                        <img src="assets/img/gwen-logo-10.png" class="gwen-logo" alt="Gwen logo"/>&nbsp;
                       </td>
                       <td align="left" class="align-bottom" style="padding: 0 0 0 5px;">
-                        <p><img src="assets/img/gwen-blue.png" class="gwen-text" /></p>
+                        <p><img src="assets/img/gwen-blue.png" class="gwen-text" alt="Gwen"/></p>
                         <h2>Declarative Gherkin Automation</h2>
                       </td>
                     </tr>
+                  <tr>
+                    <td colspan="2" align="right" style="padding: 0 0 0 5px;">
+                      <div class="gwt">
+                        with <span class="blue-font">G</span>iven <span class="blue-font">W</span>hen Th<span class="blue-font">en</span>
+                      </div>
+                    </td>
+                  </tr>
                   </table>
                 </td>
               </tr>
@@ -38,26 +46,22 @@ layout: home
           <td align="center">
             <table>
               <tr>
-                <td align="center">
-                  <div class="blockquote">
-                    Gwen is a Gherkin interpreter that converts Given-When-Then statements<br>
-                     into code to automate software testing and robotic processing.<br>
-                  </div>
-                </td>
-              </tr>
-              <tr>
                 <td class="align-middle" style="padding-bottom: 0;">
                   <table width="100%">
                     <tr>
                       <td style="padding: 0.3vh 0.3vh; padding-left: 1em;">
-                        
+                        <dl class="blockquote">
+                          <dd>
+                            Gwen is a Gherkin interpreter that maps Given-When-Then<div class="conditional-break"></div> statements to preprogrammed code to automate software<div class="conditional-break"></div> testing and robotic processing.<br><br>
+                          </dd>
+                        </dl>
                         <dl class="item-point">
                           <dd>
                             Write a <a class="text-primary primary-link" href="https://cucumber.io/docs/gherkin/reference/">feature spec</a> to describe behaviour.
                           </dd>
                           <div class="jumbotron spec-container">
                                 <pre>
-                                         <span style="color:gray;"># file: todo.feature</span>
+                                        <span style="color:gray;"># file: todo.feature</span>
    Feature: Todo
  
   Scenario: Create todo list
@@ -73,7 +77,7 @@ layout: home
                           <dd>
                             <div class="jumbotron spec-container">
                             <pre>
-                                            <span style="color:gray;"># file: todo.meta</span>
+                                           <span style="color:gray;"># file: todo.meta</span>
    Feature: Todo Meta (automation glue)
 
   <span style="color:gray;">@StepDef</span>
@@ -95,7 +99,7 @@ layout: home
                             </div>
                           </dd>
                           <dd>
-                            Launch <a class="text-primary primary-link" href="https://github.com/gwen-interpreter/gwen-web">Gwen</a></a> to execute your feature without developing any<div class="conditional-break"></div> framework, page objects or Selenium code.
+                            Launch <a class="text-primary primary-link" href="https://github.com/gwen-interpreter/gwen-web">Gwen</a></a> to execute your feature without developing any<div class="conditional-break"></div> framework, page objects or automation code.
                             <br><br>
                           </dd>
                           <dd class="align-middle bg-danger">
@@ -112,6 +116,7 @@ layout: home
                               </table>
                           </dd>
                           <dd>
+                            <br>
                             <table width="100%">
                               <tr>
                                   <td class="align-middle" align="center">
