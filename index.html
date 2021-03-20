@@ -48,16 +48,10 @@ layout: home
                 <td class="align-middle" style="padding-top: 0; padding-bottom: 0;">
                   <table width="100%">
                     <tr>
-                      <td class="text-right">
-                        <div class="gwt">
-                          <span class="blue-font">G</span>iven <span class="blue-font">W</span>hen Th<span class="blue-font">en</span>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
                       <td style="padding: 0.3vh 0.3vh; padding-left: 1em;"">
                         <dl class="panel">
                           <dd>
+                            <br>
                             <div class="card ">
                               <div class="card-body item-point">
                                 Gwen is a <a class="text-primary primary-link" href="https://cucumber.io/docs/gherkin/reference/">Gherkin</a> interpreter that maps Given-When-Then statements to preprogrammed code to automate software testing and robotic processing.
@@ -73,14 +67,14 @@ layout: home
                           </dd>
                           <div class="jumbotron spec-container">
                                 <pre>
-   Feature: Todo
+ Feature: Todo
  
   Scenario: Create todo list
-      Given <span style="color:red;">a new todo list</span>
-       When <span style="color:green;">the following items are added</span>
-            | Get the milk  |
-            | Walk the dog  |
-       Then <span style="color:blue;">the list will contain 2 items</span></pre>
+    Given <span style="color:red;">a new todo list</span>
+     When <span style="color:green;">the following items are added</span>
+          | Get the milk  |
+          | Walk the dog  |
+     Then <span style="color:blue;">the list will contain 2 items</span></pre>
                           </div>
                           <dd>
                             <h3>Define Meta</h3>
@@ -89,24 +83,24 @@ layout: home
                           <dd>
                             <div class="jumbotron spec-container">
                             <pre>
-   Feature: Todo Meta (automation glue)
+ Feature: Todo Meta (automation glue)
 
   <span style="color:gray;">@StepDef</span>
   Scenario: <span style="color:red;">a new todo list</span>
-       When I navigate to "http://todomvc.com/examples/react"
-       Then <span style="font-weight: bold;">the todo field</span> can be located by class "new-todo"
-        And <span style="font-weight: bold;">count</span> can be located by css ".todo-count strong"
+    When I navigate to "http://todomvc.com/examples/react"
+    Then <span style="font-weight: bold;">the todo field</span> can be located by class "new-todo"
+     And <span style="font-weight: bold;">count</span> can be located by css ".todo-count strong"
                         
   <span style="color:gray;">@StepDef</span>
   <span style="color:gray; font-weight: bold;">@ForEach</span>
   <span style="color:gray; font-weight: bold;">@DataTable(horizontal="<span style="color: green;">item</span>")</span>
   Scenario: <span style="color:green;">the following items are added</span>
-       When I enter data[<span style="color: green; font-weight: bold;">item</span>] in <span style="font-weight: bold;">the todo field</span>
-       Then <span style="font-weight: bold;">count</span> should be <span style="color:green;">record.number</span>
+    When I enter data[<span style="color: green; font-weight: bold;">item</span>] in <span style="font-weight: bold;">the todo field</span>
+    Then <span style="font-weight: bold;">count</span> should be <span style="color:green;">record.number</span>
 
   <span style="color:gray;">@StepDef</span>
   Scenario: <span style="color:blue;">the list will contain </span><span style="color:blue; font-weight: bold;">&lt;expected&gt;</span><span style="color:blue;"> items</span></span>
-       Then <span style="font-weight: bold;">count</span> should be "$<span style="color:blue; font-weight: bold;">&lt;expected&gt;</span>"</pre>
+    Then <span style="font-weight: bold;">count</span> should be "$<span style="color:blue; font-weight: bold;">&lt;expected&gt;</span>"</pre>
                             </div>
                           </dd>
                           <dd>
