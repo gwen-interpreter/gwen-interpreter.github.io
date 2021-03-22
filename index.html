@@ -65,7 +65,7 @@ layout: home
                             <br><br>
                           <div class="jumbotron spec-container">
                                 <pre>
- Feature: Todo
+Feature: Todo
  
   Scenario: Create todo list
     Given <span style="color:#E00000;">a new todo list</span>
@@ -83,7 +83,7 @@ layout: home
                             <br><br>
                             <div class="jumbotron spec-container">
                             <pre>
- Feature: Todo Meta (automation glue)
+Feature: Todo Meta (automation glue)
 
   <span style="color:#707070;">@StepDef</span>
   Scenario: <span style="color:#E00000;">a new todo list</span>
@@ -93,7 +93,7 @@ layout: home
                         
   <span style="color:#707070;">@StepDef</span>
   <span style="color:#707070;">@ForEach</span>
-  <span style="color:#707070;">@DataTable(horizontal="<span style="color: #008000;">item</span>")</span>
+  <span style="color:#707070;">@DataTable(horizontal="<span style="color: #008000; font-weight: bold;">item</span>")</span>
   Scenario: <span style="color:#008000;">the following items are added</span>
     When I enter data[<span style="color: #008000; font-weight: bold;">item</span>] in <span style="font-weight: bold;">the todo field</span>
     Then <span style="font-weight: bold;">count</span> should be <span style="color:#008000;">record.number</span>
