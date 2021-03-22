@@ -53,65 +53,68 @@ layout: home
                           <dd>
                             <br>
                             <div class="card ">
-                              <div class="card-body item-point">
+                              <div class="card-body">
                                 Gwen is a <a class="text-link primary-link" href="https://cucumber.io/docs/gherkin/reference/">Gherkin</a> interpreter that maps Given-When-Then statements to preprogrammed code to automate software testing and robotic processing.
                               </div>
                             </div>
                             <br>
                           </dd>
                         </dl>
-                        <dl class="item-point">
-                          <dd>
+                        <dl>
+                          <dt>
                             <h3>Declare Features</h3>
+                          </dt>
+                          <dd>
                             Write <a class="text-link primary-link" href="https://cucumber.io/docs/gherkin/reference/#feature">feature specs</a> to describe behaviour in a declarative manner without giving any thought to automation.
-                          </dd>
+                            <br><br>
                           <div class="jumbotron spec-container">
                                 <pre>
  Feature: Todo
  
   Scenario: Create todo list
-    Given <span style="color:red;">a new todo list</span>
-     When <span style="color:green;">the following items are added</span>
+    Given <span style="color:#E00000;">a new todo list</span>
+     When <span style="color:#008000;">the following items are added</span>
           | Get the milk  |
           | Walk the dog  |
-     Then <span style="color:blue;">the list will contain 2 items</span></pre>
+     Then <span style="color:#4747FF;">the list will contain 2 items</span></pre>
                           </div>
-                          <dd>
-                            <h3>Define Meta</h3>
-                            Write separate <a class="text-link primary-link" href="https://github.com/gwen-interpreter/gwen/wiki/Meta-Features">meta specs</a> to define all the step definitions and automation bindings required for execution.
                           </dd>
+                          <dt>
+                            <h3>Define Meta</h3>
+                          </dt>
                           <dd>
+                            Write separate <a class="text-link primary-link" href="https://github.com/gwen-interpreter/gwen/wiki/Meta-Features">meta specs</a> to define all the step definitions and automation bindings required for execution.
+                            <br><br>
                             <div class="jumbotron spec-container">
                             <pre>
  Feature: Todo Meta (automation glue)
 
-  <span style="color:gray;">@StepDef</span>
-  Scenario: <span style="color:red;">a new todo list</span>
+  <span style="color:#707070;">@StepDef</span>
+  Scenario: <span style="color:#E00000;">a new todo list</span>
     When I navigate to "http://todomvc.com/examples/react"
     Then <span style="font-weight: bold;">the todo field</span> can be located by class "new-todo"
      And <span style="font-weight: bold;">count</span> can be located by css ".todo-count strong"
                         
-  <span style="color:gray;">@StepDef</span>
-  <span style="color:gray; font-weight: bold;">@ForEach</span>
-  <span style="color:gray; font-weight: bold;">@DataTable(horizontal="<span style="color: green;">item</span>")</span>
-  Scenario: <span style="color:green;">the following items are added</span>
-    When I enter data[<span style="color: green; font-weight: bold;">item</span>] in <span style="font-weight: bold;">the todo field</span>
-    Then <span style="font-weight: bold;">count</span> should be <span style="color:green;">record.number</span>
+  <span style="color:#707070;">@StepDef</span>
+  <span style="color:#707070;">@ForEach</span>
+  <span style="color:#707070;">@DataTable(horizontal="<span style="color: #008000;">item</span>")</span>
+  Scenario: <span style="color:#008000;">the following items are added</span>
+    When I enter data[<span style="color: #008000; font-weight: bold;">item</span>] in <span style="font-weight: bold;">the todo field</span>
+    Then <span style="font-weight: bold;">count</span> should be <span style="color:#008000;">record.number</span>
 
-  <span style="color:gray;">@StepDef</span>
-  Scenario: <span style="color:blue;">the list will contain </span><span style="color:blue; font-weight: bold;">&lt;expected&gt;</span><span style="color:blue;"> items</span></span>
-    Then <span style="font-weight: bold;">count</span> should be "$<span style="color:blue; font-weight: bold;">&lt;expected&gt;</span>"</pre>
+  <span style="color:#707070;">@StepDef</span>
+  Scenario: <span style="color:#4747FF;">the list will contain </span><span style="color:#4747FF; font-weight: bold;">&lt;expected&gt;</span><span style="color:#4747FF;"> items</span></span>
+    Then <span style="font-weight: bold;">count</span> should be "$<span style="color:#4747FF; font-weight: bold;">&lt;expected&gt;</span>"</pre>
                             </div>
                           </dd>
-                          <dd>
+                          <dt>
                             <h3>Run Gwen</h3>
+                          </dt>
+                          <dd>
                             Launch <a class="text-link primary-link" href="https://github.com/gwen-interpreter/gwen-web">Gwen</a></a> to load the meta and execute your feature specs!
                             <br><br>
-                          </dd>
-                          <dd class="align-middle">
-                            <a class="btn btn-danger btn-block item-point" href="https://github.com/gwen-interpreter/gwen-web/wiki/Getting-Started" role="button">Get Started</a>
-                          </dd>
-                          <dd>
+                            <div class="align-middle">
+                              <a class="btn btn-danger btn-block" href="https://github.com/gwen-interpreter/gwen-web/wiki/Getting-Started" role="button">Get Started</a>
                             <br>
                             <table width="100%">
                               <tr>
@@ -121,8 +124,6 @@ layout: home
                               </tr>
                               <tr>
                             </table>
-                          </dd>
-                          <dd>
                             <table width="100%">
                               <tr>
                                   <td class="align-middle" align="center">
