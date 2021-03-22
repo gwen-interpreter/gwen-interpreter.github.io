@@ -68,11 +68,11 @@ layout: home
 Feature: Todo
  
   Scenario: Create todo list
-    Given <span style="color:#E00000;">a new todo list</span>
-     When <span style="color:#008000;">the following items are added</span>
+    Given <span class="highlight-red">a new todo list</span>
+     When <span class="highlight-green">the following items are added</span>
           | Get the milk  |
           | Walk the dog  |
-     Then <span style="color:#4747FF;">the list will contain 2 items</span></pre>
+     Then <span class="highlight-blue">the list will contain 2 items</span></pre>
                           </div>
                           </dd>
                           <dt>
@@ -85,22 +85,22 @@ Feature: Todo
                             <pre>
 Feature: Todo Meta (automation glue)
 
-  <span style="color:#707070;">@StepDef</span>
-  Scenario: <span style="color:#E00000;">a new todo list</span>
+  <span class="highlight-grey">@StepDef</span>
+  Scenario: <span class="highlight-red">a new todo list</span>
     When I navigate to "http://todomvc.com/examples/react"
     Then <span style="font-weight: bold;">the todo field</span> can be located by class "new-todo"
      And <span style="font-weight: bold;">count</span> can be located by css ".todo-count strong"
                         
-  <span style="color:#707070;">@StepDef</span>
-  <span style="color:#707070;">@ForEach</span>
-  <span style="color:#707070;">@DataTable(horizontal="<span style="color: #008000; font-weight: bold;">item</span>")</span>
-  Scenario: <span style="color:#008000;">the following items are added</span>
-    When I enter data[<span style="color: #008000; font-weight: bold;">item</span>] in <span style="font-weight: bold;">the todo field</span>
-    Then <span style="font-weight: bold;">count</span> should be <span style="color:#008000;">record.number</span>
+  <span class="highlight-grey">@StepDef</span>
+  <span class="highlight-grey">@ForEach</span>
+  <span class="highlight-grey">@DataTable(horizontal="<span class="highlight-green" style="font-weight: bold;">item</span>")</span>
+  Scenario: <span class="highlight-green">the following items are added</span>
+    When I enter data[<span class="highlight-green" style="font-weight: bold;">item</span>] in <span style="font-weight: bold;">the todo field</span>
+    Then <span style="font-weight: bold;">count</span> should be <span class="highlight-green">record.number</span>
 
-  <span style="color:#707070;">@StepDef</span>
-  Scenario: <span style="color:#4747FF;">the list will contain </span><span style="color:#4747FF; font-weight: bold;">&lt;expected&gt;</span><span style="color:#4747FF;"> items</span></span>
-    Then <span style="font-weight: bold;">count</span> should be "$<span style="color:#4747FF; font-weight: bold;">&lt;expected&gt;</span>"</pre>
+  <span class="highlight-grey">@StepDef</span>
+  Scenario: <span class="highlight-blue">the list will contain </span><span class="highlight-blue" style="font-weight: bold;">&lt;expected&gt;</span><span class="highlight-blue"> items</span></span>
+    Then <span style="font-weight: bold;">count</span> should be "$<span class="highlight-blue" style="font-weight: bold;">&lt;expected&gt;</span>"</pre>
                             </div>
                           </dd>
                           <dt>
