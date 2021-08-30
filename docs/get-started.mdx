@@ -1,0 +1,311 @@
+---
+sidebar_position: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Get Started
+
+## Prerequisites
+- Linux, Mac or Windows
+- Chrome, Firefox, Safari, or Edge or IE web browser
+- Java JRE 8+ (version 1.8 or higher)
+  - You can check if you have Java installed by opening a command prompt and typing `java -version.` A version will be displayed if you do have it installed ([install Java](https://www.java.com/en/download/manual.jsp) otherwise).
+
+:::tip Before you start
+
+Read the Gwen [introduction](introduction).
+
+:::
+
+## Project setup
+
+<Tabs
+  defaultValue="standalone"
+  values={[
+    {label: 'Standalone Project', value: 'standalone'},
+    {label: 'Workspace Project', value: 'workspace'},
+    {label: 'JS Project', value: 'js'},
+  ]}>
+
+<TabItem value="standalone">
+
+#### 1. Download and install
+
+Perform the following to set up Gwen as a standalone project in a directory on your machine:
+
+- Browse the [releases](https://github.com/gwen-interpreter/gwen-web/releases) and download the binary `gwen-web-version.zip` package of the version you want to install and use
+- Extract the downloaded ZIP into a desired directory
+
+This will give you the following files and subdirectories:
+```
+ /gwen-web-version           # Your project root
+ ├── gwen                    # Linux launch script
+ ├── gwen.bat                # Windows launch script
+ ├── /bin                    # Gwen scripts
+ ├── /lib                    # Gwen binaries
+ └── /samples                # Sample features and meta
+ ```
+
+:::caution No Automatic Updates
+
+There are no automatic updates with the standalone approach. You will need to repeat this process when you want to upgrade or downgrade your installed Gwen verison. You will also need to do the same on your build server(s) if you plan to run Gwen there.
+
+:::
+
+#### 2. Set your default browser
+
+Gwen is configured to use the Chrome browser by default. To change it, create a new `gwen.properties` file in your standalone project directory and set the following setting to `chrome` ,`firefox`, `safari`, `edge`, or `ie`:
+
+*File: gwen.properties*
+
+```properties
+# default browser to use
+gwen.web.browser = firefox
+```
+
+(*This example sets FireFox as the default browser.*)
+
+#### 3. Execute the samples
+
+Run the following command in your project root to execute the sample feature specs. An [evaluation report](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) will be generated at `target/reports/index.html` in your project.
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+<TabItem value="linux">
+
+```console
+./gwen -b -r target/reports samples
+```
+
+</TabItem>
+<TabItem value="windows">
+
+```console
+gwen -b -r target/reports samples
+```
+
+</TabItem>
+</Tabs>
+
+:::note Batch or REPL
+
+- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- The `-r` option specifes the report output directory
+
+:::
+
+#### 4. Add your own features and meta
+
+Create a new `features` subdirectory in your project root and start adding your own features and meta there. Run the following command to execute your features:
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+<TabItem value="linux">
+
+```console
+./gwen -b -r target/reports features
+```
+
+</TabItem>
+<TabItem value="windows">
+
+```console
+gwen -b -r target/reports features
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="workspace">
+
+:::caution Deprecated
+
+[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) are deprecated in favor of JS projects coming soon to Gwen 3. 
+
+:::
+
+#### 1. Download and install
+
+Perform the following to set up Gwen as a [workspace](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) project on your machine:
+
+- Download and extract this [gwen-workspace.zip](https://github.com/gwen-interpreter/gwen-web/releases/latest/download/gwen-workspace.zip) into a desired location on your computer
+
+This will give you the following files and subdirectories:
+```
+ /gwen-workspace             # Your project root
+ ├── .gitignore              # Git ignore file
+ ├── gwen                    # Linux launch script
+ ├── gwen.bat                # Windows launch script
+ ├── gwen.properties         # Gwen properties/settings
+ ├── gwen-gpm.jar            # Gwen package manager JAR
+ ├── /browsers               # Browser settings
+ │   ├── chrome.properties   # - default is chrome
+ │   ├── edge.properties
+ │   ├── firefox.properties
+ │   ├── safari.properties
+ │   ├── ie.properties
+ │   └── README.txt
+ ├── /env                    # Environment settings
+ │   ├── local.properties    # - default is local
+ │   └── README.txt
+ ├── /features               # Your feature/meta files go here
+ └── /samples                # Sample features and meta
+ ```
+
+#### 2. Enable/Disable automatic updates
+
+When you first launch Gwen in your workspace, it will take a little time to download the latest version of itself before starting. On subsequent launches it will start much faster and won't download anything again until we publish a new release in which case it will automatically update itself.
+
+To turn off automatic updates, open the `gwen.properties` file in your workspace project directory in a text editor and amend the `gwen.gwen-web.version` property from `latest` to the version number of the [release](https://github.com/gwen-interpreter/gwen-web/releases) you want to use.
+
+```properties
+# Gwen package version
+# --------------------
+# Gwen web version (specify desired version or latest for auto updates)
+gwen.gwen-web.version=latest
+```
+
+#### 3. Set your default browser
+
+Gwen is configured to use the Chrome browser by default. To change it, open the Gwen launch script in your workspace project directory and set the follwing variable to `chrome`, `firefox`, `safari`, `edge`, or `ie`:
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+<TabItem value="linux">
+
+*File: gwen*
+```
+DEFAULT_BROWSER="firefox"
+```
+
+</TabItem>
+<TabItem value="windows">
+
+*File: gwen.bat*
+```
+SET DEFAULT_BROWSER=firefox
+```
+
+</TabItem>
+
+</Tabs>
+
+(*This example sets FireFox as the default browser.*)
+
+#### 4. Execute the samples
+
+Run the following command in your project root to execute the sample feature specs. An [evaluation report](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) will be generated at `target/reports/index.html` in your project.
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+<TabItem value="linux">
+
+```console
+./gwen -b samples
+```
+
+</TabItem>
+<TabItem value="windows">
+
+```console
+gwen -b samples
+```
+
+</TabItem>
+</Tabs>
+
+:::note Batch or REPL
+
+- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+
+:::
+
+#### 5. Add your own features and meta
+
+Start adding your own features and meta to the `features` directory in your workspace. Run the following command to execute your features:
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+<TabItem value="linux">
+
+To use the default browser and env/local.properties settings:
+```console
+./gwen -b features
+```
+To use the Edge browser and env/local.properties settings:
+```console
+./gwen edge -b features
+```
+To use the default browser and env/dev.properties settings:
+```console
+./gwen dev -b features
+```
+To use the Edge browser and env/dev.properties settings:
+```console
+./gwen edge dev -b features
+```
+
+</TabItem>
+<TabItem value="windows">
+
+To use the default browser and env/local.properties settings:
+```console
+gwen -b features
+```
+To use the Edge browser and env/local.properties settings:
+```console
+gwen edge -b features
+```
+To use the default browser and env/dev.properties settings:
+```console
+gwen dev -b features
+```
+To use the Edge browser and env/dev.properties settings:
+```console
+gwen edge dev -b features
+```
+
+</TabItem>
+</Tabs>
+
+#### 6. Share your project with your team
+
+Push your project to a Git repository and share it with your team. A `.gitignore` file that excludes the `target` output directory is included. You can keep or delete the samples subdirectory (up to you).
+
+</TabItem>
+<TabItem value="js">
+
+:::info Coming to Gwen 3
+Support for adding Gwen to JS projects is coming soon to Gwen 3.
+:::
+
+</TabItem>
+</Tabs>

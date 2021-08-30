@@ -1,0 +1,131 @@
+---
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Using Gwen
+
+Once you have [installed Gwen](get-started#install-gwen) Gwen and set up your project, you can start building up your feature suite. Doing this is an interative three step process.
+
+## 1. Declare Features
+
+Put your [feature specs](https://cucumber.io/docs/gherkin/reference/#feature) in the `features` directory of your Gwen project.
+
+:::info
+
+Feature specs should describe the behaviour of a feature in a declarative manner. Do not give any thought to automation when writing them. Avoid putting [Gwen DSL steps](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL) in them too since they are meant for automation purposes and should only be referenced in meta where they belong.
+
+Gwen enforces these rules by default and reports any such violations are errors to help you to write [strictly good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/).
+
+You can however disable these checks at your own choosing by changing the `gwen.feature.mode` setting to `imperative` instead of `declarative` and the `gwen.behavior.rules` setting to `lenient` instead of `strict`.
+
+:::
+
+For example, create a new `todo.feature` file with the following content in your `features` directory.
+
+*File: gwen/features/todo.feature*
+```gherkin
+Feature: Todo
+ 
+  Scenario: Create todo list
+    Given a new todo list
+     When the following items are added
+          | Item          |
+          | Get the milk  |
+          | Walk the dog  |
+     Then the list will contain 2 items
+```
+
+## 2. Compose Meta
+
+Write [meta specs](https://github.com/gwen-interpreter/gwen/wiki/Meta-Features) to define all the step definitions required to execute all steps in your features.
+
+### Associative Meta
+Start by writing one meta spec per feature file and store them in the same directory as your feature files. Name them with the same names that their associative feature files have but with the `meta` file extention instead of `feature`. You can refactor and eliminate any redudances that might emerge in your meta later.
+
+:::info
+
+By default, Gwen will load and bind same named `*.meta` files to same named `*.feature` files  ONLY in any given directory!
+
+You can disable this default by setting the `gwen.associative.meta` setting to `false`. However take some time to read about [Gwen meta strategies](https://github.com/gwen-interpreter/gwen/wiki/Meta-Features#meta-strategies) first to get a good understanding of how Gwen loads meta so that you know the repercussions (if any) that changing this setting could introduce to your project.
+
+:::
+
+Each step definition is defined as a `@StepDef` annotated scenario with a name that matches the calling step and contains one or more steps that call out to other step definitions or predefined Gwen [Web DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL) steps that perform the prescribed browser operations. Steps containing [Data tables](https://github.com/gwen-interpreter/gwen/wiki/Data-Tables) can also be mapped to step definitions using the `@ForEach` and `@DataTable` annotations as shown in the example. Inputs to steps can also be parameterised using the `<param>` syntax and resolved with `$<param>`.
+
+For example, create a new `todo.meta` file with the following content in your *gwen/features* folder. 
+
+
+*File: gwen/features/todo.meta*
+```gherkin
+Feature: Todo Meta (automation glue)
+
+  @StepDef
+  Scenario: a new todo list
+       When I navigate to "http://todomvc.com/examples/react"
+       Then the todo field can be located by class "new-todo"
+        And count can be located by css ".todo-count strong"
+                        
+  @StepDef
+  @ForEach
+  @DataTable(header="top")
+  Scenario: the following items are added
+       When I enter data[Item] in the todo field
+
+  @StepDef
+  Scenario: the list will contain <expected> items
+       Then count should be "$<expected>"
+```
+
+## 3. Launch Gwen
+
+Launch Gwen in your project root directory to execute your features!
+
+<Tabs
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'Standalone', value: 'standalone'},
+  ]}>
+<TabItem value="npm">
+
+Execute all features
+```console
+npm run gwen -b /gwen/features
+```
+Execute one feature
+```console
+npm run gwen -b /gwen/features/todo.feature
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+Execute all features
+```console
+yarn gwen -b /gwen/features
+```
+Execute one feature
+```console
+yarn gwen -b /gwen/features/todo.feature
+```
+
+</TabItem>
+<TabItem value="standalone">
+
+Execute all features
+```console
+gwen -b /features
+```
+Execute one feature
+```console
+gwen -b /features/todo.feature
+```
+
+  </TabItem>
+</Tabs>
+
+> The `-b` (`--batch`) switch tells Gwen to exit immediately after feature execution completes. Omitting it will open the interactive [Gwen REPL Console](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) upon completion instead.
