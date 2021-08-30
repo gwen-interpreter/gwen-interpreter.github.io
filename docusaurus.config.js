@@ -114,8 +114,8 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          // editUrl:
-          //   'https://github.com/gwen-interpreter/gwen-interpreter.github.io/gwen-web',
+          editUrl:
+             'https://github.com/gwen-interpreter/gwen-interpreter.github.io/edit/master',
         },
         blog: {
           showReadingTime: false,
