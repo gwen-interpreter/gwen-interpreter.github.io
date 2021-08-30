@@ -10,15 +10,15 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Gwen automation
 
- Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter for executing feature specs through automation bindings in [meta specs](https://github.com/gwen-interpreter/gwen/wiki/Meta-Features) which you compose using the [Gwen DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL). An embedded web engine performs operations and checks consistently and reliably across browsers for you.
+ Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter for driving automation with feature specifications. Automation is achieved through [meta specs](https://github.com/gwen-interpreter/gwen/wiki/Meta-Features) which you compose with the [Gwen DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL) and bind to steps in your features. An embedded web engine translates and executes each step accordingly to perform the prescribed operations in browsers for you.
 
 :::tip
-Learn about the key Gwen concepts here before [getting started](/docs/get-started).
+Read on to learn more about Gwen before [getting started](/docs/get-started).
 :::
 
-#### Recommended usage
+#### Recommended approach
 
-Start with the intention of writing features to communicate requirements without giving any thought to automation. Then when it makes sense to automate, compose your meta and progressively maintain a useful suite of features that you can execute often.
+Start with the intention of writing specifications to describe feature behaviors without giving any thought to automation or execution. Then when it makes sense to automate, compose your meta incrementally and maintain a useful suite of specifications that you can execute often.
 
 ## How it works
 
@@ -26,7 +26,7 @@ Start with the intention of writing features to communicate requirements without
 
 *Declare feature specs to describe how scenarios and examples must behave.*
 
-Feature specs are used to communicate specifications that are clear, concise and declarative. For example, the following describes how adding items to a todo list should behave.
+Feature specifications are used to communicate requirements that are clear, concise and declarative. For example, the following describes how adding items to a todo list should behave.
 
 :::note Feature Spec
 
@@ -50,7 +50,7 @@ Gwen aims to take these "as is" and make them executable.
 
 *Compose meta specs to describe what your feature specs will execute.*
 
-Meta specs describe what Gwen will execute in the Gherkin language too and are maintained in separate meta files that get bound to your feature files when Gwen is launched. All your step definitions and bindings required for automation are defined in meta so your high level features remain unconcerned with this detail.
+Meta specifications describe what Gwen will execute in the Gherkin language too and are maintained in separate meta files that bind to your feature files when Gwen is launched. All your step definitions and bindings required for automation are defined in meta so your high level features remain unconcerned with this detail.
 
 The following example meta describes how the above feature spec could be used to automate a test against a running [todo application](https://todomvc.com/examples/react).
 
