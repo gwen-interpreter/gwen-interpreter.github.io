@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Gwen
 
- Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter for driving automation with feature specifications. Execution is achieved through bindings in [meta specs](https://github.com/gwen-interpreter/gwen/wiki/Meta-Features) which you compose with the [Gwen DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL). An embedded web engine executes each feature step according to the bindings to automate operations in browsers. Your feature specs execute unchanged.
+ Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter for driving automation with feature specifications. Automation is achieved through bindings called [meta specs](https://github.com/gwen-interpreter/gwen/wiki/Meta-Features) which you compose with the [Gwen DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL) in separate files. An embedded web engine executes each step in your features according to those bindings to automate operations in browsers for you. Your high level feature specs remain unchanged and execute when Gwen is launched and the meta is bound.
 
 #### Recommended approach
 
