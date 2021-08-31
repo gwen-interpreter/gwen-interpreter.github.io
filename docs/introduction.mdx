@@ -12,17 +12,17 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
  Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter for driving automation with feature specifications.
  
- Automation is achieved through Gherkin bindings called [meta specs](https://github.com/gwen-interpreter/gwen/wiki/Meta-Features) which you compose with the [Gwen DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL) and maintain alongside your feature files. An embedded web engine executes each step in your features according to those bindings to automate operations in browsers for you. Your high level feature specs remain unchanged and execute when Gwen is launched and the meta is bound.
-
-#### Recommended approach
-
-Start with the intention of writing specifications to describe feature behaviors without giving any thought to automation or execution. Then when it makes sense to automate, compose your meta incrementally and maintain a useful suite of specifications that you can execute often.
-
 :::tip
 Read on to learn more about Gwen before [getting started](/docs/get-started).
 :::
 
 ## How it works
+
+Automation is achieved through Gherkin bindings called [meta specs](https://github.com/gwen-interpreter/gwen/wiki/Meta-Features) which you compose with the [Gwen DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL) and maintain alongside your feature specs. An embedded web engine executes each step in your features according to those bindings to automate operations in browsers for you. Your high level feature specs remain unchanged and execute when Gwen is launched and the meta is bound.
+
+#### Recommended approach
+
+Start with the intention of writing specifications to describe feature behaviors without giving any thought to automation or execution. Then when it makes sense to automate, compose your meta incrementally and maintain a useful suite of specifications that you can execute often.
 
 ### 1. Declare your feature specs
 
