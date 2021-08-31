@@ -1,27 +1,24 @@
 ---
-title: Overview
+title: DSL Overview
 ---
-# Gwen DSL
 
-<head>
-   <title>DSL Overview | Gwen</title>
-</head>
+# Gwen DSL
 
 ## DSL Steps
 
 Every Gherkin step starts with a `Given`, `When`, `Then`, `And`, `But`, or `*` keyword followed by a step expression. 
 A step with an expression that matches a supported DSL expression is considered a DSL step and as such is directly executable without requiring a StepDef. Gwen executes all DSL steps out of the box.
 
-### Execution
+## Execution rules
 
 Gwen executes every step in a feature or meta spec according to the following rules (in the order shown):
 
 1. StepDef rule
    - If the step is bound to a StepDef then these rules will be applied to each step in the body of that StepDef
-2. DSL step rule
-   - If the step is a DSL step then Gwen will execute it using the preprogrammed DSL code
-3. Undefined step rule
-   - If neither rule 1 or rule2 are satisfied then Gwen will report an undefined step error
+2. DSL rule
+   - If the step is a DSL step then Gwen will execute it using the preprogrammed DSL code in its engine
+3. Undefined rule
+   - If neither of the above rules are satisfied then Gwen will report an undefined step error
 
 :::tip All execution happens in DSL steps
 Every step will directly or indirectly through StepDefs result in one or more DSL steps that will execute or undefined steps that will not.
