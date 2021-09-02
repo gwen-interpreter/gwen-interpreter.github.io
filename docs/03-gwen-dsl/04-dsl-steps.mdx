@@ -18,9 +18,15 @@ Since it matches the supported DSL expression:
 
 :::
 
-## All execution happens in DSL steps
+## All execution happens in the DSL
 
-Gwen executes every Gherkin step using three rules as follows:
+Every step interpreted by Gwen will directly or inderectly through StepDefs result in either:
+- one or many DSL steps that will execute 
+- or undefined steps that will not execute
+
+:::note Step execution rules
+
+Every Gherkin step is interpreted for execution using three general rules. 
 
 1. StepDef rule
    - If the step is bound to a StepDef then reapply these rules to every step in the body of that StepDef
@@ -28,10 +34,10 @@ Gwen executes every Gherkin step using three rules as follows:
    - If the step is a DSL step then execute it using the DSL code in the embedded automation engine
 3. Undefined rule
    - If neither of the above rules are satisfied then report an undefined step error
+   
+:::
 
-Therefore, every step interpreted by Gwen will eventually result in either:
-- one or many DSL steps that will execute 
-- or undefined steps that will not
+StepDefs can override DSL steps. If a StepDef calls itself then a matching DSL step (if one exists) will be called, otherwise a recursion error will be reported.
 
 ## DSL Usage
 
