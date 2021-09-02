@@ -1,0 +1,51 @@
+# DSL Steps
+
+## Executable step expressions
+
+Every step in your meta or feature specs that matches a [supported DSL](#supported-dsl) expression is considered a DSL step and as such is readily executable by Gwen.
+
+:::note Example
+
+The following is a DSL Step:
+
+```gherkin
+  Then the page title should contain "TodoMVC"
+```
+
+Since it matches the supported DSL expression:
+
+- [`the page title <should|should not> <be|contain|start with|end with|match regex|match xpath|match template|match template file> "<expression>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#the-page-title-shouldshould-not-becontainstart-withend-withmatch-regexmatch-xpathmatch-templatematch-template-file-expression)
+
+:::
+
+## All execution happens in DSL steps
+
+Gwen executes every Gherkin step using three rules as follows:
+
+1. StepDef rule
+   - If the step is bound to a StepDef then reapply these rules to every step in the body of that StepDef
+2. DSL rule
+   - If the step is a DSL step then execute it using the DSL code in the embedded automation engine
+3. Undefined rule
+   - If neither of the above rules are satisfied then report an undefined step error
+
+Therefore, every step interpreted by Gwen will eventually result in either:
+- one or many DSL steps that will execute 
+- or undefined steps that will not
+
+## Usage
+
+Use DSL steps to compose StepDefs in meta for the purpose of making feature steps executable. Although you can use them in your feature specs too, we do not recommend you having "DSL aware" features. Meta is for that!
+
+:::info Coming to Gwen 3
+We are planning to ban DSL steps from feature specs by default in the upcomming Gwen 3 release by defaulting the [`gwen.feature.mode`](https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenfeaturemode) setting to `declarative` instead of `imperative`.
+:::
+
+## Supported DSL
+
+:::info We're migrating our docs
+We are currently migrating all our documentation and will publish more here soon. In the meantime, please see our original DSL guide on our wiki by clicking the link here:
+
+- [Supported DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL)
+
+:::
