@@ -2,7 +2,7 @@
 
 ## Readily executable Gherkin steps
 
-Every step in your meta or feature specs that matches a [supported DSL](#supported-dsl) expression is considered a DSL step and as such is readily executable by Gwen.
+DSL steps are readily executable by Gwen. Any step in your meta or feature specs that matches a [supported DSL](#supported-dsl) expression is considered a DSL step.
 
 :::note Example
 
@@ -21,12 +21,13 @@ Since it matches the supported DSL expression:
 ## All execution happens in the DSL
 
 Every step interpreted by Gwen will directly or inderectly through StepDefs result in either:
-- one or many DSL steps that will execute 
-- or undefined steps that will not execute
+- one or many DSL steps being executed
+- one or many undefined steps not being executed
+- or any combination of the above
 
 :::note Step execution rules
 
-Every Gherkin step is interpreted for execution using three general rules. 
+Gwen interprets steps for execution according to the following rules:
 
 1. StepDef rule
    - If the step is bound to a StepDef then reapply these rules to every step in the body of that StepDef
@@ -37,13 +38,27 @@ Every Gherkin step is interpreted for execution using three general rules.
    
 :::
 
-StepDefs can override DSL steps. If a StepDef calls itself then a matching DSL step (if one exists) will be called, otherwise a recursion error will be reported.
+StepDefs can override DSL steps and make calls to overriden steps. If a StepDef calls itself however, a preventative infinite recursion error will be reported.
 
-## DSL Usage
+In the ideal case, all steps will execute. It is your job as a Gwen user to define StepDefs for all non DSL steps in your features (and in your meta if you introduce any there). Gwen will help you by reporting any such steps you may miss as being undefined. Of course, syntax and other errors may occur and Gwen will report those also.
+
+## Use DSL steps in meta
+
+:::caution Avoid using DSL steps in feature specs
+Although you can use DSL steps directly in your feature specs, we do not recommend you write "DSL aware" features. That's what meta is for!
+:::
 
 Use DSL steps to compose StepDefs in meta to make your feature steps executable. 
 
-For example, the following StepDef..
+For example, to make this step in your feature executable:
+
+:::note Feature Step
+```gherkin
+  Given a new todo list
+```
+:::
+
+..you could compose this StepDef in your meta:
 
 :::note StepDef
 ```gherkin {4-7}
@@ -53,29 +68,17 @@ For example, the following StepDef..
       Given my todo list can be located by css ".todo-list"
        When I navigate to "https://todomvc.com/examples/react"
        Then the page title should contain "TodoMVC"
-        And my todo list should be hidden
+        And my todo list should not be displayed
 ```
 :::
 
-..calls out to 4 DSL steps:
+..to call these DSL steps:
 
 :::note Calls DSL steps:
 - [`<element> can be located by <id|name|tag name|tag|css selector|css|xpath|class name|class|link text|partial link text|javascript|js> "<expression>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#element-can-be-located-by-idnametag-nametagcss-selectorcssxpathclass-nameclasslink-textpartial-link-textjavascriptjs-expression)
 - [`I navigate to "<url>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#i-navigate-to-url)
 - [`the page title <should|should not> <be|contain|start with|end with|match regex|match xpath|match template|match template file> "<expression>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#the-page-title-shouldshould-not-becontainstart-withend-withmatch-regexmatch-xpathmatch-templatematch-template-file-expression)
 - [`<element> <should|should not> be <displayed|hidden|checked|ticked|unchecked|unticked|enabled|disabled>`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#element-shouldshould-not-be-displayedhiddencheckedtickeduncheckeduntickedenableddisabled)
-:::
-
-..to execute this feature step:
-
-:::note Feature Step
-```gherkin
-  Given a new todo list
-```
-:::
-
-:::caution Avoid using DSL steps in feature specs
-Although you can use DSL steps directly in your feature specs, we do not recommend you write "DSL aware" features. That's what meta is for!
 :::
 
 :::info Coming to Gwen 3
