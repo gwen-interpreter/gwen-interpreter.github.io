@@ -41,7 +41,7 @@ StepDefs can override DSL steps. If a StepDef calls itself then a matching DSL s
 
 ## DSL Usage
 
-Use DSL steps to compose StepDefs in meta for the purpose of making feature steps executable. Although you can use them in your feature specs too, we do not recommend you having "DSL aware" features. Meta is for that!
+Use DSL steps to compose StepDefs in meta to make your feature steps executable. Although you can use them in your feature specs too, we do not recommend you write "DSL aware" features. That's what meta is for!
 
 :::info Coming to Gwen 3
 We are planning to ban DSL steps from feature specs by default in the upcomming Gwen 3 release by defaulting the [`gwen.feature.mode`](https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenfeaturemode) setting to `declarative` instead of `imperative`.
