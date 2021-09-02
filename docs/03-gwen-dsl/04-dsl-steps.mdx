@@ -23,7 +23,7 @@ Since it matches the supported DSL expression:
 Every step interpreted by Gwen will directly or inderectly through StepDefs result in either:
 - one or many DSL steps being executed
 - one or many undefined steps not being executed
-- or any combination of the above
+- or a combination of the above
 
 :::note Step execution rules
 
@@ -38,9 +38,9 @@ Gwen interprets steps for execution according to the following rules:
    
 :::
 
-StepDefs can override DSL steps and make calls to overriden steps. If a StepDef calls itself however, a preventative infinite recursion error will be reported.
+StepDefs can override DSL steps to alter or add additional steps around them. If a StepDef calls itself however, an error will be reported to prevent infinite recursion.
 
-In the ideal case, all steps will execute. It is your job as a Gwen user to define StepDefs for all non DSL steps in your features (and in your meta if you introduce any there). Gwen will help you by reporting any such steps you may miss as being undefined. Of course, syntax and other errors may occur and Gwen will report those also.
+In the ideal case, all steps will execute. It is your job as a Gwen user to define StepDefs for all non DSL steps in your features (and in your meta if you introduce any there). Gwen will help you by reporting any such steps you may miss as being undefined. Of course, syntax and other errors could occur and Gwen will report those also.
 
 ## Use DSL steps in meta
 
