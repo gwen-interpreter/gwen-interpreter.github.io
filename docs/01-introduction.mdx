@@ -164,7 +164,7 @@ Calls DSL step:
 
 #### Verifying that an element is hidden from view
 
-The last step in this StepDef verifies that the web element containing the current list of todo items is hidden from view. We expect it to be hidden and not displayed because we haven't added any items to it yet. Recall that we bound this element in the first step earlier to the name `my todo list`. So here we reference it by that name and if Gwen cannot see it then execution will resume, otherwise an assertion error will be raised. 
+The last step in this StepDef verifies that the web element containing the current list of todo items is hidden from view. We expect it to not be displayed because we haven't added any items to it yet. Recall that we bound this element in the first step earlier to the name `my todo list`. So here we reference it by that name and if Gwen cannot see it on the page then execution will resume, otherwise an assertion error will be raised. 
 
 :::note StepDef 1, Steps 4
 
