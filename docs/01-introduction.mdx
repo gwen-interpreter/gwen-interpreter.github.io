@@ -10,10 +10,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
  
  Automation is achieved through Gherkin bindings called [meta specs](https://github.com/gwen-interpreter/gwen/wiki/Meta-Features) which you compose with the [Gwen DSL](gwen-dsl/dsl-steps) and maintain alongside your feature specs. An embedded web engine executes each step in your features according to those bindings to automate operations in browsers for you. Your high level feature specs remain unchanged and execute when Gwen is launched and the meta is bound.
 
-:::tip
-Read on to learn the key Gwen concepts before [getting started](/docs/get-started).
-:::
-
 ## How it works
 
 ### 1. Declare your feature specs
@@ -113,12 +109,15 @@ The first StepDef in our meta example binds to the first step in the feature and
 The first thing the above will do is bind the selector for locating the todo list element on the web page to the name `my todo list`. Later steps can then reference that element using this name to interact with it and Gwen will locate it dynamically.
 
 :::note StepDef 1, Step 1
+
 ```gherkin
   Given my todo list can be located by css ".todo-list"
 ```
-:::
-:::note Calls DSL step:
+
+Calls DSL step:
+
 - [`<element> can be located by <id|name|tag name|tag|css selector|css|xpath|class name|class|link text|partial link text|javascript|js> "<expression>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#element-can-be-located-by-idnametag-nametagcss-selectorcssxpathclass-nameclasslink-textpartial-link-textjavascriptjs-expression)
+
 :::
 
 #### Navigating to a web page
@@ -126,12 +125,15 @@ The first thing the above will do is bind the selector for locating the todo lis
 The next step in this StepDef will open a new browser window and navigate to the URL in the `todo.page.url` property.
 
 :::note StepDef 1, Step 2
+
 ```gherkin
   When I navigate to "${todo.page.url}"
 ```
-:::
-:::note Calls DSL step:
+
+Calls DSL step:
+
 - [`I navigate to "<url>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#i-navigate-to-url)
+
 :::
 
 #### Accessing externalised properties
@@ -151,13 +153,15 @@ We could have just hard coded the https://todomvc.com/examples/react URL in the 
 The next step in the same StepDef checks that the page title in the browser window contains the string literal "TodoMVC" in it. If it doesn't then an assertion error will be raised, otherwise execution will resume to the next step. It is generally a good idea when navigating to a page to verify that you did indeed land on that page before proceeding to interact with it. Checking the title is one way to do it which will suffice in this case.
 
 :::note StepDef 1, Step 3
+
 ```gherkin
   Then the page title should contain "TodoMVC"
 ```
-:::
 
-:::note Calls DSL step:
+Calls DSL step:
+
 - [`the page title <should|should not> <be|contain|start with|end with|match regex|match xpath|match template|match template file> "<expression>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#the-page-title-shouldshould-not-becontainstart-withend-withmatch-regexmatch-xpathmatch-templatematch-template-file-expression)
+
 :::
 
 #### Verifying that an element is hidden from view
@@ -165,13 +169,15 @@ The next step in the same StepDef checks that the page title in the browser wind
 The last step in this StepDef verifies that the web element containing the current list of todo items is hidden from view. We expect it to be hidden and not displayed because we haven't added any items to it yet. Recall that we bound this element in the first step earlier to the name `my todo list`. So here we reference it by that name and if Gwen cannot see it then execution will resume, otherwise an assertion error will be raised. 
 
 :::note StepDef 1, Steps 4
+
 ```gherkin
   And my todo list should be hidden
 ```
-:::
 
-:::note Calls DSL step:
+Calls DSL step:
+
 - [`<element> <should|should not> be <displayed|hidden|checked|ticked|unchecked|unticked|enabled|disabled>`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#element-shouldshould-not-be-displayedhiddencheckedtickeduncheckeduntickedenableddisabled)
+
 :::
 
 #### Processing records in data tables
@@ -202,32 +208,36 @@ The second StepDef specifies the `@DataTable` and `@ForEach` annotations which w
 The `header="top"` attribute in the `@DataTable` annotation designates the topmost row in the table as the header record. Each name in this header will be bound to the respective data in each record as it is iterated over and made available to the steps in the body of the StepDef as `data[name]`. In this example the sole field named `Item` is referenced as `data[Item]` in the second step of the body.
 
 :::note StepDef 2, Step 2
+
 ```gherkin
   And my new item is "${data[Item]}"
 ```
-:::
 
-:::note Calls DSL step:
+Calls DSL step:
+
 - [`<attribute> <is|will be> "<value>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#attribute-iswill-be-value)
+
 :::
 
 This step binds the resolved value to a string named `my new item` for use by the two steps that follow. We do this to eliminate the redundancy of having to resolve it twice and also to make maintenance easier should we ever decide to rename this field in the table. These steps enter this value into the `todo field` and verify that it was succesfully added to `my todo list`. This is the same `my todo list` that we earlier confirmed was absent when we opened the page in the browser. We reuse it here to check that it contains our newly added item (for the current record iteration). If it does not, then an assertion error will be raised. 
 
 :::note StepDef 2, Steps 3 and 4
+
 ```gherkin
   When I enter my new item in the todo field
   Then my todo list should contain my new item
 ```
-:::
 
-:::note Calls DSL steps:
+Calls DSL steps:
+
 - [`I <enter|type> <attribute> in <element>`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#i-entertype-attribute-in-element)
 - [`<element|attribute> <should|should not> <be|contain|start with|end with|match regex|match xpath> <attribute>`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#elementattribute-shouldshould-not-becontainstart-withend-withmatch-regexmatch-xpath-attribute)
+
 :::
 
 #### Passing parameters to StepDefs
 
-The last StepDef accepts the number of expected items from the last step in the feature into a parameter placeholder named `expected-count` and then uses that to assert its value against `the displayed count` on the page.
+The last StepDef accepts the number of expected items from the last step in the feature into a parameter placeholder named `expected-count` and then uses that to assert its value against `the displayed count` on the page. In this example, the value 2 will passed as the parameter.
 
 :::note Feature Step 3
 ```gherkin

@@ -30,37 +30,45 @@ Every step interpreted by Gwen will directly or inderectly through StepDefs resu
 Gwen interprets steps for execution according to the following rules:
 
 1. StepDef rule
-   - If the step is bound to a StepDef then reapply these rules to every step in the body of that StepDef
+   - If the step is bound to a StepDef then apply these rules to every step in the body of that StepDef
 2. DSL rule
-   - If the step is a DSL step then execute it using the DSL code in the embedded automation engine
+   - If the step is a DSL step then execute it
 3. Undefined rule
    - If neither of the above rules are satisfied then report an undefined step error
    
 :::
 
-StepDefs can override DSL steps to alter or add additional steps around them. If a StepDef calls itself however, an error will be reported to prevent infinite recursion.
+StepDefs can override DSL steps to alter their operations or perform additional steps around them. If a StepDef calls itself then an error will be reported to prevent infinite recursion.
 
-In the ideal case, all steps will execute. It is your job as a Gwen user to define StepDefs for all non DSL steps in your features (and in your meta if you introduce any there). Gwen will help you by reporting any such steps you may miss as being undefined. Of course, syntax and other errors could occur and Gwen will report those also.
+In the ideal case, all steps will execute. It is your job as a Gwen user to define StepDefs for all non DSL steps in your feature specs (and in your meta if you introduce any there). Gwen will help you by reporting any you may miss as undefined steps. You can also perform [dry runs](https://github.com/gwen-interpreter/gwen/wiki/Execution-Modes#dry-run-execution-and-validation) to check for syntax and binding errors before executing.
 
 ## Use DSL steps in meta
 
 :::caution Avoid using DSL steps in features
-Although you can use DSL steps directly in your feature specs, we do not recommend you write "DSL aware" features. That's what meta is for!
+Although it's possible to use DSL steps directly in feature specs, we do not recommend having DSL-aware features. That's what meta is for!
+
 :::
 
 Use DSL steps to compose StepDefs in meta to make your feature steps executable. 
 
-For example, to make this step in your feature executable:
+For example, to make this step executable:
 
-:::note Feature Step
+:::note Step in feature
+
+*File: features/todo.feature*
+
 ```gherkin
   Given a new todo list
 ```
+
 :::
 
-..you could compose this StepDef in your meta:
+You could compose a StepDef like this:
 
-:::note StepDef
+:::note StepDef in meta
+
+*File: features/todo.meta*
+
 ```gherkin {4-7}
   @Context
   @StepDef
@@ -70,24 +78,26 @@ For example, to make this step in your feature executable:
        Then the page title should contain "TodoMVC"
         And my todo list should not be displayed
 ```
-:::
 
-..to call these DSL steps:
+Calls DSL steps:
 
-:::note Calls DSL steps:
 - [`<element> can be located by <id|name|tag name|tag|css selector|css|xpath|class name|class|link text|partial link text|javascript|js> "<expression>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#element-can-be-located-by-idnametag-nametagcss-selectorcssxpathclass-nameclasslink-textpartial-link-textjavascriptjs-expression)
 - [`I navigate to "<url>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#i-navigate-to-url)
 - [`the page title <should|should not> <be|contain|start with|end with|match regex|match xpath|match template|match template file> "<expression>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#the-page-title-shouldshould-not-becontainstart-withend-withmatch-regexmatch-xpathmatch-templatematch-template-file-expression)
 - [`<element> <should|should not> be <displayed|hidden|checked|ticked|unchecked|unticked|enabled|disabled>`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#element-shouldshould-not-be-displayedhiddencheckedtickeduncheckeduntickedenableddisabled)
+
 :::
 
 :::info Coming to Gwen 3
+
 We are planning to ban DSL steps from feature specs by default in the upcomming Gwen 3 release by defaulting the [`gwen.feature.mode`](https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenfeaturemode) setting to `declarative` instead of `imperative`.
+
 :::
 
 ## Supported DSL
 
 :::info We're migrating our docs
+
 We are currently migrating all our documentation and will publish more here soon. In the meantime, please see our original DSL guide on our wiki by clicking the link here:
 
 - [Supported DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL)
