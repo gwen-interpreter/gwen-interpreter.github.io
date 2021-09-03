@@ -53,7 +53,7 @@ There are no automatic updates with the standalone approach. You will need to ma
 
 #### 2. Set your default browser
 
-Gwen is configured to use the Chrome browser by default. To change it, create a new `gwen.properties` file in your standalone project directory and set the following setting to your preferred browser:
+Gwen is configured to use the Chrome browser by default. To change it, create a new `gwen.properties` file in your standalone project directory and set the following setting to your preferred default:
 
 :::note Amend setting
 
@@ -232,7 +232,7 @@ gwen.gwen-web.version=latest
 
 #### 3. Set your default browser and environment
 
-Gwen workspaces are configured to use the Chrome browser and local environment properties by default. To change either or these, open the Gwen launch script in your workspace project directory and set the follwing variables:
+Gwen workspaces are configured to use the Chrome browser and local environment properties by default. To change either or these, open the Gwen launch script in your workspace project directory and set the follwing variables to your preferred defaults:
 
 <Tabs
   groupId="os"
@@ -247,7 +247,6 @@ Gwen workspaces are configured to use the Chrome browser and local environment p
 
 *File: gwen*
 ```console
-# Defaults
 DEFAULT_BROWSER="firefox"
 DEFAULT_ENV="local"
 ```
@@ -266,7 +265,6 @@ This example sets Firefox as the default browser and leaves the default environm
 
 *File: gwen.bat*
 ```console
-REM Defaults
 SET DEFAULT_BROWSER=firefox
 SET DEFAULT_ENV=local
 ```
