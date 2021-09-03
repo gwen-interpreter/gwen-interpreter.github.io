@@ -64,7 +64,7 @@ Gwen is configured to use the Chrome browser by default. To change it, create a 
 gwen.web.browser = firefox
 ```
 
-This example sets Firefox as the default browser.
+This example sets Firef ox as the default browser.
 
 :::
 
@@ -81,7 +81,7 @@ Run the following command in your project root to execute the sample feature spe
   ]}>
 <TabItem value="linux">
 
-:::note Execute our samples
+:::note Launch Gwen
 
 ```console
 ./gwen -b -r target/reports samples
@@ -90,14 +90,17 @@ Run the following command in your project root to execute the sample feature spe
 Where:
 
 - The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
-- The `-r` option specifes the report output directory
+- The `-r` option sets the report output directory to `target/reports`
+- `samples` is the directory containing the meta and feature samples to execute 
+
+[More CLI options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
 
 :::
 
 </TabItem>
 <TabItem value="windows">
 
-:::note Execute our samples
+:::note Launch Gwen
 
 ```console
 gwen -b -r target/reports samples
@@ -106,7 +109,10 @@ gwen -b -r target/reports samples
 Where:
 
 - The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
-- The `-r` option specifes the report output directory
+- The `-r` option sets the report output directory to `target/reports`
+- `samples` is the directory containing the meta and feature samples to execute 
+
+[More CLI options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
 
 :::
 
@@ -127,22 +133,38 @@ Create a new `features` subdirectory in your project root and start adding your 
   ]}>
 <TabItem value="linux">
 
-:::note Execute your features
+:::note Launch Gwen
 
 ```console
 ./gwen -b -r target/reports features
 ```
+
+Where:
+
+- The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- The `-r` option sets the report output directory to `target/reports`
+- `features` is the directory containing your meta and feature files to execute 
+
+[More CLI options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
 
 :::
 
 </TabItem>
 <TabItem value="windows">
 
-:::note Execute your features
+:::note Launch Gwen
 
 ```console
 gwen -b -r target/reports features
 ```
+
+Where:
+
+- The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- The `-r` option sets the report output directory to `target/reports`
+- `features` is the directory containing your meta and feature files to execute 
+
+[More CLI options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
 
 :::
 
@@ -205,9 +227,9 @@ gwen.gwen-web.version=latest
 
 :::
 
-#### 3. Set your default browser
+#### 3. Set your default browser and environment
 
-Gwen is configured to use the Chrome browser by default. To change it, open the Gwen launch script in your workspace project directory and set the follwing variable to `chrome`, `firefox`, `safari`, `edge`, or `ie`:
+Gwen workspaces are configured to use the Chrome browser and local environment properties by default. To change either or these, open the Gwen launch script in your workspace project directory and set the follwing variables:
 
 <Tabs
   groupId="os"
@@ -221,9 +243,16 @@ Gwen is configured to use the Chrome browser by default. To change it, open the 
 :::note Amend launch script
 
 *File: gwen*
-```
+```console
+# Defaults
 DEFAULT_BROWSER="firefox"
+DEFAULT_ENV="local"
 ```
+Where:
+- Browser options include: `chrome`, `firefox`, `safari`, `edge`, or `ie`
+- The environment is the name of a properties file in the `env` folder of your workspace
+
+This example sets Firefox as the default browser and leaves the default environment as local.
 
 :::
 
@@ -233,17 +262,22 @@ DEFAULT_BROWSER="firefox"
 :::note Amend launch script
 
 *File: gwen.bat*
-```
+```console
+REM Defaults
 SET DEFAULT_BROWSER=firefox
+SET DEFAULT_ENV=local
 ```
+Where:
+- Browser options include: `chrome`, `firefox`, `safari`, `edge`, or `ie`
+- The environment is the name of a properties file in the `env` folder of your workspace
+
+This example sets Firefox as the default browser and leaves the default environment as local.
 
 :::
 
 </TabItem>
 
 </Tabs>
-
-(*This example sets Firefox as the default browser.*)
 
 #### 4. Execute the samples
 
@@ -258,7 +292,7 @@ Run the following command in your project root to execute the sample feature spe
   ]}>
 <TabItem value="linux">
 
-:::note Execute our samples
+:::note Launch Gwen
 
 ```console
 ./gwen -b samples
@@ -267,13 +301,16 @@ Run the following command in your project root to execute the sample feature spe
 Where:
 
 - The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- `samples` is the directory containing the meta and feature samples to execute 
+
+[More CLI options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
 
 :::
 
 </TabItem>
 <TabItem value="windows">
 
-:::note Execute our samples
+:::note Launch Gwen
 
 ```console
 gwen -b samples
@@ -282,6 +319,9 @@ gwen -b samples
 Where:
 
 - The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- `samples` is the directory containing the meta and feature samples to execute 
+
+[More CLI options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
 
 :::
 
@@ -301,7 +341,7 @@ Start adding your own features and meta to the `features` directory in your work
   ]}>
 <TabItem value="linux">
 
-:::note Execute your features
+:::note Launch Gwen
 
 To use the default browser and env/local.properties settings:
 ```console
@@ -320,12 +360,22 @@ To use the Edge browser and env/dev.properties settings:
 ./gwen edge dev -b features
 ```
 
+Where:
+
+- The first optional arguments are:
+  - `browser` - the specified browser or default if absent
+  - `environment` - the specified environment or default if absent
+- The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- `features` is the directory containing your meta and feature files to execute
+
+[More CLI options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
+
 :::
 
 </TabItem>
 <TabItem value="windows">
 
-:::note Execute your features
+:::note Launch Gwen
 
 To use the default browser and env/local.properties settings:
 ```console
@@ -343,6 +393,17 @@ To use the Edge browser and env/dev.properties settings:
 ```console
 gwen edge dev -b features
 ```
+
+Where:
+
+- The first optional arguments are:
+  - `browser` - the specified browser or default if absent
+  - `environment` - the specified environment or default if absent
+- The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- `features` is the directory containing your meta and feature files to execute
+
+[More CLI options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
+
 :::
 
 </TabItem>

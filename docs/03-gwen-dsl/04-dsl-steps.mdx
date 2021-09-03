@@ -44,11 +44,6 @@ In the ideal case, all steps will execute. It is your job as a Gwen user to defi
 
 ## Use DSL steps in meta
 
-:::tip
-Confine all your DSL usage to Meta. Although it's possible to use DSL steps directly in features, we do not recommend making them DSL-aware. That's what meta is for!
-
-:::
-
 Use DSL steps to compose StepDefs in meta to make your feature steps executable. 
 
 For example, to make this step executable:
@@ -85,6 +80,12 @@ Calls DSL steps:
 - [`I navigate to "<url>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#i-navigate-to-url)
 - [`the page title <should|should not> <be|contain|start with|end with|match regex|match xpath|match template|match template file> "<expression>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#the-page-title-shouldshould-not-becontainstart-withend-withmatch-regexmatch-xpathmatch-templatematch-template-file-expression)
 - [`<element> <should|should not> be <displayed|hidden|checked|ticked|unchecked|unticked|enabled|disabled>`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#element-shouldshould-not-be-displayedhiddencheckedtickeduncheckeduntickedenableddisabled)
+
+:::
+
+:::tip
+
+Confine all your DSL usage to Meta. Although it's possible to use DSL steps directly in features, we do not recommend making them DSL-aware. That's what meta is for!
 
 :::
 

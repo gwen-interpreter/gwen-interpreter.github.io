@@ -180,7 +180,7 @@ Calls DSL step:
 
 #### Processing records in data tables
 
-The second StepDef specifies the `@DataTable` and `@ForEach` annotations which work together to process each record of data in the table of the second step in the feature.
+The second StepDef instrcuts Gwen to and `@ForEach` annotations which work together to process each record of data in the table of the second step in the feature. the `env/test.properties`
 
 :::note Feature Step 2
 ```gherkin
@@ -321,22 +321,39 @@ The [Gwen CLI](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interf
   ]}>
 <TabItem value="linux">
 
+:::note Launch Gwen
+
 ```
 ./gwen -b -p env/test.properties features
 ```
 
+Where:
+- `-b` instructs Gwen to exit immediately after execution completes (omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead)
+- `-p` instructs Gwen to load the `env/test.properties` and resolve all references
+- `features` is the directory containing the meta and feature files to execute 
+
+[More CLI options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
+
+:::
+
 </TabItem>
 <TabItem value="windows">
+
+:::note Launch Gwen
 
 ```
 gwen -b -p env/test.properties features
 ```
 
+Where:
+- `-b` instructs Gwen to exit immediately after execution completes (omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead)
+- `-p` instructs Gwen to load the `env/test.properties` and resolve all references
+- `features` is the directory containing the meta and feature files to execute 
+
+[More CLI options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
+
+:::
+
 </TabItem>
 
 </Tabs>
-
-Where:
-- `-b` instructs Gwen to exit immediately after execution completes (omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead)
-- `-p` specifies the properties file to load
-- `features` is the directory containing the associative meta and feature files to execute 
