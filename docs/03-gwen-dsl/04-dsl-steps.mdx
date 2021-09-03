@@ -1,6 +1,6 @@
 # DSL Steps
 
-## Readily executable Gherkin steps
+## Readily executable
 
 DSL steps are readily executable by Gwen. Any step in your meta or feature specs that matches a [supported DSL](#supported-dsl) expression is considered a DSL step.
 
@@ -32,20 +32,20 @@ Gwen interprets steps for execution according to the following rules:
 1. StepDef rule
    - If the step is bound to a StepDef then apply these rules to every step in the body of that StepDef
 2. DSL rule
-   - If the step is a DSL step then execute it
+   - If the step is a DSL step then execute it with the built-in code
 3. Undefined rule
    - If neither of the above rules are satisfied then report an undefined step error
    
 :::
 
-StepDefs can override DSL steps to alter their operations or perform additional steps around them. If a StepDef calls itself then an error will be reported to prevent infinite recursion.
+StepDefs can override DSL steps to alter their operations or perform additional steps around them. If a StepDef calls itself however, then an error will be reported to prevent infinite recursion.
 
-In the ideal case, all steps will execute. It is your job as a Gwen user to define StepDefs for all non DSL steps in your feature specs (and in your meta if you introduce any there). Gwen will help you by reporting any you may miss as undefined steps. You can also perform [dry runs](https://github.com/gwen-interpreter/gwen/wiki/Execution-Modes#dry-run-execution-and-validation) to check for syntax and binding errors before executing.
+In the ideal case, all steps will execute. It is your job as a Gwen user to define StepDefs for all non DSL steps in your feature (and in your meta if you introduce any there). Gwen will help you by reporting any you may miss as undefined steps. You can also execute [dry runs](https://github.com/gwen-interpreter/gwen/wiki/Execution-Modes#dry-run-execution-and-validation) to check for syntax and binding errors.
 
 ## Use DSL steps in meta
 
-:::caution Avoid using DSL steps in features
-Although it's possible to use DSL steps directly in feature specs, we do not recommend having DSL-aware features. That's what meta is for!
+:::tip
+Although it's possible to use DSL steps directly in features, we do not recommend making them DSL-aware. That's what meta is for!
 
 :::
 
