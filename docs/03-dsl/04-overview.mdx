@@ -40,7 +40,7 @@ Gwen interprets steps for execution according to the following rules:
 
 StepDefs can override DSL steps to alter their operations or perform additional steps around them. If a StepDef calls itself however, then an error will be reported to prevent infinite recursion.
 
-In the ideal case, all steps will execute. It is your job as a Gwen user to define StepDefs for all non DSL steps in your feature (and in your meta if you introduce any there). Gwen will help you by reporting any you may miss as undefined steps. You can also execute [dry runs](https://github.com/gwen-interpreter/gwen/wiki/Execution-Modes#dry-run-execution-and-validation) to check for syntax and binding errors before committing to an automation cycle.
+In the ideal case, all steps will execute. It is your job as a Gwen user to define StepDefs for all non DSL steps in your features (and in your meta if you introduce any there). Gwen will help you by reporting any you may miss as undefined steps. You can also execute [dry runs](https://github.com/gwen-interpreter/gwen/wiki/Execution-Modes#dry-run-execution-and-validation) to check for syntax and binding errors before committing to an automation cycle.
 
 ## Use DSL steps in meta
 
