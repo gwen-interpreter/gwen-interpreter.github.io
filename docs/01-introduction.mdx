@@ -8,7 +8,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter for driving automation with feature specifications.
 
-Automation is achieved through Gherkin bindings called [meta specs](https://github.com/gwen-interpreter/gwen/wiki/Meta-Features) which you compose with the [Gwen DSL](gwen-dsl/dsl-steps) and maintain alongside your feature files. An embedded web engine executes each step in your features according to those bindings to automate operations in browsers for you. Your features remain unchanged and execute when Gwen is launched and the meta is bound.
+Automation is achieved through Gherkin bindings called [meta specs](https://github.com/gwen-interpreter/gwen/wiki/Meta-Features) which you compose with the [Gwen DSL](dsl/overview) and maintain alongside your feature files. An embedded web engine executes each step in your features according to those bindings to automate operations in browsers for you. Your features remain unchanged and execute when Gwen is launched and the meta is bound.
 
 ### 1. Declare your feature specs
 
@@ -85,7 +85,7 @@ Feature: Todo Meta
 
 #### Declaring step definitions
 
-Each step definition is declared as a `@StepDef` annotated scenario with a name that matches that of the step in the feature it binds to. Each one calls out to one or more [DSL steps](gwen-dsl/dsl-steps) (or potentially other StepDefs) to perform the specified operations at run time.
+Each step definition is declared as a `@StepDef` annotated scenario with a name that matches that of the step in the feature it binds to. Each one calls out to one or more [DSL steps](dsl/overview) (or potentially other StepDefs) to perform the specified operations at run time.
 
 The first StepDef in our meta example binds to the first step in the feature and will only execute when it is interpreted for execution by Gwen.
 

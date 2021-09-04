@@ -1,8 +1,8 @@
-# DSL Steps
+# DSL Overview
 
 ## Readily executable steps
 
-DSL steps are readily executable by Gwen. Any step in your meta or feature specs that matches a [supported DSL](#supported-dsl) expression is considered a DSL step.
+All Gherkin steps that match a [supported DSL](supported-dsl) are considered DSL steps by Gwen and are readily executable.
 
 :::note Example
 
@@ -12,13 +12,13 @@ The following is a DSL Step:
   Then the page title should contain "TodoMVC"
 ```
 
-Since it matches the supported DSL expression:
+Since it matches the supported DSL:
 
 - [`the page title <should|should not> <be|contain|start with|end with|match regex|match xpath|match template|match template file> "<expression>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#the-page-title-shouldshould-not-becontainstart-withend-withmatch-regexmatch-xpathmatch-templatematch-template-file-expression)
 
 :::
 
-## All execution happens in the DSL
+## All execution happens in DSL steps
 
 Every step interpreted by Gwen will directly or inderectly through StepDefs result in either:
 - one or many DSL steps being executed
@@ -47,6 +47,12 @@ In the ideal case, all steps will execute. It is your job as a Gwen user to defi
 :::tip
 
 Confine all your DSL usage to Meta. Although it's possible to use DSL steps directly in features, we do not recommend making them DSL-aware. That's what meta is for!
+
+:::
+
+:::info Coming to Gwen 3
+
+We are planning to ban DSL steps from feature specs by default in the upcomming Gwen 3 release by defaulting the [`gwen.feature.mode`](https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenfeaturemode) setting to `declarative` instead of `imperative`.
 
 :::
 
@@ -86,21 +92,5 @@ Calls DSL steps:
 - [`I navigate to "<url>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#i-navigate-to-url)
 - [`the page title <should|should not> <be|contain|start with|end with|match regex|match xpath|match template|match template file> "<expression>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#the-page-title-shouldshould-not-becontainstart-withend-withmatch-regexmatch-xpathmatch-templatematch-template-file-expression)
 - [`<element> <should|should not> be <displayed|hidden|checked|ticked|unchecked|unticked|enabled|disabled>`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#element-shouldshould-not-be-displayedhiddencheckedtickeduncheckeduntickedenableddisabled)
-
-:::
-
-:::info Coming to Gwen 3
-
-We are planning to ban DSL steps from feature specs by default in the upcomming Gwen 3 release by defaulting the [`gwen.feature.mode`](https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenfeaturemode) setting to `declarative` instead of `imperative`.
-
-:::
-
-## Supported DSL
-
-:::info We're migrating our docs
-
-We are currently migrating all our documentation and will publish more here soon. In the meantime, please see our original DSL guide on our wiki by clicking the link here:
-
-- [Supported DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL)
 
 :::
