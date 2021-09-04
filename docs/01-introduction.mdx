@@ -30,12 +30,15 @@ Feature: Add todo items
           | Walk the dog  |
      Then the list will contain 2 items
 ```
+
 :::
 
 Gwen aims to take these "as is" and make them executable.
 
 :::tip
-Start by writing feature specs to describe intended behavior without giving any thought to automation or execution. Then when it makes sense to automate, compose your meta incrementally and maintain a useful suite of specifications that you can execute often.
+
+Always write feature specs to describe intended behavior without giving any thought to automation or execution. Then when it makes sense to automate, compose your meta incrementally and maintain a useful suite of specifications that you can execute often.
+
 :::
 
 ### 2. Compose your meta specs
@@ -77,6 +80,7 @@ Feature: Todo Meta
       Given the displayed count can be located by css ".todo-count strong"
        Then the displayed count should be "$<expected-count>"
 ```
+
 :::
 
 #### Declaring step definitions
@@ -86,11 +90,15 @@ Each step definition is declared as a `@StepDef` annotated scenario with a name 
 The first StepDef in our meta example binds to the first step in the feature and will only execute when it is interpreted for execution by Gwen.
 
 :::note Feature Step 1
+
 ```gherkin
   Given a new todo list
 ```
+
 :::
+
 :::note StepDef 1
+
 ```gherkin {2-3}
   @Context
   @StepDef
@@ -100,6 +108,7 @@ The first StepDef in our meta example binds to the first step in the feature and
        Then the page title should contain "TodoMVC"
         And my todo list should be hidden
 ```
+
 :::
 
 #### Web elements selectors
@@ -139,11 +148,13 @@ Calls DSL step:
 We could have just hard coded the https://todomvc.com/examples/react URL in the above step, but externalising it enables us to target different environments without changing our meta. This is useful during development when you want to execute against a locally running instance of the application or during testing when it is running on a different host or port. With this approach you can define a [settings](https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings) file per environment and assign the URL for that environment to the `todo.page.url` property in each file. Then when you want to target an envionment, you pass the settings file for that environment to Gwen and the URL will be resolved accordingly.
 
 :::note Properties
+
 *File: env/test.properties*
 ```properties
   # test instance url
   todo.page.url = https://todomvc.com/examples/react
 ```
+
 :::
 
 #### Checking the page title
@@ -183,14 +194,18 @@ Calls DSL step:
 The second StepDef instrcuts Gwen to and `@ForEach` annotations which work together to process each record of data in the table of the second step in the feature. the `env/test.properties`
 
 :::note Feature Step 2
+
 ```gherkin
   When the following items are added
        | Item          |
        | Get the milk  |
        | Walk the dog  |
 ```
+
 :::
+
 :::note StepDef 2
+
 ```gherkin {2-5}
   @Action
   @StepDef
@@ -201,6 +216,7 @@ The second StepDef instrcuts Gwen to and `@ForEach` annotations which work toget
         And my new item is "${data[Item]}"
        When I enter my new item in the todo field
        Then my todo list should contain my new item
+
 :::
 
 The `header="top"` attribute in the `@DataTable` annotation designates the topmost row in the table as the header record. Each name in this header will be bound to the respective data in each record as it is iterated over and made available to the steps in the body of the StepDef as `data[name]`. In this example the sole field named `Item` is referenced as `data[Item]` in the second step of the body.
@@ -238,11 +254,15 @@ Calls DSL steps:
 The last StepDef accepts the number of expected items from the last step in the feature into a parameter placeholder named `expected-count` and then uses that to assert its value against `the displayed count` on the page. In this example, the value 2 will passed as the parameter.
 
 :::note Feature Step 3
+
 ```gherkin
   Then the list will contain 2 items
 ```
+
 :::
+
 :::note StepDef 3
+
 ```gherkin {2-3,5}
   @Assertion
   @StepDef
@@ -250,6 +270,7 @@ The last StepDef accepts the number of expected items from the last step in the 
       Given the displayed count can be located by css ".todo-count strong"
        Then the displayed count should be "$<expected-count>"
 ```
+
 :::
 
 #### Behavioral Semantics
@@ -257,7 +278,9 @@ The last StepDef accepts the number of expected items from the last step in the 
 The following annotations on StepDefs are used to associate behavior types and enforce the following rules if you set your [`gwen.behavior.rules`](https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenbehaviorrules) setting to `strict`.
 
 :::info Coming to Gwen 3
+
 We are planning to enable `strict` rules by default in the upcomming Gwen 3 release. The current default is `lenient` meaning that these and other rules like *Given-When-Then* order are not enforced.
+
 :::
 
 | StepDefs annotated with.. | can only bind steps tied to keyword.. | because..                      |
@@ -271,11 +294,15 @@ We are planning to enable `strict` rules by default in the upcomming Gwen 3 rele
 For example, the following binding will be permitted since the feature step is declared with the `Then` keyword and the StepDef is annotated with `@Assertion`.
 
 :::note Feature Step 3
+
 ```gherkin
   Then the list will contain 2 items
 ```
+
 :::
+
 :::note StepDef 3
+
 ```gherkin {1}
   @Assertion
   @StepDef
@@ -283,6 +310,7 @@ For example, the following binding will be permitted since the feature step is d
       Given the displayed count can be located by css ".todo-count strong"
        Then the displayed count should be "$<expected-count>"
 ```
+
 :::
 
 If we were to change the keyword in the feature step to `When` however, it would not only read poorly but would no longer imply `@Assertion` behavior and Gwen would report the violation. Similarly, if we were to change the behavior annotation on the StepDef to `@Context`, then that behavior would not be implied by the `Then` keyword declared in the feature step.
@@ -290,13 +318,16 @@ If we were to change the keyword in the feature step to `When` however, it would
 #### Associative meta
 
 When the [`gwen.associative.meta`](https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings#gwenassociativemeta) setting is enabled, Gwen will automatically associate and bind all same named feature and meta files discovered in a directory with each other. In the following case, the meta would be considered associative.
+
 ```
 features/todo.feature
 features/todo.meta
 ```
 
 :::info Coming to Gwen 3
+
 We are planning to enable associative meta by default in the upcomming Gwen 3 release. The current default is that all meta files discovered in a directory will unconditionally bind to all features in that directory and it's subdirectories.
+
 :::
 
 ### 3. Launch Gwen to automate
@@ -306,7 +337,9 @@ We are planning to enable associative meta by default in the upcomming Gwen 3 re
 The example presented in this introduction would execute to automate a test.
 
 :::tip
+
 Your Gwen usage need not be confined to just testing. You can automate other repetitive and robotic processes too.
+
 :::
 
 #### Gwen CLI
