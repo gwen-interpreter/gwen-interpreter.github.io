@@ -44,7 +44,7 @@ Run the following commands in the root of your project to add Gwen a dev depende
   ]}>
 <TabItem value="npm">
 
-```console
+```shell
 npm i --save-dev @gweninterpreter/gwen-web
 npm run gwen init
 ```
@@ -52,7 +52,7 @@ npm run gwen init
 </TabItem>
 <TabItem value="yarn">
 
-```console
+```shell
 yarn add -D @gweninterpreter/gwen-web
 yarn gwen init
 ```
@@ -160,14 +160,14 @@ Run the following command in the root of your project where you added Gwen as a 
   ]}>
 <TabItem value="npm">
 
-```console
+```shell
 npm run gwen init
 ```
 
 </TabItem>
 <TabItem value="yarn">
 
-```console
+```shell
 yarn gwen init
 ```
 
@@ -213,7 +213,7 @@ This option assumes that Gwen is in your system path (that is: you manually inst
 
 Create a new directory on your machine and run the following command in it.
 
-```console
+```shell
 gwen init .
 ```
 
@@ -324,14 +324,14 @@ Run the following command in the root of your project to execute the sample feat
   ]}>
 <TabItem value="npm">
 
-```console
+```shell
 npm run gwen -b gwen/samples
 ```
 
 </TabItem>
 <TabItem value="yarn">
 
-```console
+```shell
 yarn gwen -b gwen/samples
 ```
 
@@ -349,7 +349,7 @@ This option assumes that Gwen is in your system path (that is: you manually inst
 
 Run the following command in your Standalone Project to execute the sample features.
 
-```console
+```shell
 gwen -b samples
 ```
 

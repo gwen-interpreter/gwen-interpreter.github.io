@@ -102,7 +102,7 @@ module.exports = {
       copyright: `© gweninterpreter.org`,
     },
     prism: {
-      additionalLanguages: ['gherkin'],
+      additionalLanguages: ['gherkin', 'properties'],
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
     },

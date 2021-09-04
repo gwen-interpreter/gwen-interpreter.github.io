@@ -68,7 +68,7 @@ Add the absolute location of your `gwen-web-<version>/bin` directory to your sys
 
 Run the following command to set the `PATH` in your current session temporarily or consult your OS manual to make it permanent:
 
-```console
+```shell
 export PATH=$PATH:/absolute/path/to/gwen-web-<version>/bin
 ```
 
@@ -85,7 +85,7 @@ Replace:
 
 Go to *Environment Variables* on your Windows system, and find and edit the `PATH` variable to include the following.
 
-```console
+```shell
 C:\absolute\path\to\gwen-web-<version>\bin
 ```
 
@@ -133,7 +133,7 @@ Run the following command in your installation directory to execute the sample f
 
 :::note Launch Gwen
 
-```console
+```shell
 ./gwen -b -r target/reports samples
 ```
 
@@ -152,7 +152,7 @@ Where:
 
 :::note Launch Gwen
 
-```console
+```shell
 gwen -b -r target/reports samples
 ```
 
@@ -185,7 +185,7 @@ Create a new `features` directory in a preferred location on your machine and st
 
 :::note Launch Gwen
 
-```console
+```shell
 ./gwen -b -r target/reports features
 ```
 
@@ -204,7 +204,7 @@ Where:
 
 :::note Launch Gwen
 
-```console
+```shell
 gwen -b -r target/reports features
 ```
 
@@ -272,7 +272,7 @@ To turn off automatic updates, open the `gwen.properties` file in your workspace
 # Gwen package version
 # --------------------
 # Gwen web version (specify desired version or latest for auto updates)
-gwen.gwen-web.version=latest
+gwen.gwen-web.version = latest
 ```
 
 :::
@@ -293,7 +293,7 @@ Gwen workspaces are configured to use the Chrome browser and local environment p
 :::note Amend launch script
 
 *File: gwen*
-```console
+```shell
 DEFAULT_BROWSER="firefox"
 DEFAULT_ENV="local"
 ```
@@ -311,7 +311,7 @@ This example sets Firefox as the default browser and leaves the default environm
 :::note Amend launch script
 
 *File: gwen.bat*
-```console
+```shell
 SET DEFAULT_BROWSER=firefox
 SET DEFAULT_ENV=local
 ```
@@ -342,7 +342,7 @@ Run the following command in your workspace directory to execute the sample feat
 
 :::note Launch Gwen
 
-```console
+```shell
 ./gwen -b samples
 ```
 
@@ -360,7 +360,7 @@ Where:
 
 :::note Launch Gwen
 
-```console
+```shell
 gwen -b samples
 ```
 
@@ -392,19 +392,19 @@ Start adding your own features and meta to the `features` directory in your work
 :::note Launch Gwen
 
 To use the default browser and env/local.properties settings:
-```console
+```shell
 ./gwen -b features
 ```
 To use the Edge browser and env/local.properties settings:
-```console
+```shell
 ./gwen edge -b features
 ```
 To use the default browser and env/dev.properties settings:
-```console
+```shell
 ./gwen dev -b features
 ```
 To use the Edge browser and env/dev.properties settings:
-```console
+```shell
 ./gwen edge dev -b features
 ```
 
@@ -426,19 +426,19 @@ Where:
 :::note Launch Gwen
 
 To use the default browser and env/local.properties settings:
-```console
+```shell
 gwen -b features
 ```
 To use the Edge browser and env/local.properties settings:
-```console
+```shell
 gwen edge -b features
 ```
 To use the default browser and env/dev.properties settings:
-```console
+```shell
 gwen dev -b features
 ```
 To use the Edge browser and env/dev.properties settings:
-```console
+```shell
 gwen edge dev -b features
 ```
 
