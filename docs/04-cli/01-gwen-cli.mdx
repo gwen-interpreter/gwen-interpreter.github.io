@@ -257,9 +257,9 @@ Support for JS projects is coming soon to Gwen 3.
 In addition to the above, you can also pass any number of Java system properties or JVM options to the Gwen CLI, including:
 
 - `-Dprop.name=value`
-  - For passing a system property to the Java process that runs Gwen
+  - To pass a system property to the Java process that runs Gwen
   - Will override any same named Gwen [settings](https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings)
   - Will be picked up by `${prop.name}` placeholders in feature and meta specs
-- `-J<OPTION>`
-  - For passing a JVM option to the Java process that runs Gwen
-  - The `-J` prefix will be stripped and `<OPTION>` will be passed through
+- `-J<JVM_OPTION>`
+  - To pass a JVM option to the Java process that runs Gwen
+  - The `-J` prefix will be stripped and `<JVM_OPTION>` will be passed through
