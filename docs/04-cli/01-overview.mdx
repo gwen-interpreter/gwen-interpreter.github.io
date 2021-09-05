@@ -252,14 +252,16 @@ Support for JS projects is coming soon to Gwen 3.
 
 </Tabs>
 
-## Java Arguments
+## System properties and JVM options
 
-In addition to the standard CLI options, you can also pass Java arguments. This is useful when you want to pass in system properties directly or tweak JVM options on the Java process that runs Gwen.
+In addition to the standard CLI options, you can also pass in any number of system properties and JVM options.
 
-Supported Java arguments include:
+Supported arguments and options include:
 
 - `-Dprop.name=value`
-  - For setting system properties
-- `-J<ARG>`
-  - For setting other Java options
-  - The `-J` prefix will be stripped and `<ARG>` will be appended to the `JAVA_OPTS` environment variable
+  - For passing a system property to the Java process that runs Gwen
+  - Will override any same named Gwen [settings](https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings)
+  - Accessible in feature and meta specs as `${prop.name}`
+- `-J<OPTION>`
+  - For passing a JVM option to the Java process that runs Gwen
+  - The `-J` prefix will be stripped and `<OPTION>` will be passed through
