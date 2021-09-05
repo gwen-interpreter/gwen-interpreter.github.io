@@ -5,7 +5,7 @@ import TabItem from '@theme/TabItem';
 
 :::tip
 
-Learn the key Gwen concepts in our [introduction](introduction) before you start.
+Learn the key Gwen concepts in our [introduction](/docs/introduction) before you start.
 
 :::
 
@@ -19,6 +19,7 @@ Learn the key Gwen concepts in our [introduction](introduction) before you start
 ## Setup
 
 <Tabs
+  groupId="setup"
   defaultValue="standalone"
   values={[
     {label: 'Standalone', value: 'standalone'},
@@ -29,6 +30,12 @@ Learn the key Gwen concepts in our [introduction](introduction) before you start
 <TabItem value="standalone">
 
 Use this option to set up Gwen as a standalone installation on your machine.
+
+:::caution No automatic updates
+
+There are no automatic updates with this option. You will need repeat steps 1 and 2 to udpate.
+
+:::
 
 #### 1. Download and install Gwen
 
@@ -45,12 +52,6 @@ This will give you the following file system setup:
  └── /samples                # Sample features and meta
  ```
 
-:::caution No automatic updates
-
-There are no automatic updates with the standalone approach. You will need to manage them manually.
-
-:::
-
 #### 2. Add Gwen to your system path
 
 Add the absolute location of your `gwen-web-<version>/bin` directory to your system `PATH` to make Gwen available in any directory on your machine.
@@ -62,6 +63,7 @@ Add the absolute location of your `gwen-web-<version>/bin` directory to your sys
     {label: 'Linux', value: 'linux'},
     {label: 'Windows', value: 'windows'},
   ]}>
+
 <TabItem value="linux">
 
 :::note set PATH variable
@@ -79,6 +81,7 @@ Replace:
 :::
 
 </TabItem>
+
 <TabItem value="windows">
 
 :::note set PATH variable
@@ -96,6 +99,7 @@ Replace:
 :::
 
 </TabItem>
+
 </Tabs>
 
 #### 3. Set your default browser
@@ -122,34 +126,6 @@ This example sets Firefox as the default browser.
 
 Run the following command in your installation directory to execute the sample feature specs. An [evaluation report](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) will be generated at `target/reports/index.html` in your directory.
 
-<Tabs
-  groupId="os"
-  defaultValue="linux"
-  values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-<TabItem value="linux">
-
-:::note Launch Gwen
-
-```shell
-./gwen -b -r target/reports samples
-```
-
-Where:
-
-- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
-- The `-r` option sets the report output directory to `target/reports`
-- `samples` is the directory containing the meta and feature samples to execute 
-
-[More launch options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
-
-:::
-
-</TabItem>
-<TabItem value="windows">
-
 :::note Launch Gwen
 
 ```shell
@@ -158,49 +134,17 @@ gwen -b -r target/reports samples
 
 Where:
 
-- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](/docs/cli/repl) instead.
 - The `-r` option sets the report output directory to `target/reports`
 - `samples` is the directory containing the meta and feature samples to execute 
 
-[More launch options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
+[CLI usage](/docs/cli/overview)
 
 :::
-
-</TabItem>
-</Tabs>
-
 
 #### 5. Create and execute your own meta and features
 
 Create a new `features` directory in a preferred location on your machine and start adding your own feature and meta files there. Run the following command in the parent directory to execute them:
-
-<Tabs
-  groupId="os"
-  defaultValue="linux"
-  values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-<TabItem value="linux">
-
-:::note Launch Gwen
-
-```shell
-./gwen -b -r target/reports features
-```
-
-Where:
-
-- The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
-- The `-r` option sets the report output directory to `target/reports`
-- `features` is the directory containing your meta and feature files to execute 
-
-[More launch options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
-
-:::
-
-</TabItem>
-<TabItem value="windows">
 
 :::note Launch Gwen
 
@@ -210,27 +154,25 @@ gwen -b -r target/reports features
 
 Where:
 
-- The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL](/docs/cli/repl) instead.
 - The `-r` option sets the report output directory to `target/reports`
 - `features` is the directory containing your meta and feature files to execute 
 
-[More launch options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
+[CLI usage](/docs/cli/overview)
 
 :::
 
 </TabItem>
-</Tabs>
 
-</TabItem>
 <TabItem value="workspace">
 
-:::caution Deprecated
+Use this option set up a [Gwen workspace](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) that you can run on any machine.
 
-[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) are deprecated in favor of JS projects coming soon to Gwen 3. 
+:::caution Discontinued
+
+[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) were introduced in Gwen 2 and will not be supported in Gwen 3 in favor of JS projects.
 
 :::
-
-Use this option set up a [Gwen workspace](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) that you can run on any machine.
 
 #### 1. Download and extract workspace
 
@@ -288,6 +230,7 @@ Gwen workspaces are configured to use the Chrome browser and local environment p
     {label: 'Linux', value: 'linux'},
     {label: 'Windows', value: 'windows'},
   ]}>
+
 <TabItem value="linux">
 
 :::note Amend launch script
@@ -306,6 +249,7 @@ This example sets Firefox as the default browser and leaves the default environm
 :::
 
 </TabItem>
+
 <TabItem value="windows">
 
 :::note Amend launch script
@@ -338,6 +282,7 @@ Run the following command in your workspace directory to execute the sample feat
     {label: 'Linux', value: 'linux'},
     {label: 'Windows', value: 'windows'},
   ]}>
+
 <TabItem value="linux">
 
 :::note Launch Gwen
@@ -348,14 +293,15 @@ Run the following command in your workspace directory to execute the sample feat
 
 Where:
 
-- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](/docs/cli/repl) instead.
 - `samples` is the directory containing the meta and feature samples to execute 
 
-[More launch options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
+[CLI usage](/docs/cli/overview)
 
 :::
 
 </TabItem>
+
 <TabItem value="windows">
 
 :::note Launch Gwen
@@ -366,14 +312,15 @@ gwen -b samples
 
 Where:
 
-- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL](/docs/cli/repl) instead.
 - `samples` is the directory containing the meta and feature samples to execute 
 
-[More launch options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
+[CLI usage](/docs/cli/overview)
 
 :::
 
 </TabItem>
+
 </Tabs>
 
 #### 5. Create and execute your own meta and features
@@ -413,14 +360,15 @@ Where:
 - The first optional arguments are:
   - `browser` - the specified browser or default if absent
   - `environment` - the specified environment or default if absent
-- The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL](/docs/cli/repl) instead.
 - `features` is the directory containing your meta and feature files to execute
 
-[More launch options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
+[CLI usage](/docs/cli/overview)
 
 :::
 
 </TabItem>
+
 <TabItem value="windows">
 
 :::note Launch Gwen
@@ -447,14 +395,15 @@ Where:
 - The first optional arguments are:
   - `browser` - the specified browser or default if absent
   - `environment` - the specified environment or default if absent
-- The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console) instead.
+- The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL](/docs/cli/repl) instead.
 - `features` is the directory containing your meta and feature files to execute
 
-[More launch options](https://github.com/gwen-interpreter/gwen/wiki/Command-Line-Interface)
+[CLI usage](/docs/cli/overview)
 
 :::
 
 </TabItem>
+
 </Tabs>
 
 #### 6. Share your workspace with your team
@@ -462,13 +411,17 @@ Where:
 Push your workspace to a Git repository and share it with your team. A `.gitignore` file that excludes the `target` output directory is included. You can keep or delete the samples subdirectory (up to you).
 
 </TabItem>
+
 <TabItem value="js">
+
+Use this option set add Gwen to your JS project.
 
 :::info Coming to Gwen 3
 
-Support for adding Gwen to JS projects is coming soon to Gwen 3.
+Support for JS projects is coming soon to Gwen 3.
 
 :::
 
 </TabItem>
+
 </Tabs>

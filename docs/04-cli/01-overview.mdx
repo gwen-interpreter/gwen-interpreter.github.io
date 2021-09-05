@@ -1,0 +1,265 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# CLI Overview
+
+:::tip
+
+You will need to [set up Gwen](/docs/get-started) first to have to access the CLI.
+
+:::
+
+## Usage and options
+
+All launch operations can be invoked using the `gwen` CLI. To list the usage and all available options, invoke the CLI with the `--help` switch:
+
+<Tabs
+  groupId="setup"
+  defaultValue="standalone"
+  values={[
+    {label: 'Standalone', value: 'standalone'},
+    {label: 'Gwen Workspace', value: 'workspace'},
+    {label: 'JS Project', value: 'js'},
+  ]}>
+  
+<TabItem value="standalone">
+
+Run the following command in a terminal window in any directory:
+
+```shell
+gwen --help
+```
+
+The following output will be displayed describing the usage and options:
+
+```
+Usage: gwen [options] [files/dirs]
+
+  --version               Print Gwen version
+  --help                  Print CLI usage
+  --parallel              Execute features or scenarios in parallel
+                          - depending on gwen.state.level (default is features)
+  --parallel-features     Execute features in parallel (unconditionally)
+  -b, --batch             Exit when execution completes (omit to open REPL)
+  -n, --dry-run           Check all syntax and bindings and report errors
+  -p, --properties files  Properties/settings files to load (comma separated)
+  -r, --report dir        Directory to output generated report(s) to
+  -f, --formats include   Report formats to include in output (comma separated)
+                          - html,junit,json,rp (default is html)
+  -t, --tags filter       Tags to @include or ~@exclude (comma separated)
+  -i, --input-data file   Input data feed (CSV file with column headers)
+  -m, --meta files/dirs   Meta files or directories (comma separated)
+  files/dirs              Feature files or directories (space separated)
+```
+
+#### Usage examples
+
+:::note CLI examples
+
+Execute a singe feature file:
+
+```shell
+gwen -b path/to/file.feature
+```
+
+Recursively execute all feature files in a directory:
+
+```shell
+gwen -b path/to/directory
+```
+
+Recursively execute all feature files in a directory in parallel:
+```shell
+gwen -b --parallel path/to/directory
+```
+
+Recursively execute all feature files in a directory passing in a properties file
+```shell
+gwen -b -p path/to/file.properties path/to/directory
+```
+
+Check syntax and bindings for all features in a directory and report errors
+
+```shell
+gwen -b -n path/to/directory
+```
+
+:::
+
+- To generate HTML [reports](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports), add `-r target/reports` to the command
+- To generate HTML and JUnit-XML reports too, add `-r target/reports -f html,junit` to the command
+- Omitting the `-b` switch will open the [REPL](/docs/cli/repl) when execution completes
+
+</TabItem>
+
+<TabItem value="workspace">
+
+Run the following command in a terminal window in your workspace directory:
+
+:::caution Discontinued
+
+[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) were introduced in Gwen 2 and will not be supported in Gwen 3 in favor of JS projects.
+
+:::
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+  
+<TabItem value="linux">
+
+```shell
+./gwen --help
+```
+
+</TabItem>
+
+<TabItem value="windows">
+
+```shell
+gwen --help
+```
+
+</TabItem>
+
+</Tabs>
+
+The following output will be displayed describing the usage and options:
+
+```
+Usage: gwen [options] [files/dirs]
+
+  --version               Print Gwen version
+  --help                  Print CLI usage
+  --parallel              Execute features or scenarios in parallel
+                          - depending on gwen.state.level (default is features)
+  --parallel-features     Execute features in parallel (unconditionally)
+  -b, --batch             Exit when execution completes (omit to open REPL)
+  -n, --dry-run           Check all syntax and bindings and report errors
+  -p, --properties files  Properties/settings files to load (comma separated)
+  -r, --report dir        Directory to output generated report(s) to
+  -f, --formats include   Report formats to include in output (comma separated)
+                          - html,junit,json,rp (default is html)
+  -t, --tags filter       Tags to @include or ~@exclude (comma separated)
+  -i, --input-data file   Input data feed (CSV file with column headers)
+  -m, --meta files/dirs   Meta files or directories (comma separated)
+  files/dirs              Feature files or directories (space separated)
+```
+
+#### Usage examples
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+  
+<TabItem value="linux">
+
+:::note CLI examples
+
+Execute a singe feature file:
+
+```shell
+./gwen -b path/to/file.feature
+```
+
+Recursively execute all feature files in a directory:
+
+```shell
+./gwen -b path/to/directory
+```
+
+Recursively execute all feature files in a directory in parallel:
+```shell
+./gwen -b --parallel path/to/directory
+```
+
+Recursively execute all feature files in a directory passing in a properties file
+```shell
+./gwen -b -p path/to/file.properties path/to/directory
+```
+
+Check syntax and bindings for all features in a directory and report errors
+
+```shell
+./gwen -b -n -r output/reports path/to/directory
+```
+
+:::
+
+</TabItem>
+
+<TabItem value="windows">
+
+:::note CLI examples
+
+Execute a singe feature file:
+
+```shell
+gwen -b path/to/file.feature
+```
+
+Recursively execute all feature files in a directory:
+
+```shell
+gwen -b path/to/directory
+```
+
+Recursively execute all feature files in a directory in parallel:
+```shell
+gwen -b --parallel path/to/directory
+```
+
+Recursively execute all feature files in a directory passing in a properties file
+```shell
+gwen -b -p path/to/file.properties path/to/directory
+```
+
+Check syntax and bindings for all features in a directory and report errors
+
+```shell
+gwen -b -n -r output/reports path/to/directory
+```
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+- The above will all generate HTML [reports](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) to `target/reports`
+- To generate HTML and JUnit-XML reports too, add `-f html,junit` to the command
+- Omitting the `-b` switch will open the [REPL](/docs/cli/repl) when execution completes
+
+</TabItem>
+
+<TabItem value="js">
+
+:::info Coming to Gwen 3
+
+Support for JS projects is coming soon to Gwen 3.
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+## Java Arguments
+
+In addition to the standard launch options, you can also pass Java arguments to the Java process that runs Gwen. This is useful for passing in system properties directly and tweaking JVM options.
+
+Supported Java arguments include:
+
+- `-Dprop.name=value`
+  - For setting system properties
+- `-J<ARG>`
+  - For setting other Java options
+  - The `-J` prefix will be stripped and `<ARG>` will be appended to the `JAVA_OPTS` environment variable
