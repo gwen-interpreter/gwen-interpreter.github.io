@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# CLI Overview
+# Gwen CLI
 
 :::tip
 
@@ -11,7 +11,7 @@ You will need to [set up Gwen](/docs/get-started) first to have to access the CL
 
 ## Usage and options
 
-All launch operations can be invoked using the `gwen` CLI. To list the usage and all available options, invoke the CLI with the `--help` switch:
+All launch operations can be invoked using the Gwen CLI. To list the usage and all available options, invoke the CLI with the `--help` switch:
 
 <Tabs
   groupId="setup"
@@ -254,14 +254,12 @@ Support for JS projects is coming soon to Gwen 3.
 
 ## System properties and JVM options
 
-In addition to the standard CLI options, you can also pass in any number of system properties and JVM options.
-
-Supported arguments and options include:
+In addition to the options above, you can also pass any number of Java system properties or JVM options to the Gwen CLI, including:
 
 - `-Dprop.name=value`
   - For passing a system property to the Java process that runs Gwen
   - Will override any same named Gwen [settings](https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings)
-  - Accessible in feature and meta specs as `${prop.name}`
+  - Will be pickd up by `${prop.name}` placedholders in feature and meta specs
 - `-J<OPTION>`
   - For passing a JVM option to the Java process that runs Gwen
   - The `-J` prefix will be stripped and `<OPTION>` will be passed through
