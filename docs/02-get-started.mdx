@@ -124,43 +124,115 @@ This example sets Firefox as the default browser.
 
 #### 4. Execute the samples
 
-Run the following command in your installation directory to execute the sample feature specs. An [evaluation report](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) will be generated at `target/reports/index.html` in your directory.
+Run the following command in your installation directory to execute the sample feature specs.
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
 
 :::note Launch Gwen
 
 ```shell
-gwen -b -r target/reports samples
+gwen -b -r output/reports samples
 ```
 
 Where:
 
 - The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL Console](/docs/cli/repl) instead of exiting.
-- The `-r` option sets the report output directory to `target/reports`
+- The `-r` option sets the report output directory to `output/reports`
 - `samples` is the directory containing the meta and feature samples to execute 
 
 [CLI usage](/docs/cli/gwen-cli)
 
 :::
 
-#### 5. Create and execute your own meta and features
+An [evaluation report](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) will be generated at `output/reports/index.html` in your directory.
 
-Create a new `features` directory in a preferred location on your machine and start adding your own feature and meta files there. Run the following command in the parent directory to execute them:
+</TabItem>
+
+<TabItem value="windows">
 
 :::note Launch Gwen
 
 ```shell
-gwen -b -r target/reports features
+gwen -b -r output\reports samples
+```
+
+Where:
+
+- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL Console](/docs/cli/repl) instead of exiting.
+- The `-r` option sets the report output directory to `output\reports`
+- `samples` is the directory containing the meta and feature samples to execute 
+
+[CLI usage](/docs/cli/gwen-cli)
+
+:::
+
+An [evaluation report](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) will be generated at `output\reports\index.html` in your directory.
+
+</TabItem>
+
+</Tabs>
+
+#### 5. Create and execute your own meta and features
+
+Create a new `features` directory in a preferred location on your machine and start adding your own feature and meta files there. Run the following command in the parent directory to execute them:
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+:::note Launch Gwen
+
+```shell
+gwen -b -r output/reports features
 ```
 
 Where:
 
 - The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL Console](/docs/cli/repl) instead of exiting.
-- The `-r` option sets the report output directory to `target/reports`
+- The `-r` option sets the report output directory to `output/reports`
 - `features` is the directory containing your meta and feature files to execute 
 
 [CLI usage](/docs/cli/gwen-cli)
 
 :::
+
+</TabItem>
+
+<TabItem value="windows">
+
+:::note Launch Gwen
+
+```shell
+gwen -b -r output\reports features
+```
+
+Where:
+
+- The `-b` switch instructs Gwen to exit immediately after executing your features. Omitting it will open the [REPL Console](/docs/cli/repl) instead of exiting.
+- The `-r` option sets the report output directory to `output\reports`
+- `features` is the directory containing your meta and feature files to execute 
+
+[CLI usage](/docs/cli/gwen-cli)
+
+:::
+
+</TabItem>
+
+</Tabs>
 
 </TabItem>
 
@@ -273,7 +345,7 @@ This example sets Firefox as the default browser and leaves the default environm
 
 #### 4. Execute the samples
 
-Run the following command in your workspace directory to execute the sample feature specs. An [evaluation report](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) will be generated at `target/reports/index.html` in your directory.
+Run the following command in your workspace directory to execute the sample feature specs.
 
 <Tabs
   groupId="os"
@@ -300,6 +372,8 @@ Where:
 
 :::
 
+An [evaluation report](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) will be generated at `target/reports/index.html` in your directory.
+
 </TabItem>
 
 <TabItem value="windows">
@@ -318,6 +392,8 @@ Where:
 [CLI usage](/docs/cli/gwen-cli)
 
 :::
+
+An [evaluation report](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) will be generated at `target\reports\index.html` in your directory.
 
 </TabItem>
 
@@ -373,19 +449,19 @@ Where:
 
 :::note Launch Gwen
 
-To use the default browser and env/local.properties settings:
+To use the default browser and env\local.properties settings:
 ```shell
 gwen -b features
 ```
-To use the Edge browser and env/local.properties settings:
+To use the Edge browser and env\local.properties settings:
 ```shell
 gwen edge -b features
 ```
-To use the default browser and env/dev.properties settings:
+To use the default browser and env\dev.properties settings:
 ```shell
 gwen dev -b features
 ```
-To use the Edge browser and env/dev.properties settings:
+To use the Edge browser and env\dev.properties settings:
 ```shell
 gwen edge dev -b features
 ```

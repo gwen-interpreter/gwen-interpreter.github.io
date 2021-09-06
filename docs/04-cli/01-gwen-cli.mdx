@@ -54,6 +54,16 @@ Usage: gwen [options] [files/dirs]
 
 #### Usage examples
 
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
 :::note CLI examples
 
 Execute a singe feature file:
@@ -78,17 +88,61 @@ Recursively execute all feature files in a directory passing in a properties fil
 gwen -b -p path/to/file.properties path/to/directory
 ```
 
-Check syntax and bindings for all features in a directory and report errors
+Check syntax and bindings for all feature and meta files in a directory and report errors
 
 ```shell
-gwen -b -n path/to/directory
+gwen -b -n -r output/reports path/to/directory
 ```
 
 :::
 
-- To generate HTML [reports](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports), add `-r target/reports` to the command
-- To generate HTML and JUnit-XML reports also, add `-r target/reports -f html,junit` to the command
+- To generate HTML [reports](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports), add `-r output/reports` to the command
+- To generate HTML and JUnit-XML reports also, add `-r output/reports -f html,junit` to the command
 - Omitting the `-b` switch will open the [REPL Console](/docs/cli/repl) when execution completes
+
+</TabItem>
+
+<TabItem value="windows">
+
+:::note CLI examples
+
+Execute a singe feature file:
+
+```shell
+gwen -b path\to\file.feature
+```
+
+Recursively execute all feature files in a directory:
+
+```shell
+gwen -b path\to\directory
+```
+
+Recursively execute all feature files in a directory in parallel:
+```shell
+gwen -b --parallel path\to\directory
+```
+
+Recursively execute all feature files in a directory passing in a properties file
+```shell
+gwen -b -p path\to\file.properties path\to\directory
+```
+
+Check syntax and bindings for all feature and meta files in a directory and report errors
+
+```shell
+gwen -b -n -r output\reports path\to\directory
+```
+
+:::
+
+- To generate HTML [reports](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports), add `-r output\reports` to the command
+- To generate HTML and JUnit-XML reports also, add `-r output\reports -f html,junit` to the command
+- Omitting the `-b` switch will open the [REPL Console](/docs/cli/repl) when execution completes
+
+</TabItem>
+
+</Tabs>
 
 </TabItem>
 
@@ -186,13 +240,17 @@ Recursively execute all feature files in a directory passing in a properties fil
 ./gwen -b -p path/to/file.properties path/to/directory
 ```
 
-Check syntax and bindings for all features in a directory and report errors
+Check syntax and bindings for all feature and meta files in a directory and report errors
 
 ```shell
-./gwen -b -n -r output/reports path/to/directory
+./gwen -b -n path/to/directory
 ```
 
 :::
+
+- The above will all generate HTML [reports](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) to `target/reports`
+- To generate HTML and JUnit-XML reports also, add `-f html,junit` to the command
+- Omitting the `-b` switch will open the [REPL Console](/docs/cli/repl) when execution completes
 
 </TabItem>
 
@@ -203,40 +261,40 @@ Check syntax and bindings for all features in a directory and report errors
 Execute a singe feature file:
 
 ```shell
-gwen -b path/to/file.feature
+gwen -b path\to\file.feature
 ```
 
 Recursively execute all feature files in a directory:
 
 ```shell
-gwen -b path/to/directory
+gwen -b path\to\directory
 ```
 
 Recursively execute all feature files in a directory in parallel:
 ```shell
-gwen -b --parallel path/to/directory
+gwen -b --parallel path\to\directory
 ```
 
 Recursively execute all feature files in a directory passing in a properties file
 ```shell
-gwen -b -p path/to/file.properties path/to/directory
+gwen -b -p path\to\file.properties path\to\directory
 ```
 
-Check syntax and bindings for all features in a directory and report errors
+Check syntax and bindings for all feature and meta files in a directory and report errors
 
 ```shell
-gwen -b -n -r output/reports path/to/directory
+gwen -b -n path\to\directory
 ```
 
 :::
 
+- The above will all generate HTML [reports](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) to `target\reports`
+- To generate HTML and JUnit-XML reports also, add `-f html,junit` to the command
+- Omitting the `-b` switch will open the [REPL Console](/docs/cli/repl) when execution completes
+
 </TabItem>
 
 </Tabs>
-
-- The above will all generate HTML [reports](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) to `target/reports`
-- To generate HTML and JUnit-XML reports also, add `-f html,junit` to the command
-- Omitting the `-b` switch will open the [REPL Console](/docs/cli/repl) when execution completes
 
 </TabItem>
 
