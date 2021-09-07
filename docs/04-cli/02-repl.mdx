@@ -1,9 +1,279 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # REPL Console
 
-:::info We're migrating our docs
+Gwen comes with a REPL (Read-Eval-Print-Loop) console. This is a command line shell that prompts you for steps, evaluates them, and outputs their status in real time. It enables you to experiment and observe the execution of steps as you enter (or paste) them which is very useful for debugging and analysis. Everything you enter is stored in a local history file and you can use the up and down arrow keys to recall previous inputs.
 
-In the meantime, please see our original REPL Console guide on our wiki by clicking the link here:
+```
+   __ ___      _____ _ __     _    
+  / _` \ \ /\ / / _ \ '_ \   { \," 
+ | (_| |\ V  V /  __/ | | | {_`/   
+  \__, | \_/\_/ \___|_| |_|   `    
+  |___/                            
+                                   
+Welcome to gwen-web v<version>
+gweninterpreter.org
 
-- [REPL Console](https://github.com/gwen-interpreter/gwen/wiki/REPL-Console)
+INFO - Default Gherkin feature dialect is: en
+INFO - Environment context initialised
+INFO - gwen-web.sh 
+
+REPL Console
+
+Enter steps to evaluate or type exit to quit..
+
+gwen>
+```
+
+## Starting the REPL
+
+To start a REPL session, invoke the [Gwen CLI](/docs/cli/gwen-cli) without specifying the `-b` (or `--batch`) switch.
+
+<Tabs
+  groupId="setup"
+  defaultValue="standalone"
+  values={[
+    {label: 'Standalone', value: 'standalone'},
+    {label: 'Gwen Workspace', value: 'workspace'},
+    {label: 'JS Project', value: 'js'},
+  ]}>
+  
+<TabItem value="standalone">
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+:::note Open REPL
+
+To open a new REPL session:
+
+```shell
+gwen
+```
+
+To load meta and open the REPL:
+
+```shell
+gwen -m path/to/file.meta
+```
+
+To execute a feature and open the REPL:
+
+```shell
+gwen path/to/file.feature
+```
 
 :::
+
+</TabItem>
+
+<TabItem value="windows">
+
+:::note Open REPL
+
+To open a new REPL session:
+
+```shell
+gwen
+```
+
+To load meta and open the REPL:
+
+```shell
+gwen -m path\to\file.meta
+```
+
+To execute a feature and open the REPL:
+
+```shell
+gwen path\to\file.feature
+```
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="workspace">
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+:::note Open REPL
+
+To open a new REPL session:
+
+```shell
+./gwen
+```
+
+To load meta and open the REPL:
+
+```shell
+./gwen -m path/to/file.meta
+```
+
+To execute a feature and open the REPL:
+
+```shell
+./gwen path/to/file.feature
+```
+
+:::
+
+</TabItem>
+
+<TabItem value="windows">
+
+:::note Open REPL
+
+To open a new REPL session:
+
+```shell
+gwen
+```
+
+To load meta and open the REPL:
+
+```shell
+gwen -m path\to\file.meta
+```
+
+To execute a feature and open the REPL:
+
+```shell
+gwen path\to\file.feature
+```
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="js">
+
+:::info Coming to Gwen 3
+
+Support for JS projects is coming soon to Gwen 3.
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+## REPL Commands
+
+Once in the REPL, you can type `help` at the `gwen>` prompt to list the available commands.
+
+```
+Gwen REPL commands:
+
+help
+  Displays this help text
+
+env [switch] ["filter"]
+  Lists attributes in the current environment
+    Only lists visible attributes if no options are specified
+    switch : (optional)
+      -a : to list all attributes in all scopes
+      -f : to list all attributes in the feature (global) scope
+    filter : (optional) literal string or regex filter expression
+
+:paste|paste
+   Enters paste mode (for evaluating multiline steps)
+
+history
+  Lists all previously entered commands
+
+!#
+  Executes a previously entered command (history bang operator)
+    # : the history command number
+
+Given|When|Then|And|But step-expression
+  Evaluates a step
+    step-expression : the step expression
+
+exit|quit|bye
+  Closes the REPL session and exits
+
+ctrl-D
+   If in paste mode: exits paste mode and interprets provided steps
+   Otherwise: Closes REPL session and exits
+
+tab
+  Press the tab key for tab completion
+```
+
+## Tab Completion
+
+You can press the tab key at any time to lookup and select available commands, [DSL steps](/docs/dsl/gwen-dsl) and custom StepDefs.
+
+## Paste Mode
+
+Should you attempt to enter a multiline step into the REPL, you will quickly discover that the first line will execute and fail as soon as you enter it without waiting for you to enter the remaining lines first. To address this, we have introduced a *paste* mode. 
+
+To enable paste mode, type `:paste` into the REPL prompt. The following will appear..
+
+```
+gwen> :paste
+
+REPL Console (paste mode)
+
+Enter or paste steps and press ctrl-D to evaluate..
+
+```
+
+You will then be able to enter or paste a multiple the step without anything being executed when you press the enter key for each new line. For example, you could enter the following without any lines being executed prematurely:
+
+```
+ When the following items are added
+      | Item          |
+      | Get the milk  |
+      | Walk the dog  |
+
+```
+
+Then when you're ready to execute or want to exit the *paste* mode, insert a new empty line at the end and press press `cntl-D`. The REPL will then evaluate the step you entered before the new line and return to the standard prompt when done.
+
+```
+Exiting paste mode, interpreting now..
+
+gwen>  When the following items are added
+            | Item          |
+            | Get the milk  |
+            | Walk the dog  |
+
+INFO - Evaluating Step: When the following items are added
+..
+REPL Console
+
+Enter steps to evaluate or type exit to quit..
+
+gwen>
+```
+
+## Exiting the REPL
+
+To exit the REPL, enter `exit`, `quit`, or `bye` or press `ctrl-D` at the gwen prompt.
