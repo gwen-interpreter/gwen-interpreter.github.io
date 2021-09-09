@@ -23,13 +23,19 @@ Creates a new scope for the given page and binds the URL to it. Later steps can 
 <li><code>url</code> = the page URL (can be a <a href="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</a>)</li>
 </ul>
 <details>
-<summary>Example</summary>
+<summary>Example usage</summary>
 <pre>
 Given the todo page url is "https://todomvc.com/examples/react"
 </pre>
 <ul>
 <li><code>page</code> = todo page</li>
 <li><code>url</code> = https://todomvc.com/examples/react</li>
+</ul>
+<pre>
+When I navigate to the todo page
+</pre>
+<ul>
+<li><code>page</code> = todo page</li>
 </ul>
 </details>
 <a href="#the-page-url-is-url">Link</a>
@@ -46,7 +52,7 @@ Navigates the browser to the given URL. Starts a new browser window if one is no
 <li><code>url</code> = the URL to navigate to (can be a <a href="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</a>)</li>
 </ul>
 <details>
-<summary>Example</summary>
+<summary>Example usage</summary>
 <pre>
 When I navigate to "https://todomvc.com/examples/react"
 </pre>
@@ -66,7 +72,7 @@ Navigates the browser to the URL bound to given page name and makes it the curre
 <li><code>page</code> = the name of the page to navigate to</li>
 </ul>
 <details>
-<summary>Example</summary>
+<summary>Example usage</summary>
 <pre>
 Given the todo page url is "https://todomvc.com/examples/react"
 </pre>
