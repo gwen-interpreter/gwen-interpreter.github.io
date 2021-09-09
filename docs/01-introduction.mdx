@@ -85,7 +85,7 @@ Feature: Todo Meta
 
 #### Declaring step definitions
 
-Each step definition is declared as a `@StepDef` annotated scenario with a name that matches that of the step in the feature it binds to. Each one calls out to one or more [DSL steps](/docs/dsl/gwen-dsl) (or potentially other StepDefs) in its body to perform the specified operations at run time.
+Each step definition is declared as a `@StepDef` annotated scenario with a name that matches that of the step in the feature it binds to. Each one calls out to one or more [DSL steps](/docs/dsl/supported-dsl) (or potentially other StepDefs) in its body to perform the specified operations at run time.
 
 The first StepDef in our meta example binds to the first step in the feature and will only execute when it is interpreted for execution by Gwen.
 
@@ -139,7 +139,7 @@ The next step in this StepDef will open a new browser window and navigate to the
 
 Calls DSL step:
 
-- [`I navigate to "<url>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#i-navigate-to-url)
+- [`I navigate to url`](/docs/dsl/supported-dsl#i-navigate-to-url)
 
 :::
 

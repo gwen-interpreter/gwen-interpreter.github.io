@@ -1,8 +1,58 @@
 # Supported DSL
 
+## DSL Steps
+
+All Gherkin steps that match the expressions listed here are readily executable by Gwen. The expression matched will be the step operation performed.
+
+:::tip
+
+Confine all your DSL usage to meta. Although it's possible to use DSL steps directly in features, we do not recommend making them DSL-aware. That's what meta is for!
+
+:::
+
+### Page navigation
+
+#### Given
+
+<a name="the-page-name-url-is-url" />
+<details style={{ backgroundColor: '#FFFFFF00' }}>
+<summary>the <code>page name</code> url is "<code>url</code>"</summary>
+Creates a new scope with the given page name and binds the URL to it. Later steps can then navigate to the page by that name.
+<ul>
+<li><code>page name</code> = the name of the page</li>
+<li><code>url</code> = the page URL (can be a <a href="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</a>)</li>
+</ul>
+<a href="#the-page-name-url-is-url">Link</a>
+&nbsp; &nbsp; Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">2.41.0</a>
+</details>
+
+#### When
+
+<a name="i-navigate-to-url" />
+<details style={{ backgroundColor: '#FFFFFF00' }}>
+<summary>I navigate to "<code>url</code>"</summary>
+Navigates the browser to the given URL. Starts a new browser window if one is not open. 
+<ul>
+<li><code>url</code> = the URL to navigate to (can be a <a href="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</a>)</li>
+</ul>
+<a href="#i-navigate-to-url">Link</a>
+&nbsp; &nbsp; Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+</details>
+
+<a name="i-navigate-to-the-page-name" />
+<details style={{ backgroundColor: '#FFFFFF00' }}>
+<summary>I navigate to the <code>page name</code></summary>
+Navigates the browser to the URL bound to given page name and makes it the currently active scope. Starts a new browser window if one is not open. 
+<ul>
+<li><code>page name</code> = the name of the page to navigate to</li>
+</ul>
+<a href="#i-navigate-to-the-page-name">Link</a>
+&nbsp; &nbsp; Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+</details>
+
 :::info We're migrating our docs
 
-In the meantime, please see our original DSL guide on our wiki by clicking the link here:
+We will post more here soon. In the meantime, see the complete DSL guide on our wiki by clicking the link below:
 
 - [Supported DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL)
 
