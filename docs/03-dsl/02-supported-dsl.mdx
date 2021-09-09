@@ -16,11 +16,11 @@ Confine all your DSL usage to meta. Although it's possible to use DSL steps dire
 
 <a name="the-page-url-is-url" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-<summary>the <code>page</code> url is "<code>url</code>"</summary>
+<summary>the <code>&lt;page&gt;</code> url is "<code>&lt;url&gt;</code>"</summary>
 Creates a new scope for the given page and binds the URL to it. Later steps can then navigate to the page by name.
 <ul>
-<li><code>page</code> = the name of the page</li>
-<li><code>url</code> = the page URL (can be a <a href="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</a>)</li>
+<li><code>&lt;page&gt;</code> = the name of the page</li>
+<li><code>&lt;url&gt;</code> = the page URL (can be a <a href="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</a>)</li>
 </ul>
 <details>
 <summary>Example usage</summary>
@@ -28,14 +28,14 @@ Creates a new scope for the given page and binds the URL to it. Later steps can 
 Given the todo page url is "https://todomvc.com/examples/react"
 </pre>
 <ul>
-<li><code>page</code> = todo page</li>
-<li><code>url</code> = https://todomvc.com/examples/react</li>
+<li><code>&lt;page&gt;</code> = todo page</li>
+<li><code>&lt;url&gt;</code> = https://todomvc.com/examples/react</li>
 </ul>
 <pre>
 When I navigate to the todo page
 </pre>
 <ul>
-<li><code>page</code> = todo page</li>
+<li><code>&lt;page&gt;</code> = todo page</li>
 </ul>
 </details>
 <a href="#the-page-url-is-url">Link</a>
@@ -46,10 +46,10 @@ When I navigate to the todo page
 
 <a name="i-navigate-to-url" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-<summary>I navigate to "<code>url</code>"</summary>
+<summary>I navigate to "<code>&lt;url&gt;</code>"</summary>
 Navigates the browser to the given URL. Starts a new browser window if one is not open. 
 <ul>
-<li><code>url</code> = the URL to navigate to (can be a <a href="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</a>)</li>
+<li><code>&lt;url&gt;</code> = the URL to navigate to (can be a <a href="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</a>)</li>
 </ul>
 <details>
 <summary>Example usage</summary>
@@ -57,7 +57,7 @@ Navigates the browser to the given URL. Starts a new browser window if one is no
 When I navigate to "https://todomvc.com/examples/react"
 </pre>
 <ul>
-<li><code>url</code> = https://todomvc.com/examples/react</li>
+<li><code>&lt;url&gt;</code> = https://todomvc.com/examples/react</li>
 </ul>
 </details>
 <a href="#i-navigate-to-url">Link</a>
@@ -66,10 +66,10 @@ When I navigate to "https://todomvc.com/examples/react"
 
 <a name="i-navigate-to-the-page" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-<summary>I navigate to the <code>page</code></summary>
+<summary>I navigate to the <code>&lt;page&gt;</code></summary>
 Navigates the browser to the URL bound to given page name and makes it the currently active scope. Starts a new browser window if one is not open. 
 <ul>
-<li><code>page</code> = the name of the page to navigate to</li>
+<li><code>&lt;page&gt;</code> = the name of the page to navigate to</li>
 </ul>
 <details>
 <summary>Example usage</summary>
@@ -77,14 +77,14 @@ Navigates the browser to the URL bound to given page name and makes it the curre
 Given the todo page url is "https://todomvc.com/examples/react"
 </pre>
 <ul>
-<li><code>page</code> = todo page</li>
-<li><code>url</code> = https://todomvc.com/examples/react</li>
+<li><code>&lt;page&gt;</code> = todo page</li>
+<li><code>&lt;url&gt;</code> = https://todomvc.com/examples/react</li>
 </ul>
 <pre>
 When I navigate to the todo page
 </pre>
 <ul>
-<li><code>page</code> = todo page</li>
+<li><code>&lt;page&gt;</code> = todo page</li>
 </ul>
 </details>
 <a href="#i-navigate-to-the-page">Link</a>
