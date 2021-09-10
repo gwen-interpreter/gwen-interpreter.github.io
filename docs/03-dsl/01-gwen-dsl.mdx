@@ -42,6 +42,12 @@ Gwen interprets steps for execution according to the following rules:
 
 ## Use DSL steps in meta
 
+:::tip
+
+Confine all DSL steps to meta. Although it's possible to use them directly in features, we do not recommend making them DSL-aware. That's what meta is for!
+
+:::
+
 Use DSL steps to compose StepDefs and make your feature steps executable.
 
 For example, to make the following step executable:

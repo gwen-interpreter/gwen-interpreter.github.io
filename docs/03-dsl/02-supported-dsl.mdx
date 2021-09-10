@@ -2,15 +2,17 @@
 
 ## DSL Steps
 
-All Gherkin steps that match the expressions listed here are readily executable.
+All Gherkin steps that match the DSL steps here are readily executable. The DSL matched is the operation that Gwen will perform when a step is interpreted for execution.
 
-:::tip
+:::info Notation used
 
-Confine all your DSL usage to meta. Although it's possible to use DSL steps directly in features, we do not recommend making them DSL-aware. That's what meta is for!
+- `<placeholder>` = mandatory placeholder
+- `<opt-1|opt-2|..|opt-n>` = mandatory option (matching one of the `|` separated options)
+- `[not]` = optional negation operator
 
 :::
 
-### Page navigation
+### Navigation, URLs and page scopes
 
 #### Given
 
@@ -40,6 +42,35 @@ When I navigate to the todo page
 </details>
 <a href="#the-page-url-is-url">Link</a>
 &nbsp; &nbsp; Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">2.41.0</a>
+</details>
+
+<a name="i-am-on-the-page" />
+<details style={{ backgroundColor: '#FFFFFF00' }}>
+<summary>I am on the <code>&lt;page&gt;</code></summary>
+Sets the given page as the currently active and visible scope. New bindings that follow will be attached to this scope.
+<ul>
+<li><code>&lt;page&gt;</code> = the name of the page</li>
+</ul>
+<details>
+<summary>Example usage</summary>
+<pre>
+Given I am on the todo page
+</pre>
+<ul>
+<li><code>&lt;page&gt;</code> = todo page</li>
+</ul>
+<pre>
+And the todo field can be located by class "new-todo"
+</pre>
+<ul>
+<li><code>&lt;element&gt;</code> = the todo field</li>
+<li><code>&lt;selector&gt;</code> = class</li>
+<li><code>&lt;expression&gt;</code> = new-todo</li>
+</ul>
+Here, <b>the todo field</b> will be bound to the <b>todo page</b> scope and will be accessible in other steps only when that scope is active.
+</details>
+<a href="#i-am-on-the-page">Link</a>
+&nbsp; &nbsp; Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
 </details>
 
 #### When
@@ -88,6 +119,83 @@ When I navigate to the todo page
 </ul>
 </details>
 <a href="#i-navigate-to-the-page">Link</a>
+&nbsp; &nbsp; Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+</details>
+
+#### Then
+
+<a name="the-current-url-should-match-expression" />
+<details style={{ backgroundColor: '#FFFFFF00' }}>
+<summary>the current URL should <code>[not] &lt;be|contain|start with|end with|match regex|match xpath|match template|match template file&gt;</code> "<code>&lt;expression&gt;</code>"
+</summary>
+Checks that the current URL in the browser matches or does not match a given expression.
+<ul>
+<li><code>&lt;expression&gt;</code> = the expression to match (can be a <a href="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</a>)</li>
+</ul>
+<b>Notes:</b>
+<ul>
+<li>
+<code>match template</code> and <code>match template file</code> supported since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</a>
+<ul>
+<li>See: <a href="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template matching</a></li>
+</ul>
+</li>
+</ul>
+<details>
+<summary>Example usage</summary>
+<pre>
+Then the current URL should start with "https://todomvc.com"
+</pre>
+or negated:
+<pre>
+Then the current URL should not start with "https://todomvc.com"
+</pre>
+<ul>
+<li><code>&lt;expression&gt;</code> = https://todomvc.com</li>
+</ul>
+</details>
+<a href="#the-current-url-should-match-expression">Link</a>
+&nbsp; &nbsp; Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+</details>
+
+<a name="the-current-url-should-match-name" />
+<details style={{ backgroundColor: '#FFFFFF00' }}>
+<summary>the current URL should <code>[not] &lt;be|contain|start with|end with|match regex|match xpath|match template|match template file&gt;</code> <code>&lt;name&gt;</code>
+</summary>
+Checks that the current URL in the browser matches or does not match an expression bound to a name.
+<ul>
+<li><code>&lt;name&gt;</code> = the name of the binding containing the expression to match</li>
+</ul>
+<b>Notes:</b>
+<ul>
+<li>
+<code>match template</code> and <code>match template file</code> supported since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</a>
+<ul>
+<li>See: <a href="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template matching</a></li>
+</ul>
+</li>
+</ul>
+<details>
+<summary>Example usage</summary>
+<pre>
+Given my domain is "todomvc.com"
+</pre>
+<ul>
+<li><code>&lt;name&gt;</code> = my domain</li>
+<li><code>&lt;value&gt;</code> = todomvc.com</li>
+</ul>
+<pre>
+Then the current URL should contain my domain
+</pre>
+or negated:
+<pre>
+Then the current URL should not contain my domain
+</pre>
+<ul>
+<li><code>&lt;name&gt;</code> = my domain</li>
+</ul>
+</details>
+<a href="#the-current-url-should-match-name">Link</a>
 &nbsp; &nbsp; Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
 </details>
 
