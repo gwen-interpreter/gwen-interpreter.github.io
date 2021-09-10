@@ -114,7 +114,7 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     When I capture the current URL
     </pre>
     <pre>
-    And I navigate to "{'${the current URL}'}/relative/page.html"
+    And I navigate to "{'${the current URL}'}relative/page.html"
     </pre>
   </details>
   <p>
@@ -136,7 +136,7 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     When I capture the current URL as the base URL
     </pre>
     <pre>
-    And I navigate to "{'${the base URL}'}/relative/page.html"
+    And I navigate to "{'${the base URL}'}relative/page.html"
     </pre>
     <pre>
     Then the current URL should start with the base URL
@@ -184,11 +184,11 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
         <li><b>be</b> : for exact match</li>
         <li><b>contain</b> : for partial match</li>
         <li><b>start with</b> : for partial leading match</li>
-        <li><b>end with</b>for partial trailing match</li>
+        <li><b>end with</b> : for partial trailing match</li>
         <li><b>match regex</b> : for regex match</li>
         <li><b>match xpath</b> : for XML match</li>
         <li><b>match template</b> : for <a href="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template match</a>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</a></li>
-        <li><b>match template file</b> for <a href="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template file match</a>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</a></li>
+        <li><b>match template file</b> : for <a href="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template file match</a>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</a></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> = the expression to match (can be a <a href="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</a>)</li>
@@ -196,11 +196,11 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
   <details>
     <summary>Example usage</summary>
     <pre>
-    Then the current URL should start with "https://todomvc.com"
+    Then the current URL should contain "todomvc.com"
     </pre>
     <p>Or negated:</p>
     <pre>
-    Then the current URL should not start with "https://todomvc.com"
+    Then the current URL should not contain "todomvc.com"
     </pre>
   </details>
   <p>
@@ -221,11 +221,11 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
         <li><b>be</b> : for exact match</li>
         <li><b>contain</b> : for partial match</li>
         <li><b>start with</b> : for partial leading match</li>
-        <li><b>end with</b>for partial trailing match</li>
+        <li><b>end with</b> : for partial trailing match</li>
         <li><b>match regex</b> : for regex match</li>
         <li><b>match xpath</b> : for XML match</li>
         <li><b>match template</b> : for <a href="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template match</a>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</a></li>
-        <li><b>match template file</b> for <a href="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template file match</a>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</a></li>
+        <li><b>match template file</b> : for <a href="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template file match</a>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</a></li>
       </ul>
     </li>
     <li><code>&lt;name&gt;</code> = the name of the binding containing the expression to match</li>
