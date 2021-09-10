@@ -28,19 +28,14 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     <pre>
     Given the todo page url is "https://todomvc.com/examples/react"
     </pre>
-    <ul>
-      <li><code>&lt;page&gt;</code> = todo page</li>
-      <li><code>&lt;url&gt;</code> = https://todomvc.com/examples/react</li>
-    </ul>
     <pre>
     When I navigate to the todo page
     </pre>
-    <ul>
-      <li><code>&lt;page&gt;</code> = todo page</li>
-    </ul>
   </details>
-  <a href="#the-page-url-is-url">Link</a> &nbsp; &nbsp;
-  Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">2.41.0</a>
+  <p>
+    <a href="#the-page-url-is-url">Link</a> &nbsp; &nbsp;
+    Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">2.41.0</a>
+  </p>
 </details>
 
 <a name="i-am-on-the-page" />
@@ -55,21 +50,15 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     <pre>
     Given I am on the todo page
     </pre>
-    <ul>
-      <li><code>&lt;page&gt;</code> = todo page</li>
-    </ul>
     <pre>
     And the todo field can be located by class "new-todo"
     </pre>
-    <ul>
-      <li><code>&lt;element&gt;</code> = the todo field</li>
-      <li><code>&lt;selector&gt;</code> = class</li>
-      <li><code>&lt;expression&gt;</code> = new-todo</li>
-    </ul>
-    Here, <b>the todo field</b> will be bound to the <b>todo page</b> scope and will be accessible in other steps only when that scope is active.
+    <p>Here, <b>the todo field</b> will be bound to the <b>todo page</b> scope and will be accessible in other steps only when that scope is active.</p>
   </details>
-  <a href="#i-am-on-the-page">Link</a> &nbsp; &nbsp;
-  Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  <p>
+    <a href="#i-am-on-the-page">Link</a> &nbsp; &nbsp;
+    Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  </p>
 </details>
 
 #### When
@@ -86,12 +75,11 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     <pre>
     When I navigate to "https://todomvc.com/examples/react"
     </pre>
-    <ul>
-      <li><code>&lt;url&gt;</code> = https://todomvc.com/examples/react</li>
-    </ul>
   </details>
-  <a href="#i-navigate-to-url">Link</a> &nbsp; &nbsp;
-  Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  <p>
+    <a href="#i-navigate-to-url">Link</a> &nbsp; &nbsp;
+    Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  </p>
 </details>
 
 <a name="i-navigate-to-the-page" />
@@ -106,19 +94,14 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     <pre>
     Given the todo page url is "https://todomvc.com/examples/react"
     </pre>
-    <ul>
-      <li><code>&lt;page&gt;</code> = todo page</li>
-      <li><code>&lt;url&gt;</code> = https://todomvc.com/examples/react</li>
-    </ul>
     <pre>
     When I navigate to the todo page
     </pre>
-    <ul>
-      <li><code>&lt;page&gt;</code> = todo page</li>
-    </ul>
   </details>
-  <a href="#i-navigate-to-the-page">Link</a> &nbsp; &nbsp;
-  Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  <p>
+    <a href="#i-navigate-to-the-page">Link</a> &nbsp; &nbsp;
+    Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  </p>
 </details>
 
 <a name="i-capture-the-current-url" />
@@ -133,74 +116,59 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     <pre>
     And I navigate to "{'${the current URL}'}/relative/page.html"
     </pre>
-    <ul>
-      <li><code>&lt;url&gt;</code> = {'${the current URL}'}/relative/page.html
-        <ul><li>Where <b>{'${the current URL}'}</b> will resolve to the captured URL</li></ul>
-      </li>
-    </ul>
   </details>
-  <a href="#i-capture-the-current-url">Link</a> &nbsp; &nbsp;
-  Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  <p>
+    <a href="#i-capture-the-current-url">Link</a> &nbsp; &nbsp;
+    Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  </p>
 </details>
 
 <a name="i-capture-the-current-url-as-name" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>I capture the current URL as <code>&lt;name&gt;</code></summary>
   <p>Captures the current browser URL and binds it to the given name.</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> = the name to bind the captured URL to</li>
+  </ul>
   <details>
     <summary>Example usage</summary>
     <pre>
     When I capture the current URL as the base URL
     </pre>
-    <ul>
-      <li><code>&lt;name&gt;</code> = the base URL</li>
-    </ul>
     <pre>
     And I navigate to "{'${the base URL}'}/relative/page.html"
     </pre>
-    <ul>
-      <li><code>&lt;url&gt;</code> = {'${the base URL}'}/relative/page.html
-        <ul><li>Where <b>{'${the base URL}'}</b> will resolve to the captured URL</li></ul>
-      </li>
-    </ul>
     <pre>
     Then the current URL should start with the base URL
     </pre>
-    <ul>
-      <li><code>&lt;match&gt;</code> = start with</li>
-      <li><code>&lt;name&gt;</code> = the base URL</li>
-    </ul>
   </details>
-  <a href="#i-capture-the-current-url-as-name">Link</a> &nbsp; &nbsp;
-  Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  <p>
+    <a href="#i-capture-the-current-url-as-name">Link</a> &nbsp; &nbsp;
+    Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  </p>
 </details>
 
 <a name="i-capture-the-text-in-the-current-url-by-regex-as-name" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>I capture the text in the current URL by regex "<code>&lt;expression&gt;</code>" as <code>&lt;name&gt;</code></summary>
   <p>Captures a susbtring of the current URL in the browser by regex and binds it to the given name.</p>
+  <ul>
+    <li><code>&lt;expression&gt;</code> = the regex expression</li>
+    <li><code>&lt;name&gt;</code> = the name to bind the captured substring to</li>
+  </ul>
   <details>
     <summary>Example usage</summary>
     <pre>
     When I capture the text in the current URL by regex "id=([^&]*)" as the id param
     </pre>
-    <ul>
-      <li><code>&lt;regex&gt;</code> = id=([^&]*)
-        <ul><li>Extracts the value of the query string parameter named id from the current URL</li></ul>
-      </li>
-      <li><code>&lt;name&gt;</code> = the id param</li>
-    </ul>
     <pre>
     Then the id param should be "gwen"
     </pre>
-    <ul>
-      <li><code>&lt;name&gt;</code> = the id param</li>
-      <li><code>&lt;match&gt;</code> = be</li>
-      <li><code>&lt;expression&gt;</code> = gwen</li>
-    </ul>
   </details>
-  <a href="#i-capture-the-text-in-the-current-url-by-regex-as-name">Link</a> &nbsp; &nbsp;
-  Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  <p>
+    <a href="#i-capture-the-text-in-the-current-url-by-regex-as-name">Link</a> &nbsp; &nbsp;
+    Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  </p>
 </details>
 
 #### Then
@@ -234,12 +202,11 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     <pre>
     Then the current URL should not start with "https://todomvc.com"
     </pre>
-    <ul>
-      <li><code>&lt;expression&gt;</code> = https://todomvc.com</li>
-    </ul>
   </details>
-  <a href="#the-current-url-should-match-expression">Link</a> &nbsp; &nbsp;
-  Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  <p>
+    <a href="#the-current-url-should-match-expression">Link</a> &nbsp; &nbsp;
+    Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  </p>
 </details>
 
 <a name="the-current-url-should-match-name" />
@@ -268,10 +235,6 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     <pre>
     Given my domain is "todomvc.com"
     </pre>
-    <ul>
-      <li><code>&lt;name&gt;</code> = my domain</li>
-      <li><code>&lt;value&gt;</code> = todomvc.com</li>
-    </ul>
     <pre>
     Then the current URL should contain my domain
     </pre>
@@ -279,12 +242,11 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     <pre>
     Then the current URL should not contain my domain
     </pre>
-    <ul>
-      <li><code>&lt;name&gt;</code> = my domain</li>
-    </ul>
   </details>
-  <a href="#the-current-url-should-match-name">Link</a> &nbsp; &nbsp;
-  Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  <p>
+    <a href="#the-current-url-should-match-name">Link</a> &nbsp; &nbsp;
+    Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  </p>
 </details>
 
 :::info We're migrating our docs
