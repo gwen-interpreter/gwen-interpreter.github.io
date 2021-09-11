@@ -23,7 +23,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </ul>
   <p>Example usage</p>
 
-  ```gherkin
+  ```gherkin {1}
     Given the todo page url is "https://todomvc.com/examples/react"
       And the todo field can be located by class "new-todo"
   ```
@@ -51,7 +51,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </ul>
   <p>Example usage</p>
 
-  ```gherkin
+  ```gherkin {2}
     Given the todo page url is "https://todomvc.com/examples/react"
      When I navigate to the todo page
   ```
@@ -99,7 +99,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </summary>
   <p>Example usage</p>
 
-  ```gherkin
+  ```gherkin {1}
     When I capture the current URL
      And I navigate to "${the current URL}?q=gwen"
   ```
@@ -125,7 +125,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </ul>
   <p>Example usage</p>
 
-  ```gherkin
+  ```gherkin {1}
     When I capture the current URL as the base URL
      And I navigate to "${the base URL}?q=gwen"
     Then the current URL should start with the base URL
@@ -153,7 +153,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </ul>
   <p>Example usage</p>
 
-  ```gherkin
+  ```gherkin {1}
     When I capture the text in the current URL by regex "q=([^&]*)" as q
     Then q should be "gwen"
   ```
@@ -194,7 +194,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </ul>
   <p>Example usage</p>
 
-  ```gherkin
+  ```gherkin {2,3}
     When I navigate to "https://todomvc.com/examples/react"
     Then the current URL should contain "todomvc.com"
      And the current URL should not contain "other.com"
@@ -234,7 +234,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </ul>
   <p>Example usage</p>
 
-  ```gherkin
+  ```gherkin {4,5}
     Given my domain is "todomvc.com"
       And some other domain is "someother.com"
      When I navigate to "https://todomvc.com/examples/react"
@@ -285,7 +285,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </ul>
   <p>Example usage</p>
 
-  ```gherkin
+  ```gherkin {1}
     Given the todo field can be located by class "new-todo"
      When I enter "Walk the dog" in the todo field
   ```
@@ -330,7 +330,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </ul>
     <p>Example usage</p>
 
-  ```gherkin
+  ```gherkin {2}
     Given my form can be located by name "formName"
       And my input field can be located by name "inputName" in my form
      When I type "Gwen" in my input field
@@ -382,7 +382,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </ul>
   <p>Example usage</p>
 
-  ```gherkin
+  ```gherkin {1-4}
     Given the search field can be located by
           | id         | search        |
           | class name | .search-field |
