@@ -31,3 +31,22 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 .hero__subtitle {
   font-size:1.75rem
 }
+
+.details_node_modules-\@docusaurus-theme-classic-lib-next-theme-Details-styles-module {
+  --ifm-color-info-dark: rgb(212, 213, 216);
+  --ifm-color-info-darker: rgb(200, 201, 204);
+  --ifm-color-info-darkest: rgb(164, 166, 168);
+  --ifm-color-info-light: rgb(238, 240, 242);
+  --ifm-color-info-lighter: rgb(241, 242, 245);
+  --ifm-color-info-lightest: rgb(245, 246, 248);
+  --ifm-color-info-contrast-background: rgb(253, 253, 254);
+  --ifm-color-info-contrast-foreground: rgb(71, 71, 72);
+  --ifm-alert-background-color: var(
+      --ifm-color-secondary-contrast-background
+    );
+    --ifm-alert-background-color-highlight: rgba(235, 237, 240, 0.15);
+    --ifm-alert-foreground-color: var(
+      --ifm-color-secondary-contrast-foreground
+    );
+    --ifm-alert-border-color: rgb(164, 166, 168);
+}
