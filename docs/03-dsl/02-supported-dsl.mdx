@@ -7,7 +7,7 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 :::note Notation
 
 - `<placeholder>` = mandatory placeholder
-- `[not]` = optional negation operator
+- `[ not]` = optional negation operator
 
 :::
 
@@ -18,9 +18,12 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 <a name="the-page-url-is-url" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
-    the <code>&lt;page&gt;</code> url is "<code>&lt;url&gt;</code>"
-  </summary>
+
+  ```gherkin
+  the <page> url is "<url>"
+  ```
   <p>Sets the URL for a web page and puts the page into scope.</p>
+  </summary>
   <ul>
     <li><code>&lt;page&gt;</code> = the name of the page</li>
     <li><code>&lt;url&gt;</code> = the page URL (can be a <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link>)</li>
@@ -28,8 +31,9 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
   <p><b>Example usage</b></p>
 
   ```gherkin
-  Given the todo page url is "https://todomvc.com/examples/react"
-   When I navigate to the todo page
+  Scenario: ..
+    Given the todo page url is "https://todomvc.com/examples/react"
+     When I navigate to the todo page
   ```
 
   <p>
@@ -41,16 +45,21 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 <a name="i-am-on-the-page" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
-    I am on the <code>&lt;page&gt;</code>
-  </summary>
+
+  ```gherkin
+  I am on the <page>
+  ```
+
   <p>Puts the given page into scope.</p>
+  </summary>
   <ul>
     <li><code>&lt;page&gt;</code> = the name of the page</li>
   </ul>
   <p><b>Example usage</b></p>
 
   ```gherkin
-  Given I am on the todo page
+  Scenario: ..
+    Given I am on the todo page
   ```
   
   <p>
@@ -64,16 +73,21 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 <a name="i-navigate-to-url" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
-    I navigate to "<code>&lt;url&gt;</code>"
-  </summary>
+
+  ```gherkin
+  I navigate to "<url>"
+  ```
+
   <p>Navigates the browser to the given URL. Starts a new browser window if one is not open.</p>
+  </summary>
   <ul>
     <li><code>&lt;url&gt;</code> = the URL to navigate to (can be a <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link>)</li>
   </ul>
   <p><b>Example usage</b></p>
 
   ```gherkin
-  When I navigate to "https://todomvc.com/examples/react"
+  Scenario: ..
+    When I navigate to "https://todomvc.com/examples/react"
   ```
 
   <p>
@@ -85,17 +99,22 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 <a name="i-navigate-to-the-page" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
-    I navigate to the <code>&lt;page&gt;</code>
-  </summary>
+
+  ```gherkin
+  I navigate to the <page>
+  ```
+
   <p>Navigates the browser to the URL bound to the given page and puts it into scope. Starts a new browser window if one is not open.</p>
+  </summary>
   <ul>
     <li><code>&lt;page&gt;</code> = the name of the page to navigate to</li>
   </ul>
   <p><b>Example usage</b></p>
 
   ```gherkin
-  Given the todo page url is "https://todomvc.com/examples/react"
-   When I navigate to the todo page
+  Scenario: ..
+    Given the todo page url is "https://todomvc.com/examples/react"
+     When I navigate to the todo page
   ```
 
   <p>
@@ -107,14 +126,19 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 <a name="i-capture-the-current-url" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
-    I capture the current URL
-  </summary>
+
+  ```gherkin
+  I capture the current URL
+  ```
+  
   <p>Captures the current browser URL and binds it to the name: <code>the current URL</code>.</p>
+  </summary>
   <p><b>Example usage</b></p>
 
   ```gherkin
-  When I capture the current URL
-   And I navigate to "${the current URL}?q=gwen"
+  Scenario: ..
+    When I capture the current URL
+     And I navigate to "${the current URL}?q=gwen"
   ```
 
   <p>
@@ -126,18 +150,23 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 <a name="i-capture-the-current-url-as-name" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
-    I capture the current URL as <code>&lt;name&gt;</code>
-  </summary>
+
+  ```gherkin
+  I capture the current URL as <name>
+  ```
+  
   <p>Captures the current browser URL and binds it to the given name.</p>
+  </summary>
   <ul>
     <li><code>&lt;name&gt;</code> = the name to bind the captured URL to</li>
   </ul>
   <p><b>Example usage</b></p>
 
   ```gherkin
-  When I capture the current URL as the base URL
-   And I navigate to "${the base URL}?q=gwen"
-  Then the current URL should start with the base URL
+  Scenario: ..
+    When I capture the current URL as the base URL
+     And I navigate to "${the base URL}?q=gwen"
+    Then the current URL should start with the base URL
   ```
 
   <p>
@@ -149,9 +178,13 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 <a name="i-capture-the-text-in-the-current-url-by-regex-as-name" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
-    I capture the text in the current URL by regex "<code>&lt;expression&gt;</code>" as <code>&lt;name&gt;</code>
-  </summary>
+
+  ```gherkin
+  I capture the text in the current URL by regex "<expression>" as <name>
+  ```
+
   <p>Captures a substring from the current browser URL by regex and binds it to the given name.</p>
+  </summary>
   <ul>
     <li><code>&lt;expression&gt;</code> = the regex expression</li>
     <li><code>&lt;name&gt;</code> = the name to bind the captured substring to</li>
@@ -159,8 +192,9 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
   <p><b>Example usage</b></p>
 
   ```gherkin
-  When I capture the text in the current URL by regex "q=([^&]*)" as q
-  Then q should be "gwen"
+  Scenario: ..
+    When I capture the text in the current URL by regex "q=([^&]*)" as q
+    Then q should be "gwen"
   ```
 
   <p>
@@ -174,11 +208,15 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 <a name="the-current-url-should-match-expression" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
-    the current URL should <code>[not] &lt;match&gt;</code> "<code>&lt;expression&gt;</code>"
-  </summary>
+
+  ```gherkin
+  the current URL should[ not] <match> "<expression>"
+  ```
+  
   <p>Checks if the current browser URL matches (or doesn't match) a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
   <ul>
-    <li><code>[not]</code> = include the word <code>not</code> to negate the match, omit otherwise</li>
+    <li><code>[ not]</code> = include the word <code>not</code> to negate the match, omit otherwise</li>
     <li><code>&lt;match&gt;</code> = the type of match to perform, one of:
       <ul>
         <li><b>be</b> : for exact match</li>
@@ -196,8 +234,9 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
   <p><b>Example usage</b></p>
 
   ```gherkin
-  Then the current URL should contain "todomvc.com"
-   And the current URL should not contain "other.com"
+  Scenario: ..
+    Then the current URL should contain "todomvc.com"
+     And the current URL should not contain "other.com"
   ```
   
   <p>
@@ -209,11 +248,15 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 <a name="the-current-url-should-match-name" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
-    the current URL should <code>[not] &lt;match&gt;</code> <code>&lt;name&gt;</code>
-  </summary>
+
+  ```gherkin
+  the current URL should[ not] <match> <name>
+  ```
+  
   <p>Checks if the current URL in the browser matches (or doesn't match) an expression bound to a name. Reports an assertion error if the match fails.</p>
+  </summary>
   <ul>
-    <li><code>[not]</code> = include the word <code>not</code> to negate the match, omit otherwise</li>
+    <li><code>[ not]</code> = include the word <code>not</code> to negate the match, omit otherwise</li>
     <li><code>&lt;match&gt;</code> = the type of match to perform, one of:
       <ul>
         <li><b>be</b> : for exact match</li>
@@ -231,10 +274,11 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
   <p><b>Example usage</b></p>
 
   ```gherkin
-  Given my domain is "todomvc.com"
-    And other domain is "other.com"
-   Then the current URL should contain my domain
-    And the current URL should not contain other domain
+  Scenario: ..
+    Given my domain is "todomvc.com"
+      And other domain is "other.com"
+     Then the current URL should contain my domain
+      And the current URL should not contain other domain
   ```
   
   <p>
@@ -250,9 +294,13 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 <a name="element-can-be-located-by-selector-expression" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
-    <code>&lt;element&gt;</code> can be located by <code>&lt;selector&gt;</code> "<code>&lt;expression&gt;</code>"
-  </summary>
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>"
+  ```
+
   <p>Defines a selector for a web element and gives it a <Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenweblocatorwaitseconds">default timeout</Link>.</p>
+  </summary>
   <ul>
     <li><code>&lt;element&gt;</code> = the web element name</li>
     <li><code>&lt;selector&gt;</code> = the selector type, one of:
@@ -277,8 +325,9 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
   <p><b>Example usage</b></p>
 
   ```gherkin
-  Given the todo field can be located by class "new-todo"
-   When I enter "Walk the dog" in the todo field
+  Scenario: ..
+    Given the todo field can be located by class "new-todo"
+     When I enter "Walk the dog" in the todo field
   ```
 
   <p>
@@ -290,11 +339,13 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 <a name="element-can-be-located-by-selector-expression-in-container" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
-    <code>&lt;element&gt;</code> can be located by <code>&lt;selector&gt;</code> "<code>&lt;expression&gt;</code>" in <code>&lt;container&gt;</code>
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" in <container>
+  ```
+
+  <p>Defines a <Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Locator-Chaining">chained</Link> selector for a web element contained in another element and gives it a <Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenweblocatorwaitseconds">default timeout</Link>.</p>
   </summary>
-  <p>
-    Defines a <Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Locator-Chaining">chained</Link> selector for a web element contained in another element and gives it a <Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenweblocatorwaitseconds">default timeout</Link>.
-  </p>
   <ul>
     <li><code>&lt;element&gt;</code> = the web element name</li>
     <li><code>&lt;selector&gt;</code> = the selector type, one of:
@@ -320,9 +371,10 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     <p><b>Example usage</b></p>
 
   ```gherkin
-  Given my form can be located by name "formName"
-    And my input field can be located by name "inputName" in my form
-   When I type "Gwen" in my input field
+  Scenario: ..
+    Given my form can be located by name "formName"
+      And my input field can be located by name "inputName" in my form
+     When I type "Gwen" in my input field
   ```
 
   <p>
@@ -334,16 +386,20 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 <a name="element-can-be-located-by-selector-expressions" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
-    <code>&lt;element&gt;</code> can be located by<br />
-    &nbsp; &nbsp; <code>| &lt;selector 1&gt; | &lt;expression 1&gt; |</code><br />
-    &nbsp; &nbsp; <code>| &lt;selector 2&gt; | &lt;expression 2&gt; |</code><br />
-    &nbsp; &nbsp; <code>| &nbsp; &nbsp; &nbsp;..&nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; .. &nbsp; &nbsp; &nbsp; |</code><br />
-    &nbsp; &nbsp; <code>| &lt;selector n&gt; | &lt;expression n&gt; |</code>
-  </summary>
+
+  ```gherkin
+  <element> can be located by
+    | <selector 1> | <expression 1> |
+    | <selector 2> | <expression 2> |
+    |      ..      |       ..       |
+    | <selector n> | <expression n> |
+  ```
+
   <p>
     Defines multiple selectors for a web element and gives each one a <Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenweblocatorwaitseconds">default timeout</Link>.
     Lookup will be performed in the order given until one succeeds.
   </p>
+  </summary>
   <ul>
     <li><code>&lt;element&gt;</code> = the web element name</li>
     <li><code>&lt;selector n&gt;</code> = the nth selector type, one of:
@@ -368,11 +424,12 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
   <p><b>Example usage</b></p>
 
   ```gherkin
-  Given the search field can be located by
-        | id         | search        |
-        | class name | .search-field |
-        | name       | q             |
-   When I type "Gwen" in the search field
+  Scenario: ..
+    Given the search field can be located by
+          | id         | search        |
+          | class name | .search-field |
+          | name       | q             |
+     When I type "Gwen" in the search field
   ```
 
   <p>
