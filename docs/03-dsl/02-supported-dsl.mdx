@@ -1,3 +1,5 @@
+import CodeBlock from '@theme/CodeBlock';
+
 # Supported DSL
 
 ## DSL Steps
@@ -11,7 +13,7 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
 
 :::
 
-### Navigation, URLs and pages
+### Page navigation and URLs
 
 #### Given
 
@@ -114,7 +116,7 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     When I capture the current URL
     </pre>
     <pre>
-    And I navigate to "{'${the current URL}'}relative/page.html"
+    And I navigate to "{'${the current URL}'}?q=gwen"
     </pre>
   </details>
   <p>
@@ -136,7 +138,7 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     When I capture the current URL as the base URL
     </pre>
     <pre>
-    And I navigate to "{'${the base URL}'}relative/page.html"
+    And I navigate to "{'${the base URL}'}?q=gwen"
     </pre>
     <pre>
     Then the current URL should start with the base URL
@@ -159,10 +161,10 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
   <details>
     <summary>Example usage</summary>
     <pre>
-    When I capture the text in the current URL by regex "id=([^&]*)" as the id param
+    When I capture the text in the current URL by regex "q=([^&]*)" as the q param
     </pre>
     <pre>
-    Then the id param should be "gwen"
+    Then the q param should be "gwen"
     </pre>
   </details>
   <p>
@@ -245,6 +247,49 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
   </details>
   <p>
     <a href="#the-current-url-should-match-name">Link</a> &nbsp; &nbsp;
+    Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
+  </p>
+</details>
+
+### Web element selectors
+
+#### Given
+
+<a name="element-can-be-located-by-selector-expression" />
+<details style={{ backgroundColor: '#FFFFFF00' }}>
+  <summary><code>&lt;element&gt;</code> can be located by <code>&lt;selector&gt;</code> "<code>&lt;expression&gt;</code>"</summary>
+  <p>Defines a web element selector with a <a href="https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenweblocatorwaitseconds">default timeout</a>.</p>
+  <ul>
+    <li><code>&lt;elemen&gt;</code> = the web element name</li>
+    <li><code>&lt;selector&gt;</code> = the selector type, one of:
+      <ul>
+        <li><b>id</b> : for selecting by id</li>
+        <li><b>tag name</b> : for selecting by tag name</li>
+        <li><b>name</b> : shorthand alternative for <b>tag name</b>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</a></li>
+        <li><b>css selector</b> : for selecting by css</li>
+        <li><b>css</b> : shorthand alternative for <b>css selector</b>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</a></li>
+        <li><b>class name</b> : for selecting by class name</li>
+        <li><b>class</b> : shorthand alternative for <b>class name</b>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</a></li>
+        <li><b>xpath</b> : for selecting by XPath</li>
+        <li><b>link text</b> : for selecting by link text</li>
+        <li><b>partial link text</b> : for selecting by partial link text</li>
+        <li><b>javascript</b> : for selecting by JavaScript</li>
+        <li><b>js</b> : shorthand alternative for <b>javascript</b>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</a></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> = the selector expression</li>
+  </ul>
+  <details>
+    <summary>Example usage</summary>
+    <pre>
+    Given the todo field can be located by class "new-todo"
+    </pre>
+    <pre>
+    When I enter "Walk the dog" in the todo field
+    </pre>
+  </details>
+  <p>
+    <a href="#element-can-be-located-by-selector-expression">Link</a> &nbsp; &nbsp;
     Since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">1.0.0</a>
   </p>
 </details>
