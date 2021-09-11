@@ -263,12 +263,13 @@ All Gherkin steps that match the DSL steps here are readily executable. The DSL 
     <li><code>&lt;elemen&gt;</code> = the web element name</li>
     <li><code>&lt;selector&gt;</code> = the selector type, one of:
       <ul>
-        <li><b>id</b> : for selecting by id</li>
+        <li><b>id</b> : for selecting by id attribute</li>
+        <li><b>name</b> : for selecting by name attribute</li>
         <li><b>tag name</b> : for selecting by tag name</li>
-        <li><b>name</b> : shorthand alternative for <b>tag name</b>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</a></li>
-        <li><b>css selector</b> : for selecting by css</li>
+        <li><b>tag</b> : shorthand alternative for <b>tag name</b>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</a></li>
+        <li><b>css selector</b> : for selecting by css expression</li>
         <li><b>css</b> : shorthand alternative for <b>css selector</b>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</a></li>
-        <li><b>class name</b> : for selecting by class name</li>
+        <li><b>class name</b> : for selecting by class attribute</li>
         <li><b>class</b> : shorthand alternative for <b>class name</b>, since v<a href="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</a></li>
         <li><b>xpath</b> : for selecting by XPath</li>
         <li><b>link text</b> : for selecting by link text</li>
