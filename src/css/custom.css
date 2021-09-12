@@ -42,6 +42,7 @@ a.dsl {
 
 details {
   --ifm-paragraph-margin-bottom: 0;
+  background-color: transparent !important;
 }
 
 details > div {
