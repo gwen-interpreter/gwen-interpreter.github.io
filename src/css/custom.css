@@ -37,6 +37,10 @@ summary:before {
   top: 1.3rem !important;
 }
 
+.dsl-link {
+  scroll-margin-top: 4em;
+}
+
 details > div {
   padding-left: 16px;
 }

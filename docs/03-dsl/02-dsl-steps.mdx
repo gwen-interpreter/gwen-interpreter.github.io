@@ -8,7 +8,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
 
 ### Given
 
-<a name="the-page-url-is-url" />
+<a class="dsl-link" name="the-page-url-is-url" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
 
@@ -37,9 +37,37 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
+<a class="dsl-link" name="i-am-on-the-page" />
+<details style={{ backgroundColor: '#FFFFFF00' }}>
+  <summary>
+
+  ```gherkin
+  I am on the <page>
+  ```
+  <p>Puts the given page into scope and makes all its bindings avaialble.</p>
+  </summary>
+  <div class="dsl-details">
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;page&gt;</code> is a page name</li>
+  </ul>
+  <p>Example (assumes that <code>the todo field</code> was previously bound to the page)</p>
+
+  ```gherkin {1}
+    Given I am on the todo page
+     When I enter "Walk the dog" in the todo field
+  ```
+
+  <p>
+    <Link to="#i-am-on-the-page">Link</Link> &nbsp; &nbsp;
+    Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link>
+  </p>
+  </div>
+</details>
+
 ### When
 
-<a name="i-navigate-to-the-page" />
+<a class="dsl-link" name="i-navigate-to-the-page" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
 
@@ -66,7 +94,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a name="i-navigate-to-url" />
+<a class="dsl-link" name="i-navigate-to-url" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
 
@@ -92,7 +120,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a name="i-capture-the-current-url" />
+<a class="dsl-link" name="i-capture-the-current-url" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
 
@@ -115,7 +143,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a name="i-capture-the-current-url-as-name" />
+<a class="dsl-link" name="i-capture-the-current-url-as-name" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
 
@@ -143,7 +171,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a name="i-capture-the-text-in-the-current-url-by-regex-as-name" />
+<a class="dsl-link" name="i-capture-the-text-in-the-current-url-by-regex-as-name" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
 
@@ -173,7 +201,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
 
 ### Then
 
-<a name="the-current-url-should-match-expression" />
+<a class="dsl-link" name="the-current-url-should-match-expression" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
 
@@ -214,7 +242,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a name="the-current-url-should-match-name" />
+<a class="dsl-link" name="the-current-url-should-match-name" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
 
@@ -261,7 +289,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
 
 ### Given
 
-<a name="element-can-be-located-by-selector-expression" />
+<a class="dsl-link" name="element-can-be-located-by-selector-expression" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
 
@@ -302,7 +330,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a name="element-can-be-located-by-selector-expression-in-container" />
+<a class="dsl-link" name="element-can-be-located-by-selector-expression-in-container" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
 
@@ -345,7 +373,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a name="element-can-be-located-by-selector-expressions" />
+<a class="dsl-link" name="element-can-be-located-by-selector-expressions" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
   <summary>
 
