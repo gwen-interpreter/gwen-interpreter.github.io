@@ -8,16 +8,15 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
 
 ### Given
 
-<a class="dsl-link" id="the-page-url-is-url" />
+<a class="dsl" id="the-page-url-is-url" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-  <summary>
+  <summary class="dsl">
 
   ```gherkin
   the <page> url is "<url>"
   ```
   <p>Puts the given page into scope and binds the given URL to it.</p>
   </summary>
-  <div class="dsl-details">
   <p>Where</p>
   <ul>
     <li><code>&lt;page&gt;</code> is the name of the page</li>
@@ -34,19 +33,17 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     <Link to="#the-page-url-is-url">Link</Link> &nbsp; &nbsp;
     Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">v2.41.0</Link>
   </p>
-  </div>
 </details>
 
-<a class="dsl-link" id="i-am-on-the-page" />
+<a class="dsl" id="i-am-on-the-page" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-  <summary>
+  <summary class="dsl">
 
   ```gherkin
   I am on the <page>
   ```
   <p>Puts the given page into scope and makes all its bindings avaialble.</p>
   </summary>
-  <div class="dsl-details">
   <p>Where</p>
   <ul>
     <li><code>&lt;page&gt;</code> is a page name</li>
@@ -62,14 +59,13 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     <Link to="#i-am-on-the-page">Link</Link> &nbsp; &nbsp;
     Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link>
   </p>
-  </div>
 </details>
 
 ### When
 
-<a class="dsl-link" id="i-navigate-to-the-page" />
+<a class="dsl" id="i-navigate-to-the-page" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-  <summary>
+  <summary class="dsl">
 
   ```gherkin
   I navigate to the <page>
@@ -94,9 +90,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a class="dsl-link" id="i-navigate-to-url" />
+<a class="dsl" id="i-navigate-to-url" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-  <summary>
+  <summary class="dsl">
 
   ```gherkin
   I navigate to "<url>"
@@ -120,9 +116,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a class="dsl-link" id="i-capture-the-current-url" />
+<a class="dsl" id="i-capture-the-current-url" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-  <summary>
+  <summary class="dsl">
 
   ```gherkin
   I capture the current URL
@@ -143,9 +139,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a class="dsl-link" id="i-capture-the-current-url-as-name" />
+<a class="dsl" id="i-capture-the-current-url-as-name" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-  <summary>
+  <summary class="dsl">
 
   ```gherkin
   I capture the current URL as <name>
@@ -171,9 +167,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a class="dsl-link" id="i-capture-the-text-in-the-current-url-by-regex-as-name" />
+<a class="dsl" id="i-capture-the-text-in-the-current-url-by-regex-as-name" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-  <summary>
+  <summary class="dsl">
 
   ```gherkin
   I capture the text in the current URL by regex "<expression>" as <name>
@@ -201,9 +197,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
 
 ### Then
 
-<a class="dsl-link" id="the-current-url-should-match-expression" />
+<a class="dsl" id="the-current-url-should-match-expression" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-  <summary>
+  <summary class="dsl">
 
   ```gherkin
   the current URL should[ not] <match> "<expression>"
@@ -242,9 +238,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a class="dsl-link" id="the-current-url-should-match-name" />
+<a class="dsl" id="the-current-url-should-match-name" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-  <summary>
+  <summary class="dsl">
 
   ```gherkin
   the current URL should[ not] <match> <name>
@@ -289,9 +285,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
 
 ### Given
 
-<a class="dsl-link" id="element-can-be-located-by-selector-expression" />
+<a class="dsl" id="element-can-be-located-by-selector-expression" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-  <summary>
+  <summary class="dsl">
 
   ```gherkin
   <element> can be located by <selector> "<expression>"
@@ -330,9 +326,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a class="dsl-link" id="element-can-be-located-by-selector-expression-in-container" />
+<a class="dsl" id="element-can-be-located-by-selector-expression-in-container" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-  <summary>
+  <summary class="dsl">
 
   ```gherkin
   <element> can be located by <selector> "<expression>" in <container>
@@ -373,9 +369,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
 </details>
 
-<a class="dsl-link" id="element-can-be-located-by-selector-expressions" />
+<a class="dsl" id="element-can-be-located-by-selector-expressions" />
 <details style={{ backgroundColor: '#FFFFFF00' }}>
-  <summary>
+  <summary class="dsl">
 
   ```gherkin
   <element> can be located by

@@ -15,7 +15,6 @@
   --ifm-color-primary-lighter: #1789fa;
   --ifm-color-primary-lightest: #2791fa;
   --ifm-code-font-size: 95%;
-  --ifm-paragraph-margin-bottom: 0;
 }
 
 .docusaurus-highlight-code-line {
@@ -33,12 +32,16 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   font-size:1.75rem
 }
 
-summary:before {
+.dsl:before {
   top: 1.3rem !important;
 }
 
-.dsl-link {
+a.dsl {
   scroll-margin-top: 3.8em;
+}
+
+details {
+  --ifm-paragraph-margin-bottom: 0;
 }
 
 details > div {
