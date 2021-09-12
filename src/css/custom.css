@@ -32,3 +32,26 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 .hero__subtitle {
   font-size:1.75rem
 }
+
+summary:before {
+  top: 1.3rem !important;
+}
+
+details > div {
+  padding-left: 16px;
+}
+
+details a {
+  --ifm-link-color: var(--ifm-color-primary);
+  --ifm-link-decoration: none;
+  --ifm-link-hover-color: var(--ifm-link-color);
+  --ifm-link-hover-decoration: underline;
+}
+
+details a:hover {
+  --ifm-link-color: var(--ifm-color-primary);
+}
+
+.alert a:hover {
+  text-decoration-thickness: 1px;
+}

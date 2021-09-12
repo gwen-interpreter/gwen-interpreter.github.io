@@ -17,11 +17,13 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   ```
   <p>Puts the given page into scope and binds the given URL to it. New bindings defined after this will be scoped to that page.</p>
   </summary>
+  <div class="dsl-details">
+  <p>Where</p>
   <ul>
-    <li><code>&lt;page&gt;</code> = the name of the page</li>
-    <li><code>&lt;url&gt;</code> = the page URL (can be a <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link>)</li>
+    <li><code>&lt;page&gt;</code> is the name of the page</li>
+    <li><code>&lt;url&gt;</code> is the page URL (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
   </ul>
-  <p>Example usage</p>
+  <p>Example</p>
 
   ```gherkin {1}
     Given the todo page url is "https://todomvc.com/examples/react"
@@ -30,8 +32,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
 
   <p>
     <Link to="#the-page-url-is-url">Link</Link> &nbsp; &nbsp;
-    Since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">2.41.0</Link>
+    Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">v2.41.0</Link>
   </p>
+  </div>
 </details>
 
 ### When
@@ -47,9 +50,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   <p>Navigates the browser to the URL bound to the given page and puts it in scope. Starts a new browser window if one is not open.</p>
   </summary>
   <ul>
-    <li><code>&lt;page&gt;</code> = the name of the page to navigate to</li>
+    <li><code>&lt;page&gt;</code> is the name of the page to navigate to</li>
   </ul>
-  <p>Example usage</p>
+  <p>Example:</p>
 
   ```gherkin {2}
     Given the todo page url is "https://todomvc.com/examples/react"
@@ -73,9 +76,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   <p>Navigates the browser to the given URL. Starts a new browser window if one is not open.</p>
   </summary>
   <ul>
-    <li><code>&lt;url&gt;</code> = the URL to navigate to (can be a <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link>)</li>
+    <li><code>&lt;url&gt;</code> is the URL to navigate to (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
   </ul>
-  <p>Example usage</p>
+  <p>Example:</p>
 
   ```gherkin
     When I navigate to "https://todomvc.com/examples/react"
@@ -97,7 +100,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   
   <p>Captures the current browser URL and binds it as <code>the current URL</code>.</p>
   </summary>
-  <p>Example usage</p>
+  <p>Example:</p>
 
   ```gherkin {1}
     When I capture the current URL
@@ -121,9 +124,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   <p>Captures the current browser URL and binds it to the given name.</p>
   </summary>
   <ul>
-    <li><code>&lt;name&gt;</code> = the name to bind the captured URL to</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured URL to</li>
   </ul>
-  <p>Example usage</p>
+  <p>Example:</p>
 
   ```gherkin {1}
     When I capture the current URL as the base URL
@@ -145,13 +148,13 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   I capture the text in the current URL by regex "<expression>" as <name>
   ```
 
-  <p>Extracts a substring from the current browser URL using the given regex expression and binds the value to the given name.</p>
+  <p>Extracts a substring from the current browser URL using the given regex and binds the value to the given name.</p>
   </summary>
   <ul>
-    <li><code>&lt;expression&gt;</code> = the regex expression</li>
-    <li><code>&lt;name&gt;</code> = the name to bind the captured substring to</li>
+    <li><code>&lt;expression&gt;</code> is the regex expression</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured substring to</li>
   </ul>
-  <p>Example usage</p>
+  <p>Example:</p>
 
   ```gherkin {1}
     When I capture the text in the current URL by regex "q=([^&]*)" as q
@@ -177,22 +180,22 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   <p>Checks whether or not the current browser URL matches a given expression. Reports an assertion error if the match fails.</p>
   </summary>
   <ul>
-    <li><code>[ not]</code> = include the word <code>not</code> to negate the match</li>
-    <li><code>&lt;match&gt;</code> = the type of match to perform, one of:
+    <li><code>[ not]</code> negates the match</li>
+    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
-        <li><b>be</b> : for exact match</li>
-        <li><b>contain</b> : for partial match</li>
-        <li><b>start with</b> : for partial leading match</li>
-        <li><b>end with</b> : for partial trailing match</li>
-        <li><b>match regex</b> : for regex match</li>
-        <li><b>match xpath</b> : for XML match</li>
-        <li><b>match template</b> : for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template match</Link>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</Link></li>
-        <li><b>match template file</b> : for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template file match</Link>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</Link></li>
+        <li><b>be</b> for exact match</li>
+        <li><b>contain</b> for partial match</li>
+        <li><b>start with</b> for partial leading match</li>
+        <li><b>end with</b> for partial trailing match</li>
+        <li><b>match regex</b> for regex match</li>
+        <li><b>match xpath</b> for XML match</li>
+        <li><b>match template</b> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template match</Link>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</Link></li>
+        <li><b>match template file</b> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template file match</Link>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expression&gt;</code> = the expression to match (can be a <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link>)</li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
   </ul>
-  <p>Example usage</p>
+  <p>Example:</p>
 
   ```gherkin {2,3}
     When I navigate to "https://todomvc.com/examples/react"
@@ -217,22 +220,22 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   <p>Checks whether or not the current URL in the browser matches an expression bound to a name. Reports an assertion error if the match fails.</p>
   </summary>
   <ul>
-    <li><code>[ not]</code> = include the word <code>not</code> to negate the match</li>
-    <li><code>&lt;match&gt;</code> = the type of match to perform, one of:
+    <li><code>[ not]</code> negates the match</li>
+    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
-        <li><b>be</b> : for exact match</li>
-        <li><b>contain</b> : for partial match</li>
-        <li><b>start with</b> : for partial leading match</li>
-        <li><b>end with</b> : for partial trailing match</li>
-        <li><b>match regex</b> : for regex match</li>
-        <li><b>match xpath</b> : for XML match</li>
-        <li><b>match template</b> : for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template match</Link>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</Link></li>
-        <li><b>match template file</b> : for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template file match</Link>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</Link></li>
+        <li><b>be</b> for exact match</li>
+        <li><b>contain</b> for partial match</li>
+        <li><b>start with</b> for partial leading match</li>
+        <li><b>end with</b> for partial trailing match</li>
+        <li><b>match regex</b> for regex match</li>
+        <li><b>match xpath</b> for XML match</li>
+        <li><b>match template</b> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template match</Link>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</Link></li>
+        <li><b>match template file</b> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template file match</Link>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;name&gt;</code> = the name of the binding containing the expression to match</li>
+    <li><code>&lt;name&gt;</code> is the name of the binding containing the expression to match</li>
   </ul>
-  <p>Example usage</p>
+  <p>Example:</p>
 
   ```gherkin {4,5}
     Given my domain is "todomvc.com"
@@ -263,27 +266,23 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   <p>Binds a selector for a web element to the currently active scope (with a <Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenweblocatorwaitseconds">default lookup timeout</Link>).</p>
   </summary>
   <ul>
-    <li><code>&lt;element&gt;</code> = the web element name</li>
-    <li><code>&lt;selector&gt;</code> = the selector type, one of:
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
-        <li><b>id</b> : for selecting by id attribute</li>
-        <li><b>name</b> : for selecting by name attribute</li>
-        <li><b>tag name</b> : for selecting by tag name</li>
-        <li><b>tag</b> : shorthand for <b>tag name</b>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</Link></li>
-        <li><b>css selector</b> : for selecting by css expression</li>
-        <li><b>css</b> : shorthand for <b>css selector</b>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</Link></li>
-        <li><b>class name</b> : for selecting by class attribute</li>
-        <li><b>class</b> : shorthand for <b>class name</b>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</Link></li>
-        <li><b>xpath</b> : for selecting by XPath</li>
-        <li><b>link text</b> : for selecting by link text</li>
-        <li><b>partial link text</b> : for selecting by partial link text</li>
-        <li><b>javascript</b> : for selecting by JavaScript</li>
-        <li><b>js</b> : shorthand for <b>javascript</b>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</Link></li>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag</code> or <code>tag name</code> for selecting by tag name</li>
+        <li><code>css</code> or <code>css selector</code> for selecting by css expression</li>
+        <li><code>class</code> or <code>class name</code> for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>js</code> or <code>javascript</code> for selecting by JavaScript</li>
       </ul>
     </li>
-    <li><code>&lt;expression&gt;</code> = the selector expression</li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
   </ul>
-  <p>Example usage</p>
+  <p>Example:</p>
 
   ```gherkin {1}
     Given the todo field can be located by class "new-todo"
@@ -307,28 +306,24 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   <p>Binds a <Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Locator-Chaining">chained</Link> selector for a web element to the currently active scope (with a <Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenweblocatorwaitseconds">default lookup timeout</Link>).</p>
   </summary>
   <ul>
-    <li><code>&lt;element&gt;</code> = the web element name</li>
-    <li><code>&lt;selector&gt;</code> = the selector type, one of:
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
-        <li><b>id</b> : for selecting by id attribute</li>
-        <li><b>name</b> : for selecting by name attribute</li>
-        <li><b>tag name</b> : for selecting by tag name</li>
-        <li><b>tag</b> : shorthand for <b>tag name</b>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</Link></li>
-        <li><b>css selector</b> : for selecting by css expression</li>
-        <li><b>css</b> : shorthand for <b>css selector</b>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</Link></li>
-        <li><b>class name</b> : for selecting by class attribute</li>
-        <li><b>class</b> : shorthand for <b>class name</b>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</Link></li>
-        <li><b>xpath</b> : for selecting by XPath</li>
-        <li><b>link text</b> : for selecting by link text</li>
-        <li><b>partial link text</b> : for selecting by partial link text</li>
-        <li><b>javascript</b> : for selecting by JavaScript</li>
-        <li><b>js</b> : shorthand for <b>javascript</b>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</Link></li>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag</code> or <code>tag name</code> for selecting by tag name</li>
+        <li><code>css</code> or <code>css selector</code> for selecting by css expression</li>
+        <li><code>class</code> or <code>class name</code> for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>js</code> or <code>javascript</code> for selecting by JavaScript</li>
       </ul>
     </li>
-    <li><code>&lt;expression&gt;</code> = the selector expression</li>
-    <li><code>&lt;container&gt;</code> = the containing web element name</li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;container&gt;</code> is the containing web element name</li>
   </ul>
-    <p>Example usage</p>
+    <p>Example:</p>
 
   ```gherkin {2}
     Given my form can be located by name "formName"
@@ -360,27 +355,23 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </p>
   </summary>
   <ul>
-    <li><code>&lt;element&gt;</code> = the web element name</li>
-    <li><code>&lt;selector n&gt;</code> = the nth selector type, one of:
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
       <ul>
-        <li><b>id</b> : for selecting by id attribute</li>
-        <li><b>name</b> : for selecting by name attribute</li>
-        <li><b>tag name</b> : for selecting by tag name</li>
-        <li><b>tag</b> : shorthand for <b>tag name</b>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</Link></li>
-        <li><b>css selector</b> : for selecting by css expression</li>
-        <li><b>css</b> : shorthand for <b>css selector</b>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</Link></li>
-        <li><b>class name</b> : for selecting by class attribute</li>
-        <li><b>class</b> : shorthand for <b>class name</b>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</Link></li>
-        <li><b>xpath</b> : for selecting by XPath</li>
-        <li><b>link text</b> : for selecting by link text</li>
-        <li><b>partial link text</b> : for selecting by partial link text</li>
-        <li><b>javascript</b> : for selecting by JavaScript</li>
-        <li><b>js</b> : shorthand for <b>javascript</b>, since v<Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">2.46.0</Link></li>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag</code> or <code>tag name</code> for selecting by tag name</li>
+        <li><code>css</code> or <code>css selector</code> for selecting by css expression</li>
+        <li><code>class</code> or <code>class name</code> for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>js</code> or <code>javascript</code> for selecting by JavaScript</li>
       </ul>
     </li>
-    <li><code>&lt;expression n&gt;</code> = the nth selector expression</li>
+    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
   </ul>
-  <p>Example usage</p>
+  <p>Example:</p>
 
   ```gherkin {1-4}
     Given the search field can be located by
