@@ -1,8 +1,6 @@
-# Gwen DSL
+# DSL Overview
 
-## Readily executable steps
-
-All Gherkin steps that match a supported DSL are considered [DSL Steps](/docs/dsl/dsl-steps) by Gwen and are readily executable.
+All Gherkin steps that match the prescribed [DSL Steps](/docs/dsl/dsl-steps) are readily executable by Gwen.
 
 :::note Example
 
@@ -12,7 +10,7 @@ The following is a DSL Step:
   Then the page title should contain "TodoMVC"
 ```
 
-Since it matches the supported DSL:
+Since it matches the prescribed the DSL step:
 
 - [`the page title <should|should not> <be|contain|start with|end with|match regex|match xpath|match template|match template file> "<expression>"`](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL#the-page-title-shouldshould-not-becontainstart-withend-withmatch-regexmatch-xpathmatch-templatematch-template-file-expression)
 
@@ -40,17 +38,15 @@ Gwen interprets steps for execution according to the following rules:
    
 :::
 
-## Use DSL steps in meta
+## Compose StepDefs with DSL steps
 
 :::tip
 
-Confine all DSL steps to meta. Although it's possible to use them directly in features, we do not recommend making them DSL-aware. That's what meta is for!
+Use DSL steps in your meta to compose StepDefs. Although it's possible to use them directly in features, we do not recommend writing DSL-aware features. That's what meta is for!
 
 :::
 
-Use DSL steps to compose StepDefs and make your feature steps executable.
-
-For example, to make the following step executable:
+To make the following feature step executable:
 
 :::note Step in feature
 
