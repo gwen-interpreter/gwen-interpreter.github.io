@@ -53,7 +53,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   <ul>
     <li><code>&lt;page&gt;</code> is the name of the page to navigate to</li>
   </ul>
-  <p>Example:</p>
+  <p>Example</p>
 
   ```gherkin {2}
     Given the todo page url is "https://todomvc.com/examples/react"
@@ -80,7 +80,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   <ul>
     <li><code>&lt;url&gt;</code> is the URL to navigate to (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
   </ul>
-  <p>Example:</p>
+  <p>Example</p>
 
   ```gherkin
     When I navigate to "https://todomvc.com/examples/react"
@@ -102,7 +102,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   
   <p>Captures the current browser URL and binds it as <code>the current URL</code>.</p>
   </summary>
-  <p>Example:</p>
+  <p>Example</p>
 
   ```gherkin {1}
     When I capture the current URL
@@ -129,7 +129,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   <ul>
     <li><code>&lt;name&gt;</code> is the name to bind the captured URL to</li>
   </ul>
-  <p>Example:</p>
+  <p>Example</p>
 
   ```gherkin {1}
     When I capture the current URL as the base URL
@@ -158,7 +158,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     <li><code>&lt;expression&gt;</code> is the regex expression</li>
     <li><code>&lt;name&gt;</code> is the name to bind the captured substring to</li>
   </ul>
-  <p>Example:</p>
+  <p>Example</p>
 
   ```gherkin {1}
     When I capture the text in the current URL by regex "q=([^&]*)" as q
@@ -200,7 +200,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     </li>
     <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
   </ul>
-  <p>Example:</p>
+  <p>Example</p>
 
   ```gherkin {2,3}
     When I navigate to "https://todomvc.com/examples/react"
@@ -241,7 +241,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     </li>
     <li><code>&lt;name&gt;</code> is the name of the binding containing the expression to match</li>
   </ul>
-  <p>Example:</p>
+  <p>Example</p>
 
   ```gherkin {4,5}
     Given my domain is "todomvc.com"
@@ -289,7 +289,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
   </ul>
-  <p>Example:</p>
+  <p>Example</p>
 
   ```gherkin {1}
     Given the todo field can be located by class "new-todo"
@@ -331,7 +331,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
     <li><code>&lt;container&gt;</code> is the containing web element name</li>
   </ul>
-    <p>Example:</p>
+    <p>Example</p>
 
   ```gherkin {2}
     Given my form can be located by name "formName"
@@ -380,7 +380,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     </li>
     <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
   </ul>
-  <p>Example:</p>
+  <p>Example</p>
 
   ```gherkin {1-4}
     Given the search field can be located by
