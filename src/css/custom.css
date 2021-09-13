@@ -40,9 +40,20 @@ a.dsl {
   scroll-margin-top: 3.8em;
 }
 
+summary p:last-child {
+  --ifm-paragraph-margin-bottom: 0 !important;
+}
+
 details {
-  --ifm-paragraph-margin-bottom: 0;
   background-color: transparent !important;
+}
+
+details > div > div > p:last-child {
+  --ifm-paragraph-margin-bottom: 0 !important;
+}
+
+details > div > div > p > ol,ul:last-child {
+  --ifm-list-margin: 0 !important;
 }
 
 details > div {
