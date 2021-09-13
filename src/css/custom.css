@@ -74,3 +74,16 @@ details a:hover {
 .alert a:hover {
   text-decoration-thickness: 1px;
 }
+
+table {
+  margin-bottom: 0 !important;
+}
+
+td {
+  padding: 0 !important;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
