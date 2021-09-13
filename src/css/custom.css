@@ -52,7 +52,7 @@ details > div > div > p:last-child {
   --ifm-paragraph-margin-bottom: 0 !important;
 }
 
-details > div > div > p > ol,ul:last-child {
+details > div > div > p:last-child > ol,ul:last-child {
   --ifm-list-margin: 0 !important;
 }
 
