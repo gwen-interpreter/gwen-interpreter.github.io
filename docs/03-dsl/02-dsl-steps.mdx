@@ -47,10 +47,12 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   <ul>
     <li><code>&lt;page&gt;</code> is a page name</li>
   </ul>
-  <p>Example (assumes that <code>the todo field</code> was previously bound to the page)</p>
+  <p>Example</p>
 
-  ```gherkin {1}
-    Given I am on the todo page
+  ```gherkin {2}
+    Given I navigate to "https://todomvc.com/examples/react"
+      And I am on the todo page
+      And the todo field can be located by class "new-todo"
      When I enter "Walk the dog" in the todo field
   ```
 
@@ -190,6 +192,28 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
 
   <div class="grid-3">
     <div><Link to="#i-capture-the-text-in-the-current-url-by-regex-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-refresh-the-current-page">
+  <summary class="dsl">
+
+  ```gherkin
+  I refresh the current page
+  ```
+
+  <p>Refreshes the current page in the browser.</p>
+  </summary>
+  <p>Example</p>
+
+  ```gherkin
+    When I refresh the current page
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-refresh-the-current-page">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
@@ -366,6 +390,220 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
+## Windows and tabs
+
+#### When..
+
+<details id="i-start-a-new-browser">
+  <summary class="dsl">
+
+  ```gherkin
+  I start a new browser
+  ```
+  <p>Starts a new browser session (or switches to exising one if it is already open).</p>
+  </summary>
+  <p>Example</p>
+
+  ```gherkin
+    When I start a new browser
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-start-a-new-browser">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.2.0">v1.2.0</Link></div>
+  </div>
+</details>
+
+<details id="i-close-the-current-browser">
+  <summary class="dsl">
+
+  ```gherkin
+  I close the[ current] browser
+  ```
+  <p>Closes the current browser session (or does nothing if one is not open).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>[ current]</code> including the word <code>current</code> is optional and makes no difference, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.3.0">v1.3.0</Link></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2,4}
+    When I navigate to "https://todomvc.com/examples/react"
+     And I close the current browser
+     And I navigate to "https://todomvc.com/examples/vue/"
+     And I close the browser
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-close-the-current-browser">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.2.0">v1.2.0</Link></div>
+  </div>
+</details>
+
+<details id="i-start-a-browser-for-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I start a browser for <name>
+  ```
+  <p>Starts a new browser session with the given name (closes any existing browser of that name first).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is a name assigned to the browser session</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1,3}
+    When I start a browser for React
+     And I navigate to "https://todomvc.com/examples/react"
+     And I start a browser for Vue
+     And I navigate to "https://todomvc.com/examples/vue/"
+    Then I should have 2 open browsers
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-start-a-browser-for-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.2.0">v1.2.0</Link></div>
+  </div>
+</details>
+
+<details id="i-switch-to-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I switch to <name>
+  ```
+  <p>Switches to a named browser session (starts a new browser if one of that name is not already open). All browser actions performed after this will execute in the named session.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name of the browser session to switch to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    When I start a browser for React
+     And I navigate to "https://todomvc.com/examples/react"
+     And I start a browser for Vue
+     And I navigate to "https://todomvc.com/examples/vue/"
+     And I switch to React
+    Then the current URL should contain "react"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-switch-to-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.2.0">v1.2.0</Link></div>
+  </div>
+</details>
+
+<details id="i-close-the-browser-for-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I close the browser for <name>
+  ```
+  <p>Closes a named browser session (does nothing if one of that name is not open).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name of the browser session to close</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    When I start a browser for React
+     And I navigate to "https://todomvc.com/examples/react"
+     And I close the browser for React
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-close-the-browser-for-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.2.0">v1.2.0</Link></div>
+  </div>
+</details>
+
+<details id="i-switch-to-the-default-content">
+  <summary class="dsl">
+
+  ```gherkin
+  I switch to the default content
+  ```
+  <p>Switches from an iframe to the default or main content window.</p>
+  </summary>
+  <p>Example</p>
+
+  ```gherkin {2}
+    When I navigate to "https://page-with-iframes"
+     And I switch to the default content
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-switch-to-the-default-content">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></div>
+  </div>
+</details>
+
+<details id="i-maximize-the-window">
+  <summary class="dsl">
+
+  ```gherkin
+  I <maximize|maximise> the window
+  ```
+  <p>Maximizes the currently active browser window to fill the entire screen area.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;maximize|maximise&gt;</code> is either <code>maximize</code> or <code>maximise</code> (makes no difference)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    When I navigate to "https://todomvc.com/examples/react"
+     And I maximize the window
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-maximize-the-window">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.2.0">v2.2.0</Link></div>
+  </div>
+</details>
+
+<details id="i-resize-the-window-to-width-w-and-height-h">
+  <summary class="dsl">
+
+  ```gherkin
+  I resize the window to width <w> and height <h>
+  ```
+  <p>Resizes the currently active browser window to the given dimensions.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;w&gt;</code> the width in pixels</li>
+    <li><code>&lt;h&gt;</code> the height in pixels</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    When I navigate to "https://todomvc.com/examples/react"
+     And I resize the window to width 1280 and height 720
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-resize-the-window-to-width-w-and-height-h">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.2.0">v2.2.0</Link></div>
+  </div>
+</details>
+
 ## Web element selectors
 
 #### Given..
@@ -524,7 +762,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
     <li><code>&lt;container&gt;</code> is the containing web element name</li>
   </ul>
-    <p>Example</p>
+  <p>Example</p>
 
   ```gherkin {2}
     Given the footer can be located by class "footer"
@@ -568,7 +806,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     <li><code>&lt;container&gt;</code> is the containing web element name</li>
     <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
   </ul>
-    <p>Example</p>
+  <p>Example</p>
 
   ```gherkin {2}
     Given the footer can be located by class "footer"
@@ -613,7 +851,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
     <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
   </ul>
-    <p>Example</p>
+  <p>Example</p>
 
  ```gherkin {2}
     Given the footer can be located by class "footer"
@@ -786,7 +1024,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     <li><code>&lt;index&gt;</code> is the index of the element to locate in array returned by <code>&lt;expression&gt;</code></li>
     <li><code>&lt;container&gt;</code> is the containing web element name</li>
   </ul>
-    <p>Example</p>
+  <p>Example</p>
 
   ```gherkin {2}
     Given the count info can be located by class "todo-count"
@@ -831,7 +1069,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     <li><code>&lt;container&gt;</code> is the containing web element name</li>
     <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
   </ul>
-    <p>Example</p>
+  <p>Example</p>
 
   ```gherkin {2}
     Given the count info can be located by class "todo-count"
@@ -877,7 +1115,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
     <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
   </ul>
-    <p>Example</p>
+  <p>Example</p>
 
  ```gherkin {2}
     Given the count info can be located by class "todo-count"
