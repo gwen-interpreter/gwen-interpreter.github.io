@@ -6,10 +6,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
 
 ## Page navigation and URLs
 
-#### Given
+#### Given..
 
-<a class="dsl" id="the-page-url-is-url" />
-<details>
+<details id="the-page-url-is-url">
   <summary class="dsl">
 
   ```gherkin
@@ -36,8 +35,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="i-am-on-the-page" />
-<details>
+<details id="i-am-on-the-page">
   <summary class="dsl">
 
   ```gherkin
@@ -63,10 +61,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-#### When
+#### When..
 
-<a class="dsl" id="i-navigate-to-the-page" />
-<details>
+<details id="i-navigate-to-the-page">
   <summary class="dsl">
 
   ```gherkin
@@ -93,8 +90,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="i-navigate-to-url" />
-<details>
+<details id="i-navigate-to-url">
   <summary class="dsl">
 
   ```gherkin
@@ -120,8 +116,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="i-capture-the-current-url" />
-<details>
+<details id="i-capture-the-current-url">
   <summary class="dsl">
 
   ```gherkin
@@ -144,8 +139,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="i-capture-the-current-url-as-name" />
-<details>
+<details id="i-capture-the-current-url-as-name">
   <summary class="dsl">
 
   ```gherkin
@@ -173,8 +167,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="i-capture-the-text-in-the-current-url-by-regex-as-name" />
-<details>
+<details id="i-capture-the-text-in-the-current-url-by-regex-as-name">
   <summary class="dsl">
 
   ```gherkin
@@ -202,10 +195,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-#### Then
+#### Then..
 
-<a class="dsl" id="the-current-url-should-match-expression" />
-<details>
+<details id="the-current-url-should-match-expression">
   <summary class="dsl">
 
   ```gherkin
@@ -246,15 +238,14 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="the-current-url-should-match-name" />
-<details>
+<details id="the-current-url-should-match-expression-ref">
   <summary class="dsl">
 
   ```gherkin
-  the current URL should[ not] <match> <name>
+  the current URL should[ not] <match> <expressionRef>
   ```
   
-  <p>Checks whether or not the current URL in the browser matches an expression bound to a name. Reports an assertion error if the match fails.</p>
+  <p>Checks whether or not the current URL in the browser matches an expression reference. Reports an assertion error if the match fails.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -271,7 +262,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;name&gt;</code> is the name of the binding containing the expression to match</li>
+    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match</li>
   </ul>
   <p>Example</p>
 
@@ -284,7 +275,92 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   ```
   
   <div class="grid-3">
-    <div><Link to="#the-current-url-should-match-name">Link</Link></div>
+    <div><Link to="#the-current-url-should-match-expression-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+## Page titles
+
+#### Then..
+
+<details id="the-page-title-should-match-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  the page title should[ not] <match> "<expression>"
+  ```
+  <p>Checks whether or not the title of the current page in the browser matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>match regex</code> for regex match</li>
+        <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON path</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
+        <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    When I navigate to "https://todomvc.com/examples/react"
+    Then the page title should contain "TodoMVC"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#the-page-title-should-match-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="the-page-title-should-match-expression-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  the page title should[ not] <match> <expressionRef>
+  ```
+  <p>Checks whether or not the title of the current page in the browser matches an expression reference. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>match regex</code> for regex match</li>
+        <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON path</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
+        <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the app name is "TodoMVC"
+     When I navigate to "https://todomvc.com/examples/react"
+     Then the page title should contain the app name
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#the-page-title-should-match-expression-ref">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
@@ -292,10 +368,9 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
 
 ## Web element selectors
 
-#### Given
+#### Given..
 
-<a class="dsl" id="element-can-be-located-by-selector-expression" />
-<details>
+<details id="element-can-be-located-by-selector-expression">
   <summary class="dsl">
 
   ```gherkin
@@ -317,7 +392,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
@@ -336,8 +411,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-expression-with-no-timeout" />
-<details>
+<details id="element-can-be-located-by-selector-expression-with-no-timeout">
   <summary class="dsl">
 
   ```gherkin
@@ -359,7 +433,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
@@ -379,8 +453,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-expression-with-timeout" />
-<details>
+<details id="element-can-be-located-by-selector-expression-with-timeout">
   <summary class="dsl">
 
   ```gherkin
@@ -402,7 +475,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
@@ -423,8 +496,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-expression-in-container" />
-<details>
+<details id="element-can-be-located-by-selector-expression-in-container">
   <summary class="dsl">
 
   ```gherkin
@@ -446,7 +518,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
@@ -467,8 +539,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-expression-in-container-with-no-timeout" />
-<details>
+<details id="element-can-be-located-by-selector-expression-in-container-with-no-timeout">
   <summary class="dsl">
 
   ```gherkin
@@ -490,7 +561,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
@@ -512,8 +583,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-expression-in-container-with-timeout" />
-<details>
+<details id="element-can-be-located-by-selector-expression-in-container-with-timeout">
   <summary class="dsl">
 
   ```gherkin
@@ -535,7 +605,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
@@ -558,8 +628,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-expression-at-index" />
-<details>
+<details id="element-can-be-located-by-selector-expression-at-index">
   <summary class="dsl">
 
   ```gherkin
@@ -581,7 +650,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
@@ -601,8 +670,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-expression-at-index-with-no-timeout" />
-<details>
+<details id="element-can-be-located-by-selector-expression-at-index-with-no-timeout">
   <summary class="dsl">
 
   ```gherkin
@@ -624,7 +692,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
@@ -645,8 +713,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-expression-at-index-with-timeout" />
-<details>
+<details id="element-can-be-located-by-selector-expression-at-index-with-timeout">
   <summary class="dsl">
 
   ```gherkin
@@ -668,7 +735,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
@@ -690,8 +757,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-expression-in-container-at-index" />
-<details>
+<details id="element-can-be-located-by-selector-expression-in-container-at-index">
   <summary class="dsl">
 
   ```gherkin
@@ -713,7 +779,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
@@ -735,8 +801,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-expression-at-index-in-container-with-no-timeout" />
-<details>
+<details id="element-can-be-located-by-selector-expression-at-index-in-container-with-no-timeout">
   <summary class="dsl">
 
   ```gherkin
@@ -758,7 +823,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
@@ -781,8 +846,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-expression-at-index-in-container-with-timeout" />
-<details>
+<details id="element-can-be-located-by-selector-expression-at-index-in-container-with-timeout">
   <summary class="dsl">
 
   ```gherkin
@@ -804,7 +868,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
@@ -828,8 +892,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-table" />
-<details>
+<details id="element-can-be-located-by-selector-with-fallbacks">
   <summary class="dsl">
 
   ```gherkin
@@ -858,7 +921,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
@@ -874,14 +937,13 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   ```
 
   <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-table">Link</Link></div>
+    <div><Link to="#element-can-be-located-by-selector-with-fallbacks">Link</Link></div>
     <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.11.0">v2.11.0</Link></div>
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-table-at-index" />
-<details>
+<details id="element-can-be-located-by-selector-with-fallbacks-at-index">
   <summary class="dsl">
 
   ```gherkin
@@ -910,7 +972,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
@@ -927,14 +989,13 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   ```
 
   <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-table-at-index">Link</Link></div>
+    <div><Link to="#element-can-be-located-by-selector-with-fallbacks-at-index">Link</Link></div>
     <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-table-at-index-with-no-timeout" />
-<details>
+<details id="element-can-be-located-by-selector-with-fallbacks-at-index-with-no-timeout">
   <summary class="dsl">
 
   ```gherkin
@@ -963,7 +1024,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
@@ -981,14 +1042,13 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   ```
 
   <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-table-at-index-with-no-timeout">Link</Link></div>
+    <div><Link to="#element-can-be-located-by-selector-with-fallbacks-at-index-with-no-timeout">Link</Link></div>
     <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
   </div>
 </details>
 
-<a class="dsl" id="element-can-be-located-by-selector-table-at-index-with-timeout" />
-<details>
+<details id="element-can-be-located-by-selector-with-fallbacks-at-index-with-timeout">
   <summary class="dsl">
 
   ```gherkin
@@ -1017,7 +1077,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
         <li><code>xpath</code> for selecting by XPath</li>
         <li><code>link text</code> for selecting by link text</li>
         <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by JavaScript</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
@@ -1036,7 +1096,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   ```
 
   <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-table-at-index-with-timeout">Link</Link></div>
+    <div><Link to="#element-can-be-located-by-selector-with-fallbacks-at-index-with-timeout">Link</Link></div>
     <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
   </div>
