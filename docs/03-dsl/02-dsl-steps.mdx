@@ -4,7 +4,7 @@ import Link from '@docusaurus/Link';
 
 All Gherkin steps that match the DSL expressions here are readily executable by Gwen. The DSL matched is the operation that will be performed when a step is interpreted for execution.
 
-## Page navigation and URLs
+## Pages navigation and URLs
 
 #### Given..
 
@@ -390,6 +390,778 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
+## Web element selectors
+
+#### Given..
+
+<details id="element-can-be-located-by-selector-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>"
+  ```
+
+  <p>Binds a selector for a web element to the current scope with a default timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given the todo field can be located by class "new-todo"
+     When I enter "Walk the dog" in the todo field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-with-no-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" with no <wait|timeout>
+  ```
+
+  <p>Binds a selector for a web element to the current scope with no timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given the todo field can be located by css ".new-todo" with no timeout
+     When I enter "Walk the dog" in the todo field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-with-no-timeout">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-with-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" with <timeoutSecs> second <wait|timeout>
+  ```
+
+  <p>Binds a selector for a web element to the current scope with a given timeout .</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given the todo field can be located by css ".new-todo" with 5 second timeout
+     When I enter "Walk the dog" in the todo field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-with-timeout">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-relative-to-other-element">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" <relativeTo> <otherElement>
+  ```
+
+  <p>Binds a relative selector for a web element to the current scope with a default timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;relativeTo&gt;</code> is the relationship to <code>&lt;otherElement&gt;</code>, one of:
+      <ul>
+        <li><code>in</code> for a contained relationship</li>
+        <li><i>More relative options coming to Gwen 3</i></li>
+      </ul>
+    </li>
+    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the footer can be located by class "footer"
+      And the displayed count can be located by tag "strong" in the footer
+     Then the displayed count should be "3"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-relative-to-other-element">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.1.0">v1.1.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-relative-to-other-element-with-no-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" <relativeTo> <otherElement> with no <wait|timeout>
+  ```
+
+  <p>Binds a relative selector for a web element to the current scope with no timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;relativeTo&gt;</code> is the relationship to <code>&lt;otherElement&gt;</code>, one of:
+      <ul>
+        <li><code>in</code> for a contained relationship</li>
+        <li><i>More relative options coming to Gwen 3</i></li>
+      </ul>
+    </li>
+    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the footer can be located by class "footer"
+      And the displayed count can be located by tag "strong" in the footer with no wait
+     Then the displayed count should be "3"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-relative-to-other-element-with-no-timeout">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-relative-to-other-element-with-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" <relativeTo> <otherElement>  with <timeoutSecs> second <wait|timeout>
+  ```
+
+  <p>Binds a relative selector for a web element to the current scope with a given timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;relativeTo&gt;</code> is the relationship to <code>&lt;otherElement&gt;</code>, one of:
+      <ul>
+        <li><code>in</code> for a contained relationship</li>
+        <li><i>More relative options coming to Gwen 3</i></li>
+      </ul>
+    </li>
+    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+ ```gherkin {2}
+    Given the footer can be located by class "footer"
+      And the displayed count can be located by tag "strong" in the footer with no wait
+     Then the displayed count should be "3"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-relative-to-other-element-with-timeout">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-at-index">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" at index <index>
+  ```
+
+  <p>Binds an indexed selector for a web element to the current scope with a default timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given the first item can be located by css ".todo-list label" at index 0
+     Then the first item should contain "Walk the dog"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-at-index">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-at-index-with-no-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" at index <index> with no <wait|timeout>
+  ```
+
+  <p>Binds an indexed selector for a web element to the current scope with no timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given the first item can be located by css ".todo-list label" at index 0 with no timeout
+     Then the first item should contain "Walk the dog"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-at-index-with-no-timeout">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-at-index-with-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" at index <index> with <timeoutSecs> second <wait|timeout>
+  ```
+
+  <p>Binds an indexed selector for a web element to the current scope with a given timeout .</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given the first item can be located by css ".todo-list label" at index 0 with 5 second timeout
+     Then the first item should contain "Walk the dog"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-at-index-with-timeout">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-relative-to-other-element-at-index">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" at index <index> <relativeTo> <otherElement>
+  ```
+
+  <p>Binds a relative selector for a web element to the current scope with a default timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
+    <li><code>&lt;relativeTo&gt;</code> is the relationship to <code>&lt;otherElement&gt;</code>, one of:
+      <ul>
+        <li><code>in</code> for a contained relationship</li>
+        <li><i>More relative options coming to Gwen 3</i></li>
+      </ul>
+    </li>
+    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the count info can be located by class "todo-count"
+      And the count unit can be located by tag "span" at index 1 in the count info
+     Then the count unit should contain "item"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-relative-to-other-element-at-index">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-at-index-relative-to-other-element-with-no-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" at index <index> <relativeTo> <otherElement> with no <wait|timeout>
+  ```
+
+  <p>Binds a relative indexed selector for a web element to the current scope with no timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
+    <li><code>&lt;relativeTo&gt;</code> is the relationship to <code>&lt;otherElement&gt;</code>, one of:
+      <ul>
+        <li><code>in</code> for a contained relationship</li>
+        <li><i>More relative options coming to Gwen 3</i></li>
+      </ul>
+    </li>
+    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the count info can be located by class "todo-count"
+      And the count unit can be located by tag "span" at index 1 in the count info with no wait
+     Then the count unit should contain "item"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-at-index-relative-to-other-element-with-no-timeout">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-at-index-relative-to-other-element-with-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" at index <index> <relativeTo> <otherElement>  with <timeoutSecs> second <wait|timeout>
+  ```
+
+  <p>Binds a relative indexed selector for a web element to the current scope with a given timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
+    <li><code>&lt;relativeTo&gt;</code> is the relationship to <code>&lt;otherElement&gt;</code>, one of:
+      <ul>
+        <li><code>in</code> for a contained relationship</li>
+        <li><i>More relative options coming to Gwen 3</i></li>
+      </ul>
+    </li>
+    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+ ```gherkin {2}
+    Given the count info can be located by class "todo-count"
+      And the count unit can be located by tag "span" at index 1 in the count info with 5 second wait
+     Then the count unit should contain "item"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-at-index-relative-to-other-element-with-timeout">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-with-fallbacks">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by
+    | <selector 1> | <expression 1> |
+    | <selector 2> | <expression 2> |
+    |      ..      |       ..       |
+    | <selector n> | <expression n> |
+  ```
+
+  <p>
+    Binds primary and fallback selectors for a web element to the current scope with a default timeout.
+    Lookups will be attempted in the order specified until one succeeds.
+  </p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1-4}
+    Given the todo field can be located by
+          | name  | todo-field  |
+          | css   | .todo input |
+          | class | new-todo    |
+     When I type "Feed the cat" in the todo field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-with-fallbacks">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.11.0">v2.11.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-with-fallbacks-at-index">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located at index <index> by
+    | <selector 1> | <expression 1> |
+    | <selector 2> | <expression 2> |
+    |      ..      |       ..       |
+    | <selector n> | <expression n> |
+  ```
+
+  <p>
+    Binds indexed primary and fallback selectors for a web element to the current scope with a default timeout.
+    Lookups will be attempted in the order specified until one succeeds.
+  </p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
+    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression n&gt;</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1-4}
+    Given the second item can be located at index 1 by
+          | name  | todo-label       |
+          | class | todo-label       |
+          | css   | .todo-list label |
+     Then the second item should contain "Feed the cat"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-with-fallbacks-at-index">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-with-fallbacks-at-index-with-no-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located at index <index> with no <wait|timeout> by
+    | <selector 1> | <expression 1> |
+    | <selector 2> | <expression 2> |
+    |      ..      |       ..       |
+    | <selector n> | <expression n> |
+  ```
+
+  <p>
+    Binds indexed primary and fallback selectors for a web element to the current scope with no timeout.
+    Lookups will be attempted in the order specified until one succeeds.
+  </p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
+    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression n&gt;</code></li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1-4}
+    Given the second item can be located at index 1 with no timeout by
+          | name  | todo-label       |
+          | class | todo-label       |
+          | css   | .todo-list label |
+     Then the second item should contain "Feed the cat"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-with-fallbacks-at-index-with-no-timeout">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-with-fallbacks-at-index-with-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located at index <index> with <timeoutSecs> second <wait|timeout> by
+    | <selector 1> | <expression 1> |
+    | <selector 2> | <expression 2> |
+    |      ..      |       ..       |
+    | <selector n> | <expression n> |
+  ```
+
+  <p>
+    Binds indexed primary and fallback selectors for a web element to the current scope with a given timeout .
+    Lookups will be attempted in the order specified until one succeeds.
+  </p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
+    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression n&gt;</code></li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1-4}
+    Given the second item can be located at index 1 with 5 second timeout by
+          | name  | todo-label       |
+          | class | todo-label       |
+          | css   | .todo-list label |
+     Then the second item should contain "Feed the cat"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-with-fallbacks-at-index-with-timeout">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
+  </div>
+</details>
+
 ## Windows and tabs
 
 #### When..
@@ -551,6 +1323,152 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
+<details id="i-switch-to-the-child-tab-or-window">
+  <summary class="dsl">
+
+  ```gherkin
+  I switch to the child <tab|window>
+  ```
+  <p>Switches to the most recently opened child tab or window (without closing the parent window)</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;tab|window&gt;</code> is either <code>tab</code> or <code>window</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the new window button can be located by name "newbrowserwindow123"
+     When I navigate to "https://nxtgenaiacademy.com/multiplewindows/"
+      And I click the new window button
+      And I switch to the child window
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-switch-to-the-child-tab-or-window">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></div>
+  </div>
+</details>
+
+<details id="i-close-the-child-tab-or-window">
+  <summary class="dsl">
+
+  ```gherkin
+  I close the child <tab|window>
+  ```
+  <p>Closes the currently active child tab or window and passes control back to the parent window.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;tab|window&gt;</code> is either <code>tab</code> or <code>window</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the new tab button can be located by name "newbrowsertab453"
+     When I navigate to "https://nxtgenaiacademy.com/multiplewindows/"
+      And I click the new tab button
+      And I switch to the child tab
+      And I close the child tab
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-close-the-child-tab-or-window">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></div>
+  </div>
+</details>
+
+<details id="i-switch-to-child-tab-or-window-occurrence">
+  <summary class="dsl">
+
+  ```gherkin
+  I switch to child <tab|window> <occurrence>
+  ```
+  <p>Switches to a child tab or window occurrence (without closing the parent window).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;tab|window&gt;</code> is either <code>tab</code> or <code>window</code></li>
+    <li><code>&lt;occurrence&gt;</code> is the tab or window occurrence to switch to (1st opened is occurrence 1, 2nd is 2, ..)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the new window button can be located by name "newbrowserwindow123"
+     When I navigate to "https://nxtgenaiacademy.com/multiplewindows/"
+      And I click the new window button
+      And I switch to child window 1
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-switch-to-child-tab-or-window-occurrence">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.49.0">v2.49.0</Link></div>
+  </div>
+</details>
+
+<details id="i-close-child-tab-or-window-occurrence">
+  <summary class="dsl">
+
+  ```gherkin
+  I close child <tab|window> <occurrence>
+  ```
+  <p>Closes a child tab or window occurrence and passes control back to the parent window.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;tab|window&gt;</code> is either <code>tab</code> or <code>window</code></li>
+    <li><code>&lt;occurrence&gt;</code> is the tab or window occurrence to close (1st opened is occurrence 1, 2nd is 2, ..)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the new tab button can be located by name "newbrowsertab453"
+     When I navigate to "https://nxtgenaiacademy.com/multiplewindows/"
+      And I click the new tab button
+      And I switch to child tab 1
+      And I close child tab 1
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-close-child-tab-or-window-occurrence">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.49.0">v2.49.0</Link></div>
+  </div>
+</details>
+
+<details id="i-switch-to-the-parent-tab-or-window">
+  <summary class="dsl">
+
+  ```gherkin
+  I switch to the <parent|root> <tab|window>
+  ```
+  <p>Switches to the parent window (without closing the currently active child window).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;parent|root&gt;</code> is either <code>parent</code> (or <code>root</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.49.0">v2.49.0</Link>)</li>
+    <li><code>&lt;tab|window&gt;</code> is either <code>tab</code> or <code>window</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the new window button can be located by name "newbrowserwindow123"
+     When I navigate to "https://nxtgenaiacademy.com/multiplewindows/"
+      And I click the new window button
+      And I switch to child window 1
+      And I switch to the parent window
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-switch-to-the-parent-tab-or-window">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></div>
+  </div>
+</details>
+
 <details id="i-maximize-the-window">
   <summary class="dsl">
 
@@ -587,8 +1505,8 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;w&gt;</code> the width in pixels</li>
-    <li><code>&lt;h&gt;</code> the height in pixels</li>
+    <li><code>&lt;w&gt;</code> is the width in pixels</li>
+    <li><code>&lt;h&gt;</code> is the height in pixels</li>
   </ul>
   <p>Example</p>
 
@@ -601,742 +1519,6 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     <div><Link to="#i-resize-the-window-to-width-w-and-height-h">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.2.0">v2.2.0</Link></div>
-  </div>
-</details>
-
-## Web element selectors
-
-#### Given..
-
-<details id="element-can-be-located-by-selector-expression">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>"
-  ```
-
-  <p>Binds a selector for a web element to the current scope with a default timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1}
-    Given the todo field can be located by class "new-todo"
-     When I enter "Walk the dog" in the todo field
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-with-no-timeout">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" with no <wait|timeout>
-  ```
-
-  <p>Binds a selector for a web element to the current scope with no timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1}
-    Given the todo field can be located by css ".new-todo" with no timeout
-     When I enter "Walk the dog" in the todo field
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-with-no-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-with-timeout">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" with <timeoutSecs> second <wait|timeout>
-  ```
-
-  <p>Binds a selector for a web element to the current scope with a given timeout .</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
-    <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1}
-    Given the todo field can be located by css ".new-todo" with 5 second timeout
-     When I enter "Walk the dog" in the todo field
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-with-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-in-container">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" in <container>
-  ```
-
-  <p>Binds a selector for a contained web element to the current scope with a default timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;container&gt;</code> is the containing web element name</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {2}
-    Given the footer can be located by class "footer"
-      And the displayed count can be located by tag "strong" in the footer
-     Then the displayed count should be "3"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-in-container">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.1.0">v1.1.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-in-container-with-no-timeout">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" in <container> with no <wait|timeout>
-  ```
-
-  <p>Binds a selector for a contained web element to the current scope with no timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;container&gt;</code> is the containing web element name</li>
-    <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {2}
-    Given the footer can be located by class "footer"
-      And the displayed count can be located by tag "strong" in the footer with no wait
-     Then the displayed count should be "3"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-in-container-with-no-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-in-container-with-timeout">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" in <container>  with <timeoutSecs> second <wait|timeout>
-  ```
-
-  <p>Binds a selector for a contained web element to the current scope with a given timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;container&gt;</code> is the containing web element name</li>
-    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
-    <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
-  </ul>
-  <p>Example</p>
-
- ```gherkin {2}
-    Given the footer can be located by class "footer"
-      And the displayed count can be located by tag "strong" in the footer with no wait
-     Then the displayed count should be "3"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-in-container-with-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-at-index">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" at index <index>
-  ```
-
-  <p>Binds an indexed selector for a web element to the current scope with a default timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;index&gt;</code> is the index of the element to locate in array returned by <code>&lt;expression&gt;</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1}
-    Given the first item can be located by css ".todo-list label" at index 0
-     Then the first item should contain "Walk the dog"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-at-index">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-at-index-with-no-timeout">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" at index <index> with no <wait|timeout>
-  ```
-
-  <p>Binds an indexed selector for a web element to the current scope with no timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;index&gt;</code> is the index of the element to locate in array returned by <code>&lt;expression&gt;</code></li>
-    <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1}
-    Given the first item can be located by css ".todo-list label" at index 0 with no timeout
-     Then the first item should contain "Walk the dog"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-at-index-with-no-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-at-index-with-timeout">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" at index <index> with <timeoutSecs> second <wait|timeout>
-  ```
-
-  <p>Binds an indexed selector for a web element to the current scope with a given timeout .</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;index&gt;</code> is the index of the element to locate in array returned by <code>&lt;expression&gt;</code></li>
-    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
-    <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1}
-    Given the first item can be located by css ".todo-list label" at index 0 with 5 second timeout
-     Then the first item should contain "Walk the dog"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-at-index-with-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-in-container-at-index">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" at index <index> in <container>
-  ```
-
-  <p>Binds an indexed selector for a contained web element to the current scope with a default timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;index&gt;</code> is the index of the element to locate in array returned by <code>&lt;expression&gt;</code></li>
-    <li><code>&lt;container&gt;</code> is the containing web element name</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {2}
-    Given the count info can be located by class "todo-count"
-      And the count unit can be located by tag "span" at index 1 in the count info
-     Then the count unit should contain "item"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-in-container-at-index">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-at-index-in-container-with-no-timeout">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" at index <index> in <container> with no <wait|timeout>
-  ```
-
-  <p>Binds an indexed selector for a contained web element to the current scope with no timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;index&gt;</code> is the index of the element to locate in array returned by <code>&lt;expression&gt;</code></li>
-    <li><code>&lt;container&gt;</code> is the containing web element name</li>
-    <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {2}
-    Given the count info can be located by class "todo-count"
-      And the count unit can be located by tag "span" at index 1 in the count info with no wait
-     Then the count unit should contain "item"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-at-index-in-container-with-no-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-at-index-in-container-with-timeout">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" at index <index> in <container>  with <timeoutSecs> second <wait|timeout>
-  ```
-
-  <p>Binds an indexed selector for a contained web element to the current scope with a given timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;index&gt;</code> is the index of the element to locate in array returned by <code>&lt;expression&gt;</code></li>
-    <li><code>&lt;container&gt;</code> is the containing web element name</li>
-    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
-    <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
-  </ul>
-  <p>Example</p>
-
- ```gherkin {2}
-    Given the count info can be located by class "todo-count"
-      And the count unit can be located by tag "span" at index 1 in the count info with 5 second wait
-     Then the count unit should contain "item"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-at-index-in-container-with-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-with-fallbacks">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by
-    | <selector 1> | <expression 1> |
-    | <selector 2> | <expression 2> |
-    |      ..      |       ..       |
-    | <selector n> | <expression n> |
-  ```
-
-  <p>
-    Binds a selector with fallbacks for a web element to the current scope with a default timeout.
-    Lookups will be attempted in the order specified until one succeeds.
-  </p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1-4}
-    Given the todo field can be located by
-          | name  | todo-field  |
-          | css   | .todo input |
-          | class | new-todo    |
-     When I type "Feed the cat" in the todo field
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-with-fallbacks">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.11.0">v2.11.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-with-fallbacks-at-index">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located at index <index> by
-    | <selector 1> | <expression 1> |
-    | <selector 2> | <expression 2> |
-    |      ..      |       ..       |
-    | <selector n> | <expression n> |
-  ```
-
-  <p>
-    Binds an indexed selector with fallbacks for a web element to the current scope with a default timeout.
-    Lookups will be attempted in the order specified until one succeeds.
-  </p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
-    <li><code>&lt;index&gt;</code> is the index of the element to locate in array returned by <code>&lt;expression n&gt;</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1-4}
-    Given the second item can be located at index 1 by
-          | name  | todo-label       |
-          | class | todo-label       |
-          | css   | .todo-list label |
-     Then the second item should contain "Feed the cat"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-with-fallbacks-at-index">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-with-fallbacks-at-index-with-no-timeout">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located at index <index> with no <wait|timeout> by
-    | <selector 1> | <expression 1> |
-    | <selector 2> | <expression 2> |
-    |      ..      |       ..       |
-    | <selector n> | <expression n> |
-  ```
-
-  <p>
-    Binds an indexed selector with fallbacks for a web element to the current scope with no timeout.
-    Lookups will be attempted in the order specified until one succeeds.
-  </p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
-    <li><code>&lt;index&gt;</code> is the index of the element to locate in array returned by <code>&lt;expression n&gt;</code></li>
-    <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1-4}
-    Given the second item can be located at index 1 with no timeout by
-          | name  | todo-label       |
-          | class | todo-label       |
-          | css   | .todo-list label |
-     Then the second item should contain "Feed the cat"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-with-fallbacks-at-index-with-no-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-with-fallbacks-at-index-with-timeout">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located at index <index> with <timeoutSecs> second <wait|timeout> by
-    | <selector 1> | <expression 1> |
-    | <selector 2> | <expression 2> |
-    |      ..      |       ..       |
-    | <selector n> | <expression n> |
-  ```
-
-  <p>
-    Binds an indexed selector with fallbacks for a web element to the current scope with a given timeout .
-    Lookups will be attempted in the order specified until one succeeds.
-  </p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
-    <li><code>&lt;index&gt;</code> is the index of the element to locate in array returned by <code>&lt;expression n&gt;</code></li>
-    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
-    <li><code>&lt;wait|timeout&gt;</code> is <code>wait</code> or <code>timeout</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1-4}
-    Given the second item can be located at index 1 with 5 second timeout by
-          | name  | todo-label       |
-          | class | todo-label       |
-          | css   | .todo-list label |
-     Then the second item should contain "Feed the cat"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-with-fallbacks-at-index-with-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
   </div>
 </details>
 
