@@ -4,6 +4,13 @@ import Link from '@docusaurus/Link';
 
 All Gherkin steps that match the DSL expressions here are readily executable by Gwen. The DSL matched is the operation that will be performed when a step is interpreted for execution.
 
+:::tip
+
+Use DSL steps in your meta to compose StepDefs. Although it's possible to use them directly in feature specs too, we do not recommend making those DSL-aware. That's what meta is for!
+
+:::
+
+
 ## Web pages
 
 #### Given..
@@ -386,7 +393,7 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-## Web element selectors
+## Web elements
 
 #### Given..
 
@@ -1158,7 +1165,55 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </div>
 </details>
 
-## Windows and tabs
+## Browser windows and tabs
+
+#### Given..
+
+<details id="i-have-an-open-browser">
+  <summary class="dsl">
+
+  ```gherkin
+  I have an open browser
+  ```
+  <p>Opens a browser if none are open</p>
+  </summary>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given I have an open browser
+     When I navigate to "https://todomvc.com/examples/react"
+     Then I should have 1 open browser
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-have-an-open-browser">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">v2.41.0</Link></div>
+  </div>
+</details>
+
+<details id="i-have-no-open-browser">
+  <summary class="dsl">
+
+  ```gherkin
+  I have no open browser
+  ```
+  <p>Closes all open browsers</p>
+  </summary>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given I have no open browser
+     When I navigate to "https://todomvc.com/examples/react"
+     Then I should have 1 open browser
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-have-no-open-browser">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">v2.41.0</Link></div>
+  </div>
+</details>
 
 #### When..
 
@@ -1172,8 +1227,10 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
   </summary>
   <p>Example</p>
 
-  ```gherkin
+  ```gherkin {2}
+   Given I have no open browser
     When I start a new browser
+    Then I should have 1 open browser
   ```
 
   <div class="grid-3">
@@ -1515,6 +1572,60 @@ All Gherkin steps that match the DSL expressions here are readily executable by 
     <div><Link to="#i-resize-the-window-to-width-w-and-height-h">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.2.0">v2.2.0</Link></div>
+  </div>
+</details>
+
+#### Then..
+
+<details id="i-should-have-1-open-browser">
+  <summary class="dsl">
+
+  ```gherkin
+  I should have 1 open browser
+  ```
+  <p>Checks that only one browser session is currently open. Reports an assertion error if not.</p>
+  </summary>
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given I have no open browser
+    When I navigate to "https://todomvc.com/examples/react"
+    Then I should have 1 open browser
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-should-have-1-open-browser">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">v2.41.0</Link></div>
+  </div>
+</details>
+
+<details id="i-should-have-count-open-browsers">
+  <summary class="dsl">
+
+  ```gherkin
+  I should have <count> open browsers
+  ```
+  <p>Checks that the given number of browsers are currently open. Reports an assertion error if not.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>count</code> the expected number of open browsers</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+   Given I have no open browser
+    When I navigate to "https://todomvc.com/examples/react"
+     And I start a browser for Vue
+     And I navigate to "https://todomvc.com/examples/vue"
+    Then I should have 2 open browsers
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-should-have-count-open-browsers">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">v2.41.0</Link></div>
   </div>
 </details>
 
