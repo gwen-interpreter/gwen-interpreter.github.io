@@ -1165,6 +1165,234 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </div>
 </details>
 
+#### Then..
+
+<details id="element-should-be-state">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> should[ not] be <state>
+  ```
+  <p>Checks whether or not an element is in a given state.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the element to check</li>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;state&gt;</code> is one of
+      <ul>
+        <li><code>displayed</code></li>
+        <li><code>hidden</code></li>
+        <li><code>checked</code> (or <code>ticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>)</li>
+        <li><code>unchecked</code> (or <code>unticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>)</li>
+        <li><code>enabled</code></li>
+        <li><code>disabled</code></li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given my todo list can be located by css ".todo-list"
+     When I navigate to "https://todomvc.com/examples/react"
+     Then my todo list should be hidden
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-should-be-state">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="element-should-match-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> should[ not] <match> "<expression>"
+  ```
+  
+  <p>Checks whether or not the text value of an element matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the element to check</li>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>match regex</code> for regex match</li>
+        <li><code>match xpath</code> for XML match</li>
+        <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the todo field can be located by class "new-todo"
+      And my todo list can be located by css ".todo-list"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter "Get the milk" in the todo field
+     Then my todo list should contain "Get the milk"
+  ```
+  
+  <div class="grid-3">
+    <div><Link to="#element-should-match-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.24.0">v2.24.0</Link></div>
+  </div>
+</details>
+
+<details id="element-should-match-expression-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> should[ not] <match> <expressionRef>
+  ```
+  
+  <p>Checks whether or not the text value of an element matches a given expression reference. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the element to check</li>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>match regex</code> for regex match</li>
+        <li><code>match xpath</code> for XML match</li>
+        <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {6}
+    Given the todo field can be located by class "new-todo"
+      And my todo list can be located by css ".todo-list"
+      And my item is "Feed the cat"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter my item in the todo field
+     Then my todo list should contain my item
+  ```
+  
+  <div class="grid-3">
+    <div><Link to="#element-should-match-expression-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.24.0">v2.24.0</Link></div>
+  </div>
+</details>
+
+<details id="drodown-text-or-value-should-match-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <dropdown> <text|value> should[ not] <match> "<expression>"
+  ```
+  
+  <p>Checks whether or not a dropdown selection matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;dropdown&gt;</code> is the dropdown element to check</li>
+    <li><code>&lt;text|value&gt;</code> is one of:
+      <ul>
+        <li><code>text</code> to check the displayed text of the selection</li>
+        <li><code>value</code> to check the hidden value of the selection</li>
+      </ul>
+    </li>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>match regex</code> for regex match</li>
+        <li><code>match xpath</code> for XML match</li>
+        <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the age dropdown can be located by id "challenger_age"
+     When I navigate to "https://challengers.flood.io/step/2"
+      And I select the 2nd option in the age dropdown
+     Then the age dropdown value should be "18"
+  ```
+  
+  <div class="grid-3">
+    <div><Link to="#drodown-text-or-value-should-match-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="drodown-text-or-value-should-match-expression-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  <dropdown> <text|value> should[ not] <match> <expressionRef>
+  ```
+  
+  <p>Checks whether or not a dropdown selection matches a given expression reference. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;dropdown&gt;</code> is the dropdown element to check</li>
+    <li><code>&lt;text|value&gt;</code> is one of:
+      <ul>
+        <li><code>text</code> to check the displayed text of the selection</li>
+        <li><code>value</code> to check the hidden value of the selection</li>
+      </ul>
+    </li>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>match regex</code> for regex match</li>
+        <li><code>match xpath</code> for XML match</li>
+        <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the age dropdown can be located by id "challenger_age"
+      And my age is "18"
+     When I navigate to "https://challengers.flood.io/step/2"
+      And I select the 2nd option in the age dropdown
+     Then the age dropdown value should be my age
+  ```
+  
+  <div class="grid-3">
+    <div><Link to="#drodown-text-or-value-should-match-expression-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
 ## Browser windows and tabs
 
 #### Given..
