@@ -13,7 +13,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
 
 ## Web pages
 
-#### Given..
+### Given
 
 <details id="the-page-url-is-url">
   <summary class="dsl">
@@ -70,7 +70,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </div>
 </details>
 
-#### When..
+### When
 
 <details id="i-navigate-to-the-page">
   <summary class="dsl">
@@ -226,7 +226,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </div>
 </details>
 
-#### Then..
+### Then
 
 <details id="the-current-url-should-match-expression">
   <summary class="dsl">
@@ -395,7 +395,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
 
 ## Web elements
 
-#### Given..
+### Given
 
 <details id="element-can-be-located-by-selector-expression">
   <summary class="dsl">
@@ -1165,7 +1165,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </div>
 </details>
 
-#### Then..
+### Then
 
 <details id="element-should-be-state">
   <summary class="dsl">
@@ -1179,14 +1179,14 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   <ul>
     <li><code>&lt;element&gt;</code> is the element to check</li>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;state&gt;</code> is one of
+    <li><code>&lt;state&gt;</code> is one of:
       <ul>
-        <li><code>displayed</code></li>
-        <li><code>hidden</code></li>
-        <li><code>checked</code> (or <code>ticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>)</li>
-        <li><code>unchecked</code> (or <code>unticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>)</li>
-        <li><code>enabled</code></li>
-        <li><code>disabled</code></li>
+        <li><code>displayed</code> to check if the element is displayed</li>
+        <li><code>hidden</code> to check if the element is not displayed</li>
+        <li><code>checked</code> (or <code>ticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to check if a checkbox is ticked</li>
+        <li><code>unchecked</code> (or <code>unticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to check if a checkbox is not ticked</li>
+        <li><code>enabled</code> to check if the element is enabled</li>
+        <li><code>disabled</code> to check if the element is disabled</li>
       </ul>
     </li>
   </ul>
@@ -1395,7 +1395,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
 
 ## Browser windows and tabs
 
-#### Given..
+### Given
 
 <details id="i-have-an-open-browser">
   <summary class="dsl">
@@ -1443,7 +1443,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </div>
 </details>
 
-#### When..
+### When
 
 <details id="i-start-a-new-browser">
   <summary class="dsl">
@@ -1803,7 +1803,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </div>
 </details>
 
-#### Then..
+### Then
 
 <details id="i-should-have-1-open-browser">
   <summary class="dsl">
@@ -1859,7 +1859,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
 
 ## Alerts and popups
 
-#### When..
+### When
 
 <details id="i-accept-the-alert-or-confirmation-popup">
   <summary class="dsl">
@@ -1984,7 +1984,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </div>
 </details>
 
-#### Then..
+### Then
 
 <details id="the-alert-or-confirmation-popup-message-should-match-expression">
   <summary class="dsl">
