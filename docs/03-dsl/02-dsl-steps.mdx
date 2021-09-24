@@ -283,7 +283,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   the current URL should[ not] <match> <expressionRef>
   ```
   
-  <p>Checks whether or not the current URL in the browser matches an expression reference. Reports an assertion error if the match fails.</p>
+  <p>Checks whether or not the current URL in the browser matches a referenced expression. Reports an assertion error if the match fails.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -300,7 +300,11 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match</li>
+    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
   </ul>
   <p>Example</p>
 
@@ -365,7 +369,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   ```gherkin
   the page title should[ not] <match> <expressionRef>
   ```
-  <p>Checks whether or not the title of the current page in the browser matches an expression reference. Reports an assertion error if the match fails.</p>
+  <p>Checks whether or not the title of the current page in the browser matches a referenced expression. Reports an assertion error if the match fails.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -383,7 +387,11 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match</li>
+    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
   </ul>
   <p>Example</p>
 
@@ -1174,6 +1182,112 @@ We are still updating this page and will post more here soon. In the meantime, s
 
 ### When
 
+<details id="i-enter-or-type-text-in-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I <enter|type> "<text>" in <element>
+  ```
+  <p>Enters or types text into a web element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;enter|type&gt;</code> is one of:
+      <ul>
+        <li><code>enter</code> to send the text to the field followed by the enter key</li>
+        <li><code>type</code> to send the text to the field only (without trailing enter key)</li>
+      </ul>
+    </li>
+    <li><code>&lt;text&gt;</code> is the text to send to the field</li>
+    <li><code>&lt;element&gt;</code> is the name of the field to send the text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the todo field can be located by class "new-todo"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter "Walk the dog" in the todo field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-enter-or-type-text-in-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-enter-or-type-text-ref-in-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I <enter|type> <textRef> in <element>
+  ```
+  <p>Enters or types a referenced text value into a web element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;enter|type&gt;</code> is one of:
+      <ul>
+        <li><code>enter</code> to send the text to the field followed by the enter key</li>
+        <li><code>type</code> to send the text to the field only (without trailing enter key)</li>
+      </ul>
+    </li>
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to send to the field
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the field to send the text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the todo field can be located by class "new-todo"
+      And my item is "Walk the dog"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter my item in the todo field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-enter-or-type-text-ref-in-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-press-enter-or-tab-in-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I press <enter|tab> in <element>
+  ```
+  <p>Send the enter or tab key to a web element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;enter|tab&gt;</code> is one of:
+      <ul>
+        <li><code>enter</code> to send the enter key</li>
+        <li><code>tab</code> to send the tab key</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to send the key to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the surname field can be located by id "surname"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I press tab in the surname field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-press-enter-or-tab-in-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
 <details id="i-clear-element">
   <summary class="dsl">
 
@@ -1625,7 +1739,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> should[ not] <match> <expressionRef>
   ```
   
-  <p>Checks whether or not the text value of an element matches a given expression reference. Reports an assertion error if the match fails.</p>
+  <p>Checks whether or not the text value of an element matches a referenced expression. Reports an assertion error if the match fails.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -1643,7 +1757,11 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match</li>
+    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
   </ul>
   <p>Example</p>
 
@@ -1719,7 +1837,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <dropdown> <text|value> should[ not] <match> <expressionRef>
   ```
   
-  <p>Checks whether or not a dropdown selection matches a given expression reference. Reports an assertion error if the match fails.</p>
+  <p>Checks whether or not a dropdown selection matches a referenced expression. Reports an assertion error if the match fails.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -1743,7 +1861,11 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match</li>
+    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
   </ul>
   <p>Example</p>
 
@@ -2404,7 +2526,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   the <alert|confirmation> popup message should[ not] <match> <expressionRef>
   ```
   
-  <p>Checks whether or not the message in the alert or confirmation popup box matches an expression reference. Reports an assertion error if the match fails.</p>
+  <p>Checks whether or not the message in the alert or confirmation popup box matches a referenced expression. Reports an assertion error if the match fails.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -2421,7 +2543,11 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match</li>
+    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
   </ul>
   <p>Example</p>
 
