@@ -10,6 +10,13 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
 
 :::
 
+:::info We're migrating our docs
+
+We are still updating this page and will post more here soon. In the meantime, see the complete DSL guide on our wiki by clicking the link below:
+
+- [Supported DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL)
+
+:::
 
 ## Web pages
 
@@ -1165,6 +1172,368 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </div>
 </details>
 
+### When
+
+<details id="i-clear-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I clear <element>
+  ```
+  <p>Clears a text element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to clear</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the surname field can be located by id "surname"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I clear the surname field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-clear-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-scroll-to-the-top-or-bottom-of-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I scroll to the <top|bottom> of <element>
+  ```
+  <p>Scrolls to the top or bottom of the given element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;top|bottom&gt;</code> is one of:
+      <ul>
+        <li><code>top</code> to scroll to the top of the element</li>
+        <li><code>bottom</code> to scroll to the bottom of the element</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> the name of the element to scroll to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the surname field can be located by id "surname"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I scroll to the top of the surname field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-scroll-to-the-top-or-bottom-of-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-for-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for <element>
+  ```
+  <p>Waits for an element to appear on a page for a default number of seconds before timing out.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # Wait for a dynamically rendered input field 
+    Given the dynamic input field can be located by tag "input"
+      And I wait for the dynamic input field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-for-element-for-duration-seconds">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for <element> for <duration> second[s]
+  ```
+  <p>Waits for an element to appear on a page for a given number of seconds before timing out.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
+    <li><code>&lt;duration&gt;</code> the number of seconds to wait before timing out</li>
+    <li>Include trailing <code>s</code> when specifying <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # Wait for a dynamically rendered input field 
+    Given the dynamic input field can be located by tag "input"
+      And I wait for the dynamic input field for 3 seconds
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-element-for-duration-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-for-element-text">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for <element> text
+  ```
+  <p>Waits for the text of an element to appear on a page for a default number of seconds before timing out.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for the text to appear</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # Wait for a dynamically displayed token
+    Given the one time token can be located by javascript "$('.token').get(0)"
+      And I wait for the one time token text
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-element-text">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-for-element-text-for-duration-seconds">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for <element> text for <duration> second[s]
+  ```
+  <p>Waits for the text of an element to appear on a page for a given number of seconds before timing out.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for the text to appear</li>
+    <li><code>&lt;duration&gt;</code> the number of seconds to wait before timing out</li>
+    <li>Include trailing <code>s</code> when specifying <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # Wait for a dynamically displayed token
+    Given the one time token can be located by javascript "$('.token').get(0)"
+      And I wait for the one time token text for 3 seconds
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-element-text-for-duration-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <element>
+  ```
+  <p>Captures the text value of an element and binds it to name of the element in the global scode.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to capture the text of</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the heading can be located by tag "h1"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I capture the heading
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-element-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <element> as <name>
+  ```
+  <p>Captures the text value of an element and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to capture the text of</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the heading can be located by tag "h1"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I capture the heading as my heading
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-element-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-dropdown">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <dropdown> <text|value>
+  ```
+  <p>Captures the selected text or value of a dropdown element and binds it to name of the element in the global scode.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;dropdown&gt;</code> is the name of the dropdown element to capture the text or value of</li>
+    <li><code>&lt;dropdown&gt;</code> is one of:
+      <ul>
+        <li><code>text</code> to captured the displayed text of the selection</li>
+        <li><code>value</code> to captured the option value of the selection</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the age dropdown can be located by id "challenger_age"
+     When I navigate to "https://challengers.flood.io/step/2"
+      And I capture the age dropdown text
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-dropdown">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-dropdown-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <dropdown> <text|value> as <name>
+  ```
+  <p>Captures the selected text or value of a dropdown element and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;dropdown&gt;</code> is the name of the dropdown element to capture the text or value of</li>
+    <li><code>&lt;dropdown&gt;</code> is one of:
+      <ul>
+        <li><code>text</code> to captured the displayed text of the selection</li>
+        <li><code>value</code> to captured the option value of the selection</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the age dropdown can be located by id "challenger_age"
+     When I navigate to "https://challengers.flood.io/step/2"
+      And I capture the age dropdown text my age
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-dropdown-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-text-in-element-by-regex-expression-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the text in <element> by regex "<expression>" as <name>
+  ```
+  <p>Catures text content from a web element using the given regex expression and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to capture text from</li>
+    <li><code>&lt;expression&gt;</code> is the regex selector expression</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # assuming a web element contains date: 2021-09-22
+    Given the date field can be located by class "date"
+     When I capture the text in the date field by regex "(\d{4})" as the year
+     Then the year should be "2021"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-text-in-element-by-regex-expression-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-node-type-in-element-by-xpath-expression-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the <nodeType> in <element> by xpath "<expression>" as <name>
+  ```
+  <p>Captures XML content from a web element using the given XPath expression and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;nodeType&gt;</code> is one of:
+      <ul>
+        <li><code>text</code> to capture the text node</li>
+        <li><code>node</code> to capture a single node</li>
+        <li><code>nodeset</code> to capture multiple nodes</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element containing the XML content</li>
+    <li><code>&lt;expression&gt;</code> is the XPath selector expression</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # assuming a web element contains xml: <result><status>passed</status></result>
+    Given the xml web element can be located by id "xml"
+     When I capture the text in the xml web element by xpath "//result/status" as the status
+     Then the status should be "passed"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-node-type-in-element-by-xpath-expression-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
 ### Then
 
 <details id="element-should-be-state">
@@ -1309,7 +1678,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
     <li><code>&lt;text|value&gt;</code> is one of:
       <ul>
         <li><code>text</code> to check the displayed text of the selection</li>
-        <li><code>value</code> to check the hidden value of the selection</li>
+        <li><code>value</code> to check the option value of the selection</li>
       </ul>
     </li>
     <li><code>not</code> negates the match if included</li>
@@ -1358,7 +1727,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
     <li><code>&lt;text|value&gt;</code> is one of:
       <ul>
         <li><code>text</code> to check the displayed text of the selection</li>
-        <li><code>value</code> to check the hidden value of the selection</li>
+        <li><code>value</code> to check the option value of the selection</li>
       </ul>
     </li>
     <li><code>not</code> negates the match if included</li>
@@ -1834,7 +2203,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   ```gherkin
   I should have <count> open browsers
   ```
-  <p>Checks that the given number of browsers are currently open. Reports an assertion error if not.</p>
+  <p>Checks that a given number of browsers are currently open. Reports an assertion error if not.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -2070,11 +2439,3 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.24.0">v2.24.0</Link></div>
   </div>
 </details>
-
-:::info We're migrating our docs
-
-We will post more here soon. In the meantime, see the complete DSL guide on our wiki by clicking the link below:
-
-- [Supported DSL](https://github.com/gwen-interpreter/gwen-web/wiki/Supported-DSL)
-
-:::
