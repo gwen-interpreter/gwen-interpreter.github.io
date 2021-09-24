@@ -287,7 +287,9 @@ We are planning to enable `strict` rules by default in the upcomming Gwen 3 rele
 |       `@Action`           |                 When                  | Whens imply action behavior    |
 |       `@Assertion`        |                 Then                  | Thens imply assertion behavior |
 
-\* When binding to a step declared with `And`, `But`, or `*`, then the keyword in the first step in the chain of preceeding steps declared with either `Given`, `When` or `Then` will become the tying keyword. Should the topmost step in a chain be declared with `*`, then the tying keyword will be `Given`.
+---
+
+When binding to a step declared with `And`, `But`, or `*`, then the keyword in the first step in the chain of preceeding steps declared with either `Given`, `When` or `Then` will become the tying keyword. Should the topmost step in a chain be declared with `*`, then the tying keyword will be `Given`.
 
 For example, the following binding will be permitted since the feature step is declared with the `Then` keyword and the StepDef is annotated with `@Assertion`.
 
