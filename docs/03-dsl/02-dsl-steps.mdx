@@ -1182,6 +1182,44 @@ We are still updating this page and will post more here soon. In the meantime, s
 
 ### When
 
+<details id="i-action-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I <action> <element>
+  ```
+  <p>Performs an action on a web element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;action&gt;</code> is one of:
+      <ul>
+        <li><code>click</code> to click the element</li>
+        <li><code>right click</code> to right click the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></li>
+        <li><code>double click</code> to double click the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
+        <li><code>submit</code> to submit a form element</li>
+        <li><code>check</code> (or <code>tick</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to tick a checkbox element</li>
+        <li><code>uncheck</code> (or <code>untick</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to untick a checkbox element</li>
+        <li><code>move to</code> to move the focus to an element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the element to perform the action on</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the start button can be located by name "commit"
+     When I navigate to "https://challengers.flood.io/start"
+      And I click the start button
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-action-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
 <details id="i-enter-or-type-text-in-element">
   <summary class="dsl">
 
@@ -1594,8 +1632,8 @@ We are still updating this page and will post more here soon. In the meantime, s
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
-    <li><code>&lt;duration&gt;</code> the number of seconds to wait before timing out</li>
-    <li>Include trailing <code>s</code> when specifying <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
+    <li><code>&lt;duration&gt;</code> is the number of seconds to wait before timing out</li>
+    <li>Include trailing <code>s</code> when specifying a <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
   </ul>
   <p>Example</p>
 
@@ -1650,8 +1688,8 @@ We are still updating this page and will post more here soon. In the meantime, s
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to wait for the text to appear</li>
-    <li><code>&lt;duration&gt;</code> the number of seconds to wait before timing out</li>
-    <li>Include trailing <code>s</code> when specifying <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
+    <li><code>&lt;duration&gt;</code> is the number of seconds to wait before timing out</li>
+    <li>Include trailing <code>s</code> when specifying a <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
   </ul>
   <p>Example</p>
 
@@ -1663,6 +1701,101 @@ We are still updating this page and will post more here soon. In the meantime, s
 
   <div class="grid-3">
     <div><Link to="#i-wait-for-element-text-for-duration-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-duration-seconds-when-element-is-actioned">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait <duration> second[s] when <element> is <actioned>
+  ```
+  <p>Triggers a sleep for a given number of seconds whenever a specific action is performed on an element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;duration&gt;</code> is the number of seconds to sleep</li>
+    <li><code>&lt;element&gt;</code> the name of the web element</li>
+    <li><code>&lt;actioned&gt;</code> is one of:
+      <ul>
+        <li><code>clicked</code> to sleep when the element is clicked</li>
+        <li><code>right clicked</code> to sleep when the element is right clicked, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></li>
+        <li><code>double clicked</code> to sleep when the element is double clicked, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
+        <li><code>submitted</code> to sleep when the form element is submitted</li>
+        <li><code>checked</code> (or <code>ticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to sleep when the checkbox element is ticked</li>
+        <li><code>unchecked</code> (or <code>unticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to sleep when the checkbox element is unticked</li>
+        <li><code>selected</code> to sleep when a dropdown option is selected in the element</li>
+        <li><code>deselected</code> to sleep when a mutli-select dropdown option is deselected in the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link></li>
+        <li><code>typed</code> to sleep when text is typed into the element</li>
+        <li><code>entered</code> to sleep when text is entered into the element</li>
+        <li><code>cleared</code> to sleep when the text is cleared in the element</li>
+        <li><code>moved to</code> to sleep when the focus is moved to the element</li>
+      </ul>
+    </li>
+    <li>Include <code>s</code> after <code>second</code> when specifying a <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+  Given the submit button can be located by id "submit"
+    And I wait 3 seconds when the submit button is clicked
+   When I navigate to "${token.website}"
+    And I click the submit button
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-duration-seconds-when-element-is-actioned">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-condition-when-element-is-actioned">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <condition> when <element> is <actioned>
+  ```
+  <p>Triggers a wait for a condition whenever a specific action is performed on an element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;condition&gt;</code> the name of a javascript binding containing a predicate function that will return true when the condition is satisfied</li>
+    <li><code>&lt;element&gt;</code> the name of the web element</li>
+    <li><code>&lt;actioned&gt;</code> is one of:
+      <ul>
+        <li><code>clicked</code> to sleep when the element is clicked</li>
+        <li><code>right clicked</code> to sleep when the element is right clicked, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></li>
+        <li><code>double clicked</code> to sleep when the element is double clicked, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
+        <li><code>submitted</code> to sleep when the form element is submitted</li>
+        <li><code>checked</code> (or <code>ticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to sleep when the checkbox element is ticked</li>
+        <li><code>unchecked</code> (or <code>unticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to sleep when the checkbox element is unticked</li>
+        <li><code>selected</code> to sleep when a dropdown option is selected in the element</li>
+        <li><code>deselected</code> to sleep when a mutli-select dropdown option is deselected in the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link></li>
+        <li><code>typed</code> to sleep when text is typed into the element</li>
+        <li><code>entered</code> to sleep when text is entered into the element</li>
+        <li><code>cleared</code> to sleep when the text is cleared in the element</li>
+        <li><code>moved to</code> to sleep when the focus is moved to the element</li>
+      </ul>
+    </li>
+    <li>Include <code>s</code> after <code>second</code> when specifying a <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the submit button can be located by name "submit"
+      And the token field can be located by class "token"
+      And the submit button is displayed is defined by javascript "!!document.getElementById('submit')"
+      And I wait until the submit button is displayed when the token field is entered
+     When I navigate to "${token.website}"
+      And I enter "my token" in the token field
+      And I click the submit button
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-condition-when-element-is-actioned">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
