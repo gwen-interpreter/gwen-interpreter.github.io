@@ -1315,6 +1315,214 @@ We are still updating this page and will post more here soon. In the meantime, s
   </div>
 </details>
 
+<details id="i-select-or-deselect-the-position-option-in-dropdown">
+  <summary class="dsl">
+
+  ```gherkin
+  I <select|deselect> the <position><st|nd|rd|th> option in <dropdown>
+  ```
+  <p>Selects an option in a dropdown by position.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;select|deselect&gt;</code> is one of:
+      <ul>
+        <li><code>select</code> to select the option</li>
+        <li><code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
+          <ul>
+            <li><i>Note</i>: Deselect will only work for multi-select dropdowns.</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><code>&lt;position&gt;</code> is the position number of the option(1 for first position)</li>
+    <li><code>&lt;st|nd|rd|th&gt;</code> is one of:
+      <ul>
+        <li><code>st</code> if the position number ends in 1</li>
+        <li><code>nd</code> if the position number ends in 2</li>
+        <li><code>rd</code> if the position number ends in 3</li>
+        <li><code>th</code> if the position number is greater than 3</li>
+      </ul>
+    </li>
+    <li><code>&lt;dropdown&gt;</code> is the name of the dropdown element</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the age dropdown can be located by id "challenger_age"
+     When I navigate to "https://challengers.flood.io/step/2"
+      And I select the 2nd option in the age dropdown
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-select-or-deselect-the-position-option-in-dropdown">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-select-or-deselect-option-in-dropdown">
+  <summary class="dsl">
+
+  ```gherkin
+  I <select|deselect> "<option>" in <dropdown>
+  ```
+  <p>Selects an option in a dropdown by displayed text.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;select|deselect&gt;</code> is one of:
+      <ul>
+        <li><code>select</code> to select the option</li>
+        <li><code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
+          <ul>
+            <li><i>Note</i>: Deselect will only work for multi-select dropdowns.</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><code>&lt;option&gt;</code> is the displayed option text</li>
+    <li><code>&lt;dropdown&gt;</code> is the name of the dropdown element</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the age dropdown can be located by id "challenger_age"
+     When I navigate to "https://challengers.flood.io/step/2"
+      And I select "18" in the age dropdown
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-select-or-deselect-option-in-dropdown">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-select-or-deselect-option-ref-in-dropdown">
+  <summary class="dsl">
+
+  ```gherkin
+  I <select|deselect> <optionRef> in <dropdown>
+  ```
+  <p>Selects an option in a dropdown by a displayed text reference.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;select|deselect&gt;</code> is one of:
+      <ul>
+        <li><code>select</code> to select the option</li>
+        <li><code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
+          <ul>
+            <li><i>Note</i>: Deselect will only work for multi-select dropdowns.</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><code>&lt;optionRef&gt;</code> is the name of the binding containing the displayed option text
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;dropdown&gt;</code> is the name of the dropdown element</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the age dropdown can be located by id "challenger_age"
+      And my age is "24"
+     When I navigate to "https://challengers.flood.io/step/2"
+      And I select my age in the age dropdown
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-select-or-deselect-option-ref-in-dropdown">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-select-or-deselect-option-in-dropdown-by-value">
+  <summary class="dsl">
+
+  ```gherkin
+  I <select|deselect> "<option>" in <dropdown> by value
+  ```
+  <p>Selects an option in a dropdown by hidden value.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;select|deselect&gt;</code> is one of:
+      <ul>
+        <li><code>select</code> to select the option</li>
+        <li><code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
+          <ul>
+            <li><i>Note</i>: Deselect will only work for multi-select dropdowns.</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><code>&lt;option&gt;</code> is the hidden option value</li>
+    <li><code>&lt;dropdown&gt;</code> is the name of the dropdown element</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the age dropdown can be located by id "challenger_age"
+     When I navigate to "https://challengers.flood.io/step/2"
+      And I select "21" in the age dropdown by value
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-select-or-deselect-option-in-dropdown-by-value">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-select-or-deselect-option-ref-in-dropdown-by-value">
+  <summary class="dsl">
+
+  ```gherkin
+  I <select|deselect> <optionRef> in <dropdown> by value
+  ```
+  <p>Selects an option in a dropdown by hidden value reference.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;select|deselect&gt;</code> is one of:
+      <ul>
+        <li><code>select</code> to select the option</li>
+        <li><code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
+          <ul>
+            <li><i>Note</i>: Deselect will only work for multi-select dropdowns.</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><code>&lt;optionRef&gt;</code> is the name of the binding containing the hidden option value
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;dropdown&gt;</code> is the name of the dropdown element</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the age dropdown can be located by id "challenger_age"
+      And the age is "24"
+     When I navigate to "https://challengers.flood.io/step/2"
+      And I deselect the age in the age dropdown
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-select-or-deselect-option-ref-in-dropdown-by-value">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
 <details id="i-scroll-to-the-top-or-bottom-of-element">
   <summary class="dsl">
 
