@@ -2294,14 +2294,14 @@ We are still updating this page and will post more here soon. In the meantime, s
   <p>Example</p>
 
   ```gherkin {4-11}
-    Given the red checkobx can be located by id "red"
+    Given the red checkbox can be located by id "red"
      When I navigate to "https://automationintesting.com/selenium/testpage"
       And I click the red checkbox
       And I capture my favorite color in the red checkbox by js
           """
           (function() {
             var color = element.value
-            if (!element.checked) color = "Not " + color;
+            if (!element.checked) color = "Blue"
             return color;
           })()
           """
