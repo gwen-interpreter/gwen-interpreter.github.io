@@ -2273,7 +2273,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <summary class="dsl">
 
   ```gherkin
-  I capture <name> <of|on|in> <element> by <javascript|js> "<expression>"
+  I capture <name> <of|on|in> <element> by <javascript|js> "<javascript>"
   ```
   <p>Executes a JavaScript expression or anonymous function on an element and binds the result to the given name.</p>
   </summary>
@@ -2283,7 +2283,7 @@ We are still updating this page and will post more here soon. In the meantime, s
     <li><code>&lt;of|on|in&gt;</code> is <code>of</code>, <code>on</code> or <code>in</code></li>
     <li><code>&lt;element&gt;</code> is the name of the element to execute the javascript on</li>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)
+    <li><code>&lt;javascript&gt;</code> is the JavaScript expression or anonymous function to execute (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)
       <ul>
         <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
         <li>For an expression: no <code>return</code> prefix is required</li>
