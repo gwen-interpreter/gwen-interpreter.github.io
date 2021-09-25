@@ -1287,7 +1287,7 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>double click</code> to double click the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;element&gt;</code> is the element to click</li>
+    <li><code>&lt;element&gt;</code> is the name of the element to click</li>
     <li><code>&lt;context&gt;</code> is the context element to focus into (in order to click <code>&lt;element&gt;</code>)</li>
   </ul>
   <p>Example</p>
@@ -1501,6 +1501,106 @@ We are still updating this page and will post more here soon. In the meantime, s
     <div><Link to="#i-enter-or-type-text-ref-in-element">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-append-text-to-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I append "<text>" to <element>
+  ```
+  <p>Appends the given text to the current text value of an element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;text&gt;</code> is the text to append</li>
+    <li><code>&lt;element&gt;</code> is name of the element to append the text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the search field can be located by name "q"
+     When I navigate to "https://google.com"
+      And I type "Gwen" in the search field
+      And I append " automation" to the search field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-append-text-to-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.18.0">v2.18.0</Link></div>
+  </div>
+</details>
+
+<details id="i-append-text-ref-to-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I append <textRef> to <element>
+  ```
+  <p>Appends the given referenced text to the current text value of an element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to append to the element
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is name of the element to append the text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the search field can be located by name "q"
+      And my additional search term is " automation"
+     When I navigate to "https://google.com"
+      And I type "Gwen" in the search field
+      And I append my additional search term to the search field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-append-text-ref-to-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.18.0">v2.18.0</Link></div>
+  </div>
+</details>
+
+<details id="i-insert-a-new-line-in-textarea">
+  <summary class="dsl">
+
+  ```gherkin
+  I insert a new line in <textarea>
+  ```
+  <p>Inserts a new line into a textarea element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textarea&gt;</code> is the name of the textarea element to insert the new line into</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4,6}
+    Given the more field can be located by tag "textarea"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I type "Hi," in the more field
+      And I insert a new line in the more field
+      And I type "I like Gwen." in the more field
+      And I insert a new line in the more field
+      And I type "Bye!" in the more field
+     Then the more field should contain
+          """
+          Hi,
+          I like Gwen.
+          Bye!
+          """
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-insert-a-new-line-in-textarea">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
   </div>
 </details>
 
@@ -1788,7 +1888,7 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><i>Note:</i> Keys behave differently on different platforms</li>
       </ul>
     </li>
-    <li><code>&lt;element&gt;</code> is the element to send the keys to</li>
+    <li><code>&lt;element&gt;</code> is the name of the element to send the keys to</li>
   </ul>
   <p>Example</p>
 
@@ -1841,6 +1941,37 @@ We are still updating this page and will post more here soon. In the meantime, s
     <div><Link to="#i-scroll-to-the-top-or-bottom-of-element">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-drag-and-drop-source-element-to-target-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I drag and drop <sourceElement> to <targetElement>
+  ```
+  <p>Drags and drops a source element onto a target element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;sourceElement&gt;</code> is the name of the source element to drag</li>
+    <li><code>&lt;targetElement&gt;</code> is the name of the target element to drop the <code>&lt;sourceElement&gt;</code> into</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the box can be located by xpath "//*[@id='credit2']/a"
+      And the cell can be located by xpath "//*[@id='bank']/li"
+	   When I navigate to "http://demo.guru99.com/test/drag_drop.html"
+      And I capture the box as the box text
+      And I drag and drop the box to the cell
+     Then the cell should contain "${the box text}"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-drag-and-drop-source-element-to-target-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.17.0">v2.17.0</Link></div>
   </div>
 </details>
 
@@ -1999,6 +2130,46 @@ We are still updating this page and will post more here soon. In the meantime, s
     <div><Link to="#i-wait-duration-seconds-when-element-is-actioned">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-element-is-state">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <element> is[ not] <state>
+  ```
+  <p>Waits for an element to transition to a given state.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
+    <li><code>not</code> negates the state if included</li>
+    <li><code>&lt;state&gt;</code> is one of:
+      <ul>
+        <li><code>displayed</code> to wait until the element is displayed</li>
+        <li><code>hidden</code> to wait until the element is not displayed</li>
+        <li><code>checked</code> (or <code>ticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to wait until a checkbox is ticked</li>
+        <li><code>unchecked</code> (or <code>unticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to wait until a checkbox is not ticked</li>
+        <li><code>enabled</code> to wait until the element is enabled</li>
+        <li><code>disabled</code> to wait until the element is disabled</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given my todo list can be located by css ".todo-list"
+      And the todo field can be located by class "new-todo"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter "Get the milk" in the todo field
+      And I wait until my todo list is displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-element-is-state">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.25.0">v2.25.0</Link></div>
   </div>
 </details>
 
@@ -2412,8 +2583,8 @@ We are still updating this page and will post more here soon. In the meantime, s
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;element&gt;</code> is the element to check</li>
-    <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;element&gt;</code> is the name of the element to check</li>
+    <li><code>not</code> negates the state if included</li>
     <li><code>&lt;state&gt;</code> is one of:
       <ul>
         <li><code>displayed</code> to check if the element is displayed</li>
@@ -2451,7 +2622,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;element&gt;</code> is the element to check</li>
+    <li><code>&lt;element&gt;</code> is the name of the element to check</li>
     <li><code>not</code> negates the match if included</li>
     <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
@@ -2496,7 +2667,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;element&gt;</code> is the element to check</li>
+    <li><code>&lt;element&gt;</code> is the name of the element to check</li>
     <li><code>not</code> negates the match if included</li>
     <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
