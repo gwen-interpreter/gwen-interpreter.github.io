@@ -2,11 +2,11 @@ import Link from '@docusaurus/Link';
 
 # DSL Steps
 
-All Gherkin steps that match the DSL expressions here are readily executable by Gwen. The DSL matched is the operation that will be performed when a step is interpreted for execution.
+All Gherkin steps that match the DSL expressions here are readily executable by Gwen. The DSL matched is the operation that will be performed at execution time.
 
 :::tip
 
-Use DSL steps in your meta to compose StepDefs. Although it's possible to use them directly in feature specs too, we do not recommend making those DSL-aware. That's what meta is for!
+Use DSL steps in your meta to compose StepDefs. Although it's possible to use them directly in feature specs too, they should not be DSL-aware. That's what meta is for!
 
 :::
 
@@ -255,6 +255,7 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>end with</code> for partial trailing match</li>
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
         <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
@@ -296,6 +297,7 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>end with</code> for partial trailing match</li>
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
         <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
@@ -1220,6 +1222,45 @@ We are still updating this page and will post more here soon. In the meantime, s
   </div>
 </details>
 
+<details id="i-action-element-of-context">
+  <summary class="dsl">
+
+  ```gherkin
+  I <action> <element> of <context>
+  ```
+  <p>Performs an action on a context sensitive web element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;action&gt;</code> is one of:
+      <ul>
+        <li><code>click</code> to click the element</li>
+        <li><code>right click</code> to right click the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></li>
+        <li><code>double click</code> to double click the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
+        <li><code>submit</code> to submit a form element</li>
+        <li><code>check</code> (or <code>tick</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to tick a checkbox element</li>
+        <li><code>uncheck</code> (or <code>untick</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to untick a checkbox element</li>
+        <li><code>move to</code> to move the focus to an element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the element to perform the action on</li>
+    <li><code>&lt;context&gt;</code> is the context element to move into (in order to activate <code>&lt;element&gt;</code>)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the menu item can be located by id "menu-item-id"
+      And the action button can be located by id "action-button-id"
+     When I click the action button of the menu item
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-action-element-of-context">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.2.0">v1.2.0</Link></div>
+  </div>
+</details>
+
 <details id="i-enter-or-type-text-in-element">
   <summary class="dsl">
 
@@ -1807,7 +1848,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   ```gherkin
   I capture <element>
   ```
-  <p>Captures the text value of an element and binds it to name of the element in the global scode.</p>
+  <p>Captures the text value of an element and binds it to the element name in the global scode.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -1862,7 +1903,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   ```gherkin
   I capture <dropdown> <text|value>
   ```
-  <p>Captures the selected text or value of a dropdown element and binds it to name of the element in the global scode.</p>
+  <p>Captures the selected text or value of a dropdown element and binds it to the element name in the global scode.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -1989,6 +2030,121 @@ We are still updating this page and will post more here soon. In the meantime, s
   </div>
 </details>
 
+<details id="i-capture-the-content-in-element-by-json-path-expression-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the content in <element> by json path "<expression>" as <name>
+  ```
+  <p>Captures JSON content from a web element using the given JSON Path expression and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element containing the JSON content</li>
+    <li><code>&lt;expression&gt;</code> is the <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON selector</Link> expression</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # assuming a web element contains json: { "status": "passed" }
+    Given the json web element can be located by id "json"
+     When I capture the content in the json web element by json path "$.status" as the status
+     Then the status should be "passed"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-content-in-element-by-json-path-expression-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></div>
+  </div>
+</details>
+
+<details id="i-base64-decode-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I base64 decode <element>
+  ```
+  <p>Base64 decodes the text in the given element and binds the result to the element name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element containing the text to decode</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the encoded field can be located by class "encoded"
+     When I base64 decode the encoded field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-base64-decode-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-base64-decode-element-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I base64 decode <element> as <name>
+  ```
+  <p>Base64 decodes the text in the given element and binds the result to the give name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element containing the text to decode</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the decoded value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the encoded field can be located by class "encoded"
+     When I base64 decode the encoded field as decoded value
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-base64-decode-element-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-highlight-or-locate-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I <highlight|locate> <element>
+  ```
+  <p>Locates and highlights the given element on the current page.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;highlight|locate&gt;</code> is one of:
+      <ul>
+        <li><code>highlight</code> or <code>locate</code></li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the todo field can be located by class "new-todo"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I locate the todo field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-highlight-or-locate-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
 ### Then
 
 <details id="element-should-be-state">
@@ -2050,6 +2206,7 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>end with</code> for partial trailing match</li>
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
         <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
@@ -2094,6 +2251,7 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>end with</code> for partial trailing match</li>
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
         <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
@@ -2149,6 +2307,7 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>end with</code> for partial trailing match</li>
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
         <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
@@ -2198,6 +2357,7 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>end with</code> for partial trailing match</li>
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
         <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
@@ -2838,6 +2998,7 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>end with</code> for partial trailing match</li>
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
         <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
@@ -2880,6 +3041,7 @@ We are still updating this page and will post more here soon. In the meantime, s
         <li><code>end with</code> for partial trailing match</li>
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
         <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
         <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
