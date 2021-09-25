@@ -1213,7 +1213,9 @@ We are still updating this page and will post more here soon. In the meantime, s
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> , since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
     <li><code>&lt;javascript&gt;</code> is the javascript expression or anonymous function that will perform the desired action (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)
       <ul>
-        <li>The reference to the element will be provided to the javascript through an implicit parameter named <code>element</code>.</li>
+        <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
+        <li>For an expression: no <code>return</code> prefix is required</li>
+        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
       </ul>
     </li>
   </ul>
@@ -1234,28 +1236,24 @@ We are still updating this page and will post more here soon. In the meantime, s
 
 ### When
 
-<details id="i-action-element">
+<details id="i-click-element">
   <summary class="dsl">
 
   ```gherkin
-  I <action> <element>
+  I <click|right click|double click> <element>
   ```
-  <p>Performs an action on a web element.</p>
+  <p>Clicks a web element.</p>
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;action&gt;</code> is one of:
+    <li><code>&lt;click|right click|double click&gt;</code> is one of:
       <ul>
         <li><code>click</code> to click the element</li>
         <li><code>right click</code> to right click the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></li>
         <li><code>double click</code> to double click the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
-        <li><code>submit</code> to submit a form element</li>
-        <li><code>check</code> (or <code>tick</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to tick a checkbox element</li>
-        <li><code>uncheck</code> (or <code>untick</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to untick a checkbox element</li>
-        <li><code>move to</code> to move the focus to an element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;element&gt;</code> is the element to perform the action on</li>
+    <li><code>&lt;element&gt;</code> is the name of the element to click</li>
   </ul>
   <p>Example</p>
 
@@ -1266,35 +1264,31 @@ We are still updating this page and will post more here soon. In the meantime, s
   ```
 
   <div class="grid-3">
-    <div><Link to="#i-action-element">Link</Link></div>
+    <div><Link to="#i-click-element">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-<details id="i-action-element-of-context">
+<details id="i-click-element-of-context">
   <summary class="dsl">
 
   ```gherkin
-  I <action> <element> of <context>
+  I <click|right click|double click> <element> of <context>
   ```
-  <p>Performs an action on a context sensitive web element.</p>
+  <p>Clicks a context sensitive web element.</p>
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;action&gt;</code> is one of:
+    <li><code>&lt;click|right click|double click&gt;</code> is one of:
       <ul>
         <li><code>click</code> to click the element</li>
         <li><code>right click</code> to right click the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></li>
         <li><code>double click</code> to double click the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
-        <li><code>submit</code> to submit a form element</li>
-        <li><code>check</code> (or <code>tick</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to tick a checkbox element</li>
-        <li><code>uncheck</code> (or <code>untick</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to untick a checkbox element</li>
-        <li><code>move to</code> to move the focus to an element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;element&gt;</code> is the element to perform the action on</li>
-    <li><code>&lt;context&gt;</code> is the context element to move into (in order to activate <code>&lt;element&gt;</code>)</li>
+    <li><code>&lt;element&gt;</code> is the element to click</li>
+    <li><code>&lt;context&gt;</code> is the context element to focus into (in order to click <code>&lt;element&gt;</code>)</li>
   </ul>
   <p>Example</p>
 
@@ -1305,9 +1299,135 @@ We are still updating this page and will post more here soon. In the meantime, s
   ```
 
   <div class="grid-3">
-    <div><Link to="#i-action-element-of-context">Link</Link></div>
+    <div><Link to="#i-click-element-of-context">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.2.0">v1.2.0</Link></div>
+  </div>
+</details>
+
+<details id="i-modifier-keys-click-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I <modifierKeys> <click|right click|double click> <element>
+  ```
+  <p>Holds down the specified modifier keys and clicks an element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;modifierKeys&gt;</code> is a <code>+</code> separated list of modifier keys to hold down during the click
+      <ul>
+        <li>Modifier keys can be single keyboard characters or any supported <Link to="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/Keys.html">key constants</Link></li>
+        <li><i>Node:</i> Keys behave differently on different platforms</li>
+      </ul>
+    </li>
+    <li><code>&lt;click|right click|double click&gt;</code> is one of:
+      <ul>
+        <li><code>click</code> to click the element</li>
+        <li><code>right click</code> to right click the element</li>
+        <li><code>double click</code> to double click the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to click</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the button can be located by tag "button"
+      And I COMMAND+SHIFT click the button
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-modifier-keys-click-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></div>
+  </div>
+</details>
+
+<details id="i-tick-or-until-checkbox">
+  <summary class="dsl">
+
+  ```gherkin
+  I <check|uncheck|tick|untick> <checkbox>
+  ```
+  <p>Ticks or unticks a checkbox element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;check|uncheck|tick|untick&gt;</code> is one of:
+      <ul>
+        <li><code>check</code> (or <code>tick</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to tick the checkbox element</li>
+        <li><code>uncheck</code> (or <code>untick</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to untick the checkbox element</li>
+      </ul>
+    </li>
+    <li><code>&lt;checkbox&gt;</code> is the name of the checkbox element</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the email checkbox can be located by id "checkbox1"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I tick the email checkbox
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-tick-or-until-checkbox">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-submit-form">
+  <summary class="dsl">
+
+  ```gherkin
+  I submit <form>
+  ```
+  <p>Submits a web form.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;form&gt;</code> is the name of the form to submit</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the form can be located by name "contactform"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I submit the form
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-submit-form">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-move-to-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I move to <element>
+  ```
+  <p>Moves to a web element and gives it the focus.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to move to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the surname field can be located by id "surname"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I move to the surname field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-move-to-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
@@ -1379,39 +1499,6 @@ We are still updating this page and will post more here soon. In the meantime, s
 
   <div class="grid-3">
     <div><Link to="#i-enter-or-type-text-ref-in-element">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="i-press-enter-or-tab-in-element">
-  <summary class="dsl">
-
-  ```gherkin
-  I press <enter|tab> in <element>
-  ```
-  <p>Send the enter or tab key to a web element.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;enter|tab&gt;</code> is one of:
-      <ul>
-        <li><code>enter</code> to send the enter key</li>
-        <li><code>tab</code> to send the tab key</li>
-      </ul>
-    </li>
-    <li><code>&lt;element&gt;</code> is the name of the element to send the key to</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {3}
-    Given the surname field can be located by id "surname"
-     When I navigate to "https://automationintesting.com/selenium/testpage"
-      And I press tab in the surname field
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-press-enter-or-tab-in-element">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
@@ -1649,6 +1736,78 @@ We are still updating this page and will post more here soon. In the meantime, s
     <div><Link to="#i-select-or-deselect-option-ref-in-dropdown-by-value">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-press-enter-or-tab-in-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I press <enter|tab> in <element>
+  ```
+  <p>Send the enter or tab key to a web element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;enter|tab&gt;</code> is one of:
+      <ul>
+        <li><code>enter</code> to send the enter key</li>
+        <li><code>tab</code> to send the tab key</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to send the key to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the surname field can be located by id "surname"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I press tab in the surname field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-press-enter-or-tab-in-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-send-keys-to-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I send "<keys>" to <element>
+  ```
+  <p>Sends a sequence of keys to an element (for emulating keyboard shortcuts).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;keys&gt;</code> is a <code>,</code> or <code>+</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link>) separated list of keys to send.
+      <ul>
+        <li>Keys can be single keyboard characters or any supported <Link to="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/Keys.html">key constants</Link></li>
+        <li><i>Note:</i> Keys behave differently on different platforms</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the element to send the keys to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4,5,7,8}
+    Given the search field can be located by name "q"
+     When I navigate to "https://google.com"
+      And I type "Gwen automation" in the search field
+      And I send "COMMAND+A" to the search field
+      And I send "COMMAND+C" to the search field
+      And I clear the search field
+      And I send "COMMAND+V" to the search field
+      And I send "ARROW_DOWN" to the search field
+      And I press enter in the search field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-send-keys-to-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></div>
   </div>
 </details>
 
@@ -2107,6 +2266,52 @@ We are still updating this page and will post more here soon. In the meantime, s
     <div><Link to="#i-capture-the-content-in-element-by-json-path-expression-as-name">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-name-of-element-by-javascript-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <name> <of|on|in> <element> by <javascript|js> "<expression>"
+  ```
+  <p>Executes a JavaScript expression or anonymous function on an element and binds the result to the given name.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the javascript return value to</li>
+    <li><code>&lt;of|on|in&gt;</code> is <code>of</code>, <code>on</code> or <code>in</code></li>
+    <li><code>&lt;element&gt;</code> is the name of the element to execute the javascript on</li>
+    <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)
+      <ul>
+        <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
+        <li>For an expression: no <code>return</code> prefix is required</li>
+        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4-11}
+    Given the red checkobx can be located by id "red"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I click the red checkbox
+      And I capture my favorite color in the red checkbox by js
+          """
+          (function() {
+            var color = element.value
+            if (!element.checked) color = "Not " + color;
+            return color;
+          })()
+          """
+     Then my favorite color should be "Red"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-name-of-element-by-javascript-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
   </div>
 </details>
 
