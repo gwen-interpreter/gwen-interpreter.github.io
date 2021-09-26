@@ -421,7 +421,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> can be located by <selector> "<expression>"
   ```
 
-  <p>Binds a selector for a web element to the current scope with a default timeout.</p>
+  <p>Binds a selector for a web element to the current scope with a default lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -462,7 +462,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> can be located by <selector> "<expression>" with no <wait|timeout>
   ```
 
-  <p>Binds a selector for a web element to the current scope with no timeout.</p>
+  <p>Binds a selector for a web element to the current scope with no lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -486,7 +486,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <p>Example</p>
 
   ```gherkin {1}
-    Given the todo field can be located by css ".new-todo" with no timeout
+    Given the todo field can be located by css ".new-todo" with no lookup timeout
      When I enter "Walk the dog" in the todo field
   ```
 
@@ -504,7 +504,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> can be located by <selector> "<expression>" with <timeoutSecs> second <wait|timeout>
   ```
 
-  <p>Binds a selector for a web element to the current scope with a given timeout .</p>
+  <p>Binds a selector for a web element to the current scope with a given lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -547,7 +547,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> can be located by <selector> "<expression>" <relativeTo> <otherElement>
   ```
 
-  <p>Binds a relative selector for a web element to the current scope with a default timeout.</p>
+  <p>Binds a relative selector for a web element to the current scope with a default lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -596,7 +596,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> can be located by <selector> "<expression>" <relativeTo> <otherElement> with no <wait|timeout>
   ```
 
-  <p>Binds a relative selector for a web element to the current scope with no timeout.</p>
+  <p>Binds a relative selector for a web element to the current scope with no lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -646,7 +646,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> can be located by <selector> "<expression>" <relativeTo> <otherElement>  with <timeoutSecs> second <wait|timeout>
   ```
 
-  <p>Binds a relative selector for a web element to the current scope with a given timeout.</p>
+  <p>Binds a relative selector for a web element to the current scope with a given lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -697,7 +697,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> can be located by <selector> "<expression>" at index <index>
   ```
 
-  <p>Binds an indexed selector for a web element to the current scope with a default timeout.</p>
+  <p>Binds an indexed selector for a web element to the current scope with a default lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -739,7 +739,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> can be located by <selector> "<expression>" at index <index> with no <wait|timeout>
   ```
 
-  <p>Binds an indexed selector for a web element to the current scope with no timeout.</p>
+  <p>Binds an indexed selector for a web element to the current scope with no lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -764,7 +764,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <p>Example</p>
 
   ```gherkin {1}
-    Given the first item can be located by css ".todo-list label" at index 0 with no timeout
+    Given the first item can be located by css ".todo-list label" at index 0 with no lookup timeout
      Then the first item should contain "Walk the dog"
   ```
 
@@ -782,7 +782,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> can be located by <selector> "<expression>" at index <index> with <timeoutSecs> second <wait|timeout>
   ```
 
-  <p>Binds an indexed selector for a web element to the current scope with a given timeout .</p>
+  <p>Binds an indexed selector for a web element to the current scope with a given lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -826,7 +826,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> can be located by <selector> "<expression>" at index <index> <relativeTo> <otherElement>
   ```
 
-  <p>Binds a relative selector for a web element to the current scope with a default timeout.</p>
+  <p>Binds a relative selector for a web element to the current scope with a default lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -876,7 +876,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> can be located by <selector> "<expression>" at index <index> <relativeTo> <otherElement> with no <wait|timeout>
   ```
 
-  <p>Binds a relative indexed selector for a web element to the current scope with no timeout.</p>
+  <p>Binds a relative indexed selector for a web element to the current scope with no lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -927,7 +927,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <element> can be located by <selector> "<expression>" at index <index> <relativeTo> <otherElement>  with <timeoutSecs> second <wait|timeout>
   ```
 
-  <p>Binds a relative indexed selector for a web element to the current scope with a given timeout.</p>
+  <p>Binds a relative indexed selector for a web element to the current scope with a given lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -984,7 +984,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   ```
 
   <p>
-    Binds primary and fallback selectors for a web element to the current scope with a default timeout.
+    Binds primary and fallback selectors for a web element to the current scope with a default lookup timeout.
     Lookups will be attempted in the order specified until one succeeds.
   </p>
   </summary>
@@ -1035,7 +1035,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   ```
 
   <p>
-    Binds indexed primary and fallback selectors for a web element to the current scope with a default timeout.
+    Binds indexed primary and fallback selectors for a web element to the current scope with a default lookup timeout.
     Lookups will be attempted in the order specified until one succeeds.
   </p>
   </summary>
@@ -1087,7 +1087,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   ```
 
   <p>
-    Binds indexed primary and fallback selectors for a web element to the current scope with no timeout.
+    Binds indexed primary and fallback selectors for a web element to the current scope with no lookup timeout.
     Lookups will be attempted in the order specified until one succeeds.
   </p>
   </summary>
@@ -1114,7 +1114,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   <p>Example</p>
 
   ```gherkin {1-4}
-    Given the second item can be located at index 1 with no timeout by
+    Given the second item can be located at index 1 with no lookup timeout by
           | name  | todo-label       |
           | class | todo-label       |
           | css   | .todo-list label |
@@ -1140,7 +1140,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   ```
 
   <p>
-    Binds indexed primary and fallback selectors for a web element to the current scope with a given timeout .
+    Binds indexed primary and fallback selectors for a web element to the current scope with a given lookup timeout.
     Lookups will be attempted in the order specified until one succeeds.
   </p>
   </summary>
@@ -3492,5 +3492,405 @@ We are still updating this page and will post more here soon. In the meantime, s
     <div><Link to="#the-alert-or-confirmation-popup-message-should-match-expression-ref">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.24.0">v2.24.0</Link></div>
+  </div>
+</details>
+
+## Composite Steps
+
+### For Each
+
+<details id="step-for-each-element-located-by-selector-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <element> located by <selector> "<expression>"
+  ```
+  <p>Executes a step for each element in a list of elements in the current scope with a default lookup timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
+    <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression returning one or many elements</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {6}
+    Given the todo field can be located by class "new-todo"
+      And the active count can be located by css ".todo-count strong"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And I tick todo item for each todo item located by css ".todo-list .toggle"
+     Then the active count should be "0"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-for-each-element-located-by-selector-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link></div>
+  </div>
+</details>
+
+<details id="step-for-each-element-located-by-selector-expression-with-no-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <element> located by <selector> "<expression>" with no <wait|timeout>
+  ```
+  <p>Executes a step for each element in a list of elements in the current scope with a no lookup timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
+    <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression returning one or many elements</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {6}
+    Given the todo field can be located by class "new-todo"
+      And the active count can be located by css ".todo-count strong"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And I tick todo item for each todo item located by css ".todo-list .toggle" with no wait
+     Then the active count should be "0"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-for-each-element-located-by-selector-expression-with-no-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="step-for-each-element-located-by-selector-expression-with-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <element> located by <selector> "<expression>" with <timeoutSecs> second <wait|timeout>
+  ```
+  <p>Executes a step for each element in a list of elements in the current scope with a given lookup timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
+    <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression returning one or many elements</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {6}
+    Given the todo field can be located by class "new-todo"
+      And the active count can be located by css ".todo-count strong"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And I tick todo item for each todo item located by css ".todo-list .toggle" with 5 second timeout
+     Then the active count should be "0"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-for-each-element-located-by-selector-expression-with-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="step-for-each-element-located-by-selector-expression-in-container">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <element> located by <selector> "<expression>" in <containerElement>
+  ```
+  <p>Executes a step for each element in a list of elements in a container element in the current scope with a default lookup timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
+    <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression returning one or many elements</li>
+    <li><code>&lt;containerElement&gt;</code> is the name assigned to the container element</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {7}
+    Given the todo field can be located by class "new-todo"
+      And the todo list can be located by class "todo-list"
+      And the active count can be located by css ".todo-count strong"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And I tick todo item for each todo item located by class "toggle" in the todo list
+     Then the active count should be "0"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-for-each-element-located-by-selector-expression-in-container">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link></div>
+  </div>
+</details>
+
+<details id="step-for-each-element-located-by-selector-expression-in-container-with-no-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <element> located by <selector> "<expression>" in <containerElement> with no <wait|timeout>
+  ```
+  <p>Executes a step for each element in a list of elements in a container element in the current scope with no lookup timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
+    <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression returning one or many elements</li>
+    <li><code>&lt;containerElement&gt;</code> is the name assigned to the container element</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {7}
+    Given the todo field can be located by class "new-todo"
+      And the todo list can be located by class "todo-list"
+      And the active count can be located by css ".todo-count strong"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And I tick todo item for each todo item located by class "toggle" in the todo list with no timeout
+     Then the active count should be "0"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-for-each-element-located-by-selector-expression-in-container-with-no-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="step-for-each-element-located-by-selector-expression-in-container-with-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <element> located by <selector> "<expression>" in <containerElement> with <timeoutSecs> second <wait|timeout>
+  ```
+  <p>Executes a step for each element in a list of elements in a container element in the current scope with a given lookup timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
+    <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression returning one or many elements</li>
+    <li><code>&lt;containerElement&gt;</code> is the name assigned to the container element</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {7}
+    Given the todo field can be located by class "new-todo"
+      And the todo list can be located by class "todo-list"
+      And the active count can be located by css ".todo-count strong"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And I tick todo item for each todo item located by class "toggle" in the todo list with 3 second wait
+     Then the active count should be "0"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-for-each-element-located-by-selector-expression-in-container-with-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="step-for-each-element-in-elements">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <element> in <elements>
+  ```
+  <p>Executes a step for each element in a list of elements in the current scope with a default lookup timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
+    <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li><code>&lt;elements&gt;</code> is the name of the locator binding returning multiple elements</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {7}
+    Given the todo field can be located by class "new-todo"
+      And the active count can be located by css ".todo-count strong"
+      And all todo items can be located by css ".todo-list .toggle"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And I tick todo item for each todo item in all todo items
+     Then the active count should be "0"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-for-each-element-in-elements">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link></div>
+  </div>
+</details>
+
+<details id="step-for-each-data-record">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each data record
+  ```
+  <p>Executes a step for each record in a data table.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each record</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {12}
+    Given I have the following active items
+          | Walk the dog |
+          | Get the milk |
+          | Feed the cat |
+
+    @StepDef
+    @DataTable(horizontal="Item")
+    Scenario: I have the following active items
+        Given the todo field can be located by class "new-todo"
+          And the active count can be located by css ".todo-count strong"
+         When I navigate to "https://todomvc.com/examples/react"
+          And I enter "${data[Item]}" in the todo field for each data record
+         Then the active count should be "3"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-for-each-data-record">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></div>
+  </div>
+</details>
+
+<details id="for-each-entry-in-source-delimited-by">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <entry> in <source> delimited by "<delimiter>"
+  ```
+  <p></p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each delimited entry</li>
+    <li><code>&lt;entry&gt;</code> is the name that will be assigned to the current entry occurrence (entry is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li><code>&lt;source&gt;</code> is the name of the binding containing the delimitted values
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a delmited list of values, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;delimiter&gt;</code> the delimiter used in <code>&lt;source&gt;</code> to separate each value</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the todo field can be located by class "new-todo"
+      And the active count can be located by css ".todo-count strong"
+      And my items is "Walk the dog, Feed the cat, Get the milk"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter todo item in the todo field for each todo item in my items delimited by ","
+     Then the active count should be "3"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#for-each-entry-in-source-delimited-by">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link></div>
   </div>
 </details>
