@@ -1567,6 +1567,78 @@ We are still updating this page and will post more here soon. In the meantime, s
   </div>
 </details>
 
+<details id="i-press-enter-or-tab-in-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I press <enter|tab> in <element>
+  ```
+  <p>Send the enter or tab key to a web element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;enter|tab&gt;</code> is one of:
+      <ul>
+        <li><code>enter</code> to send the enter key</li>
+        <li><code>tab</code> to send the tab key</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to send the key to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the surname field can be located by id "surname"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I press tab in the surname field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-press-enter-or-tab-in-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-send-keys-to-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I send "<keys>" to <element>
+  ```
+  <p>Sends a sequence of keys to an element (for emulating keyboard shortcuts).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;keys&gt;</code> is a <code>,</code> or <code>+</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link>) separated list of keys to send.
+      <ul>
+        <li>Keys can be single keyboard characters or any supported <Link to="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/Keys.html">key constants</Link></li>
+        <li><i>Note:</i> Keys behave differently on different platforms</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to send the keys to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4,5,7,8}
+    Given the search field can be located by name "q"
+     When I navigate to "https://google.com"
+      And I type "Gwen automation" in the search field
+      And I send "COMMAND+A" to the search field
+      And I send "COMMAND+C" to the search field
+      And I clear the search field
+      And I send "COMMAND+V" to the search field
+      And I send "ARROW_DOWN" to the search field
+      And I press enter in the search field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-send-keys-to-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></div>
+  </div>
+</details>
+
 <details id="i-insert-a-new-line-in-textarea">
   <summary class="dsl">
 
@@ -1836,78 +1908,6 @@ We are still updating this page and will post more here soon. In the meantime, s
     <div><Link to="#i-select-or-deselect-option-ref-in-dropdown-by-value">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="i-press-enter-or-tab-in-element">
-  <summary class="dsl">
-
-  ```gherkin
-  I press <enter|tab> in <element>
-  ```
-  <p>Send the enter or tab key to a web element.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;enter|tab&gt;</code> is one of:
-      <ul>
-        <li><code>enter</code> to send the enter key</li>
-        <li><code>tab</code> to send the tab key</li>
-      </ul>
-    </li>
-    <li><code>&lt;element&gt;</code> is the name of the element to send the key to</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {3}
-    Given the surname field can be located by id "surname"
-     When I navigate to "https://automationintesting.com/selenium/testpage"
-      And I press tab in the surname field
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-press-enter-or-tab-in-element">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="i-send-keys-to-element">
-  <summary class="dsl">
-
-  ```gherkin
-  I send "<keys>" to <element>
-  ```
-  <p>Sends a sequence of keys to an element (for emulating keyboard shortcuts).</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;keys&gt;</code> is a <code>,</code> or <code>+</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link>) separated list of keys to send.
-      <ul>
-        <li>Keys can be single keyboard characters or any supported <Link to="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/Keys.html">key constants</Link></li>
-        <li><i>Note:</i> Keys behave differently on different platforms</li>
-      </ul>
-    </li>
-    <li><code>&lt;element&gt;</code> is the name of the element to send the keys to</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {4,5,7,8}
-    Given the search field can be located by name "q"
-     When I navigate to "https://google.com"
-      And I type "Gwen automation" in the search field
-      And I send "COMMAND+A" to the search field
-      And I send "COMMAND+C" to the search field
-      And I clear the search field
-      And I send "COMMAND+V" to the search field
-      And I send "ARROW_DOWN" to the search field
-      And I press enter in the search field
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-send-keys-to-element">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></div>
   </div>
 </details>
 
@@ -2183,7 +2183,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;condition&gt;</code> the name of a javascript binding containing a predicate function that will return true when the condition is satisfied</li>
+    <li><code>&lt;condition&gt;</code> the name of a javascript binding containing a function that will return true when the condition is satisfied and false when it is not</li>
     <li><code>&lt;element&gt;</code> the name of the web element</li>
     <li><code>&lt;actioned&gt;</code> is one of:
       <ul>
@@ -3495,7 +3495,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   </div>
 </details>
 
-## Composite Steps
+## Control Structures
 
 ### For Each
 
@@ -3832,15 +3832,18 @@ We are still updating this page and will post more here soon. In the meantime, s
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each record</li>
+    <li>
+      The following implicit bindings are available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>record.number</code> is the current record number (starting at 1)</li>
+        <li><code>record.index</code> is the record index (starting at 0), since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.30.1">v2.30.1</Link></li>
+        <li><code>data[name]</code> is the data of an element in the current record, where <code>name</code> is the name of a record element</li>
+      </ul>
+    </li>
   </ul>
   <p>Example</p>
 
-  ```gherkin {12}
-    Given I have the following active items
-          | Walk the dog |
-          | Get the milk |
-          | Feed the cat |
-
+  ```gherkin {7}
     @StepDef
     @DataTable(horizontal="Item")
     Scenario: I have the following active items
@@ -3849,6 +3852,12 @@ We are still updating this page and will post more here soon. In the meantime, s
          When I navigate to "https://todomvc.com/examples/react"
           And I enter "${data[Item]}" in the todo field for each data record
          Then the active count should be "3"
+
+    Scenario: my scenario
+        Given I have the following active items
+              | Walk the dog |
+              | Get the milk |
+              | Feed the cat |
   ```
 
   <div class="grid-3">
@@ -3892,5 +3901,90 @@ We are still updating this page and will post more here soon. In the meantime, s
     <div><Link to="#for-each-entry-in-source-delimited-by">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link></div>
+  </div>
+</details>
+
+### Until
+
+<details id="step-until-condition">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> until <condition>
+  ```
+  <p>Repeatedly exectues a step until a condition is satisfied using a default delay and timeout period. The default delay between iterations is one tenth of the configured <code>gwen.web.wait.seconds</code> setting (or 1 second if not set). The default timeout period is 30 times the delay.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;condition&gt;</code> the name of a javascript binding containing a function that will return true when the condition is satisfied and false when it is not.</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {8}
+    @StepDef
+    Scenario: I increment the counter
+        Given counter is defined by js "${counter} + 1"
+          And counter > 3 is defined by javascript "${counter} > 3"
+    
+    Scenario: repeat until
+        Given counter is defined by js "0"
+         When I increment the counter until counter > 3
+         Then counter should be "4"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-condition">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+### While
+
+<details id="step-while-condition">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> while <condition>
+  ```
+  <p>Repeatedly exectues a step while a condition is satisfied using a default delay and timeout period. The default delay between iterations is one tenth of the configured <code>gwen.web.wait.seconds</code> setting (or 1 second if not set). The default timeout period is 30 times the delay.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;condition&gt;</code> the name of a javascript binding containing a function that will return true when the condition is satisfied and false when it is not.</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {9}
+    @StepDef
+    Scenario: I increment the counter
+        Given counter is defined by js "${counter} + 1"
+          And counter < 4 is defined by js "${counter} < 4"
+    
+    Scenario: repeat while
+        Given counter is defined by js "-1"
+         When I increment the counter
+          And I increment the counter while counter < 4
+         Then counter should be "4"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-while-condition">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
