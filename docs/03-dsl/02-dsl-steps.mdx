@@ -3904,87 +3904,355 @@ We are still updating this page and will post more here soon. In the meantime, s
   </div>
 </details>
 
-### Until
+### Repeat Until/While
 
-<details id="step-until-condition">
+<details id="step-until-or-while-condition">
   <summary class="dsl">
 
   ```gherkin
-  <step> until <condition>
+  <step> <until|while> <condition>
   ```
-  <p>Repeatedly exectues a step until a condition is satisfied using a default delay and timeout period. The default delay between iterations is one tenth of the configured <code>gwen.web.wait.seconds</code> setting (or 1 second if not set). The default timeout period is 30 times the delay.</p>
+  <p>Repeatedly exectues a step until or while a condition is satisfied using a default delay and timeout period. The default delay between iterations is one tenth of the configured <code>gwen.web.wait.seconds</code> setting (or 1 second if not set). The default timeout period is 30 times the delay.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
     <li><code>&lt;condition&gt;</code> the name of a javascript binding containing a function that will return true when the condition is satisfied and false when it is not.</li>
     <li>
       The following implicit binding is available in <code>&lt;step&gt;</code>:
       <ul>
-        <li><code>iteration number</code> is the current iteration number (starting at 1)</li>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
       </ul>
     </li>
   </ul>
   <p>Example</p>
 
-  ```gherkin {8}
-    @StepDef
-    Scenario: I increment the counter
-        Given counter is defined by js "${counter} + 1"
-          And counter > 3 is defined by javascript "${counter} > 3"
-    
-    Scenario: repeat until
-        Given counter is defined by js "0"
-         When I increment the counter until counter > 3
-         Then counter should be "4"
+  ```gherkin {13}
+      Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+        And the target article is "what is gwen"
+        And the article can be located by partial link text "${the target article}"
+        And article not listed is defined by js
+            """
+            [...document.querySelectorAll("a")]
+              .filter(e => e.textContent.includes('${the target article}'))
+              .length == 0
+            """
+        When I navigate to "https://google.com"
+         And I enter "gwen interpreter" in the search field
+         And I click the next page link while article not listed
+         And I click the article
+        Then the page title should contain "${the target article}"
   ```
 
   <div class="grid-3">
-    <div><Link to="#step-until-condition">Link</Link></div>
+    <div><Link to="#step-until-or-while-condition">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-### While
-
-<details id="step-while-condition">
+<details id="step-until-or-while-condition-using-delay">
   <summary class="dsl">
 
   ```gherkin
-  <step> while <condition>
+  <step> <until|while> <condition> using <delay> <delayUnit> delay
   ```
-  <p>Repeatedly exectues a step while a condition is satisfied using a default delay and timeout period. The default delay between iterations is one tenth of the configured <code>gwen.web.wait.seconds</code> setting (or 1 second if not set). The default timeout period is 30 times the delay.</p>
+  <p>Repeatedly exectues a step until or while a condition is satisfied using the given delay and default timeout period. The default timeout period is 30 times the specified delay.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
     <li><code>&lt;condition&gt;</code> the name of a javascript binding containing a function that will return true when the condition is satisfied and false when it is not.</li>
+    <li><code>&lt;delay&gt;</code> is the delay period between steps repetitions</li>
+    <li><code>&lt;delayUnit&gt;</code> is one of:
+      <ul>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
     <li>
       The following implicit binding is available in <code>&lt;step&gt;</code>:
       <ul>
-        <li><code>iteration number</code> is the current iteration number (starting at 1)</li>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
       </ul>
     </li>
   </ul>
   <p>Example</p>
 
-  ```gherkin {9}
-    @StepDef
-    Scenario: I increment the counter
-        Given counter is defined by js "${counter} + 1"
-          And counter < 4 is defined by js "${counter} < 4"
-    
-    Scenario: repeat while
-        Given counter is defined by js "-1"
-         When I increment the counter
-          And I increment the counter while counter < 4
-         Then counter should be "4"
+  ```gherkin {13}
+    Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+        And the target article is "what is gwen"
+        And the article can be located by partial link text "${the target article}"
+        And article not listed is defined by js "$('h3:contains("${the target article}")').length == 0)"
+            """
+            [...document.querySelectorAll("a")]
+              .filter(e => e.textContent.includes('${the target article}'))
+              .length == 0
+            """
+        When I navigate to "https://google.com"
+         And I enter "gwen interpreter" in the search field
+         And I click the next page link while article not listed using 1 second delay
+         And I click the article
+        Then the page title should contain "${the target article}"
   ```
 
   <div class="grid-3">
-    <div><Link to="#step-while-condition">Link</Link></div>
+    <div><Link to="#step-until-or-while-condition-using-delay">Link</Link></div>
     <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.7.0">v1.7.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-condition-using-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <condition> using <timeout> <timeoutUnit> timeout
+  ```
+  <p>Repeatedly exectues a step until or while a condition is satisfied using a default delay and given timeout period. The default delay between iterations is one tenth of the configured gwen.web.wait.seconds setting (or 1 second if not set).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li><code>&lt;condition&gt;</code> the name of a javascript binding containing a function that will return true when the condition is satisfied and false when it is not.</li>
+    <li><code>&lt;timeout&gt;</code> is the timeout period</li>
+    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+      <ul>
+        <li><code>minute</code></li>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {13}
+    Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+        And the target article is "what is gwen"
+        And the article can be located by partial link text "${the target article}"
+        And article not listed is defined by js
+            """
+            [...document.querySelectorAll("a")]
+              .filter(e => e.textContent.includes('${the target article}'))
+              .length == 0
+            """
+        When I navigate to "https://google.com"
+         And I enter "gwen interpreter" in the search field
+         And I click the next page link while article not listed using 15 second timeout
+         And I click the article
+        Then the page title should contain "${the target article}"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-condition-using-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.7.0">v1.7.0</Link></div>
+  </div>
+</details>
+
+
+<details id="step-until-or-while-condition-using-delay-and-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <condition> using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout
+  ```
+  <p>Repeatedly exectues a step until or while a condition is satisfied using the given delay and timeout periods.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li><code>&lt;condition&gt;</code> the name of a javascript binding containing a function that will return true when the condition is satisfied and false when it is not.</li>
+    <li><code>&lt;delay&gt;</code> is the delay period between steps repetitions</li>
+    <li><code>&lt;delayUnit&gt;</code> is one of:
+      <ul>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li><code>&lt;timeout&gt;</code> is the timeout period</li>
+    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+      <ul>
+        <li><code>minute</code></li>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {13}
+    Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+        And the target article is "what is gwen"
+        And the article can be located by partial link text "${the target article}"
+        And article not listed is defined by js
+            """
+            [...document.querySelectorAll("a")]
+              .filter(e => e.textContent.includes('${the target article}'))
+              .length == 0
+            """
+        When I navigate to "https://google.com"
+         And I enter "gwen interpreter" in the search field
+         And I click the next page link while article not listed using 1 second delay and 5 second timeout
+         And I click the article
+        Then the page title should contain "${the target article}"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-condition-using-delay-and-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.7.0">v1.7.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-condition-using-no-delay-and-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <condition> using no delay and <timeout> <timeoutUnit> timeout
+  ```
+  <p>Repeatedly exectues a step until or while a condition is satisfied using no delay and the given timeout period.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li><code>&lt;condition&gt;</code> the name of a javascript binding containing a function that will return true when the condition is satisfied and false when it is not.</li>
+    <li><code>&lt;timeout&gt;</code> is the timeout period</li>
+    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+      <ul>
+        <li><code>minute</code></li>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {13}
+    Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+        And the target article is "what is gwen"
+        And the article can be located by partial link text "${the target article}"
+        And article not listed is defined by js
+            """
+            [...document.querySelectorAll("a")]
+              .filter(e => e.textContent.includes('${the target article}'))
+              .length == 0
+            """
+        When I navigate to "https://google.com"
+         And I enter "gwen interpreter" in the search field
+         And I click the next page link while article not listed using no delay and 15 second timeout
+         And I click the article
+        Then the page title should contain "${the target article}"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-condition-using-no-delay-and-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.7.0">v1.7.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-condition-using-no-delay">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <condition> using no delay
+  ```
+  <p>Repeatedly exectues a step until or while a condition is satisfied using no delay and the default timeout period of 30 seconds.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li><code>&lt;condition&gt;</code> the name of a javascript binding containing a function that will return true when the condition is satisfied and false when it is not.</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {13}
+    Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+        And the target article is "what is gwen"
+        And the article can be located by partial link text "${the target article}"
+        And article not listed is defined by js
+            """
+            [...document.querySelectorAll("a")]
+              .filter(e => e.textContent.includes('${the target article}'))
+              .length == 0
+            """
+        When I navigate to "https://google.com"
+         And I enter "gwen interpreter" in the search field
+         And I click the next page link while article not listed using no delay
+         And I click the article
+        Then the page title should contain "${the target article}"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-condition-using-no-delay">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.7.0">v1.7.0</Link></div>
   </div>
 </details>
