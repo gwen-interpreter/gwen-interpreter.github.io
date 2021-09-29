@@ -1,4 +1,6 @@
 import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # DSL Steps
 
@@ -4831,37 +4833,61 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name to bind the SQL query result to</li>
-    <li><code>&lt;dbName&gt;</code> the name of the configured database to execute the query on
-      <ul>
-        <li>The GWEN_CLASSPATH <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings#environment-variables">environment variable</Link> must be set to include a path to the JDBC driver JAR</li>
-        <li>A <code>gwen.db.&lt;dbName&gt;.driver</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the name of the JDBC driver implementation class</li>
-        <li>A <code>gwen.db.&lt;dbName&gt;.url</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the JDBC URL of the database</li>
-      </ul>
-    </li>
+    <li><code>&lt;dbName&gt;</code> the name of the configured database to execute the query on</li>
     <li><code>&lt;selectStmt&gt;</code> is the SQL query that will return the value to assign (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
   </ul>
+
+  <p>Configuration</p>
+  <ul>
+    <li>The GWEN_CLASSPATH <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings#environment-variables">environment variable</Link> must be set to include a path to the JDBC driver JAR</li>
+    <li>A <code>gwen.db.&lt;dbName&gt;.driver</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the name of the JDBC driver implementation class</li>
+    <li>A <code>gwen.db.&lt;dbName&gt;.url</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the JDBC URL of the database</li>
+  </ul>
+
   <p>Example</p>
 
-  ```gherkin {1}
-    Given the email address is defined in the feedback database by sql "select email from comments"
+  ```gherkin {1-4}
+    Given the email address is defined in the feedback database by sql
+          """
+          select email from comments
+          """
      Then the email address should be "some.person@example.com"
   ```
 
-  <p>Example MySQL configuration</p>
-  <ul>
-    <li>Set GWEN_CLASSPATH variable in the environment to include the JDBC driver JAR
-      <ul>
-        <li>Unix: <pre>export GWEN_CLASSPATH=/path-to-driver/mysql-connector-java-5.1.40-bin.jar</pre></li>
-        <li>Windows: <pre>set GWEN_CLASSPATH c:/path-to-driver/mysql-connector-java-5.1.40-bin.jar</pre></li>
-      </ul>
-    </li>
-    <li>Configure the database in your <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">Gwen settings</Link>. In this example, <code>&lt;dbName&gt;</code>=feedback
-      <ul>
-        <li><pre>gwen.db.feedback.driver = com.mysql.jdbc.Driver</pre></li>
-        <li><pre>gwen.db.feedback.url = jdbc:mysql://localhost/feedback?user=myUser&amp;password=myPassword&amp;</pre></li>
-      </ul>
-    </li>
-  </ul>
+<Tabs
+  groupId="setup"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+  
+<TabItem value="linux">
+
+  Set GWEN_CLASSPATH variable in the environment to include the JDBC driver JAR
+
+  ```shell
+  export GWEN_CLASSPATH=/path-to-driver/mysql-connector-java-5.1.40-bin.jar
+  ```
+
+</TabItem>
+<TabItem value="windows">
+
+  Set GWEN_CLASSPATH variable in the environment to include the JDBC driver JAR
+
+  ```shell
+  set GWEN_CLASSPATH c:/path-to-driver/mysql-connector-java-5.1.40-bin.jar
+  ```
+
+</TabItem>
+</Tabs>
+
+  Configure the database in your <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">settings</Link>. In this example, <code>&lt;dbName&gt;</code>=feedback
+
+  ```properties
+  gwen.db.feedback.driver = com.mysql.jdbc.Driver
+  gwen.db.feedback.url = jdbc:mysql://localhost/feedback?user=myUser&amp;password=myPassword&amp;
+  ```
 
   <div class="grid-3">
     <div><Link to="#name-is-defined-by-database-select-statement">Link</Link></div>
@@ -4882,15 +4908,17 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;dbName&gt;</code> the name of the configured database to run the update statement on
-      <ul>
-        <li>The GWEN_CLASSPATH <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings#environment-variables">environment variable</Link> must be set to include a path to the JDBC driver JAR</li>
-        <li>A <code>gwen.db.&lt;dbName&gt;.driver</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the name of the JDBC driver implementation class</li>
-        <li>A <code>gwen.db.&lt;dbName&gt;.url</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the JDBC URL of the database</li>
-      </ul>
-    </li>
+    <li><code>&lt;dbName&gt;</code> the name of the configured database to run the update statement on</li>
     <li><code>&lt;updateStmt&gt;</code> is the SQL update statement to execute (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
   </ul>
+
+  <p>Configuration</p>
+  <ul>
+    <li>The GWEN_CLASSPATH <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings#environment-variables">environment variable</Link> must be set to include a path to the JDBC driver JAR</li>
+    <li>A <code>gwen.db.&lt;dbName&gt;.driver</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the name of the JDBC driver implementation class</li>
+    <li>A <code>gwen.db.&lt;dbName&gt;.url</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the JDBC URL of the database</li>
+  </ul>
+
   <p>Returns</p>
   <ul>
     <li><code>&lt;dbName&gt; rows affected</code> = the number of rows affected by the update</li>
@@ -4905,21 +4933,40 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
     Then feedback rows affected should be "1"
   ```
 
-  <p>Example MySQL configuration</p>
-  <ul>
-    <li>Set GWEN_CLASSPATH variable in the environment to include the JDBC driver JAR
-      <ul>
-        <li>Unix: <pre>export GWEN_CLASSPATH=/path-to-driver/mysql-connector-java-5.1.40-bin.jar</pre></li>
-        <li>Windows: <pre>set GWEN_CLASSPATH c:/path-to-driver/mysql-connector-java-5.1.40-bin.jar</pre></li>
-      </ul>
-    </li>
-    <li>Configure the database in your <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">Gwen settings</Link>. In this example, <code>&lt;dbName&gt;</code>=feedback
-      <ul>
-        <li><pre>gwen.db.feedback.driver = com.mysql.jdbc.Driver</pre></li>
-        <li><pre>gwen.db.feedback.url = jdbc:mysql://localhost/feedback?user=myUser&amp;password=myPassword&amp;</pre></li>
-      </ul>
-    </li>
-  </ul>
+  <Tabs
+  groupId="setup"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+  Set GWEN_CLASSPATH variable in the environment to include the JDBC driver JAR
+
+  ```shell
+  export GWEN_CLASSPATH=/path-to-driver/mysql-connector-java-5.1.40-bin.jar
+  ```
+
+</TabItem>
+<TabItem value="windows">
+
+  Set GWEN_CLASSPATH variable in the environment to include the JDBC driver JAR
+
+  ```shell
+  set GWEN_CLASSPATH c:/path-to-driver/mysql-connector-java-5.1.40-bin.jar
+  ```
+
+</TabItem>
+</Tabs>
+
+  Configure the database in your <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">settings</Link>. In this example, <code>&lt;dbName&gt;</code>=feedback
+
+  ```properties
+  gwen.db.feedback.driver = com.mysql.jdbc.Driver
+  gwen.db.feedback.url = jdbc:mysql://localhost/feedback?user=myUser&amp;password=myPassword&amp;
+  ```
 
   <div class="grid-3">
     <div><Link to="#i-update-database-by-sql-update-statement">Link</Link></div>
