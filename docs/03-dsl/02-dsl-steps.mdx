@@ -18,6 +18,607 @@ We are still updating this page and will post more here soon. In the meantime, s
 
 :::
 
+## Named values
+
+### Given
+
+<details id="name-is-value">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is "<value>"
+  ```
+  <p>Binds the given value to a name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name the bind the value to</li>
+    <li><code>&lt;value&gt;</code> is the value to bind (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
+    
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    Given my name is "Gwen"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-value">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="name-is-defined-by-javascript-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by <javascript|js> "<expression>"
+  ```
+  <p>Associates a name with the return value of a JavaScript expression or anonymous function. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to associate</li>
+    <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
+    <li><code>&lt;expression&gt;</code> is the javascript expression or anonymous function that will return the value (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)
+      <ul>
+        <li>For an expression: no <code>return</code> prefix is required</li>
+        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given iso date is defined by js "new Date().toISOString().substring(0, 10)"
+     Then iso date should match regex "^\d{4}-([0]\d|1[0-2])-([0-2]\d|3[01])$"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-javascript-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="name-is-defined-in-text-ref-by-regex-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined in <textRef> by regex "<expression>"
+  ```
+  <p>Captures text from a referenced text value using the given regex expression and associates it with the given name. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name of the name to associate the captured value to</li>
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the source text
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the regex selector expression</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the date is "2021-09-22"
+      And the year is defined in the date by regex "(\d{4})"
+     Then the year should be "2021"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-in-text-ref-by-regex-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="name-is-defined-by-the-node-type-in-xml-ref-by-xpath-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by the <nodeType> in <xmlRef> by xpath "<expression>"
+  ```
+  <p>Captures content from a referenced XML value using the given XPath expression and associates it with the given name. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name of the name to associate the captured value to</li>
+    <li><code>&lt;nodeType&gt;</code> is one of:
+      <ul>
+        <li><code>text</code> to capture the text node</li>
+        <li><code>node</code> to capture a single node</li>
+        <li><code>nodeset</code> to capture multiple nodes</li>
+      </ul>
+    </li>
+    <li><code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML source
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to XML text, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the XPath selector expression</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the xml is "<result><status>passed</status></result>"
+      And status is defined by the text in the xml by xpath "//result/status"
+     Then the status should be "passed"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-the-node-type-in-xml-ref-by-xpath-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="name-is-defined-in-json-ref-by-json-path-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined in <jsonRef> by json path "<expression>"
+  ```
+  <p>Captures content from a referenced JSON value using the given JSON path expression and associates it with the given name. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name of the name to associate the captured value to</li>
+    <li><code>&lt;nodeType&gt;</code> is one of:
+      <ul>
+        <li><code>text</code> to capture the text node</li>
+        <li><code>node</code> to capture a single node</li>
+        <li><code>nodeset</code> to capture multiple nodes</li>
+      </ul>
+    </li>
+    <li><code>&lt;sourceRef&gt;</code> is the name of the binding containing the XML source
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to XML text, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the XPath selector expression</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the json is "{ "status": "passed" }"
+      And the status is defined in the json by json path "$.status"
+     Then the status should be "passed"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-in-json-ref-by-json-path-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+
+<details id="name-is-defined-by-system-process-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by system process "<expression>"
+  ```
+  <p>Associates a name with the return value of a local system process. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to associated the returned value to</li>
+    <li><code>&lt;expression&gt;</code> the system process that will return the value to assign (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given my hostname is defined by system process "hostname"
+     Then my hostname should not be ""
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-system-process-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="name-is-defined-by-system-process-expression-delimited-by-delimiters">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by system process "<expression>" delimited by "<delimiters>"
+  ```
+  <p>Associates a name with the return value of a delimited local system process. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to associated the returned value to</li>
+    <li><code>&lt;expression&gt;</code> the system process that will return the value to assign (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)
+      <ul>
+        <li>Delmiters are required for special cases such as when unbalanced quoted strings are passed as arguments (see example).</li>
+      </ul>
+    </li>
+  </ul>
+  <li><code>&lt;delmiters&gt;</code> is a regex pattern defining the delimiter(s) used in <code>&lt;expression&gt;</code></li>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given my message is defined by system process "echo,"quoted text " and orphan quote"" delimited by ","
+     Then my message should be ""quoted text " and orphan quote""
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-system-process-expression-delimited-by-delimiters">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link></div>
+  </div>
+</details>
+
+### When
+
+<details id="i-capture-text-ref-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <textRef> as <name>
+  ```
+  <p>Captures the referenced text and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the source text
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the username is "Gwen"
+     When I capture the username as my username
+     Then my username should be the username
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-text-ref-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-name-by-javascript-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <name> by <javascript|js> "<expression>"
+  ```
+  <p>Captures the return value of a JavaScript expression or anonymous function and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the returned value to</li>
+    <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
+    <li><code>&lt;expression&gt;</code> is the javascript expression or anonymous function that will return the value (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)
+      <ul>
+        <li>For an expression: no <code>return</code> prefix is required</li>
+        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+     When I capture iso date by js "new Date().toISOString().substring(0, 10)"
+     Then iso date should match regex "^\d{4}-([0]\d|1[0-2])-([0-2]\d|3[01])$"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-name-by-javascript-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-text-in-text-ref-by-regex-expression-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the text in <textRef> by regex "<expression>" as <name>
+  ```
+  <p>Captures the referenced text using the given regex expression and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the source text
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the regex selector expression</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the date is "2021-09-22"
+     When I capture the text in the date by regex "(\d{4})" as the year
+     Then the year should be "2021"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-text-in-text-ref-by-regex-expression-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-node-type-in-xml-ref-by-xpath-expression-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the <nodeType> in <xmlRef> by xpath "<expression>" as <name>
+  ```
+  <p>Captures XML content from a referenced XML string using the given XPath expression and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;nodeType&gt;</code> is one of:
+      <ul>
+        <li><code>text</code> to capture the text node</li>
+        <li><code>node</code> to capture a single node</li>
+        <li><code>nodeset</code> to capture multiple nodes</li>
+      </ul>
+    </li>
+    <li><code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML text
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to an XML text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the XPath selector expression</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the xml is "<result><status>passed</status></result>"
+     When I capture the text in the xml by xpath "//result/status" as the status
+     Then the status should be "passed"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-node-type-in-xml-ref-by-xpath-expression-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-content-in-json-ref-by-json-path-expression-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the content in <jsonRef> by json path "<expression>" as <name>
+  ```
+  <p>Captures JSON content from a referenced JSON string using the given JSON Path expression and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;jsonRef&gt;</code> is the name of the binding containing the source JSON source
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a JSON text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON selector</Link> expression</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the json is "{ "status": "passed" }"
+     When I capture the content in the json by json path "$.status" as the status
+     Then the status should be "passed"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-content-in-json-ref-by-json-path-expression-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></div>
+  </div>
+</details>
+
+<details id="i-base64-decode-text-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  I base64 decode <textRef>
+  ```
+  <p>Base64 decodes the referenced text value and binds the result to the same name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to decode
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the data is "c29tZSBiaW5hcnkgZGF0YQ=="
+     When I base64 decode the data
+     Then the data should be "some binary data"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-base64-decode-text-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-base64-decode-text-ref-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I base64 decode <textRef> as <name>
+  ```
+  <p>Base64 decodes the referenced text value and binds the result to the give name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to decode
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;name&gt;</code> is the name to bind the decoded value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the encoded data is "c29tZSBiaW5hcnkgZGF0YQ=="
+     When I base64 decode the encoded data as the decoded data
+     Then the decoded data should be "some binary data"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-base64-decode-text-ref-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+### Then
+
+<details id="text-ref-should-match-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <textRef> should[ not] <match> "<expression>"
+  ```
+  
+  <p>Checks whether or not the referenced text value matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to check
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>match regex</code> for regex match</li>
+        <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
+        <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {6}
+    Given the todo field can be located by class "new-todo"
+      And my todo list can be located by css ".todo-list"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter "Get the milk" in the todo field
+      And I capture my todo list as current items
+     Then current items should contain "Get the milk"
+  ```
+  
+  <div class="grid-3">
+    <div><Link to="#text-ref-should-match-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="text-ref-should-match-expression-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  <textRef> should[ not] <match> <expressionRef>
+  ```
+  
+  <p>Checks whether or not the value of a variable or setting matches a referenced expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;variable&gt;</code> is the name of the variable or setting to check</li>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>match regex</code> for regex match</li>
+        <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
+        <li><code>match template</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="https://github.com/gwen-interpreter/gwen/wiki/Template-Matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {7}
+    Given the todo field can be located by class "new-todo"
+      And my todo list can be located by css ".todo-list"
+      And my item is "Feed the cat"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter my item in the todo field
+      And I capture my todo list as current items
+     Then current items should contain my item
+  ```
+  
+  <div class="grid-3">
+    <div><Link to="#text-ref-should-match-expression-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="name-should-be-absent">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> should be absent
+  ```
+  <p>Checks that a named binding is absent from the current scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name of the binding to check</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    Then this should be absent
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-should-be-absent">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.6.0">v2.6.0</Link></div>
+  </div>
+</details>
+
 ## Web pages
 
 ### Given
@@ -2102,7 +2703,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   ```gherkin
   I capture the text in <element> by regex "<expression>" as <name>
   ```
-  <p>Catures text content from a web element using the given regex expression and binds it to the given name in the global scope.</p>
+  <p>Captures text content from a web element using the given regex expression and binds it to the given name in the global scope.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -2245,7 +2846,7 @@ We are still updating this page and will post more here soon. In the meantime, s
   ```gherkin
   I base64 decode <element>
   ```
-  <p>Base64 decodes the text in the given element and binds the result to the element name in the global scope.</p>
+  <p>Base64 decodes the text in the given element and binds the result to the same name in the global scope.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -2254,8 +2855,9 @@ We are still updating this page and will post more here soon. In the meantime, s
   <p>Example</p>
 
   ```gherkin {2}
-    Given the encoded field can be located by class "encoded"
-     When I base64 decode the encoded field
+    Given the data can be located by class "encoded-data"
+     When I base64 decode the data
+     Then the data should be "some binary data"
   ```
 
   <div class="grid-3">
@@ -2281,8 +2883,9 @@ We are still updating this page and will post more here soon. In the meantime, s
   <p>Example</p>
 
   ```gherkin {2}
-    Given the encoded field can be located by class "encoded"
-     When I base64 decode the encoded field as decoded value
+    Given the encoded data field can be located by class "encoded-data"
+     When I base64 decode the encoded data as the decoded data
+     Then the decoded data should be "some binary data"
   ```
 
   <div class="grid-3">
@@ -2974,6 +3577,38 @@ We are still updating this page and will post more here soon. In the meantime, s
   </div>
 </details>
 
+<details id="i-send-keys">
+  <summary class="dsl">
+
+  ```gherkin
+  I send "<keys>"
+  ```
+  <p>Sends a sequence of keys to the browser (for emulating keyboard shortcuts).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;keys&gt;</code> is a <code>,</code> or <code>+</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link>) separated list of keys to send.
+      <ul>
+        <li>Keys can be single keyboard characters or any supported <Link to="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/Keys.html">key constants</Link></li>
+        <li><i>Note:</i> Keys behave differently on different platforms</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+     When I navigate to "https://google.com"
+      And I send "COMMAND+t"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-send-keys">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.44.0">v2.44.0</Link></div>
+  </div>
+</details>
+
+
 ### Then
 
 <details id="i-should-have-1-open-browser">
@@ -3248,119 +3883,9 @@ We are still updating this page and will post more here soon. In the meantime, s
   </div>
 </details>
 
-## Waits
+## Sleeps and waits
 
-<details id="i-wait-for-element">
-  <summary class="dsl">
-
-  ```gherkin
-  I wait for <element>
-  ```
-  <p>Waits for an element to appear on a page for a default number of seconds before timing out.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {3}
-    # Wait for a dynamically rendered input field 
-    Given the dynamic input field can be located by tag "input"
-      And I wait for the dynamic input field
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-wait-for-element">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="i-wait-for-element-for-duration-seconds">
-  <summary class="dsl">
-
-  ```gherkin
-  I wait for <element> for <duration> second[s]
-  ```
-  <p>Waits for an element to appear on a page for a given number of seconds before timing out.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
-    <li><code>&lt;duration&gt;</code> is the number of seconds to wait before timing out</li>
-    <li>Include trailing <code>s</code> when specifying a <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {3}
-    # Wait for a dynamically rendered input field 
-    Given the dynamic input field can be located by tag "input"
-      And I wait for the dynamic input field for 3 seconds
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-wait-for-element-for-duration-seconds">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="i-wait-for-element-text">
-  <summary class="dsl">
-
-  ```gherkin
-  I wait for <element> text
-  ```
-  <p>Waits for the text of an element to appear on a page for a default number of seconds before timing out.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the name of the element to wait for the text to appear</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {3}
-    # Wait for a dynamically displayed token
-    Given the one time token can be located by javascript "$('.token').get(0)"
-      And I wait for the one time token text
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-wait-for-element-text">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="i-wait-for-element-text-for-duration-seconds">
-  <summary class="dsl">
-
-  ```gherkin
-  I wait for <element> text for <duration> second[s]
-  ```
-  <p>Waits for the text of an element to appear on a page for a given number of seconds before timing out.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the name of the element to wait for the text to appear</li>
-    <li><code>&lt;duration&gt;</code> is the number of seconds to wait before timing out</li>
-    <li>Include trailing <code>s</code> when specifying a <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {3}
-    # Wait for a dynamically displayed token
-    Given the one time token can be located by javascript "$('.token').get(0)"
-      And I wait for the one time token text for 3 seconds
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-wait-for-element-text-for-duration-seconds">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
+### Given
 
 <details id="i-wait-duration-seconds-when-element-is-actioned">
   <summary class="dsl">
@@ -3405,46 +3930,6 @@ We are still updating this page and will post more here soon. In the meantime, s
     <div><Link to="#i-wait-duration-seconds-when-element-is-actioned">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="i-wait-until-element-is-state">
-  <summary class="dsl">
-
-  ```gherkin
-  I wait until <element> is[ not] <state>
-  ```
-  <p>Waits for an element to transition to a given state.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
-    <li><code>not</code> negates the state if included</li>
-    <li><code>&lt;state&gt;</code> is one of:
-      <ul>
-        <li><code>displayed</code> to wait until the element is displayed</li>
-        <li><code>hidden</code> to wait until the element is not displayed</li>
-        <li><code>checked</code> (or <code>ticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to wait until a checkbox is ticked</li>
-        <li><code>unchecked</code> (or <code>unticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to wait until a checkbox is not ticked</li>
-        <li><code>enabled</code> to wait until the element is enabled</li>
-        <li><code>disabled</code> to wait until the element is disabled</li>
-      </ul>
-    </li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {5}
-    Given my todo list can be located by css ".todo-list"
-      And the todo field can be located by class "new-todo"
-     When I navigate to "https://todomvc.com/examples/react"
-      And I enter "Get the milk" in the todo field
-      And I wait until my todo list is displayed
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-wait-until-element-is-state">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.25.0">v2.25.0</Link></div>
   </div>
 </details>
 
@@ -3494,6 +3979,164 @@ We are still updating this page and will post more here soon. In the meantime, s
     <div><Link to="#i-wait-until-condition-when-element-is-actioned">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+### When
+
+<details id="i-wait-for-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for <element>
+  ```
+  <p>Waits for an element to appear on a page for a default number of seconds before timing out.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # Wait for a dynamically rendered input field 
+    Given the dynamic input field can be located by tag "input"
+     When I wait for the dynamic input field
+     Then the dynamic input field should be displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-for-element-for-duration-seconds">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for <element> for <duration> second[s]
+  ```
+  <p>Waits for an element to appear on a page for a given number of seconds before timing out.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
+    <li><code>&lt;duration&gt;</code> is the number of seconds to wait before timing out</li>
+    <li>Include trailing <code>s</code> when specifying a <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # Wait for a dynamically rendered input field 
+    Given the dynamic input field can be located by tag "input"
+     When I wait for the dynamic input field for 3 seconds
+     Then the dynamic input field should be displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-element-for-duration-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-for-element-text">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for <element> text
+  ```
+  <p>Waits for the text of an element to appear on a page for a default number of seconds before timing out.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for the text to appear</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # Wait for a dynamically displayed token
+    Given the one time token can be located by javascript "$('.token').get(0)"
+     When I wait for the one time token text
+      And I capture the one time token
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-element-text">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-for-element-text-for-duration-seconds">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for <element> text for <duration> second[s]
+  ```
+  <p>Waits for the text of an element to appear on a page for a given number of seconds before timing out.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for the text to appear</li>
+    <li><code>&lt;duration&gt;</code> is the number of seconds to wait before timing out</li>
+    <li>Include trailing <code>s</code> when specifying a <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # Wait for a dynamically displayed token
+    Given the one time token can be located by javascript "$('.token').get(0)"
+     When I wait for the one time token text for 3 seconds
+      And I capture the one time token
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-element-text-for-duration-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-element-is-state">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <element> is[ not] <state>
+  ```
+  <p>Waits for an element to transition to a given state.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
+    <li><code>not</code> negates the state if included</li>
+    <li><code>&lt;state&gt;</code> is one of:
+      <ul>
+        <li><code>displayed</code> to wait until the element is displayed</li>
+        <li><code>hidden</code> to wait until the element is not displayed</li>
+        <li><code>checked</code> (or <code>ticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to wait until a checkbox is ticked</li>
+        <li><code>unchecked</code> (or <code>unticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to wait until a checkbox is not ticked</li>
+        <li><code>enabled</code> to wait until the element is enabled</li>
+        <li><code>disabled</code> to wait until the element is disabled</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given my todo list can be located by css ".todo-list"
+      And the todo field can be located by class "new-todo"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I enter "Get the milk" in the todo field
+      And I wait until my todo list is displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-element-is-state">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.25.0">v2.25.0</Link></div>
   </div>
 </details>
 
@@ -3830,6 +4473,72 @@ We are still updating this page and will post more here soon. In the meantime, s
     <div><Link to="#i-wait-duration-seconds">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+## Setting overrides
+
+### Given
+
+<details id="my-name-setting-is-value">
+  <summary class="dsl">
+
+  ```gherkin
+  my <name> setting is "<value>"
+  ```
+  <p> Sets or overrides a <Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwen-web-settings">Gwen setting</Link>.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is name of the setting to set</li>
+    <li><code>&lt;value&gt;</code> is the value to set</li>
+  </ul>
+  <p>Notes</p>
+  <ul>
+    <li>As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.21.0">v2.21.0</Link>, this DSL stores all values as thread local settings (instead of system properties).
+      <ul>
+        <li>This supports different settings for different features in the case of parallel execution.</li>
+        <li>Settings loaded from properties files and system properties at startup time are not replaced, but can be overridden with values set here.</li>
+        <li>Setting arbitrary system properties (that is: non Gwen settings that do not start with <code>gwen.</code>) is not supported.</li>
+      </ul>
+    </li>
+    <li>Prior to <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.21.0">v2.21.0</Link>, this DSL stored all values as JVM-global system properties and caution was advised because race conditions could occur if multiple features changed the same system property.</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    Given my gwen.web.useragent setting is "I am robot"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#my-name-setting-is-value">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-reset-my-name-setting">
+  <summary class="dsl">
+
+  ```gherkin
+  I reset my <name> setting
+  ```
+  <p> Resets a <Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwen-web-settings">Gwen setting</Link> to remove a previous override.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;setting&gt;</code> is name of the setting to reset</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    Given I reset my gwen.web.useragent setting
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-reset-my-name-setting">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.21.0">v2.21.0</Link></div>
   </div>
 </details>
 
