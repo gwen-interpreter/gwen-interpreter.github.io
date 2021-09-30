@@ -2205,7 +2205,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </ul>
   <p>Example</p>
 
-  ```gherkin {3}
+  ```gherkin {4}
     Given the todo field can be located by class "new-todo"
       And my item is "Walk the dog"
      When I navigate to "https://todomvc.com/examples/react"
@@ -2677,7 +2677,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   ```gherkin {5}
     Given the box can be located by xpath "//*[@id='credit2']/a"
       And the cell can be located by xpath "//*[@id='bank']/li"
-	   When I navigate to "http://demo.guru99.com/test/drag_drop.html"
+     When I navigate to "http://demo.guru99.com/test/drag_drop.html"
       And I capture the box as the box text
       And I drag and drop the box to the cell
      Then the cell should contain "${the box text}"
@@ -4720,7 +4720,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </ul>
   <p>Example</p>
 
-  ```gherkin {1,2}
+  ```gherkin
     When I execute system process "echo 'Hello Gwen World'"
      And I execute system process "path/to/script.bat"
   ```
@@ -4751,7 +4751,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </ul>
   <p>Example</p>
 
-  ```gherkin {1}
+  ```gherkin
     When I execute system process "echo,"quoted text " and orphan quote"" delimited by ","
   ```
 
@@ -4807,7 +4807,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </ul>
   <p>Example</p>
 
-  ```gherkin {1}
+  ```gherkin
     When I execute a unix system process "echo,"quoted text " and orphan quote"" delimited by ","
   ```
 
@@ -4912,6 +4912,11 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
     <li><code>&lt;updateStmt&gt;</code> is the SQL update statement to execute (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
   </ul>
 
+  <p>Returns</p>
+  <ul>
+    <li><code>&lt;dbName&gt; rows affected</code> = the number of rows affected by the update</li>
+  </ul>
+
   <p>Configuration</p>
   <ul>
     <li>The GWEN_CLASSPATH <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings#environment-variables">environment variable</Link> must be set to include a path to the JDBC driver JAR</li>
@@ -4919,10 +4924,6 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
     <li>A <code>gwen.db.&lt;dbName&gt;.url</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the JDBC URL of the database</li>
   </ul>
 
-  <p>Returns</p>
-  <ul>
-    <li><code>&lt;dbName&gt; rows affected</code> = the number of rows affected by the update</li>
-  </ul>
   <p>Example</p>
 
   ```gherkin
@@ -5820,7 +5821,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
   </ul>
   <p>Example</p>
 
-  ```gherkin {12}
+  ```gherkin {12,13}
     Given the search field can be located by name "q"
       And topic is "Automation Bindings"
       And topic link can be located by partial link text "${topic}"
@@ -5833,7 +5834,7 @@ Use DSL steps in your meta to compose StepDefs. Although it's possible to use th
      When I navigate to "https://google.com"
       And I enter "gwen automation" in the search field
       And I click topic link if topic found
-     Then the page title should contain "${topic}"
+     Then the page title should contain "${topic}" if topic found
   ```
 
   <div class="grid-3">
