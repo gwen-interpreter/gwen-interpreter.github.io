@@ -54,18 +54,18 @@ import TabItem from '@theme/TabItem';
   ```properties
   gwen.associative.meta
   ```
-  <p>Controls whether or not same named feature and meta files in a directory (excluding file extensions) are to be exclusively associated with each other only.</p>
+  <p>Controls whether or not same named feature and meta files in a directory are to be exclusively associated with each other.</p>
   </summary>
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to enable association
       <ul>
-        <li>Gwen will load a discovered meta file only if it has the same name and is in the same directory of the feature currently being executed.</li>
+        <li>Gwen will load a discovered meta file only if it has the same name and is in the same directory as the current feature being executed.</li>
       </ul>
     </li>
     <li><code>false</code> to disable association
       <ul>
-        <li>Gwen will unconditionally load every meta file discovered in the path to the feature being executed.</li>
+        <li>Gwen will unconditionally load every meta file discovered in the path to the current feature being executed.</li>
       </ul>
     </li>
   </ul>
