@@ -1,0 +1,70 @@
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Configuration Overview
+
+## Settings files
+
+Settings are maintained in properties files and are used to configure runtime aspects.
+
+## Precedence
+
+<Tabs
+  groupId="setup"
+  defaultValue="standalone"
+  values={[
+    {label: 'Standalone', value: 'standalone'},
+    {label: 'Gwen Workspace', value: 'workspace'},
+    {label: 'JS Project', value: 'js'},
+  ]}>
+
+<TabItem value="standalone">
+
+Settings are loaded in the following order of precedence:
+
+1. Overriding `-Dname=value` pairs passed to the [CLI Launcher](/docs/cli/launcher)
+2. User properties
+    - `gwen.properties` file in your local user home directory
+3. Launch properties 
+    - Comma separacted list of properties files passed to the [CLI Launcher](/docs/cli/launcher) via the `-p` or `--properties` launch option. These are loaded in the order specified with the files at the start of the list overriding those at the end.
+4. Global properties
+   - `gwen/gwen.properties` file in the user home directory
+
+</TabItem>
+
+<TabItem value="workspace">
+
+Settings are loaded in the following order of precedence:
+
+:::caution Deprecated
+
+[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) were introduced in Gwen 2 and will be unsupported in Gwen 3+ in favor of JS projects.
+
+:::
+
+1. Overriding `-Dname=value` pairs passed to the [CLI Launcher](/docs/cli/launcher)
+2. User properties
+    - `gwen.properties` file in your local user home directory
+3. Launch properties 
+    - Comma separacted list of properties files passed to the [CLI Launcher](/docs/cli/launcher) via the `-p` or `--properties` launch option. These are loaded in the order specified with the files at the start of the list overriding those at the end.
+4. Workspace properties
+    - `gwen.properties` file in the root Gwen working directory
+5. Global properties
+   - `gwen/gwen.properties` file in the user home directory
+
+</TabItem>
+
+<TabItem value="js">
+
+Settings are loaded in the following order of precedence:
+
+:::info Coming to Gwen 3
+
+Support for JS projects coming soon to Gwen 3.
+
+:::
+
+</TabItem>
+
+</Tabs>

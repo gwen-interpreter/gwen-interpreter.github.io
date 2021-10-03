@@ -1,0 +1,56 @@
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Configuration Settings
+
+## Core Settings
+
+### Assertions
+
+<details id="gwen-assertion-mode">
+  <summary class="setting">
+
+  ```properties
+  gwen.assertion.mode
+  ```
+  <p>Controls whether or not hard, soft or sustained assertions are enabled.</p>
+  </summary>
+  <p>Supported values:</p>
+  <ul>
+    <li><code>hard</code> (default) to halt feature execution on the first assertion error and report failure</li>
+    <li><code>soft</code> to collect all assertion errors and continue execution whilst reporting failures</li>
+    <li><code>sustained</code> to collect all assertion errors and continue execution without reporting failures</li>
+  </ul>
+  
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties file', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.assertion.mode = hard
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-assertion-mode">Link</Link></div>
+    <div align="center"><Link to="https://github.com/gwen-interpreter/gwen/wiki/Assertion-Modes">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.18.0">v2.18.0</Link></div>
+  </div>
+</details>
+
+:::info We're migrating our docs
+
+We're currently migrating this page and will post more settings here as we go. In the meantime, you can view the complete settings documentation on our Wiki below:
+
+- [Runtime Settings](https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings)
+
+:::

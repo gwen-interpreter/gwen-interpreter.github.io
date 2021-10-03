@@ -36,6 +36,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   top: 1.3rem !important;
 }
 
+.setting:before {
+  top: 1.3rem !important;
+}
+
 a,details {
   scroll-margin-top: 3.8em;
 }
