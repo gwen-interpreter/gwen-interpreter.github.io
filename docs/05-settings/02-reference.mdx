@@ -842,6 +842,48 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
+<details id="gwen-web-browser-size">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.browser.size
+  ```
+  <p>Sets the size of the browser window.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>String of format <code>&lt;width&gt; x &lt;height&gt;</code>, where:
+      <ul>
+        <li><code>&lt;width&gt;</code> is a positive integer denoting the desired width</li>
+        <li><code>&gt;height&gt;</code> is a positive integer denoting the desired height</li>
+      </ul>
+    </li>
+  </ul>
+  <p>This setting is only applied if <Link to="/docs/settings/reference#gwen-web-maximize"><code>gwen.web.maximize</code></Link> is false.</p>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.browser.size = 1200x800
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-browser-size">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.27.0">v2.27.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-web-capability-name">
   <summary class="setting">
 
@@ -880,6 +922,535 @@ import TabItem from '@theme/TabItem';
     <div><Link to="#gwen-web-capability-name">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.15.0">v2.15.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-capture-screenshots">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.capture.screenshots
+  ```
+  <p>Controls whether or not to capture screenshots and generate slideshow.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable</li>
+    <li><code>false</code> to disable</li>
+  </ul>
+  Default value: <code>false</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.capture.screenshots = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-capture-screenshots">Link</Link></div>
+    <div align="center"><Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Screenshot-Capture-and-Slideshows">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-capture-screenshots-highlighting">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.capture.screenshots.highlighting
+  ```
+  <p>Controls whether or not to capture screenshots of element highlighting (in addition to standard screenshots).</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable</li>
+    <li><code>false</code> to disable</li>
+  </ul>
+  Default value: <code>false</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.capture.screenshots.highlighting = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-capture-screenshots-highlighting">Link</Link></div>
+    <div align="center"><Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Screenshot-Capture-and-Slideshows">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-capture-screenshots-duplicates">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.capture.screenshots.duplicates
+  ```
+  <p>Controls whether or not consecutively identical screenshots should be captured or discarded.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to keep duplicates</li>
+    <li><code>false</code> to discard duplicates</li>
+  </ul>
+  Default value: <code>false</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.capture.screenshots.duplicates = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-capture-screenshots-duplicates">Link</Link></div>
+    <div align="center"><Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Screenshot-Capture-and-Slideshows">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-highlight-style">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.highlight.style
+  ```
+  <p>Sets the HTML styling used to highlight elements that Gwen interacts with.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>HTML style strings</li>
+  </ul>
+  Default value: <code>background: yellow; border: 2px solid gold;</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.highlight.style = background: yellow; border: 2px solid gold;
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-highlight-style">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-implicit-element-focus">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.implicit.element.focus
+  ```
+  <p>Controls whether or not Gwen should move the focus onto elements before interacting with them.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable auto focus</li>
+    <li><code>false</code> to disable auto focus</li>
+  </ul>
+  Default value: <code>true</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.implicit.element.focus = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-implicit-element-focus">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.22.0">v2.22.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-implicit-js-locators">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.implicit.js.locators
+  ```
+  <p>Controls whether or not Gwen should implicitly convert all locators to JavaScript (for greater reliability with web pages that dynamically display or render elements and manipulate the DOM).</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable</li>
+    <li><code>false</code> to disable</li>
+  </ul>
+  Default value: <code>false</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.implicit.js.locators = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-implicit-js-locators">Link</Link></div>
+    <div align="center"><Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Implicit-JavaScript-Locators">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-locator-wait-seconds">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.locator.wait.seconds
+  ```
+  <p>Sets the maximum number of seconds that Gwen should wait when locating web elements before timing out.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A positive integer denoting a number of seconds</li>
+  </ul>
+  Default value: <Link to="/docs/settings/reference#gwen-web-wait-seconds"><code>gwen.web.wait.seconds</code></Link> or 10 if not configured
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.locator.wait.seconds = 10
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-locator-wait-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-maximize">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.maximize
+  ```
+  <p>Controls whether or not the web driver should maximize the browser window.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to maximize</li>
+    <li><code>false</code> to not maximize</li>
+  </ul>
+  Default value: <code>false</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.maximize = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-maximize">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-remote-localFileDetector">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.remote.localFileDetector
+  ```
+  <p>Controls whether or not the local file detector on remote web driver will be enabled.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable</li>
+    <li><code>false</code> to disable</li>
+  </ul>
+  Default value: <code>false</code>
+  <p><br/>This setting is ignored if <Link to="/docs/settings/reference#gwen-web-remote-url"><code>gwen.web.remote.url</code></Link> is not set.</p>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.remote.localFileDetector = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-remote-localFileDetector">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.44.0">v2.44.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-sendKeys-clearFirst">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.sendKeys.clearFirst
+  ```
+  <p>Controls whether or not Gwen will clear input fields before sending keys to them.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to clear first</li>
+    <li><code>false</code> to not clear first</li>
+  </ul>
+  Default value: <code>false</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.sendKeys.clearFirst = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-sendKeys-clearFirst">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.31.0">v2.31.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-sendKeys-clickFirst">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.sendKeys.clickFirst
+  ```
+  <p>Controls whether or not Gwen will click input fields before sending keys to them.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to click first</li>
+    <li><code>false</code> to not click first</li>
+  </ul>
+  Default value: <code>false</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.sendKeys.clickFirst = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-sendKeys-clickFirst">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.43.0">v2.43.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-throttle-msec">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.throttle.msec
+  ```
+  <p>Sets the number of milliseconds to wait between web driver interactions. Also directly controls web element highlighting duration. This enables you to fine tune the execution speed to suit high or low performing websites.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A positive integer denoting a number of milliseconds. Set to zero for maxmum speed with no highlighting.</li>
+  </ul>
+  Default value: <code>100</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.throttle.msec = 100
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-throttle-msec">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-useragent">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.useragent
+  ```
+  <p>Sets the user agent header in the browser to the literal string value assigned.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>User agent string</li>
+  </ul>
+  <p>Example</p>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.useragent = Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-useragent">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-wait-seconds">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.wait.seconds
+  ```
+  <p>Sets the default maximum number of seconds that Gwen should wait for time senstive operations before timing out.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A positive integer denoting a number of seconds</li>
+  </ul>
+  Default value: <code>10</code>
+  <p><br />This value will also be used as the locator timeout unless <Link to="/docs/settings/reference#gwen-web-locator-wait-seconds"><code>gwen.web.locator.wait.seconds</code></Link> is set to a different value.</p>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.wait.seconds = 10
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-wait-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
@@ -1042,7 +1613,6 @@ import TabItem from '@theme/TabItem';
     gwen.web.chrome.mobile.height     = 640
     gwen.web.chrome.mobile.pixelRatio = 3.0
     gwen.web.chrome.mobile.touch      = true
-    gwen.web.chrome.mobile.userAgent  = Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19
   ```
 
   </TabItem>
@@ -1547,6 +2117,45 @@ import TabItem from '@theme/TabItem';
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.20.0">v2.20.0</Link></div>
   </div>
 </details>
+
+<details id="gwen-web-suppress-images">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.suppress.images
+  ```
+  <p>Controls whether or not image rendering should be suppressed in the browser (firefox only).</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to suppress</li>
+    <li><code>false</code> to not suppress</li>
+  </ul>
+  Default value: <code>false</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.web.suppress.images = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-suppress-images">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
 
 :::info We're migrating our docs
 
