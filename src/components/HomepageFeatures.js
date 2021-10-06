@@ -18,7 +18,7 @@ const FeatureList = [
     Svg: require('../../static/img/gwen-meta.svg').default,
     description: (
       <>
-        Compose <Link to="https://github.com/gwen-interpreter/gwen/wiki/Meta-Features">meta specs</Link> to describe what your feature specs will execute.
+        Compose <Link to="/docs/meta-specs">meta specs</Link> to describe what your feature specs will execute.
       </>
     ),
   },

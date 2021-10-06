@@ -1,0 +1,417 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Meta Specs
+
+Meta specs are [Gherkin](https://cucumber.io/docs/gherkin/reference/) specs that describe how feature steps will execute and are the automation glue in Gwen. They define all the step definitions and bindings required for automation and attach to features at runtime.
+
+## @StepDefs
+
+### Composable step definitions
+
+Step definitions are defined as <code>@StepDef</code> annotated [Scenarios](https://cucumber.io/docs/gherkin/reference/#example) with names that map to feature steps and bodies that call out to one or many [DSL steps](/docs/dsl/overview) to perform operations.
+
+:::tip
+
+Put all your step definitions in meta to keep your features clean and free of automation concerns.
+
+:::
+
+Consider the following feature step:
+
+:::note Feature Step
+
+*File: features/todo.feature*
+
+```gherkin
+  Given a new todo list
+```
+
+:::
+
+A step definition for executing this could be defined in meta as follows:
+
+:::note StepDef
+
+*File: features/todo.meta*
+
+```gherkin {2-3}
+  @Context
+  @StepDef
+  Scenario: a new todo list
+      Given my todo list can be located by css ".todo-list"
+       When I navigate to "${todo.page.url}"
+       Then the page title should contain "TodoMVC"
+        And my todo list should be hidden
+```
+
+Calls DSL steps:
+
+- [`<element> can be located by <selector> "<expression>"`](/docs/dsl/reference#element-can-be-located-by-selector-expression)
+- [`I navigate to "<url>"`](/docs/dsl/reference#i-navigate-to-url)
+- [`the page title should[ not] <match> "<expression>"`](/docs/dsl/reference#the-page-title-should-match-expression)
+- [`<element> should[ not] be <state>`](/docs/dsl/reference#element-should-be-state)
+
+:::
+
+Notice how the name of the StepDef matches the feature step exactly. This is how step definitions bind to feature steps in Gwen; by name. Notice also that the body calls out to 4 DSL steps to perform the desired operations. Composing StepDefs in this manner is all you to do to make your features executable with Gwen.
+
+### StepDefs with parameters
+
+StepDefs can also be declared to accept parameters using one or more `<param-name>` placeholders in the declared name as follows:
+
+:::note Feature Step
+
+```gherkin
+  Then the list will contain 2 items
+```
+
+:::
+
+:::note StepDef with a parameter
+
+```gherkin {2-3,5}
+  @Assertion
+  @StepDef
+  Scenario: the list will contain <expected-count> items
+      Given the displayed count can be located by css ".todo-count strong"
+       Then the displayed count should be "$<expected-count>"
+```
+
+Calls DSL steps:
+
+- [`<element> can be located by <selector> "<expression>"`](/docs/dsl/reference#element-can-be-located-by-selector-expression)
+- [`<textRef> should[ not] <match> "<expression>"`](/docs/dsl/reference#text-ref-should-match-expression)
+
+:::
+
+Here the name of the StepDef matches the feature step when the value <code>2</code> (in the feature step) is substituted in place of `<expected-count>` in the name of the StepDef. This is how parameters are passed to StepDefs in Gwen; by substitution. The last step in the body dereferences the parameter value as `$<expected-count>`.
+
+## Meta Load Strategies
+
+### Default Strategy
+
+The default strategy will, for every feature:
+1. Auto discover and unconditionally load all the meta in the path to the feature
+2. Execute the feature
+
+---
+
+If you have your meta and feature files in a directory structure as follows:
+
+```
+/features
+ ├── todo.meta
+ ├── todo.feature
+ ├── /dir1
+ │    ├── todo1.meta
+ │    ├── todo1.feature
+ │    └── todo1a.feature
+ └── /dir2
+     ├── todo2.meta
+     ├── todo2.feature
+     └── /dir3
+         └── todo3.feature
+```
+
+When you launch Gwen to execute on the `features` directory, the default strategy will:
+
+- Load `todo.meta` and execute `todo.feature`
+- Load `todo.meta` and `todo1.meta` and execute `todo1.feature`
+- Load `todo.meta` and `todo1.meta` and execute `todo1a.feature`
+- Load `todo.meta` and `todo2.meta` and execute `todo2.feature`
+- Load `todo.meta` and `todo2.meta` and execute `todo3.feature`
+
+When you launch Gwen to execute on the `features/dir1` directory, the default strategy will:
+
+- Load `todo.meta` and `todo1.meta` and execute `todo1.feature`
+- Load `todo.meta` and `todo1.meta` and execute `todo1a.feature`
+
+When you launch Gwen to execute the `features/dir2/todo2.feature` file, the default strategy will:
+
+- Load `todo.meta` and `todo2.meta` and execute `todo2.feature`
+
+### Associative Strategy
+
+When [associative meta](/docs/settings/reference#gwen-associative-meta) is enabled, a meta file is considered to be associated with a feature file if the two files are in the same directory and have the same names excluding file extensions. The associative strategy will, for every feature:
+1. Auto discover all the meta files in the path to the feature file and only load those that are either:
+    - Not associated with any feature (one or many)
+    - Associated with the current feature (one or none)
+2. Execute the feature
+
+---
+
+If you have your meta and feature files in a directory structure as follows:
+
+```
+/features
+ ├── todo.meta
+ ├── todo.feature
+ ├── /dir1
+ │    ├── todo1.meta
+ │    ├── todo1.feature
+ │    └── todo1a.feature
+ └── /dir2
+     ├── todo2.meta
+     ├── todo2.feature
+     └── /dir3
+         └── todo3.feature
+```
+
+When you launch Gwen to execute on the `features` directory, the associative strategy will:
+
+- Load `todo.meta` and execute `todo.feature`
+- Load `todo.meta` and `todo1.meta` and execute `todo1.feature`
+- Load `todo.meta` and execute `todo1a.feature`
+- Load `todo.meta` and `todo2.meta` and execute `todo2.feature`
+- Load `todo.meta` and execute `todo3.feature`
+
+When you launch Gwen to execute on the `features/dir1` directory, the associative strategy will:
+
+- Load `todo.meta` and `todo1.meta` and execute `todo1.feature`
+- Load `todo.meta` and execute `todo1a.feature`
+
+When you launch Gwen to execute the `features/dir2/todo2.feature` file, the associative strategy will:
+
+- Load `todo.meta` and execute `todo2.feature`
+
+### External Strategy
+
+The external strategy enables you to manage common and reusable meta files in separate directory external to you your features. How you name your meta files or how you structure the directory does not matter. This strategy can be used in conjunction with any other meta load strategy.
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+To load a single meta file from an external directory, use the `-m/--meta` [CLI option](/docs/cli/launcher#options-and-usage) and specify the path to the meta file:
+
+```shell
+./gwen features -m external-meta/common.meta
+```
+
+To recursively load all meta files in an external directory:
+
+```shell
+./gwen features -m external-meta
+```
+
+</TabItem>
+
+<TabItem value="windows">
+
+To load a single meta file from an external directory, use the `-m/--meta` [CLI option](/docs/cli/launcher#options-and-usage) and specify the path to the meta file:
+
+```shell
+gwen features -m external-meta\common.meta
+```
+
+To recursively load all meta files in an external directory:
+
+```shell
+gwen features -m external-meta
+```
+
+</TabItem>
+
+</Tabs>
+
+### Import Strategy
+
+The import strategy enables you to selectively import one or more meta files into your feature files and have them load automatically without you having to specify their locations using `-m/--meta` [CLI option](/docs/cli/launcher#options-and-usage) on every launch. This is useful for cases where you have many reusable meta files and it is not practical to load all of them for every feature file.
+
+:::caution
+
+When using this strategy, it is important to ensure that the meta files you want to import are not located in or under any directories containing your feature files. This is to prevent them from being auto-loaded by the default strategy. Similarly, they should also not reside in any directories containing meta files loaded by the external strategy if you are using that in conjunction with this strategy.
+
+:::
+
+The import strategy can be used to avoid redundant meta loads and improve performance and scalability in extreme cases where all your common meta combined exceeds or approaches 500 KB in size (that is: when you have LOTS of common meta).
+
+For example, say you have many meta files in a directory:
+
+```
+/meta
+ ├── module-1.meta
+ ├── module-2.meta
+ ├── module-3.meta
+ │    ..
+ ├── module-n.meta
+ ├── /dir1
+ │   ├── submodule-1.meta
+ │   ├── submodule-2.meta
+ │   ├── submodule-3.meta
+ │   │    ..
+ │   └── submodule-n.meta
+ │
+/features
+ ├── spec-1.feature
+ ├── spec-2.feature
+ ├── spec-3.feature
+ │    ..
+ └── spec-n.feature
+```
+
+To load only one common meta file when executing a feature with the external meta strategy, you would have to explicitly specify which one to load using the `-m/--meta` CLI option as follows:
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+```shell
+./gwen -m meta/module-1.meta features/spec-1.feature
+```
+
+</TabItem>
+
+<TabItem value="windows">
+
+```shell
+gwen -m meta\module-1.meta features\spec-1.feature
+```
+
+</TabItem>
+
+</Tabs>
+
+Having to remember exactly which meta to load for which features is impractical and blindly loading all meta files to execute a feature that only requires one or some of them is wasteful.
+
+With meta imports, you can do away with having to use the `-m/--meta` option altogether by adding an `@Import("path/to/file.meta")` annotation to the top of each feature file. For example, we could declare precisely what meta the `feautre/spec-1.feature` file should load by specifying an import annotation in that feature file itself as follows:
+
+*File: /features/spec-1.feature*
+
+```gherkin
+  @Import("meta/module-1.meta")
+  Feature: feature 1
+
+
+  Scenario: ..
+      Given ..
+       When ..
+       Then ..
+  ..
+```
+
+Now we can invoke Gwen on the feature only without having to explicitly specify the meta on the command line:
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+```shell
+./gwen features/spec-1.feature
+```
+
+</TabItem>
+
+<TabItem value="windows">
+
+```shell
+gwen features\spec-1.feature
+```
+
+</TabItem>
+
+</Tabs>
+
+Gwen will implicitly load the meta file specified in the import annotation only before executing the feature.
+
+You can add any number of meta imports to a feature. The following example imports two meta files:
+
+*File: /features/spec-2.feature*
+
+```gherkin
+  @Import("meta/module-1.meta")
+  @Import("meta/module-2.meta")
+  Feature: feature 2
+
+
+  Scenario: ..
+      Given ..
+       When ..
+       Then ..
+  ..
+```
+
+You can also chain (or link together) meta imports across meta files. For example, if the `module-2.meta` should always require `module-1.meta`, then you can import the latter into the former:
+
+*File: /features/module-2.meta*
+
+```gherkin
+  @Import("meta/module-1.meta")
+  Feature: meta 2
+
+
+  @StepDef
+  Scenario: ..
+      Given ..
+       When ..
+       Then ..
+  ..
+```
+
+Now any feature that imports `module-2.meta` will also implicitly import `module-1.meta`.
+
+*File: /features/spec-3.feature*
+
+```gherkin
+  @Import("meta/module-2.meta")
+  Feature: feature 3
+
+
+  Scenario: ..
+      Given ..
+       When ..
+       Then ..
+  ..
+```
+
+Both `meta/module-1.meta` and `meta\/module-2.meta` will be loaded (in that order) by Gwen before executing the `features/test-3.feature` file without you having to specify any meta paths on the command line.
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+```shell
+./gwen features/spec-3.feature
+```
+
+</TabItem>
+
+<TabItem value="windows">
+
+```shell
+gwen features\spec-3.feature
+```
+
+</TabItem>
+
+</Tabs>
+
+The path to the meta file in all import annotations can be absolute or relative to the directory where Gwen is invoked. If a recursive (or cyclic) import is detected in an import chain, Gwen will report it by throwing an exception with a message identifying the offending import and the file that it was declared in.
+
+Meta loaded through the import strategy get last precedence and therefore can be overridden by meta files loaded through any of the other meta load strategies.
