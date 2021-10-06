@@ -92,7 +92,7 @@ Here the name of the StepDef matches the feature step when the value <code>2</co
 
 ### Associative Strategy
 
-When [associative meta](/docs/settings/reference#gwen-associative-meta) is enabled, a meta file is considered to be associated with a feature file if the two files are in the same directory and have the same names excluding file extensions. The associative strategy will, for every feature:
+When [associative meta](/docs/settings/reference#gwen-associative-meta) is enabled, a meta and feature file are considered to be associated with each other if the two files are in the same directory and have the same names (excluding their file extensions). The associative strategy will, for every feature:
 1. Auto discover all the meta files in the path to the feature file and only load those that are either:
     - Not associated with any feature (one or many)
     - Associated with the current feature (one or none)
@@ -254,7 +254,7 @@ With [associative meta](/docs/meta-specs#associative-strategy) enabled, you can 
 
 :::tip Use imports in associative meta
 
-Although it's possible to specify imports directly in feature files, we do not recommend you doing so since it would introduce automation concerns into your features. Confining imports to associative meta instead will keep your features clean and untouched.
+Although it's possible to specify imports directly in feature files, we do not recommend you doing so since it would introduce automation concerns into your features. Confining imports to associative meta instead will keep your features clean and untouched. You must enable [associative meta](/docs/settings/reference#gwen-associative-meta) to use this approach (note that this setting will be enabled by default in the upcoming Gwen 3 release).
 
 :::
 
