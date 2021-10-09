@@ -362,7 +362,7 @@ The `-b` (or `--batch`) switch tells Gwen to exit immediately after executing th
 
 :::
 
-See also the [HTML evaluation reports](https://github.com/gwen-interpreter/gwen/wiki/Evaluation-Reports) generated in the output directory too.
+See also the [HTML reports](/docs/reports/html) generated in the output directory too.
 
 ## Share project
 
