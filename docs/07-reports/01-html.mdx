@@ -1,3 +1,4 @@
+
 import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -5,12 +6,6 @@ import TabItem from '@theme/TabItem';
 # HTML Reports
 
 Pretty HTML reports capture evaluated results and statistics.
-
-![Example HTML report](/img/reports/sample-html-report.png)
-
-[StepDefs](/docs/meta-specs#stepdefs) are inlined and can be expanded by hovering over steps with the mouse and clicking them in the report.
-
-![Example HTML report](/img/reports/sample-html-report-expanded.png)
 
 ## Generate HTML report
 
@@ -127,73 +122,10 @@ Support for JS projects coming soon to Gwen 3.
 
 </Tabs>
 
-## Screenshots and slideshows
+![Example HTML report](/img/reports/sample-html-report.png)
 
-Gwen can capture screenshots and generate slideshows in HTML reports to create the illusion of video. To get the slideshow in your report, you will need to enable screen capture by setting either or both of the following [Gwen settings](docs/settings/overview):
+### Expand Step Defs
 
-- [`gwen.web.capture.screenshots`](/docs/settings/reference#gwen-web-capture-screenshots)
-  - Set to `true` to capture screenshots
-- [`gwen.web.capture.screenshots.highlighting`](/docs/settings/reference#gwen-web-capture-screenshots-highlighting)
-  - Set to `true` to capture element highlighting screenshots
+[StepDefs](/docs/meta-specs#stepdefs) are inlined and can be expanded by hovering over steps with the mouse and clicking them in the report.
 
-<Tabs
-  groupId="config"
-  defaultValue="properties"
-  values={[
-    {label: 'gwen.properties', value: 'properties'}
-  ]}>
-
-  <TabItem value="properties">
-
-  To include both standard and element highligthing screenshots:
-
-  ```properties
-    gwen.web.capture.screenshots = true
-    gwen.web.capture.screenshots.highlighting = true
-  ```
-
-  To include standard screenshots only:
-
-  ```properties
-    gwen.web.capture.screenshots = true
-    gwen.web.capture.screenshots.highlighting = false
-  ```
-
-  To include element highlighting screenshots only:
-
-  ```properties
-    gwen.web.capture.screenshots = false
-    gwen.web.capture.screenshots.highlighting = true
-  ```
-
-  To not capture any screenshots or generate slideshow:
-
-  ```properties
-    gwen.web.capture.screenshots = false
-    gwen.web.capture.screenshots.highlighting = false
-  ```
-
-  </TabItem>
-
-</Tabs>
-
-
-
-:::caution
-
-Expect some performance ovehead when turning on screenshot capture.
-
-:::
-
-Captured screenshot attachments will now appear next to each step in the gnerated HTML report and a Slideshow button will be displayed in the status header bar at the top.
-
-
-![Example HTML report](/img/reports/sample-html-slideshow-1.png)
-
-Clicking the "Slideshow" button will open the slideshow in a popup box enabling you to navigate and play screenshot frames at different speeds.
-
-![Example HTML report](/img/reports/sample-html-slideshow-2.png)
-
-Clicking the "Full Screen" link will pull the slideshow out of the popup enabling you to view it in full size.
-
-![Example HTML report](/img/reports/sample-html-slideshow-3.png)
+![Example HTML report](/img/reports/sample-html-report-expanded.png)
