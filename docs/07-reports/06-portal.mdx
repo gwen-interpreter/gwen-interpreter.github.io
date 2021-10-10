@@ -1,0 +1,214 @@
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Report Portal
+
+Gwen provides seamless integration with [report portal](https://reportportal.io/) for centralised reporting and analytics.
+
+## Configure settings
+
+Configure the following mandatory [settings](/docs/settings/overview):
+
+<Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+  rp.endpoint = http://<host>:<port>
+  rp.uuid = <api-key>
+  rp.launch = <launch-name>
+  rp.project = <project-name>
+  ```
+
+  </TabItem>
+
+</Tabs>
+
+Where:
+
+- `<host>` is your report portal server host
+- `<port>` is your report portal server port
+- `<api-key>` is your report portal API key (UUID)
+- `<launch-name>` is the name to associate with each launch
+- `<project-name>` is the name of the report portal scope to use
+
+Example 
+
+To connect a [local docker instance](https://reportportal.io/docs/Deploy-with-Docker):
+
+<Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+  rp.endpoint = http://localhost:8080
+  rp.uuid = 12a345b6-7c8d-9012-e3f4-567890a1b23c
+  rp.launch = Gwen
+  rp.project = default_personal
+  ```
+
+  </TabItem>
+
+</Tabs>
+
+See also:
+
+- [Report portal client configuration](https://github.com/reportportal/client-java#jvm-based-clients-configuration)
+- [Gwen report portal settings](#gwen-report-portal-settings)
+
+## Send results to report portal
+
+<Tabs
+  groupId="setup"
+  defaultValue="standalone"
+  values={[
+    {label: 'Standalone', value: 'standalone'},
+    {label: 'Gwen Workspace', value: 'workspace'},
+    {label: 'JS Project', value: 'js'},
+  ]}>
+
+<TabItem value="standalone">
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+To send results to report portal only
+
+```shell
+./gwen -b -f rp features/todo
+```
+
+To generate HTML reports and send results to report portal
+
+```shell
+./gwen -b -r output/reports -f html,rp features/todo
+```
+
+</TabItem>
+
+<TabItem value="windows">
+
+To send results to report portal only
+
+```shell
+./gwen -b -f rp features\todo
+```
+
+To generate HTML reports and send results to report portal
+
+```shell
+./gwen -b -r output\reports -f html,rp features\todo
+```
+
+</TabItem>
+
+</Tabs>
+
+<p>Output</p>
+
+- The results of all evaluated Gherkin nodes will be asynchronously sent to your report portal server.
+- The HTML report will be generated at `output/reports/index.html`.
+
+</TabItem>
+
+<TabItem value="workspace">
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+To send results to report portal only
+
+```shell
+./gwen -b -f rp features/todo
+```
+
+To generate HTML reports and send results to report portal
+
+```shell
+./gwen -b -f html,rp features/todo
+```
+
+</TabItem>
+
+<TabItem value="windows">
+
+To send results to report portal only
+
+```shell
+gwen -b -f rp features\todo
+```
+
+To generate HTML reports and send results to report portal
+
+```shell
+gwen -b -f html,rp features\todo
+```
+
+</TabItem>
+
+</Tabs>
+
+<p>Output</p>
+
+- The results of all evaluated Gherkin nodes will be asynchronously sent to your report portal server.
+- Workspaces generate HTML reports by default to `target/reports/index.html`.
+
+</TabItem>
+
+<TabItem value="js">
+
+:::info Coming to Gwen 3
+
+Support for JS projects coming soon to Gwen 3.
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+## Reruns and merges
+
+### Merging to previous launch
+
+To merge current results with previous results in report portal, launch gwen with the `-Drp.rerun=true` CLI system property.
+
+### Merging to a specific launch
+
+To merge current results with any previous results in report portal, launch gwen with both the `-Drp.rerun=true` and `-Drp.rerun.of=<launch-uuid>` CLI system property.
+
+Where
+
+- `<launch-uuid>` is the UUID of the launch you wish to merge to
+  - You can retrieve the UUID for any launch from it's top level log in the report portal console.
+
+## Gwen report portal settings
+
+The following additional settings enable you to fine tune various reporting aspects in report portal.
+
