@@ -8,9 +8,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Gwen provides seamless integration with [report portal](https://reportportal.io/) for centralised reporting and analytics.
 
-## Configure settings
+## Configure connection
 
-Configure the following mandatory [settings](/docs/settings/overview):
+Configure the following [Report Portal properties](https://github.com/reportportal/client-java#jvm-based-clients-configuration) in your [Gwen settings](/docs/settings/overview):
 
 <Tabs
   groupId="config"
@@ -63,10 +63,6 @@ To connect to a [local docker instance](https://reportportal.io/docs/Deploy-with
   </TabItem>
 
 </Tabs>
-
-See also:
-
-- [Report portal configuration](https://github.com/reportportal/client-java#jvm-based-clients-configuration)
 
 ## Send results to report portal
 
@@ -210,7 +206,7 @@ Where
 
 ## Gwen report portal settings
 
-The following additional settings enable you to fine tune various reporting aspects in report portal.
+In addition to the standard [Report Portal configuration](https://github.com/reportportal/client-java#jvm-based-clients-configuration), the folowing can also be configured in your [Gwen settings](/docs/settings/overview) to enable and control more reporting aspects.
 
 <details id="gwen-rp-send-meta">
   <summary class="setting">
