@@ -29,6 +29,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   color: var(--ifm-heading-color);
 }
 
+html[data-theme='dark'] .navbar {
+  background-color: #111111;
+}
+
 .hero--primary {
   --ifm-hero-background-color: var(--ifm-color-primary);
   --ifm-hero-text-color: var(--ifm-color-white);
@@ -39,7 +43,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 }
 
 .footer--dark {
-  --ifm-footer-background-color:  #252525;
+  --ifm-footer-background-color:  #111111;
 }
 
 .dsl:before {
