@@ -80,13 +80,8 @@ module.exports = {
           items: [
             {
               label: 'Report Portal',
-              href: 'https://reportportal.io/',
-            },
-            {
-              label: ' - Integration Guide',
-              to: './assets/docs/gwen-reportportal-userguide.pdf',
-              target: '_blank',
-            },
+              to: '/docs/reports/portal',
+            }
           ],
         },
         {
