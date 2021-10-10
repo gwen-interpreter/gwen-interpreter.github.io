@@ -39,7 +39,8 @@ html[data-theme='dark'] .navbar {
 }
 
 .hero__subtitle {
-  font-size:1.75rem
+  font-size:1.7rem;
+  font-weight: 600;
 }
 
 .footer--dark {
