@@ -6,7 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Report Portal
 
-Gwen provides seamless integration with [report portal](https://reportportal.io/) for centralised reporting and analytics.
+Gwen provides seamless integration with [Report Portal](https://reportportal.io/) for centralised reporting and analytics.
 
 ## Configure connection
 
@@ -34,11 +34,11 @@ Configure the following [Report Portal properties](https://github.com/reportport
 
 Where:
 
-- `<host>` is your report portal server host
-- `<port>` is your report portal server port
-- `<api-key>` is your report portal API key (UUID)
+- `<host>` is your Report Portal server host
+- `<port>` is your Report Portal server port
+- `<api-key>` is your Report Portal API key (UUID)
 - `<launch-name>` is the name to associate with each launch
-- `<project-name>` is the name of the report portal scope to use
+- `<project-name>` is the name of the Report Portal scope to use
 
 Example 
 
@@ -64,7 +64,7 @@ To connect to a [local docker instance](https://reportportal.io/docs/Deploy-with
 
 </Tabs>
 
-## Send results to report portal
+## Send results to Report Portal
 
 <Tabs
   groupId="setup"
@@ -87,13 +87,13 @@ To connect to a [local docker instance](https://reportportal.io/docs/Deploy-with
 
 <TabItem value="linux">
 
-To send results to report portal only
+To send results to Report Portal only
 
 ```shell
 ./gwen -b -f rp features/todo
 ```
 
-To generate HTML reports and send results to report portal
+To generate HTML reports and send results to Report Portal
 
 ```shell
 ./gwen -b -r output/reports -f html,rp features/todo
@@ -103,13 +103,13 @@ To generate HTML reports and send results to report portal
 
 <TabItem value="windows">
 
-To send results to report portal only
+To send results to Report Portal only
 
 ```shell
 ./gwen -b -f rp features\todo
 ```
 
-To generate HTML reports and send results to report portal
+To generate HTML reports and send results to Report Portal
 
 ```shell
 ./gwen -b -r output\reports -f html,rp features\todo
@@ -121,7 +121,7 @@ To generate HTML reports and send results to report portal
 
 <p>Output</p>
 
-- The results of all evaluated Gherkin nodes will be asynchronously sent to your report portal server.
+- The results of all evaluated Gherkin nodes will be asynchronously sent to your Report Portal server.
 - The HTML report will be generated at `output/reports/index.html`.
 
 </TabItem>
@@ -138,13 +138,13 @@ To generate HTML reports and send results to report portal
 
 <TabItem value="linux">
 
-To send results to report portal only
+To send results to Report Portal only
 
 ```shell
 ./gwen -b -f rp features/todo
 ```
 
-To generate HTML reports and send results to report portal
+To generate HTML reports and send results to Report Portal
 
 ```shell
 ./gwen -b -f html,rp features/todo
@@ -154,13 +154,13 @@ To generate HTML reports and send results to report portal
 
 <TabItem value="windows">
 
-To send results to report portal only
+To send results to Report Portal only
 
 ```shell
 gwen -b -f rp features\todo
 ```
 
-To generate HTML reports and send results to report portal
+To generate HTML reports and send results to Report Portal
 
 ```shell
 gwen -b -f html,rp features\todo
@@ -172,7 +172,7 @@ gwen -b -f html,rp features\todo
 
 <p>Output</p>
 
-- The results of all evaluated Gherkin nodes will be asynchronously sent to your report portal server.
+- The results of all evaluated Gherkin nodes will be asynchronously sent to your Report Portal server.
 - Workspaces generate HTML reports by default to `target/reports/index.html`.
 
 </TabItem>
@@ -193,18 +193,18 @@ Support for JS projects coming soon to Gwen 3.
 
 ### Merging to the previous launch
 
-To merge current results with previous results in report portal, launch gwen with the `-Drp.rerun=true` CLI system property.
+To merge current results with previous results in Report Portal, launch gwen with the `-Drp.rerun=true` CLI system property.
 
 ### Merging to a specific launch
 
-To merge current results with any previous results in report portal, launch gwen with both the `-Drp.rerun=true` and `-Drp.rerun.of=<launch-uuid>` CLI system property.
+To merge current results with any previous results in Report Portal, launch gwen with both the `-Drp.rerun=true` and `-Drp.rerun.of=<launch-uuid>` CLI system property.
 
 Where
 
 - `<launch-uuid>` is the UUID of the launch you wish to merge to
-  - You can retrieve the UUID for any launch from it's top level log in the report portal console.
+  - You can retrieve the UUID for any launch from it's top level log in the Report Portal console.
 
-## Gwen report portal settings
+## Gwen specific settings
 
 In addition to the standard [Report Portal configuration](https://github.com/reportportal/client-java#jvm-based-clients-configuration), the folowing can also be configured in your [Gwen settings](/docs/settings/overview) to enable and control more reporting aspects.
 
@@ -214,7 +214,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.send.meta
   ```
-  <p>Controls whether or not to send meta results to report portal.</p>
+  <p>Controls whether or not to send meta results to Report Portal.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -257,7 +257,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.send.stepDefs
   ```
-  <p>Controls how StepDefs are sent to report portal.</p>
+  <p>Controls how StepDefs are sent to Report Portal.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -304,7 +304,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.send.failed.stepDefs
   ```
-  <p>Controls how StepDefs are sent to report portal.</p>
+  <p>Controls how StepDefs are sent to Report Portal.</p>
   </summary>
   <p>Only honoured when <Link to= "#gwen-rp-send-stepDefs"><code>gwen.rp.send.stepDefs</code></Link> = <code>none</code>.</p>
   <p>Supported values</p>
@@ -352,7 +352,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.send.failed.errorTrace
   ```
-  <p>Controls how error traces are sent to report portal.</p>
+  <p>Controls how error traces are sent to Report Portal.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -399,7 +399,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.send.failed.envTrace
   ```
-  <p>Controls how environment traces are sent to report portal.</p>
+  <p>Controls how environment traces are sent to Report Portal.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -446,7 +446,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.send.failed.hierarchy
   ```
-  <p>Controls how call trace hierarchies are sent to report portal.</p>
+  <p>Controls how call trace hierarchies are sent to Report Portal.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -493,7 +493,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.send.breadcrumbs
   ```
-  <p>Controls whether or not to send breadcrumbs to report portal.</p>
+  <p>Controls whether or not to send breadcrumbs to Report Portal.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -584,7 +584,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.send.tags
   ```
-  <p>Controls whether or not to send tags to report portal.</p>
+  <p>Controls whether or not to send tags to Report Portal.</p>
   </summary>
   <p>Tags are arbitrary labels on a feature or scenario, e.g: @Todo, @Wip, @UAT</p>
   <p>Supported values</p>
@@ -628,7 +628,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.send.annotations
   ```
-  <p>Controls whether or not to send annotations to report portal.</p>
+  <p>Controls whether or not to send annotations to Report Portal.</p>
   </summary>
   <p>Similar to <Link to= "#gwen-rp-send-tags"><code>gwen.rp.send.tags</code></Link> but for annotations instead. Annotations are reserved Gwen tags that control runtime aspects, e.g: @Ignore, @Import("file.meta")</p>
   <p>Supported values</p>
@@ -708,13 +708,13 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.heartbeat
   ```
-  <p>Controls whether or not to enable heartbeats and monitor the report portal connection.</p>
+  <p>Controls whether or not to enable heartbeats and monitor the Report Portal connection.</p>
   </summary>
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to enable heartbeats
       <ul>
-        <li>Gwen will send a HTTP GET request to the report portal health endpoint before executing the first step in each Scenario and fail fast if a non 200 response or bad health status is returned.</li>
+        <li>Gwen will send a HTTP GET request to the Report Portal health endpoint before executing the first step in each Scenario and fail fast if a non 200 response or bad health status is returned.</li>
       </ul>
     </li>
     <li><code>false</code> to disable heartbeats</li>
@@ -793,7 +793,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.testCaseId.keys
   ```
-  <p>Controls how report portal test case IDs are generated.</p>
+  <p>Controls how Report Portal test case IDs are generated.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -832,15 +832,15 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.debug
   ```
-  <p>Controls whether or not to send node paths and parameters to the report portal debug log.</p>
+  <p>Controls whether or not to send node paths and parameters to the Report Portal debug log.</p>
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to log debug messages in report portal
+    <li><code>true</code> to log debug messages in Report Portal
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-debug-true.png')} />
       <hr />
     </li>
-    <li><code>false</code> to not log debug messages in report portal</li>
+    <li><code>false</code> to not log debug messages in Report Portal</li>
   </ul>
   Default value: <code>false</code>
   <Tabs
