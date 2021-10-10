@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 Pretty HTML reports capture evaluated results and statistics.
 
-## Generate HTML report
+## Generate report
 
 <Tabs
   groupId="setup"
@@ -20,16 +20,6 @@ Pretty HTML reports capture evaluated results and statistics.
 
 <TabItem value="standalone">
 
-To generate a HTML evaluation report, specify the <code>-r/--report &l;dir&gt;</code> <Link to="/docs/cli/launcher">CLI option</Link>.
-
-<p>Where</p>
-
-- <code>&lt;dir&gt;</code> is the directory where you want the report to be generated into
-
-<p>Output</p>
-
-- When execution completes, the report will then be genrated at <code>&lt;dir&gt;/index.html</code>.
-
 <Tabs
   groupId="os"
   defaultValue="linux"
@@ -40,7 +30,7 @@ To generate a HTML evaluation report, specify the <code>-r/--report &l;dir&gt;</
 
 <TabItem value="linux">
 
-```
+```shell
 ./gwen -b -r output/reports features/todo
 ```
 
@@ -48,19 +38,21 @@ To generate a HTML evaluation report, specify the <code>-r/--report &l;dir&gt;</
 
 <TabItem value="windows">
 
-```
-gwen -b -r output\reports features/todo
+```shell
+gwen -b -r output\reports features\todo
 ```
 
 </TabItem>
 
 </Tabs>
 
+<p>Output</p>
+
+- The report will be generated at <code>output/reports/index.html</code>.
+
 </TabItem>
 
 <TabItem value="workspace">
-
-Workspaces are preconfigured to generate HTML reports to <code>target/reports</code>, so you don't need to explicity specify the <code>-r/--report</code> <Link to="/docs/cli/launcher">CLI option</Link>.
 
 <Tabs
   groupId="os"
@@ -72,17 +64,7 @@ Workspaces are preconfigured to generate HTML reports to <code>target/reports</c
 
 <TabItem value="linux">
 
-To change the default report output directory, amend the <code>-r target/reports</code> option in your workspace launch script.
-
-*File: gwen*
-```shell {2}
-echo "Launching gwen"
-$GWEN_WEB_HOME/bin/gwen-web $GWEN_JVM_ARGS -r target/reports -p "$GWEN_PROPS" "$@"
-```
-
-Launch Gwen
-
-```
+```shell
 ./gwen -b features/todo
 ```
 
@@ -90,23 +72,17 @@ Launch Gwen
 
 <TabItem value="windows">
 
-To change the default report output directory, amend the <code>-r target/reports</code> option in your workspace launch script.
-
-*File: gwen.bat*
-```shell {2}
-ECHO Launching Gwen
-CALL %GWEN_WEB_HOME%\bin\gwen-web %GWEN_JVM_ARGS% -r target/reports -p "%GWEN_PROPS%" %GWEN_ARGS%
-```
-
-Launch Gwen
-
-```
+```shell
 gwen -b features\todo
 ```
 
 </TabItem>
 
 </Tabs>
+
+<p>Output</p>
+
+- Workspaces generate HTML reports by default to <code>target/reports/index.html</code>.
 
 </TabItem>
 
@@ -122,7 +98,15 @@ Support for JS projects coming soon to Gwen 3.
 
 </Tabs>
 
-![Example HTML report](/img/reports/sample-html-report.png)
+## View report
+
+Opening the generated HTML report in your browser will display the summary.
+
+![Example HTML report](/img/reports/sample-html-report-summary.png)
+
+Clicking the feature link in the summary will open the feature detail.
+
+![Example HTML report](/img/reports/sample-html-report-detail.png)
 
 ### Expand Step Defs
 
