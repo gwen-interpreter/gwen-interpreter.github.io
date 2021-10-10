@@ -2,6 +2,7 @@
 import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Report Portal
 
@@ -211,3 +212,661 @@ Where
 
 The following additional settings enable you to fine tune various reporting aspects in report portal.
 
+<details id="gwen-rp-send-meta">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.send.meta
+  ```
+  <p>Controls whether or not to send meta results to report portal.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to send meta results
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-meta-true.png')} />
+      <hr />
+    </li>
+    <li><code>false</code> to not send meta results
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-meta-false.png')} /><br />
+    </li>
+  </ul>
+  Default value: <code>false</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.send.meta = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-send-meta">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-send-stepDefs">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.send.stepDefs
+  ```
+  <p>Controls how StepDefs are sent to report portal.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>inlined</code> to inline StepDefs as log messages
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-stepDefs-inlined.png')} />
+      <hr />
+    </li>
+    <li><code>nested</code> to nest StepDefs as report items
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-stepDefs-nested.png')} />
+      <hr />
+    </li>
+    <li><code>none</code> to not send StepDefs
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-stepDefs-none.png')} />
+    </li>
+  </ul>
+  Default value: <code>none</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.send.stepDefs = none
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-send-stepDefs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-send-failed-stepDefs">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.send.failed.stepDefs
+  ```
+  <p>Controls how StepDefs are sent to report portal.</p>
+  </summary>
+  <p>Only honoured when <Link to= "#gwen-rp-send-stepDefs"><code>gwen.rp.send.stepDefs</code></Link> = <code>none</code>.</p>
+  <p>Supported values</p>
+  <ul>
+    <li><code>inlined</code> to inline failed StepDefs as log messages
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-stepDefs-inlined.png')} />
+      <hr />
+    </li>
+    <li><code>nested</code> to nest failed StepDefs as report items
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-stepDefs-failed-nested.png')} />
+      <hr />
+    </li>
+    <li><code>none</code> to not send failed StepDefs
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-stepDefs-failed-none.png')} />
+    </li>
+  </ul>
+  Default value: <code>inlined</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.send.failed.stepDefs = inlined
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-send-failed-stepDefs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-send-failed-errorTrace">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.send.failed.errorTrace
+  ```
+  <p>Controls how error traces are sent to report portal.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>attached</code> to log error traces as attachments
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorTrace-attached.png')} />
+      <hr />
+    </li>
+    <li><code>inlined</code> to inline error traces as log messages
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorTrace-inlined.png')} />
+      <hr />
+    </li>
+    <li><code>none</code> to not send error traces
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorTrace-none.png')} />
+    </li>
+  </ul>
+  Default value: <code>none</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.send.failed.errorTrace = none
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-send-failed-errorTrace">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-send-failed-envTrace">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.send.failed.envTrace
+  ```
+  <p>Controls how environment traces are sent to report portal.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>attached</code> to log environment traces as attachments
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-envTrace-attached.png')} />
+      <hr />
+    </li>
+    <li><code>inlined</code> to inline environment traces as log messages
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-envTrace-inlined.png')} />
+      <hr />
+    </li>
+    <li><code>none</code> to not send environment traces
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-envTrace-none.png')} />
+    </li>
+  </ul>
+  Default value: <code>none</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.send.failed.envTrace = none
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-send-failed-envTrace">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-send-failed-hierarchy">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.send.failed.hierarchy
+  ```
+  <p>Controls how call trace hierarchies are sent to report portal.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>attached</code> to log call trace hierarchies as attachments
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-hierarchy-attached.png')} />
+      <hr />
+    </li>
+    <li><code>inlined</code> to inline call trace hierarchies as log messages
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-hierarchy-inlined.png')} />
+      <hr />
+    </li>
+    <li><code>none</code> to not send call trace hierarchies
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-hierarchy-none.png')} />
+    </li>
+  </ul>
+  Default value: <code>inlined</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.send.failed.hierarchy = inlined
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-send-failed-hierarchy">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-send-breadcrumbs">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.send.breadcrumbs
+  ```
+  <p>Controls whether or not to send breadcrumbs to report portal.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to send breadcrumbs
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-breadcrumbs-true.png')} />
+      <hr />
+    </li>
+    <li><code>true</code> to not send breadcrumbs
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-breadcrumbs-false.png')} />
+    </li>
+  </ul>
+  Default value: <code>false</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.send.breadcrumbs = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-send-breadcrumbs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-send-failed-errorBlocks">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.send.failed.errorBlocks
+  ```
+  <p>Controls how to send error blocks (highlights) to failed steps.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>all</code> to send error blocks to all steps in a failed call trace
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorBlocks-all.png')} />
+      <hr />
+    </li>
+    <li><code>leaf</code> to send error blocks to the failed steps only (leaf node)
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorBlocks-leaf.png')} />
+      <hr />
+    </li>
+    <li><code>none</code> to not send error blocks
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorBlocks-none.png')} />
+      <hr />
+    </li>
+  </ul>
+  Default value: <code>none</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.send.failed.errorBlocks = none
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-send-failed-errorBlocks">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-send-tags">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.send.tags
+  ```
+  <p>Controls whether or not to send tags to report portal.</p>
+  </summary>
+  <p>Tags are arbitrary labels on a feature or scenario, e.g: @Todo, @Wip, @UAT</p>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to send tags
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-tags-true.png')} />
+      <hr />
+    </li>
+    <li><code>false</code> to not send tags
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-tags-false.png')} />
+    </li>
+  </ul>
+  Default value: <code>true</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.send.tags = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-send-tags">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-send-annotations">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.send.annotations
+  ```
+  <p>Controls whether or not to send annotations to report portal.</p>
+  </summary>
+  <p>Similar to <Link to= "#gwen-rp-send-tags"><code>gwen.rp.send.tags</code></Link> but for annotations instead. Annotations are reserved Gwen tags that control runtime aspects, e.g: @Ignore, @Import("file.meta")</p>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to send annotations</li>
+    <li><code>false</code> to not send annotations</li>
+  </ul>
+  Default value: <code>false</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.send.annotations = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-send-annotations">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-send-markdownBlocks">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.send.markdownBlocks
+  ```
+  <p>Controls whether or not to log all inlined steps in markdown blocks.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to log inlined steps in markdown blocks
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-markdownBlocks-true.png')} />
+      <hr />
+    </li>
+    <li><code>false</code> to not log inlined steps in markdown blocks</li>
+  </ul>
+  Default value: <code>true</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.send.markdownBlocks = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-send-markdownBlocks">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-heartbeat">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.heartbeat
+  ```
+  <p>Controls whether or not to enable heartbeats and monitor report portal connection.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable heartbeats
+      <ul>
+        <li>Gwen will send a HTTP GET request to the report portal health endpoint before executing the first step in each Scenario and fail fast if a non 200 response or bad health status is returned.</li>
+      </ul>
+    </li>
+    <li><code>true</code> to disable heartbeats</li>
+  </ul>
+  Default value: <code>true</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.heartbeat = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-heartbeat">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-heartbeat-timeoutSecs">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.heartbeat.timeoutSecs
+  ```
+  <p>Controls how long to wait for a heartbeat response before timing out.</p>
+  </summary>
+  <p>Only honoured when <Link to= "#gwen-rp-heartbeat"><code>gwen.rp.heartbeat</code></Link> = <code>true</code></p>
+  <p>Supported values</p>
+  <ul>
+    <li>A positive integer denoting the number of seconds to wait for a heartbeat response before timing out.
+      <ul>
+        <li>If the connection cannot be established within the set timeout period, then Gwen will fail fast and report a timeout error.</li>
+      </ul>
+    </li>
+    <li><code>true</code> to disable heartbeats</li>
+  </ul>
+  Default value: <code>3</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.heartbeat.timeoutSecs = 3
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-heartbeat-timeoutSecs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-testCaseId-keys">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.testCaseId.keys
+  ```
+  <p>Controls how report portal test case IDs are generated.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>nodePath+params</code> to generate test case IDs based on the node path and parameters</li>
+    <li><code>sourceRef+params</code> to generate test case IDs based on the source reference and parameters </li>
+    <li><code>auto</code> to use the default automatic test case ID generation mechanism of the <Link to="https://github.com/reportportal/client-java">client-java</Link> RP library (codeRef + params)</li>
+  </ul>
+  Default value: <code>nodePath+params</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.testCaseId.keys = nodePath+params
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-testCaseId-keys">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rp-debug">
+  <summary class="setting">
+
+  ```properties
+  gwen.rp.debug
+  ```
+  <p>Controls whether or not to send node paths and parameters to the report portal debug log.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to log debug messages in report portal
+      <img src={useBaseUrl('/img/reports/portal/gwen-rp-debug-true.png')} />
+      <hr />
+    </li>
+    <li><code>false</code> to not log debug messages in report portal</li>
+  </ul>
+  Default value: <code>false</code>
+  <Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    gwen.rp.debug = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rp-debug">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
