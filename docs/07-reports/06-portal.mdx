@@ -548,7 +548,7 @@ The following additional settings enable you to fine tune various reporting aspe
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorBlocks-all.png')} />
       <hr />
     </li>
-    <li><code>leaf</code> to send error blocks to the failed steps only (leaf node)
+    <li><code>leaf</code> to send error blocks to the failed step only (leaf node)
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorBlocks-leaf.png')} />
       <hr />
     </li>
@@ -712,7 +712,7 @@ The following additional settings enable you to fine tune various reporting aspe
   ```properties
   gwen.rp.heartbeat
   ```
-  <p>Controls whether or not to enable heartbeats and monitor report portal connection.</p>
+  <p>Controls whether or not to enable heartbeats and monitor the report portal connection.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -721,7 +721,7 @@ The following additional settings enable you to fine tune various reporting aspe
         <li>Gwen will send a HTTP GET request to the report portal health endpoint before executing the first step in each Scenario and fail fast if a non 200 response or bad health status is returned.</li>
       </ul>
     </li>
-    <li><code>true</code> to disable heartbeats</li>
+    <li><code>false</code> to disable heartbeats</li>
   </ul>
   Default value: <code>true</code>
   <Tabs
