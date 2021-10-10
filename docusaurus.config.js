@@ -80,7 +80,7 @@ module.exports = {
           items: [
             {
               label: 'Report Portal',
-              to: '/docs/reports/portal',
+              href: 'https://reportportal.io',
             }
           ],
         },
@@ -89,7 +89,7 @@ module.exports = {
           items: [
             {
               label: 'SmartStream',
-              href: 'https://www.smartstream-stp.com/',
+              href: 'https://www.smartstream-stp.com',
             },
           ],
         },
