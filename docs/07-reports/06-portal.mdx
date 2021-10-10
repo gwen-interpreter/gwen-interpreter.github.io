@@ -66,6 +66,8 @@ To connect to a [local docker instance](https://reportportal.io/docs/Deploy-with
 
 ## Send results to Report Portal
 
+With the above settings in place, evaluation results will be asynchronously sent to your Report Portal server in real time when you launch Gwen to execute your features with the `-f|--format rp` [CLI option](/docs/cli/launcher).
+
 <Tabs
   groupId="setup"
   defaultValue="standalone"
@@ -121,7 +123,7 @@ To generate HTML reports and send results to Report Portal
 
 <p>Output</p>
 
-- The results of all evaluated Gherkin nodes will be asynchronously sent to your Report Portal server.
+- The results of all evaluated Gherkin nodes will be sent to your Report Portal server.
 - The HTML report will be generated at `output/reports/index.html`.
 
 </TabItem>
@@ -172,7 +174,7 @@ gwen -b -f html,rp features\todo
 
 <p>Output</p>
 
-- The results of all evaluated Gherkin nodes will be asynchronously sent to your Report Portal server.
+- The results of all evaluated Gherkin nodes will be sent to your Report Portal server.
 - Workspaces generate HTML reports by default to `target/reports/index.html`.
 
 </TabItem>
