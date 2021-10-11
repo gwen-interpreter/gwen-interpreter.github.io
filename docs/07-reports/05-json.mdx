@@ -14,7 +14,7 @@ Gwen can generete JSON reports enabling you to feed evaulation results into othe
   defaultValue="standalone"
   values={[
     {label: 'Standalone', value: 'standalone'},
-    {label: 'Gwen Workspace', value: 'workspace'},
+    {label: 'Workspace', value: 'workspace'},
     {label: 'JS Project', value: 'js'},
   ]}>
 
@@ -70,6 +70,12 @@ gwen -b -r output\reports -f html,json features\todo
 </TabItem>
 
 <TabItem value="workspace">
+
+:::caution Deprecated
+
+[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) are deprecated in favor of JS projects coming to Gwen 3.
+
+:::
 
 <Tabs
   groupId="os"

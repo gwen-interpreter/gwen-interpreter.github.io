@@ -133,7 +133,7 @@ There are no automatic updates with the standalone approach. You will need to re
 
 :::caution Deprecated
 
-[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) are now deprecated in favor of JS projects coming to Gwen 3.
+[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) are deprecated in favor of JS projects coming to Gwen 3.
 
 :::
 

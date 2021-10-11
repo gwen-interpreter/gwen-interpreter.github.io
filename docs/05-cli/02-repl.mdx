@@ -35,7 +35,7 @@ To start a REPL session, invoke the [Gwen Launcher](/docs/cli/launcher) without 
   defaultValue="standalone"
   values={[
     {label: 'Standalone', value: 'standalone'},
-    {label: 'Gwen Workspace', value: 'workspace'},
+    {label: 'Workspace', value: 'workspace'},
     {label: 'JS Project', value: 'js'},
   ]}>
   
@@ -106,6 +106,12 @@ gwen path\to\file.feature
 </TabItem>
 
 <TabItem value="workspace">
+
+:::caution Deprecated
+
+[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) are deprecated in favor of JS projects coming to Gwen 3.
+
+:::
 
 <Tabs
   groupId="os"
