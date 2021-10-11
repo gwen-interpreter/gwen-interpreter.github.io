@@ -64,9 +64,9 @@ To connect to a [local docker instance](https://reportportal.io/docs/Deploy-with
 
 </Tabs>
 
-## Send results to Report Portal
+## Log results to Report Portal
 
-With the above settings in place, evaluation results will be asynchronously sent to your Report Portal server when you launch Gwen to execute your features with the `-f|--format rp` [CLI option](/docs/cli/launcher).
+With the above settings in place, evaluation results will be asynchronously logged to your Report Portal server when you launch Gwen to execute your features with the `-f rp` [CLI option](/docs/cli/launcher).
 
 <Tabs
   groupId="setup"
@@ -195,20 +195,20 @@ Support for JS projects coming soon to Gwen 3.
 
 ### Merging to the previous launch
 
-To merge current results with previous results in Report Portal, launch gwen with the `-Drp.rerun=true` CLI system property.
+To merge current results with previous results in Report Portal, launch Gwen with the `-Drp.rerun=true` [CLI system property](/docs/cli/launcher#system-properties-and-jvm-options). This will work as expected only when launching Gwen consecutively on the same machine. You would otherwise need to specifically target the last launch as described next.
 
 ### Merging to a specific launch
 
-To merge current results with any prior results in Report Portal, launch gwen with both the `-Drp.rerun=true` and `-Drp.rerun.of=<launch-uuid>` CLI system property.
+To merge current results with any prior results in Report Portal, launch Gwen with both the `-Drp.rerun=true` and `-Drp.rerun.of=<launch-uuid>` CLI system property. This will work as expected when launching Gwen on any machine.
 
 Where
 
-- `<launch-uuid>` is the UUID of the launch you wish to merge to
-  - You can retrieve the UUID for any launch from it's top level log in the Report Portal console.
+- `<launch-uuid>` is the UUID of the Report Portal launch to merge to
+  - You can retrieve the UUID for any launch from it's top level log in Report Portal
 
 ## Gwen specific settings
 
-In addition to the standard [Report Portal configuration](https://github.com/reportportal/client-java#jvm-based-clients-configuration), the folowing can also be configured in your [Gwen settings](/docs/settings/overview) to enable and control more reporting aspects.
+In addition to the standard [Report Portal configuration](https://github.com/reportportal/client-java#jvm-based-clients-configuration), the following can also be configured in your [Gwen settings](/docs/settings/overview) to enable and control more reporting aspects.
 
 <details id="gwen-rp-send-meta">
   <summary class="setting">
@@ -710,7 +710,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```properties
   gwen.rp.heartbeat
   ```
-  <p>Controls whether or not to enable heartbeats and monitor the Report Portal connection.</p>
+  <p>Controls whether or not to enable heartbeats to monitor the health status of your report portal server during execution.</p>
   </summary>
   <p>Supported values</p>
   <ul>
