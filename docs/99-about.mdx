@@ -1,0 +1,29 @@
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# About the Logo
+
+<img src={useBaseUrl('/img/gwen-attractor-trans.svg')} width="30%"/>
+
+The Gwen logo is a [Lorenz attractor](http://en.m.wikipedia.org/wiki/Lorenz_attractor) that looks like a butterfly.
+
+```gherkin
+  Feature: Deterministic chaos
+    
+  Scenario: The butterfly effect
+      Given a deterministic and nonlinear system
+       When a small change is initially applied
+       Then a large change will eventually result
+```
+
+Software systems can be observed to possess chaotic behavior. The smallest of changes to programs and environments can give rise to the most erratic effects. Gwen evaluates software by:
+
+- Creating conditions (*Givens*)
+- Performing actions (*Whens*)
+- Asserting expectations (*Thens*)
+
+The cumulative result is a chain of instructions that execute in sequence to model cause and effect. The proposition is that Gwen can detect chaos.
+
+---
+
+Gwen logo developed by [Nascent Creative](https://nascentcreative.com.au/).
