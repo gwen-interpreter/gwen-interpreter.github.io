@@ -91,7 +91,7 @@ Here the name of the StepDef matches the feature step when the value <code>2</co
 
 ### Synchronized StepDefs
 
-In the extremely rare cases where you need to synchronize your StepDef to a single thread for whatever reason, you can do so by annotating it with `@Synchronized`. Gwen will then guarantee that only one thread can execute it at any given time when features or scenarios are executed in parallel by concurrent threads.
+In the extremely rare cases where you need to synchronize your StepDef to a single thread for whatever reason, you can do so by annotating it with `@Synchronized`. Gwen will then guarantee that only one thread can execute it at any given time when multiple features or scenarios are executed in parallel by concurrent threads.
 
 ## Meta Load Strategies
 
