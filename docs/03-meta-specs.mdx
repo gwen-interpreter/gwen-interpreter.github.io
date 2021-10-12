@@ -88,6 +88,11 @@ Calls DSL steps:
 
 Here the name of the StepDef matches the feature step when the value <code>2</code> (in the feature step) is substituted in place of `<expected-count>` in the StepDef name. This is how parameters are passed to StepDefs in Gwen; by substitution. The last step in the body extracts the parameter value with `$<expected-count>`.
 
+
+### Synchronized StepDefs
+
+In the extremely rare cases where you need to synchronize your StepDef to a single thread for whatever reason, you can do so by annotating it with `@Synchronized`. Gwen will then guarantee that only one thread can execute it at any given time when features or scenarios are executed in parallel by concurrent threads.
+
 ## Meta Load Strategies
 
 ### Associative Strategy
