@@ -1,0 +1,63 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Masked Settings
+
+It is a common security practice is to never log passwords and sensitive credentials. Automated test cases often use passwords to log into applications. In such cases care should be taken to protect and hide passwords from logs, reports, error messages and console outputs.
+
+To address this concern, Gwen will hide all [settings](/docs/settings/overview) flagged that you flag as masked by logging their values as `●●●●●` in all reports, logs, and console outputs. 
+
+## Flagging masked settings
+
+To mask the value of a custom setting named `user.password`, define it as follows in your settings file:
+
+<Tabs
+  groupId="config"
+  defaultValue="properties"
+  values={[
+    {label: 'gwen.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="properties">
+
+  ```properties
+    user.password\:masked = secret
+  ```
+
+  *Note*: You will need to escape `:` as `\:` in properties files
+
+  </TabItem>
+
+  </Tabs>
+
+Alternatively, you can pass a masked setting directly to the [Gwen CLI](/docs/cli/launcher) as a system property if you don't wish to store it in a file:
+
+```shell
+-Duser.password:masked=secret
+```
+
+## Using masked settings
+
+To use a masked setting, just reference it anywhere you need to using it's base name without the `:masked` suffix.
+
+Example:
+
+```gherkin
+  When I enter "${user.password}" in the password field
+```
+
+When evaluated, the above will be logged like follows in all reports, logs, and console outputs:
+
+```gherkin
+  When I enter "●●●●●" in the password field
+```
+
+:::caution
+
+It is your resposibility to only enter masked settings such as passwords into password protected fields. 
+
+:::
+
+## Custom mask character
+
+You can change the default mask character from `●` to another character of your choice by assigning it to the [`gwen.mask.char`](/docs/settings/reference#gwen-mask-char) setting.
