@@ -5,7 +5,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 module.exports = {
   title: 'Gwen',
   tagline: 'Automation Bindings for Gherkin',
-  url: 'https://gwen-interpreter.github.io',
+  url: 'https://gweninterpreter.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

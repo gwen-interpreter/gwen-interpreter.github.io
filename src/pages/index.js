@@ -14,8 +14,6 @@ function HomepageHeader() {
       <Head>
         <title>{siteConfig.title} | {siteConfig.tagline}</title>
         <meta property="og:title" content="Gwen" data-react-helmet="true" />
-        <meta property="og:url" content="https://gweninterpreter.org/" data-react-helmet="true" />
-        <meta property="og:image" content="https://gweninterpreter.org/img/gwen-media.png" data-react-helmet="true" />
       </Head>
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
