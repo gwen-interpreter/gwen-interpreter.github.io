@@ -5,7 +5,7 @@ import Link from '@docusaurus/Link';
 
 const FeatureList = [
   {
-    title: '1. Declare Features',
+    title: 'Declare Features',
     Svg: require('../../static/img/gwen-feature.svg').default,
     description: (
       <>
@@ -14,7 +14,7 @@ const FeatureList = [
     ),
   },
   {
-    title: '2. Compose Meta',
+    title: 'Compose Meta',
     Svg: require('../../static/img/gwen-meta.svg').default,
     description: (
       <>
@@ -23,7 +23,7 @@ const FeatureList = [
     ),
   },
   {
-    title: '3. Launch Gwen',
+    title: 'Launch Gwen',
     Svg: require('../../static/img/gwen-portrait.svg').default,
     description: (
       <>
