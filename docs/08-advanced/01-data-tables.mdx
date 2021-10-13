@@ -1,0 +1,272 @@
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Data Tables
+
+Steps containing [data tables](https://cucumber.io/docs/gherkin/reference/#data-tables) can be processed by [StepDefs](/docs/meta-specs#stepdefs) using the `@DataTable` annotation.
+
+## Horizontal data tables
+
+### With header
+
+This example has 3 rows and 3 columns of data and a top header. The first horizontal row is the header and the rows that follow are data records.
+
+#### In feature
+
+```gherkin
+  Scenario: Horizontal table with header
+      Given each row contains a number and its square and cube
+            | number | square | cube |
+            | 1      | 1      | 1    |
+            | 2      | 4      | 8    |
+            | 3      | 9      | 27   |
+```
+
+#### In meta
+Here we specify the `@DataTable` annotation on the StepDef with the `header` attribute set to `top` to assign the names in the top header record to the elements in each data record. We then reference the data using `data[recordNo][name]` to access any explicit record (where `recordNo` of 1st record is 1, 2nd is 2, and so on), or `data[name]` to access the current record in a 'for each' step.
+```gherkin {2}
+  @StepDef
+  @DataTable(header="top")
+  Scenario: each row contains a number and its square and cube
+      Given name[1] should be "number"
+        And name[2] should be "square"
+        And name[3] should be "cube"
+        And data[1][number] should be "1"
+        And data[2][number] should be "2"
+        And data[3][number] should be "3"
+        And data[1][square] should be "1"
+        And data[2][square] should be "4"
+        And data[3][square] should be "9"
+        And data[1][cube] should be "1"
+        And data[2][cube] should be "8"
+        And data[3][cube] should be "27"
+        And number ^ 2 = square of number for each data record
+        And number ^ 3 = cube of number for each data record
+
+  @StepDef
+  Scenario: number ^ <power> = <function> of number
+      Given the result is defined by javascript "Math.pow(${data[number]}, $<power>)"
+       Then the result should be "${data[$<function>]}.0"
+```
+
+### Without header
+
+This example has 3 rows and 2 columns of data and no header. Each horizontal row is a data record.
+
+#### In feature
+```gherkin
+  Scenario: Horizontal data table with no header
+      Given each row contains a number in decimal and binary form
+            | 1 | 1  |
+            | 2 | 10 |
+            | 3 | 11 |
+```
+
+#### In meta
+Here we specify the `@DataTable` annotation on the StepDef with the `horizontal` attribute set to `decimal,binary` to assign names to the elements in each data record. We then reference the data using `data[recordNo][name]` to access any explicit record (where `recordNo` of 1st record is 1, 2nd is 2, and so on), or `data[name]` to access the current record in a 'for each' step. 
+```gherkin {2}
+  @StepDef
+  @DataTable(horizontal="decimal,binary")
+  Scenario: each row contains a number in decimal and binary form
+      Given name[1] should be "decimal"
+        And name[2] should be "binary"
+        And data[1][decimal] should be "1"
+        And data[2][decimal] should be "2"
+        And data[3][decimal] should be "3"
+        And data[1][binary] should be "1"
+        And data[2][binary] should be "10"
+        And data[3][binary] should be "11"
+        And the decimal data[decimal] should be data[binary] in binary for each data record
+
+  @StepDef
+  Scenario: the decimal <decimal> should be <binary> in binary
+     Given the result is defined by javascript "Number(${$<decimal>}).toString(2)"
+      Then the result should be "${$<binary>}"
+```
+
+## Vertical data tables
+
+### With header
+
+This example has 3 rows and 3 columns of data and a left header. The first vertical column is the header and the columns that follow are data records.
+
+#### In feature
+```gherkin
+  Scenario: Vertical table with header
+      Given each column contains a number and its square and cube
+            | number | 1 | 2 | 3  |
+            | square | 1 | 4 | 9  |
+            | cube   | 1 | 8 | 27 |
+```
+
+#### In meta
+Here we specify the `@DataTable` annotation on the StepDef with the `header` attribute set to `left` to assign the names in the left header record to the elements in each data record. We then reference the data using `data[recordNo][name]` to access any explicit record (where `recordNo` of 1st record is 1, 2nd is 2, and so on), or `data[name]` to access the current record in a 'for each' step.
+```gherkin {2}
+  @StepDef
+  @DataTable(header="left")
+  Scenario: each column contains a number and its square and cube
+      Given name[1] should be "number"
+        And name[2] should be "square"
+        And name[3] should be "cube"
+        And data[1][number] should be "1"
+        And data[2][number] should be "2"
+        And data[3][number] should be "3"
+        And data[1][square] should be "1"
+        And data[2][square] should be "4"
+        And data[3][square] should be "9"
+        And data[1][cube] should be "1"
+        And data[2][cube] should be "8"
+        And data[3][cube] should be "27"
+        And number ^ 2 = square of number for each data record
+        And number ^ 3 = cube of number for each data record
+  @StepDef
+  Scenario: number ^ <power> = <function> of number
+      Given the result is defined by javascript "Math.pow(${data[number]}, $<power>)"
+       Then the result should be "${data[$<function>]}.0"
+```
+
+### Without header
+
+This example has 2 rows and 3 columns of data and no header. Each vertical row is a data record.
+
+#### In feature
+```gherkin
+  Scenario: Vertical data table with no header
+      Given each column contains a number in decimal and binary form
+            | 4   | 5    | 6   |
+            | 100 | 101  | 110 |
+```
+
+#### In meta
+Here we specify the `@DataTable` annotation on the StepDef with the `vertical` attribute set to `decimal,binary` to assign names to the elements in each data record. We then reference the data using `data[recordNo][name]` to access any explicit record (where `recordNo` of 1st record is 1, 2nd is 2, and so on), or `data[name]` to access the current record in a 'for each' step).
+```gherkin {2}
+  @StepDef
+  @DataTable(vertical="decimal,binary")
+  Scenario: each column contains a number in decimal and binary form
+      Given name[1] should be "decimal"
+        And name[2] should be "binary"
+        And data[1][decimal] should be "4"
+        And data[2][decimal] should be "5"
+        And data[3][decimal] should be "6"
+        And data[1][binary] should be "100"
+        And data[2][binary] should be "101"
+        And data[3][binary] should be "110"
+        And the decimal data[decimal] should be data[binary] in binary for each data record
+
+  @StepDef
+  Scenario: the decimal <decimal> should be <binary> in binary
+     Given the result is defined by javascript "Number(${$<decimal>}).toString(2)"
+      Then the result should be "${$<binary>}"
+```
+
+## Matrix tables
+
+A matrix has a top and left headers around contained data. That data can only be accessed by top-left coordinates and so there is no concept of records in a matrix.
+
+This example has 3 rows and 3 columns of data and top and left headers. The first row (excluding the first element is the top header and the first column (excluding the first element) is the left header. The data exists below and to the right of these headers respectively.
+
+#### In feature
+```gherkin
+  Scenario: Matrix table with top and left headers
+      Given the top and left numbers yield the product in the matrix
+            | x | 1 | 2 | 3 |
+            | 1 | 1 | 2 | 3 |
+            | 2 | 2 | 4 | 6 |
+            | 3 | 3 | 6 | 9 |
+```
+
+#### In meta
+Here we specify the `@DataTable` annotation on the StepDef with the `type` attribute set to `matrix` to assign top-left header coordinates to the data elements in the matrix. We can then reference the names in the top and left headers using `top.name[columnNo]` and `left.name[rowNo]` respectively (where both `columnNo` and `rowNo` are 1 for the 1st header element, 2 for 2nd and so on). The name of the header element at top-left corner can be accessed as `vertex.name`. The data can be accessed using `data[top-name][left-name]` (where `top-name` and `left-name` are the top and left header names of the row and column where the data resides - they just happen to also be numbers in this example). 
+```gherkin {2}
+  @StepDef
+  @DataTable(type="matrix")
+  Scenario: the top and left numbers yield the product in the matrix
+      Given vertex.name should be "x"
+        And top.name[1] should be "1"
+        And top.name[2] should be "2"
+        And top.name[3] should be "3"
+        And left.name[1] should be "1"
+        And left.name[2] should be "2"
+        And left.name[3] should be "3"
+        And data[1][1] should be "1"
+        And data[1][2] should be "2"
+        And data[1][3] should be "3"
+        And data[2][1] should be "2"
+        And data[2][2] should be "4"
+        And data[2][3] should be "6"
+        And data[3][1] should be "3"
+        And data[3][2] should be "6"
+        And data[3][3] should be "9"
+        And top.name[1] x left.name[1] = data[1][1]
+        And top.name[2] x left.name[1] = data[2][1]
+        And top.name[3] x left.name[1] = data[3][1]
+        And top.name[1] x left.name[2] = data[1][2]
+        And top.name[2] x left.name[2] = data[2][2]
+        And top.name[3] x left.name[2] = data[3][2]
+        And top.name[1] x left.name[3] = data[1][3]
+        And top.name[2] x left.name[3] = data[2][3]
+        And top.name[3] x left.name[3] = data[3][3]
+
+  @StepDef
+  Scenario: <a> x <b> = <c>
+      Given the product is defined by javascript "${$<a>} * ${$<b>}"
+       Then the product should be "${$<c>}"
+```
+
+## ForEach record
+
+Consider the following step that accepts a data table:
+
+```gherkin
+  When the following items are added
+       | Get the milk  |
+       | Walk the dog  |
+```
+
+To loop over each record in earlier versions of Gwen, the following two StepDefs would need to be defined:
+
+```gherkin
+  @StepDef
+  @DataTable(horizontal="item")
+  Scenario: the following items are added
+       When I add a todo item for each data record
+                                               
+  @StepDef
+  Scenario: I add a todo item
+      Given the todo field can be located by class "new-todo"
+        And the displayed count can be located by css ".todo-count strong"
+       When I enter data[item] in the todo field
+       Then the displayed count should be "${record.number}"
+```
+
+### @ForEach annotation
+
+As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.47.0">v2.47.0</Link>, a `@ForEach` annotation can be used to simplify and reduce the above to a single StepDef:
+```gherkin {2}
+  @StepDef
+  @ForEach
+  @DataTable(horizontal="item")
+  Scenario: the following items are added
+      Given the todo field can be located by class "new-todo"
+        And the displayed count can be located by css ".todo-count strong"
+       When I enter data[item] in the todo field
+       Then the displayed count should be "${record.number}"
+```
+
+## Implicit attributes
+The following attributes are implicitly available to data records processed in [for each](/docs/dsl/reference#step-for-each-data-record) steps:
+- `record.number` = The record number starting at 1
+- `record.index` = The record index starting at 0 (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.30.1">v2.30.1</Link>)
+
+## Report output samples
+
+Data tables will be displayed in [HTML reports](/docs/reports/html) as follows:
+
+#### Compact
+
+![Compact table report](/img/advanced/data-tables-report-compact.png)
+
+#### Expanded
+
+![Expanded table report](/img/advanced/data-tables-report-expanded.png)
