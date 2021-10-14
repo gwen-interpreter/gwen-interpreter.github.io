@@ -4,7 +4,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Gwen',
-  tagline: 'Automation Bindings for Gherkin',
+  tagline: 'Behavior Driven Automation',
   url: 'https://gweninterpreter.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -28,6 +28,12 @@ module.exports = {
           docId: 'introduction',
           position: 'left',
           label: 'Docs',
+        },
+        {
+          type: 'doc',
+          docId: 'gwen3',
+          position: 'left',
+          label: 'Gwen 3 Released!',
         },
         { 
           label: 'GitHub',

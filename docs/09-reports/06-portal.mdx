@@ -1,3 +1,7 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
 
 import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
@@ -10,72 +14,216 @@ Gwen provides seamless integration with [Report Portal](https://reportportal.io/
 
 ## Configure connection
 
-Configure the following [Report Portal properties](https://github.com/reportportal/client-java#jvm-based-clients-configuration) in your [Gwen settings](/docs/settings/overview):
+Set the following Report Portal [client properties](https://github.com/reportportal/client-java#jvm-based-clients-configuration) in your [settings](/docs/settings) to configure a connection:
 
 <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
-  <TabItem value="properties">
+<TabItem value="conf">
 
-  ```properties
-  rp.endpoint = http://<host>:<port>
-  rp.uuid = <uuid>
-  rp.launch = <launch>
-  rp.project = <project>
+  ```json
+    rp {
+      endpoint = "http://<host>:<port>"
+      uuid = "<uuid>"
+      launch = "<launch>"
+      project = "<project>"
+    }
   ```
 
-  </TabItem>
-
-</Tabs>
-
-Where:
-
+Where
 - `<host>` is your Report Portal server host
 - `<port>` is your Report Portal server port
 - `<uuid>` is your Report Portal server UUID
-- `<launch>` is your desired launch name
-- `<project>` is your desired project name
+- `<launch>` is your target launch name in Report Portal
+- `<project>` is your target project name in Report Portal
 
-Example 
+Example connecting to a [local docker instance](https://reportportal.io/docs/Deploy-with-Docker)
 
-To connect to a [local docker instance](https://reportportal.io/docs/Deploy-with-Docker):
-
-<Tabs
-  groupId="config"
-  defaultValue="properties"
-  values={[
-    {label: 'gwen.properties', value: 'properties'}
-  ]}>
-
-  <TabItem value="properties">
-
-  ```properties
-  rp.endpoint = http://localhost:8080
-  rp.uuid = 12a345b6-7c8d-9012-e3f4-567890a1b23c
-  rp.launch = Gwen
-  rp.project = default_personal
+  ```json
+    rp {
+      endpoint = "http://localhost:8080"
+      uuid = "12a345b6-7c8d-9012-e3f4-567890a1b23c"
+      launch = "Gwen"
+      project = "default_personal"
+    }
   ```
 
-  </TabItem>
+</TabItem>
+<TabItem value="json">
+
+  ```json
+    {
+      "rp": {
+        "endpoint": "http://<host>:<port>",
+        "uuid": "<uuid>",
+        "launch": "<launch>",
+        "project":  "<project>"
+      }
+    }
+  ```
+
+Where
+- `<host>` is your Report Portal server host
+- `<port>` is your Report Portal server port
+- `<uuid>` is your Report Portal server UUID
+- `<launch>` is your target launch name in Report Portal
+- `<project>` is your target project name in Report Portal
+
+Example connecting to a [local docker instance](https://reportportal.io/docs/Deploy-with-Docker)
+
+  ```json
+    {
+      "rp": {
+        "endpoint": "http://localhost:8080",
+        "uuid": "12a345b6-7c8d-9012-e3f4-567890a1b23c",
+        "launch": "Gwen",
+        "project":  "default_personal"
+      }
+    }
+  ```
+
+</TabItem>
+<TabItem value="properties">
+
+  ```properties
+    rp.endpoint = http://<host>:<port>
+    rp.uuid = <uuid>
+    rp.launch = <launch>
+    rp.project = <project>
+  ```
+
+Where
+- `<host>` is your Report Portal server host
+- `<port>` is your Report Portal server port
+- `<uuid>` is your Report Portal server UUID
+- `<launch>` is your target launch name in Report Portal
+- `<project>` is your target project name in Report Portal
+
+Example connecting to a [local docker instance](https://reportportal.io/docs/Deploy-with-Docker)
+
+  ```properties
+    rp.endpoint = http://localhost:8080
+    rp.uuid = 12a345b6-7c8d-9012-e3f4-567890a1b23c
+    rp.launch = Gwen
+    rp.project = default_personal
+  ```
+
+</TabItem>
 
 </Tabs>
 
-## Log results to Report Portal
+## Logging Results
 
-With the above settings in place, evaluation results will be asynchronously logged to your Report Portal server when you launch Gwen to execute your features with the `-f rp` [CLI option](/docs/cli/launcher).
+With the above settings in place, evaluation results will be asynchronously logged to your Report Portal server when you launch Gwen to execute your features with the `-f rp` [CLI](/docs/cli) option.
 
 <Tabs
   groupId="setup"
-  defaultValue="standalone"
+  defaultValue="js"
   values={[
-    {label: 'Standalone', value: 'standalone'},
-    {label: 'Workspace', value: 'workspace'},
     {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
   ]}>
+
+<TabItem value="js">
+
+<Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+<TabItem value="npm">
+
+:::note Example
+
+Executing features in the `features/todo` folder and logging to report portal.
+
+To log results to Report Portal only
+
+```shell
+npm run gwen -b -f rp features/todo
+```
+
+To generate HTML reports and send results to Report Portal
+
+```shell
+npm run  -b f html,rp features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="yarn">
+
+:::note Example
+
+Executing features in the `features/todo` folder and logging to report portal.
+
+To log results to Report Portal only
+
+```shell
+yarn gwen -b -f rp features/todo
+```
+
+To generate HTML reports and send results to Report Portal
+
+```shell
+yarn  -b f html,rp features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+:::note Example
+
+Executing features in the `features/todo` folder and logging to report portal.
+
+To log results to Report Portal only
+
+```shell
+pnpm gwen -b -f rp features/todo
+```
+
+To generate HTML reports and send results to Report Portal
+
+```shell
+pnpm  -b f html,rp features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+### Output
+
+- The results of all evaluated Gherkin nodes will be logged to your Report Portal server.
+- The HTML report will be generated at
+  - Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+    - `output/reports/index.html`.
+  - In prior versions
+    - You will need to specify `-r outdir` on the CLI to generate the HTML report in a desired directory.
+
+</TabItem>
 
 <TabItem value="standalone">
 
@@ -89,80 +237,35 @@ With the above settings in place, evaluation results will be asynchronously logg
 
 <TabItem value="linux">
 
-To send results to Report Portal only
+:::note Example
+
+Executing features in the `features/todo` folder and logging to report portal.
+
+To log results to Report Portal only
 
 ```shell
-./gwen -b -f rp features/todo
+gwen -b -f rp features/todo
 ```
 
 To generate HTML reports and send results to Report Portal
 
 ```shell
-./gwen -b -r output/reports -f html,rp features/todo
+gwen -b f html,rp features/todo
 ```
 
-</TabItem>
-
-<TabItem value="windows">
-
-To send results to Report Portal only
-
-```shell
-./gwen -b -f rp features\todo
-```
-
-To generate HTML reports and send results to Report Portal
-
-```shell
-./gwen -b -r output\reports -f html,rp features\todo
-```
-
-</TabItem>
-
-</Tabs>
-
-<p>Output</p>
-
-- The results of all evaluated Gherkin nodes will be sent to your Report Portal server.
-- The HTML report will be generated at `output/reports/index.html`.
-
-</TabItem>
-
-<TabItem value="workspace">
-
-:::caution Deprecated
-
-[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) are deprecated in favor of JS projects coming to Gwen 3.
+[Gwen CLI](/docs/cli)
 
 :::
 
-<Tabs
-  groupId="os"
-  defaultValue="linux"
-  values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-
-<TabItem value="linux">
-
-To send results to Report Portal only
-
-```shell
-./gwen -b -f rp features/todo
-```
-
-To generate HTML reports and send results to Report Portal
-
-```shell
-./gwen -b -f html,rp features/todo
-```
-
 </TabItem>
 
 <TabItem value="windows">
 
-To send results to Report Portal only
+:::note Example
+
+Executing features in the `features/todo` folder and logging to report portal.
+
+To log results to Report Portal only
 
 ```shell
 gwen -b -f rp features\todo
@@ -171,27 +274,25 @@ gwen -b -f rp features\todo
 To generate HTML reports and send results to Report Portal
 
 ```shell
-gwen -b -f html,rp features\todo
+gwen -b f html,rp features\todo
 ```
+
+[Gwen CLI](/docs/cli)
+
+:::
 
 </TabItem>
 
 </Tabs>
 
-<p>Output</p>
+### Output
 
-- The results of all evaluated Gherkin nodes will be sent to your Report Portal server.
-- Workspaces generate HTML reports by default to `target/reports/index.html`.
-
-</TabItem>
-
-<TabItem value="js">
-
-:::info Coming to Gwen 3
-
-Support for JS projects coming soon to Gwen 3.
-
-:::
+- The results of all evaluated Gherkin nodes will be logged to your Report Portal server.
+- The HTML report will be generated at
+  - Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+    - `output/reports/index.html`.
+  - In prior versions
+    - You will need to specify `-r outdir` on the CLI to generate the HTML report in a desired directory.
 
 </TabItem>
 
@@ -201,20 +302,20 @@ Support for JS projects coming soon to Gwen 3.
 
 ### Merging into the previous launch
 
-To merge current results with previous results in Report Portal, launch Gwen with the `-Drp.rerun=true` [CLI system property](/docs/cli/launcher#system-properties-and-jvm-options). This will work as expected only when launching Gwen consecutively on the same machine. You would otherwise need to specifically target the last launch as described next.
+To merge current results with previous results in Report Portal, launch Gwen with the `-Drp.rerun=true` [system property](/docs/cli#system-properties-and-jvm-options) on your CLI call. This will work only when launching Gwen consecutively on the same machine. You would otherwise need to specifically target the last launch as described in the next section.
 
 ### Merging into a specific launch
 
-To merge current results with any prior results in Report Portal, launch Gwen with both the `-Drp.rerun=true` and `-Drp.rerun.of=<launch-uuid>` CLI system property. This will work as expected when launching Gwen on any machine.
+To merge current results with any prior results in Report Portal, launch Gwen with both the `-Drp.rerun=true` and `-Drp.rerun.of=<launch-uuid>` system property on your CLI call. This will work when launching Gwen on any machine.
 
 Where
 
 - `<launch-uuid>` is the UUID of the Report Portal launch to merge to
   - You can retrieve the UUID for any launch from it's top level log in Report Portal
 
-## Gwen specific settings
+## Additional settings
 
-In addition to the standard [Report Portal configuration](https://github.com/reportportal/client-java#jvm-based-clients-configuration), you can also configure the following [Gwen settings](/docs/settings/overview) to control more reporting aspects.
+In addition to the standard Report Portal [client properties](https://github.com/reportportal/client-java#jvm-based-clients-configuration), you can also configure the following Gwen specific Report Portal [settings](/docs/settings) to control other reporting aspects:
 
 <details id="gwen-rp-send-meta">
   <summary class="setting">
@@ -234,15 +335,52 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-meta-false.png')} /><br />
     </li>
   </ul>
-  Default value: <code>false</code>
-  <Tabs
-  groupId="config"
-  defaultValue="properties"
+ <Tabs
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        send {
+          meta = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "send": {
+            "meta": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.send.meta = false
@@ -281,15 +419,51 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-stepDefs-none.png')} />
     </li>
   </ul>
-  Default value: <code>none</code>
-  <Tabs
-  groupId="config"
-  defaultValue="properties"
+ <Tabs
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        send {
+          stepDefs = "none"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "send": {
+            "stepDefs": "none"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.send.stepDefs = none
@@ -314,7 +488,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```
   <p>Controls how StepDefs are sent to Report Portal.</p>
   </summary>
-  <p>Only honoured when <Link to= "#gwen-rp-send-stepDefs"><code>gwen.rp.send.stepDefs</code></Link> = <code>none</code>.</p>
+  <p>Only honoured when <Link to= "#gwen-rp-send-stepDefs">`gwen.rp.send.stepDefs`</Link> = <code>none</code>.</p>
   <p>Supported values</p>
   <ul>
     <li><code>inlined</code> to inline failed StepDefs as log messages
@@ -329,15 +503,55 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-stepDefs-failed-none.png')} />
     </li>
   </ul>
-  Default value: <code>inlined</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        send {
+          failed {
+            stepDefs = "inlined"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "send": {
+            "failed": {
+              "stepDefs": "inlined"
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.send.failed.stepDefs = inlined
@@ -376,15 +590,56 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorTrace-none.png')} />
     </li>
   </ul>
-  Default value: <code>none</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        send {
+          failed {
+            errorTrace = "none"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "send": {
+            "failed": {
+              "errorTrace": "none"
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.send.failed.errorTrace = none
@@ -423,15 +678,56 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-envTrace-none.png')} />
     </li>
   </ul>
-  Default value: <code>none</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        send {
+          failed {
+            envTrace = "none"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "send": {
+            "failed": {
+              "envTrace": "none"
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.send.failed.envTrace = none
@@ -470,15 +766,56 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-hierarchy-none.png')} />
     </li>
   </ul>
-  Default value: <code>inlined</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        send {
+          failed {
+            hierarchy = "inlined"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "send": {
+            "failed": {
+              "hierarchy": "inlined"
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.send.failed.hierarchy = inlined
@@ -513,15 +850,52 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-breadcrumbs-false.png')} />
     </li>
   </ul>
-  Default value: <code>false</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        send {
+          breadcrumbs = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "send": {
+            "breadcrumbs": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.send.breadcrumbs = false
@@ -561,15 +935,56 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
       <hr />
     </li>
   </ul>
-  Default value: <code>none</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        send {
+          failed {
+            errorBlocks = "none"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "send": {
+            "failed": {
+              "errorBlocks": "none"
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.send.failed.errorBlocks = none
@@ -605,15 +1020,52 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-tags-false.png')} />
     </li>
   </ul>
-  Default value: <code>true</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        send {
+          tags = true
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "send": {
+            "tags": true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.send.tags = true
@@ -638,21 +1090,58 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```
   <p>Controls whether or not to send annotations to Report Portal.</p>
   </summary>
-  <p>Similar to <Link to= "#gwen-rp-send-tags"><code>gwen.rp.send.tags</code></Link> but for annotations instead. Annotations are reserved Gwen tags that control runtime aspects, e.g: @Ignore, @Import("file.meta")</p>
+  <p>Similar to <Link to= "#gwen-rp-send-tags">`gwen.rp.send.tags`</Link> but for annotations instead. Annotations are reserved Gwen tags that control runtime aspects, e.g: @Ignore, @Import("file.meta")</p>
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to send annotations</li>
     <li><code>false</code> to not send annotations</li>
   </ul>
-  Default value: <code>false</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        send {
+          annotations = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "send": {
+            "annotations": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.send.annotations = false
@@ -685,15 +1174,52 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
     </li>
     <li><code>false</code> to not log inlined steps in markdown blocks</li>
   </ul>
-  Default value: <code>true</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        send {
+          markdownBlocks = true
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "send": {
+            "markdownBlocks": true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.send.markdownBlocks = true
@@ -710,35 +1236,74 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   </div>
 </details>
 
-<details id="gwen-rp-heartbeat">
+<details id="gwen-rp-heartbeat-enabled">
   <summary class="setting">
 
   ```properties
-  gwen.rp.heartbeat
+  gwen.rp.heartbeat.enabled
   ```
-  <p>Controls whether or not to enable heartbeats to monitor the health status of your report portal server during execution.</p>
+  <p>Controls whether or not to enable heartbeats to monitor the health status of your report portal server during execution.
+    <br/><br/>Formerly `gwen.rp.heartbeat` (prior to v3.0.0)
+  </p>
   </summary>
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to enable heartbeats
       <ul>
-        <li>Gwen will send a HTTP GET request to the Report Portal health endpoint before executing the first step in each Scenario and fail fast if a non 200 response or bad health status is returned.</li>
+        <li>Gwen will send a HTTP GET request to the Report Portal health endpoint before executing the first step in each Scenario and fail it if a non 200 response or bad health status is returned.</li>
       </ul>
     </li>
     <li><code>false</code> to disable heartbeats</li>
   </ul>
-  Default value: <code>true</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        heartbeat {
+          enabled = true
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "heartbeat": {
+            "enabled": true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
 
   <TabItem value="properties">
 
+  Default value
+
   ```properties
-    gwen.rp.heartbeat = true
+    gwen.rp.heartbeat.enabled = true
   ```
 
   </TabItem>
@@ -746,7 +1311,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-rp-heartbeat">Link</Link></div>
+    <div><Link to="#gwen-rp-heartbeat-enabled">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
   </div>
@@ -760,7 +1325,7 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
   ```
   <p>Controls how long to wait for a heartbeat response before timing out.</p>
   </summary>
-  <p>Only honoured when <Link to= "#gwen-rp-heartbeat"><code>gwen.rp.heartbeat</code></Link> = <code>true</code></p>
+  <p>Only honoured when <Link to= "#gwen-rp-heartbeat-enabled">`gwen.rp.heartbeat.enabled`</Link> = <code>true</code></p>
   <p>Supported values</p>
   <ul>
     <li>A positive integer denoting the number of seconds to wait for a heartbeat response before timing out.
@@ -768,17 +1333,53 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
         <li>If the connection cannot be established within the set timeout period, then Gwen will fail fast and report a timeout error.</li>
       </ul>
     </li>
-    <li><code>true</code> to disable heartbeats</li>
   </ul>
-  Default value: <code>3</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        heartbeat {
+          timeoutSecs = 3
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "heartbeat": {
+            "timeoutSecs": 3
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.heartbeat.timeoutSecs = 3
@@ -809,15 +1410,52 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
     <li><code>sourceRef+params</code> to generate test case IDs based on the source reference and parameters </li>
     <li><code>auto</code> to use the default automatic test case ID generation mechanism of the <Link to="https://github.com/reportportal/client-java">client-java</Link> RP library (codeRef + params)</li>
   </ul>
-  Default value: <code>nodePath+params</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
 
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        testCaseId {
+          keys = "nodePath+params"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "testCaseId": {
+            "keys": "nodePath+params"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
   <TabItem value="properties">
+
+  Default value
 
   ```properties
     gwen.rp.testCaseId.keys = nodePath+params
@@ -850,16 +1488,49 @@ In addition to the standard [Report Portal configuration](https://github.com/rep
     </li>
     <li><code>false</code> to not log debug messages in Report Portal</li>
   </ul>
-  Default value: <code>false</code>
   <Tabs
-  groupId="config"
-  defaultValue="properties"
+  groupId="settings"
+  defaultValue="conf"
   values={[
-    {label: 'gwen.properties', value: 'properties'}
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
   ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rp {
+        debug = false
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rp": {
+          "debug": false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
 
   <TabItem value="properties">
 
+  Default value
+  
   ```properties
     gwen.rp.debug = false
   ```

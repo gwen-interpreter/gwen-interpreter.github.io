@@ -1,3 +1,8 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
+import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -6,11 +11,11 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter for driving automation with feature specifications.
 
-Automation is achieved through Gherkin bindings called [meta specs](/docs/meta-specs) which you compose with the [Gwen DSL](/docs/dsl/overview) and maintain alongside your feature files. An embedded web engine executes each step in your features according to the meta to automate operations in browsers for you.
+Automation is achieved through Gherkin bindings called [meta specs](/docs/meta) which you compose with the [Gwen DSL](/docs/dsl) and maintain alongside your feature files. An embedded web engine executes each step in your features according to the meta to automate operations in browsers for you.
 
 ## Declare features
 
-*Write feature specs to describe behaviour*
+*Write feature specs to describe intended behavior in the language of your domain.*
 
 Feature specifications are used to communicate requirements that are clear, concise and declarative. For example, the following describes how adding items to a todo list should behave.
 
@@ -31,8 +36,6 @@ Feature: Add todo items
 
 :::
 
-Gwen aims to take these "as is" and make them executable.
-
 :::tip
 
 Write feature specs without giving any thought to automation. When it makes sense to automate, compose your meta incrementally and maintain a useful subset that you can execute often.
@@ -41,11 +44,11 @@ Write feature specs without giving any thought to automation. When it makes sens
 
 ## Compose meta
 
-*Write meta specs to describe execution.*
+*Write meta specs to describe how steps will execute to automate scenarios.*
 
-Meta specifications are used to describe how Gwen will execute features and are written in Gherkin too. All the [step definitions](/docs/meta-specs#stepdefs) and bindings required for automation are defined in meta so your features remain unconcerned with this detail.
+Meta specifications are used to describe how steps will exeute in Gwen to automate scenarios and are written in Gherkin too. All the [step definitions](/docs/meta#stepdefs) and bindings required for automation are defined in meta so your features remain unconcerned with this detail.
 
-For example, the following meta describes how the feature above can be executed to automate a test against a running [todo application](https://todomvc.com/examples/react).
+For example, the following meta describes how the scenario in the feature above can be executed to automate a test against a running [todo application](https://todomvc.com/examples/react).
 
 :::note Meta Spec
 
@@ -53,35 +56,33 @@ For example, the following meta describes how the feature above can be executed 
 ```gherkin
 Feature: Todo Meta
 
-
   @Context
   @StepDef
   Scenario: a new todo list
-      Given my todo list can be located by css ".todo-list"
-       When I navigate to "${todo.page.url}"
-       Then the page title should contain "TodoMVC"
-        And my todo list should be hidden
+    Given my todo list can be located by css ".todo-list"
+     When I navigate to "${todo.page.url}"
+     Then the page title should contain "TodoMVC"
+      And my todo list should be hidden
 
   @Action
   @StepDef
-  @DataTable(header="top")
+  @DataTable
   @ForEach
   Scenario: the following items are added
-      Given the todo field can be located by class "new-todo"
-        And my new item is "${data[Item]}"
-       When I enter my new item in the todo field
-       Then my todo list should contain my new item
+    Given the todo field can be located by class "new-todo"
+     When I enter Item in the todo field
+     Then my todo list should contain Item
 
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
-      Given the displayed count can be located by css ".todo-count strong"
-       Then the displayed count should be "$<expected-count>"
+    Given the displayed count can be located by css ".todo-count strong"
+     Then the displayed count should be "$<expected-count>"
 ```
 
 :::
 
-#### Declaring step definitions
+### Declaring step definitions
 
 Each step definition is declared as a `@StepDef` annotated scenario with a name that matches that of the step in the feature it binds to. Each one calls out to one or more [DSL Steps](/docs/dsl/reference) (or potentially other StepDefs) in its body to perform the specified operations at run time.
 
@@ -101,15 +102,15 @@ The first StepDef in our meta example binds to the first step in the feature and
   @Context
   @StepDef
   Scenario: a new todo list
-      Given my todo list can be located by css ".todo-list"
-       When I navigate to "${todo.page.url}"
-       Then the page title should contain "TodoMVC"
-        And my todo list should be hidden
+    Given my todo list can be located by css ".todo-list"
+     When I navigate to "${todo.page.url}"
+     Then the page title should contain "TodoMVC"
+      And my todo list should be hidden
 ```
 
 :::
 
-#### Web elements selectors
+### Web elements selectors
 
 The first thing the above will do is bind the selector for locating the todo list element on the web page to the name `my todo list`. Later steps can then reference that element using this name to interact with it and Gwen will locate it dynamically.
 
@@ -125,7 +126,7 @@ Calls DSL step:
 
 :::
 
-#### Navigating to a web page
+### Navigating to a web page
 
 The next step in this StepDef will open a new browser window and navigate to the URL in the `todo.page.url` property.
 
@@ -141,9 +142,9 @@ Calls DSL step:
 
 :::
 
-#### Accessing externalised properties
+### Accessing externalised properties
 
-We could have just hard coded the https://todomvc.com/examples/react URL in the above step, but externalising it enables us to target different environments without changing our meta. This is useful during development when you want to execute against a locally running instance of the application or during testing when it is running on a different host or port. With this approach you can define a [settings](/docs/settings/overview) file per environment and assign the URL for that environment to the `todo.page.url` property in each file. Then when you want to target an environment, you pass the settings file for that environment to Gwen and the URL will be resolved accordingly.
+We could have just hard coded the https://todomvc.com/examples/react URL in the above step, but externalising it enables us to target different environments without changing our meta. This is useful during development when you want to execute against a locally running instance of the application or during testing when it is running on a different host or port. With this approach you can define a [settings](/docs/settings) file per environment and assign the URL for that environment to the `todo.page.url` property in each file. Then when you want to target an environment, you pass the settings file for that environment to Gwen and the URL will be resolved accordingly.
 
 :::note Properties
 
@@ -155,7 +156,7 @@ We could have just hard coded the https://todomvc.com/examples/react URL in the 
 
 :::
 
-#### Checking the page title
+### Checking the page title
 
 The next step in the same StepDef checks that the page title in the browser window contains the string literal "TodoMVC" in it. If it doesn't then an assertion error will be raised, otherwise execution will resume to the next step. It is generally a good idea when navigating to a page to verify that you did indeed land on that page before proceeding to interact with it. Checking the title is one way to do it which will suffice in this case.
 
@@ -171,7 +172,7 @@ Calls DSL step:
 
 :::
 
-#### Verifying that an element is hidden from view
+### Verifying that an element is hidden from view
 
 The last step in this StepDef verifies that the web element containing the current list of todo items is hidden from view. We expect it to not be displayed because we haven't added any items to it yet. Recall that we bound this element in the first step earlier to the name `my todo list`. So here we reference it by that name and if Gwen cannot see it on the page then execution will resume, otherwise an assertion error will be raised. 
 
@@ -187,9 +188,9 @@ Calls DSL step:
 
 :::
 
-#### Processing records in data tables
+### Processing records in data tables
 
-The second StepDef uses the `@DataTable` and `@ForEach` annotations to process each record in the [data table](/docs/advanced/data-tables) of the second step in the feature.
+The second StepDef uses the `@DataTable` and `@ForEach` annotations which work together to process each record in the data table of the second step in the feature.
 
 :::note Feature Step 2
 
@@ -207,37 +208,22 @@ The second StepDef uses the `@DataTable` and `@ForEach` annotations to process e
 ```gherkin {2-5}
   @Action
   @StepDef
-  @DataTable(header="top")
+  @DataTable
   @ForEach
   Scenario: the following items are added
-      Given the todo field can be located by class "new-todo"
-        And my new item is "${data[Item]}"
-       When I enter my new item in the todo field
-       Then my todo list should contain my new item
+    Given the todo field can be located by class "new-todo"
+     When I enter Item in the todo field
+     Then my todo list should contain Item
 
 :::
 
-The `header="top"` attribute in the `@DataTable` annotation designates the topmost row in the table as the header record. Each name in this header will be bound to the respective data in each record as it is iterated over and made available to the steps in the body of the StepDef as `data[name]`. In this example the sole field named `Item` is referenced as `data[Item]` in the second step of the body.
+Gwen will call the StepDef for each record in the table and bind each field value to its declared name in the header record. The second and third steps in this StepDef will enter each `Item` into the `todo field` and check that it was added to `my todo list`. This is the same `my todo list` that we earlier confirmed was absent when we opened the page in the browser. We reuse it here to check that it now contains and displays each item. If it does not, then an assertion error will be raised. 
 
-:::note StepDef 2, Step 2
-
-```gherkin
-  And my new item is "${data[Item]}"
-```
-
-Calls DSL step:
-
-- [`<name> is "<value>"`](/docs/dsl/reference#name-is-value)
-
-:::
-
-This step binds the resolved value to a string named `my new item` for use by the two steps that follow. We do this to eliminate the redundancy of having to resolve it twice and also to make maintenance easier should we ever decide to rename this field in the table. These steps enter this value into the `todo field` and verify that it was succesfully added to `my todo list`. This is the same `my todo list` that we earlier confirmed was absent when we opened the page in the browser. We reuse it here to check that it contains our newly added item (for the current record iteration). If it does not, then an assertion error will be raised. 
-
-:::note StepDef 2, Steps 3 and 4
+:::note StepDef 2, Steps 2 and 3
 
 ```gherkin
-  When I enter my new item in the todo field
-  Then my todo list should contain my new item
+  When I enter Item in the todo field
+  Then my todo list should contain Item
 ```
 
 Calls DSL steps:
@@ -247,7 +233,7 @@ Calls DSL steps:
 
 :::
 
-#### Passing parameters to StepDefs
+### Passing parameters to StepDefs
 
 The last StepDef accepts the number of expected items from the last step in the feature into a parameter placeholder named `expected-count` and then uses that to assert its value against `the displayed count` on the page. In this example, the value 2 will passed as the parameter.
 
@@ -265,21 +251,15 @@ The last StepDef accepts the number of expected items from the last step in the 
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
-      Given the displayed count can be located by css ".todo-count strong"
-       Then the displayed count should be "$<expected-count>"
+    Given the displayed count can be located by css ".todo-count strong"
+     Then the displayed count should be "$<expected-count>"
 ```
 
 :::
 
-#### Behavioral Semantics
+### Behavioral rules and semantics
 
-The following annotations on StepDefs are used to associate behavior types and enforce the following rules if you set your [`gwen.behavior.rules`](https://github.com/gwen-interpreter/gwen-web/wiki/Runtime-Settings#gwenbehaviorrules) setting to `strict`.
-
-:::info Coming to Gwen 3
-
-We are planning to enable `strict` rules by default in the upcomming Gwen 3 release. The current default is `lenient` meaning that these and other rules like *Given-When-Then* order are not enforced.
-
-:::
+The following annotations on StepDefs are used to associate behavior types and enforce the following rules when the [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) setting is set to `strict`.
 
 | StepDefs annotated with.. | can only bind steps tied to keyword.. | because..                      |
 | :-----------------------: | :-----------------------------------: | :----------------------------- |
@@ -307,15 +287,21 @@ For example, the following binding will be permitted since the feature step is d
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
-      Given the displayed count can be located by css ".todo-count strong"
-       Then the displayed count should be "$<expected-count>"
+    Given the displayed count can be located by css ".todo-count strong"
+     Then the displayed count should be "$<expected-count>"
 ```
 
 :::
 
 If we were to change the keyword in the feature step to `When` however, it would not only read poorly but would no longer imply `@Assertion` behavior and Gwen would report the violation. Similarly, if we were to change the behavior annotation on the StepDef to `@Context`, then that behavior would not be implied by the `Then` keyword declared in the feature step.
 
-#### Associative meta
+:::info Default Setting
+
+Strict rules are enabled by default since  <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">Gwen 3</Link>. In prior versions, lenient was the default, meaning that these and other rules like *Given-When-Then* order were not enforced.
+
+:::
+
+### Associative meta
 
 When the [`gwen.associative.meta`](/docs/settings/reference#gwen-associative-meta) setting is enabled, Gwen will automatically associate and bind all same named feature and meta files discovered in a directory with each other. In the following case, the meta would be considered associative.
 
@@ -324,21 +310,21 @@ features/todo.feature
 features/todo.meta
 ```
 
-:::info Coming to Gwen 3
+:::info Default setting
 
-We are planning to enable associative meta by default in the upcomming Gwen 3 release. The current default is that all meta files discovered in a directory will unconditionally bind to all features in that directory and it's subdirectories.
+Associative meta is enabled by default since  <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">Gwen 3</Link>. In prior versions, all meta files discovered in a directory were unconditionally bound to all features in that directory and it's subdirectories.
 
 :::
 
 ## Launch Gwen
 
-*Run Gwen to execute and automate.*
+*Invoke Gwen to bind the meta and execute your features*
 
 The example presented in this introduction would execute to automate a test.
 
-#### Launcher
+### Invoke the CLI to execute
 
-The [Launcher CLI](/docs/cli/launcher) is used to launch Gwen and execute features. When launched on a directory, it will recursively discover and bind all meta and feature files in that directory and execute all the features. Any properties files passed in will be loaded and all `${prop.name}` placeholder references throughout the meta and feature files will resolve during execution.
+The [CLI](/docs/cli) is used to launch Gwen and execute features. When launched on a directory, it will recursively discover and bind all meta and feature files in that directory and execute all the features. Any properties files passed in will be loaded and all `${prop.name}` placeholder references throughout the meta and feature files will resolve during execution.
 
 :::tip
 

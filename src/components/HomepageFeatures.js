@@ -9,7 +9,7 @@ const FeatureList = [
     Svg: require('../../static/img/gwen-feature.svg').default,
     description: (
       <>
-        Write <Link to="https://cucumber.io/docs/gherkin/reference">feature specs</Link> to describe behaviour.
+        Write <Link to="https://cucumber.io/docs/gherkin/reference">feature specs</Link> to describe intended behavior in the language of your domain.
       </>
     ),
   },
@@ -18,7 +18,7 @@ const FeatureList = [
     Svg: require('../../static/img/gwen-meta.svg').default,
     description: (
       <>
-        Write <Link to="/docs/meta-specs">meta specs</Link> to describe execution.
+        Write <Link to="/docs/meta">meta specs</Link> to describe how steps will execute to automate scenarios.
       </>
     ),
   },
@@ -27,7 +27,7 @@ const FeatureList = [
     Svg: require('../../static/img/gwen-portrait.svg').default,
     description: (
       <>
-        Run Gwen to execute and automate.
+        Invoke Gwen to bind the meta and execute your features to drive automation.
       </>
     ),
   },

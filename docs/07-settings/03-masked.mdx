@@ -1,9 +1,14 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Masked Settings
 
-It is a common security practice to never log sensitive data. To support this practice, Gwen will hide all [settings](/docs/settings/overview) that you flag as "masked" by logging their values as `●●●●●` in all logs, reports, error messages and console outputs.
+It is a common security practice to never log sensitive data. To support this practice, Gwen will hide all [settings](/docs/settings/reference) that you flag as "masked" by logging their values as `●●●●●` in all logs, reports, error messages and console outputs.
 
 ## Flagging masked settings
 
@@ -12,11 +17,35 @@ To flag a setting as masked, append `:masked` to its defined name.
 For example, to mask a custom property named `user.password`, define it as follows in your settings file:
 
 <Tabs
-  groupId="config"
-  defaultValue="properties"
-  values={[
-    {label: 'gwen.properties', value: 'properties'}
-  ]}>
+    groupId="settings"
+    defaultValue="conf"
+    values={[
+      {label: '.conf', value: 'conf'},
+      {label: '.json', value: 'json'},
+      {label: '.properties', value: 'properties'}
+    ]}>
+
+  <TabItem value="conf">
+
+  ```json
+    user {
+      "password:masked" = "secret"
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  ```json
+    {
+      "user": {
+        "password:masked": "secret"
+      }
+    }
+  ```
+
+  </TabItem>
 
   <TabItem value="properties">
 
@@ -30,7 +59,7 @@ For example, to mask a custom property named `user.password`, define it as follo
 
   </Tabs>
 
-Alternatively, you can pass a masked setting directly to the [Gwen CLI](/docs/cli/launcher) as a system property if you don't wish to store it in a file:
+Alternatively, you can pass a masked setting directly to the [Gwen CLI](/docs/cli) as a system property if you don't wish to store it in a file:
 
 ```shell
 -Duser.password:masked=secret
