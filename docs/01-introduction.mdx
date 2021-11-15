@@ -10,7 +10,7 @@ Automation is achieved through Gherkin bindings called [meta specs](/docs/meta-s
 
 ## Declare features
 
-*Write feature specs to describe behaviour*
+*Write feature specs to describe intended behavior in the language of your domain.*
 
 Feature specifications are used to communicate requirements that are clear, concise and declarative. For example, the following describes how adding items to a todo list should behave.
 
@@ -41,7 +41,7 @@ Write feature specs without giving any thought to automation. When it makes sens
 
 ## Compose meta
 
-*Write meta specs to describe execution.*
+*Write meta specs to describe how steps will execute to automate scenarios.*
 
 Meta specifications are used to describe how Gwen will execute features and are written in Gherkin too. All the [step definitions](/docs/meta-specs#stepdefs) and bindings required for automation are defined in meta so your features remain unconcerned with this detail.
 
@@ -332,7 +332,7 @@ We are planning to enable associative meta by default in the upcomming Gwen 3 re
 
 ## Launch Gwen
 
-*Run Gwen to execute and automate.*
+*Invoke Gwen to bind the meta and execute your features to drive automation.*
 
 The example presented in this introduction would execute to automate a test.
 
