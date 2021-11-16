@@ -99,7 +99,7 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   <TabItem value="npm">
 
   ```shell
-  npm run gwen --version
+  npm run gwen -- --version
   ```
   </TabItem>
 
@@ -184,7 +184,7 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   <TabItem value="npm">
 
   ```shell
-  npm run gwen --help
+  npm run gwen -- --help
   ```
   </TabItem>
 
@@ -305,25 +305,25 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   Provide <em>parallel</em> switch to execute all feature files in a given directory in parallel
 
   ```shell
-  npm run gwen -b --parallel features/dir
+  npm run gwen -- -b --parallel features/dir
   ```
 
   Provide <em>parallel</em> switch to execute the given feature files in parallel
 
   ```shell
-  npm run gwen --b --parallel features/file1.feature features/file2.feature 
+  npm run gwen -- --batch --parallel features/file1.feature features/file2.feature 
   ```
 
   Omit <em>parallel</em> switch to execute all feature files in a given directory in sequence
 
   ```shell
-  npm run gwen -b features/dir
+  npm run gwen -- -b features/dir
   ```
 
   Omit <em>parallel</em> switch to execute the given feature files in sequence
 
   ```shell
-  npm run gwen -b features/file1.feature features/file2.feature 
+  npm run gwen -- -b features/file1.feature features/file2.feature 
   ```
 
   </TabItem>
@@ -448,25 +448,25 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   Provide <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in parallel
 
   ```shell
-  npm run gwen -b --parallel features/dir
+  npm run gwen -- -b --parallel features/dir
   ```
 
   Provide <em>parallel</em> switch to execute all scenarios in the given feature files in parallel
 
   ```shell
-  npm run gwen -b --parallel features/file1.feature features/file2.feature 
+  npm run gwen -- -b --parallel features/file1.feature features/file2.feature 
   ```
 
   Omit <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in sequence
 
   ```shell
-  npm run -b features/dir
+  npm run gwen -- -b features/dir
   ```
 
   Omit <em>parallel</em> switch to execute all scenarios in the given feature files in sequence
 
   ```shell
-  npm run -b features/file1.feature features/file2.feature 
+  npm run gwen -- -b features/file1.feature features/file2.feature 
   ```
 
   </TabItem>
@@ -607,25 +607,25 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   Provide <em>parallel-features</em> switch to execute all feature files in a given directory in parallel
 
   ```shell
-  npm run gwen -b --parallel-features features/dir
+  npm run gwen -- -b --parallel-features features/dir
   ```
 
   Provide <em>parallel-features</em> switch to execute the given feature files in parallel
 
   ```shell
-  npm run gwen -b --parallel-features features/file1.feature features/file2.feature 
+  npm run gwen -- -b --parallel-features features/file1.feature features/file2.feature 
   ```
 
   Omit <em>parallel-features</em> switch to execute all feature files in a given directory in sequence
 
   ```shell
-  npm run -b features/dir
+  npm run gwen -- -b features/dir
   ```
 
   Omit <em>parallel-features</em> switch to execute the given feature files in sequence
 
   ```shell
-  npm run -b features/file1.feature features/file2.feature 
+  npm run gwen -- -b features/file1.feature features/file2.feature 
   ```
 
   </TabItem>
@@ -773,19 +773,19 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   Provide <em>batch</em> switch to execute all feature files in a given directory and then exit
 
   ```shell
-  npm run gwen -b features/dir
+  npm run gwen -- -b features/dir
   ```
 
   Provide <em>batch</em> switch to execute the given feature file and then exit 
 
   ```shell
-  npm run gwen --batch features/file.feature
+  npm run gwen -- --batch features/file.feature
   ```
 
   Omit <em>batch</em> switch to execute the given feature file and then open the <Link to="/docs/cli/repl">REPL</Link>
 
   ```shell
-  npm run gwen features/file.feature
+  npm run gwen -- features/file.feature
   ```
 
   Omit <em>batch</em> switch to open the <Link to="/docs/cli/repl">REPL</Link> immediately without executing anything
@@ -937,13 +937,13 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   <TabItem value="npm">
 
   ```shell
-  npm run gwen -v
+  npm run gwen -- -v
   ```
 
   Or 
 
   ```shell
-  npm run gwen --verbose
+  npm run gwen -- --verbose
   ```
 
   </TabItem>
@@ -1056,13 +1056,13 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   Provide <em>dry run</em> switch to find and report any errors in all feature and meta files in a given directory
 
   ```shell
-  npm run gwen -b -n features/dir
+  npm run gwen -- -b -n features/dir
   ```
 
   Provide <em>dry run</em> switch to find and report any errors in the given feature file and its <Link to="/docs/meta/load-strategies#associative-strategy">associative meta</Link>
 
   ```shell
-  npm run gwen --batch --dry-run features/file.feature
+  npm run gwen -- --batch --dry-run features/file.feature
   ```
 
   </TabItem>
@@ -1182,13 +1182,13 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   To execute all feature files in a directory on the firefox browser using dev environment settings.
   
   ```shell
-  npm run gwen -b -c browsers/firefox.conf,env/dev.conf features/dir
+  npm run gwen -- -b -c browsers/firefox.conf,env/dev.conf features/dir
   ```
 
   To execute a feature file and load custom properties.
   
   ```shell
-  npm run gwen --batch --config props/custom.properties features/file.feature
+  npm run gwen -- --batch --config props/custom.properties features/file.feature
   ```
 
   </TabItem>
@@ -1364,13 +1364,13 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   To execute a feature file and output a HTML report to the default output directory
   
   ```shell
-  npm run gwen -b features/file1.feature
+  npm run gwen -- -b features/file1.feature
   ```
 
   To execute all feature files in a directory and output HTML reports to nominated directory
   
   ```shell
-  npm run gwen -b --report nominated/outdir features/dir
+  npm run gwen -- -b --report nominated/outdir features/dir
   ```
 
   </TabItem>
@@ -1518,13 +1518,13 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   To
   
   ```shell
-  npm run gwen -b features/dir
+  npm run gwen -- -b features/dir
   ```
 
   To
   
   ```shell
-  npm run gwen --batch features/file.feature
+  npm run gwen -- --batch features/file.feature
   ```
 
   </TabItem>
@@ -1643,25 +1643,25 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   To execute all features or scenarios tagged with <code>@regression</code> in a given directory 
   
   ```shell
-  npm run gwen -b -t @regression features/dir
+  npm run gwen -- -b -t @regression features/dir
   ```
 
   To execute all scenarios tagged with <code>@wip</code> in a given feature file
   
   ```shell
-  npm run gwen -b --tags @wip features/file.feature
+  npm run gwen -- -b --tags @wip features/file.feature
   ```
   
   To execute all scenarios not tagged with <code>@wip</code> in a given feature file
   
   ```shell
-  npm run gwen -b -t ~@wip features/file.feature
+  npm run gwen -- -b -t ~@wip features/file.feature
   ```
 
    To execute all features or scenarios tagged with <code>@regression</code> and not tagged with <code>@wip</code> in a given directory
   
   ```shell
-  npm run gwen -b --tags @regression,~@wip features/dir
+  npm run gwen -- -b --tags @regression,~@wip features/dir
   ```
 
   </TabItem>
@@ -1817,13 +1817,13 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   To execute all feature files in a directory for every record in a CSV file
   
   ```shell
-  npm run gwen -b -i data/records.csv features/dir
+  npm run gwen -- -b -i data/records.csv features/dir
   ```
 
   To execute a feature file for every record in a CSV file
   
   ```shell
-  npm run gwen -b --input-data data/records.csv features/file.feature
+  npm run gwen -- -b --input-data data/records.csv features/file.feature
   ```
 
   </TabItem>
@@ -1937,13 +1937,13 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   To load all meta files in a directory before executing each feature file in a given directory
   
   ```shell
-  npm run gwen -b -m meta/dir features/dir
+  npm run gwen -- -b -m meta/dir features/dir
   ```
   
   To load a specific meta file before executing a feature file
   
   ```shell
-  npm run gwen -b -m meta/file.meta features/file.feature
+  npm run gwen -- -b -m meta/file.meta features/file.feature
   ```
 
   </TabItem>
@@ -2053,19 +2053,19 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   To execute all features in two given directories
   
   ```shell
-  npm run gwen -b features/dir1 features/dir2
+  npm run gwen -- -b features/dir1 features/dir2
   ```
 
   To execute two feature files
   
   ```shell
-  npm run gwen --batch features/file1.feature features/file2.feature
+  npm run gwen -- --batch features/file1.feature features/file2.feature
   ```
 
   To execute all features in two given directories and another feature file
   
   ```shell
-  npm run gwen --batch features/dir1 features/dir2 features/file.feature
+  npm run gwen -- --batch features/dir1 features/dir2 features/file.feature
   ```
 
   </TabItem>

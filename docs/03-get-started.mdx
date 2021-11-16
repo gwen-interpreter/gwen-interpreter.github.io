@@ -58,8 +58,24 @@ Open a terminal in the root of your project and run the following commands to ad
   ]}>
 <TabItem value="npm">
 
+Install the gwen-web package:
+
 ```shell
 npm i --save-dev @gweninterpreter/gwen-web
+```
+
+In the `scripts` section of your `package.json` file, add the following entry:
+```json
+{
+  "scripts": {
+    "gwen": "gwen"
+  }
+}
+```
+
+Then, initialize Gwen in the project by running:
+
+```shell
 npm run gwen init
 ```
 
@@ -159,7 +175,7 @@ gwen {
 Run the following command in your project to execute the sample feature specs.
 
 ```shell
-npm run gwen -b gwen/samples
+npm run gwen -- -b gwen/samples
 ```
 
 Where:
