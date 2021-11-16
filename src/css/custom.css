@@ -55,6 +55,10 @@ html[data-theme='dark'] .navbar {
   top: 1.3rem !important;
 }
 
+.cli-options:before {
+  top: 1.3rem !important;
+}
+
 a,details {
   scroll-margin-top: 3.8em;
 }

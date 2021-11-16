@@ -18,7 +18,7 @@ const FeatureList = [
     Svg: require('../../static/img/gwen-meta.svg').default,
     description: (
       <>
-        Write <Link to="/docs/meta-specs">meta specs</Link> to describe how steps will execute to automate scenarios.
+        Write <Link to="/docs/meta">meta specs</Link> to describe how steps will execute to automate scenarios.
       </>
     ),
   },

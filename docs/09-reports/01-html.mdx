@@ -1,0 +1,169 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# HTML Reports
+
+Pretty HTML reports capture evaluated results and statistics.
+
+## Generate reports
+
+<Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+<TabItem value="js">
+
+Launch Gwen with the `-f html` option to generate HTML reports when executing your features.
+
+<Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+<TabItem value="npm">
+
+:::note Example
+
+Execute features in the *features/todo* folder and generate HTML reports.
+
+```shell
+npm run gwen -b -f html features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="yarn">
+
+:::note Example
+
+Execute features in the *features/todo* folder and generate HTML reports.
+
+```shell
+yarn gwen -b -f html features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="pnpm">
+
+:::note Example
+
+Execute features in the *features/todo* folder and generate HTML reports.
+
+```shell
+pnpm gwen -b -f html features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+</Tabs>
+
+### Output
+
+- Reports will be generated in the `gwen/output/reports` directory as per the default [`gwen.cli.options.report`](/docs/settings/reference#gwen-cli-options-report) setting
+  - The HTML index page will be generated at `gwen/output/reports/index.html`.
+  - If you want reports generated in a different directory, you can either:
+    - Amend the above setting to change the default
+    - Or include the `-r|--report` CLI option and specify a directory on every launch
+
+</TabItem>
+
+<TabItem value="standalone">
+
+Launch Gwen with the `-f html` option to generate HTML reports when executing your features.
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+:::note Example
+
+Execute features in the *features/todo* folder and generate HTML reports.
+
+```shell
+gwen -b -f html features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+<TabItem value="windows">
+
+:::note Example
+
+Execute features in the *features/todo* folder and generate HTML reports.
+
+```shell
+gwen -b -f html features\todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+### Output
+
+- Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+  - Reports will be generated in the `output/reports` directory as per the default [`gwen.cli.options.report`](/docs/settings/reference#gwen-cli-options-report) setting
+    - The HTML index page will be generated at `gwen/output/reports/index.html`.
+    - If you want reports generated in a different directory, you can either:
+      - Amend the above setting to change the default
+      - Or include the `-r|--report` CLI option to specify a directory on every launch
+- For prior versions
+  - Include the `-r|--report` CLI option and specify a directory on every launch
+
+</TabItem>
+
+</Tabs>
+
+## View report
+
+Opening the generated HTML report in your browser will display the summary.
+
+![Example HTML report](/img/reports/sample-html-report-summary.png)
+
+Clicking the feature link in the summary will open the feature detail.
+
+![Example HTML report](/img/reports/sample-html-report-detail.png)
+
+### Expand Step Defs
+
+[StepDefs](/docs/meta#stepdefs) are inlined and can be expanded by hovering over steps with the mouse and clicking them in the report.
+
+![Example HTML report](/img/reports/sample-html-report-expanded.png)

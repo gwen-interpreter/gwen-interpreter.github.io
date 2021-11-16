@@ -1,0 +1,2315 @@
+--- 
+slug: /cli
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Gwen CLI
+
+## Command line interface
+
+:::tip
+
+[Set up Gwen](/docs/get-started) to access the CLI.
+
+:::
+
+### Options and usage
+
+All launch operations can be invoked using the Gwen CLI. To list the usage and all available options, invoke Gwen with only the [`--help`](#gwen-cli-options-help) switch. The following output will be displayed:
+
+```
+Usage: gwen [options] [files|dirs]
+
+  --version               Print Gwen version
+  --help                  Print CLI usage
+  --parallel              Execute features or scenarios in parallel
+                          - depending on gwen.state.level (default is feature)
+  --parallel-features     Execute features in parallel (unconditionally)
+  -b, --batch             Exit when execution completes (omit to open REPL)
+  -v, --verbose           Enable verbose log output
+  -n, --dry-run           Check all syntax and bindings and report errors
+  -c, --conf files        Settings files: conf, json or properties (comma separated)
+  -p, --properties files  Properties files (deprecated, use -c|--conf instead)
+  -r, --report dir        Directory to output generated report(s) to
+  -f, --formats reports   Report formats to include in output (comma separated)
+                          - html,junit,json,rp,none (default is html)
+  -t, --tags filter       Tags to @include or ~@exclude (comma separated)
+  -i, --input-data file   Input data feed (CSV file with column headers)
+  -m, --meta files|dirs   Meta files or directories to load (comma separated)
+  files|dirs              Feature files or directories to execute (space separated)
+Command: init [dir]
+  dir                     Project directory to initialise (default is gwen)
+```
+
+### System properties and JVM options
+
+In addition to the above, you can also pass any number of Java system properties or JVM options to the CLI:
+
+- `-Dprop.name=value`
+  - To pass a system property to the Java process that runs Gwen
+  - Will override any same named [Gwen setting](/docs/settings/reference)
+  - Will be picked up by `${prop.name}` placeholders in feature and meta specs
+- `-J<JVM_OPTION>`
+  - To pass a JVM option to the Java process that runs Gwen
+  - The `-J` prefix will be stripped and `<JVM_OPTION>` will be passed through
+
+### Configurable CLI options
+
+As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>, CLI options can be configured in [settings](/docs/settings/reference#cli-settings) enabling you to customize your own launch profile (excluding `--version` and `--help`).
+
+## CLI reference
+
+### Options
+
+<details id="gwen-cli-options-version">
+  <summary class="cli-options">
+
+  ```shell
+  --version
+  ```
+  <p>Optional switch for outputting the Gwen version.</p>
+  </summary>
+
+  <p>Usage</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  ```shell
+  npm run gwen --version
+  ```
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  ```shell
+  yarn gwen --version
+  ```
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  ```shell
+  pnpm gwen --version
+  ```
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  ```shell
+  gwen --version
+  ```
+
+  </TabItem>
+  
+  </Tabs>  
+
+  <p>Output</p>
+
+  ```
+     __ ___      _____ _ __     _    
+    / _` \ \ /\ / / _ \ '_ \   { \," 
+   | (_| |\ V  V /  __/ | | | {_`/   
+    \__, | \_/\_/ \___|_| |_|   `    
+    |___/                            
+
+  Welcome to gwen-web v3.0.0
+  gweninterpreter.org
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-version">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-help">
+  <summary class="cli-options">
+
+  ```shell
+  --help
+  ```
+  <p>Optional switch for outputting CLI usage.</p>
+  </summary>
+  
+  <p>Usage</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  ```shell
+  npm run gwen --help
+  ```
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  ```shell
+  yarn gwen --help
+  ```
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  ```shell
+  pnpm gwen --help
+  ```
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  ```shell
+  gwen --help
+  ```
+
+  </TabItem>
+  
+  </Tabs>  
+
+  <p>Output</p>
+
+  ```
+     __ ___      _____ _ __     _    
+    / _` \ \ /\ / / _ \ '_ \   { \," 
+   | (_| |\ V  V /  __/ | | | {_`/   
+    \__, | \_/\_/ \___|_| |_|   `    
+    |___/                            
+
+  Welcome to gwen-web v3.0.0
+  gweninterpreter.org
+
+  Usage: gwen [init] [options] <args>...
+
+    --version               Print Gwen version
+    --help                  Print CLI usage
+    --parallel              Execute features or scenarios in parallel
+                            - depending on gwen.state.level (default is feature)
+    --parallel-features     Execute features in parallel (unconditionally)
+    -b, --batch             Exit when execution completes (omit to open REPL)
+    -v, --verbose           Enable verbose log output
+    -n, --dry-run           Check all syntax and bindings and report errors
+    -c, --conf files        Settings files: conf, json or properties (comma separated)
+    -p, --properties files  Properties files (deprecated, use -c|--conf instead)
+    -r, --report dir        Directory to output generated report(s) to
+    -f, --formats reports   Report formats to include in output (comma separated)
+                            - html,junit,json,rp,none (default is html)
+    -t, --tags filter       Tags to @include or ~@exclude (comma separated)
+    -i, --input-data file   Input data feed (CSV file with column headers)
+    -m, --meta files|dirs   Meta files or directories to load (comma separated)
+    files|dirs              Feature files or directories to execute (space separated)
+  Command: init [dir]
+    dir                     Project directory to initialise (default is gwen)
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-help">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-parallel">
+  <summary class="cli-options">
+
+  ```shell
+  --parallel
+  ```
+  <p>Optional switch for executing features or scenarios in parallel (depending on state level). Omit to execute sequenctially.</p>
+  </summary>
+  
+  <p>Examples</p>
+
+  <Tabs
+  groupId="stateLevel"
+  defaultValue="feature"
+  values={[
+    {label: 'Features', value: 'feature'},
+    {label: 'Scenarios', value: 'scenario'}
+  ]}>
+
+  <TabItem value="feature">
+
+  Features will run in parallel when the <em>parallel</em> switch is provided and <Link to="/docs/settings/reference#gwen-state-level"><code>gwen.state.level</code></Link> is <code>feature</code>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  Provide <em>parallel</em> switch to execute all feature files in a given directory in parallel
+
+  ```shell
+  npm run gwen -b --parallel features/dir
+  ```
+
+  Provide <em>parallel</em> switch to execute the given feature files in parallel
+
+  ```shell
+  npm run gwen --b --parallel features/file1.feature features/file2.feature 
+  ```
+
+  Omit <em>parallel</em> switch to execute all feature files in a given directory in sequence
+
+  ```shell
+  npm run gwen -b features/dir
+  ```
+
+  Omit <em>parallel</em> switch to execute the given feature files in sequence
+
+  ```shell
+  npm run gwen -b features/file1.feature features/file2.feature 
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  Provide <em>parallel</em> switch to execute all feature files in a given directory in parallel
+
+  ```shell
+  yarn gwen -b --parallel features/dir
+  ```
+
+  Provide <em>parallel</em> switch to execute the given feature files in parallel
+
+  ```shell
+  yarn gwen -b --parallel features/file1.feature features/file2.feature 
+  ```
+
+  Omit <em>parallel</em> switch to execute all feature files in a given directory in sequence
+
+  ```shell
+  yarn gwen -b features/dir
+  ```
+
+  Omit <em>parallel</em> switch to execute the given feature files in sequence
+
+  ```shell
+  yarn gwen -b features/file1.feature features/file2.feature 
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  Provide <em>parallel</em> switch to execute all feature files in a given directory in parallel
+
+  ```shell
+  pnpm gwen -b --parallel features/dir
+  ```
+
+  Provide <em>parallel</em> switch to execute the given feature files in parallel
+
+  ```shell
+  pnpm gwen -b --parallel features/file1.feature features/file2.feature 
+  ```
+
+  Omit <em>parallel</em> switch to execute all feature files in a given directory in sequence
+
+  ```shell
+  pnpm gwen -b features/dir
+  ```
+
+  Omit <em>parallel</em> switch to execute the given feature files in sequence
+
+  ```shell
+  pnpm gwen -b features/file1.feature features/file2.feature 
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  Provide <em>parallel</em> switch to execute all feature files in a given directory in parallel
+
+  ```shell
+  gwen -b --parallel features/dir
+  ```
+
+  Provide <em>parallel</em> switch to execute the given feature files in parallel
+
+  ```shell
+  gwen -b --parallel features/file1.feature features/file2.feature 
+  ```
+
+  Omit <em>parallel</em> switch to execute all feature files in a given directory in sequence
+
+  ```shell
+  gwen -b features/dir
+  ```
+
+  Omit <em>parallel</em> switch to execute the given feature files in sequence
+
+  ```shell
+  gwen -b features/file1.feature features/file2.feature 
+  ```
+
+  </TabItem>
+  
+  </Tabs>  
+
+  </TabItem>
+
+  <TabItem value="scenario">
+
+  Scenarios will run in parallel when the <em>parallel</em> switch is provided and  <Link to="/docs/settings/reference#gwen-state-level"><code>gwen.state.level</code></Link> is <code>scenario</code>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  Provide <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in parallel
+
+  ```shell
+  npm run gwen -b --parallel features/dir
+  ```
+
+  Provide <em>parallel</em> switch to execute all scenarios in the given feature files in parallel
+
+  ```shell
+  npm run gwen -b --parallel features/file1.feature features/file2.feature 
+  ```
+
+  Omit <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in sequence
+
+  ```shell
+  npm run -b features/dir
+  ```
+
+  Omit <em>parallel</em> switch to execute all scenarios in the given feature files in sequence
+
+  ```shell
+  npm run -b features/file1.feature features/file2.feature 
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  Provide <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in parallel
+
+  ```shell
+  yarn gwen -b --parallel features/dir
+  ```
+
+  Provide <em>parallel</em> switch to execute all scenarios in the given feature files in parallel
+
+  ```shell
+  yarn gwen -b --parallel features/file1.feature features/file2.feature 
+  ```
+
+  Omit <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in sequence
+
+  ```shell
+  yarn -b features/dir
+  ```
+
+  Omit <em>parallel</em> switch to execute all scenarios in the given feature files in sequence
+
+  ```shell
+  yarn -b features/file1.feature features/file2.feature 
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  Provide <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in parallel
+
+  ```shell
+  pnpm gwen -b --parallel features/dir
+  ```
+
+  Provide <em>parallel</em> switch to execute all scenarios in the given feature files in parallel
+
+  ```shell
+  pnpm gwen -b --parallel features/file1.feature features/file2.feature 
+  ```
+
+  Omit <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in sequence
+
+  ```shell
+  pnpm -b features/dir
+  ```
+
+  Omit <em>parallel</em> switch to execute all scenarios in the given feature files in sequence
+
+  ```shell
+  pnpm -b features/file1.feature features/file2.feature 
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  Provide <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in parallel
+
+  ```shell
+  gwen -b --parallel features/dir
+  ```
+
+  Provide <em>parallel</em> switch to execute all scenarios in the given feature files in parallel
+
+  ```shell
+  gwen -b --parallel features/file1.feature features/file2.feature 
+  ```
+
+  Omit <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in sequence
+
+  ```shell
+  gwen -b features/dir
+  ```
+
+  Omit <em>parallel</em> switch to execute all scenarios in the given feature files in sequence
+
+  ```shell
+  gwen -b features/file1.feature features/file2.feature 
+  ```
+
+  </TabItem>
+  
+  </Tabs>  
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-parallel">Link</Link></div>
+    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-parallel"><code>gwen.cli.options.parallel</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-parallel-features">
+  <summary class="cli-options">
+
+  ```shell
+  --parallel-features
+  ```
+  <p>Optional switch for executing features in parallel (regardless of state level). Omit to execute sequentially.</p>
+  </summary>
+
+  <p>Examples</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  Provide <em>parallel-features</em> switch to execute all feature files in a given directory in parallel
+
+  ```shell
+  npm run gwen -b --parallel-features features/dir
+  ```
+
+  Provide <em>parallel-features</em> switch to execute the given feature files in parallel
+
+  ```shell
+  npm run gwen -b --parallel-features features/file1.feature features/file2.feature 
+  ```
+
+  Omit <em>parallel-features</em> switch to execute all feature files in a given directory in sequence
+
+  ```shell
+  npm run -b features/dir
+  ```
+
+  Omit <em>parallel-features</em> switch to execute the given feature files in sequence
+
+  ```shell
+  npm run -b features/file1.feature features/file2.feature 
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  Provide <em>parallel-features</em> switch to execute all feature files in a given directory in parallel
+
+  ```shell
+  yarn gwen -b --parallel-features features/dir
+  ```
+
+  Provide <em>parallel-features</em> switch to execute the given feature files in parallel
+
+  ```shell
+  yarn gwen -b --parallel-features features/file1.feature features/file2.feature 
+  ```
+
+  Omit <em>parallel-features</em> switch to execute all feature files in a given directory in sequence
+
+  ```shell
+  yarn -b features/dir
+  ```
+
+  Omit <em>parallel-features</em> switch to execute the given feature files in sequence
+
+  ```shell
+  yarn -b features/file1.feature features/file2.feature 
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  Provide <em>parallel-features</em> switch to execute all feature files in a given directory in parallel
+
+  ```shell
+  pnpm gwen -b --parallel-features features/dir
+  ```
+
+  Provide <em>parallel-features</em> switch to execute the given feature files in parallel
+
+  ```shell
+  pnpm gwen -b --parallel-features features/file1.feature features/file2.feature 
+  ```
+
+  Omit <em>parallel-features</em> switch to execute all feature files in a given directory in sequence
+
+  ```shell
+  pnpm -b features/dir
+  ```
+
+  Omit <em>parallel-features</em> switch to execute the given feature files in sequence
+
+  ```shell
+  pnpm -b features/file1.feature features/file2.feature 
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  Provide <em>parallel-features</em> switch to execute all feature files in a given directory in parallel
+
+  ```shell
+  gwen -b --parallel-features features/dir
+  ```
+
+  Provide <em>parallel-features</em> switch to execute the given feature files in parallel
+
+  ```shell
+  gwen -b --parallel-features features/file1.feature features/file2.feature 
+  ```
+
+  Omit <em>parallel-features</em> switch to execute all feature files in a given directory in sequence
+
+  ```shell
+  gwen -b features/dir
+  ```
+
+  Omit <em>parallel-features</em> switch to execute the given feature files in sequence
+
+  ```shell
+  gwen -b features/file1.feature features/file2.feature 
+  ```
+
+  </TabItem>
+  
+  </Tabs>  
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-parallel-features">Link</Link></div>
+    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-parallel-features"><code>gwen.cli.options.parallelFeatures</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.22.1">v2.22.1</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-batch">
+  <summary class="cli-options">
+
+  ```shell
+  -b|--batch
+  ```
+  <p>Optional switch to execute features and then exit immediately (batch mode). Omit to open REPL instead of exiting (interactive mode).</p>
+  </summary>
+  
+  <p>Where</p>
+
+  <ul>
+    <li>Option name is either:
+      <ul>
+        <li><code>-b</code> for shorthand</li>
+        <li><code>--batch</code> for longhand</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>Examples</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  Provide <em>batch</em> switch to execute all feature files in a given directory and then exit
+
+  ```shell
+  npm run gwen -b features/dir
+  ```
+
+  Provide <em>batch</em> switch to execute the given feature file and then exit 
+
+  ```shell
+  npm run gwen --batch features/file.feature
+  ```
+
+  Omit <em>batch</em> switch to execute the given feature file and then open the <Link to="/docs/cli/repl">REPL</Link>
+
+  ```shell
+  npm run gwen features/file.feature
+  ```
+
+  Omit <em>batch</em> switch to open the <Link to="/docs/cli/repl">REPL</Link> immediately without executing anything
+
+  ```shell
+  npm run gwen
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  Provide <em>batch</em> switch to execute all feature files in a given directory and then exit
+
+  ```shell
+  yarn gwen -b features/dir
+  ```
+
+  Provide <em>batch</em> switch to execute the given feature file and then exit 
+
+  ```shell
+  yarn gwen --batch features/file.feature
+  ```
+
+  Omit <em>batch</em> switch to execute the given feature file and then open the <Link to="/docs/cli/repl">REPL</Link>
+
+  ```shell
+  yarn gwen features/file.feature
+  ```
+
+  Omit <em>batch</em> switch to open the <Link to="/docs/cli/repl">REPL</Link> immediately without executing anything
+
+  ```shell
+  yarn gwen
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  Provide <em>batch</em> switch to execute all feature files in a given directory and then exit
+
+  ```shell
+  pnpm gwen -b features/dir
+  ```
+
+  Provide <em>batch</em> switch to execute the given feature file and then exit 
+
+  ```shell
+  pnpm gwen --batch features/file.feature
+  ```
+
+  Omit <em>batch</em> switch to execute the given feature file and then open the <Link to="/docs/cli/repl">REPL</Link>
+
+  ```shell
+  pnpm gwen features/file.feature
+  ```
+
+  Omit <em>batch</em> switch to open the <Link to="/docs/cli/repl">REPL</Link> immediately without executing anything
+
+  ```shell
+  pnpm gwen
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+   Provide <em>batch</em> switch to execute all feature files in a given directory and then exit
+
+  ```shell
+  gwen -b features/dir
+  ```
+
+  Provide <em>batch</em> switch to execute the given feature file and then exit 
+
+  ```shell
+  gwen --batch features/file.feature
+  ```
+
+  Omit <em>batch</em> switch to execute the given feature file and then open the <Link to="/docs/cli/repl">REPL</Link>
+
+  ```shell
+  gwen features/file.feature
+  ```
+
+  Omit <em>batch</em> switch to open the <Link to="/docs/cli/repl">REPL</Link> immediately without executing anything
+
+  ```shell
+  gwen
+  ```
+
+  </TabItem>
+  
+  </Tabs>  
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-batch">Link</Link></div>
+    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-batch"><code>gwen.cli.options.batch</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-verbose">
+  <summary class="cli-options">
+
+  ```shell
+  -v|--verbose
+  ```
+  <p>Optional switch for enabling verbose log output.</p>
+  </summary>
+  
+  <p>Where</p>
+
+  <ul>
+    <li>Option name is either:
+      <ul>
+        <li><code>-v</code> for shorthand</li>
+        <li><code>--verbose</code> for longhand</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>Usage</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  ```shell
+  npm run gwen -v
+  ```
+
+  Or 
+
+  ```shell
+  npm run gwen --verbose
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+   ```shell
+  yarn gwen -v
+  ```
+
+  Or 
+
+  ```shell
+  yarn gwen --verbose
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+   ```shell
+  pnpm gwen -v
+  ```
+
+  Or 
+
+  ```shell
+  pnpm gwen --verbose
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  ```shell
+  gwen -v
+  ```
+
+  Or 
+
+  ```shell
+  gwen --verbose
+  ```
+
+  </TabItem>
+  
+  </Tabs>  
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-verbose">Link</Link></div>
+    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-verbose"><code>gwen.cli.options.verbose</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-dry-run">
+  <summary class="cli-options">
+
+  ```shell
+  -n|--dry-run
+  ```
+  <p>Optional switch to find and report any syntax or binding errors that may exist in your feature and meta files. Use this to validate your feature and meta files before committig to an automation cycle. Omit to execute.</p>
+  </summary>
+  
+  <p>Where</p>
+
+  <ul>
+    <li>Option name is either:
+      <ul>
+        <li><code>-n</code> for shorthand</li>
+        <li><code>--dry-run</code> for longhand</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>Output</p>
+
+  <ul>
+    <li>A <Link to="/docs/reports/html">HTML report</Link> highlighting all errors found (if any)</li>
+    <li>Errors are also logged to the console</li>
+  </ul>
+
+  <p>Examples</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  Provide <em>dry run</em> switch to find and report any errors in all feature and meta files in a given directory
+
+  ```shell
+  npm run gwen -b -n features/dir
+  ```
+
+  Provide <em>dry run</em> switch to find and report any errors in the given feature file and its <Link to="/docs/meta/load-strategies#associative-strategy">associative meta</Link>
+
+  ```shell
+  npm run gwen --batch --dry-run features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  Provide <em>dry run</em> switch to find and report any errors in all feature and meta files in a given directory
+
+  ```shell
+  yarn gwen -b -n features/dir
+  ```
+
+  Provide <em>dry run</em> switch to find and report any errors in the given feature file and its <Link to="/docs/meta/load-strategies#associative-strategy">associative meta</Link>
+
+  ```shell
+  yarn gwen --batch --dry-run features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  Provide <em>dry run</em> switch to find and report any errors in all feature and meta files in a given directory
+
+  ```shell
+  pnpm gwen -b -n features/dir
+  ```
+
+  Provide <em>dry run</em> switch to find and report any errors in the given feature file and its <Link to="/docs/meta/load-strategies#associative-strategy">associative meta</Link>
+
+  ```shell
+  pnpm gwen --batch --dry-run features/file.feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  Provide <em>dry run</em> switch to find and report any errors in all feature and meta files in a given directory
+
+  ```shell
+  gwen -b -n features/dir
+  ```
+
+  Provide <em>dry run</em> switch to find and report any errors in the given feature file and its <Link to="/docs/meta/load-strategies#associative-strategy">associative meta</Link>
+
+  ```shell
+  gwen --batch --dry-run features/file.feature
+  ```
+
+  </TabItem>
+  
+  </Tabs>  
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-dry-run">Link</Link></div>
+    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-dry-run"><code>gwen.cli.options.dryRun</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-conf">
+  <summary class="cli-options">
+
+  ```shell
+  -c|--conf <files>
+  ```
+  <p>Optional list of settings files to load. These are loaded in the order given with latter entries overriding the former.</p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li>Option name is either:
+      <ul>
+        <li><code>-c</code> for shorthand</li>
+        <li><code>--conf</code> for longhand</li>
+      </ul>
+    </li>
+    <li><code>&lt;files&gt;</code> is a comma separated list of <code>.conf</code>, <code>.json</code>, or <code>.properties</code> settings file paths.</li>
+  </ul>
+
+  <br />
+  <p>
+  The <code>-p|--properties</code> option in early version of Gwen has been deprecated and replaced in favor of this option since Gwen 3. The former will still work for properties files until the next major release (and will be removed then). You should use this launch option going forward.
+  </p>
+  <br />
+
+  <p>Examples</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  To execute all feature files in a directory on the firefox browser using dev environment settings.
+  
+  ```shell
+  npm run gwen -b -c browsers/firefox.conf,env/dev.conf features/dir
+  ```
+
+  To execute a feature file and load custom properties.
+  
+  ```shell
+  npm run gwen --batch --config props/custom.properties features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  To execute all feature files in a directory on the firefox browser using dev environment settings.
+  
+  ```shell
+  yarn gwen -b -c browsers/firefox.conf,env/dev.conf features/dir
+  ```
+
+  To execute a feature file and load custom properties.
+  
+  ```shell
+  yarn gwen --batch --config props/custom.properties features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  To execute all feature files in a directory on the firefox browser using dev environment settings.
+  
+  ```shell
+  pnpm gwen -b -c browsers/firefox.conf,env/dev.conf features/dir
+  ```
+
+  To execute a feature file and load custom properties.
+  
+  ```shell
+  pnpm gwen --batch --config props/custom.properties features/file.feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  To execute all feature files in a directory on the firefox browser using dev environment settings.
+  
+  ```shell
+  gwen -b -c browsers/firefox.conf,env/dev.conf features/dir
+  ```
+
+  To execute a feature file and load custom properties.
+  
+  ```shell
+  gwen --batch --config props/custom.properties features/file.feature
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-conf">Link</Link></div>
+    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-conf"><code>gwen.cli.options.conf</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-properties">
+  <summary class="cli-options">
+
+  ```shell
+  -p|--properties <files>
+  ```
+  <p>Optional list of properties files to load. These are loaded in the order given with latter entries overriding the former.
+  </p>
+  <p><b>Deprecated</b> since Gwen 3, use <code>-c|--conf</code> instead.
+  </p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li>Option name is either:
+      <ul>
+        <li><code>-p</code> for shorthand</li>
+        <li><code>--properties</code> for longhand</li>
+      </ul>
+    </li>
+    <li><code>&lt;files&gt;</code> is a comma separated list of <code>.properties</code> file paths.</li>
+  </ul>
+
+  <p>Examples</p>
+
+  To execute all feature files in a directory on the firefox browser using dev environment properties.
+  
+  ```shell
+  gwen -b -p browsers/firefox.properties,env/dev.properties features/dir
+  ```
+
+  To execute a feature file and load custom properties.
+  
+  ```shell
+  gwen --batch --properties props/custom.properties features/file.feature
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-properties">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-report">
+  <summary class="cli-options">
+
+  ```shell
+  -r|--report <dir>
+  ```
+  <p>Optional directory to output generated reports to.</p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li>Option name is either:
+      <ul>
+        <li><code>-r</code> for shorthand</li>
+        <li><code>--report</code> for longhand</li>
+      </ul>
+    </li>
+    <li><code>&lt;dir&gt;</code> is the path to the directory where generated reports will be written to.</li>
+  </ul>
+
+  <br />
+  <p>
+  Since Gwen 3, <Link to="/docs/reports/html">HTML reports</Link> are generated by default and all reports are written to the output directory defined by the <Link to="/docs/settings/reference#gwen-cli-options-report"><code>gwen.cli.options.report</code></Link> setting (which you can change if you wish). You therefore only need to specify this report option if you want to override this default on the CLI for a particular launch. If additionally, you don't want any reports to be generated by default, you can set the <Link to="/docs/settings/reference#gwen-cli-options-format"><code>gwen.cli.options.format</code></Link> setting to <code>none</code>.
+  </p>
+  <br />
+
+  <p>Examples</p>
+
+  <Tabs
+  groupId="gwenVersion"
+  defaultValue="gwen3+"
+  values={[
+    {label: 'Gwen 3+', value: 'gwen3+'},
+    {label: 'Gwen 2-', value: 'gwen2-'}
+  ]}>
+
+  <TabItem value="gwen3+">
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  To execute a feature file and output a HTML report to the default output directory
+  
+  ```shell
+  npm run gwen -b features/file1.feature
+  ```
+
+  To execute all feature files in a directory and output HTML reports to nominated directory
+  
+  ```shell
+  npm run gwen -b --report nominated/outdir features/dir
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  To execute a feature file and output a HTML report to the default output directory
+  
+  ```shell
+  yarn gwen -b features/file1.feature
+  ```
+
+  To execute all feature files in a directory and output HTML reports to nominated directory
+  
+  ```shell
+  yarn gwen -b --report nominated/outdir features/dir
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  To execute a feature file and output a HTML report to the default output directory
+  
+  ```shell
+  pnpm gwen -b features/file1.feature
+  ```
+
+  To execute all feature files in a directory and output HTML reports to nominated directory
+  
+  ```shell
+  pnpm gwen -b --report nominated/outdir features/dir
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  To execute a feature file and output a HTML report to the default output directory
+  
+  ```shell
+  gwen -b features/file1.feature
+  ```
+
+  To execute all feature files in a directory and output HTML reports to nominated directory
+  
+  ```shell
+  gwen -b --report nominated/outdir features/dir
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+  </TabItem>
+
+  <TabItem value="gwen2-">
+
+  To execute a feature file and output a HTML report to a nominated directory
+  
+  ```shell
+  gwen -b -r nominated/outdir features/file1.feature
+  ```
+
+  To execute all feature files in a directory and output HTML reports to a nominated directory
+  
+  ```shell
+  gwen -b --report nominated/outdir features/dir
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-report">Link</Link></div>
+    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-report"><code>gwen.cli.options.report</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-format">
+  <summary class="cli-options">
+
+  ```shell
+  -f|--format <reports>
+  ```
+  <p>Optional list of report formats to output.</p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li>Option name is either:
+      <ul>
+        <li><code>-f</code> for shorthand</li>
+        <li><code>--format</code> for longhand</li>
+      </ul>
+    </li>
+    <li><code>&lt;reports&gt;</code> is a comma separated list of one or more of the following:
+      <ul>
+        <li><code>html</code> for <Link to="/docs/reports/html">HTML reports</Link></li>
+        <li><code>junit</code> for <Link to="/docs/reports/junit-xml">JUnit-XML reports</Link></li>
+        <li><code>json</code> for <Link to="/docs/reports/json">JSON reports</Link></li>
+        <li><code>rp</code> to log results to a <Link to="/docs/reports/portal">Report Portal</Link> server</li>
+        <li><code>none</code> for no reports</li>
+      </ul>
+    </li>
+  </ul>
+
+  <br />
+  <p>
+   Since Gwen 3, <Link to="/docs/reports/html">HTML reports</Link> are generated by default and all reports are written to the output directory defined by the <Link to="/docs/settings/reference#gwen-cli-options-report"><code>gwen.cli.options.report</code></Link> setting (which you can change if you wish). You therefore no longer need to explictly specify the <Link to="#gwen-cli-options-report"><code>-r|--report</code></Link> option with this option unless you want to override the default on the CLI for a particular launch.
+  </p>
+  <br />
+
+  <p>Examples</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  To
+  
+  ```shell
+  npm run gwen -b features/dir
+  ```
+
+  To
+  
+  ```shell
+  npm run gwen --batch features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  To
+  
+  ```shell
+  yarn gwen -b features/dir
+  ```
+
+  To
+  
+  ```shell
+  yarn gwen --batch features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  To
+  
+  ```shell
+  pnpm gwen -b features/dir
+  ```
+
+  To
+  
+  ```shell
+  pnpm gwen --batch features/file.feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  To
+  
+  ```shell
+  gwen -b features/dir
+  ```
+
+  To
+  
+  ```shell
+  gwen --batch features/file.feature
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-format">Link</Link></div>
+    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-format"><code>gwen.cli.options.format</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-tags">
+  <summary class="cli-options">
+
+  ```shell
+  -t|--tags <filter>
+  ```
+  <p>Optional list of tags to include or exclude for execution.</p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li>Option name is either:
+      <ul>
+        <li><code>-t</code> for shorthand</li>
+        <li><code>--tags</code> for longhand</li>
+      </ul>
+    </li>
+    <li><code>&lt;filter&gt;</code> is a comma separated list of one or more of the following tag patterns:
+      <ul>
+        <li><code>@Tag</code> to include a tag</li>
+        <li><code>~@Tag</code> to exclude a tag</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>Examples</p>
+  
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  To execute all features or scenarios tagged with <code>@regression</code> in a given directory 
+  
+  ```shell
+  npm run gwen -b -t @regression features/dir
+  ```
+
+  To execute all scenarios tagged with <code>@wip</code> in a given feature file
+  
+  ```shell
+  npm run gwen -b --tags @wip features/file.feature
+  ```
+  
+  To execute all scenarios not tagged with <code>@wip</code> in a given feature file
+  
+  ```shell
+  npm run gwen -b -t ~@wip features/file.feature
+  ```
+
+   To execute all features or scenarios tagged with <code>@regression</code> and not tagged with <code>@wip</code> in a given directory
+  
+  ```shell
+  npm run gwen -b --tags @regression,~@wip features/dir
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  To execute all features or scenarios tagged with <code>@regression</code> in a given directory 
+  
+  ```shell
+  yarn gwen -b -t @regression features/dir
+  ```
+
+  To execute all scenarios tagged with <code>@wip</code> in a given feature file
+  
+  ```shell
+  yarn gwen -b --tags @wip features/file.feature
+  ```
+  
+  To execute all scenarios not tagged with <code>@wip</code> in a given feature file
+  
+  ```shell
+  yarn gwen -b -t ~@wip features/file.feature
+  ```
+
+   To execute all features or scenarios tagged with <code>@regression</code> and not tagged with <code>@wip</code> in a given directory
+  
+  ```shell
+  yarn gwen -b --tags @regression,~@wip features/dir
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  To execute all features or scenarios tagged with <code>@regression</code> in a given directory 
+  
+  ```shell
+  pnpm gwen -b -t @regression features/dir
+  ```
+
+  To execute all scenarios tagged with <code>@wip</code> in a given feature file
+  
+  ```shell
+  pnpm gwen -b --tags @wip features/file.feature
+  ```
+  
+  To execute all scenarios not tagged with <code>@wip</code> in a given feature file
+  
+  ```shell
+  pnpm gwen -b -t ~@wip features/file.feature
+  ```
+
+   To execute all features or scenarios tagged with <code>@regression</code> and not tagged with <code>@wip</code> in a given directory
+  
+  ```shell
+  pnpm gwen -b --tags @regression,~@wip features/dir
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  To execute all features or scenarios tagged with <code>@regression</code> in a given directory 
+  
+  ```shell
+  gwen -b -t @regression features/dir
+  ```
+
+  To execute all scenarios tagged with <code>@wip</code> in a given feature file
+  
+  ```shell
+  gwen -b --tags @wip features/file.feature
+  ```
+  
+  To execute all scenarios not tagged with <code>@wip</code> in a given feature file
+  
+  ```shell
+  gwen -b -t ~@wip features/file.feature
+  ```
+
+   To execute all features or scenarios tagged with <code>@regression</code> and not tagged with <code>@wip</code> in a given directory
+  
+  ```shell
+  gwen -b --tags @regression,~@wip features/dir
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-tags">Link</Link></div>
+    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-tags"><code>gwen.cli.options.tags</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-input-data">
+  <summary class="cli-options">
+
+  ```shell
+  -i|--input-data <file>
+  ```
+  <p>Optional CSV data feed file.</p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li>Option name is either:
+      <ul>
+        <li><code>-i</code> for shorthand</li>
+        <li><code>--input-data</code> for longhand</li>
+      </ul>
+    </li>
+    <li><code>&lt;file&gt;</code> is a path to a CSV data file</li>
+  </ul>
+
+  <br />
+  <p>
+  See <Link href="https://github.com/gwen-interpreter/gwen/wiki/Execution-Modes#csv-data-feeds">CSV data feeds</Link> for more details.
+  </p>
+  <br />
+
+  <p>Examples</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  To execute all feature files in a directory for every record in a CSV file
+  
+  ```shell
+  npm run gwen -b -i data/records.csv features/dir
+  ```
+
+  To execute a feature file for every record in a CSV file
+  
+  ```shell
+  npm run gwen -b --input-data data/records.csv features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  To execute all feature files in a directory for every record in a CSV file
+  
+  ```shell
+  yarn gwen -b -i data/records.csv features/dir
+  ```
+
+  To execute a feature file for every record in a CSV file
+  
+  ```shell
+  yarn gwen -b --input-data data/records.csv features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  To execute all feature files in a directory for every record in a CSV file
+  
+  ```shell
+  pnpm gwen -b -i data/records.csv features/dir
+  ```
+
+  To execute a feature file for every record in a CSV file
+  
+  ```shell
+  pnpm gwen -b --input-data data/records.csv features/file.feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  To execute all feature files in a directory for every record in a CSV file
+  
+  ```shell
+  gwen -b -i data/records.csv features/dir
+  ```
+
+  To execute a feature file for every record in a CSV file
+  
+  ```shell
+  gwen -b --input-data data/records.csv features/file.feature
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-input-data">Link</Link></div>
+    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-input-data"><code>gwen.cli.options.inputData</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-meta">
+  <summary class="cli-options">
+
+  ```shell
+  -m|--meta <files|dirs>
+  ```
+  <p>Optional list of meta files or directories to load.</p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li>Option name is either:
+      <ul>
+        <li><code>-m</code> for shorthand</li>
+        <li><code>--meta</code> for longhand</li>
+      </ul>
+    </li>
+    <li><code>&lt;files|dirs&gt;</code> is a comma separated list of meta file paths or directories (containing meta files) to load</li>
+  </ul>
+
+  <p>Examples</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  To load all meta files in a directory before executing each feature file in a given directory
+  
+  ```shell
+  npm run gwen -b -m meta/dir features/dir
+  ```
+  
+  To load a specific meta file before executing a feature file
+  
+  ```shell
+  npm run gwen -b -m meta/file.meta features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  To load all meta files in a directory before executing each feature file in a given directory
+  
+  ```shell
+  yarn gwen -b -m meta/dir features/dir
+  ```
+  
+  To load a specific meta file before executing a feature file
+  
+  ```shell
+  yarn gwen -b -m meta/file.meta features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  To load all meta files in a directory before executing each feature file in a given directory
+  
+  ```shell
+  pnpm gwen -b -m meta/dir features/dir
+  ```
+  
+  To load a specific meta file before executing a feature file
+  
+  ```shell
+  pnpm gwen -b -m meta/file.meta features/file.feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  To load all meta files in a directory before executing each feature file in a given directory
+  
+  ```shell
+  gwen -b -m meta/dir features/dir
+  ```
+  
+  To load a specific meta file before executing a feature file
+  
+  ```shell
+  gwen -b -m meta/file.meta features/file.feature
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-meta">Link</Link></div>
+    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-meta"><code>gwen.cli.options.meta</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+### Arguments
+
+<details id="gwen-cli-options-features">
+  <summary class="cli-options">
+
+  ```shell
+  [files|dirs]
+  ```
+  <p>Optional list of feature files or directories to execute (optional).</p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li><code>&lt;files|dirs&gt;</code> is a space separated list of feature files or directories (containing feature files) to execute</li>
+  </ul>
+
+  <p>Examples</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  To execute all features in two given directories
+  
+  ```shell
+  npm run gwen -b features/dir1 features/dir2
+  ```
+
+  To execute two feature files
+  
+  ```shell
+  npm run gwen --batch features/file1.feature features/file2.feature
+  ```
+
+  To execute all features in two given directories and another feature file
+  
+  ```shell
+  npm run gwen --batch features/dir1 features/dir2 features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  To execute all features in two given directories
+  
+  ```shell
+  yarn gwen -b features/dir1 features/dir2
+  ```
+
+  To execute two feature files
+  
+  ```shell
+  yarn gwen --batch features/file1.feature features/file2.feature
+  ```
+
+  To execute all features in two given directories and another feature file
+  
+  ```shell
+  yarn gwen --batch features/dir1 features/dir2 features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  To execute all features in two given directories
+  
+  ```shell
+  pnpm gwen -b features/dir1 features/dir2
+  ```
+
+  To execute two feature files
+  
+  ```shell
+  pnpm gwen --batch features/file1.feature features/file2.feature
+  ```
+
+  To execute all features in two given directories and another feature file
+  
+  ```shell
+  pnpm gwen --batch features/dir1 features/dir2 features/file.feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  To execute all features in two given directories
+  
+  ```shell
+  gwen -b features/dir1 features/dir2
+  ```
+
+  To execute two feature files
+  
+  ```shell
+  gwen --batch features/file1.feature features/file2.feature
+  ```
+
+  To execute all features in two given directories and another feature file
+  
+  ```shell
+  gwen --batch features/dir1 features/dir2 features/file.feature
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-features">Link</Link></div>
+    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-features"><code>gwen.cli.options.features</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+### Init command
+
+<details id="gwen-cli-options-init-dir">
+  <summary class="cli-options">
+
+  ```shell
+  init [dir]
+  ```
+  <p>Command for initialising Gwen in a project directory.</p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li><code>[dir]</code> is
+      <ul>
+        <li>Not required for JS projects
+          <ul>
+            <li>Defaults to a <code>gwen</code> subdirectory in your project</li>
+          </ul>
+        </li>
+        <li>Must be specified as <code>.</code> for standalone projects (dot = current directory)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <br />
+  <p>
+  Run this command in your project directory to initialise Gwen in it. You can then start using Gwen in your project.
+  </p>
+  <br />
+
+  <p>Example</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  To initialse Gwen in a JS project
+  
+  ```shell
+  npm run gwen init
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  To initialse Gwen in a JS project
+  
+  ```shell
+  yarn gwen init
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  To initialse Gwen in a JS project
+  
+  ```shell
+  pnpm gwen init
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <p>The <code>init</code> command will generate the following Gwen files and subdirectories in your project</p>
+
+  ```
+    /js-project                 # Your JS project root
+    ├── gwen.conf               # Project settings
+    └── /gwen
+        ├── .gitignore          # Git ignore file
+        ├── README.md
+        ├── /browsers           # Browser settings
+        │   ├── chrome.conf
+        │   ├── edge.conf
+        │   ├── firefox.conf
+        │   ├── safari.conf
+        │   ├── ie.conf
+        │   ├── remote.conf     # Remote web driver settings
+        │   └── README.md
+        ├── /env                # Environment settings
+        │   ├── local.conf
+        │   ├── dev.conf
+        │   ├── test.conf
+        │   └── README.md
+        ├── /features           # Features and associative meta
+        │   └── README.md
+        ├── /meta               # Optional common/reusable meta
+        │   └── README.md
+        └── /samples            # Sample features and meta
+  ```
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  To initialse Gwen in a standalone project directory (be sure to include the trailing dot)
+  
+  ```shell
+  gwen init .
+  ```
+
+  <p>The <code>init</code> command will generate the following Gwen files and subdirectories in your project</p>
+
+  ```
+    /gwen-project           # Your standalone project root
+    ├── gwen.conf           # Project settings
+    ├── .gitignore          # Git ignore file
+    ├── README.md
+    ├── /browsers           # Browser settings
+    │   ├── chrome.conf
+    │   ├── edge.conf
+    │   ├── firefox.conf
+    │   ├── safari.conf
+    │   ├── ie.conf
+    │   ├── remote.conf     # Remote web driver settings
+    │   └── README.md
+    ├── /env                # Environment settings
+    │   ├── local.conf
+    │   ├── dev.conf
+    │   ├── test.conf
+    │   └── README.md
+    ├── /features           # Features and associative meta
+    │   └── README.md
+    ├── /meta               # Optional common/reusable meta
+    │   └── README.md
+    └── /samples            # Sample features and meta
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-init-dir">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+
+

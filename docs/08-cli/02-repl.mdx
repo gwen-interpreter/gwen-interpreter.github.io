@@ -1,7 +1,15 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # REPL Console
+
+## Interactive Gwen shell
 
 Gwen comes with a REPL (Read-Eval-Print-Loop) console. This is a command line shell that prompts you for steps, evaluates them, and outputs their status in real time. It enables you to experiment and observe the execution of steps as you enter (or paste) them which is very useful for debugging and analysis. Everything you enter is stored in a local history file and you can use the up and down arrow keys to recall previous inputs.
 
@@ -26,19 +34,110 @@ Enter steps to evaluate or type exit to quit..
 gwen>
 ```
 
-## Starting the REPL
+### Starting the REPL
 
-To start a REPL session, invoke the [Gwen Launcher](/docs/cli/launcher) without specifying the `-b` (or `--batch`) switch.
+To start a REPL session, invoke the [Gwen CLI](/docs/cli) without specifying the `-b` (or `--batch`) switch.
 
 <Tabs
   groupId="setup"
-  defaultValue="standalone"
+  defaultValue="js"
   values={[
-    {label: 'Standalone', value: 'standalone'},
-    {label: 'Workspace', value: 'workspace'},
     {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'},
   ]}>
   
+<TabItem value="js">
+
+<Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+<TabItem value="npm">
+
+:::note Open REPL
+
+To open a new REPL session:
+
+```shell
+npm run gwen
+```
+
+To load meta and open the REPL:
+
+```shell
+npm run gwen -m path/to/file.meta
+```
+
+To execute a feature and open the REPL:
+
+```shell
+npm run gwen path/to/file.feature
+```
+
+:::
+
+</TabItem>
+<TabItem value="yarn">
+
+:::note Open REPL
+
+To open a new REPL session:
+
+```shell
+yarn gwen
+```
+
+To load meta and open the REPL:
+
+```shell
+yarn gwen -m path/to/file.meta
+```
+
+To execute a feature and open the REPL:
+
+```shell
+yarn gwen path/to/file.feature
+```
+
+:::
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+:::note Open REPL
+
+To open a new REPL session:
+
+```shell
+pnpm gwen
+```
+
+To load meta and open the REPL:
+
+```shell
+pnpm gwen -m path/to/file.meta
+```
+
+To execute a feature and open the REPL:
+
+```shell
+pnpm gwen path/to/file.feature
+```
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
 <TabItem value="standalone">
 
 <Tabs
@@ -105,91 +204,9 @@ gwen path\to\file.feature
 
 </TabItem>
 
-<TabItem value="workspace">
-
-:::caution Deprecated
-
-[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) are deprecated in favor of JS projects coming to Gwen 3.
-
-:::
-
-<Tabs
-  groupId="os"
-  defaultValue="linux"
-  values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-
-<TabItem value="linux">
-
-:::note Open REPL
-
-To open a new REPL session:
-
-```shell
-./gwen
-```
-
-To load meta and open the REPL:
-
-```shell
-./gwen -m path/to/file.meta
-```
-
-To execute a feature and open the REPL:
-
-```shell
-./gwen path/to/file.feature
-```
-
-:::
-
-</TabItem>
-
-<TabItem value="windows">
-
-:::note Open REPL
-
-To open a new REPL session:
-
-```shell
-gwen
-```
-
-To load meta and open the REPL:
-
-```shell
-gwen -m path\to\file.meta
-```
-
-To execute a feature and open the REPL:
-
-```shell
-gwen path\to\file.feature
-```
-
-:::
-
-</TabItem>
-
 </Tabs>
 
-</TabItem>
-
-<TabItem value="js">
-
-:::info Coming to Gwen 3
-
-Support for JS projects coming soon to Gwen 3.
-
-:::
-
-</TabItem>
-
-</Tabs>
-
-## REPL Commands
+### REPL Commands
 
 Once in the REPL, you can type `help` at the `gwen>` prompt to list the available commands.
 
@@ -232,11 +249,11 @@ tab
   Press the tab key for tab completion
 ```
 
-## Tab Completion
+### Tab Completion
 
-You can press the tab key at any time to lookup and select available commands, [DSL Steps](/docs/dsl/reference) and custom [StepDefs](/docs/meta-specs#stepdefs).
+You can press the tab key at any time to lookup and select available commands, [DSL Steps](/docs/dsl/reference) and custom [StepDefs](/docs/meta#stepdefs).
 
-## Paste Mode
+### Paste Mode
 
 Should you attempt to enter a multiline step into the REPL, you will quickly discover that the first line will execute and fail as soon as you enter it without waiting for you to enter the remaining lines first. To address this, we have introduced a *paste* mode. 
 
@@ -280,6 +297,6 @@ Enter steps to evaluate or type exit to quit..
 gwen>
 ```
 
-## Exiting the REPL
+### Exiting the REPL
 
 To exit the REPL, enter `exit`, `quit`, or `bye` or press `ctrl-D` at the gwen prompt.

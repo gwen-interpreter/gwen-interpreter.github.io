@@ -1,3 +1,8 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
+
 import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -6,9 +11,9 @@ import TabItem from '@theme/TabItem';
 
 All Gherkin steps that match the DSL expressions described here are readily executable by Gwen. The DSL matched is the operation that will be performed at execution time.
 
-:::tip
+:::info The DSL is meant for meta
 
-Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Although it's possible to use them directly in feature specs too, your features should not be DSL-aware. That's what meta is for!
+Feature specs should be declarative and written in the language of your domain and not the Gwen DSL. To encourage this and restrict DSL usage to [meta](/docs/meta) only in [Gwen 3+](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0), we have toggled the default of the [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode) setting from *imperative* to *declarative*.
 
 :::
 
@@ -1255,156 +1260,6 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   </div>
 </details>
 
-<details id="element-can-be-located-by-selector-expression-relative-to-other-element">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" <relativeTo> <otherElement>
-  ```
-
-  <p>Binds a relative selector for a web element to the current scope with a default lookup timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;relativeTo&gt;</code> is the relationship to <code>&lt;otherElement&gt;</code>, one of:
-      <ul>
-        <li><code>in</code> for a contained relationship</li>
-        <li><i>More relative options coming to Gwen 3</i></li>
-      </ul>
-    </li>
-    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {2}
-    Given the footer can be located by class "footer"
-      And the displayed count can be located by tag "strong" in the footer
-     Then the displayed count should be "3"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-relative-to-other-element">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.1.0">v1.1.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-relative-to-other-element-with-no-timeout">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" <relativeTo> <otherElement> with no <wait|timeout>
-  ```
-
-  <p>Binds a relative selector for a web element to the current scope with no lookup timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;relativeTo&gt;</code> is the relationship to <code>&lt;otherElement&gt;</code>, one of:
-      <ul>
-        <li><code>in</code> for a contained relationship</li>
-        <li><i>More relative options coming to Gwen 3</i></li>
-      </ul>
-    </li>
-    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
-    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {2}
-    Given the footer can be located by class "footer"
-      And the displayed count can be located by tag "strong" in the footer with no wait
-     Then the displayed count should be "3"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-relative-to-other-element-with-no-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-relative-to-other-element-with-timeout">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" <relativeTo> <otherElement>  with <timeoutSecs> second <wait|timeout>
-  ```
-
-  <p>Binds a relative selector for a web element to the current scope with a given lookup timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;relativeTo&gt;</code> is the relationship to <code>&lt;otherElement&gt;</code>, one of:
-      <ul>
-        <li><code>in</code> for a contained relationship</li>
-        <li><i>More relative options coming to Gwen 3</i></li>
-      </ul>
-    </li>
-    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
-    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
-    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
-  </ul>
-  <p>Example</p>
-
- ```gherkin {2}
-    Given the footer can be located by class "footer"
-      And the displayed count can be located by tag "strong" in the footer with no wait
-     Then the displayed count should be "3"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-relative-to-other-element-with-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
-  </div>
-</details>
-
 <details id="element-can-be-located-by-selector-expression-at-index">
   <summary class="dsl">
 
@@ -1534,14 +1389,14 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   </div>
 </details>
 
-<details id="element-can-be-located-by-selector-expression-relative-to-other-element-at-index">
+<details id="element-can-be-located-by-selector-expression-in-other-element-at-index">
   <summary class="dsl">
 
   ```gherkin
-  <element> can be located by <selector> "<expression>" at index <index> <relativeTo> <otherElement>
+  <element> can be located by <selector> "<expression>" at index <index> in <otherElement>
   ```
 
-  <p>Binds a relative selector for a web element to the current scope with a default lookup timeout.</p>
+  <p>Binds an indexed selector for a web element (contained in another) to the current scope with a default lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -1561,12 +1416,6 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
     <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
-    <li><code>&lt;relativeTo&gt;</code> is the relationship to <code>&lt;otherElement&gt;</code>, one of:
-      <ul>
-        <li><code>in</code> for a contained relationship</li>
-        <li><i>More relative options coming to Gwen 3</i></li>
-      </ul>
-    </li>
     <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
   </ul>
   <p>Example</p>
@@ -1578,20 +1427,20 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   ```
 
   <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-relative-to-other-element-at-index">Link</Link></div>
+    <div><Link to="#element-can-be-located-by-selector-expression-in-other-element-at-index">Link</Link></div>
     <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
   </div>
 </details>
 
-<details id="element-can-be-located-by-selector-expression-at-index-relative-to-other-element-with-no-timeout">
+<details id="element-can-be-located-by-selector-expression-at-index-in-other-element-with-no-timeout">
   <summary class="dsl">
 
   ```gherkin
-  <element> can be located by <selector> "<expression>" at index <index> <relativeTo> <otherElement> with no <wait|timeout>
+  <element> can be located by <selector> "<expression>" at index <index> in <otherElement> with no <wait|timeout>
   ```
 
-  <p>Binds a relative indexed selector for a web element to the current scope with no lookup timeout.</p>
+  <p>Binds an indexed selector for a web element (contained in another) to the current scope with no lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -1611,12 +1460,6 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
     <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
-    <li><code>&lt;relativeTo&gt;</code> is the relationship to <code>&lt;otherElement&gt;</code>, one of:
-      <ul>
-        <li><code>in</code> for a contained relationship</li>
-        <li><i>More relative options coming to Gwen 3</i></li>
-      </ul>
-    </li>
     <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
     <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
@@ -1629,20 +1472,20 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   ```
 
   <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-at-index-relative-to-other-element-with-no-timeout">Link</Link></div>
+    <div><Link to="#element-can-be-located-by-selector-expression-at-index-in-other-element-with-no-timeout">Link</Link></div>
     <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
   </div>
 </details>
 
-<details id="element-can-be-located-by-selector-expression-at-index-relative-to-other-element-with-timeout">
+<details id="element-can-be-located-by-selector-expression-at-index-in-other-element-with-timeout">
   <summary class="dsl">
 
   ```gherkin
-  <element> can be located by <selector> "<expression>" at index <index> <relativeTo> <otherElement>  with <timeoutSecs> second <wait|timeout>
+  <element> can be located by <selector> "<expression>" at index <index> in <otherElement>  with <timeoutSecs> second <wait|timeout>
   ```
 
-  <p>Binds a relative indexed selector for a web element to the current scope with a given lookup timeout.</p>
+  <p>Binds an indexed selector for a web element (contained in another) to the current scope with a given lookup timeout.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -1662,12 +1505,6 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
     <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
-    <li><code>&lt;relativeTo&gt;</code> is the relationship to <code>&lt;otherElement&gt;</code>, one of:
-      <ul>
-        <li><code>in</code> for a contained relationship</li>
-        <li><i>More relative options coming to Gwen 3</i></li>
-      </ul>
-    </li>
     <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
     <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
     <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
@@ -1681,7 +1518,7 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   ```
 
   <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-at-index-relative-to-other-element-with-timeout">Link</Link></div>
+    <div><Link to="#element-can-be-located-by-selector-expression-at-index-in-other-element-with-timeout">Link</Link></div>
     <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
   </div>
@@ -1692,6 +1529,7 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
 
   ```gherkin
   <element> can be located by
+    | selector     | expression     |
     | <selector 1> | <expression 1> |
     | <selector 2> | <expression 2> |
     |      ..      |       ..       |
@@ -1723,11 +1561,12 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   </ul>
   <p>Example</p>
 
-  ```gherkin {1-4}
+  ```gherkin {1-5}
     Given the todo field can be located by
-          | name  | todo-field  |
-          | css   | .todo input |
-          | class | new-todo    |
+          | selector | expression  |
+          | name     | todo-field  |
+          | css      | .todo input |
+          | class    | new-todo    |
      When I type "Feed the cat" in the todo field
   ```
 
@@ -1743,6 +1582,7 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
 
   ```gherkin
   <element> can be located at index <index> by
+    | selector     | expression     |
     | <selector 1> | <expression 1> |
     | <selector 2> | <expression 2> |
     |      ..      |       ..       |
@@ -1775,11 +1615,12 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   </ul>
   <p>Example</p>
 
-  ```gherkin {1-4}
+  ```gherkin {1-5}
     Given the second item can be located at index 1 by
-          | name  | todo-label       |
-          | class | todo-label       |
-          | css   | .todo-list label |
+          | selector | expression       |
+          | name     | todo-label       |
+          | class    | todo-label       |
+          | css      | .todo-list label |
      Then the second item should contain "Feed the cat"
   ```
 
@@ -1795,6 +1636,7 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
 
   ```gherkin
   <element> can be located at index <index> with no <wait|timeout> by
+    | selector     | expression     |
     | <selector 1> | <expression 1> |
     | <selector 2> | <expression 2> |
     |      ..      |       ..       |
@@ -1828,11 +1670,12 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   </ul>
   <p>Example</p>
 
-  ```gherkin {1-4}
+  ```gherkin {1-5}
     Given the second item can be located at index 1 with no lookup timeout by
-          | name  | todo-label       |
-          | class | todo-label       |
-          | css   | .todo-list label |
+          | selector | expression       |
+          | name     | todo-label       |
+          | class    | todo-label       |
+          | css      | .todo-list label |
      Then the second item should contain "Feed the cat"
   ```
 
@@ -1848,6 +1691,7 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
 
   ```gherkin
   <element> can be located at index <index> with <timeoutSecs> second <wait|timeout> by
+    | selector     | expression     |
     | <selector 1> | <expression 1> |
     | <selector 2> | <expression 2> |
     |      ..      |       ..       |
@@ -1882,11 +1726,12 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   </ul>
   <p>Example</p>
 
-  ```gherkin {1-4}
+  ```gherkin {1-5}
     Given the second item can be located at index 1 with 5 second timeout by
-          | name  | todo-label       |
-          | class | todo-label       |
-          | css   | .todo-list label |
+          | selector | expression       |
+          | name     | todo-label       |
+          | class    | todo-label       |
+          | css      | .todo-list label |
      Then the second item should contain "Feed the cat"
   ```
 
@@ -1946,6 +1791,203 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
     <div><Link to="#element-can-be-actioned-by-javascript">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.8.0">v1.8.0</Link></div>
+  </div>
+</details>
+
+#### Relative Locators
+
+<details id="element-can-be-located-by-selector-expression-relative-to-other-element">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" <relativeTo> <otherElement>
+  ```
+
+  <p>Binds a selector for a web element (relative to another) to the current scope with a default lookup timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;relativeTo&gt;</code> is one of
+      <ul>
+        <li><code>in</code> to select element contained in <code>&lt;otherElement&gt;</code></li>
+        <li>Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+          <ul>
+            <li><code>above</code> to select element above <code>&lt;otherElement&gt;</code></li>
+            <li><code>below</code> to select element below <code>&lt;otherElement&gt;</code></li>
+            <li><code>to left of</code> to select element to the left of <code>&lt;otherElement&gt;</code></li>
+            <li><code>to right of</code> to select element to the right of <code>&lt;otherElement&gt;</code></li>
+            <li><code>near</code> to select element near <code>&lt;otherElement&gt;</code></li>
+            <li><code>near and within &lt;noOfPixels&gt; pixel[s] of</code> to select element near and within a given number of pixels of <code>&lt;otherElement&gt;</code>
+              <ul>
+                <li>Where <code>&lt;noOfPixels&gt;</code> is a postive integer denoting a number of pixels (max proximity to <code>&lt;otherElement&gt;</code>)</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the button can be located by tag "button"
+      And the left field can be located by css "input" to left of the button 
+     When I navigate to "https://chercher.tech/practice/relative-locators"
+      And I type "I am left of the button" in the left field
+     Then the left field should contain "I am left of the button"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-relative-to-other-element">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.1.0">v1.1.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-relative-to-other-element-with-no-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" <relativeTo> <otherElement> with no <wait|timeout>
+  ```
+
+  <p>Binds a selector for a web element (relative to another) to the current scope with no lookup timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;relativeTo&gt;</code> is one of
+      <ul>
+        <li><code>in</code> to select element contained in <code>&lt;otherElement&gt;</code></li>
+        <li>Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+          <ul>
+            <li><code>above</code> to select element above <code>&lt;otherElement&gt;</code></li>
+            <li><code>below</code> to select element below <code>&lt;otherElement&gt;</code></li>
+            <li><code>to left of</code> to select element to the left of <code>&lt;otherElement&gt;</code></li>
+            <li><code>to right of</code> to select element to the right of <code>&lt;otherElement&gt;</code></li>
+            <li><code>near</code> to select element near <code>&lt;otherElement&gt;</code></li>
+            <li><code>near and within &lt;noOfPixels&gt; pixel[s] of</code> to select element near and within a given number of pixels of <code>&lt;otherElement&gt;</code>
+              <ul>
+                <li>Where <code>&lt;noOfPixels&gt;</code> is a postive integer denoting a number of pixels (max proximity to <code>&lt;otherElement&gt;</code>)</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the button can be located by tag "button"
+      And the right field can be located by css "input" to right of the button with no wait
+     When I navigate to "https://chercher.tech/practice/relative-locators"
+      And I type "I am right of the button" in the right field
+     Then the right field should contain "I am right of the button"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-relative-to-other-element-with-no-timeout">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-relative-to-other-element-with-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" <relativeTo> <otherElement>  with <timeoutSecs> second <wait|timeout>
+  ```
+
+  <p>Binds a selector for a web element (relative to another) to the current scope with a given lookup timeout.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;relativeTo&gt;</code> is one of
+      <ul>
+        <li><code>in</code> to select element contained in <code>&lt;otherElement&gt;</code></li>
+        <li>Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+          <ul>
+            <li><code>above</code> to select element above <code>&lt;otherElement&gt;</code></li>
+            <li><code>below</code> to select element below <code>&lt;otherElement&gt;</code></li>
+            <li><code>to left of</code> to select element to the left of <code>&lt;otherElement&gt;</code></li>
+            <li><code>to right of</code> to select element to the right of <code>&lt;otherElement&gt;</code></li>
+            <li><code>near</code> to select element near <code>&lt;otherElement&gt;</code></li>
+            <li><code>near and within &lt;noOfPixels&gt; pixel[s] of</code> to select element near and within a given number of pixels of <code>&lt;otherElement&gt;</code>
+              <ul>
+                <li>Where <code>&lt;noOfPixels&gt;</code> is a postive integer denoting a number of pixels (max proximity to <code>&lt;otherElement&gt;</code>)</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+ ```gherkin {2}
+    Given the button can be located by tag "button"
+      And the above field can be located by css "input" above the button with 5 second wait
+     When I navigate to "https://chercher.tech/practice/relative-locators"
+      And I type "I am above the button" in the above field
+     Then the above field should contain "I am above the button"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-relative-to-other-element-with-timeout">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
   </div>
 </details>
 
@@ -3492,6 +3534,101 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   </div>
 </details>
 
+<details id="i-start-a-new-browser-tab-or-window">
+  <summary class="dsl">
+
+  ```gherkin
+  I start a new browser <tab|window>
+  ```
+  <p>Starts a new browser tab or window (or starts a new browser session if one is not open).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;tab|window&gt;</code> is either <code>tab</code> or <code>window</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    When I navigate to "https://google.com"
+     And I start a new browser tab
+     And I navigate to "https://todomvc.com/examples/react"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-start-a-new-browser-tab-or-window">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-switch-to-tab-or-window-occurrence">
+  <summary class="dsl">
+
+  ```gherkin
+  I switch to <tab|window> <occurrence>
+  ```
+  <p>Switches to a previously opened tab or window occurrence.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;tab|window&gt;</code> is either <code>tab</code> or <code>window</code></li>
+    <li><code>&lt;occurrence&gt;</code> is the tab or window occurrence to switch to (1st opened is occurrence 1, 2nd is 2, ..)
+      <ul>
+        <li><em>Note:</em> the occurrence number of the default tab/window in a new browser session is 0</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    When I navigate to "https://google.com"
+     And I start a new browser tab
+     And I navigate to "https://todomvc.com/examples/react"
+     And I switch to window 1
+    Then the page title should contain "Google"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-switch-to-tab-or-window-occurrence">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-close-tab-or-window-occurrence">
+  <summary class="dsl">
+
+  ```gherkin
+  I close <tab|window> <occurrence>
+  ```
+  <p>Closes a previously opened tab or window occurrence.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;tab|window&gt;</code> is either <code>tab</code> or <code>window</code></li>
+    <li><code>&lt;occurrence&gt;</code> is the tab or window occurrence to close to (1st opened is occurrence 1, 2nd is 2, ..)
+      <ul>
+        <li><em>Note:</em> you cannot close the default tab/window opened by starting a new browser session with this DSL. Use <Link to="#i-close-the-current-browser"><code>I close the[ current] browser</code></Link> instead in that case.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    When I navigate to "https://google.com"
+     And I start a new browser tab
+     And I navigate to "https://todomvc.com/examples/react"
+     And I close tab 1
+    Then the page title should contain "Google"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-close-tab-or-window-occurrence">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
 <details id="i-switch-to-the-child-tab-or-window">
   <summary class="dsl">
 
@@ -4060,6 +4197,11 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   ```gherkin
   I attach "<filepath>" as "<name>"
   ```
+  or since v3.0.0
+  ```gherkin
+  I attach "<filepath>" as <name>
+  ```
+
   <p>Attaches a local file to the Gwen report and assigns it a name. The link to the attachment in the report will have the given name.</p>
   </summary>
   <p>Where</p>
@@ -4072,11 +4214,75 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   ```gherkin
      When I attach "path/to/data.csv" as "data"
   ```
+  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```gherkin
+     When I attach "path/to/data.csv" as data
+  ```
 
   <div class="grid-3">
     <div><Link to="#i-attach-filepath-as-name">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+#### Element level screenshots
+
+<details id="i-capture-element-screenshot-of-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture element screenshot of <element>
+  ```
+  <p>Captures the screenshot of a web element and attaches it to the Gwen report.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> the name of the web element to capture the screenshot of</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the todo field can be located by class "new-todo"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I type "Walk the dog" in the todo field
+      And I capture element screenshot of the todo field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-element-screenshot-of-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-element-screenshot-of-element-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture element screenshot of <element> as <name>
+  ```
+  <p>Captures the screenshot of a web element, attaches it to the Gwen report, and binds the filepath of the saved image to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> the name of the web element to capture the screenshot of</li>
+    <li><code>&lt;name&gt;</code> the name to bind the captured image filepath to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the todo field can be located by class "new-todo"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I type "Walk the dog" in the todo field
+      And I capture element screenshot of the todo field as my element screenshot
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-element-screenshot-of-element-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
   </div>
 </details>
 
@@ -4840,8 +5046,8 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   <p>Configuration</p>
   <ul>
     <li>The GWEN_CLASSPATH <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings#environment-variables">environment variable</Link> must be set to include a path to the JDBC driver JAR</li>
-    <li>A <code>gwen.db.&lt;dbName&gt;.driver</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the name of the JDBC driver implementation class</li>
-    <li>A <code>gwen.db.&lt;dbName&gt;.url</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the JDBC URL of the database</li>
+    <li>A <code>gwen.db.&lt;dbName&gt;.driver</code> setting must be set to the name of the JDBC driver implementation class</li>
+    <li>A <code>gwen.db.&lt;dbName&gt;.url</code> setting must be set to the JDBC URL of the database</li>
   </ul>
 
   <p>Example</p>
@@ -4882,7 +5088,7 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
 </TabItem>
 </Tabs>
 
-  Configure the database in your <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">settings</Link>. In this example, <code>&lt;dbName&gt;</code>=feedback
+  Configure the database in your settings. In this example, <code>&lt;dbName&gt;</code>=feedback
 
   ```properties
   gwen.db.feedback.driver = com.mysql.jdbc.Driver
@@ -4920,8 +5126,8 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   <p>Configuration</p>
   <ul>
     <li>The GWEN_CLASSPATH <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings#environment-variables">environment variable</Link> must be set to include a path to the JDBC driver JAR</li>
-    <li>A <code>gwen.db.&lt;dbName&gt;.driver</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the name of the JDBC driver implementation class</li>
-    <li>A <code>gwen.db.&lt;dbName&gt;.url</code> <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">setting</Link> must be set to the JDBC URL of the database</li>
+    <li>A <code>gwen.db.&lt;dbName&gt;.driver</code> setting must be set to the name of the JDBC driver implementation class</li>
+    <li>A <code>gwen.db.&lt;dbName&gt;.url</code> setting must be set to the JDBC URL of the database</li>
   </ul>
 
   <p>Example</p>
@@ -4962,7 +5168,7 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
 </TabItem>
 </Tabs>
 
-  Configure the database in your <Link to="https://github.com/gwen-interpreter/gwen/wiki/Runtime-Settings">settings</Link>. In this example, <code>&lt;dbName&gt;</code>=feedback
+  Configure the database in your settings. In this example, <code>&lt;dbName&gt;</code>=feedback
 
   ```properties
   gwen.db.feedback.driver = com.mysql.jdbc.Driver
@@ -4976,7 +5182,7 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   </div>
 </details>
 
-## Setting overrides
+## Settings overrides
 
 ### Given
 
@@ -4990,7 +5196,7 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;name&gt;</code> is name of the <Link to="/docs/settings/reference">Gwen setting</Link> to override</li>
+    <li><code>&lt;name&gt;</code> is name of the setting to override</li>
     <li><code>&lt;value&gt;</code> is the value to set</li>
   </ul>
   <p>Notes</p>
@@ -5027,7 +5233,7 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;setting&gt;</code> is name of the <Link to="/docs/settings/reference">Gwen setting</Link> to reset</li>
+    <li><code>&lt;setting&gt;</code> is name of the setting to reset</li>
   </ul>
   <p>Example</p>
 
@@ -5379,46 +5585,53 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each record</li>
+    <li>Each field in a record can be accessed in <code>&lt;step&gt;</code> using the field's associated header name</li>
     <li>
       The following implicit bindings are available in <code>&lt;step&gt;</code>:
       <ul>
         <li><code>record.number</code> is the current record number (starting at 1)</li>
         <li><code>record.index</code> is the record index (starting at 0), since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.30.1">v2.30.1</Link></li>
-        <li><code>data[name]</code> is the data of an element in the current record, where <code>name</code> is the name of a record element</li>
       </ul>
     </li>
   </ul>
   <p>Example</p>
+  
+  <em>Feature</em>
+
+  ```gherkin
+    Scenario: my scenario
+      Given I have the following active items
+            | Item         |
+            | Walk the dog |
+            | Get the milk |
+            | Feed the cat |
+  ```
+
+  <em>Meta</em>
 
   ```gherkin {7}
     @StepDef
-    @DataTable(horizontal="Item")
+    @DataTable
     Scenario: I have the following active items
-        Given the todo field can be located by class "new-todo"
-          And the active count can be located by css ".todo-count strong"
-         When I navigate to "https://todomvc.com/examples/react"
-          And I enter "${data[Item]}" in the todo field for each data record
-         Then the active count should be "3"
-
-    Scenario: my scenario
-        Given I have the following active items
-              | Walk the dog |
-              | Get the milk |
-              | Feed the cat |
+      Given the todo field can be located by class "new-todo"
+        And the active count can be located by css ".todo-count strong"
+       When I navigate to "https://todomvc.com/examples/react"
+        And I enter Item in the todo field for each data record
+       Then the active count should be "3"
   ```
 
   <div class="grid-3">
     <div><Link to="#step-for-each-data-record">Link</Link></div>
-    <div align="center"><Link to="/docs/advanced/data-tables">Learn more</Link></div>
+    <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></div>
   </div>
 </details>
 
-<details id="for-each-entry-in-source-delimited-by">
+<details id="for-each-entry-in-text-ref-delimited-by">
   <summary class="dsl">
 
   ```gherkin
-  <step> for each <entry> in <source> delimited by "<delimiter>"
+  <step> for each <entry> in <textRef> delimited by "<delimiter>"
   ```
   <p></p>
   </summary>
@@ -5426,12 +5639,12 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each delimited entry</li>
     <li><code>&lt;entry&gt;</code> is the name that will be assigned to the current entry occurrence (entry is accessible in <code>&lt;step&gt;</code> by this name)</li>
-    <li><code>&lt;source&gt;</code> is the name of the binding containing the delimitted values
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the delimitted values
       <ul>
         <li>Can be the name of any binding that contains or resolves to a delmited list of values, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
-    <li><code>&lt;delimiter&gt;</code> the delimiter used in <code>&lt;source&gt;</code> to separate each value</li>
+    <li><code>&lt;delimiter&gt;</code> the delimiter used in <code>&lt;textRef&gt;</code> to separate each value</li>
   </ul>
   <p>Example</p>
 
@@ -5445,7 +5658,7 @@ Use DSL steps in your meta to compose [StepDefs](/docs/meta-specs#stepdefs). Alt
   ```
 
   <div class="grid-3">
-    <div><Link to="#for-each-entry-in-source-delimited-by">Link</Link></div>
+    <div><Link to="#for-each-entry-in-text-ref-delimited-by">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link></div>
   </div>

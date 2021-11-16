@@ -1,0 +1,5622 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Settings Reference
+
+## Core Settings
+
+<details id="gwen-assertion-mode">
+  <summary class="setting">
+
+  ```properties
+  gwen.assertion.mode
+  ```
+  <p>Controls whether or not hard, soft or sustained assertions are enabled.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>hard</code> to halt feature execution on the first assertion error and report failure</li>
+    <li><code>soft</code> to collect all assertion errors and continue execution whilst reporting failures</li>
+    <li><code>sustained</code> to collect all assertion errors and continue execution without reporting failures</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      assertion {
+        mode = "hard"
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "assertion": {
+          "mode": "hard"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.assertion.mode = hard
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-assertion-mode">Link</Link></div>
+    <div align="center"><Link to="https://github.com/gwen-interpreter/gwen/wiki/Assertion-Modes">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.18.0">v2.18.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-associative-meta">
+  <summary class="setting">
+
+  ```properties
+  gwen.associative.meta
+  ```
+  <p>Controls whether or not same named feature and meta files in a directory are to be exclusively associated.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable association
+      <ul>
+        <li>Gwen will load a discovered meta file only if it has the same name and is in the same directory as the current feature being executed.</li>
+      </ul>
+    </li>
+    <li><code>false</code> to disable association
+      <ul>
+        <li>Gwen will unconditionally load every meta file discovered in the path to the current feature being executed.</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```json
+    gwen {
+      associative {
+        meta = true
+      }
+    }
+  ```
+
+  Default value in prior versions
+
+  ```json
+    gwen {
+      associative {
+        meta = false
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```json
+    {
+      "gwen": {
+        "associative": {
+          "meta": true
+        }
+      }
+    }
+  ```
+
+  Default value in prior versions
+
+  ```json
+    {
+      "gwen": {
+        "associative": {
+          "meta": false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```properties
+    gwen.associative.meta = true
+  ```
+
+  Default value in prior versions
+
+  ```properties
+    gwen.associative.meta = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-associative-meta">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.24.0">v2.24.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-auto-discover-data-csv">
+  <summary class="setting">
+
+  ```properties
+  gwen.auto.discover.data.csv
+  ```
+  <p>Enables or disables automatic discovery and loading of CSV data feed files.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable</li>
+    <li><code>false</code> to disable
+      <ul>
+        <li>Prevents Gwen from automatically discovering and loading CSV files in the path of an executing feature, forcing the user to explicitly specify the CSV file to load through the <Link to="/docs/cli#gwen-cli-options-input-data"><code>-i|--input-data</code></Link> CLI option at launch time.</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```json
+    gwen {
+      auto {
+        discover {
+          data {
+            csv = false
+          }
+        }
+      }
+    }
+  ```
+
+  Default value in prior versions
+
+  ```json
+    gwen {
+      auto {
+        discover {
+          data {
+            csv = true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```json
+    {
+      "gwen": {
+        "auto": {
+          "discover": {
+            "data": {
+              "csv": false
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  Default value in prior versions
+
+  ```json
+    {
+      "gwen": {
+        "auto": {
+          "discover": {
+            "data": {
+              "csv": true
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```properties
+    gwen.auto.discover.data.csv = false
+  ```
+
+  Default value in prior versions
+  
+  ```properties
+    gwen.auto.discover.data.csv = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-auto-discover-data-csv">Link</Link></div>
+    <div align="center"><Link to="https://github.com/gwen-interpreter/gwen/wiki/Execution-Modes#csv-data-feeds">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-auto-discover-meta">
+  <summary class="setting">
+
+  ```properties
+  gwen.auto.discover.meta
+  ```
+  <p>Enables or disables automatic discovery and loading of meta files.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable</li>
+    <li><code>false</code> to disable
+      <ul>
+        <li>Prevents Gwen from automatically discovering and loading meta files in the path of an executing feature, forcing the user to load meta explicitly through the <Link to="/docs/cli#gwen-cli-options-meta"><code>-m|--meta</code></Link> CLI option or <Link to="/docs/meta/load-strategies#import-strategy">meta imports</Link>.</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      auto {
+        discover {
+          meta = true
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "auto": {
+          "discover": {
+            "meta": true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.auto.discover.meta = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-auto-discover-meta">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-behavior-rules">
+  <summary class="setting">
+
+  ```properties
+  gwen.behavior.rules
+  ```
+  <p>Controls whether strict or lenient rules around Given-When-Then usage will be enforced for features.
+    <br/><br/><em>Note</em>: <code>gwen.behavior.rules</code> is no longer a supported alias (since v3.0.0)
+  </p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>strict</code> to enforce the following strict rules:
+      <ul>
+        <li>Steps in scenarios and backgrounds must satisfy Given-When-Then order</li>
+        <li>Givens must set context</li>
+        <li>Whens must perform actions</li>
+        <li>Thens must assert expectations</li>
+        <li>Buts must perform assertions (and are permitted after Then steps)</li>
+        <li>StepDefs tagged with
+          <ul>
+            <li><code>@Context</code> : can only be called by Givens</li>
+            <li><code>@Action</code> : can only be called by Whens</li>
+            <li><code>@Assertion</code> : can only be called by Thens or Buts</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><code>lenient</code> to relax all strict rules</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```json
+    gwen {
+      behavior {
+        rules = "strict"
+      }
+    }
+  ```
+
+  Default value in prior versions
+
+  ```json
+    gwen {
+      behavior {
+        rules = "lenient"
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```json
+    {
+      "gwen": {
+        "behavior": {
+          "rules": "strict"
+        }
+      }
+    }
+  ```
+
+  Default value in prior versions
+
+  ```json
+    {
+      "gwen": {
+        "behavior": {
+          "rules": "lenient"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```properties
+    gwen.behavior.rules = strict
+  ```
+
+  Default value in prior versions
+  
+  ```properties
+    gwen.behavior.rules = lenient
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-behavior-rules">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">v2.41.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-feature-dialect">
+  <summary class="setting">
+
+  ```properties
+  gwen.feature.dialect
+  ```
+  <p>Sets the default Gherkin dialect (or spoken language).</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A spoken <Link to="https://cucumber.io/docs/gherkin/languages/">language ID</Link></li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      feature {
+        dialect = "en"
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "feature": {
+          "dialect": "en"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.feature.dialect = en
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-feature-dialect">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.42.0">v2.42.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-feature-failfast-enabled">
+  <summary class="setting">
+
+  ```properties
+  gwen.feature.failfast.enabled
+  ```
+  <p>Enables or disables fail fast mode at the feature level.
+    <br/><br/>Formerly <code>gwen.feature.failfast</code> (prior to v3.0.0)
+  </p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable
+      <ul>
+        <li>Will fail a feature as soon as the first scenario fails before resuming with the next feature.</li>
+      </ul>
+    </li>
+    <li><code>false</code> to disable</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      feature {
+        failfast {
+          enabled = true
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "feature": {
+          "failfast": {
+            "enabled": true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.feature.failfast.enabled = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-feature-failfast-enabled">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-feature-failfast-exit">
+  <summary class="setting">
+
+  ```properties
+  gwen.feature.failfast.exit
+  ```
+  <p>Controls whether to exit or resume with the next feature when a feature fails.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable
+      <ul>
+        <li>Will fail a feature as soon as the first scenario fails and exit immediately.</li>
+      </ul>
+    </li>
+    <li><code>false</code> to disable
+      <ul>
+        <li>Will resume with the next feature if the previous one fails.</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      feature {
+        failfast {
+          exit = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "feature": {
+          "failfast": {
+            "exit": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+  
+  ```properties
+    gwen.feature.failfast.exit = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-feature-failfast-exit">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-feature-mode">
+  <summary class="setting">
+
+  ```properties
+  gwen.feature.mode
+  ```
+  <p>Controls whether or not Gwen DSL steps are permitted in feature specs.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>declarative</code>
+      <ul>
+        <li>DSL steps not permitted in feature specs</li>
+        <li>Consider enabling <Link to="/docs/settings/reference#gwen-associative-meta">gwen.associative.meta</Link> with this option</li>
+      </ul>
+    </li>
+    <li><code>imperative</code>
+      <ul>
+        <li>DSL steps permitted in feature specs</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```json
+    gwen {
+      auto {
+        feature {
+          mode = "declarative"
+        }
+      }
+    }
+  ```
+
+  Default value in prior versions
+
+  ```json
+    gwen {
+      auto {
+        feature {
+          mode = "imperative"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```json
+    {
+      "gwen": {
+        "feature": {
+          "mode": "declarative"
+        }
+      }
+    }
+  ```
+
+  Default value in prior versions
+
+  ```json
+    {
+      "gwen": {
+        "feature": {
+          "mode": "imperative"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```properties
+    gwen.feature.mode = declarative
+  ```
+
+  Default value in prior versions
+  
+  ```properties
+    gwen.feature.mode = imperative
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-feature-mode">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.39.0">v2.39.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-mask-char">
+  <summary class="setting">
+
+  ```properties
+  gwen.mask.char
+  ```
+  <p>Sets the masking character used for logging masked settings.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>Any single character</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      mask {
+        char = "●"
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "mask": {
+          "char": "●"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.mask.char = ●
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-mask-char">Link</Link></div>
+    <div align="center"><Link to="/docs/settings/masked">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0">v2.48.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-baseDir">
+  <summary class="setting">
+
+  ```properties
+  gwen.baseDir
+  ```
+  <p>Sets the base Gwen project directory</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A relative or absolute directory location
+      <ul>
+        <li>The output directory</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  Default value
+  
+  ```json
+    gwen {
+      baseDir = "gwen"
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="standalone">
+
+  Default value
+  
+  ```json
+    gwen {
+      baseDir = "."
+    }
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>
+  <TabItem value="json">
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "baseDir": "gwen"
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="standalone">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "baseDir": "."
+      }
+    }
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>
+  <TabItem value="properties">
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  Default value
+
+  ```properties
+    gwen.baseDir = gwen
+  ```
+
+  </TabItem>
+
+  <TabItem value="standalone">
+
+  Default value
+
+  ```properties
+    gwen.baseDir = .
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-baseDir">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-outDir">
+  <summary class="setting">
+
+  ```properties
+  gwen.outDir
+  ```
+  <p>Sets the default Gwen output directory.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A relative or absolute directory location
+      <ul>
+        <li>The output directory</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      outDir = "{gwen.baseDir}/output"
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "outDir": "{gwen.baseDir}/output"
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.outDir = ${gwen.baseDir}/output
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-outDir">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-parallel-maxThreads">
+  <summary class="setting">
+
+  ```properties
+  gwen.parallel.maxThreads
+  ```
+  <p>Sets the maximum number of permitted parallel executor threads.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A positive integer value denoting the maximum number of threads to allow</li>
+    <li>Zero to allow all available cores to be utilitised (one thread per core)</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      parallel {
+        maxThreads = 0
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "parallel": {
+          "maxThreads": 0
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.parallel.maxThreads = 0
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-parallel-maxThreads">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.45.0">v2.45.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rampup-interval-seconds">
+  <summary class="setting">
+
+  ```properties
+  gwen.rampup.interval.seconds
+  ```
+  <p>Sets the ramp up interval for staggered parallel execution.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A positive integer denoting the number of seconds to wait before executing successive features in parallel</li>
+    <li>Zero for no interval or delay between successive feature executions</li>
+  </ul>
+  <p>
+    <br/>Example: A 5 second interval would stagger executions like this over 4 cores:<br/><br/>
+
+  ```
+    time  00   05   10   15   seconds
+          │    │    │    │
+  core 1  │<── feature 1a ──>|<── feature 1b ──> ..
+  core 2  │    │<── feature 2a ──>|<── feature 2b ──> ..
+  core 3  │    │    │<── feature 3a ──>|<── feature 3b ──> ..
+  core 4  │    │    │    │<── feature 4a ──>|<── feature 4b ──> ..
+  ```
+
+  </p>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      rampup {
+        interval {
+          seconds = 0
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "rampup": {
+          "interval": {
+            "seconds": 0
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.rampup.interval.seconds = 0
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rampup-interval-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.3.0">v1.3.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-report-overwrite">
+  <summary class="setting">
+
+  ```properties
+  gwen.report.overwrite
+  ```
+  <p>Controls whether to overwrite previously generated reports or create a timestamped backup instead.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to overwrite previous report</li>
+    <li><code>false</code> to backup previous report into a timestamped directory</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      report {
+        overwrite = true
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "report": {
+          "overwrite": true
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.report.overwrite = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-report-overwrite">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-report-console-log-colors">
+  <summary class="setting">
+
+  ```properties
+  gwen.report.console.log.colors
+  ```
+  <p>Controls whether to use ANSI colors to highlight Gherkin keywords and evaluation results in the console report output.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to use colors</li>
+    <li><code>false</code> to not use colors</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      report {
+        console {
+          log {
+            colors = true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "report": {
+          "console": {
+            "log": {
+              "colors": true
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.report.console.log.colors = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-report-console-log-colors">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-report-suppress-meta">
+  <summary class="setting">
+
+  ```properties
+  gwen.report.suppress.meta
+  ```
+  <p>Controls whether or not to suppress meta from generated HTML reports.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to suppress meta</li>
+    <li><code>false</code> to include meta</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```json
+    gwen {
+      report {
+        suppress {
+          meta = true
+        }
+      }
+    }
+  ```
+
+  Default value in prior versions
+
+  ```json
+    gwen {
+      report {
+        suppress {
+          meta = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```json
+    {
+      "gwen": {
+        "report": {
+          "suppress": {
+            "meta": true
+          }
+        }
+      }
+    }
+  ```
+
+  Default value in prior versions
+
+  ```json
+    {
+      "gwen": {
+        "report": {
+          "suppress": {
+            "meta": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```properties
+    gwen.report.suppress.meta = true
+  ```
+
+  Default value in prior versions
+  
+  ```properties
+    gwen.report.suppress.meta = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-report-suppress-meta">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.3.0">v1.3.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-report-slideshow-framespersecond">
+  <summary class="setting">
+
+  ```properties
+  gwen.report.slideshow.framespersecond
+  ```
+  <p>Sets the default number of frames per second to set the image playback speed to in generated slideshows.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A positive integer denoting the number of frames per second</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      report {
+        slideshow {
+          framespersecond = 4
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "report": {
+          "slideshow": {
+            "framespersecond": 4
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.report.slideshow.framespersecond = 4
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-report-slideshow-framespersecond">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-state-level">
+  <summary class="setting">
+
+  ```properties
+  gwen.state.level
+  ```
+  <p>Controls whether to maintain state at the feature or scenario level.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>feature</code> for feature level state that is shared across scenarios in a feature (each feature gets a new state)</li>
+    <li><code>scenario</code> for scenario level state that is not shared across scenarios (each scenario gets a new state)</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      state {
+        level = "feature"
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "state": {
+          "level": "feature"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.state.level = feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-state-level">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.38.0">v2.38.0</Link></div>
+  </div>
+</details>
+
+## Web Settings
+
+<details id="gwen-web-accept-untrusted-certs">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.accept.untrusted.certs
+  ```
+  <p>Controls whether or not the web driver should accept untrusted (self signed) SSL certificates.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to accept</li>
+    <li><code>false</code> to decline</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        accept {
+          untrusted {
+            certs = true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "accept": {
+            "untrusted": {
+              "certs": true
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.accept.untrusted.certs = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-accept-untrusted-certs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-authorize-plugins">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.authorize.plugins
+  ```
+  <p>Controls whether or not to permit browser plugins to run.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to permit</li>
+    <li><code>false</code> to deny</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        authorize {
+          plugins = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "authorize": {
+            "plugins": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.authorize.plugins = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-authorize-plugins">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-target-browser">
+  <summary class="setting">
+
+  ```properties
+  gwen.target.browser
+  ```
+  <p>Sets the default browser that Gwen will target.
+    <br/><br/>Formerly <code>gwen.web.browser</code> (prior to v3.0.0)
+  </p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>chrome</code> for Chrome browser</li>
+    <li><code>firefox</code> for Firefox browser</li>
+    <li><code>safari</code> for Safari browser</li>
+    <li><code>edge</code> for Edge browser, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.35.0">v2.35.0</Link></li>
+    <li><code>ie</code> for IE browser</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      target {
+        browser  = "chrome"
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "target": {
+          "browser": "chome"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.target.browser = chrome
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-target-browser">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-browser-headless">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.browser.headless
+  ```
+  <p>Controls whether or not to run the browser in headless mode.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to run headless</li>
+    <li><code>false</code> to not run headless</li>
+  </ul>
+  <p><br/>Notes</p>
+  Headless mode is supported for Chrome, Firefox, and Edge browsers only.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        browser {
+          headless = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "browser": {
+            "headless": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.browser.headless = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-browser-headless">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.14.0">v2.14.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-browser-size">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.browser.size
+  ```
+  <p>Sets the size of the browser window.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>String of format <code>&lt;width&gt; x &lt;height&gt;</code>, where:
+      <ul>
+        <li><code>&lt;width&gt;</code> is a positive integer denoting the desired width</li>
+        <li><code>&lt;height&gt;</code> is a positive integer denoting the desired height</li>
+      </ul>
+    </li>
+  </ul>
+  <p>This setting has no default value and will not be honoured if <Link to="/docs/settings/reference#gwen-web-maximize"><code>gwen.web.maximize</code></Link> is set to <code>true</code>.</p>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        browser {
+          size = "1200x800"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "browser": {
+            "size": "1200x800"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.browser.size = 1200x800
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-browser-size">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.27.0">v2.27.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-capability-name">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.capability.<name>
+  ```
+  <p>Sets a desired web capability on the underlying web driver.</p>
+  </summary>
+  <p>Some capabilities are browser specific. If you set a capability that is not supported for the browser you are targeting, then it will have no effect and will be ignored. Each setting is a new entry with a different <code>&lt;name&gt;</code>. You can configure as many as you need.</p>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is a <Link to="https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities">desired capability name (or key)</Link></li>
+  </ul>
+  <p>Supported values</p>
+  <ul>
+  <li>Only capabilities that accept values of type String, Integer, or Boolean are supported.</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        capability {
+          ignoreZoomSetting = true
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "capability": {
+            "ignoreZoomSetting": true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.capability.ignoreZoomSetting = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-capability-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.15.0">v2.15.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-capture-screenshots-enabled">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.capture.screenshots.enabled
+  ```
+  <p>Controls whether or not to capture screenshots and generate slideshow.
+    <br/><br/>Formerly <code>gwen.web.capture.screenshots</code> (prior to v3.0.0)
+  </p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable</li>
+    <li><code>false</code> to disable</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        capture {
+          screenshots {
+            enabled = false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "capture": {
+            "screenshots": {
+              "enabled": false
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.capture.screenshots.enabled = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-capture-screenshots-enabled">Link</Link></div>
+    <div align="center"><Link to="/docs/reports/screenshots">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-capture-screenshots-highlighting">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.capture.screenshots.highlighting
+  ```
+  <p>Controls whether or not to capture screenshots of element highlighting (in addition to standard screenshots).</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable</li>
+    <li><code>false</code> to disable</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        capture {
+          screenshots {
+            highlighting = false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "capture": {
+            "screenshots": {
+              "highlighting": false
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.capture.screenshots.highlighting = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-capture-screenshots-highlighting">Link</Link></div>
+    <div align="center"><Link to="/docs/reports/screenshots">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-capture-screenshots-duplicates">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.capture.screenshots.duplicates
+  ```
+  <p>Controls whether or not consecutively identical screenshots should be captured or discarded.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to keep duplicates</li>
+    <li><code>false</code> to discard duplicates</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        capture {
+          screenshots {
+            duplicates = false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "capture": {
+            "screenshots": {
+              "duplicates": false
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.capture.screenshots.duplicates = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-capture-screenshots-duplicates">Link</Link></div>
+    <div align="center"><Link to="/docs/reports/screenshots">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-highlight-style">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.highlight.style
+  ```
+  <p>Sets the HTML styling used to highlight elements that Gwen interacts with.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>HTML style strings</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        highlight {
+          style = "background: yellow; border: 2px solid gold;"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "highlight": {
+            "style": "background: yellow; border: 2px solid gold;"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.highlight.style = background: yellow; border: 2px solid gold;
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-highlight-style">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-implicit-element-focus">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.implicit.element.focus
+  ```
+  <p>Controls whether or not Gwen should move the focus onto elements before interacting with them.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable auto focus</li>
+    <li><code>false</code> to disable auto focus</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        implicit {
+          element {
+            focus = true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "implicit": {
+            "element": {
+              "focus": true
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.implicit.element.focus = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-implicit-element-focus">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.22.0">v2.22.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-implicit-js-locators">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.implicit.js.locators
+  ```
+  <p>Controls whether or not Gwen should implicitly convert all locators to JavaScript (for greater reliability with web pages that dynamically display or render elements and manipulate the DOM).</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable</li>
+    <li><code>false</code> to disable</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        implicit {
+          js {
+            locators = false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "implicit": {
+            "js": {
+              "locators": false
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.implicit.js.locators = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-implicit-js-locators">Link</Link></div>
+    <div align="center"><Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Implicit-JavaScript-Locators">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-locator-wait-seconds">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.locator.wait.seconds
+  ```
+  <p>Sets the maximum number of seconds that Gwen should wait when locating web elements before timing out.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A positive integer denoting a number of seconds</li>
+  </ul>
+  Default value: <Link to="/docs/settings/reference#gwen-web-wait-seconds"><code>gwen.web.wait.seconds</code></Link> or 10 if not configured
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        locator {
+          wait {
+            seconds = 5
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "locator": {
+            "wait": {
+              "seconds": 5
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.locator.wait.seconds = 5
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-locator-wait-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-maximize">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.maximize
+  ```
+  <p>Controls whether or not the web driver should maximize the browser window.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to maximize</li>
+    <li><code>false</code> to not maximize</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        maximize = false
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "maximize": false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.maximize = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-maximize">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-remote-localFileDetector">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.remote.localFileDetector
+  ```
+  <p>Controls whether or not the local file detector on remote web driver will be enabled.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable</li>
+    <li><code>false</code> to disable</li>
+  </ul>
+  <p><br/>This setting is ignored if <Link to="/docs/settings/reference#gwen-web-remote-url"><code>gwen.web.remote.url</code></Link> is not set.</p>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        remote {
+          localFileDetector = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "remote": {
+            "localFileDetector": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.remote.localFileDetector = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-remote-localFileDetector">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.44.0">v2.44.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-sendKeys-clearFirst">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.sendKeys.clearFirst
+  ```
+  <p>Controls whether or not Gwen will clear input fields before sending keys to them.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to clear first</li>
+    <li><code>false</code> to not clear first</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        sendKeys {
+          clearFirst = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "sendKeys": {
+            "clearFirst": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.sendKeys.clearFirst = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-sendKeys-clearFirst">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.31.0">v2.31.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-sendKeys-clickFirst">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.sendKeys.clickFirst
+  ```
+  <p>Controls whether or not Gwen will click input fields before sending keys to them.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to click first</li>
+    <li><code>false</code> to not click first</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        sendKeys {
+          clickFirst = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "sendKeys": {
+            "clickFirst": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.sendKeys.clickFirst = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-sendKeys-clickFirst">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.43.0">v2.43.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-throttle-msec">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.throttle.msec
+  ```
+  <p>Sets the number of milliseconds to wait between web driver interactions and also directly controls web element highlighting duration.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A positive integer denoting a number of milliseconds. Set to zero for maxmum speed with no highlighting.</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        throttle {
+          msec = 100
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "throttle": {
+            "msec": 100
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.throttle.msec = 100
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-throttle-msec">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-useragent">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.useragent
+  ```
+  <p>Sets the user agent header in the browser to the literal string value assigned.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>User agent string</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        useragent = "Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19"
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "useragent": "Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.useragent = Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-useragent">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-wait-seconds">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.wait.seconds
+  ```
+  <p>Sets the default maximum number of seconds that Gwen should wait for time senstive operations before timing out.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A positive integer denoting a number of seconds</li>
+  </ul>
+  <p><br />This value will also be used as the locator timeout unless <Link to="/docs/settings/reference#gwen-web-locator-wait-seconds"><code>gwen.web.locator.wait.seconds</code></Link> is set to a different value.</p>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        wait {
+          seconds = 10
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "wait": {
+            "seconds": 10
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.wait.seconds = 10
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-wait-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+### Chrome
+
+<details id="gwen-web-chrome-args">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.chrome.args
+  ```
+  <p>A chrome preference value.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><Link to="https://peter.sh/experiments/chromium-command-line-switches/">Chrome arguments</Link></li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaed settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        chrome {
+          args = [
+            "--ignore-certificate-errors",
+            "--incognito"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+  
+  ```json
+  {
+    "gwen": {
+      "web": {
+        "chrome": {
+          "args": [
+            "--ignore-certificate-errors",
+            "--incognito"
+          ]
+        }
+      }
+    }
+  }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example (multiple values comma separated)
+
+  ```properties
+    gwen.web.chrome.args = --ignore-certificate-errors,--incognito
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-chrome-args">Link</Link></div>
+    <div align="center">See also <Link to="/docs/settings/reference#gwen-web-chrome-args-seq-no"><code>gwen.web.chrome.args.&lt;seqNo&gt;</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.8.0">v1.8.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-chrome-args-seq-no">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.chrome.args.<seqNo>
+  ```
+  <p>Passes an argument to the Chrome web driver.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;seqNo&gt;</code> is a unique sequence number</li>
+  </ul>
+  <p>Supported values</p>
+  <ul>
+    <li><Link to="https://peter.sh/experiments/chromium-command-line-switches/">Chrome arguments</Link></li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Use <Link to="#gwen-web-chrome-args"><code>gwen.web.chrome.args</code></Link> instead.
+
+  </TabItem>
+  <TabItem value="json">
+
+  Use <Link to="#gwen-web-chrome-args"><code>gwen.web.chrome.args</code></Link> instead.
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.chrome.args.1=--ignore-certificate-errors
+    gwen.web.chrome.args.2=--window-size=1920,1080
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-chrome-args-seq-no">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.23.0">v2.23.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-chrome-extensions">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.chrome.extensions
+  ```
+  <p>A chrome preference value.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A relative or absolute file path to an extension (.crx) file or directory</li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaed settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        chrome {
+          extensions = [
+            "path/to/extenstion.crx"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "chrome": {
+            "extensions": [
+              "path/to/extenstion.crx"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example (use comma seaprated value for multiple entries)
+
+  ```properties
+    gwen.web.chrome.extensions = path/to/extenstion.crx
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-chrome-extensions">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-chrome-mobile-emulation">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.chrome.mobile.<emulation>
+  ```
+  <p>Mobile emulation for Chrome.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;emulation&gt;</code> can be one or more of: 
+      <ul>
+        <li><code>deviceName</code> for the device name</li>
+        <li><code>width</code> for the device width</li>
+        <li><code>height</code> for the device height</li>
+        <li><code>pixelRatio</code> for the device pixel ratio</li>
+        <li><code>touch</code> for the device touch mode</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example emulating by name
+
+  ```json
+    gwen {
+      web {
+        chrome {
+          mobile {
+            deviceName = "Pixel 2"
+          }
+        }
+      }
+    }
+  ```
+
+  Example emulating by metrics
+
+  ```json
+    gwen {
+      web {
+        chrome {
+          mobile {
+            width = 360
+            height =  640
+            pixelRatio = 3.0
+            touch = true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example emulating by name
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "chrome": {
+            "mobile": {
+              "deviceName": "Pixel 2"
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  Example emulating by metrics
+
+   ```json
+    {
+      "gwen": {
+        "web": {
+          "chrome": {
+            "mobile": {
+              "width": 360,
+              "height": 640,
+              "pixelRatio": 3.0,
+              "touch": true
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example emulating by name
+
+  ```properties
+    gwen.web.chrome.mobile.deviceName = Pixel 2
+  ```
+
+  Example emulating by metrics
+
+  ```properties
+    gwen.web.chrome.mobile.width      = 360
+    gwen.web.chrome.mobile.height     = 640
+    gwen.web.chrome.mobile.pixelRatio = 3.0
+    gwen.web.chrome.mobile.touch      = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-chrome-mobile-emulation">Link</Link></div>
+    <div align="center"><Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Mobile-Emulation">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.33.0">v2.33.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-chrome-path">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.chrome.path
+  ```
+  <p>Overrides the path to the default system Chrome browser binary.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>The path the the Chrome application.
+      <ul>
+        <li>On macOS, this should be the actual binary, not just the app (e.g., /Applications/Google Chrome.app/Contents/MacOS/Google Chrome).</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        chrome {
+          path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "chrome": {
+            "path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.chrome.path = /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-chrome-path">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.44.0">v2.44.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-chrome-prefs">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.chrome.prefs
+  ```
+  <p>A chrome preference value.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><Link to="https://chromium.googlesource.com/chromium/src/+/master/chrome/common/pref_names.cc">Chrome preferences</Link></li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaed settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        chrome {
+          prefs = [
+            "download.default_directory=path/to/dir",
+            "prompt_for_download=false"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "chrome": {
+            "prefs": [
+              "download.default_directory=path/to/dir",
+              "prompt_for_download=false"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example (multiple values comma separated)
+
+  ```properties
+    gwen.web.chrome.prefs = download.default_directory=path/to/dir,prompt_for_download=false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-chrome-prefs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.10.0">v1.10.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-chrome-pref-name">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.chrome.pref.<name>
+  ```
+  <p>Sets a Chrome preference.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is a supported <Link to="https://chromium.googlesource.com/chromium/src/+/master/chrome/common/pref_names.cc">Chrome preference</Link> name</li>
+  </ul>
+  <p>Supported values</p>
+  <ul>
+    <li>A preference value</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Use <Link to="#gwen-web-chrome-prefs"><code>gwen.web.chrome.prefs</code></Link> instead.
+
+  </TabItem>
+  <TabItem value="json">
+
+  Use <Link to="#gwen-web-chrome-prefs"><code>gwen.web.chrome.prefs</code></Link> instead.
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.chrome.pref.download.default_directory = path/to/dir
+    gwen.web.chrome.pref.prompt_for_download = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-chrome-pref-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.10.0">v1.10.0</Link></div>
+  </div>
+</details>
+
+### Edge
+
+<details id="gwen-web-edge-args">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.edge.args
+  ```
+  <p>A chrome preference value.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><Link to="https://peter.sh/experiments/chromium-command-line-switches/">Edge arguments</Link></li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaed settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        edge {
+          args = [
+            "--ignore-certificate-errors",
+            "--incognito"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "edge": {
+            "args": [
+              "--ignore-certificate-errors",
+              "--incognito"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example (multiple values comma separated)
+
+  ```properties
+    gwen.web.edge.args = --ignore-certificate-errors,--incognito
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-edge-args">Link</Link></div>
+    <div align="center">See also <Link to="/docs/settings/reference#gwen-web-edge-args-seq-no"><code>gwen.web.edge.args.&lt;seqNo&gt;</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0">v2.48.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-edge-args-seq-no">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.edge.args.<seqNo>
+  ```
+  <p>Passes an argument to the Edge web driver.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;seqNo&gt;</code> is a unique sequence number</li>
+  </ul>
+  <p>Supported values</p>
+  <ul>
+    <li><Link to="https://peter.sh/experiments/chromium-command-line-switches/">Edge arguments</Link></li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Use <Link to="#gwen-web-edge-args"><code>gwen.web.edge.args</code></Link> instead.
+
+  </TabItem>
+  <TabItem value="json">
+
+  Use <Link to="#gwen-web-edge-args"><code>gwen.web.edge.args</code></Link> instead.
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.edge.args.1=--ignore-certificate-errors
+    gwen.web.edge.args.2=--window-size=1920,1080
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-edge-args-seq-no">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0">v2.48.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-edge-extensions">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.edge.extensions
+  ```
+  <p>A chrome preference value.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A relative or absolute file path to an extension (.crx) file or directory</li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaed settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        edge {
+          extensions = [
+            "path/to/extenstion.crx"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "edge": {
+            "extensions": [
+              "path/to/extenstion.crx"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example (use comma seaprated value for multiple entries)
+
+  ```properties
+    gwen.web.edge.extensions = path/to/extenstion.crx
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-edge-extensions">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0">v2.48.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-edge-mobile-emulation">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.edge.mobile.<emulation>
+  ```
+  <p>Mobile emulation for Edge.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;emulation&gt;</code> can be one or more of: 
+      <ul>
+        <li><code>deviceName</code> for the device name</li>
+        <li><code>width</code> for the device width</li>
+        <li><code>height</code> for the device height</li>
+        <li><code>pixelRatio</code> for the device pixel ratio</li>
+        <li><code>touch</code> for the device touch mode</li>
+        <li><code>userAgent</code> for the device user agent</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example emulating by name
+
+  ```json
+    gwen {
+      web {
+        edge {
+          mobile {
+            deviceName = "Pixel 2"
+          }
+        }
+      }
+    }
+  ```
+
+  Example emulating by metrics
+
+  ```json
+    gwen {
+      web {
+        edge {
+          mobile {
+            width = 360
+            height =  640
+            pixelRatio = 3.0
+            touch = true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example emulating by name
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "edge": {
+            "mobile": {
+              "deviceName": "Pixel 2"
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  Example emulating by metrics
+
+   ```json
+    {
+      "gwen": {
+        "web": {
+          "edge": {
+            "mobile": {
+              "width": 360,
+              "height": 640,
+              "pixelRatio": 3.0,
+              "touch": true
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example emulating by name
+
+  ```properties
+    gwen.web.edge.mobile.deviceName = Pixel 2
+  ```
+
+  Example emulating by metrics
+  ```properties
+    gwen.web.edge.mobile.width      = 360
+    gwen.web.edge.mobile.height     = 640
+    gwen.web.edge.mobile.pixelRatio = 3.0
+    gwen.web.edge.mobile.touch      = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-edge-mobile-emulation">Link</Link></div>
+    <div align="center"><Link to="https://github.com/gwen-interpreter/gwen-web/wiki/Mobile-Emulation">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0">v2.48.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-edge-path">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.edge.path
+  ```
+  <p>Overrides the path to the default system Edge browser binary.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>The path the the Edge application.
+      <ul>
+        <li>On macOS, this should be the actual binary.</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        edge {
+          path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "edge": {
+            "path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.edge.path = C:/Program Files (x86)/Microsoft/Edge Dev/Application/msedge.exe
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-edge-path">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0">v2.48.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-edge-prefs">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.edge.prefs
+  ```
+  <p>A chrome preference value.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><Link to="https://chromium.googlesource.com/chromium/src/+/master/edge/common/pref_names.cc">Edge preferences</Link></li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaed settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        edge {
+          prefs = [
+            "download.default_directory=path/to/dir",
+            "prompt_for_download=false"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "edge": {
+            "prefs": [
+              "download.default_directory=path/to/dir",
+              "prompt_for_download=false"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example (multiple values comma separated)
+
+  ```properties
+    gwen.web.edge.prefs = download.default_directory=path/to/dir,prompt_for_download=false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-edge-prefs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0">v2.48.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-edge-pref-name">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.edge.pref.<name>
+  ```
+  <p>Sets a Edge preference.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is a supported <Link to="https://chromium.googlesource.com/chromium/src/+/master/edge/common/pref_names.cc">Edge preference</Link> name</li>
+  </ul>
+  <p>Supported values</p>
+  <ul>
+    <li>A preference value</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Use <Link to="#gwen-web-edge-prefs"><code>gwen.web.edge.prefs</code></Link> instead.
+
+  </TabItem>
+  <TabItem value="json">
+
+  Use <Link to="#gwen-web-edge-prefs"><code>gwen.web.edge.prefs</code></Link> instead.
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.edge.pref.download.default_directory = path/to/dir
+    gwen.web.edge.pref.prompt_for_download = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-edge-pref-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0">v2.48.0</Link></div>
+  </div>
+</details>
+
+### Firefox
+
+<details id="gwen-web-firefox-prefs">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.firefox.prefs
+  ```
+  <p>A chrome preference value.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>Firefox preferences (for full list, visit <code>about:config</code> in your Firefox browser)</li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaed settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        firefox {
+          prefs = [
+            "browser.download.useDownloadDir=false",
+            "browser.download.loglevel=Error"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "firefox": {
+            "prefs": [
+              "browser.download.useDownloadDir=false",
+              "browser.download.loglevel=Error"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example (multiple values comma separated)
+
+  ```properties
+    gwen.web.firefox.prefs = browser.download.useDownloadDir=false,browser.download.loglevel=Error
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-firefox-prefs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.20.0">v2.20.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-firefox-pref-name">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.firefox.pref.<name>
+  ```
+  <p>Sets a Firefox preference.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is a Firefox preference name</li>
+  </ul>
+  <p>Supported values</p>
+  <ul>
+    <li>Firefox preferences (for full list, visit <code>about:config</code> in your Firefox browser)</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Use <Link to="#gwen-web-firefox-prefs"><code>gwen.web.firefox.prefs</code></Link> instead.
+
+  </TabItem>
+  <TabItem value="json">
+
+  Use <Link to="#gwen-web-firefox-prefs"><code>gwen.web.firefox.prefs</code></Link> instead.
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.firefox.pref.browser.download.useDownloadDir = false
+    gwen.web.firefox.pref.browser.download.loglevel = Error
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-firefox-pref-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.20.0">v2.20.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-suppress-images">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.suppress.images
+  ```
+  <p>Controls whether or not image rendering should be suppressed in the browser (firefox only).</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to suppress</li>
+    <li><code>false</code> to not suppress</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        suppress {
+          images = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "suppress": {
+            "images": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.suppress.images = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-suppress-images">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+## Default CLI Settings
+
+<details id="gwen-cli-options-parallel">
+  <summary class="setting">
+
+  ```properties
+  gwen.cli.options.parallel
+  ```
+  <p>Controls whether or not the <code>--parallel</code> switch will be passed to the Gwen CLI by default.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to always launch Gwen in parallel execution mode by default</li>
+    <li><code>false</code> to only launch Gwen in parallel execution mode if the <code>--parallel</code> switch is explicitly passed.</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          parallel = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "parallel": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.cli.options.parallel = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-parallel">Link</Link></div>
+    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-parallel"><code>--parallel</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-parallel-features">
+  <summary class="setting">
+
+  ```properties
+  gwen.cli.options.parallelFeatures
+  ```
+  <p>Controls whether or not the <code>--parallel-features</code> switch will be passed to the Gwen CLI by default.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to always launch Gwen with parallel features mode enabled by default</li>
+    <li><code>false</code> to only launch Gwen with parallel features mode enabled if the <code>--parallel-features</code> switch is explicitly passed.</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          parallelFeatures = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "parallelFeatures": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.cli.options.parallelFeatures = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-parallel-features">Link</Link></div>
+    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-parallel-features"><code>--parallel-features</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-batch">
+  <summary class="setting">
+
+  ```properties
+  gwen.cli.options.batch
+  ```
+  <p>Controls whether or not the <code>-b|--batch</code> switch will be passed to the Gwen CLI by default.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to always launch Gwen in batch mode and disable the <Link to="/docs/cli/repl">REPL</Link>.</li>
+    <li><code>false</code> to launch Gwen in batch mode if the <code>-b|--batch</code> switch is explicitly passed and in REPL mode if it is not.</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          batch = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "batch": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.cli.options.batch = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-batch">Link</Link></div>
+    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-batch"><code>-b|--batch</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-verbose">
+  <summary class="setting">
+
+  ```properties
+  gwen.cli.options.verbose
+  ```
+  <p>Controls whether or not the <code>-v|--verbose</code> switch will be passed to the Gwen CLI by default.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> for verbose logging mode</li>
+    <li><code>false</code> for pretty logging mode</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          verbose = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "verbose": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.cli.options.verbose = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-verbose">Link</Link></div>
+    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-verbose"><code>-v|--verbose</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-dry-run">
+  <summary class="setting">
+
+  ```properties
+  gwen.cli.options.dryRun
+  ```
+  <p>Controls whether or not the <code>-n|--dry-run</code> switch will be passed to the Gwen CLI by default.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to always launch Gwen in dry run mode by default</li>
+    <li><code>false</code> to only launch Gwen in dry run mode if the <code>-n|--dry-run</code> switch is explicitly passed.</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          dryRun = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "dryRun": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.cli.options.dryRun = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-dry-run">Link</Link></div>
+    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-dry-run"><code>-n|--dry-run</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-conf">
+  <summary class="setting">
+
+  ```properties
+  gwen.cli.options.conf
+  ```
+  <p>Sets the <code>-c|--conf</code> option to pass to the Gwen CLI by default.</p>
+  </summary>
+
+  <p>Supported values</p>
+  <ul>
+    <li>A list of zero or more settings file paths</li>
+  </ul>
+
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaed settings files are merged.
+
+  <Tabs
+    groupId="settings"
+    defaultValue="conf"
+    values={[
+      {label: '.conf', value: 'conf'},
+      {label: '.json', value: 'json'},
+      {label: '.properties', value: 'properties'}
+    ]}>
+
+  <TabItem value="conf">
+
+  Default value (for JS projects only)
+
+  ```json
+    gwen {
+      cli {
+        options {
+          conf = [
+            "${gwen.baseDir}/browsers/${gwen.target.browser}.conf",
+            "${gwen.baseDir}/env/${gwen.target.env}.conf"
+          ]
+        }
+      }
+    }
+  ```
+
+  If you don't want a value, set it to empty. You'll then have to explictly specify the <code>-c|--config</code> option on the CLI when you want to load settings.
+
+  ```json
+    gwen {
+      cli {
+        options {
+          conf = [
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value (for JS projects only)
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "conf": [
+              "${gwen.baseDir}/browsers/${gwen.target.browser}.conf",
+              "${gwen.baseDir}/env/${gwen.target.env}.conf"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  If you don't want a value, set it to empty. You'll then have to explictly specify the <code>-c|--config</code> option on the CLI when you want to load settings.
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "conf": [
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value (for JS projects only) (multiple entries comma separated)
+
+  ```properties
+    gwen.cli.options.conf = ${gwen.baseDir}/browsers/${gwen.target.browser}.conf,${gwen.baseDir}/env/${gwen.target.env}.conf
+  ```
+
+  If you don't want a value, set it to blank. You'll then have to explictly specify the <code>-c|--config</code> option on the CLI when you want to load settings.
+
+  ```properties
+    gwen.cli.options.conf = 
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-conf">Link</Link></div>
+    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-conf"><code>-c|--conf</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-report">
+  <summary class="setting">
+
+  ```properties
+  gwen.cli.options.report
+  ```
+  <p>Sets the <code>-r|--report</code> option to pass to the Gwen CLI by default.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A path to a directory to output all reports to.</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          report = "${gwen.outDir}/reports"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "report": "${gwen.outDir}/reports"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.cli.options.report = ${gwen.outDir}/reports
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-report">Link</Link></div>
+    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-report"><code>-r|--report</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-format">
+  <summary class="setting">
+
+  ```properties
+  gwen.cli.options.format
+  ```
+  <p>Sets the <code>-f|--format</code> option to pass to the Gwen CLI by default.</p>
+  </summary>
+  
+  <p>Supported values</p>
+  <ul>
+    <li>A list of zero or more of the following:
+      <ul>
+        <li><code>html</code> to output <Link to="/docs/reports/html">HTML reports</Link> by default</li>
+        <li><code>junit</code> to output <Link to="/docs/reports/junit-xml">JUnit-XML reports</Link> by default</li>
+        <li><code>json</code> to output <Link to="/docs/reports/json">JSON reports</Link> by default</li>
+        <li><code>rp</code> to log results to a <Link to="/docs/reports/portal">Report Portal</Link> server by default</li>
+        <li><code>none</code> to not output any reports by default</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaed settings files are merged.
+
+  <Tabs
+    groupId="settings"
+    defaultValue="conf"
+    values={[
+      {label: '.conf', value: 'conf'},
+      {label: '.json', value: 'json'},
+      {label: '.properties', value: 'properties'}
+    ]}>
+
+  <TabItem value="conf">
+
+  Default value (empty to pick up Gwen default format: html)
+
+  ```json
+    gwen {
+      cli {
+        options {
+          format = [ 
+          ]
+        }
+      }
+    }
+  ```
+
+  Example with multiple entries
+
+  ```json
+    gwen {
+      cli {
+        options {
+          format = [ 
+            "html",
+            "junit"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value (empty to pick up Gwen default format: html)
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "format": [ 
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  Example with multiple entries
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "format": [ 
+              "html",
+              "junit"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+Default value (empty to pick up Gwen default format: html)
+
+  ```properties
+    gwen.cli.options.format =
+  ```
+
+  Example with multiple entries (comma separated)
+
+  ```properties
+    gwen.cli.options.format = html,junit
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-format">Link</Link></div>
+    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-format"><code>-f|--format</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-tags">
+  <summary class="setting">
+
+  ```properties
+  gwen.cli.options.tags
+  ```
+  <p>Sets the <code>-t|--tags</code> option to pass to the Gwen CLI by default.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A list of @include and ~@exclude tags to pass to Gwen on every launch</li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaed settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value (empty for no tags)
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          tags = [ 
+          ]
+        }
+      }
+    }
+  ```
+
+  Example setting two default tags
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          tags = [ 
+            "@includeTag",
+            "~@excludeTag"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value (empty for no tags)
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "tags": [
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  Example setting two default tags
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "tags": [ 
+              "@includeTag",
+              "~@excludeTag"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value (blank for no tags)
+
+  ```properties
+    gwen.cli.options.tags = 
+  ```
+
+  Example setting two default tags (comma separated)
+
+  ```properties
+    gwen.cli.options.tags = @includeTag,~@excludeTag
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-tags">Link</Link></div>
+    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-tags"><code>-t|--tags</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-input-data">
+  <summary class="setting">
+
+  ```properties
+  gwen.cli.options.inputData
+  ```
+  <p>Sets the <code>-i|--input-data</code> option to pass to the Gwen CLI by default.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A path to a CSV data feed file to pass to Gwen on every launch</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value (blank for no input file)
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          inputData = ""
+        }
+      }
+    }
+  ```
+
+  Example setting a default data file
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          inputData = "data/file1.csv"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value (blank for no input file)
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "inputData": ""
+          }
+        }
+      }
+    }
+  ```
+
+  Example setting a default data file
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "inputData": "data/file1.csv"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value (blank for no input file)
+
+  ```properties
+    gwen.cli.options.inputData = 
+  ```
+
+  Example setting a default data file
+
+  ```properties
+    gwen.cli.options.inputData = data/file.csv
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-input-data">Link</Link></div>
+    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-input-data"><code>-i|--input</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-meta">
+  <summary class="setting">
+
+  ```properties
+  gwen.cli.options.meta
+  ```
+  <p>Sets the <code>-m|--meta</code> option to pass to the Gwen CLI by default.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A list of paths to meta files to pass to Gwen on every launch</li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaed settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value (blank for no meta)
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          meta = [ 
+          ]
+        }
+      }
+    }
+  ```
+
+  Example setting two default meta files
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          meta = [ 
+            "meta/file1.meta",
+            "meta/file2.meta"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value (empty for no meta)
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "meta": [
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  Example setting two default meta files
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "meta": [ 
+              "meta/file1.meta",
+              "meta/file2.meta"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value (blank for no meta)
+
+  ```properties
+    gwen.cli.options.meta = 
+  ```
+
+  Example setting two default meta files (comma separated)
+
+  ```properties
+    gwen.cli.options.meta = meta/file1.meta,meta/file2.meta
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-meta">Link</Link></div>
+    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-meta"><code>-m|--meta</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-features">
+  <summary class="setting">
+
+  ```properties
+  gwen.cli.options.features
+  ```
+  <p>Sets the list of feature files or directories to pass to the Gwen CLI by default.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A list of paths to feature files to pass to Gwen on every launch</li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaed settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value (empty for no feature files/dirs)
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          features = [ 
+          ]
+        }
+      }
+    }
+  ```
+
+  Example setting two default feature files
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          features = [ 
+            "features/file1.feature",
+            "features/file2.feature"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value (empty for no feature files/dirs)
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "features": [
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  Example setting two default feature files
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "features": [ 
+              "features/file1.feature",
+              "features/file2.feature"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value (blank for no feature files/dirs)
+
+  ```properties
+    gwen.cli.options.features = 
+  ```
+
+  Example setting two default feature files (comma separated)
+
+  ```properties
+    gwen.cli.options.features = features/file1.feature,features/file2.feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-features">Link</Link></div>
+    <div align="center">CLI argument: <Link to="/docs/cli#gwen-cli-options-features"><code>[files/dirs]</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>

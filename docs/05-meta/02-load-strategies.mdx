@@ -1,0 +1,703 @@
+--- 
+title: Load Strategies
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Meta Load Strategies
+
+## Associative Strategy
+
+When [associative meta](/docs/settings/reference#gwen-associative-meta) is enabled, a meta and feature file are considered to be associated with each other if the two files are in the same directory and have the same names (excluding their file extensions). The associative strategy will, for every feature:
+1. Auto discover all the meta files in the path to the feature file and only load those that are either:
+    - Not associated with any feature (one or many)
+    - Associated with the current feature (one or none)
+2. Execute the feature
+
+:::info Default setting
+
+Associative meta is enabled by default since  <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">Gwen 3</Link>.
+
+:::
+
+If you have your meta and feature files in a directory structure as follows:
+
+```
+/features
+ ├── todo.meta
+ ├── todo.feature
+ ├── /dir1
+ │    ├── todo1.meta
+ │    ├── todo1.feature
+ │    └── todo1a.feature
+ └── /dir2
+      ├── todo2.meta
+      ├── todo2.feature
+      └── /dir3
+           └── todo3.feature
+```
+
+When you launch Gwen to execute on the `features` directory, the associative strategy will:
+
+- Load the `todo.meta` and execute the `todo.feature`
+- Load the `todo.meta` and `todo1.meta` and execute the `todo1.feature`
+- Load the `todo.meta` and execute the `todo1a.feature`
+- Load the `todo.meta` and `todo2.meta` and execute the `todo2.feature`
+- Load the `todo.meta` and execute the `todo3.feature`
+
+When you launch Gwen to execute on the `features/dir1` directory, the associative strategy will:
+
+- Load the `todo.meta` and `todo1.meta` and execute the `todo1.feature`
+- Load the `todo.meta` and execute the `todo1a.feature`
+
+When you launch Gwen to execute the `features/dir2/todo2.feature` file, the associative strategy will:
+
+- Load the `todo.meta` and execute the `todo2.feature`
+
+## External Strategy
+
+The external strategy enables you to manage common and reusable meta files in a directory that is separate or external to your features directory. How you name your meta files or manage your meta directory structure does not matter. This strategy can be used in conjunction with any other meta load strategy.
+
+<Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+<TabItem value="js">
+
+<Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+<TabItem value="npm">
+
+:::note Example
+
+To load a single meta file from an external directory, use the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option and specify the path to the meta file:
+
+```shell
+npm run gwen -m external-meta/common.meta
+```
+
+To recursively load all meta files in an external directory:
+
+```shell
+npm run gwen features -m external-meta
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="yarn">
+
+:::note Example
+
+To load a single meta file from an external directory, use the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option and specify the path to the meta file:
+
+```shell
+yarn gwen -m external-meta/common.meta
+```
+
+To recursively load all meta files in an external directory:
+
+```shell
+yarn gwen features -m external-meta
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="pnpm">
+
+:::note Example
+
+To load a single meta file from an external directory, use the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option and specify the path to the meta file:
+
+```shell
+pnpm gwen -m external-meta/common.meta
+```
+
+To recursively load all meta files in an external directory:
+
+```shell
+pnpm gwen features -m external-meta
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="standalone">
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+:::note Example
+
+To load a single meta file from an external directory, use the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option and specify the path to the meta file:
+
+```shell
+gwen features -m external-meta/common.meta
+```
+
+To recursively load all meta files in an external directory:
+
+```shell
+gwen features -m external-meta
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+<TabItem value="windows">
+
+:::note Example
+
+To load a single meta file from an external directory, use the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option and specify the path to the meta file:
+
+```shell
+gwen features -m external-meta\common.meta
+```
+
+To recursively load all meta files in an external directory:
+
+```shell
+gwen features -m external-meta
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+</Tabs>
+
+## Import Strategy
+
+The import strategy enables you to selectively import one or more meta files for any given feature file so they will load automatically without you having to specify their locations using the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option on every launch. This is useful for cases where you have many reusable meta files and it is not practical to load all of them for every feature file.
+
+:::caution
+
+When using this strategy, it is important to ensure that the meta files you want to import are not located in or under any directories containing your feature files. This is to prevent them from being auto-loaded by the default or associative strategies. Similarly, they should also not reside in any directories containing meta files loaded by the external strategy if you are using that in conjunction with this strategy.
+
+:::
+
+The import strategy can be used to avoid redundant meta loads and improve performance and scalability in extreme cases where all your common meta combined exceeds or approaches 500 KB in size (that is: when you have LOTS of common meta).
+
+For example, say you have your common meta files in one directory and your feature files in another directory as follows:
+
+```
+/meta
+ ├── module-1.meta
+ ├── module-2.meta
+ ├── module-3.meta
+ │    ..
+ ├── module-n.meta
+ ├── /dir1
+ │    ├── submodule-1.meta
+ │    ├── submodule-2.meta
+ │    ├── submodule-3.meta
+ │    │    ..
+ │    └── submodule-n.meta
+ │
+/features
+ ├── spec-1.feature
+ ├── spec-2.feature
+ ├── spec-3.feature
+ │    ..
+ └── spec-n.feature
+```
+
+<Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+<TabItem value="js">
+
+<Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+<TabItem value="npm">
+
+:::note Example
+
+To load only one meta file for one feature file using the external meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
+
+```shell
+npm run gwen -m meta/module-1.meta features/spec-1.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="yarn">
+
+:::note Example
+
+To load only one meta file for one feature file using the external meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
+
+```shell
+yarn gwen -m meta/module-1.meta features/spec-1.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="pnpm">
+
+:::note Example
+
+To load only one meta file for one feature file using the external meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
+
+```shell
+pnpm gwen -m meta/module-1.meta features/spec-1.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="standalone">
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+:::note Example
+
+To load only one meta file for one feature file using the external meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
+
+```shell
+gwen -m meta/module-1.meta features/spec-1.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+<TabItem value="windows">
+
+:::note Example
+
+To load only one meta file for one feature file using the external meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
+
+```shell
+gwen -m meta\module-1.meta features\spec-1.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+</Tabs>
+
+Having to remember exactly which meta to load for which features is inconvenient and blindly loading all meta files to execute a feature that only requires one or some of them is wasteful.
+
+With [associative meta](/docs/meta/load-strategies#associative-strategy) enabled, you can do away with having to explicitly specify any meta files on CLI calls to Gwen by creating an associative meta file for each feature file and specifying the required meta to import in each.
+
+:::tip Use imports in associative meta
+
+Although it's possible to specify imports directly in feature files, we do not recommend you doing so since it would introduce automation concerns into your features. Confining imports to associative meta instead will keep your features clean and untouched. You must enable [associative meta](/docs/settings/reference#gwen-associative-meta) to use this approach (note that this setting is enabled by default in since  <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">Gwen 3</Link>).
+
+:::
+
+For example, you could import the `module-1.meta` into a new (or existing) associative meta file for `spec-1.feature` as follows:
+
+*File: features/spec-1.meta*
+
+```gherkin
+  @Import("meta/module-1.meta")
+  Feature: Associative spec 1 meta
+```
+
+Note that this associative meta specification contains nothing except one import annotation followed by a feature declaration and name. It contains nothing else since it serves only to import one meta file. It would sit alongside your unchanged feature file on the file system as follows:
+
+```
+/features
+ ├── spec-1.feature
+ ├── spec-1.meta
+ │    ..
+/meta
+ ├── module-1.meta
+ |   ..
+```
+
+<Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+<TabItem value="js">
+
+<Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+<TabItem value="npm">
+
+:::note Example
+
+With the import in place, you could then invoke Gwen to execute the feature without having to explicitly specify the meta file in the CLI call:
+
+```shell
+npm run gwen features/spec-1.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="yarn">
+
+:::note Example
+
+With the import in place, you could then invoke Gwen to execute the feature without having to explicitly specify the meta file in the CLI call:
+
+```shell
+yarn gwen features/spec-1.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="pnpm">
+
+:::note Example
+
+With the import in place, you could then invoke Gwen to execute the feature without having to explicitly specify the meta file in the CLI call:
+
+```shell
+pnpm gwen features/spec-1.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="standalone">
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+:::note Example
+
+With the import in place, you could then invoke Gwen to execute the feature without having to explicitly specify the meta file in the CLI call:
+
+```shell
+gwen features/spec-1.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+<TabItem value="windows">
+
+:::note Example
+
+With the import in place, you could then invoke Gwen to execute the feature without having to explicitly specify the meta file in the CLI call:
+
+```shell
+gwen features\spec-1.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+</Tabs>
+
+Gwen would then load the associative meta which in turn would load the imported meta before proceeding to execute the feature.
+
+You can add any number of meta imports to a file. The following example imports two meta files for spec 2:
+
+*File: features/spec-2.meta*
+
+```gherkin
+  @Import("meta/module-1.meta")
+  @Import("meta/module-2.meta")
+  Feature: Associative spec 2 meta
+```
+
+You can also chain or link imports together. For example, if you wanted `module-2.meta` to load whenever `module-3.meta` is loaded, you could import the former into the latter as follows:
+
+*File: meta/module-3.meta*
+
+```gherkin
+  @Import("meta/module-2.meta")
+  Feature: meta 3
+
+
+  @StepDef
+  Scenario: ..
+    Given ..
+     When ..
+     Then ..
+  ..
+```
+
+Now any import of `module-3.meta` will also import `module-2.meta`.
+
+*File: features/spec-3.meta*
+
+```gherkin
+  @Import("meta/module-3.meta")
+  Feature: Associative spec 3 meta
+```
+
+<Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+<TabItem value="js">
+
+<Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+<TabItem value="npm">
+
+:::note Example
+
+In this example, the `module-2.meta` and `module-3.meta` files will be loaded (in that order) before `test-3.feature` is executed.  Again, this would happen without you having to specify any meta in the CLI call to Gwen.
+
+```shell
+npm run gwen features/spec-3.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="yarn">
+
+:::note Example
+
+In this example, the `module-2.meta` and `module-3.meta` files will be loaded (in that order) before `test-3.feature` is executed.  Again, this would happen without you having to specify any meta in the CLI call to Gwen.
+
+```shell
+yarn gwen features/spec-3.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="pnpm">
+
+:::note Example
+
+In this example, the `module-2.meta` and `module-3.meta` files will be loaded (in that order) before `test-3.feature` is executed.  Again, this would happen without you having to specify any meta in the CLI call to Gwen.
+
+```shell
+pnpm gwen features/spec-3.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="standalone">
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+:::note Example
+
+In this example, the `module-2.meta` and `module-3.meta` files will be loaded (in that order) before `test-3.feature` is executed.  Again, this would happen without you having to specify any meta in the CLI call to Gwen.
+
+```shell
+gwen features/spec-3.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+<TabItem value="windows">
+
+:::note Example
+
+In this example, the `module-2.meta` and `module-3.meta` files will be loaded (in that order) before `test-3.feature` is executed.  Again, this would happen without you having to specify any meta in the CLI call to Gwen.
+
+```shell
+gwen features\spec-3.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+</Tabs>
+
+The path to the meta file in all imports can be absolute or relative to the directory where Gwen is invoked. If a recursive (or cyclic) import is detected in any import chain, Gwen will report it by throwing an exception with a message identifying the offending import and the file it was declared in.
+
+Meta files loaded through the import strategy get last precedence and therefore can be overridden by meta files loaded through any other meta load strategy.
+
+## Default Strategy
+
+The default strategy will, for every feature:
+1. Auto discover and unconditionally load all the meta in the path to the feature
+2. Execute the feature
+
+If you have your meta and feature files in a directory structure as follows:
+
+```
+/features
+ ├── todo.meta
+ ├── todo.feature
+ ├── /dir1
+ │    ├── todo1.meta
+ │    ├── todo1.feature
+ │    └── todo1a.feature
+ └── /dir2
+      ├── todo2.meta
+      ├── todo2.feature
+      └── /dir3
+           └── todo3.feature
+```
+
+When you launch Gwen to execute on the `features` directory, the default strategy will:
+
+- Load the `todo.meta` and execute the `todo.feature`
+- Load the `todo.meta` and `todo1.meta` and execute the `todo1.feature`
+- Load the `todo.meta` and `todo1.meta` and execute the `todo1a.feature`
+- Load the `todo.meta` and `todo2.meta` and execute the `todo2.feature`
+- Load the `todo.meta` and `todo2.meta` and execute the `todo3.feature`
+
+When you launch Gwen to execute on the `features/dir1` directory, the default strategy will:
+
+- Load the `todo.meta` and `todo1.meta` and execute the `todo1.feature`
+- Load the `todo.meta` and `todo1.meta` and execute the `todo1a.feature`
+
+When you launch Gwen to execute the `features/dir2/todo2.feature` file, the default strategy will:
+
+- Load the `todo.meta` and `todo2.meta` and execute the `todo2.feature`

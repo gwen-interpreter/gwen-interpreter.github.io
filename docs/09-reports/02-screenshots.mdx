@@ -1,0 +1,209 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Screenshots
+
+:::caution Performance
+
+Expect some performance degradation when enabling screenshot capture.
+
+:::
+
+![Example HTML report with screnshots](/img/reports/sample-html-screenshots.png)
+
+## Enable screenshot capture
+
+To capture screenshots and include them as attachements in your reports, you will need to configure the following [screenshot capture settings](/docs/settings/reference#gwen-web-capture-screenshots-enabled).
+
+<Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  To capture standard screenshots and element highligting screenshots (high performance impact):
+
+  ```json
+    gwen {
+      web {
+        capture{
+          screenshots {
+            enabled = true
+            highlighting = true
+          }
+        }
+      }
+    }
+  ```
+
+  To capture standard screenshots only (medium to high performance impact):
+
+  ```json
+    gwen {
+      web {
+        capture{
+          screenshots {
+            enabled = true
+            highlighting = false
+          }
+        }
+      }
+    }
+  ```
+
+  To capture element highlighting screenshots only (low to medium performance impact):
+
+  ```json
+    gwen {
+      web {
+        capture{
+          screenshots {
+            enabled = false
+            highlighting = true
+          }
+        }
+      }
+    }
+  ```
+
+  To not capture any screenshots at all (no performance impact):
+
+  ```json
+    gwen {
+      web {
+        capture{
+          screenshots {
+            enabled = false
+            highlighting = false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  To capture standard screenshots and element highligting screenshots (high performance impact):
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "capture": {
+            "screenshots": {
+              "enabled": true
+              "highlighting": true
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  To capture standard screenshots only (medium to high performance impact):
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "capture": {
+            "screenshots": {
+              "enabled": true
+              "highlighting": false
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  To capture element highlighting screenshots only (low to medium performance impact):
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "capture": {
+            "screenshots": {
+              "enabled": false
+              "highlighting": true
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  To not capture any screenshots at all (no performance impact):
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "capture": {
+            "screenshots": {
+              "enabled": false
+              "highlighting": false
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  To capture standard screenshots and element highligting screenshots (high performance impact):
+
+  ```properties
+    # Formerly gwen.web.capture.screenshots (prior to v3.0.0)
+    gwen.web.capture.screenshots.enabled = true
+
+    gwen.web.capture.screenshots.highlighting = true
+  ```
+
+  To capture standard screenshots only (medium to high performance impact):
+
+  ```properties
+    # Formerly gwen.web.capture.screenshots (prior to v3.0.0)
+    gwen.web.capture.screenshots.enabled = true
+
+    gwen.web.capture.screenshots.highlighting = false
+  ```
+
+  To capture element highlighting screenshots only (low to medium performance impact):
+
+  ```properties
+    # Formerly gwen.web.capture.screenshots (prior to v3.0.0)
+    gwen.web.capture.screenshots.enabled = false
+
+    gwen.web.capture.screenshots.highlighting = true
+  ```
+
+  To not capture any screenshots at all (no performance impact):
+
+  ```properties
+    # Formerly gwen.web.capture.screenshots (prior to v3.0.0)
+    gwen.web.capture.screenshots.enabled = false
+    
+    gwen.web.capture.screenshots.highlighting = false
+  ```
+
+  </TabItem>
+
+</Tabs>

@@ -1,0 +1,400 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Link from '@docusaurus/Link';
+
+# Get Started
+
+:::tip
+
+See the [introduction](/docs/introduction) to learn more about Gwen before getting started.
+
+:::
+
+## Setup
+
+#### Choose a setup option
+
+<Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'},
+    {label: 'Workspace', value: 'workspace'},
+  ]}>
+
+<TabItem value="js">
+
+Use this option to add Gwen to a JS project.
+
+### System requirements
+- Linux, Mac or Windows OS
+- Chrome, Firefox, Safari, or Edge browser
+- Java 8+ ([install Java](https://java.com))
+- node 12+ ([install node](https://nodejs.org/en/download/package-manager))
+
+### Add Gwen to your JS project and initialise
+
+:::note
+
+If you don't have a JS project, you can create one by installing node and running `npm init -y` in a new directory and use that.
+
+:::
+
+Open a terminal in the root of your project and run the following commands to add Gwen as a dev dependency and initialise your project for Gwen:
+
+<Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+<TabItem value="npm">
+
+```shell
+npm i --save-dev @gweninterpreter/gwen-web
+npm run gwen init
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+```shell
+yarn add -D @gweninterpreter/gwen-web
+yarn gwen init
+```
+
+</TabItem>
+<TabItem value="pnpm">
+
+```shell
+pnpm add -D @gweninterpreter/gwen-web
+pnpm gwen init
+```
+
+</TabItem>
+</Tabs>
+
+The `init` command will generate the following files and subdirectories in your project:
+
+```
+ /js-project                 # Your JS project root
+ ├── gwen.conf               # Project settings
+ └── /gwen
+     ├── .gitignore          # Git ignore file
+     ├── README.md
+     ├── /browsers           # Browser settings
+     │   ├── chrome.conf
+     │   ├── edge.conf
+     │   ├── firefox.conf
+     │   ├── safari.conf
+     │   ├── ie.conf
+     │   ├── remote.conf     # Remote web driver settings
+     │   └── README.md
+     ├── /env                # Environment settings
+     │   ├── local.conf
+     │   ├── dev.conf
+     │   ├── test.conf
+     │   └── README.md
+     ├── /features           # Features and associative meta
+     │   └── README.md
+     ├── /meta               # Optional common/reusable meta
+     │   └── README.md
+     └── /samples            # Sample features and meta
+```
+
+:::info Automatic Updates
+
+Automatic installs and updates to the latest version of Gwen are enabled by default for JS projects. You can disable them by setting the `version` field in the `gwenWeb` section of your `package.json` file to a specific version.
+
+```json
+"gwenWeb": {
+  "version": "3.0.0"
+}
+```
+
+Setting it back to `latest` will re-enable automatic updates.
+
+:::
+
+### Set your default browser
+
+Gwen is configured to use the Chrome browser by default. To change this default, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) setting in your `/js-project/gwen.conf` file to load your preferred browser settings instead of chrome.
+
+:::note Amend setting
+
+*File: /js-project/gwen.conf*
+
+```json {3}
+gwen {
+  target {
+    browser = "chrome"            # <- Change to firefox, safari, edge, or ie
+  }
+}
+```
+
+:::
+
+### Execute the samples
+
+<Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+<TabItem value="npm">
+
+:::note Launch Gwen
+
+Run the following command in your project to execute the sample feature specs.
+
+```shell
+npm run gwen -b gwen/samples
+```
+
+Where:
+
+- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL Console](/docs/cli/repl) instead of exiting.
+- `samples` is the directory containing the meta and feature samples to execute 
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="yarn">
+
+:::note Launch Gwen
+
+```shell
+yarn gwen -b gwen/samples
+```
+
+Where:
+
+- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL Console](/docs/cli/repl) instead of exiting.
+- `samples` is the directory containing the meta and feature samples to execute 
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="pnpm">
+
+:::note Launch Gwen
+
+```shell
+pnpm gwen -b gwen/samples
+```
+
+Where:
+
+- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL Console](/docs/cli/repl) instead of exiting.
+- `samples` is the directory containing the meta and feature samples to execute 
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+</Tabs>
+
+A [HTML evaluation report](/docs/reports/html) will be generated at `gwen/output/reports/index.html` in your project.
+
+
+</TabItem>
+<TabItem value="standalone">
+
+Use this option to set up Gwen as a standalone installation on your machine.
+
+### System requirements
+- Linux, Mac or Windows OS
+- Chrome, Firefox, Safari, or Edge browser
+- Java 8+ ([install Java](https://java.com))
+
+### Download and install Gwen
+
+Browse the [releases](https://github.com/gwen-interpreter/gwen-web/releases) and download the binary package of the version you want to install and use. The donwloaded zip will have a name that matches *gwen-web-&lt;version&gt;.zip*. Extract the downloaded ZIP into a dedicated applications directory on your machine. This will give you the following Gwen insallation on your file system:
+
+```
+ /applications             # Your top level applications directory
+ └──/gwen-web-<version>    # Your Gwen install
+    ├── gwen               # Linux launch script
+    ├── gwen.bat           # Windows launch script
+    ├── /bin               # Gwen scripts
+    └── /lib               # Gwen binaries
+```
+
+### Add Gwen to your system path
+
+Add the absolute location of your `/applications/gwen-web-<version>/bin` directory to your system `PATH` variable to make Gwen accessible in any directory on your machine.
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+:::note set PATH variable
+
+Run the following command to set the `PATH` in your current session temporarily or consult your OS manual to make it permanent:
+
+```shell
+export PATH=$PATH:/absolute/path/to/applications/gwen-web-<version>/bin
+```
+
+Replace:
+- `/absolute/path/to` with the absolute path to the location where you extracted the ZIP in step 1
+- `<version>` with the Gwen version you installed
+
+:::
+
+</TabItem>
+
+<TabItem value="windows">
+
+:::note set PATH variable
+
+Go to *Environment Variables* on your Windows system, and find and edit the `PATH` variable to include the following.
+
+```shell
+C:\absolute\path\to\applications\gwen-web-<version>\bin
+```
+
+Replace:
+- `C:\absolute\path\to` with the absolute path to the location where you extracted the ZIP in step 1 (your drive letter may differ)
+- `<version>` with the Gwen version you installed
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+:::caution No automatic updates
+
+You will need to repeat the above to udpate.
+
+:::
+
+### Inititialise a project directory
+
+Create a new directory (called `gwen-project` for example) somewhere on your machine that will serve as your working Gwen project directory. It should be outside of the `/applications` directory where you installed Gwen earlier. Open a terminal and run the following command in your `gwen-project` directory to initialise it:
+
+:::note Launch Gwen
+
+Be sure to include the trailing dot
+
+```shell
+gwen init .
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+The `init` command will generate the following files and subdirectorie in your project:
+
+```
+ /gwen-project           # Your standalone project root
+ ├── gwen.conf           # Project settings
+ ├── .gitignore          # Git ignore file
+ ├── README.md
+ ├── /browsers           # Browser settings
+ │   ├── chrome.conf
+ │   ├── edge.conf
+ │   ├── firefox.conf
+ │   ├── safari.conf
+ │   ├── ie.conf
+ │   ├── remote.conf     # Remote web driver settings
+ │   └── README.md
+ ├── /env                # Environment settings
+ │   ├── local.conf
+ │   ├── dev.conf
+ │   ├── test.conf
+ │   └── README.md
+ ├── /features           # Features and associative meta
+ │   └── README.md
+ ├── /meta               # Optional common/reusable meta
+ │   └── README.md
+ └── /samples            # Sample features and meta
+```
+
+### Set your default browser
+
+Gwen is configured to use the Chrome browser by default. To change this default, amend the  [<code>gwen.cli.options.conf</code>](/docs/settings/reference#gwen-cli-options-conf) setting in your `/gwen-project/gwen.conf` file to load your preferred browser settings instead of chrome.
+
+:::note Amend setting
+
+*File: /gwen-project/gwen.conf*
+
+```json {5}
+gwen {
+  cli {
+    options {
+      config = [
+        "browsers/chrome.conf", // <- Change to firefox, safari, edge, or ie
+        "env/local.conf"
+      ]
+    }
+  }
+}
+```
+
+For example, to change it to Firefox, amend the highlighted settings line above to:
+```json
+"browsers/firefox.conf",
+```
+
+:::
+
+### Execute the samples
+
+:::note Launch Gwen
+
+Run the following command in your project to execute the sample feature specs.
+
+```shell
+gwen -b samples
+```
+
+Where:
+
+- The `-b` switch instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL Console](/docs/cli/repl) instead of exiting.
+- `samples` is the directory containing the meta and feature samples to execute 
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+A [HTML evaluation report](/docs/reports/html) will be generated at `output/reports/index.html` in your project.
+
+</TabItem>
+
+<TabItem value="workspace">
+
+:::caution Deprecated
+
+[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) have been deprecated in favor of JS projects since  <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">Gwen 3</Link>.
+- [Mirgrate to Gwen 3](/docs/migration/gwen3)
+
+:::
+
+</TabItem>
+
+</Tabs>
