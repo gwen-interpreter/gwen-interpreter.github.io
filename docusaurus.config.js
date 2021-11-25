@@ -31,7 +31,7 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'gwen3',
+          docId: 'gwen3/gwen3',
           position: 'left',
           label: 'Gwen 3 Released!',
         },
