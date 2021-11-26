@@ -87,7 +87,7 @@ module.exports = {
           items: [
             {
               label: 'Report Portal',
-              href: 'https://reportportal.io',
+              href: 'docs/reports/portal',
             }
           ],
         },
