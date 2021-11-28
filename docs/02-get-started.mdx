@@ -101,7 +101,7 @@ pnpm gwen init
 The `init` command will generate the following files and subdirectories in your project:
 
 ```
- /js-project                 # Your JS project root
+ /project                    # Your JS project root
  ├── gwen.conf               # Project settings
  └── /gwen
      ├── .gitignore          # Git ignore file
@@ -142,11 +142,11 @@ Setting it back to `latest` will re-enable automatic updates.
 
 ### Set your default browser
 
-Gwen is configured to use the Chrome browser by default. To change this default, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) setting in your `/js-project/gwen.conf` file to load your preferred browser settings instead of chrome.
+Gwen is configured to use the Chrome browser by default. To change this default, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) setting in your `/project/gwen.conf` file to load your preferred browser settings instead of chrome.
 
 :::note Amend setting
 
-*File: /js-project/gwen.conf*
+*File: /project/gwen.conf*
 
 ```json {3}
 gwen {
@@ -331,7 +331,7 @@ gwen init .
 The `init` command will generate the following files and subdirectorie in your project:
 
 ```
- /gwen-project           # Your standalone project root
+ /project                # Your standalone project root
  ├── gwen.conf           # Project settings
  ├── .gitignore          # Git ignore file
  ├── README.md
@@ -357,11 +357,11 @@ The `init` command will generate the following files and subdirectorie in your p
 
 ### Set your default browser
 
-Gwen is configured to use the Chrome browser by default. To change this default, amend the  [<code>gwen.cli.options.conf</code>](/docs/settings/reference#gwen-cli-options-conf) setting in your `/gwen-project/gwen.conf` file to load your preferred browser settings instead of chrome.
+Gwen is configured to use the Chrome browser by default. To change this default, amend the  [<code>gwen.cli.options.conf</code>](/docs/settings/reference#gwen-cli-options-conf) setting in your `/project/gwen.conf` file to load your preferred browser settings instead of chrome.
 
 :::note Amend setting
 
-*File: /gwen-project/gwen.conf*
+*File: /project/gwen.conf*
 
 ```json {5}
 gwen {
