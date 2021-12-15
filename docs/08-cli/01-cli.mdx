@@ -264,8 +264,10 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   ```shell
   --parallel
   ```
-  <p>Optional switch for executing features or scenarios in parallel (depending on state level). Omit to execute sequenctially.</p>
+  <p>Optional switch for executing features or scenarios in parallel (one per CPU core) depending on the configured state level. Omit to execute sequentially.</p>
   </summary>
+
+  <p>Will utilise all avaialable CPU cores unless <Link to="/docs/settings/reference#gwen-parallel-maxThreads"><code>gwen.parallel.maxThreads</code></Link> is configured with an explicit maximum.</p>
   
   <p>Examples</p>
 
@@ -279,7 +281,7 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
 
   <TabItem value="feature">
 
-  Features will run in parallel when the <em>parallel</em> switch is provided and <Link to="/docs/settings/reference#gwen-state-level"><code>gwen.state.level</code></Link> is <code>feature</code>
+  Features will run in parallel (one per CPU core) when the <em>parallel</em> switch is provided and <Link to="/docs/settings/reference#gwen-state-level"><code>gwen.state.level</code></Link> is <code>feature</code>
 
   <Tabs
   groupId="setup"
@@ -422,7 +424,7 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
 
   <TabItem value="scenario">
 
-  Scenarios will run in parallel when the <em>parallel</em> switch is provided and  <Link to="/docs/settings/reference#gwen-state-level"><code>gwen.state.level</code></Link> is <code>scenario</code>
+  Scenarios will run in parallel (one per CPU core) when the <em>parallel</em> switch is provided and  <Link to="/docs/settings/reference#gwen-state-level"><code>gwen.state.level</code></Link> is <code>scenario</code>
 
   <Tabs
   groupId="setup"
@@ -578,8 +580,10 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
   ```shell
   --parallel-features
   ```
-  <p>Optional switch for executing features in parallel (regardless of state level). Omit to execute sequentially.</p>
+  <p>Optional switch for executing features in parallel (one per CPU core) regardless of state level. Omit to execute sequentially.</p>
   </summary>
+
+  <p>Will utilise all avaialable CPU cores unless <Link to="/docs/settings/reference#gwen-parallel-maxThreads"><code>gwen.parallel.maxThreads</code></Link> is configured with an explicit maximum.</p>
 
   <p>Examples</p>
 
