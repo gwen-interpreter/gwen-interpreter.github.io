@@ -29,12 +29,6 @@ module.exports = {
           position: 'left',
           label: 'Docs',
         },
-        {
-          type: 'doc',
-          docId: 'gwen3/gwen3',
-          position: 'left',
-          label: 'Gwen 3 Released!',
-        },
         { 
           label: 'GitHub',
           href: 'https://github.com/gwen-interpreter/gwen-web',
