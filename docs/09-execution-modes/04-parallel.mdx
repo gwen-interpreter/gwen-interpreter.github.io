@@ -1,0 +1,51 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Parallel
+
+Gwen can execute features and scenarios in parallel.
+
+## Parallel feature execution
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link>
+
+> Features will run in parallel if you specify:
+> -  the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option and your [state level](/docs/settings/reference#gwen-state-level) is set to `feature`
+> - or the [`--parallel-features`](/docs/cli#gwen-cli-options-parallel-features) CLI option (regardless of state level)
+
+If you launch Gwen on a quad core machine with the `--parallel` option passing in four feature files (or a single directory containing 4 feature files), then the four features will run in parallel across the four cores. If you instead provide five features, then four of them will execute in parallel and the remaining one will wait until one of them completes and then run on that available core.
+
+## Parallel scenario execution
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.22.1">v2.22.1</Link>
+
+> Scenarios will run in parallel if you specify:
+> - the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option and your [state level](/docs/settings/reference#gwen-state-level) is set to `scenario`
+
+If you launch Gwen on a quad core machine with the `--parallel` option passing in many feature files (or a single directory containing many feature files), then at most four scenarios will run in parallel across the four cores at any one time. If there are a total of five scenarios, then four of them will execute in parallel and the remaining one will wait until one of them completes and then run on that available core.
+
+## Staggering
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.1.0">v1.1.0</Link>
+
+An optional [ramp up interval](/docs/settings/reference#gwen-rampup-interval-seconds) can be configured to stagger parallel executions.
+
+#### Example: 
+
+A 5 second interval would stagger executions like this over 4 cores:
+
+```text
+    time  00   05   10   15   seconds
+          │    │    │    │
+  core 1  │<── feature 1a ──>|<── feature 1b ──> ..
+  core 2  │    │<── feature 2a ──>|<── feature 2b ──> ..
+  core 3  │    │    │<── feature 3a ──>|<── feature 3b ──> ..
+  core 4  │    │    │    │<── feature 4a ──>|<── feature 4b ──> ..
+  ```

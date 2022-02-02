@@ -1,0 +1,144 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Data Driven
+
+## CSV data feeds
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link>
+
+CSV data files can be passed into the interpreter to perform feature execution over multiple data sets. The first row in a CSV data file must be a list of column names for the contained data that follows. The values in each record will be bound to attributes in the feature scope having these same names. Feature steps can reference the bound data using these names.
+
+Say you have a `users.csv` file containing following user records.
+
+:::note CSV
+
+*File: data/users.csv*
+```text
+FIRST_NAME,LAST_NAME,JOB
+Gwen,Stefani,Pop Singer
+Gwyneth,Paltrow,Actress
+Gwen,Cooper,Torchwood Agent
+```
+
+:::
+
+The first row in this file specifies a comma separated list of column names. The remaining rows specify the comma separated lists of values for each record. Now say you wanted to submit the details for each user to a web page through a single `submit-user.feature` file that accepts all the user data as input one at a time. You can do this in the feature by referencing CSV data values by their column names as follows:
+
+:::note Feature
+
+*File: features/submit-user.feature*
+```gherkin
+Feature: Submit user
+
+  Scenario: submit user details
+    Given I navigate to the user details page
+     When I type FIRST_NAME in the first name field
+      And I type LAST_NAME in the last name field
+      And I type JOB in the job field
+      And I click the save button
+     Then the alert msg should be "User ${FIRST_NAME} saved"
+```
+
+:::
+
+> The current CSV record number (starting at 1) is available as an implicit attribute named `data record number` and can be accessed by reference or [interpolation](https://github.com/gwen-interpreter/gwen/wiki/String-Interpolation).
+
+You can now execute this feature for all users in the CSV file by launching Gwen with the [`-i|--input-data`](/docs/cli#gwen-cli-options-input-data) CLI ooption.
+
+#### Examples
+
+<Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  ```shell
+  npm run gwen -- -b -i gwen/data/users.csv gwen/features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  npm run gwen -- -b --input-data gwen/data/users.csv gwen/features/submit-user.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  ```shell
+  yarn gwen -b -i gwen/data/users.csv gwen/features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  yarn gwen -b --input-data gwen/data/users.csv gwen/features/submit-user.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+  
+
+  ```shell
+  pnpm gwen -b -i gwen/data/users.csv gwen/features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  pnpm gwen -b --input-data gwen/data/users.csv gwen/features/submit-user.feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  ```shell
+  gwen -b -i data/users.csv features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  gwen -b --input-data data/users.csv features/submit-user.feature
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+Gwen will read in the CSV file, and for each record will:
+* Bind the data to the feature
+* And execute the feature
+
+A feature detail report will be generated for each data record. If you specify the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option, the feature will execute all records in parallel.

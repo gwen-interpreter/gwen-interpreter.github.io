@@ -32,6 +32,7 @@ Usage: gwen [options] [files|dirs]
   --parallel-features     Execute features in parallel (unconditionally)
   -b, --batch             Exit when execution completes (omit to open REPL)
   -v, --verbose           Enable verbose log output
+  -d, --debug             Enable breakpoints and interactive debugging
   -n, --dry-run           Check all syntax and bindings and report errors
   -c, --conf files        Settings files: conf, json or properties (comma separated)
   -p, --properties files  Properties files (deprecated, use -c|--conf instead)
@@ -1004,6 +1005,116 @@ As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0
     <div><Link to="#gwen-cli-options-verbose">Link</Link></div>
     <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-verbose"><code>gwen.cli.options.verbose</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-debug">
+  <summary class="cli-options">
+
+  ```shell
+  -d|--debug
+  ```
+  <p>Optional switch for enabling breakpoints and debugging.</p>
+  </summary>
+  
+  <p>Where</p>
+
+  <ul>
+    <li>Option name is either:
+      <ul>
+        <li><code>-d</code> for shorthand</li>
+        <li><code>--debug</code> for longhand</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>Usage</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="js">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  ```shell
+  npm run gwen -- -d
+  ```
+
+  Or 
+
+  ```shell
+  npm run gwen -- --debug
+  ```
+
+  </TabItem>
+
+  <TabItem value="yarn">
+
+   ```shell
+  yarn gwen -d
+  ```
+
+  Or 
+
+  ```shell
+  yarn gwen --debug
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+   ```shell
+  pnpm gwen -d
+  ```
+
+  Or 
+
+  ```shell
+  pnpm gwen --debug
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  ```shell
+  gwen -d
+  ```
+
+  Or 
+
+  ```shell
+  gwen --debug
+  ```
+
+  </TabItem>
+  
+  </Tabs>  
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-debug">Link</Link></div>
+    <div align="center"><Link to="/docs/execution-modes/interactive#debugging">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.2.0">v3.2.0</Link></div>
   </div>
 </details>
 

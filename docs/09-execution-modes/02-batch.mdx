@@ -1,0 +1,16 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Batch
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link>
+
+If you specify the [`-b|--batch`](/docs/cli#gwen-cli-options-batch) CLI option when launching Gwen, it will immediately exit after it finishes executing features. This is useful for when you want to run Gwen without [interactive](/docs/execution-modes/interactive) sessions (for example: in build server environments).
+

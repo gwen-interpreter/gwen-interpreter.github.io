@@ -206,7 +206,7 @@ gwen path\to\file.feature
 
 </Tabs>
 
-### REPL Commands
+### REPL commands
 
 Once in the REPL, you can type `help` at the `gwen>` prompt to list the available commands.
 
@@ -238,7 +238,7 @@ Given|When|Then|And|But step-expression
   Evaluates a step
     step-expression : the step expression
 
-exit|quit|bye
+q|exit|quit|bye
   Closes the REPL session and exits
 
 ctrl-D
@@ -247,13 +247,17 @@ ctrl-D
 
 tab
   Press the tab key for tab completion
+
+c|continue|resume
+  Continue executing from current breakpoint step (debug mode only)
+
 ```
 
-### Tab Completion
+### Tab completion
 
 You can press the tab key at any time to lookup and select available commands, [DSL Steps](/docs/dsl/reference) and custom [StepDefs](/docs/meta#stepdefs).
 
-### Paste Mode
+### Paste mode
 
 Should you attempt to enter a multiline step into the REPL, you will quickly discover that the first line will execute and fail as soon as you enter it without waiting for you to enter the remaining lines first. To address this, we have introduced a *paste* mode. 
 

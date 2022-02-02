@@ -29,6 +29,11 @@ module.exports = {
           position: 'left',
           label: 'Docs',
         },
+        {
+          href: '/docs/execution-modes/interactive#debugging',
+          position: 'left',
+          label: "What's new?",
+        },
         { 
           label: 'GitHub',
           href: 'https://github.com/gwen-interpreter/gwen-web',
@@ -81,7 +86,7 @@ module.exports = {
           items: [
             {
               label: 'Report Portal',
-              href: 'docs/reports/portal',
+              href: '/docs/reports/portal',
             }
           ],
         },

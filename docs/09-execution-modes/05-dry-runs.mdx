@@ -1,0 +1,15 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Dry Runs
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link>
+
+Dry runs can be performed on features to verify that they are syntactically correct and that all bindings and references hang together and will resolve at runtime. This allows you to quickly validate features and catch potential errors before committing them to an execution cycle. It runs fast and is especially useful for refactoring. The [`-n|--dry-run`](/docs/cli#gwen-cli-options-dry-run) CLI option is used to launch Gwen in this mode.
