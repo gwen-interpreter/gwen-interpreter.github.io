@@ -30,7 +30,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: '/docs/execution-modes/interactive#debugging',
+          href: '/docs/advanced/finally-steps',
           position: 'left',
           label: "What's new?",
         },

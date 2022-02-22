@@ -1,0 +1,153 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Implicit Attributes
+
+The following attributes are implicitly available to all feature and meta files at runtime by reference or [interpolation](https://github.com/gwen-interpreter/gwen/wiki/String-Interpolation).
+
+<details id="gwen-feature-file-name">
+  <summary class="setting">
+
+  ```properties
+  gwen.feature.file.name
+  ```
+  <p>The current feature file name.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-feature-file-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-feature-file-path">
+  <summary class="setting">
+
+  ```properties
+  gwen.feature.file.path
+  ```
+  <p>The current feature file path (as provided to Gwen on command line).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-feature-file-path">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-feature-file-absolutePath">
+  <summary class="setting">
+
+  ```properties
+  gwen.feature.file.absolutePath
+  ```
+  <p>The current absolute feature file path.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-feature-file-absolutePath">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-feature-name">
+  <summary class="setting">
+
+  ```properties
+  gwen.feature.name
+  ```
+  <p>The current feature name (as specified in Feature clause).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-feature-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-scenario-name">
+  <summary class="setting">
+
+  ```properties
+  gwen.scenario.name
+  ```
+  <p>The current scenario name (as specified in Scenario clause).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-scenario-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rule-name">
+  <summary class="setting">
+
+  ```properties
+  gwen.rule.name
+  ```
+  <p>The current rule name (as specified in Rule clause).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rule-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.21.0">v2.21.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-eval-status-keyword">
+  <summary class="setting">
+
+  ```properties
+  gwen.eval.status.keyword
+  ```
+  <p>The current evaluation status (<code>Pending</code>, <code>Failed</code>  or <code>Sustained</code>.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-eval-status-keyword">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.3.0">v3.3.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-eval-status-message">
+  <summary class="setting">
+
+  ```properties
+  gwen.eval.status.message
+  ```
+  <p>The current evaluation status message if <Link to="#gwen-eval-status-keyword"><code>gwen.eval.status.keyword</code></Link> is <code>Failed</code> or <code>Sustained</code>, blank otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-eval-status-message">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.3.0">v3.3.0</Link></div>
+  </div>
+</details>
+
+:::note See also
+- Implicit attributes for [data tables](/docs/advanced/data-tables#implicit-attributes)
+:::

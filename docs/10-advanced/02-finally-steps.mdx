@@ -1,0 +1,42 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Finally Steps
+
+## @Finally
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.3.0">v3.3.0</Link>
+
+The `@Finally` annotation can be used to define steps that should always execute regardless of the current execution status. For example, a step that could potentially be skipped due to an earier step failing can be instructed to execute unconditionally with this annotation.
+
+Consider the following example.
+
+:::note Finally example
+
+```gherkin {5}
+  Scenario: Onboard a new user
+    Given I am logged in as administator
+     When I register a new user
+     Then the new user should be able to login
+      And @Finally I log out as administrator
+```
+
+The last step in this example is annotated with `@Finally` and will therefore always execute
+
+:::
+
+If any of the preceeding steps (1 to 3) in this example fail or are skipped for whatever reason, then the last step will still execute!
+
+:::note
+
+Only the last step in a parent node (Background, Scenario, Outline, or `StepDef`) can have this annotation.
+
+:::
+
