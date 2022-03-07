@@ -30,7 +30,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: '/docs/advanced/finally-steps',
+          href: '/docs/dsl/reference#step-if-not-condition',
           position: 'left',
           label: "What's new?",
         },
