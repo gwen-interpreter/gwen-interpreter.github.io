@@ -14,7 +14,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 Sometimes it may be useful to run Gwen in a [docker](https://www.docker.com/) container. For example, if you want to run Gwen in a continuous delivery pipeline on a build server or node agent.
 
 ## Dockerfile
-The first thing you need to do is find or create a suitable docker image for Gwen to run in. It will need to have Java 8+ and node 12+ installed on it (and optionally yarn).
+The first thing you need to do is create a suitable docker image for Gwen to run in. It will need to have Java 8+, node 12+ and yarn installed (since we will be using yarn in the examples that follow).
 
 To build your own image:
 
@@ -28,6 +28,7 @@ To build your own image:
 2. Save the following content into the file.
 
 ```
+# base java 8 image
 FROM adoptopenjdk/openjdk8:ubi
 
 # install node & yarn
@@ -160,7 +161,7 @@ This will be called by the `gwen` container in docker when it starts (as per the
 
 ## Run in docker
 
-Finally, ensure that your Docker engine is running on your machine and launch the following command to spin everything up and run Gwen in docker:
+Finally, ensure that your Docker engine is running on your machine and launch the following command in your project directory to spin everything up and run Gwen in docker:
 
 ```shell
 docker-compose run gwen
