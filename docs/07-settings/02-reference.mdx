@@ -2793,6 +2793,74 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
+<details id="gwen-web-remote-url">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.remote.url
+  ```
+  <p>Remote web driver url for connecting to a selenium grid server.</p>
+  </summary>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        remote {
+          url = "http://selenoid:4444/wd/hub"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "remote": {
+            "url": "http://selenoid:4444/wd/hub"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.remote.url = http://selenoid:4444/wd/hub
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-remote-url">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-web-sendKeys-clearFirst">
   <summary class="setting">
 

@@ -134,14 +134,14 @@ networks:
 ```json
 gwen {
   web {
+    remote {
+        url = "http://selenoid:4444/wd/hub"
+    }
     capability {
       enableVNC = false
       enableVideo = false
       acceptSslCerts = true
     }
-  }
-  remote {
-    url = "http://selenoid:4444/wd/hub"
   }
 }
 ```
