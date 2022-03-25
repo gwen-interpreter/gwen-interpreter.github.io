@@ -1,0 +1,168 @@
+--- 
+title: Docker
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Running Gwen in Docker
+
+Sometimes it may be useful to run Gwen in a [docker](https://www.docker.com/) container. For example, if you want to run Gwen in a continuous delivery pipeline on a build server or node agent.
+
+## Dockerfile
+The first thing you need to do is find or create a suitable docker image for Gwen to run in. It will need to have Java 8+ and node 12+ installed on it (and optionally yarn).
+
+To build your own image:
+
+1. Create a new file named `Dockerfile` in the root of your Gwen project ([create a Gwen project](/docs/get-started) if you don't have one).
+
+```shell {2}
+/project                    # Your project root
+└── Dockerfile              # Docker imsage file
+```
+
+2. Save the following content into the file.
+
+```
+FROM adoptopenjdk/openjdk8:ubi
+
+# install node & yarn
+RUN dnf module install nodejs:16 -y
+RUN npm install --global yarn
+```
+
+## Docker compose
+
+Next, we need to configure a `docker-compose.yml` file to create docker containers for Gwen and at least one web browser for it to run against. Here, we will use [Selenoid](https://aerokube.com/selenoid/) to stand up a chrome browser and Selenium grid that Gwen will connect to.
+
+1. Create a new file named `docker-compose.yaml` in the root of your Gwen project.
+
+```shell {3}
+/project                    # Your JS project root
+├── Dockerfile              # Docker imsage file
+└── docker-compose.yml      # Docker compose YAML file
+```
+
+2. Save the following content into the file.
+
+```yaml
+version: '3.5'
+services:
+  chrome:
+    image: "selenoid/chrome:latest"
+    networks:
+      - gwen-net
+  selenoid:
+    depends_on:
+      - chrome
+    image: "aerokube/selenoid:latest-release"
+    networks:
+      - gwen-net
+    ports:
+      - "4444:4444"
+    volumes:
+      - "$PWD/gwen/browsers:/etc/selenoid/:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    command: -container-network gwen-net
+  gwen:
+    depends_on:
+      - selenoid
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      NO_COLOR: 1
+    volumes:
+      - "$PWD:/project"
+    working_dir: /project
+    command: yarn gwen:docker
+    networks:
+      - gwen-net
+networks:
+  gwen-net:
+    name: gwen-net
+```
+
+## Selenoid configuration
+
+### Selenoid browsers file
+
+1. Create a `browsers.json` file in the `gwen/browsers` directory of your Gwen project.
+
+```shell {4}
+/project                    # Your project root
+└── /gwen                   # Gwen working directory
+    └── browsers
+        └──browsers.json    # Selenoid browsers file
+```
+
+2. Save the following content into the file.
+
+```json
+{
+  "chrome": {
+    "default": "latest",
+    "versions": {
+      "latest": {
+        "image": "selenoid/chrome:latest",
+        "port": "4444",
+        "path": "/"
+      }
+    }
+  }
+}
+```
+
+### Gwen settings file
+
+1. Create a `selenoid.conf` settings file in the `gwen/browsers` directory of your Gwen project.
+
+```shell {5}
+/project                    # Your project root
+└── /gwen                   # Gwen working directory
+    └── browsers
+        ├──browsers.json    # Selenoid browsers file
+        └──selenoid.conf    # Selenoid Gwen settings
+```
+
+2. Save the following content into the file.
+
+```json
+gwen {
+  web {
+    capability {
+      enableVNC = false
+      enableVideo = false
+      acceptSslCerts = true
+    }
+  }
+  remote {
+    url = "http://selenoid:4444/wd/hub"
+  }
+}
+```
+
+## Docker yarn script
+
+Next, add the following `gwen:docker` script to the `scripts` section of the `package.json` file in your Gwen project, replacing `gwen/samples` with the directory containing the features you want to execute. 
+This will be called by the `gwen` container in docker when it starts (as per the `docker-compose.yml` file we created above).
+
+```json {3}
+"scripts": {
+  "gwen": "gwen",
+  "gwen:docker": "yarn install && gwen -b -c gwen/browsers/selenoid.conf gwen/samples"
+}
+```
+
+## Run in docker
+
+Finally, ensure that your Docker engine is running on your machine and launch the following command to spin everything up and run Gwen in docker:
+
+```shell
+docker-compose run gwen
+```
+

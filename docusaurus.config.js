@@ -30,7 +30,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: '/docs/dsl/reference#step-if-not-condition',
+          href: '/docs/docker',
           position: 'left',
           label: "What's new?",
         },
