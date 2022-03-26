@@ -25,10 +25,22 @@ To build your own image:
 └── Dockerfile              # Docker imsage file
 ```
 
-2. Save the following content into the file.
+2. Save one of the following examples into the file.
 
+- Alpine Linux and Node base image with Open JDK 8 JRE installed:
 ```
-# base java 8 image
+# base alpine image with node
+FROM node:17-alpine
+
+# install bash and java
+RUN apk update \
+    && apk add bash \
+    && apk add openjdk8-jre
+```
+
+- Or Red Hat Linux and Open JDK 8 base image with node installed:
+```
+# base Red Hat image with open JDK 8 and node installed
 FROM adoptopenjdk/openjdk8:ubi
 
 # install node & yarn
