@@ -14,7 +14,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 Sometimes it may be useful to run Gwen in a [docker](https://www.docker.com/) container. For example, if you want to run Gwen in a continuous integration pipeline on a build server or node agent.
 
 ## Dockerfile
-The first thing you need to do is create a suitable docker image for Gwen to run in. It will need to have Java 8+, node 12+ and yarn installed (since we will be using yarn in the examples that follow).
+The first thing you need to do is create a suitable docker image for Gwen to run in. It will need to have Java 8+, node 12+, bash and yarn installed (since we will be using yarn in the examples that follow).
 
 To build your own image:
 
@@ -66,13 +66,13 @@ Next, we need to configure a `docker-compose.yml` file to create docker containe
 version: '3.5'
 services:
   chrome:
-    image: "selenoid/chrome:latest"
+    image: selenoid/chrome:latest
     networks:
       - gwen-net
   selenoid:
     depends_on:
       - chrome
-    image: "aerokube/selenoid:latest-release"
+    image: aerokube/selenoid:latest-release
     networks:
       - gwen-net
     ports:
@@ -88,11 +88,12 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      NO_COLOR: 1
+      - SELENIUM_HOST=selenoid
+      - NO_COLOR=1
     volumes:
       - "$PWD:/project"
     working_dir: /project
-    command: yarn gwen:docker
+    command: bash -c "yarn install && yarn gwen:selenoid"
     networks:
       - gwen-net
 networks:
@@ -153,7 +154,7 @@ gwen {
       acceptSslCerts = true
     }
     remote {
-      url = "http://selenoid:4444/wd/hub"
+      url = "http://${SELENIUM_HOST}:4444/wd/hub"
     }
   }
 }
@@ -161,13 +162,13 @@ gwen {
 
 ## Yarn script
 
-Next, add the following `gwen:docker` script to the `scripts` section of the `package.json` file in your Gwen project, replacing `gwen/samples` with the directory containing the features you want to execute. 
-This will be called by the `gwen` container in docker when it starts (as per the `docker-compose.yml` file we created above).
+Next, add the following `gwen:selenoid` script to the `scripts` section of the `package.json` file in your Gwen project, replacing `gwen/samples` with the directory containing the features you want to execute. 
+This will be called by the `gwen` container in our `docker-compose.yml` file when it starts up.
 
 ```json {3}
 "scripts": {
   "gwen": "gwen",
-  "gwen:docker": "yarn install && gwen -b -c gwen/browsers/selenoid.conf gwen/samples"
+  "gwen:selenoid": "gwen -b -c gwen/browsers/selenoid.conf gwen/samples"
 }
 ```
 
