@@ -88,7 +88,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - SELENIUM_HOST=selenoid
+      - SELENIUM_HUB=selenoid
       - NO_COLOR=1
     volumes:
       - "$PWD:/project"
@@ -154,7 +154,7 @@ gwen {
       acceptSslCerts = true
     }
     remote {
-      url = "http://${SELENIUM_HOST}:4444/wd/hub"
+      url = "http://${SELENIUM_HUB}:4444/wd/hub"
     }
   }
 }
