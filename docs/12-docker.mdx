@@ -194,23 +194,29 @@ docker-compose run gwen
 gwen {
   web {
     capability {
-      enableVNC = true
+      ..
       enableVideo = true
-      acceptSslCerts = true
+      ..
     }
-    remote {
-      url = "http://${SELENIUM_HUB}:4444/wd/hub"
-    }
+    ..
   }
 }
 ```
-If `gwen.web.capability.videoEnabled` is set to `true` in your *gwen/browsers/selenoid.conf* file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html).
+If `gwen.web.capability.videoEnabled` is set to `true` in your *gwen/browsers/selenoid.conf* file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html). Set this to `false` if you do not wish to capture video.
 
-It a feature has only one video (one browser session):
+:::note video settings
+- [`gwen-video.dir`](/docs/settings/reference#gwen-video.dir) 
+  - Should match host directory mounted to `/opt/selenoid/video` in Selenoid video-recorder
+- [`gwen-video.timeoutSecs`](/docs/settings/reference#gwen-video.timeoutSecs) 
+  - Time to wait for asyncronous vidoe writes to complete (override only if default does not suffice)
+:::
+
+A button will appear in the report header if one video was captured (one browser session):
 
 ![Example video button](/img/reports/sample-html-video-1.png)
 
-It a feature has multiple videos (one for each browser session):
+A dropdown will appear in the report header if several videos were captured (multiple browser sessions):
 
 ![Example video links](/img/reports/sample-html-video-2.png)
 
+Clicking a video button or link in the report will open and play the video in a new browser window.

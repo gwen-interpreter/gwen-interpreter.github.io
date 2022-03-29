@@ -1668,7 +1668,12 @@ import TabItem from '@theme/TabItem';
   ```
   <p>Sets the output directory for video recordings.</p>
   </summary>
-  <p>Video capture is currently only supported in <Link href="/docs/docker#video-recordings">Docker with Selenoid</Link>.</p>
+  <p>
+    Video capture is currently only supported in <Link href="/docs/docker">Docker with Selenoid</Link>. 
+    This setting is used to set the host directory mounted to <code>/opt/selenoid/video</code> in docker where the Selenoid video-recorder 
+    will write video files to. If you mount this directory to a different location other than the default, 
+    then you will need to explicitly configure it to match.
+  </p>
   <p>Supported values</p>
   <ul>
     <li>A relative or absolute directory location</li>
@@ -1737,7 +1742,12 @@ import TabItem from '@theme/TabItem';
   ```
   <p>Sets the number of seconds wait for video files to be ready when including them in generated HTML reports.</p>
   </summary>
-  <p>Video capture is currently only supported in <Link href="/docs/docker#video-recordings">Docker with Selenoid</Link>.</p>
+  <p>
+    Video capture is currently only supported in <Link href="/docs/docker">Docker with Selenoid</Link>.
+    This setting is used to set the maximum time to wait for video files to be asynchronously written out to the host 
+    directory by the Selenoid video recorder after a browser session is closed. If the video files in your environment 
+    take longer than the default, then you will need to explicitly configure this setting to a higher value.
+  </p>
   <p>Supported values</p>
   <ul>
     <li>A number of seconds wo wait</li>
