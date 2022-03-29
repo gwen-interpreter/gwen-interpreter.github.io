@@ -1660,6 +1660,144 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
+<details id="gwen-video.dir">
+  <summary class="setting">
+
+  ```properties
+  gwen.video.dir
+  ```
+  <p>Sets the output directory for video recordings.</p>
+  </summary>
+  <p>Video capture is currently only supported in <Link href="/docs/docker#video-recordings">Docker with Selenoid</Link>.</p>
+  <p>Supported values</p>
+  <ul>
+    <li>A relative or absolute directory location</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      video {
+        dir = {gwen.outDir}/.video
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "video": {
+          "dir": "{gwen.outDir}/.video"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.dir = ${gwen.outDir}/.video
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-video.dir">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.7.0">v3.7.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-video.timeoutSecs">
+  <summary class="setting">
+
+  ```properties
+  gwen.video.timeoutSecs
+  ```
+  <p>Sets the number of seconds wait for video files to be ready when including them in generated HTML reports.</p>
+  </summary>
+  <p>Video capture is currently only supported in <Link href="/docs/docker#video-recordings">Docker with Selenoid</Link>.</p>
+  <p>Supported values</p>
+  <ul>
+    <li>A number of seconds wo wait</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      video {
+        timeoutSecs = 10
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "video": {
+          "timeoutSecs": 10
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.timeoutSecs = 10
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-video.timeoutSecs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.7.0">v3.7.0</Link></div>
+  </div>
+</details>
+
 ## Web Settings
 
 <details id="gwen-web-accept-untrusted-certs">

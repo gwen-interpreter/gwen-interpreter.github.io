@@ -50,7 +50,7 @@ RUN npm install --global yarn
 
 ## Docker compose
 
-Next, we need to configure a `docker-compose.yml` file to create docker containers for Gwen and at least one web browser for it to run against. Here, we will use [Selenoid](https://aerokube.com/selenoid/) to stand up a chrome browser and Selenium hub that Gwen will connect to.
+Next, we need to configure a `docker-compose.yml` file to create docker containers for Gwen and at least one web browser for it to run against. Here, we will use [Selenoid](https://aerokube.com/selenoid/) to stand up a chrome browser, video recorder, and Selenium hub that Gwen will connect to.
 
 1. Create a new file named `docker-compose.yaml` in the root of your Gwen project.
 
@@ -69,18 +69,26 @@ services:
     image: selenoid/chrome:latest
     networks:
       - gwen-net
+  video-recorder:
+    image: selenoid/video-recorder:latest-release
+    networks:
+      - gwen-net
   selenoid:
     depends_on:
       - chrome
+      - video-recorder
     image: aerokube/selenoid:latest-release
     networks:
       - gwen-net
     ports:
       - "4444:4444"
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT=$PWD/gwen/output/.video
     volumes:
       - "$PWD/gwen/browsers:/etc/selenoid/:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
-    command: -container-network gwen-net
+      - "$PWD/gwen/output/.video:/opt/selenoid/video"
+    command: ["-container-network", "gwen-net", "-video-output-dir", "/opt/selenoid/video"]
   gwen:
     depends_on:
       - selenoid
@@ -149,8 +157,8 @@ networks:
 gwen {
   web {
     capability {
-      enableVNC = false
-      enableVideo = false
+      enableVNC = true
+      enableVideo = true
       acceptSslCerts = true
     }
     remote {
@@ -179,4 +187,30 @@ Finally, ensure that your Docker engine is running on your machine and launch th
 ```shell
 docker-compose run gwen
 ```
+
+### Video recordings
+
+```json {4}
+gwen {
+  web {
+    capability {
+      enableVNC = true
+      enableVideo = true
+      acceptSslCerts = true
+    }
+    remote {
+      url = "http://${SELENIUM_HUB}:4444/wd/hub"
+    }
+  }
+}
+```
+If `gwen.web.capability.videoEnabled` is set to `true` in your *gwen/browsers/selenoid.conf* file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html).
+
+It a feature has only one video (one browser session):
+
+![Example video button](/img/reports/sample-html-video-1.png)
+
+It a feature has multiple videos (one for each browser session):
+
+![Example video links](/img/reports/sample-html-video-2.png)
 
