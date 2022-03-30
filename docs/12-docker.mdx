@@ -161,21 +161,12 @@ gwen {
       enableVideo = true
       acceptSslCerts = true
     }
-    implicit {
-      element {
-        moveTo = ${gwen.web.capability.enableVideo}
-      }
-    }
     remote {
       url = "http://${SELENIUM_HUB}:4444/wd/hub"
     }
   }
 }
 ```
-
-:::note
-We set the [`gwen.web.implicit.element.moveTo`](/docs/settings/reference#gwen-web-implicit-element-moveTo) setting to `gwen.web.capability.enableVideo` to ensure elements are physically brought into view when video capture is enabled.
-:::
 
 ## Yarn script
 
