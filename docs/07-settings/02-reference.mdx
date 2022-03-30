@@ -2573,7 +2573,7 @@ import TabItem from '@theme/TabItem';
   ```properties
   gwen.web.implicit.element.focus
   ```
-  <p>Controls whether or not Gwen should move the focus onto elements before interacting with them.</p>
+  <p>Controls whether or not Gwen should shift the focus onto elements before interacting with them.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -2641,6 +2641,83 @@ import TabItem from '@theme/TabItem';
     <div><Link to="#gwen-web-implicit-element-focus">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.22.0">v2.22.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-implicit-element-moveTo">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.implicit.element.moveTo
+  ```
+  <p>Controls whether or not Gwen should physically move to elements to bring them into view before interacting with them.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable auto moveTo</li>
+    <li><code>false</code> to disable auto moveto</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        implicit {
+          element {
+            moveTo = false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "implicit": {
+            "element": {
+              "moveTo": false
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.implicit.element.moveTo = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-implicit-element-moveTo">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.8.0">v3.8.0</Link></div>
   </div>
 </details>
 

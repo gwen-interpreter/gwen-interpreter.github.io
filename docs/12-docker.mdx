@@ -161,12 +161,21 @@ gwen {
       enableVideo = true
       acceptSslCerts = true
     }
+    implicit {
+      element {
+        moveTo = ${gwen.web.capability.enableVideo}
+      }
+    }
     remote {
       url = "http://${SELENIUM_HUB}:4444/wd/hub"
     }
   }
 }
 ```
+
+:::note
+We set the [`gwen.web.implicit.element.moveTo`](/docs/settings/reference#gwen-web-implicit-element-moveTo) setting to `gwen.web.capability.enableVideo` to ensure elements are physically brought into view when video capture is enabled.
+:::
 
 ## Yarn script
 
@@ -176,7 +185,8 @@ This will be called by the `gwen` container in our `docker-compose.yml` file whe
 ```json {3}
 "scripts": {
   "gwen": "gwen",
-  "gwen:selenoid": "gwen -b -c gwen/browsers/selenoid.conf gwen/samples"
+  "gwen:selenoid": "gwen -b -c gwen/browsers/selenoid.conf gwen/samples",
+  "SELENIUM_HUB=localhost yarn:selenoid"
 }
 ```
 
@@ -186,6 +196,12 @@ Finally, ensure that your Docker engine is running on your machine and launch th
 
 ```shell
 docker-compose run gwen
+```
+
+If you run into permission issues on the output directory, run the following command to create the shared output directory on the file system first before invoking docker compose.
+
+```shell
+mkdir -p gwen/output
 ```
 
 ### Video recordings
