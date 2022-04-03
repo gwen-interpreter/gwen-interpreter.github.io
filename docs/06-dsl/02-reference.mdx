@@ -54,7 +54,7 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   <name> is defined by <javascript|js> "<expression>"
   ```
-  <p>Associates a name with the return value of a JavaScript expression or anonymous function. The value is resolved every time the name is referenced.</p>
+  <p>Associates a name with the return value of a JavaScript expression or anonymous function.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -67,7 +67,15 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
   </ul>
-  <p>Example</p>
+  <p>
+    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+    </ul>
+  </p>
+  <p>Examples</p>
 
   ```gherkin {1}
     Given iso date is defined by js "new Date().toISOString().substring(0, 10)"
@@ -99,6 +107,14 @@ Feature specs should be declarative and written in the language of your domain a
     </li>
     <li><code>&lt;expression&gt;</code> is the regex selector expression</li>
   </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+    </ul>
+  </p>
   <p>Example</p>
 
   ```gherkin {2}
@@ -139,6 +155,14 @@ Feature specs should be declarative and written in the language of your domain a
     </li>
     <li><code>&lt;expression&gt;</code> is the XPath selector expression</li>
   </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+    </ul>
+  </p>
   <p>Example</p>
 
   ```gherkin {2}
@@ -179,6 +203,14 @@ Feature specs should be declarative and written in the language of your domain a
     </li>
     <li><code>&lt;expression&gt;</code> is the XPath selector expression</li>
   </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+    </ul>
+  </p>
   <p>Example</p>
 
   ```gherkin {2}
@@ -208,6 +240,14 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;name&gt;</code> is the name to associated the returned value to</li>
     <li><code>&lt;expression&gt;</code> is the system process that will return the value to assign (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
   </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+    </ul>
+  </p>
   <p>Example</p>
 
   ```gherkin {1}
@@ -240,6 +280,14 @@ Feature specs should be declarative and written in the language of your domain a
     </li>
     <li><code>&lt;delmiters&gt;</code> is a regex pattern defining the delimiter(s) used in <code>&lt;expression&gt;</code></li>
   </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+    </ul>
+  </p>
   <p>Example</p>
 
   ```gherkin {1}
@@ -267,6 +315,14 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;name&gt;</code> is the name to associated the file contents</li>
     <li><code>&lt;filepath&gt;</code> the path to the file (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
   </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+    </ul>
+  </p>
   <p>Example</p>
 
   ```gherkin
@@ -5161,6 +5217,15 @@ Feature specs should be declarative and written in the language of your domain a
     <li>A <code>gwen.db.&lt;dbName&gt;.driver</code> setting must be set to the name of the JDBC driver implementation class</li>
     <li>A <code>gwen.db.&lt;dbName&gt;.url</code> setting must be set to the JDBC URL of the database</li>
   </ul>
+
+  <p>
+    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+    </ul>
+  </p>
 
   <p>Example</p>
 

@@ -30,7 +30,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: '/docs/docker',
+          href: '/docs/advanced/eager-or-lazy',
           position: 'left',
           label: "What's new?",
         },

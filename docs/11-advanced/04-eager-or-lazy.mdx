@@ -1,0 +1,77 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Eager or Lazy Bindings
+
+`@Eager` and `@Lazy` annotations can be used on the following DSL steps to control when expressions are evaluated and bound to names. In the absence of either annotation, expressions will be evaluated every time they are reference by name (the default ephemeral behavior).
+
+- [`<name> is defined by <javascript|js> "<expression>"`](/docs/dsl/reference#name-is-defined-by-javascript-expression)
+- [`<name> is defined in <textRef> by regex "<expression>"`](/docs/dsl/reference#name-is-defined-in-text-ref-by-regex-expression)
+- [`<name> is defined by the <nodeType> in <xmlRef> by xpath "<expression>"`](/docs/dsl/reference#name-is-defined-by-the-node-type-in-xml-ref-by-xpath-expression)
+- [`<name> is defined in <jsonRef> by json path "<expression>"`](/docs/dsl/reference#name-is-defined-in-json-ref-by-json-path-expression)
+- [`<name> is defined by system process "<expression>"`](/docs/dsl/reference#name-is-defined-by-system-process-expression)
+- [`<name> is defined by system process "<expression>" delimited by "<delimiters>"`](/docs/dsl/reference#name-is-defined-by-system-process-expression-delimited-by-delimiters)
+- [`<name> is defined by file "<filepath>"`](/docs/dsl/reference#name-is-defined-by-file)
+- [`<name> is defined in the <dbName> database by sql "<selectStmt>"`](/docs/dsl/reference#name-is-defined-by-database-select-statement)
+
+## @Eager
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>
+
+The `@Eager` annotation can be used on the above DSL steps to immediately evaluate and bind the result an expression to a name. The eagerly bound value is instantly returned whenever the name is referenced.
+
+:::note Eager example
+
+```gherkin {1}
+  Given @Eager time is defined by js "new Date().getTime()"
+   When I capture time as time 1
+    And I capture time as time 2 
+   Then time 1 should be "${time 2}"
+```
+
+`time 1` and `time 2` will have the same value since `time` is evaluated and bound immediately at step 1.
+
+:::
+
+## @Lazy
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>
+
+The `@Lazy` annotation can be used on the above DSL steps to evaluate and bind the result an expression to a name when that name is first referenced. The lazily bound value is returned whenever the name is referenced thereafter.
+
+:::note Eager example
+
+```gherkin {2}
+  Given @Lazy time is defined by js "new Date().getTime()"
+   When I capture time as time 1
+    And I capture time as time 2 
+   Then time 1 should be "${time 2}"
+```
+
+`time 1` and `time 2` will have the same value since `time` is bound and evaluated when it is first referenced at step 1.
+
+:::
+
+## Default (ephemeral)
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link>
+
+In the absence of either annoation, the expression will be unconditionally evaluated every time the name is referenced. This is the default behavior.
+
+:::note Eager example
+
+```gherkin {2-3}
+  Given time is defined by js "new Date().getTime()"
+   When I capture time as time 1
+    And I capture time as time 2 
+   Then time 1 should not be "${time 2}"
+```
+
+`time 1` and `time 2` will have different values since `time` is evaluated, bound and discarded at steps 2 and 3.
