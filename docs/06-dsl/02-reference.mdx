@@ -580,15 +580,26 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   <textRef> should[ not] <match> "<expression>"
   ```
-  
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+
+  <p>Checks whether or not the referenced text value matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  <textRef> should[ not] <match> "<expression>" @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   <textRef> should[ not] <match> "<expression>": "my custom assert fail message"
   ```
-  
-  <p>Checks whether or not the referenced text value matches a given expression. Reports an assertion error if the match fails.</p>
-  </summary>
+
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to check
@@ -637,14 +648,24 @@ Feature specs should be declarative and written in the language of your domain a
   <textRef> should[ not] <match> <expressionRef>
   ```
   
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Checks whether or not the value of a variable or setting matches a referenced expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  <textRef> should[ not] <match> <expressionRef> @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   <textRef> should[ not] <match> <expressionRef>: "my custom assert fail message"
   ```
-  
-  <p>Checks whether or not the value of a variable or setting matches a referenced expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;variable&gt;</code> is the name of the variable or setting to check</li>
@@ -694,14 +715,23 @@ Feature specs should be declarative and written in the language of your domain a
   <xmlRef> at xpath "<path>" should[ not>] <match> "<expression>"
   ```
   
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Extracts text from the referenced XML value using the given XPath and checks that it matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  <xmlRef> at xpath "<path>" should[ not>] <match> "<expression>" @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   <xmlRef> at xpath "<path>" should[ not>] <match> "<expression>": "my custom assert fail message"
   ```
-  
-  <p>Extracts text from the referenced XML value using the given XPath and checks that it matches a given expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML source text
@@ -747,14 +777,23 @@ Feature specs should be declarative and written in the language of your domain a
   <jsonRef> at json path "<path>" should[ not>] <match> "<expression>"
   ```
   
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Extracts text from the referenced JSON value using the given JSON path and checks that it matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  <jsonRef> at json path "<path>" should[ not>] <match> "<expression>" @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   <jsonRef> at json path "<path>" should[ not>] <match> "<expression>": "my custom assert fail message"
   ```
-  
-  <p>Extracts text from the referenced JSON value using the given JSON path and checks that it matches a given expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;jsonRef&gt;</code> is the name of the binding containing the JSON source text
@@ -799,8 +838,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   <name> should be absent
   ```
+
   <p>Checks that a named binding is absent from the current scope.</p>
   </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  <name> should be absent @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
+
+  ```gherkin
+  <name> should be absent: "my custom assert fail message"
+  ```
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name of the binding to check</li>
@@ -1042,14 +1097,23 @@ Feature specs should be declarative and written in the language of your domain a
   the current URL should[ not] <match> "<expression>"
   ```
   
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Checks whether or not the current browser URL matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  the current URL should[ not] <match> "<expression>" @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   the current URL should[ not] <match> "<expression>": "my custom assert fail message"
   ```
-  
-  <p>Checks whether or not the current browser URL matches a given expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
@@ -1090,14 +1154,23 @@ Feature specs should be declarative and written in the language of your domain a
   the current URL should[ not] <match> <expressionRef>
   ```
   
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Checks whether or not the current URL in the browser matches a referenced expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  the current URL should[ not] <match> <expressionRef> @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   the current URL should[ not] <match> <expressionRef>: "my custom assert fail message"
   ```
-  
-  <p>Checks whether or not the current URL in the browser matches a referenced expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
@@ -1144,14 +1217,23 @@ Feature specs should be declarative and written in the language of your domain a
   the page title should[ not] <match> "<expression>"
   ```
   
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Checks whether or not the title of the current page in the browser matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  the page title should[ not] <match> "<expression>" @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   the page title should[ not] <match> "<expression>": "my custom assert fail message"
   ```
-  
-  <p>Checks whether or not the title of the current page in the browser matches a given expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
@@ -1191,14 +1273,23 @@ Feature specs should be declarative and written in the language of your domain a
   the page title should[ not] <match> <expressionRef>
   ```
 
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Checks whether or not the title of the current page in the browser matches a referenced expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  the page title should[ not] <match> <expressionRef> @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   the page title should[ not] <match> <expressionRef>: "my custom assert fail message"
   ```
-
-  <p>Checks whether or not the title of the current page in the browser matches a referenced expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
@@ -3198,14 +3289,23 @@ Feature specs should be declarative and written in the language of your domain a
   <element> should[ not] be <state>
   ```
   
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Checks whether or not an element is in a given state.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  <element> should[ not] be <state> @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   <element> should[ not] be <state>: "my custom assert fail message"
   ```
-  
-  <p>Checks whether or not an element is in a given state.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to check</li>
@@ -3243,14 +3343,23 @@ Feature specs should be declarative and written in the language of your domain a
   <element> should[ not] <match> "<expression>"
   ```
   
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Checks whether or not the text value of an element matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  <element> should[ not] <match> "<expression>" @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   <element> should[ not] <match> "<expression>": "my custom assert fail message"
   ```
-  
-  <p>Checks whether or not the text value of an element matches a given expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to check</li>
@@ -3293,15 +3402,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   <element> should[ not] <match> <expressionRef>
   ```
-  
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+
+  <p>Checks whether or not the text value of an element matches a referenced expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  <element> should[ not] <match> <expressionRef> @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   <element> should[ not] <match> <expressionRef>: "my custom assert fail message"
   ```
-  
-  <p>Checks whether or not the text value of an element matches a referenced expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to check</li>
@@ -3350,14 +3468,23 @@ Feature specs should be declarative and written in the language of your domain a
   <dropdown> <text|value> should[ not] <match> "<expression>"
   ```
   
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Checks whether or not a dropdown selection matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  <dropdown> <text|value> should[ not] <match> "<expression>" @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   <dropdown> <text|value> should[ not] <match> "<expression>": "my custom assert fail message"
   ```
-  
-  <p>Checks whether or not a dropdown selection matches a given expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;dropdown&gt;</code> is the dropdown element to check</li>
@@ -3406,14 +3533,23 @@ Feature specs should be declarative and written in the language of your domain a
   <dropdown> <text|value> should[ not] <match> <expressionRef>
   ```
   
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Checks whether or not a dropdown selection matches a referenced expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  <dropdown> <text|value> should[ not] <match> <expressionRef> @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   <dropdown> <text|value> should[ not] <match> <expressionRef>: "my custom assert fail message"
   ```
-  
-  <p>Checks whether or not a dropdown selection matches a referenced expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;dropdown&gt;</code> is the dropdown element to check</li>
@@ -4009,11 +4145,21 @@ Feature specs should be declarative and written in the language of your domain a
   </summary>
 
   <p>
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+
+  <p>Or with custom assertion error message:</p>
+  
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  I should have 1 open browser @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   I should have 1 open browser: "my custom assert fail message"
   ```
+  
   </p>
 
   <p>Example</p>
@@ -4041,11 +4187,21 @@ Feature specs should be declarative and written in the language of your domain a
   </summary>
 
   <p>
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+
+  <p>Or with custom assertion error message:</p>
+  
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  I should have <count> open browsers @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   I should have <count> open browsers: "my custom assert fail message"
   ```
+
   </p>
 
   <p>Where</p>
@@ -4206,14 +4362,23 @@ Feature specs should be declarative and written in the language of your domain a
   the <alert|confirmation> popup message should[ not] <match> "<expression>"
   ```
   
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Checks whether or not the message in the alert or confirmation popup box matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  the <alert|confirmation> popup message should[ not] <match> "<expression>" @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   the <alert|confirmation> popup message should[ not] <match> "<expression>": "my custom assert fail message"
   ```
-  
-  <p>Checks whether or not the message in the alert or confirmation popup box matches a given expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
@@ -4255,14 +4420,23 @@ Feature specs should be declarative and written in the language of your domain a
   the <alert|confirmation> popup message should[ not] <match> <expressionRef>
   ```
   
-  Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link>:
+  <p>Checks whether or not the message in the alert or confirmation popup box matches a referenced expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  the <alert|confirmation> popup message should[ not] <match> <expressionRef> @Message "my custom assert fail message"
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
 
   ```gherkin
   the <alert|confirmation> popup message should[ not] <match> <expressionRef>: "my custom assert fail message"
   ```
-  
-  <p>Checks whether or not the message in the alert or confirmation popup box matches a referenced expression. Reports an assertion error if the match fails.</p>
-  </summary>
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
