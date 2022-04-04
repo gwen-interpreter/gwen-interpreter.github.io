@@ -1,0 +1,79 @@
+--- 
+title: Jenkins
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Running Gwen in Jenkins
+
+The easiest way to get Gwen running in [Jenkins](https://www.jenkins.io/) is to push your project to a Git repository and get it running in [docker](/docs/docker). 
+
+Then it's just a matter of calling `docker-compose run gwen` in your Jenkins job or pipeline and everything including a browser environment and Gwen itself (and all it's dependencies) will spin up and run.
+
+## Pipeline job
+
+To run your Gwen project in a [Jenkins pipeline](https://www.jenkins.io/doc/book/pipeline/):
+
+1. Create a `Jenkinsfile` file in the root of your Gwen project.
+
+```shell {4}
+/project                    # Your project root
+└── Jenkinsfile             # Jenkins pipeline script file
+```
+
+2. Save the following content into the file.
+
+```groovy
+pipeline {
+  agent {
+      // an agent with docker installed
+      label 'docker-agent'
+  }
+  stages {
+    stage("Prepare") {
+      steps {
+        script {
+          sh 'mkdir -p gwen/output'
+        }
+      }
+    }
+    stage("Gwen") {
+      steps {
+        script {
+          // Spin up environment and execute Gwen in docker
+          sh "docker-compose run gwen"
+        }
+      }
+      post {
+        always {
+          sh "docker-compose down"
+          archiveArtifacts artifacts: 'gwen/output/reports/**'
+          publishHTML(target: [
+                  allowMissing         : false,
+                  alwaysLinkToLastBuild: false,
+                  keepAll              : true,
+                  reportDir            : "gwen/output/reports/html",
+                  reportFiles          : 'index.html',
+                  reportName           : "Gwen-Report"
+          ])
+        }
+      }
+    }
+  }
+}
+```
+
+3. Push or commit your project to a Git repostitory
+
+4. Create a new [pipeline job](https://www.jenkins.io/doc/book/pipeline/getting-started/) in Jenkins and perform the following in the Pipeline configuration section:
+    - Checkout your Gwen project from Git
+    - Specify the `Jenkinsfile` above as the script
+    - Save the job
+
+5. Schedule or run the job in Jenkins
+    - Evaluation reports will generated and published to each job execution (Gwen-Report links)
