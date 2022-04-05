@@ -31,7 +31,7 @@ Feature specs should be declarative and written in the language of your domain a
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;name&gt;</code> is the name the bind the value to</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the value to</li>
     <li><code>&lt;value&gt;</code> is the value to bind (can be in <Link to="https://github.com/gwen-interpreter/gwen/wiki/Doc-Strings">DocString</Link> position)</li>
     
   </ul>
@@ -86,6 +86,103 @@ Feature specs should be declarative and written in the language of your domain a
     <div><Link to="#name-is-defined-by-javascript-expression">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="name-is-defined-by-js-function-applied-to-args">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by <javascriptRef> applied to "<argument(s)>"
+  ```
+  <p>Applies a JavaScript function to one or more comma delimited arguments and binds the result to <code>&lt;name&gt;</code> in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the function result to</li>
+    <li><code>&lt;javascriptRef&gt;</code> is the name of the binding containing the javascript function to apply</li>
+    <li><code>&lt;argument(s)&gt;</code> single argument or comma delimited list of arguments to apply the function to
+      <ul>
+        <li>The 1st agrument is referenced in the JavaScript as <code>arguments[0]</code>, the 2nd argument as <code>arguments[1]</code>, the 3rd as <code>arguments[2]</code> and so on.</li>
+      </ul>
+    </li>
+
+  </ul>
+  <p>Examples</p>
+
+  Single argument function
+
+  ```gherkin {9}
+    Given iso date is "2022-04-05"
+      And iso-to-dmy is defined by js
+          """
+          (function(ymd) {
+            var parts = ymd.split('-');
+            return parts[2] + '/' + parts[1] + '/' + parts[0];
+          })(arguments[0])
+          """
+      And dmy date is defined by iso-to-dmy applied to "${iso date}"
+     Then dmy date should be "05/04/2022"
+  ```
+
+  Multi argument function
+
+  ```gherkin {10}
+    Given day is "05"
+      And month is "Apr"
+      And year is "2022"
+      And to-mdy is defined by js
+          """
+          (function(d,m,y) {
+            return m + ' ' + d + ', ' + y;
+          })(arguments[0], arguments[1], arguments[2])
+          """
+      And mdy date is defined by to-mdy applied to "${day},${month},${year}"
+     Then mdy date should be "Apr 05, 2022"
+  ```
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-js-function-applied-to-args">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.10.0">v3.10.0</Link></div>
+  </div>
+</details>
+
+<details id="name-is-defined-by-js-function-applied-to-args-delimited-by">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by <javascriptRef> applied to "<arguments>" delimited by "<delimiter>"
+  ```
+  <p>Applies a JavaScript function to mutiple arguments using a customer delimiter and binds the result to <code>&lt;name&gt;</code> in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the function result to</li>
+    <li><code>&lt;javascriptRef&gt;</code> is the name of the binding containing the javascript function to apply</li>
+    <li><code>&lt;arguments&gt;</code> a delimited list of arguments to apply the function to</li>
+    <li><code>&lt;delimiter&gt;</code> is the delmiter used in <code>&lt;arguments&gt;</code>
+      <ul>
+        <li>The 1st agrument is referenced in the JavaScript as <code>arguments[0]</code>, the 2nd argument as <code>arguments[1]</code>, the 3rd as <code>arguments[2]</code> and so on.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {8}
+    Given iso date is "2022-04-06"
+      And to-dmy is defined by js
+          """
+          (function(y,m,d) {
+            return d + '/' + m + '/' + y;
+          })(arguments[0], arguments[1], arguments[2])
+          """
+      And dmy date is defined by to-dmy applied to "${iso date}" delimited by "-"
+     Then dmy date should be "06/04/2022"
+  ```
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-js-function-applied-to-args-delimited-by">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.10.0">v3.10.0</Link></div>
   </div>
 </details>
 

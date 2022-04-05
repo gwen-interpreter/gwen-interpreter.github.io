@@ -30,7 +30,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: '/docs/advanced/eager-or-lazy',
+          href: '/docs/dsl/reference#name-is-defined-by-js-function-applied-to-args',
           position: 'left',
           label: "What's new?",
         },
