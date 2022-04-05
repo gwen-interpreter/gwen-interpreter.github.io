@@ -89,59 +89,41 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
-<details id="name-is-defined-by-js-function-applied-to-args">
+<details id="name-is-defined-by-js-function-applied-to-arg">
   <summary class="dsl">
 
   ```gherkin
-  <name> is defined by <javascriptRef> applied to "<argument(s)>"
+  <name> is defined by <javascriptRef> applied to "<argument>"
   ```
-  <p>Applies a JavaScript function to one or more comma delimited arguments and binds the result to <code>&lt;name&gt;</code> in the global scope.</p>
+  <p>Applies a JavaScript function to an argument and binds the result to <code>&lt;name&gt;</code> in the global scope.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name to bind the function result to</li>
     <li><code>&lt;javascriptRef&gt;</code> is the name of the binding containing the javascript function to apply</li>
-    <li><code>&lt;argument(s)&gt;</code> single argument or comma delimited list of arguments to apply the function to
+    <li><code>&lt;argument&gt;</code> argument to apply the function to
       <ul>
-        <li>The 1st agrument is referenced in the JavaScript as <code>arguments[0]</code>, the 2nd argument as <code>arguments[1]</code>, the 3rd as <code>arguments[2]</code> and so on.</li>
+        <li>The agrument is referenced in the JavaScript as <code>arguments[0]</code></li>
       </ul>
     </li>
 
   </ul>
-  <p>Examples</p>
+  <p>Example</p>
 
-  Single argument function
-
-  ```gherkin {9}
-    Given iso date is "2022-04-05"
-      And iso-to-dmy is defined by js
+  ```gherkin {8}
+    Given toDMY is defined by js
           """
           (function(ymd) {
             var parts = ymd.split('-');
             return parts[2] + '/' + parts[1] + '/' + parts[0];
           })(arguments[0])
           """
-      And dmy date is defined by iso-to-dmy applied to "${iso date}"
+      And dmy date is defined by toDMY applied to "2022-04-05"
      Then dmy date should be "05/04/2022"
   ```
 
-  Multi argument function
-
-  ```gherkin {10}
-    Given day is "05"
-      And month is "Apr"
-      And year is "2022"
-      And to-mdy is defined by js
-          """
-          (function(d,m,y) {
-            return m + ' ' + d + ', ' + y;
-          })(arguments[0], arguments[1], arguments[2])
-          """
-      And mdy date is defined by to-mdy applied to "${day},${month},${year}"
-     Then mdy date should be "Apr 05, 2022"
-  ```
   <div class="grid-3">
-    <div><Link to="#name-is-defined-by-js-function-applied-to-args">Link</Link></div>
+    <div><Link to="#name-is-defined-by-js-function-applied-to-arg">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.10.0">v3.10.0</Link></div>
   </div>
@@ -166,19 +148,30 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
   </ul>
-  <p>Example</p>
+  <p>Examples</p>
 
-  ```gherkin {8}
-    Given iso date is "2022-04-06"
-      And to-dmy is defined by js
+  ```gherkin {7}
+    Given toMDY is defined by js
+          """
+          (function(d,m,y) {
+            return m + ' ' + d + ', ' + y;
+          })(arguments[0], arguments[1], arguments[2])
+          """
+      And mdy date is defined by toMDY applied to "05 April 2022" delimited by " "
+     Then mdy date should be "April 05, 2022"
+  ```
+
+  ```gherkin {7}
+    Given toDMY is defined by js
           """
           (function(y,m,d) {
             return d + '/' + m + '/' + y;
           })(arguments[0], arguments[1], arguments[2])
           """
-      And dmy date is defined by to-dmy applied to "${iso date}" delimited by "-"
+      And dmy date is defined by toDMY applied to "2022-04-06" delimited by "-"
      Then dmy date should be "06/04/2022"
   ```
+
   <div class="grid-3">
     <div><Link to="#name-is-defined-by-js-function-applied-to-args-delimited-by">Link</Link></div>
     <div align="center"></div>
