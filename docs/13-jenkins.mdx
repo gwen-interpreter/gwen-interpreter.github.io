@@ -11,9 +11,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Running Gwen in Jenkins
 
-The easiest way to get Gwen running in [Jenkins](https://www.jenkins.io/) is to push your project to a Git repository and get it running in [docker](/docs/docker). 
+The easiest way to get Gwen running in [Jenkins](https://www.jenkins.io/) is to push your project to a Git repository and get it running in [Docker](/docs/docker). 
 
-Then it's just a matter of calling `docker-compose run gwen` in your Jenkins job or pipeline and everything including a browser environment and Gwen itself (and all it's dependencies) will spin up and run.
+Then it's just a matter of calling `docker-compose run gwen` in your Jenkins job or pipeline.  Everything including a [Selenoid](https://aerokube.com/selenoid/) browser environment and Gwen itself (and all it's dependencies) will then get spinned up and run.
 
 ## Pipeline job
 
