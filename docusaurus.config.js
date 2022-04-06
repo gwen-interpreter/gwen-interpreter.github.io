@@ -30,7 +30,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: '/docs/dsl/reference#name-is-defined-by-js-function-applied-to-args',
+          href: '/docs/dsl/reference#name-is-defined-by-js-function-applied-to-arg',
           position: 'left',
           label: "What's new?",
         },
