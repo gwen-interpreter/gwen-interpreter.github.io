@@ -1,0 +1,39 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Try Steps
+
+## @Try
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.11.0">v3.11.0</Link>
+
+The `@Try` annotation can be used to ignore failures on individual steps. This can be useful for cases where you might have to deal with random components that may or may not appear on a page, such as promotional offers for example.
+
+Consider the following example.
+
+:::note Try example
+
+```gherkin {5}
+  Feature: My dashboard
+
+  Scenario: Open my dashboard
+    Given I am logged in as a customer
+     When @Try I dismiss the promotional offer
+      And I click the dashboard menu option 
+     Then I should see the dasbhoard
+```
+
+The 2nd step in the scenario above is annotated with `@Try` and will not be treated as a failure if the promotional happens to be absent at the time of execution.
+
+:::
+
+Steps annotated with `@Try` will always be treated as Passed, reagardless of whether they execute succesfully or fail. In the event of failure, the step will be greyed out in the HTML reports and attachments on the step will still contain the error details should you wish to analyse them.
+
+![Example Try step when irgnored](/img/reports/sample-html-try-step.png)
