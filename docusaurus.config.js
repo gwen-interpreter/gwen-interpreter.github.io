@@ -107,6 +107,11 @@ module.exports = {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
     },
+    algolia: {
+      appId: 'WCHUTX69XW',
+      apiKey: 'ed729096cf0cc470ca9724bfe3f20576',
+      indexName: 'gweninterpreter'
+    }
   },
   presets: [
     [
