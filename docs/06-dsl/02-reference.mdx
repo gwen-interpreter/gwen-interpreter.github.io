@@ -617,6 +617,156 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
+<details id="i-capture-the-similarity-score-of_text-ref-compared-to-text-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the similarity score of <textRef> compared to "<text>"[ ignoring case] as <name>
+  ```
+  <p>Compares a text reference with a text value for similarity using the DSC (Dice Similarity Coefficient) algorithm and binds the calculated score to <code>name</code> in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing a text reference
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;text&gt;</code> is the text to compare <code>&lt;textRef&gt;</code> against</li>
+    <li><code> ignoring case</code> ignores case if included</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the calculated score to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2-4}
+    Given the phrase is "Hello world!"
+     When I capture the similarity score of the phrase compared to "Hello world" as similarity score 1
+      And I capture the similarity score of the phrase compared to "hello world" as similarity score 2
+      And I capture the similarity score of the phrase compared to "hello world" ignoring case as similarity score 3
+     Then similarity score 1 should be "0.9411764705882353"
+      And similarity score 2 should be "0.8235294117647058"
+      And similarity score 3 should be "0.9411764705882353"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-similarity-score-of_text-ref-compared-to-text-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.0">v3.12.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-similarity-score-of_text-ref-1-compared-to-text-ref-2-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the similarity score of <textRef1> compared to <textRef2>[ ignoring case] as <name>
+  ```
+  <p>Compares a text reference with another for similarity using the DSC (Dice Similarity Coefficient) algorithm and binds the calculated score to <code>name</code> in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef1&gt;</code> is the name of the binding containing a text reference
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;textRef2&gt;</code> is the name of the binding containing the second text reference to compare &lt;textRef1&gt; against
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code> ignoring case</code> ignores case if included</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the calculated score to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3-4}
+    Given phrase 1 is "Hello world!"
+      And phrase 2 is "hello world"
+     When I capture the similarity score of phrase 1 compared to phrase 2 as similarity score 1
+      And I capture the similarity score of phrase 1 compared to phrase 2 ignoring case as similarity score 2
+     Then similarity score 1 should be "0.8235294117647058"
+      And similarity score 2 should be "0.9411764705882353"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-similarity-score-of_text-ref-1-compared-to-text-ref-2-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.0">v3.12.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-similarity-score-of_text-ref-compared-to-text">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the similarity score of <textRef> compared to "<text>"[ ignoring case]
+  ```
+  <p>Compares a text reference with a text value for similarity using the DSC (Dice Similarity Coefficient) algorithm and binds the calculated score to the <code>similarity score</code> attribute in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing a text reference
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;text&gt;</code> is the text to compare <code>&lt;textRef&gt;</code> against</li>
+    <li><code> ignoring case</code> ignores case if included</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the phrase is "Hello world!"
+     When I capture the similarity score of the phrase compared to "Hello world"
+     Then similarity score should be "0.9411764705882353"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-similarity-score-of_text-ref-compared-to-text">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.0">v3.12.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-similarity-score-of_text-ref-1-compared-to-text-ref-2">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the similarity score of <textRef1> compared to <textRef2>[ ignoring case]
+  ```
+  <p>Compares a text reference with another for similarity using the DSC (Dice Similarity Coefficient) algorithm and binds the calculated score to the <code>similarity score</code> attribute in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef1&gt;</code> is the name of the binding containing a text reference
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;textRef2&gt;</code> is the name of the binding containing the second text reference to compare &lt;textRef1&gt; against
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code> ignoring case</code> ignores case if included</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given phrase 1 is "Hello world!"
+      And phrase 2 is "hello world"
+     When I capture the similarity score of phrase 1 compared to phrase 2
+     Then similarity score should be "0.8235294117647058"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-similarity-score-of_text-ref-1-compared-to-text-ref-2">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.0">v3.12.0</Link></div>
+  </div>
+</details>
+
 <details id="i-base64-decode-text-ref">
   <summary class="dsl">
 
@@ -978,6 +1128,141 @@ Feature specs should be declarative and written in the language of your domain a
     <div><Link to="#name-should-be-absent">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.6.0">v2.6.0</Link></div>
+  </div>
+</details>
+
+<details id="text-ref-should-be-similar-to-text">
+  <summary class="dsl">
+
+  ```gherkin
+  <textRef> should[ not] <match> <percentage>% similar to "<text>"[ ignoring case]
+  ```
+
+  <p>Compares a text reference with a text value for similarity using the DSC (Dice Similarity Coefficient) algorithm.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  <textRef> should[ not] <match> <percentage>% similar to "<text>"[ ignoring case]  @Message("my custom assert fail message")
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
+
+  ```gherkin
+  <textRef> should[ not] <match> <percentage>% similar to "<text>"[ ignoring case]: "my custom assert fail message"
+  ```
+  </p>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing a text reference
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>match</code> is one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>be less than</code> for less than match</li>
+        <li><code>be at most</code> for less than or equal to match</li>
+        <li><code>be more than</code> for greater than match</li>
+        <li><code>be at least</code> for greater than or equal to match</li>
+      </ul>
+    </li>
+    <li><code>&lt;text&gt;</code> is the text to compare <code>&lt;textRef&gt;</code> against</li>
+    <li><code> ignoring case</code> ignores case if included</li>
+  </ul>
+  The calculated similarity score is implicity bound to the <code>similarity score</code> attribute in the global scope.
+  <p>Examples</p>
+
+  ```gherkin {2-7}
+    Given the phrase is "Hello world!"
+     Then the phrase should be more than 90% similar to "Hello world"
+      And the phrase should be at least 90% similar to "hello world" ignoring case
+      And the phrase should be 94.12% similar to "Hello world"
+      And the phrase should be 94.12% similar to "hello world" ignoring case
+      And the phrase should be 82.35% similar to "hello world"
+      And the phrase should not be less than 90% similar to "Hello world"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#text-ref-should-be-similar-to-text">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.0">v3.12.0</Link></div>
+  </div>
+</details>
+
+<details id="text-ref-1-should-be-similar-to-text-ref-2">
+  <summary class="dsl">
+
+  ```gherkin
+  <textRef1> should[ not] <match> <percentage>% similar to <textRef2>[ ignoring case]
+  ```
+
+  <p>Compares a text reference with another for similarity using the DSC (Dice Similarity Coefficient) algorithm.</p>
+  </summary>
+  <p>
+  <p>Or with custom assertion error message:</p>
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link> (recommended):
+
+  ```gherkin
+  <textRef1> should[ not] <match> <percentage>% similar to <textRef2>[ ignoring case]  @Message("my custom assert fail message")
+  ```
+
+  As of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.5.0">v3.5.0</Link> (deprecated):
+
+  ```gherkin
+  <textRef1> should[ not] <match> <percentage>% similar to <textRef2>[ ignoring case]: "my custom assert fail message"
+  ```
+  </p>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef1&gt;</code> is the name of the binding containing the first text reference
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>match</code> is one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>be less than</code> for less than match</li>
+        <li><code>be at most</code> for less than or equal to match</li>
+        <li><code>be more than</code> for greater than match</li>
+        <li><code>be at least</code> for greater than or equal to match</li>
+      </ul>
+    </li>
+    <li><code>&lt;percentage&gt;</code> is a percentage number between 0 and 100 (internally rounded to 2 decimal places)</li>
+    <li><code>&lt;textRef2&gt;</code> is the name of the binding containing the second text reference to compare <code>&lt;textRef1&gt;</code> against
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code> ignoring case</code> ignores case if included</li>
+  </ul>
+  The calculated similarity score is implicity bound to the <code>similarity score</code> attribute in the global scope.
+  <p>Examples</p>
+
+  ```gherkin {4-9}
+    Given phrase 1 is "Hello world!"
+      And phrase 2 is "Hello world"
+      And phrase 3 is "hello world"
+     Then phrase 1 should be more than 90% similar to phrase 2
+      And phrase 1 should be at least 90% similar to phrase 2 ignoring case
+      And phrase 1 should be 94.12% similar to phrase 2
+      And phrase 1 should be 94.12% similar to phrase 3 ignoring case
+      And phrase 1 should be 82.35% similar to phrase 3
+      And phrase 1 should not be less than 90% similar to phrase 2
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#text-ref-1-should-be-similar-to-text-ref-2">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.0">v3.12.0</Link></div>
   </div>
 </details>
 
@@ -6092,7 +6377,7 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   <step> for each <entry> in <textRef> delimited by "<delimiter>"
   ```
-  <p></p>
+  <p>Executes a step for each delimited text entry.</p>
   </summary>
   <p>Where</p>
   <ul>
