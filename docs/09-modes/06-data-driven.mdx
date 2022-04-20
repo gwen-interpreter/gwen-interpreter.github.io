@@ -36,7 +36,7 @@ The first row in this file specifies a comma separated list of column names. The
 
 *File: features/submit-user.feature*
 ```gherkin
-Feature: Submit user
+Feature: Submit user ${FIRST_NAME} ${LAST_NAME}
 
   Scenario: submit user details
     Given I navigate to the user details page
@@ -46,6 +46,8 @@ Feature: Submit user
       And I click the save button
      Then the alert msg should be "User ${FIRST_NAME} saved"
 ```
+
+Note: Interpolation of CSV fields `${FIRST_NAME} ${LAST_NAME}` in the feature name and description is supported since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.1">v3.12.1</Link>
 
 :::
 
