@@ -1,0 +1,35 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Locator Level Timeouts
+
+As of gwen-web-2.19.0, support was added for specifying timeouts (implicit waits) for individual locators to allow the default or configured global timeout [`gwen.web.wait.seconds`](/docs/settings/reference#gwen-web-wait-seconds) to be overridden. This is useful for cases where you may want to increase the locator timeout period for some web elements without impacting others. A web element that takes a long time to load for example can have a higher locator timeout  without slowing down the rest of your locators.
+
+The following DSLs are introduced to support this:
+  - [`<element> can be located by <selector> "<expression>" with no <wait|timeout>`](/docs/dsl/reference#element-can-be-located-by-selector-expression-with-no-timeout)
+  - [`<element> can be located by <selector> "<expression>" with <timeoutSecs> second <wait|timeout>`](/docs/dsl/reference#element-can-be-located-by-selector-expression-with-timeout)
+  - [`<element> can be located by <selector> "<expression>" at index <index> with no <wait|timeout>`](/docs/dsl/reference#element-can-be-located-by-selector-expression-at-index-with-no-timeout)
+  - [`<element> can be located by <selector> "<expression>" at index <index> in <otherElement> with no <wait|timeout>`](/docs/dsl/reference#element-can-be-located-by-selector-expression-at-index-in-other-element-with-no-timeout)
+  - [`<element> can be located by <selector> "<expression>" at index <index> in <otherElement>  with <timeoutSecs> second <wait|timeout>`](/docs/dsl/reference#element-can-be-located-by-selector-expression-at-index-in-other-element-with-timeout)
+
+Existing locator DSL's are not impacted.
+
+### Examples
+
+```gherkin
+  # will cause lookup to fail immediately if username is not present on the page
+  And the username can be located by id "username" with no wait
+
+  # will cause lookup to fail if the username is not available on the page after waiting 20 seconds
+  And the username can be located by id "username" with 20 second timeout
+
+  # will cause lookup to fail if the username is not available on the page after configured wait time (default behaviour)
+  And the username can be located by id "username"
+```

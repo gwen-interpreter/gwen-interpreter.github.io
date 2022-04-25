@@ -1,0 +1,60 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Locator Chaining
+
+Gwen-Web version 1.1.0 introduces a locator chaining mechanism allowing you to easily locate elements within other elements or frames. The DSLs to support this are:
+
+- [`<element> can be located by <selector> "<expression>" at index <index> in <otherElement>`](/docs/dsl/reference#element-can-be-located-by-selector-expression-in-other-element-at-index)
+- [`<element> can be located by <selector> "<expression>" at index <index> in <otherElement> with no <wait|timeout>`](/docs/dsl/reference#element-can-be-located-by-selector-expression-at-index-in-other-element-with-no-timeout)
+- [`<element> can be located by <selector> "<expression>" at index <index> in <otherElement>  with <timeoutSecs> second <wait|timeout>`](/docs/dsl/reference#element-can-be-located-by-selector-expression-at-index-in-other-element-with-timeout)
+- [`<element> can be located by <selector> "<expression>" <relativeTo> <otherElement>`](/docs/dsl/reference#element-can-be-located-by-selector-expression-relative-to-other-element)
+- [`<element> can be located by <selector> "<expression>" <relativeTo> <otherElement> with no <wait|timeout>`](/docs/dsl/reference#element-can-be-located-by-selector-expression-relative-to-other-element-with-no-timeout)
+- [`<element> can be located by <selector> "<expression>" <relativeTo> <otherElement>  with <timeoutSecs> second <wait|timeout>`](/docs/dsl/reference#element-can-be-located-by-selector-expression-relative-to-other-element-with-timeout)
+
+## Locating elements in frames
+
+For example, to locate a dropdown box inside a frame, you can chain two locators together like this:
+
+```gherkin
+  Given my frame can be located by id "frame_id"
+    And my dropdown box can be located by name "dropdown_name" in my frame
+```
+
+And then just use the dropdown box:
+
+```gherkin
+  When I select "Gwen" in my dropdown box
+```
+
+## Locating elements in other elements
+
+To locate an input element in a form, you can chain two locators together like this:
+
+```gherkin
+  Given my form can be located by name "form_name"
+    And my input field can be located by name "input_name" in my form
+```
+
+Then just use the input field:
+
+```gherkin
+  When I enter "Gwen" in my input field
+```
+
+## Locating deeply nested elements
+
+There is no limit to the number of locators you can chain. For example, you can define a locator for an input field in a form within a frame by chaining three locators together like this;
+
+```gherkin
+  Given my frame can be located by id "frame_id"
+    And my form can be located by name "form_name" in my frame
+    And my input field can be located by name "input_name" in my form
+```
