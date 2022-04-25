@@ -1,0 +1,17 @@
+# Implicit JavaScript Locators
+
+As of version 2.19.0 you can use the [`gwen.web.implicit.js.locators`](/docs/settings/reference#gwen-web-implicit-js-locators) setting to enable Gwen to implicitly convert all locator bindings to their JavaScript equivalents and force all elements to be located by executing javascript on the page instead of looking them up using standard web driver locator mechanism. Enabling this is useful when dealing with web sites that dynamically render or change the visibility of elements on pages or manipulate the DOM. Value values are:
+  - `false` to disable (default)
+  - `true` to enable
+
+### How does it work?
+
+Say you define a locator in Gwen to lookup a user name field by ID as follows:
+
+`Given user name can be located by id "username"`
+
+Gwen will normally lookup this field using the "By.Id locator" mechanism of web driver. This is the default Gwen behaviour when the `gwen.web.implicit.js.locators` setting is not set or is set to `false`.
+
+Now if you set the `gwen.web.implicit.js.locators` setting to `true`, Gwen will internally create a JavaScript equivalent locator for the above (and all other locator bindings you have defined) and physically execute that script on the page to locate the element instead of performing the standard web driver lookup. It will do this without you having to rewrite any of your existing locator bindings. In the case of the above example, it would run `document.getElementById("username")` on the web page.
+
+All the standard locators (id, name, css selector, class name, tag name, xpath, etc..) will be implicity converted to their JavaScript equivalents when this setting is enabled. So you don't have to rewrite your existing locator binding definitions if you decide that you want them all to run as JavaScript. Any explicitly defined JavaScript bindings you may have will execute unchanged. 
