@@ -1,0 +1,43 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Named Browser Sessions
+
+## Driving Multiple Browsers
+
+This feature adds support for driving multiple browser sessions in a feature.  Each session is identified by a given name.
+
+For example, the following starts two browser sessions named Gwen and Gwen-web, switches between them, and performs operations in each.
+
+```gherkin
+  Given I start a browser for Gwen
+    And I start a browser for Gwen-web
+
+  # Switch to the Gwen browser and navigate to a URL
+  Given I switch to Gwen
+   When I navigate to "https://github.com/gwen-interpreter/gwen"
+   Then the page title should start with "gwen-interpreter/gwen:"
+
+  # Switch to the Gwen-web session and navigate to a URL
+  Given I switch to Gwen-web
+   When I navigate to "https://github.com/gwen-interpreter/gwen-web"
+   Then the page title should start with "gwen-interpreter/gwen-web:"
+```
+
+Any number of sessions can be created in a feature. You can switch between sessions at any time.  When the feature exits, then all browser sessions also exit.
+
+If you want to explicitly close a session, you can do it like this:
+
+```gherkin
+  # close the Gwen session
+  Given I close the browser for Gwen
+```
+
+All bound data in the environment context is shared between sessions.
