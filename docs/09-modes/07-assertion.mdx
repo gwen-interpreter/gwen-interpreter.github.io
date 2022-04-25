@@ -1,0 +1,48 @@
+--- 
+title: Assertions
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Assertion Modes
+
+## Hard, Soft, and Sustained Assertions
+
+As of version 2.30.0, hard, soft, and sustained assertions are supported through the following [runtime setting](Runtime-Settings):
+
+- [`gwen.assertion.mode`](/docs/settings/reference#gwen-assertion-mode)
+  - This setting controls whether or not hard, soft or sustained assertions are enabled. Valid values include:
+    - `hard` to halt execution on first assertion error and report failure (default)
+    - `soft` to collect all assertion errors and continue execution whilst reporting them as failures
+    - `sustained` to collect all assertion errors and continue execution without reporting them as failures
+
+Assertion modes only apply to steps that perform actual assertions. Step that do not perform assertions will continue to report failure and terminate execution as usual regardless of the settings above.
+
+### Hard assertions (default)
+
+> `gwen.assertion.mode=hard`
+
+With hard assertions, the first assertion error to be detected will be reported as a failure and execution will halt.
+
+![Hard assertions report](/img/modes/assertion/hard-assertions.png)
+
+### Soft assertions
+
+> `gwen.assertion.mode=soft`
+
+With soft assertions, every assertion error that is detected is collected and reported as a failure without halting execution.
+
+![Soft assertions report](/img/modes/assertion/soft-assertions.png)
+
+### Sustained assertions
+
+> `gwen.assertion.mode=sustained`
+
+With sustained assertions, every assertion error that is detected is collected and reported as a sustained error without halting execution or raising failure.
+
+![Sustained assertions report](/img/modes/assertion/sustained-assertions.png)
