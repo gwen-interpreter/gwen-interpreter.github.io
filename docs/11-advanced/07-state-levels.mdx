@@ -1,0 +1,29 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# State Levels
+
+Gwen maintains state for features and scenarios during execution based on your configured [`gwen.state.level`](/docs/settings/reference#gwen-state-level) setting. If not configured, then Gwen will use feature level state by default.
+
+## Feature Level State
+
+> `gwen.state.level = feature` (default)
+
+With feature level state, each feature will get a new state during execution. The same state will be shared across scenarios. So scenarios can share data between each other and access other feature-global data.
+
+Scenario Level State
+-------------------
+> `gwen.state.level = scenario`
+
+With scenario level state, each scenario will get a new state during execution. The same state will never be shared across scenarios. So scenarios cannot share data between each other and no feature-global data is available.
+
+See also: 
+- How the state level affects [parallel execution](/docs/modes/parallel#parallel-scenario-execution).
+- [Going from feature to scenario level](https://gweninterpreter.wordpress.com/2019/11/24/going-from-feature-to-scenario-level-state-with-gwen/)
