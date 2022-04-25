@@ -1,0 +1,151 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Web Driver Management
+
+## Automatic Web Driver Management
+
+As of gwen-web v2.34.0, Gwen uses the following embedded web driver manager to automatically download and manage native web driver binaries for you:
+- [WebDriverManager](https://github.com/bonigarcia/webdrivermanager)
+
+> Automatic web driver management will only be active if no `webdriver.xx.driver` properties are set. So if you are upgrading from an older version of Gwen, be sure to remove these from your Gwen settings files if you wish for Gwen to manage native drivers for you.
+
+This manager will auto-detect your current browser version and download and configure the latest web driver binary that is compatible with that browser. So you don't need to do a thing. By default, the native binaries will be stored in the `~.gwen/wdm` folder in the user home directory (this can be overridden by setting the `wdm.targetPath` property in your Gwen settings).
+
+### Custom Manager Settings and Configuration
+
+If you wish to have more control over driver versions or other aspects of this process, you can configure explicit `wdm.*` configuration options in your [Gwen settings](/docs/settings) file. See the [WebDriverManager documentation](https://github.com/bonigarcia/webdrivermanager#webdrivermanager-api) for information about these options.
+
+For example, to have the manager download a specific version of a chrome driver:
+```
+wdm.chromeDriverVersion=<your desired chrome driver version>
+```
+### Proxy Configuration
+
+If you are behind a proxy, you will need to set the `HTTPS_PROXY` variable in your environment.
+
+## Manual Web Driver Management
+
+Perform the following if you are using a gwen-web version prior to v2.34.0 or if you would prefer to manage native drivers yourself:
+
+#### Download and install the native web driver you want
+- Click the link to download the driver binary for your target browser (download the latest one or the version 
+  that you wish)
+  - [Chrome](https://sites.google.com/a/chromium.org/chromedriver/)
+  - [Firefox](https://github.com/mozilla/geckodriver/releases)
+  - [IE](http://selenium-release.storage.googleapis.com/index.html)
+  - [Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver) (supported since gwen-web v2.35.0)
+- Unpack the binary to a location on your drive
+
+#### Point Gwen to your installed web driver
+
+Once you've install the native driver using one of the methods above, set the path to it in your [Gwen settings](/docs/settings) file with one of the browser specific settings below (depending on your browser and platform):
+  
+<Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+<TabItem value="conf">
+
+For Windows:
+```json
+webdriver {
+  gecko {
+    driver = "c:/path/to/geckodriver.exe"
+  }
+  chrome { 
+    driver = "/path/to/chromedriver.exe"
+  }
+  edge {
+    driver = "/path/to/msedgedriver"
+  }
+  ie {
+    driver = "c:/path/to/IEDriverServer.exe"
+  }
+}
+```
+
+For Linux:
+```json
+webdriver {
+  gecko {
+    driver = "/path/to/geckodriver"
+  }
+  chrome {
+    driver = "/path/to/chromedriver"
+  }
+}
+
+```
+
+</TabItem>
+
+<TabItem value="json">
+
+For Windows:
+```json
+{
+  "webdriver": {
+    "gecko": {
+      "driver": "c:/path/to/geckodriver.exe"
+    },
+    "chrome": { 
+      "driver": "/path/to/chromedriver.exe"
+    },
+    "edge": {
+      "driver": "/path/to/msedgedriver"
+    },
+    "ie": {
+      "driver": "c:/path/to/IEDriverServer.exe"
+    }
+  }
+}
+```
+
+For Linux:
+```json
+{
+  "webdriver": {
+    "gecko": {
+      "driver": "/path/to/geckodriver"
+    },
+    "chrome": {
+      "driver": "/path/to/chromedriver"
+    }
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="properties">
+
+For Windows:
+```properties
+webdriver.gecko.driver = c:/path/to/geckodriver.exe
+webdriver.chrome.driver = /path/to/chromedriver.exe
+webdriver.edge.driver = /path/to/msedgedriver
+webdriver.ie.driver = c:/path/to/IEDriverServer.exe
+```
+
+For Linux:
+```properties
+webdriver.gecko.driver = /path/to/geckodriver
+webdriver.chrome.driver = /path/to/chromedriver
+```
+
+</TabItem>
+
+</Tabs>
