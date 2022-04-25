@@ -1,0 +1,70 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# String Interpolation
+
+It is often useful to reference provided properties, captured values, and string literals throughout your features. Gwen provides two interpolation mechanisms for doing this:
+
+- [Substitution](#interpolation-by-substitution) (recommended approach)
+- [Concatenation](#interpolation-by-concatenation)
+
+Interpolation occurs in the interpreter on every step in a feature before it is passed to Gwen for execution.
+
+#### Named Values
+
+For interpolation purposes, a named value can be any one of the following:
+
+- An environment variable (since gwen-web 2.36.0)
+  - example: `${env.USER}` for the `USER` variable
+- A system property
+  - Passed to Gwen through a `-D` [JVM argument](/docs/cli#system-properties-and-jvm-options)
+- A [Gwen setting](/docs/settings)
+- A launch property
+  - A property in a properties file passed to Gwen through the [config launch option](/docs/cli#gwen-cli-options-conf)
+- A bound attribute
+  - An attribute bound in the local, global, or current data scope
+ 
+## Examples
+
+In the examples below..
+- `my.property` is a property
+- `my mechanism` is an attribute assigned to a literal
+
+### Interpolation by Substitution
+
+> This is the recommended interpolation approach
+
+Substitution involves replacing named value placeholders with their values.
+
+```gherkin
+ Feature: String Interpolation
+
+Scenario: By Substitution
+    
+    Given my mechanism is "substitution"
+      And my value is "${my.property}"
+      And my proposition is "By ${my mechanism}, my value is ${my value}"
+     Then my proposition should be "By substitution, my value is ${my.property}"
+```
+
+### Interpolation by Concatenation
+
+Concatenation involves joining string literals and named values together.
+
+```gherkin
+ Feature: String Interpolation
+
+Scenario: By Concatenation
+    
+    Given my mechanism is "concatenation"
+      And my value is "" + my.property
+      And my proposition is "By " + my mechanism + ", my value is " + my value
+     Then my proposition should be "By concatenation, my value is " + my.property
+```
