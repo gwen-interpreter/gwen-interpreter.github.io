@@ -4287,7 +4287,8 @@ Feature specs should be declarative and written in the language of your domain a
      And I close tab 1
     Then the page title should contain "Google"
   ```
-
+  
+  If used in conjunction with <Link to="/docs/advanced/try-steps"><code>@Try</code></Link>, will switch to the parent window regardless of whether or not a tab or window was closed (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.4">3.12.4</Link>).
   <div class="grid-3">
     <div><Link to="#i-close-tab-or-window-occurrence">Link</Link></div>
     <div align="center"></div>
@@ -4344,7 +4345,8 @@ Feature specs should be declarative and written in the language of your domain a
       And I switch to the child tab
       And I close the child tab
   ```
-
+  
+  If used in conjunction with <Link to="/docs/advanced/try-steps"><code>@Try</code></Link>, will switch to the parent window regardless of whether or not a child window was closed (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.4">3.12.4</Link>).
   <div class="grid-3">
     <div><Link to="#i-close-the-child-tab-or-window">Link</Link></div>
     <div align="center"></div>
@@ -4373,7 +4375,6 @@ Feature specs should be declarative and written in the language of your domain a
       And I click the new window button
       And I switch to child window 1
   ```
-
   <div class="grid-3">
     <div><Link to="#i-switch-to-child-tab-or-window-occurrence">Link</Link></div>
     <div align="center"></div>
@@ -4404,6 +4405,7 @@ Feature specs should be declarative and written in the language of your domain a
       And I close child tab 1
   ```
 
+  If used in conjunction with <Link to="/docs/advanced/try-steps"><code>@Try</code></Link>, will switch to the parent window regardless of whether or not a child window was closed (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.4">3.12.4</Link>).
   <div class="grid-3">
     <div><Link to="#i-close-child-tab-or-window-occurrence">Link</Link></div>
     <div align="center"></div>
