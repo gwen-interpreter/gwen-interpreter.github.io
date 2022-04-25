@@ -1,0 +1,112 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Mobile Emulation
+
+## Chrome and Edge
+
+As of gwen-web version 2.33.0, Gwen supports mobile emulation in Chrome and Edge browser sessions.
+
+### Device name setting
+
+To enable mobile emulation by a known device, set the following setting to a valid device name listed in the Dev Tools emulation panel of your Chrome browser.
+- [`gwen.web.chrome.mobile.deviceName`](/docs/settings/reference#gwen-web-chrome-mobile-emulation)
+- [`gwen.web.edge.mobile.deviceName`](/docs/settings/reference#gwen-web-edge-mobile-emulation)
+
+Example: 
+
+To emulate the Pixel 2 device: 
+
+```
+gwen.web.chrome.mobile.deviceName = Pixel 2
+```
+
+### Device metric settings
+
+Alternatively, to enable mobile emulation by specific device metrics, set the following settings to explicit values:
+- `gwen.web.chrome.mobile.width`
+- `gwen.web.chrome.mobile.height`
+- `gwen.web.chrome.mobile.pixelRatio`
+- `gwen.web.chrome.mobile.touch`
+- `gwen.web.chrome.mobile.userAgent`
+- `gwen.web.edge.mobile.width`
+- `gwen.web.edge.mobile.height`
+- `gwen.web.edge.mobile.pixelRatio`
+- `gwen.web.edge.mobile.touch`
+- `gwen.web.edge.mobile.userAgent`
+
+
+Example:
+
+<Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+<TabItem value="conf">
+
+```json
+gwen {
+  web {
+    chrome {
+      mobile {
+        width = 360
+        height = 640
+        pixelRatio = 3.0
+        touch = true
+        userAgent = "Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19"
+      }
+    }
+  }
+}
+```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+```json
+{
+  "gwen": {
+    "web": {
+      "chrome": {
+        "mobile": {
+          "width": = 360,
+          "height": = 640,
+          "pixelRatio": = 3.0,
+          "touch": = true
+          "userAgent": "Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19"
+        }
+      }
+    }
+  }
+}
+```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+```properties
+gwen.web.chrome.mobile.width      = 360
+gwen.web.chrome.mobile.height     = 640
+gwen.web.chrome.mobile.pixelRatio = 3.0
+gwen.web.chrome.mobile.touch      = true
+gwen.web.chrome.mobile.userAgent  = Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19
+```
+
+  </TabItem>
+
+  </Tabs>
+  
