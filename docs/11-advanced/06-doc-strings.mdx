@@ -23,15 +23,15 @@ Some examples follow..
 
 One use case is multiline strings. In the absence of Doc Strings there was no way to pass in multiline strings or paragraphs of text. You can now do this as follows:
 
-```
-Given my paragraph is
-     """
-     Gwen is a Gherkin interpreter that turns Given-When-Then steps into automation instructions and executes
-     them for you so you don't have to do all the programming work. It has an abstracted evaluation engine
-     allowing any type of automation capability to be built and mixed in. Meta specifications (also expressed
-     in Gherkin) are used to capture automation bindings and allow you to compose step definitions by mapping
-     'declarative' steps in features to 'imperative' steps in engines that perform operations.
-     """
+```gherkin
+  Given my paragraph is
+       """
+       Gwen is a Gherkin interpreter that turns Given-When-Then steps into automation instructions and executes
+       them for you so you don't have to do all the programming work. It has an abstracted evaluation engine
+       allowing any type of automation capability to be built and mixed in. Meta specifications (also expressed
+       in Gherkin) are used to capture automation bindings and allow you to compose step definitions by mapping
+       'declarative' steps in features to 'imperative' steps in engines that perform operations.
+       """
 ```
 
 ## JavaScript Function Bindings
@@ -40,7 +40,7 @@ Another use case is JavaScript bindings. In Gwen, they are limited to one-liner 
 
 For example, consider the following script that returns the current date in yyyy-mm-dd format.
 
-```JavaScript
+```javascript
 (function() {
   var d = new Date();
   var year = d.getFullYear();
@@ -56,17 +56,18 @@ Given the current date is defined by javascript "(function() {var d = new Date()
 ```
 
 With Doc Strings, you can now do this as follows instead:
-```
-Given the current date is defined by javascript
-     """
-     (function() {
-       var d = new Date();
-       var year = d.getFullYear();
-       var month = ('0' + (d.getMonth() + 1)).slice(-2);
-       var day = ('0' + d.getDate()).slice(-2);
-       return year + '-' + month + '-' + day;
-     })();
-     """
+
+```gherkin
+  Given the current date is defined by javascript
+        """
+        (function() {
+          var d = new Date();
+          var year = d.getFullYear();
+          var month = ('0' + (d.getMonth() + 1)).slice(-2);
+          var day = ('0' + d.getDate()).slice(-2);
+          return year + '-' + month + '-' + day;
+        })();
+        """
 ```
 
 ## Sample Reports

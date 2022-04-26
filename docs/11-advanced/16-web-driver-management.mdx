@@ -24,9 +24,48 @@ This manager will auto-detect your current browser version and download and conf
 If you wish to have more control over driver versions or other aspects of this process, you can configure explicit `wdm.*` configuration options in your [Gwen settings](/docs/settings) file. See the [WebDriverManager documentation](https://bonigarcia.dev/webdrivermanager/#driver_management_config) for information about these options.
 
 For example, to have the manager download a specific version of a chrome driver:
+
+<Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+<TabItem value="conf">
+
+```json
+wdm {
+  chromeDriverVersion = "<your desired chrome driver version>"
+}
 ```
+
+</TabItem>
+
+<TabItem value="json">
+
+```json
+{
+   "wdm": {
+     "chromeDriverVersion": "<your desired chrome driver version>"
+   }
+}
+```
+
+</TabItem>
+
+<TabItem value="properties">
+
+```properties
 wdm.chromeDriverVersion=<your desired chrome driver version>
 ```
+
+</TabItem>
+
+</Tabs>
+
 ### Proxy Configuration
 
 If you are behind a proxy, you will need to set the `HTTPS_PROXY` variable in your environment.
@@ -171,7 +210,7 @@ webdriver {
 <TabItem value="linux">
 
 ```properties
-webdriver.gecko.driver = /path/to/geckodriver
+webdriver.gecko.driver  = /path/to/geckodriver
 webdriver.chrome.driver = /path/to/chromedriver
 ```
 
@@ -179,10 +218,10 @@ webdriver.chrome.driver = /path/to/chromedriver
 <TabItem value="windows">
 
 ```properties
-webdriver.gecko.driver = c:/path/to/geckodriver.exe
+webdriver.gecko.driver  = c:/path/to/geckodriver.exe
 webdriver.chrome.driver = c:/path/to/chromedriver.exe
-webdriver.edge.driver = c:/path/to/msedgedriver
-webdriver.ie.driver = c:/path/to/IEDriverServer.exe
+webdriver.edge.driver   = c:/path/to/msedgedriver
+webdriver.ie.driver     = c:/path/to/IEDriverServer.exe
 ```
 
 </TabItem>

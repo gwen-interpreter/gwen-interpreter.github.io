@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Locator Level Timeouts
 
-As of gwen-web-2.19.0, support was added for specifying timeouts (implicit waits) for individual locators to allow the default or configured global timeout [`gwen.web.wait.seconds`](/docs/settings/reference#gwen-web-wait-seconds) to be overridden. This is useful for cases where you may want to increase the locator timeout period for some web elements without impacting others. A web element that takes a long time to load for example can have a higher locator timeout  without slowing down the rest of your locators.
+As of gwen-web-2.19.0, support was added for specifying timeouts (implicit waits) for individual locators to allow the default or configured global timeout [`gwen.web.locator.wait.seconds`](/docs/settings/reference#gwen-web-locator-wait-seconds) to be overridden. This is useful for cases where you may want to increase the locator timeout period for some web elements without impacting others. A web element that takes a long time to load for example can have a higher locator timeout  without slowing down the rest of your locators.
 
 The following DSLs are introduced to support this:
   - [`<element> can be located by <selector> "<expression>" with no <wait|timeout>`](/docs/dsl/reference#element-can-be-located-by-selector-expression-with-no-timeout)

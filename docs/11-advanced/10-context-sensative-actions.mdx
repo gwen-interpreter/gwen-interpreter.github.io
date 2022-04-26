@@ -12,11 +12,11 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 # Context Sensative Actions
 
 ## Performing actions on context sensitive elements
-This feature adds support for performing actions on context sensitive elements. This is now supported through the following DSL:
+This feature adds support for performing actions on context sensitive elements. This is supported through the following DSL:
 
-`I <click|check|uncheck> <element> of <context>`
+- [`I <click|right click|double click> <element> of <context>`](/docs/dsl/reference#i-click-element-of-context)
 
-For example, say you wanted to click an action button in a menu item that only becomes visible when you physically move into the menu item by hovering over it with the mouse. You can do this as follows:
+For example, say you wanted to click an action button in a menu item that only becomes visible when you physically hovering over it with the mouse. You can do this as follows:
 
 ```gherkin
   # define locators for the menu item and action button (as you normally would)

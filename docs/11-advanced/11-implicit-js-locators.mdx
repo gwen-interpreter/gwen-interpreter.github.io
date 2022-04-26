@@ -18,7 +18,9 @@ As of version 2.19.0 you can use the [`gwen.web.implicit.js.locators`](/docs/set
 
 Say you define a locator in Gwen to lookup a user name field by ID as follows:
 
-`Given user name can be located by id "username"`
+```gherkin
+  Given user name can be located by id "username"
+```
 
 Gwen will normally lookup this field using the "By.Id locator" mechanism of web driver. This is the default Gwen behaviour when the `gwen.web.implicit.js.locators` setting is not set or is set to `false`.
 
