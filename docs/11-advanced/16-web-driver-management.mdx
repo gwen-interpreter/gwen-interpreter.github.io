@@ -21,7 +21,7 @@ This manager will auto-detect your current browser version and download and conf
 
 ### Custom Manager Settings and Configuration
 
-If you wish to have more control over driver versions or other aspects of this process, you can configure explicit `wdm.*` configuration options in your [Gwen settings](/docs/settings) file. See the [WebDriverManager documentation](https://github.com/bonigarcia/webdrivermanager#webdrivermanager-api) for information about these options.
+If you wish to have more control over driver versions or other aspects of this process, you can configure explicit `wdm.*` configuration options in your [Gwen settings](/docs/settings) file. See the [WebDriverManager documentation](https://bonigarcia.dev/webdrivermanager/#driver_management_config) for information about these options.
 
 For example, to have the manager download a specific version of a chrome driver:
 ```
@@ -38,10 +38,10 @@ Perform the following if you are using a gwen-web version prior to v2.34.0 or if
 #### Download and install the native web driver you want
 - Click the link to download the driver binary for your target browser (download the latest one or the version 
   that you wish)
-  - [Chrome](https://sites.google.com/a/chromium.org/chromedriver/)
+  - [Chrome](https://sites.google.com/chromium.org/driver/)
   - [Firefox](https://github.com/mozilla/geckodriver/releases)
   - [IE](http://selenium-release.storage.googleapis.com/index.html)
-  - [Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver) (supported since gwen-web v2.35.0)
+  - [Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium) (supported since gwen-web v2.35.0)
 - Unpack the binary to a location on your drive
 
 #### Point Gwen to your installed web driver
@@ -59,25 +59,16 @@ Once you've install the native driver using one of the methods above, set the pa
 
 <TabItem value="conf">
 
-For Windows:
-```json
-webdriver {
-  gecko {
-    driver = "c:/path/to/geckodriver.exe"
-  }
-  chrome { 
-    driver = "/path/to/chromedriver.exe"
-  }
-  edge {
-    driver = "/path/to/msedgedriver"
-  }
-  ie {
-    driver = "c:/path/to/IEDriverServer.exe"
-  }
-}
-```
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
 
-For Linux:
+<TabItem value="linux">
+
 ```json
 webdriver {
   gecko {
@@ -87,34 +78,46 @@ webdriver {
     driver = "/path/to/chromedriver"
   }
 }
-
 ```
+
+</TabItem>
+<TabItem value="windows">
+
+```json
+webdriver {
+  gecko {
+    driver = "c:/path/to/geckodriver.exe"
+  }
+  chrome { 
+    driver = "c:/path/to/chromedriver.exe"
+  }
+  edge {
+    driver = "c:/path/to/msedgedriver"
+  }
+  ie {
+    driver = "c:/path/to/IEDriverServer.exe"
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
 
 </TabItem>
 
 <TabItem value="json">
 
-For Windows:
-```json
-{
-  "webdriver": {
-    "gecko": {
-      "driver": "c:/path/to/geckodriver.exe"
-    },
-    "chrome": { 
-      "driver": "/path/to/chromedriver.exe"
-    },
-    "edge": {
-      "driver": "/path/to/msedgedriver"
-    },
-    "ie": {
-      "driver": "c:/path/to/IEDriverServer.exe"
-    }
-  }
-}
-```
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
 
-For Linux:
+<TabItem value="linux">
+
 ```json
 {
   "webdriver": {
@@ -129,22 +132,61 @@ For Linux:
 ```
 
 </TabItem>
+<TabItem value="windows">
+
+```json
+{
+  "webdriver": {
+    "gecko": {
+      "driver": "c:/path/to/geckodriver.exe"
+    },
+    "chrome": { 
+      "driver": "c:/path/to/chromedriver.exe"
+    },
+    "edge": {
+      "driver": "c:/path/to/msedgedriver"
+    },
+    "ie": {
+      "driver": "c:/path/to/IEDriverServer.exe"
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
 
 <TabItem value="properties">
 
-For Windows:
-```properties
-webdriver.gecko.driver = c:/path/to/geckodriver.exe
-webdriver.chrome.driver = /path/to/chromedriver.exe
-webdriver.edge.driver = /path/to/msedgedriver
-webdriver.ie.driver = c:/path/to/IEDriverServer.exe
-```
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
 
-For Linux:
+<TabItem value="linux">
+
 ```properties
 webdriver.gecko.driver = /path/to/geckodriver
 webdriver.chrome.driver = /path/to/chromedriver
 ```
+
+</TabItem>
+<TabItem value="windows">
+
+```properties
+webdriver.gecko.driver = c:/path/to/geckodriver.exe
+webdriver.chrome.driver = c:/path/to/chromedriver.exe
+webdriver.edge.driver = c:/path/to/msedgedriver
+webdriver.ie.driver = c:/path/to/IEDriverServer.exe
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 
