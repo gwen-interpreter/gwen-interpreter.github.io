@@ -12,7 +12,15 @@ import ReactPlayer from 'react-player'
 
 Captured video recordings of browser sessions are currently only supported when running Gwen in [Docker with Selenoid](/docs/docker), and if the `gwen.web.capability.videoEnabled` setting is set to `true`. Under these conditions, MP4 video recordings of each session will be attached to [HTML reports](/docs/reports/html) when execution completes.
 
-A button will appear in the report header if one video was captured (one browser session):
+### Detail reports
+
+A button will appear in the report summary line for each feature in the summary report (one browser session):
+
+![Example video button](/img/reports/sample-html-video-0.png)
+
+### Detail reports
+
+A button will appear in the detail report header if one video was captured (one browser session):
 
 ![Example video button](/img/reports/sample-html-video-1.png)
 
