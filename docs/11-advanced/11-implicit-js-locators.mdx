@@ -10,11 +10,15 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Implicit JavaScript Locators
 
-As of version 2.19.0 you can use the [`gwen.web.implicit.js.locators`](/docs/settings/reference#gwen-web-implicit-js-locators) setting to enable Gwen to implicitly convert all locator bindings to their JavaScript equivalents and force all elements to be located by executing a script on the page instead of looking them up using standard web driver locator mechanism. Enabling this is useful when dealing with web sites that dynamically render or change the visibility of elements on pages or manipulate the DOM. 
+As of version 2.19.0 you can use the [`gwen.web.implicit.js.locators`](/docs/settings/reference#gwen-web-implicit-js-locators) setting to enable Gwen to implicitly convert all locator bindings to their JavaScript equivalents and force all elements to be located by executing a script on the page instead of looking them up using standard web driver locator mechanism. Enabling this is useful when dealing with web sites that dynamically render or change the visibility of elements on pages or manipulate the DOM.
 
 Value values are:
   - `false` to disable (default)
   - `true` to enable
+
+:::tip
+Dyncamicaly rendered elements are best located by JavaScript. Consider enabling this mechanism if your locators are intermittently failing with what appears to be random hit-and-miss behavior.
+:::
 
 ### How it works
 
