@@ -82,12 +82,12 @@ services:
       - gwen-net
     ports:
       - "4444:4444"
-    environment:
-      - OVERRIDE_VIDEO_OUTPUT=$PWD/gwen/output/.video
     volumes:
       - "$PWD/gwen/browsers:/etc/selenoid/:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "$PWD/gwen/output/.video:/opt/selenoid/video"
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT=$PWD/gwen/output/.video
     command: ["-container-network", "gwen-net", "-video-output-dir", "/opt/selenoid/video"]
   gwen:
     depends_on:
@@ -183,16 +183,22 @@ This will be called by the `gwen` container in our `docker-compose.yml` file whe
 
 ## Run in docker
 
-Finally, ensure that your Docker engine is running on your machine and launch the following command in your project directory to spin everything up and run Gwen in docker:
-
-```shell
-docker-compose run gwen
-```
-
-If you run into permission issues on the output directory, run the following command to create the shared output directory on the file system first before invoking docker compose.
+First, create the Gwen output directory if it does not already exist.
 
 ```shell
 mkdir -p gwen/output
+```
+
+Next, run the following command to build your docker image (once off).
+
+```shell
+docker-compose build
+```
+
+Finally, run the following command in your project directory to spin everything up and launch Gwen in docker:
+
+```shell
+docker-compose run gwen
 ```
 
 ### Video recordings
@@ -218,12 +224,4 @@ If `gwen.web.capability.videoEnabled` is set to `true` in your *gwen/browsers/se
   - Time to wait for asyncronous vidoe writes to complete (override only if default does not suffice)
 :::
 
-A button will appear in the report header if one video was captured (one browser session):
-
-![Example video button](/img/reports/sample-html-video-1.png)
-
-A dropdown will appear in the report header if several videos were captured (multiple browser sessions):
-
-![Example video links](/img/reports/sample-html-video-2.png)
-
-Clicking a video button or link in the report will open and play the video in a new browser window.
+See also: [Video recordings](/docs/reports/video-recordings) 

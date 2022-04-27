@@ -6,10 +6,11 @@ toc_max_heading_level: 2
 import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import ReactPlayer from 'react-player'
 
 # Video Recordings
 
-Captured video recordings of browser sessions are currently only supported when running Gwen in [Docker with Selenoid](/docs/docker), and if the `gwen.web.capability.videoEnabled` setting is set to `true`. Under these conditions, MP4 video recordings of each session will be attached to feature level [HTML reports](/docs/reports/html) when execution completes.
+Captured video recordings of browser sessions are currently only supported when running Gwen in [Docker with Selenoid](/docs/docker), and if the `gwen.web.capability.videoEnabled` setting is set to `true`. Under these conditions, MP4 video recordings of each session will be attached to [HTML reports](/docs/reports/html) when execution completes.
 
 A button will appear in the report header if one video was captured (one browser session):
 
@@ -20,3 +21,7 @@ A dropdown will appear in the report header if several videos were captured (mul
 ![Example video links](/img/reports/sample-html-video-2.png)
 
 Clicking a video button or link in the report will open and play the video in a new browser window.
+
+### Sample video
+
+<ReactPlayer playing controls url='/videos/features-todo.mp4' />
