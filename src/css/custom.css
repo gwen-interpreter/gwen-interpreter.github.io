@@ -129,6 +129,7 @@ li > a.menu__link {
 
 a.smartstream {
   color: var(--ifm-footer-link-color);
+  display: inline-block;
 }
 
 a.smartstream:hover {
@@ -137,9 +138,15 @@ a.smartstream:hover {
 
 .smartstream:before {
   color: var(--ifm-footer-link-color);
-  vertical-align: middle;
-  padding-right: 0.5rem;
+  vertical-align: top;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
   content: url(/static/img/users/smartstream-icon.jpeg);
+  border-radius: 3px;
+  display: inline-block;
+  overflow: hidden;
+  height: 24px;
+  width: 24px;
 }
 
 a.originenergy {
@@ -151,7 +158,14 @@ a.originenergy:hover {
 }
 
 .originenergy:before {
-  vertical-align: middle;
-  padding-right: 0.5rem;
+  color: var(--ifm-footer-link-color);
+  vertical-align: top;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
   content: url(/static/img/users/origin-energy-icon.jpeg);
+  border-radius: 3px;
+  display: inline-block;
+  overflow: hidden;
+  height: 24px;
+  width: 24px;
 }
