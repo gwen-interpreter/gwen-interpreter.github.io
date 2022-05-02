@@ -97,6 +97,10 @@ module.exports = {
               label: 'SmartStream',
               href: 'https://www.smartstream-stp.com',
             },
+            {
+              label: 'Origin Energy',
+              href: 'https://www.originenergy.com.au/',
+            },
           ],
         },
       ],
