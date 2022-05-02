@@ -127,10 +127,27 @@ li > a.menu__link {
   justify-content: flex-start;
 }
 
+a.smartstream {
+  color: var(--ifm-footer-link-color);
+}
+
+a.smartstream:hover {
+  color: var(--ifm-link-color);
+}
+
 .smartstream:before {
+  color: var(--ifm-footer-link-color);
   vertical-align: middle;
   padding-right: 0.5rem;
   content: url(/static/img/users/smartstream-icon.jpeg);
+}
+
+a.originenergy {
+  color: var(--ifm-footer-link-color);
+}
+
+a.originenergy:hover {
+  color: var(--ifm-link-color);
 }
 
 .originenergy:before {
