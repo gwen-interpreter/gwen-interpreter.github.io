@@ -96,12 +96,12 @@ module.exports = {
             {
               label: 'SmartStream',
               href: 'https://www.smartstream-stp.com',
-              className: 'knownuser smartstream'
+              className: 'navicon icon-smartstream'
             },
             {
               label: 'Origin Energy',
               href: 'https://www.originenergy.com.au/',
-              className: 'knownuser originenergy'
+              className: 'navicon icon-originenergy'
             },
           ],
         },

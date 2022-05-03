@@ -127,15 +127,15 @@ li > a.menu__link {
   justify-content: flex-start;
 }
 
-a.knownuser {
+a.navicon {
   color: var(--ifm-footer-link-color);
 }
 
-a.knownuser:hover {
+a.navicon:hover {
   color: var(--ifm-link-color);
 }
 
-.knownuser:before {
+.navicon:before {
   color: var(--ifm-footer-link-color);
   vertical-align: middle;
   margin-right: 0.5rem;
@@ -149,10 +149,10 @@ a.knownuser:hover {
   width: 24px;
 }
 
-.smartstream:before {
+.icon-smartstream:before {
   content: url(/static/img/users/smartstream-icon.jpeg);
 }
 
-.originenergy:before {
+.icon-originenergy:before {
   content: url(/static/img/users/origin-energy-icon.jpeg);
 }
