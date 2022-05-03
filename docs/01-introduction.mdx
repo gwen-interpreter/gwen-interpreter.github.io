@@ -16,7 +16,7 @@ Automation is achieved through Gherkin bindings called [meta specs](/docs/meta) 
 
 ## Declare features
 
-*Write feature specs to describe intended behavior in the language of your domain.*
+*Write feature specs to describe how scenarios should behave.*
 
 Feature specifications are used to communicate requirements that are clear, concise and declarative. For example, the following describes how adding items to a todo list should behave.
 
@@ -320,7 +320,7 @@ Associative meta is enabled by default since  [Gwen 3](/docs/gwen3). In prior ve
 
 ## Launch Gwen
 
-*Invoke Gwen to bind the meta and execute your features*
+*Invoke Gwen to load the meta and execute your features to automate.*
 
 The example presented in this introduction would execute to automate a test.
 
@@ -357,7 +357,7 @@ The [CLI](/docs/cli) is used to launch Gwen and execute features. When launched 
   npm run gwen -- -b gwen/features/todo.feature
   ```
 
-  To execute all features in the features directory
+  To execute all feature files in the features directory
   
   ```shell
   npm run gwen -- -b gwen/features
@@ -379,7 +379,7 @@ The [CLI](/docs/cli) is used to launch Gwen and execute features. When launched 
   yarn gwen -b gwen/features/todo.feature
   ```
 
-  To execute all features in the features directory
+  To execute all feature files in the features directory
   
   ```shell
   yarn gwen -b gwen/features
@@ -402,7 +402,7 @@ The [CLI](/docs/cli) is used to launch Gwen and execute features. When launched 
   pnpm gwen -b gwen/features/todo.feature
   ```
 
-  To execute all features in the features directory
+  To execute all feature files in the features directory
   
   ```shell
   pnpm gwen -b gwen/features
@@ -421,8 +421,6 @@ The [CLI](/docs/cli) is used to launch Gwen and execute features. When launched 
   <TabItem value="standalone">
 
 :::note Invoking Gwen
-
-  To execute all features in two given directories
   
   To execute a single feature file
   
@@ -430,7 +428,7 @@ The [CLI](/docs/cli) is used to launch Gwen and execute features. When launched 
   gwen -b gwen/features/todo.feature
   ```
 
-  To execute all features in the features directory
+  To execute all feature files in the features directory
   
   ```shell
   gwen -b gwen/features
