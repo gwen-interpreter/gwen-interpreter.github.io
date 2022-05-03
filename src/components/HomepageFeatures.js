@@ -27,7 +27,7 @@ const FeatureList = [
     Svg: require('../../static/img/gwen-portrait.svg').default,
     description: (
       <>
-        Invoke Gwen to bind the meta and execute your features to automate.
+        Invoke Gwen to load the meta and execute your features to automate.
       </>
     ),
   },
