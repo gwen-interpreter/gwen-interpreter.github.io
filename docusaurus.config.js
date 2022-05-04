@@ -19,7 +19,7 @@ module.exports = {
       title: 'Gwen',
       logo: {
         alt: 'Gwen Logo',
-        src: 'img/gwen-attractor.svg',
+        src: 'img/gwen-attractor-trans.svg',
         srcDark: 'img/gwen-attractor-white.svg',
       },
       items: [
