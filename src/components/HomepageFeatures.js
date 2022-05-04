@@ -6,7 +6,7 @@ import Link from '@docusaurus/Link';
 const FeatureList = [
   {
     title: 'Declare Features',
-    Svg: require('../../static/img/gwen-feature.svg').default,
+    Svg: require('../../static/img/declare-features.svg').default,
     description: (
       <>
         Write <Link to="/docs#declare-features">feature specs</Link> to describe how scenarios should behave.
@@ -15,7 +15,7 @@ const FeatureList = [
   },
   {
     title: 'Compose Meta',
-    Svg: require('../../static/img/gwen-meta.svg').default,
+    Svg: require('../../static/img/compose-meta.svg').default,
     description: (
       <>
         Write <Link to="/docs#compose-meta">meta specs</Link> to describe how steps will execute to automate scenarios.
@@ -24,7 +24,7 @@ const FeatureList = [
   },
   {
     title: 'Launch Gwen',
-    Svg: require('../../static/img/gwen-portrait.svg').default,
+    Svg: require('../../static/img/launch-gwen.svg').default,
     description: (
       <>
         <Link to="/docs#launch-gwen">Invoke Gwen</Link> to load the meta and execute your features to automate.
