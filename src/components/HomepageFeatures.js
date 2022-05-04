@@ -18,7 +18,7 @@ const FeatureList = [
     Svg: require('../../static/img/gwen-compose-meta.svg').default,
     description: (
       <>
-        Write <Link to="/docs#gcompose-meta">meta specs</Link> to describe how steps will execute to automate scenarios.
+        Write <Link to="/docs#compose-meta">meta specs</Link> to describe how steps will execute to automate scenarios.
       </>
     ),
   },
