@@ -138,7 +138,7 @@ a.navicon:hover {
 .navicon:before {
   color: var(--ifm-footer-link-color);
   vertical-align: middle;
-  margin-right: 0.5rem;
+  margin-right: 0.6rem;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   content: url(/static/img/users/smartstream-icon.jpeg);
