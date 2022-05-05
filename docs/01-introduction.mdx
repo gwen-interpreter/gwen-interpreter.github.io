@@ -18,7 +18,7 @@ Automation is achieved through Gherkin bindings called [meta specs](/docs/meta) 
 
 *Write feature specs to describe how scenarios should behave.*
 
-Feature specifications are used to communicate requirements that are clear, concise and declarative. For example, the following describes how adding items to a todo list should behave.
+[Feature specifications](https://cucumber.io/docs/gherkin/reference/) are used to communicate requirements in the language of your domain. They should be clear, concise and declarative. For example, the following describes how adding items to a todo list should behave.
 
 :::note Feature Spec
 
@@ -47,7 +47,7 @@ Write feature specs without giving any thought to automation. When it makes sens
 
 *Write meta specs to describe how steps will execute to automate scenarios.*
 
-Meta specifications are used to describe how steps will exeute in Gwen to automate scenarios and are written in Gherkin too. All the [step definitions](/docs/meta#stepdefs) and bindings required for automation are defined in meta so your features remain unconcerned with this detail.
+[Meta specifications](/docs/meta) are used to describe execution and are written in Gherkin too. [Step definitions](/docs/meta#stepdefs) and bindings are defined in meta so your features remain clean and unconcerned with automation details.
 
 For example, the following meta describes how the scenario in the feature above can be executed to automate a test against a running [todo application](https://todomvc.com/examples/react).
 
