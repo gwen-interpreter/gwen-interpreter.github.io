@@ -162,3 +162,7 @@ a.navicon:hover {
 .icon-originenergy:before {
   content: url(/static/img/users/origin-energy-icon.jpeg);
 }
+
+img {
+  image-rendering: crisp-edges;
+}
