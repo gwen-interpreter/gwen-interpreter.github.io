@@ -16,9 +16,15 @@ Automation is achieved through Gherkin bindings called [meta specs](/docs/meta) 
 
 ## Declare features
 
-*Write feature specs to describe how scenarios should behave.*
+Write [feature specs](https://cucumber.io/docs/gherkin/reference/) to describe how scenarios should behave.
 
-[Feature specifications](https://cucumber.io/docs/gherkin/reference/) are used to communicate requirements in the language of your domain. They should be clear, concise and declarative. For example, the following describes how adding items to a todo list should behave.
+:::tip
+
+Write feature specs without giving any thought to automation.
+
+:::
+
+Feature specs are used to communicate requirements in the language of your domain. They should be clear, concise and declarative. For example, the following describes how adding items to a todo list should behave.
 
 :::note Feature Spec
 
@@ -37,17 +43,17 @@ Feature: Add todo items
 
 :::
 
+## Compose meta
+
+Write [meta specs](/docs/meta) to describe how steps will execute to automate scenarios.
+
 :::tip
 
-Write feature specs without giving any thought to automation. When it makes sense to automate, compose your meta incrementally and maintain a useful subset that you can execute often.
+Write meta specs with automation in mind as if you were a robot.
 
 :::
 
-## Compose meta
-
-*Write meta specs to describe how steps will execute to automate scenarios.*
-
-[Meta specifications](/docs/meta) are used to describe execution and are written in Gherkin too. [Step definitions](/docs/meta#stepdefs) and bindings are defined in meta so your features remain clean and unconcerned with automation details.
+Meta specs are used to describe execution and are written in Gherkin too. [Step definitions](/docs/meta#stepdefs) and bindings are defined in meta so your features remain clean and unconcerned with automation details.
 
 For example, the following meta describes how the scenario in the feature above can be executed to automate a test against a running [todo application](https://todomvc.com/examples/react).
 
@@ -320,7 +326,7 @@ Associative meta is enabled by default since  [Gwen 3](/docs/gwen3). In prior ve
 
 ## Execute features
 
-*Launch Gwen to bind the meta and execute your features to automate.*
+Launch Gwen to bind the meta and execute your features to automate.
 
 ### Invoke the CLI to execute
 
