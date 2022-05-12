@@ -17,7 +17,7 @@ As of gwen-web v2.34.0, Gwen uses the following embedded web driver manager to a
 
 > Automatic web driver management will only be active if no `webdriver.xx.driver` properties are set. So if you are upgrading from an older version of Gwen, be sure to remove these from your Gwen settings files if you wish for Gwen to manage native drivers for you.
 
-This manager will auto-detect your current browser version and download and configure the latest web driver binary that is compatible with that browser. So you don't need to do a thing. By default, the native binaries will be stored in the `~.gwen/wdm` folder in the user home directory (this can be overridden by setting the `wdm.targetPath` property in your Gwen settings).
+The embedded manager will auto-detect your current browser version and download and configure the latest web driver binary that is compatible with that browser. So you don't need to do a thing.
 
 ### Custom Manager Settings and Configuration
 
