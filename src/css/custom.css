@@ -156,3 +156,7 @@ a.navicon:hover {
 img {
   image-rendering: crisp-edges;
 }
+
+html[data-theme='light'] .navbar__title:not(:hover) {
+  color: #1A0B80;
+}
