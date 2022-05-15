@@ -16,7 +16,7 @@ module.exports = {
   themeConfig: {
     image: 'img/gwen-media.png',
     navbar: {
-      title: 'Gwen',
+      title: 'gwen',
       logo: {
         alt: 'Gwen Home Page',
         src: 'img/gwen-attractor-color.svg',
