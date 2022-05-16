@@ -36,8 +36,9 @@ html[data-theme='dark'] .navbar {
 
 .hero__title {
   font-family: "OCRA";
-  letter-spacing: -0.35rem;
-  font-size: 3.2rem;
+  letter-spacing: -0.5rem;
+  font-size: 4rem;
+  font-weight: 400;
 }
 
 .hero__subtitle {
@@ -169,9 +170,10 @@ html[data-theme='light'] .navbar__title:not(:hover) {
 
 .navbar__title {
   font-family: "OCRA";
-  letter-spacing: -2px;
-  font-size: 1.1rem;
+  letter-spacing: -0.18rem;
+  font-size: 1.2rem;
   margin-top: 2px;
+  font-weight: 400;
 }
 
 @font-face {
