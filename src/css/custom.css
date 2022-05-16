@@ -34,6 +34,12 @@ html[data-theme='dark'] .navbar {
   --ifm-hero-text-color: var(--ifm-color-white);
 }
 
+.hero__title {
+  font-family: "OCRA";
+  letter-spacing: -0.35rem;
+  font-size: 3.2rem;
+}
+
 .hero__subtitle {
   font-size:1.8rem;
   font-weight: 700;
@@ -159,4 +165,18 @@ img {
 
 html[data-theme='light'] .navbar__title:not(:hover) {
   color: #1A0B80;
+}
+
+.navbar__title {
+  font-family: "OCRA";
+  letter-spacing: -2px;
+  font-size: 1.1rem;
+  margin-top: 2px;
+}
+
+@font-face {
+  font-family: "OCRA";
+  src: url(/static/fonts/OCRA-Medium.ttf) format("truetype");
+  font-style: normal;
+  font-display: swap
 }
