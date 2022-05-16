@@ -148,8 +148,8 @@ a.navicon:hover {
   color: var(--ifm-footer-link-color);
   vertical-align: middle;
   margin-right: 0.6rem;
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
   border-radius: 3px;
   display: inline-block;
   overflow: hidden;
@@ -160,10 +160,11 @@ a.navicon:hover {
 .navicon-top:before {
   vertical-align: middle;
   margin-right: 0.4rem;
+  padding-bottom: 0.25rem;
   display: inline-block;
   overflow: hidden;
-  height: 28px;
-  width: 28px;
+  height: 24px;
+  width: 24px;
 }
 
 a.navicon-top {
