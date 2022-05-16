@@ -42,8 +42,18 @@ html[data-theme='dark'] .navbar {
 }
 
 .hero__subtitle {
-  font-size:1.8rem;
+  font-size:2.2rem;
   font-weight: 700;
+}
+
+@media (max-width: 996px) {
+  .row .col.col.col.footer__col {
+    --ifm-col-width: 50%;
+  }
+  .hero__subtitle {
+    font-size:1.6rem;
+    font-weight: 600;
+  }
 }
 
 .footer--dark {
@@ -112,17 +122,6 @@ td {
 .grid-3 {
   display: grid;
   grid-template-columns: auto auto auto;
-}
-
-
-@media (max-width: 996px) {
-  .row .col.col.col.footer__col {
-    --ifm-col-width: 50%;
-  }
-  .hero__subtitle {
-    font-size:1.3rem;
-    font-weight: 400;
-  }
 }
 
 /* Override non-category links to be horizonally compact */
