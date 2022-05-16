@@ -176,7 +176,7 @@ html[data-theme='light'] .navbar__title:not(:hover) {
 
 @font-face {
   font-family: "OCRA";
-  src: url(/static/fonts/OCRA-Medium.ttf) format("truetype");
+  src: url(/static/fonts/OCRA.ttf) format("truetype");
   font-style: normal;
   font-display: swap
 }
