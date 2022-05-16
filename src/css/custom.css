@@ -51,7 +51,7 @@ html[data-theme='dark'] .navbar {
     --ifm-col-width: 50%;
   }
   .hero__subtitle {
-    font-size:1.3rem;
+    font-size:1.2rem;
     font-weight: 600;
   }
 }
