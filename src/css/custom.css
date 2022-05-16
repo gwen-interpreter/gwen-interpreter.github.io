@@ -150,12 +150,25 @@ a.navicon:hover {
   margin-right: 0.6rem;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
-  content: url(/static/img/users/smartstream-icon.jpeg);
   border-radius: 3px;
   display: inline-block;
   overflow: hidden;
   height: 24px;
   width: 24px;
+}
+
+.navicon-top:before {
+  vertical-align: middle;
+  margin-right: 0.4rem;
+  margin-bottom: 0.25rem;
+  display: inline-block;
+  overflow: hidden;
+  height: 28px;
+  width: 28px;
+}
+
+a.navicon-top {
+  padding-top: 0.45rem;
 }
 
 .icon-smartstream:before {
@@ -164,6 +177,42 @@ a.navicon:hover {
 
 .icon-originenergy:before {
   content: url(/static/img/users/origin-energy-icon.jpeg);
+}
+
+.icon-github:before {
+  content: url(/static/img/media/github-icon.png);
+}
+
+.icon-blog:before {
+  content: url(/static/img/media/blog-icon.png);
+}
+
+.icon-twitter:before {
+  content: url(/static/img/media/twitter-icon.png);
+}
+
+.icon-support:before {
+  content: url(/static/img/media/support-icon.png);
+}
+
+html[data-theme='dark'] .icon-github:before {
+  content: url(/static/img/media/github-icon-dark.png);
+}
+
+html[data-theme='dark'] .icon-blog:before {
+  content: url(/static/img/media/blog-icon-dark.png);
+}
+
+html[data-theme='dark'] .icon-twitter:before {
+  content: url(/static/img/media/twitter-icon-dark.png);
+}
+
+html[data-theme='dark'] .icon-support:before {
+  content: url(/static/img/media/support-icon-dark.png);
+}
+
+html[data-theme='dark'] .navbar-sidebar {
+  background-color: #111111;
 }
 
 img {
