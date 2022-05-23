@@ -1,0 +1,83 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# CSV Driven Examples
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.10.0">v2.10.0</Link>
+
+Consider the following scenario outline and example data
+
+:::note Scenario outline with inlined data
+
+```gherkin
+  Scenario Outline: I load items from CSV files
+    When I add a <Status> "<Item>" item
+    
+    Examples:
+      | Item         | Status  |
+      | Walk the dog | pending |
+      | Get the milk | done    |
+      | Feed the cat | pending |
+```
+:::
+
+## @Examples annotation
+
+The above data can be externalised to CSV file and imported as follows:
+
+:::note Scenario outline with externalised data
+
+```gherkin {1}
+  @Examples("data/items.csv")
+  Scenario Outline: I load items from CSV files
+    When I add a <Status> "<Item>" item
+```
+
+Will resolve to:
+
+```gherkin
+  Scenario Outline: I load items from CSV files
+    When I add a <Status> "<Item>" item
+    
+    Examples:
+      | Item         | Status  |
+      | Walk the dog | pending |
+      | Get the milk | done    |
+      | Feed the cat | pending |
+```
+:::
+
+### Where clause
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.13.0">v3.13.0</Link>
+
+The data can also be filtered using a `where` clause. For example, to get all records where `Status=pending`:
+
+:::note Scenario outline with externalised and filtered data
+
+```gherkin {1}
+  @Examples(file="data/items.csv",where="Status=pending")
+  Scenario Outline: I load items from CSV files
+    When I add a <Status> "<Item>" item
+```
+
+Will resolve to:
+
+```gherkin
+  Scenario Outline: I load items from CSV files
+    When I add a <Status> "<Item>" item
+    
+    Examples:
+      | Item         | Status  |
+      | Walk the dog | pending |
+      | Feed the cat | pending |
+```
+:::
+
