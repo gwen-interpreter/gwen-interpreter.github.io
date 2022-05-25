@@ -30,7 +30,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: '/docs/dsl/reference#text-ref-should-be-similar-to-text',
+          href: '/docs/advanced/examples-csv',
           position: 'left',
           label: "What's new?",
         },

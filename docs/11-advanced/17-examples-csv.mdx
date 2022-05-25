@@ -46,7 +46,7 @@ Will resolve to:
   Scenario Outline: I load items from CSV files
     When I add a <Status> "<Item>" item
     
-    Examples:
+    Examples: Data file: data/items.csv
       | Item         | Status  |
       | Walk the dog | pending |
       | Get the milk | done    |
@@ -74,7 +74,7 @@ Will resolve to:
   Scenario Outline: I load items from CSV files
     When I add a <Status> "<Item>" item
     
-    Examples:
+    Examples: Data file: data/items.csv, where Status=pending
       | Item         | Status  |
       | Walk the dog | pending |
       | Feed the cat | pending |
