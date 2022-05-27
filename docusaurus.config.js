@@ -36,27 +36,23 @@ module.exports = {
         },
         { 
           label: 'GitHub',
-          to: 'https://github.com/gwen-interpreter/gwen-web',
-          position: 'right',
-          className: 'navicon-top icon-github'
+          href: 'https://github.com/gwen-interpreter/gwen-web',
+          position: 'right'
         },
         {
           label: 'Blog',
-          to: 'https://gweninterpreter.wordpress.com',
-          position: 'right',
-          className: 'navicon-top icon-blog'
+          href: 'https://gweninterpreter.wordpress.com',
+          position: 'right'
         },
         {
           label: 'Twitter',
-          to: 'https://twitter.com/gweninterpreter',
-          position: 'right',
-          className: 'navicon-top icon-twitter'
+          href: 'https://twitter.com/gweninterpreter',
+          position: 'right'
         },
         {
           label: 'Support',
-          to: 'https://gwenify.com',
-          position: 'right',
-          className: 'navicon-top icon-support'
+          href: 'https://gwenify.com',
+          position: 'right'
         },
       ],
     },
