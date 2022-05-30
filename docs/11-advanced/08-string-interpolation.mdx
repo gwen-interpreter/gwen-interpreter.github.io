@@ -13,7 +13,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 It is often useful to reference provided properties, captured values, and string literals throughout your features. Gwen provides two interpolation mechanisms for doing this:
 
 - [Substitution](#interpolation-by-substitution) (recommended approach)
-- [Concatenation](#interpolation-by-concatenation)
+- [Concatenation](#interpolation-by-concatenation) (deprecated since [Gwen 3](/docs/gwen3))
 
 Interpolation occurs in the interpreter on every step in a feature before it is passed to Gwen for execution.
 
@@ -55,6 +55,12 @@ Scenario: By Substitution
 ```
 
 ### Interpolation by Concatenation
+
+:::caution Deprecated
+
+The concatentation method has been deprecated in favor of substitition since [Gwen 3](/docs/gwen3) (dropped in <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.14.0">v3.14.0</Link>)
+
+:::
 
 Concatenation involves joining string literals and named values together.
 
