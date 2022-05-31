@@ -50,8 +50,8 @@ Scenario: By Substitution
     
     Given my mechanism is "substitution"
       And my value is "${my.property}"
-      And my proposition is "By ${my mechanism}, my value is ${my value}"
-     Then my proposition should be "By substitution, my value is ${my.property}"
+      And my proposition is "By ${my mechanism}, my value will be ${my value}"
+     Then my proposition should be "By substitution, my value will be ${my.property}"
 ```
 
 ### Interpolation by Concatenation
@@ -71,6 +71,6 @@ Scenario: By Concatenation
     
     Given my mechanism is "concatenation"
       And my value is "" + my.property
-      And my proposition is "By " + my mechanism + ", my value is " + my value
-     Then my proposition should be "By concatenation, my value is " + my.property
+      And my proposition is "By " + my mechanism + ", my value will be " + my value
+     Then my proposition should be "By concatenation, my value will be " + my.property
 ```
