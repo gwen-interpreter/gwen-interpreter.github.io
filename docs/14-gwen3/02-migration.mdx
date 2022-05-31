@@ -373,6 +373,10 @@ The output directory for all Gwen reports now has a default value configured in 
 
 If you don't want any reports generated, invoke Gwen with the [`-f|--format`](/docs/cli#gwen-cli-options-format) CLI option passing in `none`.
 
-## 4. Log4j2
+## 4. String interpolation
+
+[Interpolation](/docs/advanced/string-interpolation#interpolation-by-substitution) by concatenation has been deprecated in favor of substitution. You should convert all usages of conatenation to their substitution equivalents. Concatenation has been dropped since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.14.0">v3.14.0</Link>.
+
+## 5. Log4j
 
 Gwen uses log4j2 as of v3.1.0 (and v2.54.0 for Gwen 2). If you are passing custom `log4j.properties` files to Gwen, you will need to update them to [v2 `log4j2.properties` files](https://logging.apache.org/log4j/2.x/manual/configuration.html#Configuration_with_Properties). 
