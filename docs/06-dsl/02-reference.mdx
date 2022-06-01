@@ -5711,6 +5711,10 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   I execute a unix system process "<expression>"
   ```
+  or since v3.14.2
+  ```gherkin
+  I execute unix system process "<expression>"
+  ```
   <p>Executes a local unix system process or shell script.</p>
   </summary>
   <p>Where</p>
@@ -5736,6 +5740,10 @@ Feature specs should be declarative and written in the language of your domain a
 
   ```gherkin
   I execute a unix system process "<expression>" delimited by "<delimiters>"
+  ```
+  or since v3.14.2
+  ```gherkin
+  I execute unix system process "<expression>" delimited by "<delimiters>"
   ```
   <p>Executes a delimited local unix system process or script.</p>
   </summary>
@@ -6776,7 +6784,12 @@ Feature specs should be declarative and written in the language of your domain a
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
-    <li><code>&lt;condition&gt;</code> the name of a binding containing a javascript function or expression that will return true or false</li>
+    <li>
+      <code>&lt;condition&gt;</code> the name of a binding containing a javascript function or expression that will return true or false
+      <ul>
+        <li>Since v3.14.1, the condition name cannot contain double qutoes</li>
+      </ul>
+    </li>
   </ul>
   <p>Example</p>
 
@@ -6814,7 +6827,12 @@ Feature specs should be declarative and written in the language of your domain a
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
-    <li><code>&lt;condition&gt;</code> the name of a binding containing a javascript function or expression that will return true or false</li>
+    <li>
+      <code>&lt;condition&gt;</code> the name of a binding containing a javascript function or expression that will return true or false
+      <ul>
+        <li>Since v3.14.1, the condition name cannot contain double qutoes</li>
+      </ul>
+    </li>
   </ul>
   <p>Example</p>
 
