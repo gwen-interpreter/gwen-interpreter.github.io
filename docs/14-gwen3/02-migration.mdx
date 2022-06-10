@@ -112,15 +112,23 @@ The following settings alias has been removed.
 
 ### New defaults
 
-The following settings have new defaults. If you want to continue using prior defaults for these, explicity set them in your current .properties file.
+The following settings have new defaults. If you want to continue using prior defaults for these, explicity set them in your current properties file.
 
-| Setting                                                                               | Prior default | New default   |
-| :------------------------------------------------------------------------------------ | :-----------: | :-----------: |
-| [`gwen.associative.meta`](/docs/settings/reference#gwen-associative-meta)             | `false`       | `true`        |
-| [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules)                 | `lenient`     | `strict`      |
-| [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode)                     | `imperative`  | `declarative` |
-| [`gwen.report.suppress.meta`](/docs/settings/reference#gwen-report-suppress-meta)     | `false`       | `true`        |
-| [`gwen.auto.discover.data.csv`](/docs/settings/reference#gwen-auto-discover-data-csv) | `true`        | `false`       |
+| Setting                                                                                                           | Prior default | New default   |
+| :---------------------------------------------------------------------------------------------------------------- | :-----------: | :-----------: |
+| [`gwen.associative.meta`](/docs/settings/reference#gwen-associative-meta)                                         | `false`       | `true`        |
+| [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules)                                             | `lenient`     | `strict`      |
+| [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode)                                                 | `imperative`  | `declarative` |
+| [`gwen.report.suppress.meta`](/docs/settings/reference#gwen-report-suppress-meta)                                 | `false`       | `true`        |
+| [`gwen.auto.discover.data.csv`](/docs/settings/reference#gwen-auto-discover-data-csv)                             | `true`        | `false`       |
+
+### New setttings impacting prior defaults
+
+The following new settings have defaults that change the default behavior in prior versions. If you want to preserve prior behavior, explicity set them in your current properties file.
+
+| Setting                                                                                                           | Since          | To preserve prior behavior | New default |
+| :---------------------------------------------------------------------------------------------------------------- | :------------: | :------------------------: | :---------: |
+| [`gwen.auto.bind.tableData.outline.examples`](/docs/settings/reference#gwen-auto-bind-tableData-outline-examples) | v3.15.0        | `false`                    | `true`      |
 
 ### New formats
 

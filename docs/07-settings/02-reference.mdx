@@ -186,6 +186,87 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
+<details id="gwen-auto-bind-tableData-outline-examples">
+  <summary class="setting">
+
+  ```properties
+  gwen.auto.bind.tableData.outline.examples
+  ```
+  <p>Controls whether or not to bind row data in outline examples tables to same named attributes in the current scope.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to make each cell in each row accessible as <code>$&#123;name&#125;</code> in the current scope and <code>&lt;name&gt;</code> in the template</li>
+    <li><code>false</code> to make each cell in each row accessible as <code>&lt;name&gt;</code> in the template only</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      auto {
+        bind {
+          tableData {
+            outline {
+              examples = true
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "auto": {
+          "bind": {
+            "tableData": {
+              "outline": {
+                "examples": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.auto.bind.tableData.outline.examples = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-auto-bind-tableData-outline-examples">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.15.0">v3.15.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-auto-discover-data-csv">
   <summary class="setting">
 
