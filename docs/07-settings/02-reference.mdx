@@ -1490,8 +1490,128 @@ import TabItem from '@theme/TabItem';
 
   <div class="grid-3">
     <div><Link to="#gwen-report-console-log-colors">Link</Link></div>
-    <div align="center"></div>
+    <div align="center"><div align="center">See also <Link to="/docs/reports/console#pretty-logging">Pretty console logging</Link></div></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-report-console-log-depth">
+  <summary class="setting">
+
+  ```properties
+  gwen.report.console.log.depth
+  ```
+  <p>Controls the step logging depth in the console report output.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>
+      A positive integer representing the step depth to log to
+      <ul>
+        <li>
+          or <code>infinity</code> to log to all depths
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      report {
+        console {
+          log {
+            depth = 1
+          }
+        }
+      }
+    }
+  ```
+
+  To log all depths:
+
+  ```json
+    gwen {
+      report {
+        console {
+          log {
+            depth = "infinity"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "report": {
+          "console": {
+            "log": {
+              "depth": 1
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  To log all depths:
+
+
+  ```json
+    {
+      "gwen": {
+        "report": {
+          "console": {
+            "log": {
+              "depth": "infinity"
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.report.console.log.depth = 1
+  ```
+
+  To log all depths:
+
+  ```properties
+    gwen.report.console.log.depth = infinity
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-report-console-log-depth">Link</Link></div>
+    <div align="center"><div align="center">See also <Link to="/docs/reports/console#pretty-logging">Pretty console logging</Link></div></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.15.0">v3.15.0</Link></div>
   </div>
 </details>
 
