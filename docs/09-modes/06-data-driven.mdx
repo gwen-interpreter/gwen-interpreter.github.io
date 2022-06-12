@@ -145,6 +145,85 @@ Gwen will read in the CSV file, and for each record will:
 
 A feature detail report will be generated for each data record. If you specify the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option, the feature will execute all records in parallel.
 
-## Outline data feeds
+## @Examples annotation
 
-See also: [CSV Driven Examples](/docs/advanced/examples-csv)
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.10.0">v2.10.0</Link>
+
+Consider the following scenario outline with an examples table
+
+:::note Scenario outline with inlined data
+
+```gherkin
+  Scenario Outline: I load items from CSV files
+    When I add a <Status> "<Item>" item
+    
+    Examples:
+      | Item         | Status  |
+      | Walk the dog | pending |
+      | Get the milk | done    |
+      | Feed the cat | pending |
+```
+:::
+
+The data table in the examples clause can be externalised to a CSV file and imported using the `@Examples` annotation as follows:
+
+:::note Scenario outline with externalised data
+
+```gherkin {1}
+  @Examples("data/items.csv")
+  Scenario Outline: I load items from CSV files
+    When I add a <Status> "<Item>" item
+```
+
+This will resolve to the same outline at runtime:
+
+```gherkin
+  Scenario Outline: I load items from CSV files
+    When I add a <Status> "<Item>" item
+    
+    Examples: Data file: data/items.csv
+      | Item         | Status  |
+      | Walk the dog | pending |
+      | Get the milk | done    |
+      | Feed the cat | pending |
+```
+:::
+
+### Where clause
+
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.13.0">v3.13.0</Link>
+
+The data can also be filtered using a `where` clause. For example, to get all the records where the `Status` column matches `pending`:
+
+:::note Scenario outline with externalised and filtered data
+
+```gherkin {1}
+  @Examples(file="data/items.csv",where="Status=pending")
+  Scenario Outline: I load items from CSV files
+    When I add a <Status> "<Item>" item
+```
+
+Will resolve to the following containing `pending` Status records only:
+
+```gherkin {6,7}
+  Scenario Outline: I load items from CSV files
+    When I add a <Status> "<Item>" item
+    
+    Examples: Data file: data/items.csv, where Status=pending
+      | Item         | Status  |
+      | Walk the dog | pending |
+      | Feed the cat | pending |
+```
+:::
+
+String interpolation syntax can also be used to reference a value in the current scope. For example, to get all the records where the `Status` column matches the value bound to an in-memory attribute named `SelectedStatus`:
+
+:::note Scenario outline with externalised and filtered data
+
+```gherkin {1}
+  @Examples(file="data/items.csv",where="Status=${SelectedStatus}")
+  Scenario Outline: I load items from CSV files
+    When I add a <Status> "<Item>" item
+```
+
+:::

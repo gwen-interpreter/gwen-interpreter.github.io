@@ -30,7 +30,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: '/docs/advanced/examples-csv',
+          href: '/docs/reports/console',
           position: 'left',
           label: "What's new?",
         },
