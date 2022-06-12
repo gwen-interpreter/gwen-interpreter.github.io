@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 
 > Since Gwen 3
 
-Pretty execution results and statistics are logged to the console in real time in sequential mode and deferred in [parallel](/docs/modes/parallel).
+Pretty execution results and statistics are logged to the console in real time (or deferred time in [parallel](/docs/modes/parallel) mode).
 
 ![Example pretty log](/img/log/gwen-pretty-log.png)
 
@@ -26,10 +26,10 @@ Colors are enabled by default and will be disabled if either:
 
 ### Logging depth
 
-The default logging depth is 1, meaning that only top level feature steps are logged. This can be overriden with the following setting to include meta steps too:
+The default logging depth is 1, meaning that only top level feature steps are logged. This can be overriden with the following setting to log meta steps too:
 - [`gwen.report.console.log.depth`](/docs/settings/reference#gwen-report-console-log-depth)
   - Default value is `1`
-  - Accepts a number representing the step depth to log to
+  - Accepts a positive number representing the step depth to log to
     - or `infinity` to log to all depths
 
 ## Verbose logging
