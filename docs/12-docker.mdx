@@ -176,8 +176,7 @@ This will be called by the `gwen` container in our `docker-compose.yml` file whe
 ```json {3}
 "scripts": {
   "gwen": "gwen",
-  "gwen:selenoid": "gwen -b -c gwen/browsers/selenoid.conf gwen/samples",
-  "SELENIUM_HUB=localhost yarn:selenoid"
+  "gwen:selenoid": "gwen -b -c gwen/browsers/selenoid.conf gwen/samples"
 }
 ```
 
