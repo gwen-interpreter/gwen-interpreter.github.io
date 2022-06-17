@@ -11,25 +11,29 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Running Gwen in Jenkins
 
-The easiest way to get Gwen running in [Jenkins](https://www.jenkins.io/) is to push your project to a Git repository and get it running in [Docker](/docs/docker). 
+The easiest way to get Gwen running in [Jenkins](https://www.jenkins.io/) is to push your project to a Git repository and [get it running in Docker](/docs/docker). Then it's just a matter of calling `docker-compose run gwen` in your Jenkins job or pipeline.  Everything including a [Selenoid](https://aerokube.com/selenoid/) browser environment and Gwen itself will spin up and run.
 
-Then it's just a matter of calling `docker-compose run gwen` in your Jenkins job or pipeline.  Everything including a [Selenoid](https://aerokube.com/selenoid/) browser environment and Gwen itself (and all it's dependencies) will then get spinned up and run.
+## Jenkins job
 
-## Pipeline job
+To run your Gwen project in Jenkins:
 
-To run your Gwen project in a [Jenkins pipeline](https://www.jenkins.io/doc/book/pipeline/):
-
-1. Create a `Jenkinsfile` file in the root of your Gwen project.
+1. Configure your Gwen project to [run in Docker](/docs/docker).
+2. Create a `Jenkinsfile` file in the root of your Gwen project.
 
 ```shell {4}
 /project                    # Your project root
 └── Jenkinsfile             # Jenkins pipeline script file
 ```
 
-2. Save the following content into the file.
+3. Save the following content into your *Jenkinsfile*.
 
 ```groovy
 pipeline {
+  parameters { 
+    booleanParam(name: 'parallel', defaultValue: false, description: 'Execute features in parallel') 
+    booleanParam(name: 'headless', defaultValue: false, description: 'Run browser in headless mode') 
+    booleanParam(name: 'dry_run', defaultValue: false, description: 'Validate without executing')
+  }
   agent {
       // an agent with docker installed
       label 'docker-agent'
@@ -46,7 +50,7 @@ pipeline {
       steps {
         script {
           // Spin up environment and execute Gwen in docker
-          sh "docker-compose run gwen"
+          sh "docker-compose run -e GWEN_PARALLEL=${params.parallel} -e GWEN_WEB_HEADLESS=${params.headless} -e GWEN_DRY_RUN=${params.dry_run} gwen"
         }
       }
       post {
@@ -68,12 +72,12 @@ pipeline {
 }
 ```
 
-3. Push or commit your project to a Git repostitory
+4. Push or commit your project to a Git repostitory
 
-4. Create a new [pipeline job](https://www.jenkins.io/doc/book/pipeline/getting-started/) in Jenkins and perform the following in the Pipeline configuration section:
+5. Create a new [pipeline job](https://www.jenkins.io/doc/book/pipeline/getting-started/) in Jenkins and perform the following in the Pipeline configuration section:
     - Checkout your Gwen project from Git
     - Specify the `Jenkinsfile` above as the script
     - Save the job
 
-5. Schedule or run the job in Jenkins
-    - Evaluation reports will be generated and published to each job execution (Gwen-Report links)
+6. Schedule or manually trigger your Jenkins job
+    - Evaluation reports will be generated and published on each run (Gwen-Report links)

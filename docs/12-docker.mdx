@@ -11,7 +11,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Running Gwen in Docker
 
-Sometimes it may be useful to run Gwen in a [docker](https://www.docker.com/) container. For example, if you want to run Gwen in a continuous integration pipeline on a build server or node agent.
+Sometimes it may be useful to run Gwen in a [docker](https://www.docker.com/) container. For example, if you want to run Gwen in a [Jenkins](/docs/jenkins) pipeline on a build server or node agent.
 
 ## Dockerfile
 The first thing you need to do is create a suitable docker image for Gwen to run in. It will need to have Java 8+, node 12+, bash and yarn installed (since we will be using yarn in the examples that follow).
@@ -98,6 +98,10 @@ services:
     environment:
       - SELENIUM_HUB=selenoid
       - NO_COLOR=1
+      - GWEN_PARALLEL
+      - GWEN_PARALLEL_FEATURES
+      - GWEN_DRY_RUN
+      - GWEN_WEB_HEADLESS
     volumes:
       - "$PWD:/project"
     working_dir: /project
@@ -198,6 +202,18 @@ Finally, run the following command in your project directory to spin everything 
 
 ```shell
 docker-compose run gwen
+```
+
+To run features in parallel
+
+```shell
+docker-compose run -e GWEN_PARALLEL=true gwen
+```
+
+To run features in parallel and the browser in headless mode
+
+```shell
+docker-compose run -e GWEN_PARALLEL=true -e GWEN_WEB_HEADLESS=true gwen
 ```
 
 Tear it all down when done:

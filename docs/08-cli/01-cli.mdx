@@ -47,6 +47,25 @@ Command: init [dir]
   dir                     Project directory to initialise (default is gwen)
 ```
 
+### Environment variables
+
+Since v3.16.0, the following environment variables can be set to enable or disable settings or CLI options.
+
+- Valid values that each variable can accept include:
+  - `true` to enable a setting or CLI option
+  - or `false` to disable it
+
+| Environment variable     | Overrides setting                                                                                  | Enables/Disables CLI option                                  |
+| :----------------------- | :------------------------------------------------------------------------------------------------- | :----------------------------------------------------------- |
+| `GWEN_DRY_RUN`           | [`gwen.cli.options.dryRun`](/docs/settings/reference#gwen-cli-options-dry-run)                     | [`-n, --dry-run`](#gwen-cli-options-dry-run)                 |
+| `GWEN_PARALLEL`          | [`gwen.cli.options.parallel`](/docs/settings/reference#gwen-cli-options-parallel)                  | [`--parallel`](#gwen-cli-options-parallel)                   |
+| `GWEN_PARALLEL_FEATURES` | [`gwen.cli.options.parallelFeatures`](/docs/settings/reference#gwen-cli-options-parallel-features) | [`--parallel-features`](#gwen-cli-options-parallel-features) |
+| `GWEN_WEB_HEADLESS`      | [`gwen.web.browser.headless`](/docs/settings/reference#gwen-web-browser-headless)                  |                                                              |
+
+<br/>
+
+Settings or options explicitly specified on the command line will override values set by the above variables.
+
 ### System properties and JVM options
 
 In addition to the above, you can also pass any number of Java system properties or JVM options to the CLI:
@@ -269,7 +288,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
   </summary>
 
   <p>Will utilise all avaialable CPU cores unless <Link to="/docs/settings/reference#gwen-parallel-maxThreads"><code>gwen.parallel.maxThreads</code></Link> is configured with an explicit maximum.</p>
-  
+
   <p>Examples</p>
 
   <Tabs
@@ -570,7 +589,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-parallel">Link</Link></div>
-    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-parallel"><code>gwen.cli.options.parallel</code></Link></div>
+    <div align="center">Defaults to: <Link to="#environment-variables"><code>GWEN_PARALLEL</code></Link> or <Link to="/docs/settings/reference#gwen-cli-options-parallel"><code>gwen.cli.options.parallel</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
@@ -727,7 +746,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-parallel-features">Link</Link></div>
-    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-parallel-features"><code>gwen.cli.options.parallelFeatures</code></Link></div>
+    <div align="center">Defaults to: <Link to="#environment-variables"><code>GWEN_PARALLEL_FEATURES</code></Link> or <Link to="/docs/settings/reference#gwen-cli-options-parallel-features"><code>gwen.cli.options.parallelFeatures</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.22.1">v2.22.1</Link></div>
   </div>
 </details>
@@ -893,7 +912,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-batch">Link</Link></div>
-    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-batch"><code>gwen.cli.options.batch</code></Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings/reference#gwen-cli-options-batch"><code>gwen.cli.options.batch</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
@@ -1003,7 +1022,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-verbose">Link</Link></div>
-    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-verbose"><code>gwen.cli.options.verbose</code></Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings/reference#gwen-cli-options-verbose"><code>gwen.cli.options.verbose</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
   </div>
 </details>
@@ -1238,7 +1257,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-dry-run">Link</Link></div>
-    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-dry-run"><code>gwen.cli.options.dryRun</code></Link></div>
+    <div align="center">Defaults to: <Link to="#environment-variables"><code>GWEN_DRY_RUN</code></Link> or <Link to="/docs/settings/reference#gwen-cli-options-dry-run"><code>gwen.cli.options.dryRun</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
@@ -1364,7 +1383,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-conf">Link</Link></div>
-    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-conf"><code>gwen.cli.options.conf</code></Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings/reference#gwen-cli-options-conf"><code>gwen.cli.options.conf</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
   </div>
 </details>
@@ -1566,7 +1585,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-report">Link</Link></div>
-    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-report"><code>gwen.cli.options.report</code></Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings/reference#gwen-cli-options-report"><code>gwen.cli.options.report</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
@@ -1700,7 +1719,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-format">Link</Link></div>
-    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-format"><code>gwen.cli.options.format</code></Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings/reference#gwen-cli-options-format"><code>gwen.cli.options.format</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
@@ -1873,7 +1892,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-tags">Link</Link></div>
-    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-tags"><code>gwen.cli.options.tags</code></Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings/reference#gwen-cli-options-tags"><code>gwen.cli.options.tags</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
@@ -1999,7 +2018,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-input-data">Link</Link></div>
-    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-input-data"><code>gwen.cli.options.inputData</code></Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings/reference#gwen-cli-options-input-data"><code>gwen.cli.options.inputData</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
@@ -2119,7 +2138,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-meta">Link</Link></div>
-    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-meta"><code>gwen.cli.options.meta</code></Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings/reference#gwen-cli-options-meta"><code>gwen.cli.options.meta</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
@@ -2259,7 +2278,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-features">Link</Link></div>
-    <div align="center">Setting: <Link to="/docs/settings/reference#gwen-cli-options-features"><code>gwen.cli.options.features</code></Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings/reference#gwen-cli-options-features"><code>gwen.cli.options.features</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
