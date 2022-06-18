@@ -134,7 +134,27 @@ networks:
     "default": "latest",
     "versions": {
       "latest": {
-        "image": "selenoid/chrome:latest",
+        "image": "selenoid/chrome",
+        "port": "4444",
+        "path": "/"
+      }
+    }
+  },
+  "firefox": {
+    "default": "latest",
+    "versions": {
+      "latest": {
+        "image": "selenoid/firefox",
+        "port": "4444",
+        "path": "/wd/hub"
+      }
+    }
+  },
+  "MicrosoftEdge": {
+    "default": "latest",
+    "versions": {
+      "latest": {
+        "image": "browsers/edge",
         "port": "4444",
         "path": "/"
       }

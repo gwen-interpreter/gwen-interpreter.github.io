@@ -29,20 +29,27 @@ To run your Gwen project in Jenkins:
 
 ```groovy
 pipeline {
-  parameters { 
-    choice(name: 'browser', choices: ['chrome', 'firefox', 'safari', 'edge', 'ie'], description: 'Target web browser')
-    booleanParam(name: 'dry_run', defaultValue: false, description: 'Validate without executing')
-    booleanParam(name: 'parallel', defaultValue: false, description: 'Execute features in parallel') 
-    booleanParam(name: 'headless', defaultValue: false, description: 'Run browser in headless mode') 
-  }
   agent {
       // an agent with docker installed
       label 'docker-agent'
+  }
+  parameters { 
+    choice(name: 'browser', choices: ['chrome', 'firefox', 'edge'], description: 'Target web browser')
+    booleanParam(name: 'dry_run', defaultValue: false, description: 'Validate without executing')
+    booleanParam(name: 'parallel', defaultValue: false, description: 'Enable parallel execution') 
+    booleanParam(name: 'headless', defaultValue: false, description: 'Enable headless browser') 
+  }
+  environment {
+    GWEN_BROWSER = "${params.browser}"
+    GWEN_DRY_RUN = "${params.dry_run}"
+    GWEN_PARALLEL = "${params.parallel}"
+    GWEN_HEADLESS = "${params.headless}"
   }
   stages {
     stage("Prepare") {
       steps {
         script {
+          // Create output dir to avoid potential permission issues in docker
           sh 'mkdir -p gwen/output'
         }
       }
@@ -51,7 +58,7 @@ pipeline {
       steps {
         script {
           // Spin up environment and execute Gwen in docker
-          sh "docker-compose run -e GWEN_BROWSER=${params.browser} -e GWEN_DRY_RUN=${params.dry_run} -e GWEN_PARALLEL=${params.parallel} -e GWEN_HEADLESS=${params.headless} gwen"
+          sh "docker-compose run gwen"
         }
       }
       post {
