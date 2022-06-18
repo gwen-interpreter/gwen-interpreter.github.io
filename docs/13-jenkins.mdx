@@ -13,19 +13,71 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Jenkins job
 
-To run your Gwen project in Jenkins:
+To run your Gwen project in Jenkins, get your Gwen project [running in Docker](/docs/docker) first. Then create a Jenkins pipeline file in your project using the [`init --jenkins`](/docs/cli#init-command) command as shown below. This command is available since Gwen v3.16.0. You will need to create the `Jenkinsfile` manually if you are using an older version.
 
-1. Get your Gwen project [running in Docker](/docs/docker) first.
+<Tabs
+  groupId="setup"
+  defaultValue="js"
+  values={[
+    {label: 'JS Project', value: 'js'},
+  ]}>
 
-2. If you initialised your Gwen project directory using the [`gwen init`](/docs/cli#init-command) command with Gwen v3.16.0 or higher, you will already have a `Jenkinsfile` ready and can skip straight Step 4. Otherwise you will need to create the Jenkins file in the `gwen` directory of your project as shown here.
+  <TabItem value="js">
 
-```shell {4}
+  <Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="npm">
+
+  Run the following command in the root of your project to generate a Jenkins pipeline file
+  
+  ```shell
+  npm run gwen init --jenkins
+  ```
+      
+  </TabItem>
+
+  <TabItem value="yarn">
+
+  Run the following command in the root of your project to generate a Jenkins pipeline file
+  
+  ```shell
+  yarn gwen init --jenkins
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  Run the following command in the root of your project to generate a Jenkins pipeline file
+  
+  ```shell
+  pnpm gwen init --jenkins
+  ```
+  
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  </Tabs>
+
+The following file will be created
+
+```shell {3}
 ./project                    # Your project root
- └── /gwen
-     └──Jenkinsfile          # Jenkins pipeline script file
+└── /gwen
+    └──Jenkinsfile          # Jenkins pipeline script file
 ```
 
-3. Save the following content into your *Jenkinsfile*.
+With the following content
 
 ```groovy
 pipeline {
@@ -80,12 +132,10 @@ pipeline {
 }
 ```
 
-4. Push or commit your project to a Git repostitory
+Push or commit your project to a Git repostitory
+  - Checkout your Gwen project from Git
+  - Specify the `gwen/Jenkinsfile` above as the script
+  - Save the job
 
-5. Create a new [pipeline job](https://www.jenkins.io/doc/book/pipeline/getting-started/) in Jenkins and perform the following in the Pipeline configuration section:
-    - Checkout your Gwen project from Git
-    - Specify the `gwen/Jenkinsfile` above as the script
-    - Save the job
-
-6. Schedule or manually trigger your Jenkins job
-    - Evaluation reports will be generated and published on each run (Gwen-Report links)
+Schedule or manually trigger your Jenkins job
+  - Evaluation reports will be generated and published on each run (Gwen-Report links)

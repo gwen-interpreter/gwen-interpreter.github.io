@@ -43,8 +43,10 @@ Usage: gwen [options] [files|dirs]
   -i, --input-data file   Input data feed (CSV file with column headers)
   -m, --meta files|dirs   Meta files or directories to load (comma separated)
   files|dirs              Feature files or directories to execute (space separated)
-Command: init [dir]
+Command: init [options] [dir]
   dir                     Project directory to initialise (default is gwen)
+  --docker                Generate files in project for running Gwen in Docker
+  --jenkins               Generate files in project for running Gwen in Jenkins
 ```
 
 ### Environment variables
@@ -2128,7 +2130,7 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
   <summary class="cli-options">
 
   ```shell
-  init [dir]
+  init [options] [dir]
   ```
   <p>Command for initialising Gwen in a project directory.</p>
 
@@ -2137,6 +2139,20 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
   <p>Where</p>
 
   <ul>
+    <li><code>[options]</code> (only supported for JS projects) Can be one or more space separated switches including:
+      <ul>
+        <li><code>--docker</code>
+          <ul>
+            <li>To generate all the files in your project for running Gwen in <Link to="/docs/docker">Docker</Link></li>
+          </ul>
+        </li>
+        <li><code>--jenkins</code>
+          <ul>
+            <li>To generate all the files in your project for running Gwen in <Link to="/docs/jenkins">Jenkins</Link> (implicity enables <code>--docker</code> also)</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
     <li><code>[dir]</code> is
       <ul>
         <li>Not required for JS projects
@@ -2214,21 +2230,16 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
   ./                           # Project root
    ├── gwen.conf               # Gwen settings file
    └── /gwen
-       ├── docker-compose.yml  # Docker compose file
-       ├── Dockerfile          # Docker image file
-       ├── Jenkinsfile         # Jenkins pipeline file
        ├── README.md
        ├── .gitignore          # Git ignore file
        ├── /browsers           # Browser settings
-       │   ├── browsers.json   # Selenoid browsers file
        │   ├── chrome.conf
        │   ├── edge.conf
        │   ├── firefox.conf
        │   ├── ie.conf
        │   ├── README.md
        │   ├── remote.conf     # Remote web driver settings
-       │   ├── safari.conf
-       │   └── selenoid.conf   # Selenoid settings
+       │   └──safari.conf
        ├── /env                # Environment settings
        │   ├── dev.conf
        │   ├── local.conf
@@ -2240,6 +2251,26 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
        ├── /meta               # Optional common/reusable meta
        │   └── README.md
        └── /samples            # Sample features and meta
+  ```
+
+  <p>Including the <code>--docker</code> option will generate and add the following Docker and Selenoid files to your project</p>
+
+  ```
+  ./                           # Project root
+   └── /gwen
+       ├── docker-compose.yml  # Docker compose file
+       ├── Dockerfile          # Docker image file
+       └── /browsers           # Browser settings
+           ├── browsers.json   # Selenoid browsers file
+           └── selenoid.conf   # Selenoid settings
+  ```
+
+  <p>Including the <code>--jenkins</code> option will generate and add the following Jenkins file to your project (and also the Docker and Selenoid files above if they do not already exist).</p>
+
+  ```
+  ./                           # Project root
+   └── /gwen
+       └── Jenkinsfile         # Jenkins pipeline file
   ```
 
   </TabItem>  
@@ -2257,21 +2288,16 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
   ```
   ./                       # Project root
    ├── gwen.conf           # Gwen settings file
-   ├── docker-compose.yml  # Docker compose file
-   ├── Dockerfile          # Docker image file
-   ├── Jenkinsfile         # Jenkins pipeline file
    ├── README.md
    ├── .gitignore          # Git ignore file
    ├── /browsers           # Browser settings
-   │   ├── browsers.json   # Selenoid browsers file
    │   ├── chrome.conf
    │   ├── edge.conf
    │   ├── firefox.conf
    │   ├── ie.conf
    │   ├── README.md
    │   ├── remote.conf     # Remote web driver settings
-   │   ├── safari.conf
-   │   └── selenoid.conf   # Selenoid settings
+   │   └── safari.conf
    ├── /env                # Environment settings
    │   ├── dev.conf
    │   ├── local.conf
