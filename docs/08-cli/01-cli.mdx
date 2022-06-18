@@ -28,8 +28,8 @@ Usage: gwen [options] [files|dirs]
   --version               Print Gwen version
   --help                  Print CLI usage
   --parallel              Execute features or scenarios in parallel
-                          - depending on gwen.state.level (default is feature)
-  --parallel-features     Execute features in parallel (unconditionally)
+                          - features if gwen.state.level = feature (default)
+                          - scenarios if gwen.state.level = scenario
   -b, --batch             Exit when execution completes (omit to open REPL)
   -v, --verbose           Enable verbose log output
   -d, --debug             Enable breakpoints and interactive debugging
@@ -55,12 +55,11 @@ Since v3.16.0, the following environment variables can be set to enable or disab
   - `true` to enable a setting or CLI option
   - or `false` to disable it
 
-| Environment variable     | Overrides setting                                                                                  | Enables/Disables CLI option                                  |
-| :----------------------- | :------------------------------------------------------------------------------------------------- | :----------------------------------------------------------- |
-| `GWEN_DRY_RUN`           | [`gwen.cli.options.dryRun`](/docs/settings/reference#gwen-cli-options-dry-run)                     | [`-n, --dry-run`](#gwen-cli-options-dry-run)                 |
-| `GWEN_PARALLEL`          | [`gwen.cli.options.parallel`](/docs/settings/reference#gwen-cli-options-parallel)                  | [`--parallel`](#gwen-cli-options-parallel)                   |
-| `GWEN_PARALLEL_FEATURES` | [`gwen.cli.options.parallelFeatures`](/docs/settings/reference#gwen-cli-options-parallel-features) | [`--parallel-features`](#gwen-cli-options-parallel-features) |
-| `GWEN_WEB_HEADLESS`      | [`gwen.web.browser.headless`](/docs/settings/reference#gwen-web-browser-headless)                  |                                                              |
+| Environment variable     | Overrides setting                                                                 | Enables/Disables CLI option                                  |
+| :----------------------- | :-------------------------------------------------------------------------------- | :----------------------------------------------------------- |
+| `GWEN_DRY_RUN`           | [`gwen.cli.options.dryRun`](/docs/settings/reference#gwen-cli-options-dry-run)    | [`-n, --dry-run`](#gwen-cli-options-dry-run)                 |
+| `GWEN_PARALLEL`          | [`gwen.cli.options.parallel`](/docs/settings/reference#gwen-cli-options-parallel) | [`--parallel`](#gwen-cli-options-parallel)                   |
+| `GWEN_WEB_HEADLESS`      | [`gwen.web.browser.headless`](/docs/settings/reference#gwen-web-browser-headless) |                                                              |
 
 <br/>
 
@@ -253,8 +252,8 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
     --version               Print Gwen version
     --help                  Print CLI usage
     --parallel              Execute features or scenarios in parallel
-                            - depending on gwen.state.level (default is feature)
-    --parallel-features     Execute features in parallel (unconditionally)
+                            - features if gwen.state.level = feature (default)
+                            - scenarios if gwen.state.level = scenario
     -b, --batch             Exit when execution completes (omit to open REPL)
     -v, --verbose           Enable verbose log output
     -n, --dry-run           Check all syntax and bindings and report errors
@@ -591,163 +590,6 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
     <div><Link to="#gwen-cli-options-parallel">Link</Link></div>
     <div align="center">Defaults to: <Link to="#environment-variables"><code>GWEN_PARALLEL</code></Link> or <Link to="/docs/settings/reference#gwen-cli-options-parallel"><code>gwen.cli.options.parallel</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-cli-options-parallel-features">
-  <summary class="cli-options">
-
-  ```shell
-  --parallel-features
-  ```
-  <p>Optional switch for executing features in parallel (one per CPU core) regardless of state level. Omit to execute sequentially.</p>
-  </summary>
-
-  <p>Will utilise all avaialable CPU cores unless <Link to="/docs/settings/reference#gwen-parallel-maxThreads"><code>gwen.parallel.maxThreads</code></Link> is configured with an explicit maximum.</p>
-
-  <p>Examples</p>
-
-  <Tabs
-  groupId="setup"
-  defaultValue="js"
-  values={[
-    {label: 'JS Project', value: 'js'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="js">
-
-  <Tabs
-  groupId="jstool"
-  defaultValue="yarn"
-  values={[
-    {label: 'npm', value: 'npm'},
-    {label: 'Yarn', value: 'yarn'},
-    {label: 'pnpm', value: 'pnpm'}
-  ]}>
-
-  <TabItem value="npm">
-
-  Provide <em>parallel-features</em> switch to execute all feature files in a given directory in parallel
-
-  ```shell
-  npm run gwen -- -b --parallel-features gwen/features/dir
-  ```
-
-  Provide <em>parallel-features</em> switch to execute the given feature files in parallel
-
-  ```shell
-  npm run gwen -- -b --parallel-features gwen/features/file1.feature gwen/features/file2.feature 
-  ```
-
-  Omit <em>parallel-features</em> switch to execute all feature files in a given directory in sequence
-
-  ```shell
-  npm run gwen -- -b gwen/features/dir
-  ```
-
-  Omit <em>parallel-features</em> switch to execute the given feature files in sequence
-
-  ```shell
-  npm run gwen -- -b gwen/features/file1.feature gwen/features/file2.feature 
-  ```
-
-  </TabItem>
-
-  <TabItem value="yarn">
-
-  Provide <em>parallel-features</em> switch to execute all feature files in a given directory in parallel
-
-  ```shell
-  yarn gwen -b --parallel-features gwen/features/dir
-  ```
-
-  Provide <em>parallel-features</em> switch to execute the given feature files in parallel
-
-  ```shell
-  yarn gwen -b --parallel-features gwen/features/file1.feature gwen/features/file2.feature 
-  ```
-
-  Omit <em>parallel-features</em> switch to execute all feature files in a given directory in sequence
-
-  ```shell
-  yarn -b gwen/features/dir
-  ```
-
-  Omit <em>parallel-features</em> switch to execute the given feature files in sequence
-
-  ```shell
-  yarn -b gwen/features/file1.feature gwen/features/file2.feature 
-  ```
-
-  </TabItem>
-
-  <TabItem value="pnpm">
-
-  Provide <em>parallel-features</em> switch to execute all feature files in a given directory in parallel
-
-  ```shell
-  pnpm gwen -b --parallel-features gwen/features/dir
-  ```
-
-  Provide <em>parallel-features</em> switch to execute the given feature files in parallel
-
-  ```shell
-  pnpm gwen -b --parallel-features gwen/features/file1.feature gwen/features/file2.feature 
-  ```
-
-  Omit <em>parallel-features</em> switch to execute all feature files in a given directory in sequence
-
-  ```shell
-  pnpm -b gwen/features/dir
-  ```
-
-  Omit <em>parallel-features</em> switch to execute the given feature files in sequence
-
-  ```shell
-  pnpm -b gwen/features/file1.feature gwen/features/file2.feature 
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  Provide <em>parallel-features</em> switch to execute all feature files in a given directory in parallel
-
-  ```shell
-  gwen -b --parallel-features features/dir
-  ```
-
-  Provide <em>parallel-features</em> switch to execute the given feature files in parallel
-
-  ```shell
-  gwen -b --parallel-features features/file1.feature features/file2.feature 
-  ```
-
-  Omit <em>parallel-features</em> switch to execute all feature files in a given directory in sequence
-
-  ```shell
-  gwen -b features/dir
-  ```
-
-  Omit <em>parallel-features</em> switch to execute the given feature files in sequence
-
-  ```shell
-  gwen -b features/file1.feature features/file2.feature 
-  ```
-
-  </TabItem>
-  
-  </Tabs>  
-
-  <div class="grid-3">
-    <div><Link to="#gwen-cli-options-parallel-features">Link</Link></div>
-    <div align="center">Defaults to: <Link to="#environment-variables"><code>GWEN_PARALLEL_FEATURES</code></Link> or <Link to="/docs/settings/reference#gwen-cli-options-parallel-features"><code>gwen.cli.options.parallelFeatures</code></Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.22.1">v2.22.1</Link></div>
   </div>
 </details>
 

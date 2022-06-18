@@ -18,7 +18,6 @@ Gwen can execute features and scenarios in parallel.
 
 > Features will run in parallel if you specify:
 > -  the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option and your [state level](/docs/settings/reference#gwen-state-level) is set to `feature`
-> - or the [`--parallel-features`](/docs/cli#gwen-cli-options-parallel-features) CLI option (regardless of state level)
 
 If you launch Gwen on a quad core machine with the `--parallel` option passing in four feature files (or a single directory containing 4 feature files), then the four features will run in parallel across the four cores. If you instead provide five features, then four of them will execute in parallel and the remaining one will wait until one of them completes and then run on that available core.
 
