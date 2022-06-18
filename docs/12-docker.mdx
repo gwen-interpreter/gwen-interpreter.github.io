@@ -98,9 +98,10 @@ services:
     environment:
       - SELENIUM_HUB=selenoid
       - NO_COLOR=1
-      - GWEN_PARALLEL
+      - GWEN_BROWSER
       - GWEN_DRY_RUN
-      - GWEN_WEB_HEADLESS
+      - GWEN_PARALLEL
+      - GWEN_HEADLESS
     volumes:
       - "$PWD:/project"
     working_dir: /project
@@ -212,7 +213,7 @@ docker-compose run -e GWEN_PARALLEL=true gwen
 To run features in parallel and the browser in headless mode
 
 ```shell
-docker-compose run -e GWEN_PARALLEL=true -e GWEN_WEB_HEADLESS=true gwen
+docker-compose run -e GWEN_PARALLEL=true -e GWEN_HEADLESS=true gwen
 ```
 
 Tear it all down when done:

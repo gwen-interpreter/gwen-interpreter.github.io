@@ -49,17 +49,14 @@ Command: init [dir]
 
 ### Environment variables
 
-Since v3.16.0, the following environment variables can be set to enable or disable settings or CLI options.
+Since v3.16.0, the following environment variables can be set to override configured settings or default CLI options.
 
-- Valid values that each variable can accept include:
-  - `true` to enable a setting or CLI option
-  - or `false` to disable it
-
-| Environment variable     | Overrides setting                                                                 | Enables/Disables CLI option                                  |
-| :----------------------- | :-------------------------------------------------------------------------------- | :----------------------------------------------------------- |
-| `GWEN_DRY_RUN`           | [`gwen.cli.options.dryRun`](/docs/settings/reference#gwen-cli-options-dry-run)    | [`-n, --dry-run`](#gwen-cli-options-dry-run)                 |
-| `GWEN_PARALLEL`          | [`gwen.cli.options.parallel`](/docs/settings/reference#gwen-cli-options-parallel) | [`--parallel`](#gwen-cli-options-parallel)                   |
-| `GWEN_WEB_HEADLESS`      | [`gwen.web.browser.headless`](/docs/settings/reference#gwen-web-browser-headless) |                                                              |
+| Environment variable     | Values                                                         | Overrides setting                                                                 | Enables/Disables CLI option                  |
+| :----------------------- | -------------------------------------------------------------- | :-------------------------------------------------------------------------------- | :------------------------------------------- |
+| `GWEN_BROWSER`           | <code>chrome&#124;firefox&#124;safari&#124;edge&#124;ie</code> | [`gwen.target.browser`](/docs/settings/reference#gwen-target-browser)             |                                              |
+| `GWEN_DRY_RUN`           | <code>true&#124;false</code>                                   | [`gwen.cli.options.dryRun`](/docs/settings/reference#gwen-cli-options-dry-run)    | [`-n, --dry-run`](#gwen-cli-options-dry-run) |
+| `GWEN_PARALLEL`          | <code>true&#124;false</code>                                   | [`gwen.cli.options.parallel`](/docs/settings/reference#gwen-cli-options-parallel) | [`--parallel`](#gwen-cli-options-parallel)   |
+| `GWEN_HEADLESS`          | <code>true&#124;false</code>                                   | [`gwen.web.browser.headless`](/docs/settings/reference#gwen-web-browser-headless) |                                              |
 
 <br/>
 

@@ -30,9 +30,10 @@ To run your Gwen project in Jenkins:
 ```groovy
 pipeline {
   parameters { 
+    choice(name: 'browser', choices: ['chrome', 'firefox', 'safari', 'edge', 'ie'], description: 'Target web browser')
+    booleanParam(name: 'dry_run', defaultValue: false, description: 'Validate without executing')
     booleanParam(name: 'parallel', defaultValue: false, description: 'Execute features in parallel') 
     booleanParam(name: 'headless', defaultValue: false, description: 'Run browser in headless mode') 
-    booleanParam(name: 'dry_run', defaultValue: false, description: 'Validate without executing')
   }
   agent {
       // an agent with docker installed
@@ -50,7 +51,7 @@ pipeline {
       steps {
         script {
           // Spin up environment and execute Gwen in docker
-          sh "docker-compose run -e GWEN_PARALLEL=${params.parallel} -e GWEN_WEB_HEADLESS=${params.headless} -e GWEN_DRY_RUN=${params.dry_run} gwen"
+          sh "docker-compose run -e GWEN_BROWSER=${params.browser} -e GWEN_DRY_RUN=${params.dry_run} -e GWEN_PARALLEL=${params.parallel} -e GWEN_HEADLESS=${params.headless} gwen"
         }
       }
       post {
