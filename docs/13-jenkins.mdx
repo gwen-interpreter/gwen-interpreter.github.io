@@ -11,18 +11,18 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Running Gwen in Jenkins
 
-The easiest way to get Gwen running in [Jenkins](https://www.jenkins.io/) is to push your project to a Git repository and [get it running in Docker](/docs/docker). Then it's just a matter of calling `docker-compose run gwen` in your Jenkins job or pipeline.  Everything including a [Selenoid](https://aerokube.com/selenoid/) browser environment and Gwen itself will spin up and run.
-
 ## Jenkins job
 
 To run your Gwen project in Jenkins:
 
-1. Configure your Gwen project to [run in Docker](/docs/docker).
-2. Create a `Jenkinsfile` file in the root of your Gwen project.
+1. Get your Gwen project [running in Docker](/docs/docker) first.
+
+2. If you initialised your Gwen project directory using the [`gwen init`](/docs/cli#init-command) command with Gwen v3.16.0 or higher, you will already have a `Jenkinsfile` ready and can skip straight Step 4. Otherwise you will need to create the Jenkins file in the `gwen` directory of your project as shown here.
 
 ```shell {4}
-/project                    # Your project root
-└── Jenkinsfile             # Jenkins pipeline script file
+./project                    # Your project root
+ └── /gwen
+     └──Jenkinsfile          # Jenkins pipeline script file
 ```
 
 3. Save the following content into your *Jenkinsfile*.
@@ -58,12 +58,12 @@ pipeline {
       steps {
         script {
           // Spin up environment and execute Gwen in docker
-          sh "docker-compose run gwen"
+          sh "docker-compose -f gwen/docker-compose.yml run gwen"
         }
       }
       post {
         always {
-          sh "docker-compose down"
+          sh "docker-compose -f gwen/docker-compose.yml down"
           archiveArtifacts artifacts: 'gwen/output/reports/**'
           publishHTML(target: [
                   allowMissing         : false,
@@ -84,7 +84,7 @@ pipeline {
 
 5. Create a new [pipeline job](https://www.jenkins.io/doc/book/pipeline/getting-started/) in Jenkins and perform the following in the Pipeline configuration section:
     - Checkout your Gwen project from Git
-    - Specify the `Jenkinsfile` above as the script
+    - Specify the `gwen/Jenkinsfile` above as the script
     - Save the job
 
 6. Schedule or manually trigger your Jenkins job

@@ -2211,29 +2211,35 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
   <p>The <code>init</code> command will generate the following Gwen files and subdirectories in your project</p>
 
   ```
-    /js-project                 # Your JS project root
-    ├── gwen.conf               # Project settings
-    └── /gwen
-        ├── .gitignore          # Git ignore file
-        ├── README.md
-        ├── /browsers           # Browser settings
-        │   ├── chrome.conf
-        │   ├── edge.conf
-        │   ├── firefox.conf
-        │   ├── safari.conf
-        │   ├── ie.conf
-        │   ├── remote.conf     # Remote web driver settings
-        │   └── README.md
-        ├── /env                # Environment settings
-        │   ├── local.conf
-        │   ├── dev.conf
-        │   ├── test.conf
-        │   └── README.md
-        ├── /features           # Features and associative meta
-        │   └── README.md
-        ├── /meta               # Optional common/reusable meta
-        │   └── README.md
-        └── /samples            # Sample features and meta
+  ./                           # Project root
+   ├── gwen.conf               # Gwen settings file
+   └── /gwen
+       ├── docker-compose.yml  # Docker compose file
+       ├── Dockerfile          # Docker image file
+       ├── Jenkinsfile         # Jenkins pipeline file
+       ├── README.md
+       ├── .gitignore          # Git ignore file
+       ├── /browsers           # Browser settings
+       │   ├── browsers.json   # Selenoid browsers file
+       │   ├── chrome.conf
+       │   ├── edge.conf
+       │   ├── firefox.conf
+       │   ├── ie.conf
+       │   ├── README.md
+       │   ├── remote.conf     # Remote web driver settings
+       │   ├── safari.conf
+       │   └── selenoid.conf   # Selenoid settings
+       ├── /env                # Environment settings
+       │   ├── dev.conf
+       │   ├── local.conf
+       │   ├── prod.conf
+       │   ├── README.md
+       │   └── test.conf
+       ├── /features           # Features and associative meta
+       │   └── README.md
+       ├── /meta               # Optional common/reusable meta
+       │   └── README.md
+       └── /samples            # Sample features and meta
   ```
 
   </TabItem>  
@@ -2249,28 +2255,34 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
   <p>The <code>init</code> command will generate the following Gwen files and subdirectories in your project</p>
 
   ```
-    /gwen-project           # Your standalone project root
-    ├── gwen.conf           # Project settings
-    ├── .gitignore          # Git ignore file
-    ├── README.md
-    ├── /browsers           # Browser settings
-    │   ├── chrome.conf
-    │   ├── edge.conf
-    │   ├── firefox.conf
-    │   ├── safari.conf
-    │   ├── ie.conf
-    │   ├── remote.conf     # Remote web driver settings
-    │   └── README.md
-    ├── /env                # Environment settings
-    │   ├── local.conf
-    │   ├── dev.conf
-    │   ├── test.conf
-    │   └── README.md
-    ├── /features           # Features and associative meta
-    │   └── README.md
-    ├── /meta               # Optional common/reusable meta
-    │   └── README.md
-    └── /samples            # Sample features and meta
+  ./                       # Project root
+   ├── gwen.conf           # Gwen settings file
+   ├── docker-compose.yml  # Docker compose file
+   ├── Dockerfile          # Docker image file
+   ├── Jenkinsfile         # Jenkins pipeline file
+   ├── README.md
+   ├── .gitignore          # Git ignore file
+   ├── /browsers           # Browser settings
+   │   ├── browsers.json   # Selenoid browsers file
+   │   ├── chrome.conf
+   │   ├── edge.conf
+   │   ├── firefox.conf
+   │   ├── ie.conf
+   │   ├── README.md
+   │   ├── remote.conf     # Remote web driver settings
+   │   ├── safari.conf
+   │   └── selenoid.conf   # Selenoid settings
+   ├── /env                # Environment settings
+   │   ├── dev.conf
+   │   ├── local.conf
+   │   ├── prod.conf
+   │   ├── README.md
+   │   └── test.conf
+   ├── /features           # Features and associative meta
+   │   └── README.md
+   ├── /meta               # Optional common/reusable meta
+   │   └── README.md
+   └── /samples            # Sample features and meta
   ```
 
   </TabItem>

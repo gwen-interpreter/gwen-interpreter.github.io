@@ -40,13 +40,7 @@ See the [introduction](/docs) to learn more about Gwen before getting started.
 
 ### Add Gwen to your project and initialise
 
-:::note
-
-If you don't have a JS project, you can create one by installing node and running `npm init` in a new directory and use that.
-
-:::
-
-Open a terminal in the root of your project and run the following commands to add Gwen as a dev dependency and initialise your project for Gwen:
+Add Gwen to an existing or new project using one of the following tools (Yarn is recommended).
 
 <Tabs
   groupId="jstool"
@@ -58,14 +52,21 @@ Open a terminal in the root of your project and run the following commands to ad
   ]}>
 <TabItem value="npm">
 
-Install the gwen-web package:
+If you don't have a JS project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
+
+```shell
+npm init
+```
+
+Install the gwen-web package as a dev dependency in your project:
 
 ```shell
 npm i --save-dev @gweninterpreter/gwen-web
 ```
 
-In the `scripts` section of your `package.json` file, add the following entry:
-```json
+In the `scripts` section of your `package.json` file, add the following   `gwen` entry if it does not exist:
+
+```json {3}
 {
   "scripts": {
     "gwen": "gwen"
@@ -82,16 +83,62 @@ npm run gwen init
 </TabItem>
 <TabItem value="yarn">
 
+If you don't have a JS project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
+
+```shell
+npm init
+```
+
+Install the gwen-web package as a dev dependency in your project:
+
 ```shell
 yarn add -D @gweninterpreter/gwen-web
+```
+
+In the `scripts` section of your `package.json` file, add the following   `gwen` entry if it does not exist:
+
+```json {3}
+{
+  "scripts": {
+    "gwen": "gwen"
+  }
+}
+```
+
+Then, initialize Gwen in the project by running:
+
+```shell
 yarn gwen init
 ```
 
 </TabItem>
 <TabItem value="pnpm">
 
+If you don't have a JS project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
+
+```shell
+npm init
+```
+
+Install the gwen-web package as a dev dependency in your project:
+
 ```shell
 pnpm add -D @gweninterpreter/gwen-web
+```
+
+In the `scripts` section of your `package.json` file, add the following   `gwen` entry if it does not exist:
+
+```json {3}
+{
+  "scripts": {
+    "gwen": "gwen"
+  }
+}
+```
+
+Then, initialize Gwen in the project by running:
+
+```shell
 pnpm gwen init
 ```
 
@@ -101,29 +148,35 @@ pnpm gwen init
 The `init` command will generate the following files and subdirectories in your project:
 
 ```
- /project                    # Your project root
- ├── gwen.conf               # Project settings
- └── /gwen
-     ├── .gitignore          # Git ignore file
-     ├── README.md
-     ├── /browsers           # Browser settings
-     │   ├── chrome.conf
-     │   ├── edge.conf
-     │   ├── firefox.conf
-     │   ├── safari.conf
-     │   ├── ie.conf
-     │   ├── remote.conf     # Remote web driver settings
-     │   └── README.md
-     ├── /env                # Environment settings
-     │   ├── local.conf
-     │   ├── dev.conf
-     │   ├── test.conf
-     │   └── README.md
-     ├── /features           # Features and associative meta
-     │   └── README.md
-     ├── /meta               # Optional common/reusable meta
-     │   └── README.md
-     └── /samples            # Sample features and meta
+  ./                           # Project root
+   ├── gwen.conf               # Gwen settings file
+   └── /gwen
+       ├── docker-compose.yml  # Docker compose file
+       ├── Dockerfile          # Docker image file
+       ├── Jenkinsfile         # Jenkins pipeline file
+       ├── README.md
+       ├── .gitignore          # Git ignore file
+       ├── /browsers           # Browser settings
+       │   ├── browsers.json   # Selenoid browsers file
+       │   ├── chrome.conf
+       │   ├── edge.conf
+       │   ├── firefox.conf
+       │   ├── ie.conf
+       │   ├── README.md
+       │   ├── remote.conf     # Remote web driver settings
+       │   ├── safari.conf
+       │   └── selenoid.conf   # Selenoid settings
+       ├── /env                # Environment settings
+       │   ├── dev.conf
+       │   ├── local.conf
+       │   ├── prod.conf
+       │   ├── README.md
+       │   └── test.conf
+       ├── /features           # Features and associative meta
+       │   └── README.md
+       ├── /meta               # Optional common/reusable meta
+       │   └── README.md
+       └── /samples            # Sample features and meta
 ```
 
 :::info Automatic Updates
@@ -331,28 +384,34 @@ gwen init .
 The `init` command will generate the following files and subdirectorie in your project:
 
 ```
- /project                # Your standalone project root
- ├── gwen.conf           # Project settings
- ├── .gitignore          # Git ignore file
- ├── README.md
- ├── /browsers           # Browser settings
- │   ├── chrome.conf
- │   ├── edge.conf
- │   ├── firefox.conf
- │   ├── safari.conf
- │   ├── ie.conf
- │   ├── remote.conf     # Remote web driver settings
- │   └── README.md
- ├── /env                # Environment settings
- │   ├── local.conf
- │   ├── dev.conf
- │   ├── test.conf
- │   └── README.md
- ├── /features           # Features and associative meta
- │   └── README.md
- ├── /meta               # Optional common/reusable meta
- │   └── README.md
- └── /samples            # Sample features and meta
+  ./                       # Project root
+   ├── gwen.conf           # Gwen settings file
+   ├── docker-compose.yml  # Docker compose file
+   ├── Dockerfile          # Docker image file
+   ├── Jenkinsfile         # Jenkins pipeline file
+   ├── README.md
+   ├── .gitignore          # Git ignore file
+   ├── /browsers           # Browser settings
+   │   ├── browsers.json   # Selenoid browsers file
+   │   ├── chrome.conf
+   │   ├── edge.conf
+   │   ├── firefox.conf
+   │   ├── ie.conf
+   │   ├── README.md
+   │   ├── remote.conf     # Remote web driver settings
+   │   ├── safari.conf
+   │   └── selenoid.conf   # Selenoid settings
+   ├── /env                # Environment settings
+   │   ├── dev.conf
+   │   ├── local.conf
+   │   ├── prod.conf
+   │   ├── README.md
+   │   └── test.conf
+   ├── /features           # Features and associative meta
+   │   └── README.md
+   ├── /meta               # Optional common/reusable meta
+   │   └── README.md
+   └── /samples            # Sample features and meta
 ```
 
 ### Set your default browser

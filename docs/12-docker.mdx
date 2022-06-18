@@ -11,21 +11,27 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Running Gwen in Docker
 
-Sometimes it may be useful to run Gwen in a [docker](https://www.docker.com/) container. For example, if you want to run Gwen in a [Jenkins](/docs/jenkins) pipeline on a build server or node agent.
+Sometimes it may be useful to run Gwen in [Docker](https://www.docker.com/). For example, if you want to run Gwen in a [Jenkins](/docs/jenkins) pipeline on a build server or node agent.
+Setting up Gwen to run in a [Selenoid](https://aerokube.com/selenoid/) container in Docker is describe here.
 
-## Dockerfile
-The first thing you need to do is create a suitable docker image for Gwen to run in. It will need to have Java 8+, node 12+, bash and yarn installed (since we will be using yarn in the examples that follow).
+## Docker Setup
+
+If you initialised your Gwen project directory using the [`gwen init`](/docs/cli#init-command) command with Gwen v3.16.0 or higher, you will already have all the necessary docker files ready and can skip straight to the [Yarn script](/docs/docker#yarn-script) section on this page. Otherwise you will need to create the following files manually.
+
+### Dockerfile
+Create a suitable docker image for Gwen to run in. It will need to have Java 8+, node 12+, bash and yarn installed (since we will be using yarn in the examples that follow).
 
 To build your own image:
 
-1. Create a new file named `Dockerfile` in the root of your Gwen project ([create a Gwen project](/docs/get-started) if you don't have one).
+1. Create a new file named `Dockerfile` in the `gwen` directory of your project ([create a Gwen project](/docs/get-started) if you don't have one).
 
-```shell {2}
-/project                    # Your project root
-└── Dockerfile              # Docker image file
+```shell {3}
+./project                    # Your project root
+ └── /gwen
+     └──Dockerfile           # Docker image file
 ```
 
-2. Save one of the following examples into the file.
+2. Save one of the following examples into the file. Which you choose is a matter of preference. If unsure, use the first one.
 
 - Alpine Linux and Node base image with Open JDK 8 JRE installed:
 ```
@@ -48,16 +54,17 @@ RUN dnf module install nodejs:16 -y
 RUN npm install --global yarn
 ```
 
-## Docker compose
+### Docker compose file
 
-Next, we need to configure a `docker-compose.yml` file to create docker containers for Gwen and at least one web browser for it to run against. Here, we will use [Selenoid](https://aerokube.com/selenoid/) to stand up a chrome browser, video recorder, and Selenium hub that Gwen will connect to.
+Configure a `docker-compose.yml` file to create docker containers for Gwen and at least one web browser for it to run against. Here, we will use [Selenoid](https://aerokube.com/selenoid/) to stand up a chrome browser, video recorder, and Selenium hub that Gwen will connect to.
 
-1. Create a new file named `docker-compose.yaml` in the root of your Gwen project.
+1. Create a new file named `docker-compose.yaml` in the in the `gwen` directory of your project of your project.
 
-```shell {3}
-/project                    # Your project root
-├── Dockerfile              # Docker image file
-└── docker-compose.yml      # Docker compose YAML file
+```shell {4}
+./project                    # Your project root
+ └── /gwen
+     ├── Dockerfile              # Docker image file
+     └── docker-compose.yml      # Docker compose YAML file
 ```
 
 2. Save the following content into the file.
@@ -69,6 +76,14 @@ services:
     image: selenoid/chrome:latest
     networks:
       - gwen-net
+  firefox:
+    image: selenoid/firefox:latest
+    networks:
+      - gwen-net
+  edge:
+    image: browsers/edge:latest
+    networks:
+      - gwen-net
   video-recorder:
     image: selenoid/video-recorder:latest-release
     networks:
@@ -76,6 +91,8 @@ services:
   selenoid:
     depends_on:
       - chrome
+      - firefox
+      - edge
       - video-recorder
     image: aerokube/selenoid:latest-release
     networks:
@@ -113,17 +130,15 @@ networks:
     name: gwen-net
 ```
 
-## Selenoid configuration
-
 ### Selenoid browsers file
 
-1. Create a `browsers.json` file in the `gwen/browsers` directory of your Gwen project.
+1. Create a `browsers.json` file in the `gwen/browsers` directory of your project.
 
 ```shell {4}
-/project                    # Your project root
-└── /gwen                   # Gwen working directory
-    └── browsers
-        └──browsers.json    # Selenoid browsers file
+./project                    # Your project root
+ └── /gwen                   # Gwen working directory
+     └── browsers
+         └──browsers.json    # Selenoid browsers file
 ```
 
 2. Save the following content into the file.
@@ -134,7 +149,7 @@ networks:
     "default": "latest",
     "versions": {
       "latest": {
-        "image": "selenoid/chrome",
+        "image": "selenoid/chrome:latest",
         "port": "4444",
         "path": "/"
       }
@@ -144,7 +159,7 @@ networks:
     "default": "latest",
     "versions": {
       "latest": {
-        "image": "selenoid/firefox",
+        "image": "selenoid/firefox:latest",
         "port": "4444",
         "path": "/wd/hub"
       }
@@ -154,7 +169,7 @@ networks:
     "default": "latest",
     "versions": {
       "latest": {
-        "image": "browsers/edge",
+        "image": "browsers/edge:latest",
         "port": "4444",
         "path": "/"
       }
@@ -165,24 +180,27 @@ networks:
 
 ### Gwen settings file
 
-1. Create a `selenoid.conf` settings file in the `gwen/browsers` directory of your Gwen project.
+1. Create a `selenoid.conf` settings file in the `gwen/browsers` directory of your project.
 
 ```shell {5}
-/project                    # Your project root
-└── /gwen                   # Gwen working directory
-    └── browsers
-        ├──browsers.json    # Selenoid browsers file
-        └──selenoid.conf    # Selenoid Gwen settings
+./project                    # Your project root
+ └── /gwen                   # Gwen working directory
+     └── browsers
+         ├──browsers.json    # Selenoid browsers file
+         └──selenoid.conf    # Selenoid Gwen settings
 ```
 
 2. Save the following content into the file.
 
 ```json
 gwen {
+  video {
+    dir = "${env.HOME}/.gwen/video"
+  }
   web {
     capability {
       enableVNC = true
-      enableVideo = true
+      enableVideo = false
       acceptSslCerts = true
     }
     remote {
@@ -194,8 +212,8 @@ gwen {
 
 ## Yarn script
 
-Next, add the following `gwen:selenoid` script to the `scripts` section of the `package.json` file in your Gwen project, replacing `gwen/samples` with the directory containing the features you want to execute. 
-This will be called by the `gwen` container in our `docker-compose.yml` file when it starts up.
+Add the following `gwen:selenoid` script to the `scripts` section of the `package.json` file in your project, replacing `gwen/samples` with the directory containing the features you want to execute. 
+This will be called by the `gwen` container in our `gwen/docker-compose.yml` file when it starts up.
 
 ```json {3}
 "scripts": {
@@ -204,42 +222,32 @@ This will be called by the `gwen` container in our `docker-compose.yml` file whe
 }
 ```
 
-## Run in docker
+## Run Gwen in docker
 
-First, create the Gwen output directory if it does not already exist.
+1. Start your docker desktop (see [getting started with Docker](https://docs.docker.com/get-started/) for more info).
+
+2. Create the Gwen output directory if it does not already exist.
 
 ```shell
 mkdir -p gwen/output
 ```
 
-Next, run the following command to build your docker image (once off).
+3. Run the following command to build your docker image (once off).
 
 ```shell
-docker-compose build
+docker-compose -f gwen/docker-compose.yml build
 ```
 
-Finally, run the following command in your project directory to spin everything up and launch Gwen in docker:
+4. Run the following command in your project directory to spin everything up and launch Gwen in docker:
 
 ```shell
-docker-compose run gwen
+docker-compose -f gwen/docker-compose.yml run gwen
 ```
 
-To run features in parallel
+5. Tear it all down when done:
 
 ```shell
-docker-compose run -e GWEN_PARALLEL=true gwen
-```
-
-To run features in parallel and the browser in headless mode
-
-```shell
-docker-compose run -e GWEN_PARALLEL=true -e GWEN_HEADLESS=true gwen
-```
-
-Tear it all down when done:
-
-```shell
-docker-compose down
+docker-compose -f gwen/docker-compose.yml down
 ```
 
 ### Video recordings
@@ -256,13 +264,13 @@ gwen {
   }
 }
 ```
-If `gwen.web.capability.videoEnabled` is set to `true` in your *gwen/browsers/selenoid.conf* file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html). Set this to `false` if you do not wish to capture video.
+If you set `gwen.web.capability.videoEnabled` to `true` in your *gwen/browsers/selenoid.conf* file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html). Set this to `false` if you do not wish to capture video.
 
 :::note video settings
 - [`gwen-video.dir`](/docs/settings/reference#gwen-video.dir) 
   - Should match host directory mounted to `/opt/selenoid/video` in Selenoid video-recorder
 - [`gwen-video.timeoutSecs`](/docs/settings/reference#gwen-video.timeoutSecs) 
-  - Time to wait for asyncronous vidoe writes to complete (override only if default does not suffice)
+  - Time to wait for asyncronous video writes to complete (override only if default does not suffice)
 :::
 
 See also: [Video recordings](/docs/reports/video-recordings) 
