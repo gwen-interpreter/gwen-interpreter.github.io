@@ -14,6 +14,18 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 Sometimes it may be useful to run Gwen in [Docker](https://www.docker.com/). For example, if you want to run Gwen in a [Jenkins](/docs/jenkins) pipeline on a build server or node agent.
 Setting up Gwen to run in a [Selenoid](https://aerokube.com/selenoid/) container in Docker is describe here.
 
+## Package JSON script
+
+Add the following `gwen:selenoid` script to the `scripts` section of the `package.json` file in your project, replacing `gwen/samples` with the directory containing the features you want to execute. 
+This will be called by the `gwen` container that we will create and run in Docker.
+
+```json {3}
+"scripts": {
+  "gwen": "gwen",
+  "gwen:selenoid": "gwen -b -c gwen/browsers/selenoid.conf gwen/samples"
+}
+```
+
 ## Docker Setup
 
 Create the following Docker and Selenoid files in your project using the [`init --docker`](/docs/cli#init-command) command as shown below. This command is available since Gwen v3.16.0. You will need to create the files manually if you are using an older version.
@@ -80,7 +92,7 @@ Run the following command in the root of your project to generate all the necess
      └──Dockerfile           # Docker image file
 ```
 
-The command will create and populate a `gwen/DockerFile` with the following content to build an Alpine Linux node and Yarn based image with bash and Open JDK 8 JRE installed.
+The init --docker commad will create and populate a `gwen/DockerFile` with the following content to build an Alpine Linux node and Yarn based image with bash and Open JDK 8 JRE installed.
 
 ```
 # base alpine image with node
@@ -111,7 +123,7 @@ RUN npm install --global yarn
      └── docker-compose.yml      # Docker compose YAML file
 ```
 
-The command will create and populate a `gwen/docker-compose.yml` file with the following content to create containers for Gwen, Chrome, Firefox, and Edge web browsers, a video recorder, and a Selenoid hub that Gwen will connect to.
+The init --docker commad will create and populate a `gwen/docker-compose.yml` file with the following content to create containers for Gwen, Chrome, Firefox, and Edge web browsers, a video recorder, and a Selenoid hub that Gwen will connect to.
 
 ```yaml
 version: '3.5'
@@ -148,7 +160,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "$PWD/gwen/output/.video:/opt/selenoid/video"
     environment:
-      - OVERRIDE_VIDEO_OUTPUT=$PWD/gwen/output/.video
+      - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD/gwen/output/.video
     command: ["-container-network", "gwen-net", "-video-output-dir", "/opt/selenoid/video"]
   gwen:
     depends_on:
@@ -174,6 +186,8 @@ networks:
     name: gwen-net
 ```
 
+Notice that the bash command in the `gwen` container calls out to our `gwen:selenoid` [package JSON script](#package-json-script) we created earlier. If you want to change what Gwen will run in Docker, just change that script!
+
 ### Selenoid browsers file
 
 ```shell {4}
@@ -183,7 +197,7 @@ networks:
          └──browsers.json    # Selenoid browsers file
 ```
 
-The command will create and populate a `gwen/browsers/browsers.json` file with the following content that will be used by Selenoid to stand up the browsers in Docker.
+The init --docker commad will create and populate a `gwen/browsers/browsers.json` file with the following content that will be used by Selenoid to stand up the browsers in Docker.
 
 ```json
 {
@@ -230,13 +244,10 @@ The command will create and populate a `gwen/browsers/browsers.json` file with t
          └──selenoid.conf    # Selenoid Gwen settings
 ```
 
-The command will create and populate a `gwen/browsers/selenoid.conf` file with the following content that will be used by Gwen to connect to Selenoid.
+The init --docker commad will create and populate a `gwen/browsers/selenoid.conf` file with the following content that will be used by Gwen to connect to Selenoid.
 
 ```json
 gwen {
-  video {
-    dir = "gwen/output/.gwen/video"
-  }
   web {
     capability {
       enableVNC = true
@@ -244,25 +255,13 @@ gwen {
       acceptSslCerts = true
     }
     remote {
-      url = "http://${SELENIUM_HUB}:4444/wd/hub"
+      url = "http://${env.SELENIUM_HUB}:4444/wd/hub"
     }
   }
 }
 ```
 
-### Package JSON script
-
-This script you need to create manually (as it is not created for you by the `init --docker` command). 
-
-Add the following `gwen:selenoid` script to the `scripts` section of the `package.json` file in your project, replacing `gwen/samples` with the directory containing the features you want to execute. 
-This will be called by the `gwen` container in the `gwen/docker-compose.yml` file when it starts up.
-
-```json {3}
-"scripts": {
-  "gwen": "gwen",
-  "gwen:selenoid": "gwen -b -c gwen/browsers/selenoid.conf gwen/samples"
-}
-```
+Notice that the our `gwen:selenoid` [package JSON script](#package-json-script) we created earlier loads this configuration through the [-c|--conf](/docs/cli#gwen-cli-options-conf) CLI option.
 
 ## Run Gwen in docker
 
@@ -274,19 +273,25 @@ Create the Gwen output directory if it does not already exist.
 mkdir -p gwen/output
 ```
 
-Run the following command to build your docker image (once off).
+Run the following command to build your docker image
 
 ```shell
 docker-compose -f gwen/docker-compose.yml build
 ```
 
-Run the following command in your project directory to spin everything up and launch Gwen in docker:
+Run the following command in your project directory to spin everything up and launch Gwen in docker
 
 ```shell
 docker-compose -f gwen/docker-compose.yml run gwen
 ```
 
-Tear it all down when done:
+To execute features in parallel (you can pass any number of [environment varaibles](/docs/cli#environment-variables) in this manner)
+
+```shell
+docker-compose -f gwen/docker-compose.yml run -e GWEN_PARALLEL=true gwen
+```
+
+Tear it all down when done
 
 ```shell
 docker-compose -f gwen/docker-compose.yml down
@@ -313,6 +318,10 @@ If you set `gwen.web.capability.videoEnabled` to `true` in your `selenoid.conf` 
   - Should match host directory mounted to `/opt/selenoid/video` in Selenoid video-recorder
 - [`gwen-video.timeoutSecs`](/docs/settings/reference#gwen-video.timeoutSecs) 
   - Time to wait for asyncronous video writes to complete (override only if default does not suffice)
+:::
+
+:::caution Video limitation
+Since v3.16.0, no videos will be captured when [parallel execution](/docs/modes/parallel) or [headless browser](/docs/settings/reference#gwen-web-browser-headless) modes are enabled.
 :::
 
 See also: [Video recordings](/docs/reports/video-recordings) 
