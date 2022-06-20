@@ -350,26 +350,10 @@ The example presented in this introduction would execute to automate a test.
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
-
-  <TabItem value="npm">
-
-:::note Invoking Gwen
-
-  Execute feature in test environment (passing in test environment settings):
-
-  ```shell
-  npm run gwen -- -b -c gwen/env/test.conf gwen/features/todo.feature
-  ```
-
-  [Gwen CLI](/docs/cli)
-
-:::
-
-  </TabItem>
 
   <TabItem value="yarn">
 
@@ -384,6 +368,22 @@ The example presented in this introduction would execute to automate a test.
 
 :::
 
+
+  </TabItem>
+
+  <TabItem value="npm">
+
+:::note Invoking Gwen
+
+  Execute feature in test environment (passing in test environment settings):
+
+  ```shell
+  npm run gwen -- -b -c gwen/env/test.conf gwen/features/todo.feature
+  ```
+
+  [Gwen CLI](/docs/cli)
+
+:::
 
   </TabItem>
 

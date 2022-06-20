@@ -28,20 +28,10 @@ To run your Gwen project in Jenkins, get your Gwen project [running in Docker](/
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
-
-  <TabItem value="npm">
-
-  Run the following command in the root of your project to generate a Jenkins pipeline file
-  
-  ```shell
-  npm run gwen init --jenkins
-  ```
-      
-  </TabItem>
 
   <TabItem value="yarn">
 
@@ -51,6 +41,16 @@ To run your Gwen project in Jenkins, get your Gwen project [running in Docker](/
   yarn gwen init --jenkins
   ```
 
+  </TabItem>
+
+  <TabItem value="npm">
+
+  Run the following command in the root of your project to generate a Jenkins pipeline file
+  
+  ```shell
+  npm run gwen init --jenkins
+  ```
+      
   </TabItem>
 
   <TabItem value="pnpm">

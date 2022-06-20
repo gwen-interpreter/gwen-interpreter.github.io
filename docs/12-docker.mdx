@@ -43,20 +43,10 @@ Create the following Docker and Selenoid files in your project using the [`init 
 groupId="jstool"
 defaultValue="yarn"
 values={[
-  {label: 'npm', value: 'npm'},
   {label: 'Yarn', value: 'yarn'},
+  {label: 'npm', value: 'npm'},
   {label: 'pnpm', value: 'pnpm'}
 ]}>
-
-<TabItem value="npm">
-
-Run the following command in the root of your project to generate all the necessary Docker and Selenoid files
-  
-  ```shell
-  npm run gwen init --docker
-  ```
-
-</TabItem>
 
 <TabItem value="yarn">
 
@@ -64,6 +54,16 @@ Run the following command in the root of your project to generate all the necess
   
   ```shell
   yarn gwen init --docker
+  ```
+
+</TabItem>
+
+<TabItem value="npm">
+
+Run the following command in the root of your project to generate all the necessary Docker and Selenoid files
+  
+  ```shell
+  npm run gwen init --docker
   ```
 
 </TabItem>

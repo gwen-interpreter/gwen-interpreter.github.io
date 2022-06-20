@@ -52,10 +52,36 @@ To start a REPL session, invoke the [Gwen CLI](/docs/cli) without specifying the
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
+
+<TabItem value="yarn">
+
+:::note Open REPL
+
+To open a new REPL session:
+
+```shell
+yarn gwen
+```
+
+To load meta and open the REPL:
+
+```shell
+yarn gwen -m path/to/file.meta
+```
+
+To execute a feature and open the REPL:
+
+```shell
+yarn gwen path/to/file.feature
+```
+
+:::
+
+</TabItem>
 
 <TabItem value="npm">
 
@@ -77,31 +103,6 @@ To execute a feature and open the REPL:
 
 ```shell
 npm run gwen path/to/file.feature
-```
-
-:::
-
-</TabItem>
-<TabItem value="yarn">
-
-:::note Open REPL
-
-To open a new REPL session:
-
-```shell
-yarn gwen
-```
-
-To load meta and open the REPL:
-
-```shell
-yarn gwen -m path/to/file.meta
-```
-
-To execute a feature and open the REPL:
-
-```shell
-yarn gwen path/to/file.feature
 ```
 
 :::

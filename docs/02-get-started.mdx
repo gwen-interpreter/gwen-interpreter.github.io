@@ -46,41 +46,11 @@ Add Gwen to an existing or new project using one of the following tools (Yarn is
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
-<TabItem value="npm">
 
-If you don't have a JS project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
-
-```shell
-npm init
-```
-
-Install the gwen-web package as a dev dependency in your project:
-
-```shell
-npm i --save-dev @gweninterpreter/gwen-web
-```
-
-In the `scripts` section of your `package.json` file, add the following   `gwen` entry if it does not exist:
-
-```json {3}
-{
-  "scripts": {
-    "gwen": "gwen"
-  }
-}
-```
-
-Then, initialize Gwen in the project by running:
-
-```shell
-npm run gwen init
-```
-
-</TabItem>
 <TabItem value="yarn">
 
 If you don't have a JS project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
@@ -109,6 +79,37 @@ Then, initialize Gwen in the project by running:
 
 ```shell
 yarn gwen init
+```
+
+</TabItem>
+<TabItem value="npm">
+
+If you don't have a JS project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
+
+```shell
+npm init
+```
+
+Install the gwen-web package as a dev dependency in your project:
+
+```shell
+npm i --save-dev @gweninterpreter/gwen-web
+```
+
+In the `scripts` section of your `package.json` file, add the following   `gwen` entry if it does not exist:
+
+```json {3}
+{
+  "scripts": {
+    "gwen": "gwen"
+  }
+}
+```
+
+Then, initialize Gwen in the project by running:
+
+```shell
+npm run gwen init
 ```
 
 </TabItem>
@@ -216,18 +217,17 @@ Gwen has an embedded web driver manager which automatically downloads and instal
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
-<TabItem value="npm">
+  
+<TabItem value="yarn">
 
 :::note Launch Gwen
 
-Run the following command in your project to execute the sample feature specs.
-
 ```shell
-npm run gwen -- -b gwen/samples
+yarn gwen -b gwen/samples
 ```
 
 Where:
@@ -240,12 +240,14 @@ Where:
 :::
 
 </TabItem>
-<TabItem value="yarn">
+<TabItem value="npm">
 
 :::note Launch Gwen
 
+Run the following command in your project to execute the sample feature specs.
+
 ```shell
-yarn gwen -b gwen/samples
+npm run gwen -- -b gwen/samples
 ```
 
 Where:

@@ -71,24 +71,10 @@ You can now execute this feature for all users in the CSV file by launching Gwen
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
-
-  <TabItem value="npm">
-
-  ```shell
-  npm run gwen -- -b -i gwen/data/users.csv gwen/features/submit-user.feature
-  ```
-
-  or 
-
-  ```shell
-  npm run gwen -- -b --input-data gwen/data/users.csv gwen/features/submit-user.feature
-  ```
-
-  </TabItem>
 
   <TabItem value="yarn">
 
@@ -100,6 +86,20 @@ You can now execute this feature for all users in the CSV file by launching Gwen
 
   ```shell
   yarn gwen -b --input-data gwen/data/users.csv gwen/features/submit-user.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="npm">
+
+  ```shell
+  npm run gwen -- -b -i gwen/data/users.csv gwen/features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  npm run gwen -- -b --input-data gwen/data/users.csv gwen/features/submit-user.feature
   ```
 
   </TabItem>

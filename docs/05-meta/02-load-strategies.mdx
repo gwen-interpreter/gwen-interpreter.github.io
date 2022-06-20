@@ -77,32 +77,11 @@ The external strategy enables you to manage common and reusable meta files in a 
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
 
-<TabItem value="npm">
-
-:::note Example
-
-To load a single meta file from an external directory, use the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option and specify the path to the meta file:
-
-```shell
-npm run gwen -- -m external/meta/common.meta
-```
-
-To recursively load all meta files in an external directory:
-
-```shell
-npm run gwen -- gwen/features -m external/meta
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
 <TabItem value="yarn">
 
 :::note Example
@@ -117,6 +96,27 @@ To recursively load all meta files in an external directory:
 
 ```shell
 yarn gwen gwen/features -m external/meta
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="npm">
+
+:::note Example
+
+To load a single meta file from an external directory, use the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option and specify the path to the meta file:
+
+```shell
+npm run gwen -- -m external/meta/common.meta
+```
+
+To recursively load all meta files in an external directory:
+
+```shell
+npm run gwen -- gwen/features -m external/meta
 ```
 
 [Gwen CLI](/docs/cli)
@@ -258,26 +258,11 @@ For example, say you have your common meta files in one directory and your featu
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
 
-<TabItem value="npm">
-
-:::note Example
-
-To load only one meta file for one feature file using the external meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
-
-```shell
-npm run gwen -- -m gwen/meta/module-1.meta gwen/features/spec-1.feature
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
 <TabItem value="yarn">
 
 :::note Example
@@ -286,6 +271,21 @@ To load only one meta file for one feature file using the external meta strategy
 
 ```shell
 yarn gwen -m gwen/meta/module-1.meta gwen/features/spec-1.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="npm">
+
+:::note Example
+
+To load only one meta file for one feature file using the external meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
+
+```shell
+npm run gwen -- -m gwen/meta/module-1.meta gwen/features/spec-1.feature
 ```
 
 [Gwen CLI](/docs/cli)
@@ -404,26 +404,11 @@ Note that this associative meta specification contains nothing except one import
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
 
-<TabItem value="npm">
-
-:::note Example
-
-With the import in place, you could then invoke Gwen to execute the feature without having to explicitly specify the meta file in the CLI call:
-
-```shell
-npm run gwen -- gwen/features/spec-1.feature
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
 <TabItem value="yarn">
 
 :::note Example
@@ -432,6 +417,21 @@ With the import in place, you could then invoke Gwen to execute the feature with
 
 ```shell
 yarn gwen gwen/features/spec-1.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="npm">
+
+:::note Example
+
+With the import in place, you could then invoke Gwen to execute the feature without having to explicitly specify the meta file in the CLI call:
+
+```shell
+npm run gwen -- gwen/features/spec-1.feature
 ```
 
 [Gwen CLI](/docs/cli)
@@ -557,26 +557,11 @@ Now any import of `module-3.meta` will also import `module-2.meta`.
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
 
-<TabItem value="npm">
-
-:::note Example
-
-In this example, the `module-2.meta` and `module-3.meta` files will be loaded (in that order) before `test-3.feature` is executed.  Again, this would happen without you having to specify any meta in the CLI call to Gwen.
-
-```shell
-npm run gwen -- gwen/features/spec-3.feature
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
 <TabItem value="yarn">
 
 :::note Example
@@ -585,6 +570,21 @@ In this example, the `module-2.meta` and `module-3.meta` files will be loaded (i
 
 ```shell
 yarn gwen features/spec-3.feature
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="npm">
+
+:::note Example
+
+In this example, the `module-2.meta` and `module-3.meta` files will be loaded (in that order) before `test-3.feature` is executed.  Again, this would happen without you having to specify any meta in the CLI call to Gwen.
+
+```shell
+npm run gwen -- gwen/features/spec-3.feature
 ```
 
 [Gwen CLI](/docs/cli)

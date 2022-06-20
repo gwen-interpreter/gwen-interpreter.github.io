@@ -29,32 +29,11 @@ Launch Gwen with the `-f json` option to generate JSON reports when executing yo
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
 
-<TabItem value="npm">
-
-:::note Example
-
-Execute features in the *gwen/features/todo* folder and generate JSON reports only.
-
-```shell
-npm run gwen -- -b -f json gwen/features/todo
-```
-
-Execute features in the *gwen/features/todo* folder and generate HTML and JSON reports.
-
-```shell
-npm run gwen -- -b -f html,json gwen/features/todo
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
 <TabItem value="yarn">
 
 :::note Example
@@ -69,6 +48,27 @@ Execute features in the *gwen/features/todo* folder and generate HTML and JSON r
 
 ```shell
 yarn gwen -b -f html,json gwen/features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="npm">
+
+:::note Example
+
+Execute features in the *gwen/features/todo* folder and generate JSON reports only.
+
+```shell
+npm run gwen -- -b -f json gwen/features/todo
+```
+
+Execute features in the *gwen/features/todo* folder and generate HTML and JSON reports.
+
+```shell
+npm run gwen -- -b -f html,json gwen/features/todo
 ```
 
 [Gwen CLI](/docs/cli)

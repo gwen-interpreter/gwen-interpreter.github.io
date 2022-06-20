@@ -29,32 +29,11 @@ Launch Gwen with the `-f junit` option to generate JUnit-XML reports when execut
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
-
-<TabItem value="npm">
-
-:::note Example
-
-Execute features in the *gwen/features/todo* folder and generate JUnit-XML reports only.
-
-```shell
-npm run gwen -- -b -f junit gwen/features/todo
-```
-
-Execute features in the *gwen/features/todo* folder and generate HTML and JUnit-XML reports.
-
-```shell
-npm run gwen -- -b -f html,junit gwen/features/todo
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
+  
 <TabItem value="yarn">
 
 :::note Example
@@ -69,6 +48,27 @@ Execute features in the *gwen/features/todo* folder and generate HTML and JUnit-
 
 ```shell
 yarn gwen -b -f html,junit gwen/features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+<TabItem value="npm">
+
+:::note Example
+
+Execute features in the *gwen/features/todo* folder and generate JUnit-XML reports only.
+
+```shell
+npm run gwen -- -b -f junit gwen/features/todo
+```
+
+Execute features in the *gwen/features/todo* folder and generate HTML and JUnit-XML reports.
+
+```shell
+npm run gwen -- -b -f html,junit gwen/features/todo
 ```
 
 [Gwen CLI](/docs/cli)

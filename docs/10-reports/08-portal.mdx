@@ -137,10 +137,34 @@ With the above settings in place, evaluation results will be asynchronously logg
   groupId="jstool"
   defaultValue="yarn"
   values={[
-    {label: 'npm', value: 'npm'},
     {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
     {label: 'pnpm', value: 'pnpm'}
   ]}>
+
+<TabItem value="yarn">
+
+:::note Example
+
+Executing features in the `gwen/features/todo` folder and logging to report portal.
+
+To log results to Report Portal only
+
+```shell
+yarn gwen -b -f rp gwen/features/todo
+```
+
+To generate HTML reports and send results to Report Portal
+
+```shell
+yarn  -b f html,rp gwen/features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
 
 <TabItem value="npm">
 
@@ -158,29 +182,6 @@ To generate HTML reports and send results to Report Portal
 
 ```shell
 npm run gwen -- -b f html,rp gwen/features/todo
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-<TabItem value="yarn">
-
-:::note Example
-
-Executing features in the `gwen/features/todo` folder and logging to report portal.
-
-To log results to Report Portal only
-
-```shell
-yarn gwen -b -f rp gwen/features/todo
-```
-
-To generate HTML reports and send results to Report Portal
-
-```shell
-yarn  -b f html,rp gwen/features/todo
 ```
 
 [Gwen CLI](/docs/cli)
