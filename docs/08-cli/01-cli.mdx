@@ -47,6 +47,7 @@ Command: init [options] [dir]
   dir                     Project directory to initialise (default is gwen)
   --docker                Generate files in project for running Gwen in Docker
   --jenkins               Generate files in project for running Gwen on Jenkins
+  --force                 Regenerate and overwrite previously initialised files
 ```
 
 ### Environment variables
@@ -2149,6 +2150,11 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
         <li><code>--jenkins</code>
           <ul>
             <li>To generate all the files in your project for running Gwen in <Link to="/docs/jenkins">Jenkins</Link> (implicity enables <code>--docker</code> also)</li>
+          </ul>
+        </li>
+        <li><code>--force</code>
+          <ul>
+            <li>To regenerate and overwrite previously initialised files.</li>
           </ul>
         </li>
       </ul>
