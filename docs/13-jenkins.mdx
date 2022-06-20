@@ -118,17 +118,17 @@ pipeline {
           sh "docker-compose -f gwen/docker-compose.yml down"
           archiveArtifacts artifacts: 'gwen/output/reports/**'
           publishHTML(target: [
-                  allowMissing         : false,
-                  alwaysLinkToLastBuild: false,
-                  keepAll              : true,
-                  reportDir            : "gwen/output/reports/html",
-                  reportFiles          : 'index.html',
-                  reportName           : "Gwen-Report"
+                      allowMissing          : false,
+                      alwaysLinkToLastBuild : true,
+                      keepAll               : true,
+                      reportDir             : "gwen/output/reports/html",
+                      reportFiles           : 'index.html',
+                      reportName            : "Gwen-Report"
           ])
         }
       }
     }
-  }
+  }
 }
 ```
 
