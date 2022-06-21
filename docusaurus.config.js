@@ -30,7 +30,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: '/docs/reports/console',
+          href: '/docs/cli#init-options',
           position: 'left',
           label: "What's new?",
         },

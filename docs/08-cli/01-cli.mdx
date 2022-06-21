@@ -2142,26 +2142,26 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
   <ul>
     <li><code>[options]</code> Can be one or more space separated switches including:
       <ul>
-        <li><code>--docker</code>
+        <li><Link to="#gwen-cli-options-init-docker"><code>--docker</code></Link>
           <ul>
-            <li>To generate all the files in your project for running Gwen in <Link to="/docs/docker">Docker</Link></li>
+            <li>Include to also generate files in your project for running Gwen in <Link to="/docs/docker">Docker</Link></li>
           </ul>
         </li>
-        <li><code>--jenkins</code>
+        <li><Link to="#gwen-cli-options-init-jenkins"><code>--jenkins</code></Link>
           <ul>
-            <li>To generate all the files in your project for running Gwen in <Link to="/docs/jenkins">Jenkins</Link> (implicity enables <code>--docker</code> also)</li>
+            <li>Include to also generate a Jenkins pipeline file in your project</li>
           </ul>
         </li>
         <li><code>--force</code>
           <ul>
-            <li>To regenerate and overwrite previously initialised files.</li>
+            <li>Include to regenerate and overwrite any previously initialised files.</li>
           </ul>
         </li>
       </ul>
     </li>
     <li><code>[dir]</code> is
       <ul>
-        <li>Defaults to a <code>gwen</code> subdirectory in your project</li>
+        <li>Defaults to a <code>gwen</code> subdirectory in your project if not specified</li>
       </ul>
     </li>
   </ul>
@@ -2253,26 +2253,6 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
        └── /samples            # Sample features and meta
   ```
 
-  <p>Including the <code>--docker</code> option will generate and add the following Docker and Selenoid files to your project</p>
-
-  ```
-  ./                           # Project root
-   └── /gwen
-       ├── docker-compose.yml  # Docker compose file
-       ├── Dockerfile          # Docker image file
-       └── /browsers           # Browser settings
-           ├── browsers.json   # Selenoid browsers file
-           └── selenoid.conf   # Selenoid settings
-  ```
-
-  <p>Including the <code>--jenkins</code> option will generate and add the following Jenkins file to your project (and also the Docker and Selenoid files above if they do not already exist).</p>
-
-  ```
-  ./                           # Project root
-   └── /gwen
-       └── Jenkinsfile         # Jenkins pipeline file
-  ```
-
   </TabItem>  
 
   <TabItem value="standalone">
@@ -2323,3 +2303,183 @@ As of [Gwen 3](/docs/gwen3), CLI options can be configured in [settings](/docs/s
 
 #### Init options
 
+<details id="gwen-cli-options-init-docker">
+  <summary class="cli-options">
+
+  ```shell
+  init --docker [--force] [dir]
+  ```
+  <p>Generate all the files in your project required for running Gwen in <Link to="/docs/docker">Docker</Link>.</p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li><code>--force</code>
+      <ul>
+        <li>Include to regenerate and overwrite any previously generated docker files.</li>
+      </ul>
+    </li>
+    <li><code>[dir]</code> is the directory to generate the docker files into
+      <ul>
+        <li>Defaults to the <code>gwen</code> subdirectory in your project if not specifed</li>
+      </ul>
+    </li>
+  </ul>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="project"
+  values={[
+    {label: 'Project', value: 'project'},
+  ]}>
+
+  <TabItem value="project">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="yarn">
+
+  ```shell
+  yarn gwen init --docker
+  ```
+
+  </TabItem>
+
+  <TabItem value="npm">
+
+  ```shell
+  npm run gwen init --docker
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  ```shell
+  pnpm gwen init --docker
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <p>The <code>init</code> command will generate the following files</p>
+
+  ```
+  ./                           # Project root
+   └── /gwen
+       ├── docker-compose.yml  # Docker compose file
+       ├── Dockerfile          # Docker image file
+       └── /browsers           # Browser settings
+           ├── browsers.json   # Selenoid browsers file
+           └── selenoid.conf   # Selenoid settings
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-init-docker">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.16.0">v3.16.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-cli-options-init-jenkins">
+  <summary class="cli-options">
+
+  ```shell
+  init --jenkins [--force] [dir]
+  ```
+
+  <p>Generate a Jenkins pipeline file for your project (Jenkinfile).</p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li><code>--force</code>
+      <ul>
+        <li>Include to regenerate and overwrite any previously generated Jenkinsfile.</li>
+      </ul>
+    </li>
+    <li><code>[dir]</code> is the directory to generate the Jenkinfile into
+      <ul>
+        <li>Defaults to the <code>gwen</code> subdirectory in your project if not specifed</li>
+      </ul>
+    </li>
+  </ul>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="project"
+  values={[
+    {label: 'Project', value: 'project'},
+  ]}>
+
+  <TabItem value="project">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="yarn">
+
+  ```shell
+  yarn gwen init --jenkins
+  ```
+
+  </TabItem>
+
+  <TabItem value="npm">
+
+  ```shell
+  npm run gwen init --jenkins
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  ```shell
+  pnpm gwen init --jenkins
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <p>The <code>init</code> command will generate the following files</p>
+
+  ```
+  ./                           # Project root
+   └── /gwen
+       └── Jenkinsfile         # Jenkins pipeline file
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-options-init-jenkins">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.16.0">v3.16.0</Link></div>
+  </div>
+</details>
