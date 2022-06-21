@@ -10,38 +10,23 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # String Interpolation
 
-It is often useful to reference provided properties, captured values, and string literals throughout your features. Gwen provides two interpolation mechanisms for doing this:
+It is often useful to reference settings, captured values and other text throughout your feature and meta files. To support this, Gwen provides a placholder substitution mechanism.
 
-- [Substitution](#interpolation-by-substitution) (recommended approach)
-- [Concatenation](#interpolation-by-concatenation) (deprecated since [Gwen 3](/docs/gwen3))
+#### Placeholders
 
-Interpolation occurs in the interpreter on every step in a feature before it is passed to Gwen for execution.
+A placeholder can be:
 
-#### Named Values
-
-For interpolation purposes, a named value can be any one of the following:
-
-- An environment variable (since gwen-web 2.36.0)
+- An environment variable name (since gwen-web 2.36.0)
   - example: `${env.USER}` for the `USER` variable
-- A system property
-  - Passed to Gwen through a `-D` [JVM argument](/docs/cli#system-properties-and-jvm-options)
-- A [Gwen setting](/docs/settings)
-- A launch property
-  - A property in a properties file passed to Gwen through the [config launch option](/docs/cli#gwen-cli-options-conf)
-- A bound attribute
-  - An attribute bound in the local, global, or current data scope
+- A system property name
+- A [Gwen setting](/docs/settings) name
+- A named attribute bound to the currently executing scope
  
 ## Examples
 
-In the examples below..
-- `my.property` is a property
-- `my mechanism` is an attribute assigned to a literal
-
 ### Interpolation by Substitution
 
-> This is the recommended interpolation approach
-
-Substitution involves replacing named value placeholders with their values.
+Substitution involves replacing named placeholders with their values.
 
 ```gherkin
  Feature: String Interpolation
