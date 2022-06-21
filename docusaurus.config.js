@@ -92,7 +92,6 @@ module.exports = {
               label: 'Edge',
               href: 'https://www.microsoft.com/en-us/edge',
             },
-            ,
           ],
         },
         {
@@ -101,7 +100,7 @@ module.exports = {
             {
               label: 'Firefox',
               href: 'https://www.mozilla.org/en-US/firefox/new/',
-            }
+            },
             {
               label: 'Safari',
               href: 'https://www.apple.com/au/safari/',
