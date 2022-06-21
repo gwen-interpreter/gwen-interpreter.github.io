@@ -95,9 +95,10 @@ module.exports = {
               href: 'https://www.google.com/intl/en_au/chrome/',
             },
             {
-              label: 'Edge',
-              href: 'https://www.microsoft.com/en-us/edge',
-            },
+              label: 'Firefox',
+              href: 'https://www.mozilla.org/en-US/firefox/new/',
+            }
+            ,
             {
               label: 'Report Portal',
               href: '/docs/reports/portal',
@@ -108,8 +109,8 @@ module.exports = {
           title: '‎',
           items: [
             {
-              label: 'Firefox',
-              href: 'https://www.mozilla.org/en-US/firefox/new/',
+              label: 'Edge',
+              href: 'https://www.microsoft.com/en-us/edge',
             },
             {
               label: 'Safari',
