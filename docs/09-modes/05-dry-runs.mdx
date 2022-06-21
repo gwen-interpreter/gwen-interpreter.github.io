@@ -16,10 +16,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Dry runs can be performed on features to verify that they are syntactically correct and that all references have bindings that will resolve at runtime. This allows you to quickly validate features and catch potential errors before committing them to an execution cycle. The [`-n|--dry-run`](/docs/cli#gwen-cli-options-dry-run) CLI option is used to launch Gwen in this mode.
 
-Results will be logged to the console and in [HTML reports](/docs/reports/html) that you can open to quickly find any issues.
+Results will be logged to the console and in [HTML reports](/docs/reports/html) that you can inspect to find discovered issues.
 
 #### Example 
 
-If you leave out or forget to define a selector for an input field, it would be reported in the HTML report as follows:
+If you leave out or forget to define a selector for an input field, it would be detected by a dry run and reported in the HTML report as follows:
 
 ![Example dry run with error](/img/reports/sample-html-dry-run-error.png)

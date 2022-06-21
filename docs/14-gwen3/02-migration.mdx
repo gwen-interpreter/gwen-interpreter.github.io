@@ -20,7 +20,7 @@ This guide will help you to migrate an existing Gwen project over to Gwen 3. If 
 
 ## 1. Setup
 
-#### Choose your current Gwen setup
+#### Choose your current Gwen 2 setup
 
 <Tabs
   groupId="setup"
@@ -38,7 +38,7 @@ If you are using Gwen as a standalone application on your machine, nothing has c
 
 <TabItem value="workspace">
 
-[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) were introduced in Gwen 2 and have been deprecated in favor of JS projects in  [Gwen 3](/docs/gwen3).
+[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) were introduced in Gwen 2 and have been deprecated in favor of projects in  [Gwen 3](/docs/gwen3).
 
 #### Choose one of two options:
 
@@ -46,13 +46,13 @@ If you are using Gwen as a standalone application on your machine, nothing has c
   groupId="migrate"
   defaultValue="gwen3"
   values={[
-    {label: 'Migrate to a Gwen 3 JS project', value: 'gwen3'},
+    {label: 'Migrate to a Gwen 3 project', value: 'gwen3'},
     {label: 'Stay on a Gwen 2 workspace', value: 'gwen2'},
   ]}>
 
 <TabItem value="gwen3">
 
-Follow the instructions on our [getting started](/docs/get-started) page to create a new JS project with a fresh Gwen 3 setup, and then copy the following files from your workspace to your JS project:
+Follow the instructions on our [getting started](/docs/get-started) page to create a new project with a fresh Gwen 3 setup, and then copy the following files from your workspace to your project:
 
 - Copy your *workspace/gwen.properties* file to *js-project/gwen.properties*
 - Copy all *.feature* files from *workspace/features/* to *js-project/gwen/features/*
@@ -95,7 +95,7 @@ The following settings changes have been made to Gwen 3. Scan all your *.propert
 
 The following settings have been renamed.
 
-| Prior name                     | New name                                                                                                |
+| Gwen 2 name                    | Gwen 3 name                                                                                            |
 | :----------------------------- | :------------------------------------------------------------------------------------------------------ |
 | `gwen.feature.failfast`        | [`gwen.feature.failfast.enabled`](/docs/settings/reference#gwen-feature-failfast-enabled)               |
 | `gwen.rp.heartbeat`            | [`gwen.rp.heartbeat.enabled`](/docs/reports/portal#gwen-rp-heartbeat-enabled)                           |
@@ -106,7 +106,7 @@ The following settings have been renamed.
 
 The following settings alias has been removed.
 
-| Removed alias          | Always use this name                                                  |
+| Removed                | Always use this name                                                  |
 | :--------------------- | :-------------------------------------------------------------------- |
 | `gwen.behaviour.rules` | [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) |
 
@@ -114,25 +114,25 @@ The following settings alias has been removed.
 
 The following settings have new defaults. If you want to continue using prior defaults for these, explicity set them in your current properties file.
 
-| Setting                                                                                                           | Prior default | New default   |
-| :---------------------------------------------------------------------------------------------------------------- | :-----------: | :-----------: |
-| [`gwen.associative.meta`](/docs/settings/reference#gwen-associative-meta)                                         | `false`       | `true`        |
-| [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules)                                             | `lenient`     | `strict`      |
-| [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode)                                                 | `imperative`  | `declarative` |
-| [`gwen.report.suppress.meta`](/docs/settings/reference#gwen-report-suppress-meta)                                 | `false`       | `true`        |
-| [`gwen.auto.discover.data.csv`](/docs/settings/reference#gwen-auto-discover-data-csv)                             | `true`        | `false`       |
+| Setting                                                                                                           | Gwen 2 default | Gwen 3 default |
+| :---------------------------------------------------------------------------------------------------------------- | :------------: | :------------: |
+| [`gwen.associative.meta`](/docs/settings/reference#gwen-associative-meta)                                         | `false`        | `true`         |
+| [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules)                                             | `lenient`      | `strict`       |
+| [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode)                                                 | `imperative`   | `declarative`  |
+| [`gwen.report.suppress.meta`](/docs/settings/reference#gwen-report-suppress-meta)                                 | `false`        | `true`         |
+| [`gwen.auto.discover.data.csv`](/docs/settings/reference#gwen-auto-discover-data-csv)                             | `true`         | `false`        |
 
 ### New setttings impacting prior defaults
 
-The following new settings have defaults that change the default behavior in prior versions. If you want to preserve prior behavior, explicity set them in your current properties file.
+The following new settings have new defaults that change prior behavior. If you want to preserve the prior behavior, explicity set them in your current settings file.
 
-| Setting                                                                                                           | Since          | To preserve prior behavior | New default |
-| :---------------------------------------------------------------------------------------------------------------- | :------------: | :------------------------: | :---------: |
-| [`gwen.auto.bind.tableData.outline.examples`](/docs/settings/reference#gwen-auto-bind-tableData-outline-examples) | v3.15.0        | `false`                    | `true`      |
+| Setting                                                                                                           | Since          | Changed from | To     |
+| :---------------------------------------------------------------------------------------------------------------- | :------------: | :----------: | :----: |
+| [`gwen.auto.bind.tableData.outline.examples`](/docs/settings/reference#gwen-auto-bind-tableData-outline-examples) | v3.15.0        | `false`      | `true` |
 
 ### New formats
 
-Two new settings formats have been added:
+Two new settings formats have been introduced:
 
 - [HOCON](https://github.com/lightbend/config/blob/master/HOCON.md#hocon-human-optimized-config-object-notation) (Human-Optimized Config Object Notation)
   - The is now the recommended and default settings format
@@ -373,7 +373,7 @@ The `-p|--properties` CLI option has been deprecated and replaced with the [`-c|
 
 ### Default `-r|--report` option
 
-The output directory for all Gwen reports now has a default value configured in the new [`gwen.cli.options.report`](/docs/settings/reference#gwen-cli-options-report) default CLI setting. So if you've been using Gwen as a standalone application, you no longer need to explicitly specify the [`-r|--report`](/docs/cli#gwen-cli-options-report) CLI option every time you launch Gwen and want reports to be generated. You can however continue to explicitly pass it through and override the default if you want to. Alternatively, change the default.
+The output directory for all Gwen reports now has a default value configured in the new [`gwen.cli.options.report`](/docs/settings/reference#gwen-cli-options-report) default CLI setting. So you no longer need to explicitly specify the [`-r|--report`](/docs/cli#gwen-cli-options-report) CLI option every time you launch Gwen and want reports to be generated. You can however continue to explicitly pass it through and override the default if you want to. Alternatively, change the default.
 
 ### HTML reports by default
 
@@ -387,4 +387,4 @@ If you don't want any reports generated, invoke Gwen with the [`-f|--format`](/d
 
 ## 5. Log4j
 
-Gwen uses log4j2 as of v3.1.0 (and v2.54.0 for Gwen 2). If you are passing custom `log4j.properties` files to Gwen, you will need to update them to [v2 `log4j2.properties` files](https://logging.apache.org/log4j/2.x/manual/configuration.html#Configuration_with_Properties). 
+Gwen uses log4j2 as of v3.1.0 for Gwen 3 (and v2.54.0 for Gwen 2). If you are using custom `log4j.properties` files with Gwen, you will need to convert them over to [version 2 equivalents](https://logging.apache.org/log4j/2.x/manual/configuration.html#Configuration_with_Properties). 

@@ -21,16 +21,15 @@ See the [introduction](/docs) to learn more about Gwen before getting started.
 
 <Tabs
   groupId="setup"
-  defaultValue="js"
+  defaultValue="project"
   values={[
-    {label: 'JS Project', value: 'js'},
+    {label: 'Project', value: 'project'},
     {label: 'Standalone', value: 'standalone'},
-    {label: 'Workspace', value: 'workspace'},
   ]}>
 
-<TabItem value="js">
+<TabItem value="project">
 
- Use this option to add Gwen to an existing JS project or to start a new one.
+ Use this option to add Gwen to an existing project or to start a new one (recommended option).
 
 ### System requirements
 - Linux, Mac or Windows OS
@@ -53,7 +52,7 @@ Add Gwen to an existing or new project using one of the following tools (Yarn is
 
 <TabItem value="yarn">
 
-If you don't have a JS project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
+If you don't have a project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
 
 ```shell
 npm init
@@ -84,7 +83,7 @@ yarn gwen init
 </TabItem>
 <TabItem value="npm">
 
-If you don't have a JS project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
+If you don't have a project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
 
 ```shell
 npm init
@@ -115,7 +114,7 @@ npm run gwen init
 </TabItem>
 <TabItem value="pnpm">
 
-If you don't have a JS project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
+If you don't have a project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
 
 ```shell
 npm init
@@ -176,7 +175,7 @@ The `init` command will generate the following files and subdirectories in your 
 
 :::info Automatic Updates
 
-Automatic installs and updates to the latest version of Gwen are enabled by default for JS projects. You can disable them by setting the `version` field in the `gwenWeb` section of your `package.json` file to a specific version.
+Automatic installs and updates to the latest version of Gwen are enabled by default for projects. You can disable them by setting the `version` field in the `gwenWeb` section of your `package.json` file to a specific version.
 
 ```json
 "gwenWeb": {
@@ -456,17 +455,6 @@ Where:
 :::
 
 A [HTML evaluation report](/docs/reports/html) will be generated at `output/reports/index.html` in your project.
-
-</TabItem>
-
-<TabItem value="workspace">
-
-:::caution Deprecated
-
-[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) have been deprecated in favor of JS projects since  [Gwen 3](/docs/gwen3).
-- [Migrate to Gwen 3](/docs/gwen3/migration)
-
-:::
 
 </TabItem>
 

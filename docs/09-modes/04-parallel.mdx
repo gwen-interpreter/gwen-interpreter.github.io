@@ -19,7 +19,7 @@ Gwen can execute features and scenarios in parallel.
 > Features will run in parallel if you specify:
 > -  the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option and your [state level](/docs/settings/reference#gwen-state-level) is set to `feature`
 
-If you launch Gwen on a quad core machine with the `--parallel` option passing in four feature files (or a single directory containing 4 feature files), then the four features will run in parallel across the four cores. If you instead provide five features, then four of them will execute in parallel and the remaining one will wait until one of them completes and then run on that available core.
+If you launch Gwen on an 8 core machine with the `--parallel` option passing in 8 feature files (or a single directory containing 8 feature files), then the 8 features will run in parallel across the cores. If you instead provide 9 features, then 8 of them will execute in parallel and the remaining feature execution will be deferred until one of those completes.
 
 ## Parallel scenario execution
 
@@ -28,7 +28,7 @@ If you launch Gwen on a quad core machine with the `--parallel` option passing i
 > Scenarios will run in parallel if you specify:
 > - the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option and your [state level](/docs/settings/reference#gwen-state-level) is set to `scenario`
 
-If you launch Gwen on a quad core machine with the `--parallel` option passing in many feature files (or a single directory containing many feature files), then at most four scenarios will run in parallel across the four cores at any one time. If there are a total of five scenarios, then four of them will execute in parallel and the remaining one will wait until one of them completes and then run on that available core.
+If you launch Gwen on a 8 core machine with the `--parallel` option passing in many feature files (or a single directory containing many feature files), then at most 8 scenarios will run in parallel across the cores at any one time. If there are a total of 9 scenarios, then 8 of them will execute in parallel and the remaining scenario execution be deferred wait until one of those completes.
 
 ## Staggering
 
