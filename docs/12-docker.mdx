@@ -92,7 +92,7 @@ Run the following command in the root of your project to generate all the necess
      └──Dockerfile           # Docker image file
 ```
 
-The init --docker commad will create and populate a `gwen/DockerFile` with the following content to build an Alpine Linux node and Yarn based image with bash and Open JDK 8 JRE installed.
+The init --docker commad will create a `gwen/DockerFile` with the following content to build an Alpine Linux node and Yarn based image with bash and Open JDK 8 JRE installed.
 
 ```
 # base alpine image with node
@@ -123,7 +123,7 @@ RUN npm install --global yarn
      └── docker-compose.yml      # Docker compose YAML file
 ```
 
-The init --docker commad will create and populate a `gwen/docker-compose.yml` file with the following content to create containers for Gwen, Chrome, Firefox, and Edge web browsers, a video recorder, and a Selenoid hub that Gwen will connect to.
+The init --docker commad will create a `gwen/docker-compose.yml` file with the following content to create containers for Gwen, Chrome, Firefox, and Edge web browsers, a video recorder, and a Selenoid hub that Gwen will connect to.
 
 ```yaml
 version: '3.5'
@@ -197,7 +197,7 @@ Notice that the bash command in the `gwen` container calls out to our `gwen:sele
          └──browsers.json    # Selenoid browsers file
 ```
 
-The init --docker commad will create and populate a `gwen/browsers/browsers.json` file with the following content that will be used by Selenoid to stand up the browsers in Docker.
+The init --docker commad will create a `gwen/browsers/browsers.json` file with the following content that will be used by Selenoid to stand up the browsers in Docker.
 
 ```json
 {
@@ -244,7 +244,7 @@ The init --docker commad will create and populate a `gwen/browsers/browsers.json
          └──selenoid.conf    # Selenoid Gwen settings
 ```
 
-The init --docker commad will create and populate a `gwen/browsers/selenoid.conf` file with the following content that will be used by Gwen to connect to Selenoid.
+The init --docker commad will create a `gwen/browsers/selenoid.conf` file with the following content that will be used by Gwen to connect to Selenoid.
 
 ```json
 gwen {
