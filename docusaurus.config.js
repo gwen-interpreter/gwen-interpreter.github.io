@@ -60,17 +60,11 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Known Users',
+          title: 'Open Source',
           items: [
             {
-              label: 'SmartStream',
-              href: 'https://www.smartstream-stp.com',
-              className: 'navicon icon-smartstream'
-            },
-            {
-              label: 'Origin Energy',
-              href: 'https://www.originenergy.com.au/',
-              className: 'navicon icon-originenergy'
+              label: 'Apache 2 License',
+              href: 'https://www.apache.org/licenses/LICENSE-2.0',
             },
           ],
         },
@@ -88,7 +82,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Integrates With',
+          title: 'Drives Browsers',
           items: [
             {
               label: 'Chrome',
@@ -99,10 +93,6 @@ module.exports = {
               href: 'https://www.mozilla.org/en-US/firefox/new/',
             }
             ,
-            {
-              label: 'Report Portal',
-              href: '/docs/reports/portal',
-            },
           ],
         },
         {
@@ -119,11 +109,17 @@ module.exports = {
           ],
         },
         {
-          title: 'Open Source',
+          title: 'Known Users',
           items: [
             {
-              label: 'Apache 2 License',
-              href: 'https://www.apache.org/licenses/LICENSE-2.0',
+              label: 'SmartStream',
+              href: 'https://www.smartstream-stp.com',
+              className: 'navicon icon-smartstream'
+            },
+            {
+              label: 'Origin Energy',
+              href: 'https://www.originenergy.com.au/',
+              className: 'navicon icon-originenergy'
             },
           ],
         },
