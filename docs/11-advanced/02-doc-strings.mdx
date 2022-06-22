@@ -10,9 +10,12 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Doc Strings
 
+> Since [v2.9.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.0.0)
+
 Every step in the Gwen DSL that includes a string literal parameter surrounded by quotes at the end of the step expression can accept a [Doc String](https://docs.cucumber.io/gherkin/reference/#doc-strings) value.
 
 #### Doc Strings as parameters to StepDefs
+
 > As of gwen-web v2.53.0 (gwen core v2.34.0), Doc strings can also be passed as parameters to DSL steps and StepDefs too. If the Doc String contains a multi-line value then it can only be passed to parameters that are declared in the Doc-string-able position (that is: string parameters surrounded by quotes declared at the end of the step expression).
 
 This is handy when you want to specify a multiline string literal as the last parameter to a step.

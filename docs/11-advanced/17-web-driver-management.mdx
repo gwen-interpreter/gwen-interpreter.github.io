@@ -12,7 +12,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Automatic Web Driver Management
 
-As of gwen-web v2.34.0, Gwen uses the following embedded web driver manager to automatically download and manage native web driver binaries for you:
+> Since [v2.34.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.34.0)
+
+Gwen uses the following embedded web driver manager to automatically download and manage native web driver binaries for you:
 - [WebDriverManager](https://github.com/bonigarcia/webdrivermanager)
 
 > Automatic web driver management will only be active if no `webdriver.xx.driver` properties are set. So if you are upgrading from an older version of Gwen, be sure to remove these from your Gwen settings files if you wish for Gwen to manage native drivers for you.

@@ -13,6 +13,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Associative Strategy
 
+> Since [v2.40.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.40.0)
+
 When [associative meta](/docs/settings/reference#gwen-associative-meta) is enabled, a meta and feature file are considered to be associated with each other if the two files are in the same directory and have the same names (excluding their file extensions). The associative strategy will, for every feature:
 1. Auto discover all the meta files in the path to the feature file and only load those that are either:
     - Not associated with any feature (one or many)
@@ -60,6 +62,8 @@ When you launch Gwen to execute the `features/dir2/todo2.feature` file, the asso
 - Load the `todo.meta` and execute the `todo2.feature`
 
 ## External Strategy
+
+> Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
 
 The external strategy enables you to manage common and reusable meta files in a directory that is separate or external to your features directory. How you name your meta files or manage your meta directory structure does not matter. This strategy can be used in conjunction with any other meta load strategy.
 
@@ -209,6 +213,8 @@ gwen features -m external/meta
 </Tabs>
 
 ## Import Strategy
+
+> Since [v1.9.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.9.0)
 
 The import strategy enables you to selectively import one or more meta files for any given feature file so they will load automatically without you having to specify their locations using the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option on every launch. This is useful for cases where you have many reusable meta files and it is not practical to load all of them for every feature file.
 
@@ -663,6 +669,8 @@ The path to the meta file in all imports can be absolute or relative to the dire
 Meta files loaded through the import strategy get last precedence and therefore can be overridden by meta files loaded through any other meta load strategy.
 
 ## Default Strategy
+
+> Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
 
 The default strategy will, for every feature:
 1. Auto discover and unconditionally load all the meta in the path to the feature

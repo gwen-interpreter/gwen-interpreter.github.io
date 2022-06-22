@@ -13,7 +13,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Jenkins job
 
-To run your Gwen project in Jenkins, get your Gwen project [running in Docker](/docs/docker) first. Then create a Jenkins pipeline file in your project using the [`init --jenkins`](/docs/cli#gwen-cli-options-init-jenkins) command as shown below. This command is available since Gwen v3.16.0. You will need to create the `Jenkinsfile` manually if you are using an older version.
+> Since [v3.16.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.16.0), the [`init --jenkins`](/docs/cli#gwen-cli-options-init-jenkins) command was introduced to generate a Jenkins file in your project. You will need to create the file manually if you are using an older version.
+
+To run your Gwen project in Jenkins, get your Gwen project [running in Docker](/docs/docker) first. Then create a Jenkins pipeline file in your project as shown below.
 
 <Tabs
   groupId="setup"
