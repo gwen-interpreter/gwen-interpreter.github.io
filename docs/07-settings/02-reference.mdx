@@ -2013,6 +2013,7 @@ import TabItem from '@theme/TabItem';
 
 <details id="gwen-web-accept-untrusted-certs">
   <summary class="setting">
+  <b>Dropped</b> since v3.18.0: Use <code>acceptInsecureCerts</code> cabapility instead.
 
   ```properties
   gwen.web.accept.untrusted.certs
@@ -2397,7 +2398,7 @@ import TabItem from '@theme/TabItem';
   <p>Some capabilities are browser specific. If you set a capability that is not supported for the browser you are targeting, then it will have no effect and will be ignored. Each setting is a new entry with a different <code>&lt;name&gt;</code>. You can configure as many as you need.</p>
   <p>Where</p>
   <ul>
-    <li><code>&lt;name&gt;</code> is a <Link to="https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities">desired capability name (or key)</Link></li>
+    <li><code>&lt;name&gt;</code> is a <Link to="https://www.selenium.dev/documentation/webdriver/capabilities">capability name (or key)</Link></li>
   </ul>
   <p>Supported values</p>
   <ul>
