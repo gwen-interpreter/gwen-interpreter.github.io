@@ -1205,8 +1205,13 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A positive integer value denoting the maximum number of threads to allow</li>
-    <li>Zero to allow all available cores to be utilitised (one thread per core)</li>
+    <li><code>auto</code> (since v3.18.0) or <code>0</code> to run one thread on each available cores</li>
+    <li>Or positive integer value denoting the maximum number of threads to allow
+      <ul>
+        <li>When less than the number of available cores, the remaining cores will be free</li>
+        <li>When greater than the number of available cores, more than one thread may execute on some or all cores (use judiciously)</li>
+      </ul>
+    </li>
   </ul>
   <Tabs
   groupId="settings"
@@ -1218,12 +1223,12 @@ import TabItem from '@theme/TabItem';
   ]}>
   <TabItem value="conf">
 
-  Default value
+  Default value (can be overriden by setting <Link to="/docs/cli#environment-variables"><code>GWEN_THREADS</code></Link> environment variable since v3.18.0)
 
   ```json
     gwen {
       parallel {
-        maxThreads = 0
+        maxThreads = auto
       }
     }
   ```
@@ -1231,13 +1236,13 @@ import TabItem from '@theme/TabItem';
   </TabItem>
   <TabItem value="json">
 
-  Default value
+  Default value (can be overriden by setting <Link to="/docs/cli#environment-variables"><code>GWEN_THREADS</code></Link> environment variable since v3.18.0)
 
   ```json
     {
       "gwen": {
         "parallel": {
-          "maxThreads": 0
+          "maxThreads": auto
         }
       }
     }
@@ -1246,10 +1251,10 @@ import TabItem from '@theme/TabItem';
   </TabItem>
   <TabItem value="properties">
 
-  Default value
+  Default value (can be overriden by setting <Link to="/docs/cli#environment-variables"><code>GWEN_THREADS</code></Link> environment variable since v3.18.0)
 
   ```properties
-    gwen.parallel.maxThreads = 0
+    gwen.parallel.maxThreads = auto
   ```
 
   </TabItem>
@@ -1258,7 +1263,7 @@ import TabItem from '@theme/TabItem';
 
   <div class="grid-3">
     <div><Link to="#gwen-parallel-maxThreads">Link</Link></div>
-    <div align="center"></div>
+    <div align="center">See also <Link to="/docs/modes/parallel">Parallel execution</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.45.0">v2.45.0</Link></div>
   </div>
 </details>
@@ -1277,7 +1282,7 @@ import TabItem from '@theme/TabItem';
     <li>Zero for no interval or delay between successive feature executions</li>
   </ul>
   <p>
-    <br/>Example: A 5 second interval would stagger executions like this over 4 cores:<br/><br/>
+    <br/>Example: A 5 second interval would stagger parallel feature executions like this over 4 cores:<br/><br/>
 
   ```
     time  00   05   10   15   seconds

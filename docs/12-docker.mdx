@@ -102,6 +102,10 @@ FROM node:17-alpine
 RUN apk update \
     && apk add bash \
     && apk add openjdk8-jre
+
+# Run as a non root user
+RUN addgroup -S gwen && adduser -S gwen -G gwen -u 4936
+USER gwen
 ```
 
 Should you prefer a Red Hat Linux and Open JDK 8 based image with node and Yarn installed instead, you can change the content to this:
@@ -112,6 +116,10 @@ FROM adoptopenjdk/openjdk8:ubi
 # install node & yarn
 RUN dnf module install nodejs:16 -y
 RUN npm install --global yarn
+
+# Run as a non root user
+RUN useradd -u 4936 gwen
+USER gwen
 ```
 
 ### Docker compose file
@@ -132,12 +140,12 @@ services:
     image: selenoid/chrome:latest
     networks:
       - gwen-net
-  firefox:
-    image: selenoid/firefox:latest
-    networks:
-      - gwen-net
   edge:
     image: browsers/edge:latest
+    networks:
+      - gwen-net
+  firefox:
+    image: selenoid/firefox:latest
     networks:
       - gwen-net
   video-recorder:
@@ -145,11 +153,6 @@ services:
     networks:
       - gwen-net
   selenoid:
-    depends_on:
-      - chrome
-      - firefox
-      - edge
-      - video-recorder
     image: aerokube/selenoid:latest-release
     networks:
       - gwen-net
@@ -165,6 +168,8 @@ services:
   gwen:
     depends_on:
       - selenoid
+      - video-recorder
+      - $GWEN_BROWSER
     build:
       context: .
       dockerfile: Dockerfile
@@ -174,7 +179,9 @@ services:
       - GWEN_BROWSER
       - GWEN_DRY_RUN
       - GWEN_PARALLEL
+      - GWEN_THREADS
       - GWEN_HEADLESS
+      - GWEN_VIDEO
     volumes:
       - "$PWD:/project"
     working_dir: /project
@@ -211,16 +218,6 @@ The init --docker commad will create a `gwen/browsers/browsers.json` file with t
       }
     }
   },
-  "firefox": {
-    "default": "latest",
-    "versions": {
-      "latest": {
-        "image": "selenoid/firefox:latest",
-        "port": "4444",
-        "path": "/wd/hub"
-      }
-    }
-  },
   "MicrosoftEdge": {
     "default": "latest",
     "versions": {
@@ -228,6 +225,16 @@ The init --docker commad will create a `gwen/browsers/browsers.json` file with t
         "image": "browsers/edge:latest",
         "port": "4444",
         "path": "/"
+      }
+    }
+  },
+  "firefox": {
+    "default": "latest",
+    "versions": {
+      "latest": {
+        "image": "selenoid/firefox:latest",
+        "port": "4444",
+        "path": "/wd/hub"
       }
     }
   }
@@ -251,7 +258,7 @@ gwen {
   web {
     capability {
       enableVNC = true
-      enableVideo = false
+      enableVideo = true
     }
     remote {
       url = "http://${env.SELENIUM_HUB}:4444/wd/hub"
@@ -278,39 +285,43 @@ Run the following command to build your docker image
 docker-compose -f gwen/docker-compose.yml build
 ```
 
-Run the following command in your project directory to spin everything up and launch Gwen in docker
+Run the following command in your project directory launch Gwen on chrome in docker
 
 ```shell
-docker-compose -f gwen/docker-compose.yml run gwen
+GWEN_BROWSER=chrome docker-compose -f gwen/docker-compose.yml run gwen
 ```
 
 To execute features in parallel (you can pass any number of [environment varaibles](/docs/cli#environment-variables) in this manner)
 
 ```shell
-docker-compose -f gwen/docker-compose.yml run -e GWEN_PARALLEL=true gwen
+GWEN_BROWSER=chrome GWEN_PARALLEL=true docker-compose -f gwen/docker-compose.yml run gwen
 ```
 
 Tear it all down when done
 
 ```shell
-docker-compose -f gwen/docker-compose.yml down
+GWEN_BROWSER=chrome docker-compose -f gwen/docker-compose.yml down
 ```
 
-## Video recordings
+## Video capture
+
+> See also: [Video recordings](/docs/reports/video-recordings) 
+
+If you set the [`GWEN_VIDEO`](/docs/cli#environment-variables) environment variable or the `gwen.web.capability.enableVideo` setting `true` in your `selenoid.conf` file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html). Set this to `false` if you do not wish to capture video.
+
+File: *gwen/browsers/selenoid.conf*
 
 ```json {5}
 gwen {
   web {
     capability {
-      ..
+      enableVNC = true
       enableVideo = true
-      ..
     }
     ..
   }
 }
 ```
-If you set `gwen.web.capability.videoEnabled` to `true` in your `selenoid.conf` file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html). Set this to `false` if you do not wish to capture video.
 
 :::note video settings
 - [`gwen-video.dir`](/docs/settings/reference#gwen-video.dir) 
@@ -319,8 +330,76 @@ If you set `gwen.web.capability.videoEnabled` to `true` in your `selenoid.conf` 
   - Time to wait for asyncronous video writes to complete (override only if default does not suffice)
 :::
 
-:::caution Video limitation
-Since v3.16.0, no videos will be captured when [parallel execution](/docs/modes/parallel) or [headless browser](/docs/settings/reference#gwen-web-browser-headless) modes are enabled.
+:::caution Limitation
+Since v3.16.0, videos will not be recorded when [parallel execution](/docs/modes/parallel) or [headless browser](/docs/settings/reference#gwen-web-browser-headless) modes are enabled.
 :::
 
-See also: [Video recordings](/docs/reports/video-recordings) 
+## Mac M1 notes
+
+### Chrome or Edge crashes
+
+If you're running Chrome or Edge in a Selenoid docker container on a Mac M1 and encounter the following error
+
+```
+(unknown error: DevToolsActivePort file doesn't exist)
+```
+
+Make the following changes to the following files and to use the experimanal [Seleniarm](https://github.com/seleniumhq-community/docker-seleniarm) images instead and try again.
+
+File: *gwen/docker-compose.yml*
+```yaml {4,8}
+version: '3.5'
+services:
+  chrome:
+    image: seleniarm/standalone-chromium:latest
+    networks:
+      - gwen-net
+  edge:
+    image: seleniarm/standalone-chromium:latest
+    networks:
+      - gwen-net
+```
+
+File: *gwen/browsers/browsers.json*
+```json {6,16}
+  {
+  "chrome": {
+    "default": "latest",
+    "versions": {
+      "latest": {
+        "image": "seleniarm/standalone-chromium:latest",
+        "port": "4444",
+        "path": "/"
+      }
+    }
+  },
+  "MicrosoftEdge": {
+    "default": "latest",
+    "versions": {
+      "latest": {
+        "image": "seleniarm/standalone-chromium:latest",
+        "port": "4444",
+        "path": "/"
+      }
+    }
+  }
+}
+```
+
+The Selenoid video recorder won't work with the experimental Seleniarm images, so you should disable video 
+
+File: *gwen/browsers/selenoid.conf*
+
+```json {5}
+gwen {
+  web {
+    capability {
+      enableVNC = true
+      enableVideo = false
+    }
+    remote {
+      url = "http://${env.SELENIUM_HUB}:4444/wd/hub"
+    }
+  }
+}
+```
