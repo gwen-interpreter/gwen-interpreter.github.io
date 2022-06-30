@@ -225,5 +225,20 @@ String interpolation syntax can also be used to reference a value in the current
   Scenario Outline: I load items from CSV files
     When I add a <Status> "<Item>" item
 ```
+:::
+
+### Required flag
+
+> Since [v3.20.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.20.0)
+
+A `required=true` attribute can be added to raise an error if no data is returned by the `where` clause filter.
+
+:::note Scenario outline which raises an error if externalised and filtered data is empty
+
+```gherkin {1}
+  @Examples(file="data/items.csv",where="Status=${SelectedStatus}",required=true)
+  Scenario Outline: I load items from CSV files
+    When I add a <Status> "<Item>" item
+```
 
 :::

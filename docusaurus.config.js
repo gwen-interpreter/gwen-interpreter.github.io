@@ -82,7 +82,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Drives Browsers',
+          title: 'Integrations',
           items: [
             {
               label: 'Chrome',
@@ -91,6 +91,14 @@ module.exports = {
             {
               label: 'Edge',
               href: 'https://www.microsoft.com/en-us/edge',
+            },
+            {
+              label: 'Selenoid',
+              href: 'https://aerokube.com/selenoid/',
+            },
+            {
+              label: 'Docker',
+              href: 'https://www.docker.com/',
             },
           ],
         },
@@ -104,6 +112,14 @@ module.exports = {
             {
               label: 'Safari',
               href: 'https://www.apple.com/au/safari/',
+            },
+            {
+              label: 'Jenkins',
+              href: 'https://www.jenkins.io/',
+            },
+            {
+              label: 'Report Portal',
+              href: 'https://reportportal.io/',
             },
           ],
         },

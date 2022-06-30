@@ -243,8 +243,10 @@ The init --docker commad will create a `gwen/browsers/selenoid.conf` file with t
 gwen {
   web {
     capability {
-      enableVNC = true
-      enableVideo = true
+      "selenoid:options" {
+        enableVNC = true
+        enableVideo = true
+      }
     }
     remote {
       url = "http://${env.SELENIUM_HUB}:4444/wd/hub"
@@ -312,16 +314,18 @@ GWEN_BROWSER=chrome docker-compose -f gwen/docker-compose.yml down
 
 > See also: [Video recordings](/docs/reports/video-recordings) 
 
-If you set the [`GWEN_VIDEO`](/docs/cli#environment-variables) environment variable or the `gwen.web.capability.enableVideo` setting `true` in your `selenoid.conf` file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html). Set this to `false` if you do not wish to capture video.
+If you set the [`GWEN_VIDEO`](/docs/cli#environment-variables) environment variable or the `selenoid:options.enableVideo` capability setting to `true` in your `selenoid.conf` file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html). Set this to `false` if you do not wish to capture video.
 
 File: *gwen/browsers/selenoid.conf*
 
-```json {5}
+```json {6}
 gwen {
   web {
     capability {
-      enableVNC = true
-      enableVideo = true
+      "selenoid:options" {
+        enableVNC = true
+        enableVideo = true
+      }
     }
     ..
   }
@@ -395,12 +399,14 @@ The Selenoid video recorder won't work with the experimental Seleniarm images, s
 
 File: *gwen/browsers/selenoid.conf*
 
-```json {5}
+```json {6}
 gwen {
   web {
     capability {
-      enableVNC = true
-      enableVideo = false
+      "selenoid:options" {
+        enableVNC = true
+        enableVideo = false
+      }
     }
     remote {
       url = "http://${env.SELENIUM_HUB}:4444/wd/hub"

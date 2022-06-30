@@ -12,7 +12,7 @@ import ReactPlayer from 'react-player'
 
 > See also: [Video capture](/docs/docker#video-capture) 
 
-Captured video recordings of browser sessions are currently only supported when running Gwen in [Docker with Selenoid](/docs/docker), and if either the [`GWEN_VIDEO`](/docs/cli#environment-variables) environment variable or `gwen.web.capability.enableVideo` setting are set to `true`. Under these conditions, MP4 video recordings of each session will be attached to [HTML reports](/docs/reports/html) when execution completes.
+Captured video recordings of browser sessions are currently only supported when running Gwen in [Docker with Selenoid](/docs/docker), and if either the [`GWEN_VIDEO`](/docs/cli#environment-variables) environment variable or the `selenoid:options.enableVideo` capability setting are set to `true`. Under these conditions, MP4 video recordings of each session will be attached to [HTML reports](/docs/reports/html) when execution completes.
 
 File: *gwen/browsers/selenoid.conf*
 
@@ -20,11 +20,10 @@ File: *gwen/browsers/selenoid.conf*
 gwen {
   web {
     capability {
-      ..
-      enableVideo = true
-      ..
+      "selenoid:options" {
+        enableVideo = true
+      }
     }
-    ..
   }
 }
 ```
