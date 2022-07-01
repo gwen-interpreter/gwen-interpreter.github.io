@@ -30,7 +30,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: '/docs/cli#init-options',
+          href: '/docs/gwen3',
           position: 'left',
           label: "What's new?",
         },
