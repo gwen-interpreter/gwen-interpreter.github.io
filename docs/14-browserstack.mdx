@@ -1,0 +1,168 @@
+--- 
+title: BrowserStack
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Running Gwen on BrowserStack
+
+Follow the instructions here to remotely execute your Gwen features on a variety of platforms, browsers and devices hosted on [BrowserStack](https://www.browserstack.com/).
+
+### Settings file
+
+Create the a new `browserstack.conf` settings file in your `browsers` directory as shown.
+
+```shell {4}
+./project                       # Your project root
+ └── /gwen                      # Gwen working directory
+     └── /browsers
+         └──browserstack.conf   # BrowserStack settings file
+```
+
+Add the following content
+
+```json {5,6}
+gwen {
+  web {
+    capability {
+      "bstack:options" {
+        os = "OS X"
+        osVersion = "Monterey"
+      }
+    }
+    remote {
+      url = "https://${env.BROWSERSTACK_USERNAME}:${env.BROWSERSTACK_ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub"
+    }
+  }
+}
+```
+
+This example configures BrowserStack to run on a Mac OS X Monterey desktop. You can configure any supported [BrowserStack capabilities](https://www.browserstack.com/automate/capabilities?tag=selenium-4#) you require depending on which platform, browser, or device you want to target. If no browser or device is specified, Gwen will run the default browser governed by your [gwen.target.browser](/docs/settings/reference#gwen-target-browser) setting. To override this default, just add the `browserName` capability to your settings file. 
+
+For example: to run on Edge browser:
+
+```json {8}
+gwen {
+  web {
+    capability {
+      "bstack:options" {
+        os = "OS X"
+        osVersion = "Monterey"
+      }
+      browserName = "Edge"
+    }
+    remote {
+      url = "https://${env.BROWSERSTACK_USERNAME}:${env.BROWSERSTACK_ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub"
+    }
+  }
+}
+```
+
+Or to run on the chrome browser on a Pixel 6 phone:
+
+```json {5,6,8}
+gwen {
+  web {
+    capability {
+      "bstack:options" {
+        osVersion = "12.0"
+        deviceName = "Google Pixel 6"
+      }
+      browserName = "chrome"
+    }
+    remote {
+      url = "https://${env.BROWSERSTACK_USERNAME}:${env.BROWSERSTACK_ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub"
+    }
+  }
+}
+
+```
+
+## Package JSON script
+
+Add the following `gwen:browserstack` script to the `scripts` section of the `package.json` file in your project.
+
+```shell {2}
+./project             # Your project root
+ └── package.json     # Package json file
+```
+
+```json {3}
+"scripts": {
+  "gwen": "gwen",
+  "gwen:browserstack": "gwen -b -c gwen/browsers/browserstack.conf gwen/features"
+}
+```
+
+Or to run the samples bundled in Gwen:
+
+
+```json {3}
+"scripts": {
+  "gwen": "gwen",
+  "gwen:browserstack": "gwen -b -c gwen/browsers/browserstack.conf gwen/samples"
+}
+```
+
+## Launch
+
+Set the following enviornment variable on your system (where you will launch Gwen) to your BrowserStack username and access key:
+- BROWSERSTACK_USERNAME
+- BROWSERSTACK_ACCESS_KEY
+
+Then run the following command in the root of your project to launch Gwen on Browserstack
+
+<Tabs
+  groupId="setup"
+  defaultValue="project"
+  values={[
+    {label: 'Project', value: 'project'},
+  ]}>
+
+<TabItem value="project">
+
+<Tabs
+groupId="jstool"
+defaultValue="yarn"
+values={[
+  {label: 'Yarn', value: 'yarn'},
+  {label: 'npm', value: 'npm'},
+  {label: 'pnpm', value: 'pnpm'}
+]}>
+
+<TabItem value="yarn">
+
+  ```shell
+  yarn gwen:browserstack
+  ```
+
+</TabItem>
+
+<TabItem value="npm">
+
+  ```shell
+  npm run gwen:browserstack
+  ```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+  ```shell
+  pnpm gwen:browserstack
+  ```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+</Tabs>
+
+Open BrowserStack's [Automate dashboard](https://automate.browserstack.com/) to view your executions.

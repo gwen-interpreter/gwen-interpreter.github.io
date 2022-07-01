@@ -257,7 +257,14 @@ gwen {
 
 ## Package JSON script
 
-Add the following `gwen:selenoid` script to the `scripts` section of the `package.json` file in your project. This will be called by the `gwen` container in the [docker-compose](#docker-compose-file) file generated above.
+Add the following `gwen:selenoid` script to the `scripts` section of the `package.json` file in your project.
+
+```shell {2}
+./project             # Your project root
+ └── package.json     # Package json file
+```
+
+This script will be called by the `gwen` container in the [docker-compose](#docker-compose-file) file generated above.
 
 ```json {3}
 "scripts": {
