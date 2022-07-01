@@ -82,7 +82,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Runs On',
+          title: 'Drives Browsers',
           items: [
             {
               label: 'Chrome',
@@ -103,7 +103,7 @@ module.exports = {
           ],
         },
         {
-          title: '‎',
+          title: 'Runs On',
           items: [
             {
               label: 'Docker',
