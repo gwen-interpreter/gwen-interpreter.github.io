@@ -82,7 +82,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Integrations',
+          title: 'Runs On',
           items: [
             {
               label: 'Chrome',
@@ -93,19 +93,6 @@ module.exports = {
               href: 'https://www.microsoft.com/en-us/edge',
             },
             {
-              label: 'Selenoid',
-              href: 'https://aerokube.com/selenoid/',
-            },
-            {
-              label: 'Docker',
-              href: 'https://www.docker.com/',
-            },
-          ],
-        },
-        {
-          title: '‎',
-          items: [
-            {
               label: 'Firefox',
               href: 'https://www.mozilla.org/en-US/firefox/new/',
             },
@@ -113,13 +100,26 @@ module.exports = {
               label: 'Safari',
               href: 'https://www.apple.com/au/safari/',
             },
+          ],
+        },
+        {
+          title: '‎',
+          items: [
+            {
+              label: 'Docker',
+              href: 'https://www.docker.com/',
+            },
+            {
+              label: 'Selenoid',
+              href: 'https://aerokube.com/selenoid/',
+            },
+            {
+              label: 'BrowserStack',
+              href: 'https://www.browserstack.com/',
+            },
             {
               label: 'Jenkins',
               href: 'https://www.jenkins.io/',
-            },
-            {
-              label: 'Report Portal',
-              href: 'https://reportportal.io/',
             },
           ],
         },
