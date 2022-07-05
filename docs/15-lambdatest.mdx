@@ -107,6 +107,22 @@ If you want to configure browser specific [capabilities](/docs/settings/referenc
          └──firefox.conf
 ```
 
+## Package JSON script
+
+Create a new `gwen:hyperexecute` script in the `scripts` section of the `package.json` file in your project to invoke the [HyperExecute CLI](https://www.lambdatest.com/support/docs/hyperexecute-cli-run-tests-on-hyperexecute-grid/) and launch on the grid.
+
+```shell {2}
+./project             # Your project root
+ └── package.json     # Package json file
+```
+
+```json {3}
+"scripts": {
+  "gwen": "gwen",
+  "gwen:hyperexecute": "./hyperexecute --config gwen/LT-HyperExecute.yml --download-artifacts --download-artifacts-path gwen/output/lt-artefacts --force-clean-artifacts"
+}
+```
+
 ## Launch
 
 [Download the HyperExecute binary](https://www.lambdatest.com/support/docs/hyperexecute-cli-run-tests-on-hyperexecute-grid/) for your platform to the root of your project.
@@ -133,40 +149,57 @@ Set the following enviornment variables on your system to your LambdaTest userna
 - LT_USERNAME
 - LT_ACCESS_KEY
 
-Then invoke the [HyperExecute CLI](https://www.lambdatest.com/support/docs/hyperexecute-cli-run-tests-on-hyperexecute-grid/) in the root of your project to launch on the grid.
+
+Then call the `gwen:hyperexecute` script in your project to launch your Gwen features on the HyperExecute grid.
 
 <Tabs
-  groupId="os"
-  defaultValue="linux"
+  groupId="setup"
+  defaultValue="project"
   values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
+    {label: 'Project', value: 'project'},
   ]}>
 
-<TabItem value="linux">
+<TabItem value="project">
 
-```shell
-./hyperexecute \
-  --config gwen/LT-HyperExecute.yml \
-  --download-artifacts \
-  --download-artifacts-path gwen/output/lt-artefacts \
-  --force-clean-artifacts
-```
+<Tabs
+groupId="jstool"
+defaultValue="yarn"
+values={[
+  {label: 'Yarn', value: 'yarn'},
+  {label: 'npm', value: 'npm'},
+  {label: 'pnpm', value: 'pnpm'}
+]}>
+
+<TabItem value="yarn">
+
+  ```shell
+  yarn gwen:hyperexecute
+  ```
 
 </TabItem>
 
-<TabItem value="windows">
+<TabItem value="npm">
 
-```shell
-hyperexecute ^
-  --config gwen\LT-HyperExecute.yml ^
-  --download-artifacts ^
-  --download-artifacts-path gwen\output\lt-artefacts ^
-  --force-clean-artifacts
-```
+  ```shell
+  npm run gwen:hyperexecute
+  ```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+  ```shell
+  pnpm gwen:hyperexecute
+  ```
+
 </TabItem>
 
 </Tabs>
+
+</TabItem>
+
+</Tabs>
+
 
 Open the [HyperExecute dashboard](https://hyperexecute.lambdatest.com/) to view your executions.
 
