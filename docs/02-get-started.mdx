@@ -42,9 +42,31 @@ See the [introduction](/docs) to learn more about Gwen before getting started.
     - [Java 8+](https://java.com) JRE (no need for JDK unless you really want it)
     - [node 12+](https://nodejs.org/en/download/package-manager)
 
-### Add Gwen to your project and initialise
+### Open a terminal window in your project
 
-Add Gwen to an existing or new project using one of the following tools. 
+Open a terminal window in a new or exising project directory.
+
+<Tabs
+  groupId="jstool"
+  defaultValue="new"
+  values={[
+    {label: 'New', value: 'new'},
+    {label: 'Existing', value: 'existing'},
+  ]}>
+
+<TabItem value="new">
+Create a new directory somewhere on your machine and open a terminal window in that.
+</TabItem>
+
+<TabItem value="existing">
+Open a terminal window in the root of your existing project.
+</TabItem>
+
+</Tabs>
+
+### Add Gwen and initialise
+
+Add Gwen to your project using one of the following tools. 
 
 > [Yarn](https://yarnpkg.com/) is recommended for ease of use.
 
@@ -59,13 +81,7 @@ Add Gwen to an existing or new project using one of the following tools.
 
 <TabItem value="yarn">
 
-If you don't have a project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
-
-```shell
-npm init
-```
-
-Install the gwen-web package as a dev dependency in your project:
+Install the gwen-web package as a dev dependency:
 
 ```shell
 yarn add -D @gweninterpreter/gwen-web
@@ -87,12 +103,6 @@ yarn gwen init
 
 </TabItem>
 <TabItem value="npm">
-
-If you don't have a project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
-
-```shell
-npm init
-```
 
 Install the gwen-web package as a dev dependency in your project:
 
@@ -116,12 +126,6 @@ npm run gwen init
 
 </TabItem>
 <TabItem value="pnpm">
-
-If you don't have a project, [install node](https://nodejs.org/en/download/package-manager) and create a new one by running the following command in a new directory (otherwise open a command prompt in the root directory of your existing project):
-
-```shell
-npm init
-```
 
 Install the gwen-web package as a dev dependency in your project:
 
