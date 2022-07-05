@@ -132,14 +132,14 @@ Create a new `gwen:hyperExecute` script in the `scripts` section of the `package
  └── hyperexecute               # HyperExecute binary
  ```
 
-Create a HyperExecute ignore file to prevent unwanted files from being uploaded to the grid
+Create a `.hyperexecuteignore` file in the root of your project.
 
 ```shell {2}
 ./project                       # Your project root
  └── .hyperexecuteignore        # HyperExecute ignore file
  ```
 
-Add the following content to prevent the binary and Gwen output directory from being uploaded
+Add the following content to the ignore file to prevent the binary and the Gwen output directory from being uploaded
 ```
 hyperexecute
 gwen/output
@@ -150,7 +150,7 @@ Set the following enviornment variables on your system to your LambdaTest userna
 - LT_ACCESS_KEY
 
 
-Then call the `gwen:hyperExecute` script in your project to launch your Gwen features on HyperExecute.
+Then call the `gwen:hyperExecute` script in your project to launch your Gwen features on the HyperExecute grid
 
 <Tabs
   groupId="setup"
