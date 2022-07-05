@@ -15,13 +15,13 @@ The [HyperExecute](https://www.lambdatest.com/hyperexecute) grid by LambdaTest c
 
 ### Settings file
 
-Create a new `LT.conf` settings file in your `browsers` directory as shown.
+Create a new `lambdatest.conf` settings file in your `browsers` directory as shown.
 
 ```shell {4}
 ./project                       # Your project root
  └── /gwen
      └── /browsers
-         └── LT.conf            # LambdaTest settings file
+         └── lambdatest.conf    # LambdaTest settings file
 ```
 
 Add the following content
@@ -45,12 +45,12 @@ You can enable more [LambdaTest capabilities](https://www.lambdatest.com/support
 
 ## HyperExecute YAML
 
-Next, create a `LT-HyperExecute.yml` file in the `gwen` directory of your project. 
+Next, create a `hyper-execute.yml` file in the `gwen` directory of your project. 
 
 ```shell {4}
-./project                       # Your project root
+./project                     # Your project root
  └── /gwen
-     └── LT-HyperExecute.yml    # HyperExecute YAML file
+     └── hyper-execute.yml    # HyperExecute YAML file
 ```
 
 Add the following content to execute all your Gwen features across Chrome, Edge, and Firefox browsers on Linux using 10 parallel sessions.
@@ -83,7 +83,7 @@ testDiscovery:
   mode: dynamic
   command: find gwen/features -type f -name "*.feature"
 
-testRunnerCommand: yarn gwen -b -c gwen/browsers/LT.conf,gwen/browsers/$browser.conf $test
+testRunnerCommand: yarn gwen -b -c gwen/browsers/lambdatest.conf,gwen/browsers/$browser.conf $test
 
 uploadArtefacts:
   - name: Gwen-Report
@@ -109,7 +109,7 @@ If you want to configure browser specific [capabilities](/docs/settings/referenc
 
 ## Package JSON script
 
-Create a new `gwen:hyperexecute` script in the `scripts` section of the `package.json` file in your project to invoke the [HyperExecute CLI](https://www.lambdatest.com/support/docs/hyperexecute-cli-run-tests-on-hyperexecute-grid/) and launch on the grid.
+Create a new `gwen:hyperExecute` script in the `scripts` section of the `package.json` file in your project to invoke the [HyperExecute CLI](https://www.lambdatest.com/support/docs/hyperexecute-cli-run-tests-on-hyperexecute-grid/) and launch on the grid.
 
 ```shell {2}
 ./project             # Your project root
@@ -119,7 +119,7 @@ Create a new `gwen:hyperexecute` script in the `scripts` section of the `package
 ```json {3}
 "scripts": {
   "gwen": "gwen",
-  "gwen:hyperexecute": "./hyperexecute --config gwen/LT-HyperExecute.yml --download-artifacts --download-artifacts-path gwen/output/lt-artefacts --force-clean-artifacts"
+  "gwen:hyperExecute": "./hyperexecute --config gwen/hyper-execute.yml --download-artifacts --download-artifacts-path gwen/output/lt-artefacts --force-clean-artifacts"
 }
 ```
 
@@ -150,7 +150,7 @@ Set the following enviornment variables on your system to your LambdaTest userna
 - LT_ACCESS_KEY
 
 
-Then call the `gwen:hyperexecute` script in your project to launch your Gwen features on HyperExecute.
+Then call the `gwen:hyperExecute` script in your project to launch your Gwen features on HyperExecute.
 
 <Tabs
   groupId="setup"
@@ -173,7 +173,7 @@ values={[
 <TabItem value="yarn">
 
   ```shell
-  yarn gwen:hyperexecute
+  yarn gwen:hyperExecute
   ```
 
 </TabItem>
@@ -181,7 +181,7 @@ values={[
 <TabItem value="npm">
 
   ```shell
-  npm run gwen:hyperexecute
+  npm run gwen:hyperExecute
   ```
 
 </TabItem>
@@ -189,7 +189,7 @@ values={[
 <TabItem value="pnpm">
 
   ```shell
-  pnpm gwen:hyperexecute
+  pnpm gwen:hyperExecute
   ```
 
 </TabItem>
