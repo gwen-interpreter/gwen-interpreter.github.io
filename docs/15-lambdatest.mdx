@@ -1,0 +1,172 @@
+--- 
+title: LambdaTest
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Running Gwen on LambdaTest HyperExecute
+
+The [HyperExecute](https://www.lambdatest.com/hyperexecute) grid by LambdaTest can remotely execute your Gwen features across combinations of platforms, browsers, and devices at near local speeds using customisable execution strategies. Follow the instructions here to get your Gwen features running on HyperExecute.
+
+### Settings file
+
+Create a new `LT.conf` settings file in your `browsers` directory as shown.
+
+```shell {4}
+./project                       # Your project root
+ └── /gwen
+     └── /browsers
+         └──LT.conf             # Lambdatest settings file
+```
+
+Add the following content
+
+```json
+gwen {
+  web {
+    capability {
+      "LT:Options" {
+          video = true
+      }
+    }
+    remote {
+      url = "https://${env.LT_USERNAME}:${env.LT_ACCESS_KEY}@hub.lambdatest.com/wd/hub"
+    }
+  }
+}
+```
+
+You can enable more [LambdaTest capabilities](https://www.lambdatest.com/support/docs/selenium-automation-capabilities/#desired-capabilities-in-selenium-4) in the `LT:Options` block if you wish. This example just enables video.
+
+## HyperExecute YAML
+
+Next, create a `LT-HyperExecute.yml` file in the `gwen` directory of your project. 
+
+```shell {4}
+./project                       # Your project root
+ └── /gwen
+     └── LT-HyperExecute.yml    # HyperExecute YAML file
+```
+
+Add the following content to execute all your Gwen features across Chrome, Edge, and Firefox browsers on Linux using 10 parallel sessions.
+
+```yaml {20,21,26,28}
+version: 0.1
+
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+
+autosplit: true
+parallelism: 10
+concurrency: 10
+
+runson: ${matrix.os}
+
+pre:
+  - yarn install
+
+cacheDirectories:
+  - node_modules
+
+matrix:
+  os: [linux]
+  browser: ["chrome", "edge", "firefox"]
+
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: find gwen/features -type f -name "*.feature"
+
+testRunnerCommand: yarn gwen -b -c gwen/browsers/LT.conf,gwen/browsers/$browser.conf $test
+
+uploadArtefacts:
+  - name: Gwen-Report
+    path:
+      - gwen/output/reports/html/**
+
+```
+
+The `testDiscovery` element locates every feature file in the `gwen/features` directory and the `matrix` element automatically distributes and executes each of those in parallel across all the combinations of OS and browsers configured. Each browser and each feature file is passed to Gwen as `$browser` and `$test` respectively. More information about the [YAML here](https://www.lambdatest.com/support/docs/deep-dive-into-hyperexecute-yaml).
+
+## Browser specific capabilities
+
+If you want to configure browser specific [capabilities](/docs/settings/reference#gwen-web-capability-entry), you can do so in the respective `.conf` files in your `gwen/browsers` directory:
+
+```shell {4}
+./project                       # Your project root
+ └── /gwen
+     └── /browsers
+         ├──chrome.conf
+         ├──edge.conf
+         └──firefox.conf
+```
+
+## Launch
+
+[Download the HyperExecute binary](https://www.lambdatest.com/support/docs/hyperexecute-cli-run-tests-on-hyperexecute-grid/) for your platform to the root of your project.
+
+```shell {2}
+./project                       # Your project root
+ └── hyperexecute               # HyperExecute binary
+ ```
+
+Create a HyperExecute ignore file to prevent unwanted files from being uploaded to the grid
+
+```shell {2}
+./project                       # Your project root
+ └── .hyperexecuteignore        # HyperExecute ingore file
+ ```
+
+Add the following content to prevent the binary and Gwen output directory from being uploaded
+```
+hyperexecute
+gwen/output
+```
+
+Then run the following command in the root of your project to execute on the HyperExecute grid.
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+```shell
+./hyperexecute \
+  --config gwen/LT-HyperExecute.yml \
+  --download-artifacts \
+  --download-artifacts-path gwen/output/lt-artefacts \
+  --force-clean-artifacts
+```
+
+</TabItem>
+
+<TabItem value="windows">
+
+```shell
+hyperexecute ^
+  --config gwen\LT-HyperExecute.yml ^
+  --download-artifacts ^
+  --download-artifacts-path gwen\output\lt-artefacts ^
+  --force-clean-artifacts
+```
+</TabItem>
+
+</Tabs>
+
+Open the [HyperExecute dashboard](https://hyperexecute.lambdatest.com/) to view your executions.
+
+---
+
+See also:
+- [Getting started with HyperExecute](https://www.lambdatest.com/support/docs/getting-started-with-hyperexecute/)
