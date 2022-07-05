@@ -125,10 +125,6 @@ module.exports = {
               label: 'LambdaTest',
               href: 'https://www.lambdatest.com/hyperexecute',
             },
-            {
-              label: 'Jenkins',
-              href: 'https://www.jenkins.io/',
-            },
           ],
         },
         {
