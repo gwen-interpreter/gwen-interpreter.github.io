@@ -35,15 +35,14 @@ html[data-theme='dark'] .navbar {
 }
 
 .hero__title {
-  font-family: "OCRA";
-  letter-spacing: -0.55rem;
+  letter-spacing: 0.1rem;
   font-size: 3.7rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 @media (max-width: 996px) {
   .hero__title {
-    letter-spacing: -0.375rem;
+    letter-spacing: 0.1rem;
     font-size: 3rem;
   }
 }
