@@ -31,9 +31,7 @@ See the [introduction](/docs) to learn more about Gwen before getting started.
 
 > Since [Gwen 3](/docs/gwen3)
 
- Use this option to add Gwen to an existing project or to start a new one.
- 
- > This is the recommended option since everything will be self contained and [Git](https://git-scm.com/) ready.
+ Use this option to start a new project or add Gwen to an existing one. This is the recommended option since everything will be self contained and [Git](https://git-scm.com/) ready.
 
 ### System requirements
   - Linux, Mac or Windows OS
@@ -42,9 +40,7 @@ See the [introduction](/docs) to learn more about Gwen before getting started.
     - [Java 8+](https://java.com) JRE (no need for JDK unless you really want it)
     - [node 12+](https://nodejs.org/en/download/package-manager)
 
-### Open a terminal window in your project
-
-Open a terminal window in a new or exising project directory.
+### Open a terminal window in your project directory
 
 <Tabs
   groupId="jstool"
@@ -55,20 +51,18 @@ Open a terminal window in a new or exising project directory.
   ]}>
 
 <TabItem value="new">
-Create a new directory somewhere on your machine and open a terminal window in that.
+To start a new project, create a new directory and open a terminal window in that.
 </TabItem>
 
 <TabItem value="existing">
-Open a terminal window in the root of your existing project.
+To add Gwen to an existing project, open a terminal window in the root of that project.
 </TabItem>
 
 </Tabs>
 
 ### Add Gwen and initialise
 
-Add Gwen to your project using one of the following tools. 
-
-> [Yarn](https://yarnpkg.com/) is recommended for ease of use.
+Add Gwen using one of the following tools ([Yarn](https://yarnpkg.com/) is recommended for ease of use).
 
 <Tabs
   groupId="jstool"
@@ -93,14 +87,6 @@ Then, initialize Gwen in the project by running:
 yarn gwen init
 ```
 
-If you have problems, add the following to the `scripts` section of your `package.json` file, and try again.
-
-```json {2}
-  "scripts": {
-    "gwen": "gwen"
-  }
-```
-
 </TabItem>
 <TabItem value="npm">
 
@@ -116,14 +102,6 @@ Then, initialize Gwen in the project by running:
 npm run gwen init
 ```
 
-If you have problems, add the following to the `scripts` section of your `package.json` file, and try again.
-
-```json {2}
-  "scripts": {
-    "gwen": "gwen"
-  }
-```
-
 </TabItem>
 <TabItem value="pnpm">
 
@@ -137,14 +115,6 @@ Then, initialize Gwen in the project by running:
 
 ```shell
 pnpm gwen init
-```
-
-If you have problems, add the following to the `scripts` section of your `package.json` file, and try again.
-
-```json {2}
-  "scripts": {
-    "gwen": "gwen"
-  }
 ```
 
 </TabItem>
@@ -216,6 +186,8 @@ Gwen has an embedded web driver manager which automatically downloads and instal
 
 ### Execute the samples
 
+To confirm your setup, execute the samples in the `gwen/samples` directory and delete (or keep) them when done.
+
 <Tabs
   groupId="jstool"
   defaultValue="yarn"
@@ -228,6 +200,8 @@ Gwen has an embedded web driver manager which automatically downloads and instal
 <TabItem value="yarn">
 
 :::note Launch Gwen
+
+Run the following command in your project to execute the samples.
 
 ```shell
 yarn gwen -b gwen/samples
@@ -247,7 +221,7 @@ Where:
 
 :::note Launch Gwen
 
-Run the following command in your project to execute the sample feature specs.
+Run the following command in your project to execute the samples.
 
 ```shell
 npm run gwen -- -b gwen/samples
@@ -264,6 +238,8 @@ Where:
 
 </TabItem>
 <TabItem value="pnpm">
+
+Run the following command in your project to execute the samples.
 
 :::note Launch Gwen
 
@@ -283,7 +259,7 @@ Where:
 </TabItem>
 </Tabs>
 
-A [HTML evaluation report](/docs/reports/html) will be generated at `gwen/output/reports/index.html` in your project.
+The sample features will execute and a [HTML evaluation report](/docs/reports/html) will be generated at `gwen/output/reports/index.html` in your project.
 
 
 </TabItem>
@@ -445,9 +421,11 @@ Gwen has an embedded web driver manager which automatically downloads and instal
 
 ### Execute the samples
 
+To confirm your setup, execute the samples in the `samples` directory and delete (or keep) them when done.
+
 :::note Launch Gwen
 
-Run the following command in your project to execute the sample feature specs.
+Run the following command in your project to execute the samples.
 
 ```shell
 gwen -b samples
@@ -462,7 +440,7 @@ Where:
 
 :::
 
-A [HTML evaluation report](/docs/reports/html) will be generated at `output/reports/index.html` in your project.
+The sample features will execute and a [HTML evaluation report](/docs/reports/html) will be generated at `output/reports/index.html` in your project.
 
 </TabItem>
 
