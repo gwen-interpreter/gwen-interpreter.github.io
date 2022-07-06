@@ -16,7 +16,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 > Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>
 
-The `@Eager` annotation can be used on the above DSL steps to immediately evaluate and bind the result an expression to a name. The eagerly bound value is instantly returned whenever the name is referenced.
+The `@Eager` annotation can be used to immediately evaluate and bind the result an expression to a name. The eagerly bound value is instantly returned whenever the name is referenced.
 
 :::note Eager example
 
@@ -35,18 +35,18 @@ The `@Eager` annotation can be used on the above DSL steps to immediately evalua
 
 > Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>
 
-The `@Lazy` annotation can be used on the above DSL steps to evaluate and bind the result an expression to a name when that name is first referenced. The lazily bound value is returned whenever the name is referenced thereafter.
+The `@Lazy` annotation can be used to evaluate and bind the result an expression to a name when that name is first referenced. The lazily bound value is returned whenever the name is referenced thereafter.
 
 :::note Eager example
 
-```gherkin {2}
+```gherkin {1,2}
   Given @Lazy time is defined by js "new Date().getTime()"
    When I capture time as time 1
     And I capture time as time 2 
    Then time 1 should be "${time 2}"
 ```
 
-`time 1` and `time 2` will have the same value since `time` is bound and evaluated when it is first referenced at step 1.
+`time 1` and `time 2` will have the same value since `time` is bound and evaluated when it is first referenced.
 
 :::
 
