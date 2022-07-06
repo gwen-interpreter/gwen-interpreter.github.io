@@ -48,7 +48,7 @@ html[data-theme='dark'] .navbar {
 }
 
 .hero__subtitle {
-  font-size:1.8rem;
+  font-size:1.85rem;
   font-weight: 700;
 }
 
@@ -57,7 +57,7 @@ html[data-theme='dark'] .navbar {
     --ifm-col-width: 50%;
   }
   .hero__subtitle {
-    font-size:1.22rem;
+    font-size:1.35rem;
     font-weight: 600;
   }
 }
