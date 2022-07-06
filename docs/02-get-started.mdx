@@ -164,9 +164,13 @@ Omitting or setting it to `latest` will re-enable automatic updates.
 
 :::
 
-### Set your default browser
+### Review default settings
 
-Gwen is configured to use the Chrome browser by default. To change this default, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) setting in your `/project/gwen.conf` file to load your preferred browser settings instead of chrome.
+All the default [settings](/docs/settings) for your project are pre-configured in the `gwen.conf` file in the root of your project (created by the `init` command). You can change any of them at any time to suit your needs. 
+
+#### Default web browser
+
+For example, Gwen is configured to use the Chrome browser by default. To change this, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) setting to a different browser.
 
 :::note Amend setting
 
@@ -181,6 +185,15 @@ gwen {
 ```
 
 :::
+
+#### Gherkin style
+
+Also, the following settings are pre-configured with [strictly good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/) in mind:
+
+- [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode) is set to *declarative* to help keep your features high level and declarative
+- [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) is set to *strict* to enforce proper behavioral semantics and Given-When-Then order
+
+You might choose to relax these by setting them to *imperative* and *lenient* instead if you require flexibility.
 
 #### Web driver settings
 
@@ -389,9 +402,13 @@ The `init` command will generate the following files and subdirectorie in your p
    └── /samples            # Sample features and meta
 ```
 
-### Set your default browser
+### Review default settings
 
-Gwen is configured to use the Chrome browser by default. To change this default, amend the  [<code>gwen.cli.options.conf</code>](/docs/settings/reference#gwen-cli-options-conf) setting in your `/project/gwen.conf` file to load your preferred browser settings instead of chrome.
+All the default [settings](/docs/settings) for your project are pre-configured in the `gwen.conf` file in the root of your project (created by the `init` command). You can change any of them at any time to suit your needs. 
+
+#### Default web browser
+
+For example, Gwen is configured to use the Chrome browser by default. To change this, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) setting to a different browser.
 
 :::note Amend setting
 
@@ -416,6 +433,15 @@ For example, to change it to Firefox, amend the highlighted settings line above 
 ```
 
 :::
+
+#### Gherkin style
+
+Also, the following settings are pre-configured with [strictly good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/) in mind:
+
+- [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode) is set to *declarative* to help keep your features high level and declarative
+- [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) is set to *strict* to enforce proper behavioral semantics and Given-When-Then order
+
+You might choose to relax these by setting them to *imperative* and *lenient* instead if you require flexibility.
 
 #### Web driver settings
 
