@@ -266,9 +266,8 @@ Add the following `gwen:selenoid` script to the `scripts` section of the `packag
 
 This script will be called by the `gwen` container in the [docker-compose](#docker-compose-file) file generated above.
 
-```json {3}
+```json {2}
 "scripts": {
-  "gwen": "gwen",
   "gwen:selenoid": "gwen -b -c gwen/browsers/selenoid.conf gwen/features"
 }
 ```
@@ -276,9 +275,8 @@ This script will be called by the `gwen` container in the [docker-compose](#dock
 Or to run the samples bundled in Gwen:
 
 
-```json {3}
+```json {2}
 "scripts": {
-  "gwen": "gwen",
   "gwen:selenoid": "gwen -b -c gwen/browsers/selenoid.conf gwen/samples"
 }
 ```
