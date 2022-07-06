@@ -35,14 +35,14 @@ html[data-theme='dark'] .navbar {
 }
 
 .hero__title {
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.05rem;
   font-size: 3.7rem;
   font-weight: 600;
 }
 
 @media (max-width: 996px) {
   .hero__title {
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.05rem;
     font-size: 3rem;
   }
 }
