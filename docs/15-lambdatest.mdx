@@ -85,11 +85,6 @@ testDiscovery:
 
 testRunnerCommand: yarn gwen -b -c gwen/browsers/lambdatest.conf,gwen/browsers/$browser.conf $test
 
-uploadArtefacts:
-  - name: Gwen-Report
-    path:
-      - gwen/output/reports/html/**
-
 ```
 
 The `testDiscovery` element locates every feature file in the `gwen/features` directory and the `matrix` element automatically distributes and executes each of those in parallel across all the combinations of OS and browsers configured. Each browser and each feature file is passed to Gwen as `$browser` and `$test` respectively.
@@ -122,7 +117,7 @@ Create a new `gwen:hyperExecute` script in the `scripts` section of the `package
 
 ```json {2}
 "scripts": {
-  "gwen:hyperExecute": "./hyperexecute --config gwen/hyper-execute.yml --download-artifacts --download-artifacts-path gwen/output/hyper-execute --force-clean-artifacts"
+  "gwen:hyperExecute": "./hyperexecute --config gwen/hyper-execute.yml"
 }
 ```
 
