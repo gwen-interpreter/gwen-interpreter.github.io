@@ -184,9 +184,9 @@ html[data-theme='light'] .navbar__title:not(:hover) {
 }
 
 a.banner-button {
-  border: solid;
+  background-color: #d41132;
   color: var(--ifm-color-white);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 a.banner-button:hover {
