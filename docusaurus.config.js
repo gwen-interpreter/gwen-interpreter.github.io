@@ -14,7 +14,7 @@ module.exports = {
   projectName: 'gwen-interpreter.github.io', // Usually your repo name.
   trailingSlash: false,
   themeConfig: {
-    image: 'img/gwen-media.png',
+    image: 'img/gwen-logo.png',
     navbar: {
       title: 'gwen',
       logo: {
