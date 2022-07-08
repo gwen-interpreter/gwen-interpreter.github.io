@@ -204,7 +204,7 @@ html[data-theme='light'] .navbar__link--active {
 
 html[data-theme='light'] .footer--dark {
   --ifm-footer-background-color:  #e9edfc;
-  --ifm-footer-color: #0a042f;
+  --ifm-footer-color: #14085e;
   --ifm-footer-link-color: var(--ifm-footer-color);
   --ifm-footer-title-color: var(--ifm-footer-color);
 }
