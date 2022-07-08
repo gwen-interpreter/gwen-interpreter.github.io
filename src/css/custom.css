@@ -182,14 +182,3 @@ html[data-theme='light'] .navbar__title:not(:hover) {
   font-style: normal;
   font-display: swap
 }
-
-a.banner-button {
-  background-color: #e82c5b;
-  color: var(--ifm-color-white);
-  opacity: 0.95;
-}
-
-a.banner-button:hover {
-  opacity: 1;
-  color: var(--ifm-color-white);
-}
