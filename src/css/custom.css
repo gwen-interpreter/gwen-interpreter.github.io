@@ -182,3 +182,14 @@ html[data-theme='light'] .navbar__title:not(:hover) {
   font-style: normal;
   font-display: swap
 }
+
+a.banner-button {
+  color: #1A0B80;
+  background-color: #e9e9fc;
+  opacity: 0.95;
+}
+
+a.banner-button:hover {
+  opacity: 1;
+  color: #1A0B80;
+}
