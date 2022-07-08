@@ -79,10 +79,6 @@ module.exports = {
               label: 'Selenium',
               href: 'https://www.selenium.dev',
             },
-            {
-              label: 'WebDriver',
-              href: 'https://www.w3.org/TR/webdriver/',
-            }
           ],
         },
         {
