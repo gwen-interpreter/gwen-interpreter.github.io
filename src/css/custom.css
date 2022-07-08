@@ -26,7 +26,7 @@
 }
 
 html[data-theme='dark'] .navbar {
-  background-color: #111111;
+  background-color: #161616;
 }
 
 .hero--primary {
@@ -63,7 +63,7 @@ html[data-theme='dark'] .navbar {
 }
 
 .footer--dark {
-  --ifm-footer-background-color:  #111111;
+  --ifm-footer-background-color:  #161616;
 }
 
 .dsl:before {
@@ -204,8 +204,4 @@ html[data-theme='light'] .navbar__link:hover {
 
 html[data-theme='light'] .navbar__link--active {
   color: var(--ifm-navbar-link-hover-color);
-}
-
-html[data-theme='dark'] {
-  --ifm-background-color: #161616;
 }
