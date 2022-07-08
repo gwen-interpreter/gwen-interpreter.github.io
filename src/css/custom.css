@@ -193,3 +193,15 @@ a.banner-button:hover {
   opacity: 1;
   color: #1A0B80;
 }
+
+html[data-theme='light'] .navbar__link {
+  color: #0a042f;
+}
+
+html[data-theme='light'] .navbar__link:hover {
+  color: var(--ifm-navbar-link-hover-color);
+}
+
+html[data-theme='light'] .navbar__link--active {
+  color: var(--ifm-navbar-link-hover-color);
+}
