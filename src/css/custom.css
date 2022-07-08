@@ -7,13 +7,13 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #46a1fb;
-  --ifm-color-primary-dark: #2791fa;
-  --ifm-color-primary-darker: #1789fa;
-  --ifm-color-primary-darkest: #0571dc;
-  --ifm-color-primary-light: #0571dc;
-  --ifm-color-primary-lighter: #1789fa;
-  --ifm-color-primary-lightest: #2791fa;
+  --ifm-color-primary: #559bff;
+  --ifm-color-primary-dark: #3387ff;
+  --ifm-color-primary-darker: #227dff;
+  --ifm-color-primary-darkest: #0062ee;
+  --ifm-color-primary-light: #77afff;
+  --ifm-color-primary-lighter: #88b9ff;
+  --ifm-color-primary-lightest: #bbd7ff;
   --ifm-code-font-size: 95%;
 }
 
@@ -60,10 +60,6 @@ html[data-theme='dark'] .navbar {
     font-size:1.35rem;
     font-weight: 600;
   }
-}
-
-.footer--dark {
-  --ifm-footer-background-color:  #161616;
 }
 
 .dsl:before {
@@ -205,3 +201,15 @@ html[data-theme='light'] .navbar__link:hover {
 html[data-theme='light'] .navbar__link--active {
   color: var(--ifm-navbar-link-hover-color);
 }
+
+html[data-theme='light'] .footer--dark {
+  --ifm-footer-background-color:  #e9edfc;
+  --ifm-footer-color: #0a042f;
+  --ifm-footer-link-color: var(--ifm-footer-color);
+  --ifm-footer-title-color: var(--ifm-footer-color);
+}
+
+html[data-theme='dark'] .footer--dark {
+  --ifm-footer-background-color:  #161616;
+}
+
