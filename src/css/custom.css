@@ -191,13 +191,9 @@ html[data-theme='light'] .navbar__link--active {
   --ifm-navbar-link-color: var(--ifm-navbar-link-hover-color);
 }
 
-html[data-theme='light'] .footer--dark {
-  --ifm-footer-background-color:  #e9e9fc;
-  --ifm-footer-color: #33085e;
+.footer--dark {
+  --ifm-footer-background-color:  #2d2442;
+  --ifm-footer-color: var(--ifm-color-white);
   --ifm-footer-link-color: var(--ifm-footer-color);
   --ifm-footer-title-color: var(--ifm-footer-color);
-}
-
-html[data-theme='dark'] .footer--dark {
-  --ifm-footer-background-color:  #2d2442;
 }
