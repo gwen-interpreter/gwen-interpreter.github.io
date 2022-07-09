@@ -16,8 +16,8 @@ function HomepageHeader() {
         <meta property="og:title" content="Gwen" data-react-helmet="true" />
       </Head>
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <h1 className="hero__title">{siteConfig.tagline}</h1>
+        <br></br>
         <div className={styles.buttons}>
           <Link
             className="button banner-button button--lg"

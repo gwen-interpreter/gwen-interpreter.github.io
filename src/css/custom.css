@@ -41,12 +41,8 @@
 
 @media (max-width: 996px) {
   .hero__title {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
   }
-}
-
-.hero__subtitle {
-  padding-bottom: 8px;
 }
 
 @media (max-width: 996px) {
