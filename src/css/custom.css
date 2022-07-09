@@ -192,7 +192,7 @@ html[data-theme='light'] .navbar__link--active {
 }
 
 .footer--dark {
-  --ifm-footer-background-color:  #2d2442;
+  --ifm-footer-background-color:  #2d244a;
   --ifm-footer-color: var(--ifm-color-white);
   --ifm-footer-link-color: var(--ifm-footer-color);
   --ifm-footer-title-color: var(--ifm-footer-color);
