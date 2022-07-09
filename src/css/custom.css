@@ -7,13 +7,13 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #559bff;
-  --ifm-color-primary-dark: #3387ff;
-  --ifm-color-primary-darker: #227dff;
-  --ifm-color-primary-darkest: #0062ee;
-  --ifm-color-primary-light: #77afff;
-  --ifm-color-primary-lighter: #88b9ff;
-  --ifm-color-primary-lightest: #bbd7ff;
+  --ifm-color-primary: #558bff;
+  --ifm-color-primary-dark: #3374ff;
+  --ifm-color-primary-darker: #2268ff;
+  --ifm-color-primary-darkest: #004cee;
+  --ifm-color-primary-light: #77a2ff;
+  --ifm-color-primary-lighter: #88aeff;
+  --ifm-color-primary-lightest: #bbd1ff;
   --ifm-code-font-size: 95%;
 }
 
@@ -204,7 +204,7 @@ html[data-theme='light'] .navbar__link--active {
 
 html[data-theme='light'] .footer--dark {
   --ifm-footer-background-color:  #e9edfc;
-  --ifm-footer-color: #14085e;
+  --ifm-footer-color: #33085e;
   --ifm-footer-link-color: var(--ifm-footer-color);
   --ifm-footer-title-color: var(--ifm-footer-color);
 }
