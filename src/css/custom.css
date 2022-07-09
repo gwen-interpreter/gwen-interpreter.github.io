@@ -14,7 +14,6 @@
   --ifm-color-primary-light: #77a2ff;
   --ifm-color-primary-lighter: #88aeff;
   --ifm-color-primary-lightest: #bbd1ff;
-  --ifm-code-font-size: 95%;
 }
 
 [data-theme='dark'] {
@@ -40,31 +39,15 @@
   --ifm-hero-text-color: var(--ifm-color-white);
 }
 
-.hero__title {
-  letter-spacing: 0.05rem;
-  font-size: 3.7rem;
-  font-weight: 600;
-}
-
 @media (max-width: 996px) {
   .hero__title {
-    letter-spacing: 0.05rem;
-    font-size: 3rem;
+    font-size: 1.8rem;
   }
-}
-
-.hero__subtitle {
-  font-size:1.85rem;
-  font-weight: 700;
 }
 
 @media (max-width: 996px) {
   .row .col.col.col.footer__col {
     --ifm-col-width: 50%;
-  }
-  .hero__subtitle {
-    font-size:1.35rem;
-    font-weight: 600;
   }
 }
 
