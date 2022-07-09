@@ -192,13 +192,12 @@ html[data-theme='light'] .navbar__link--active {
 }
 
 html[data-theme='light'] .footer--dark {
-  --ifm-footer-background-color:  #e9edfc;
+  --ifm-footer-background-color:  #e9e9fc;
   --ifm-footer-color: #33085e;
   --ifm-footer-link-color: var(--ifm-footer-color);
   --ifm-footer-title-color: var(--ifm-footer-color);
 }
 
 html[data-theme='dark'] .footer--dark {
-  --ifm-footer-background-color:  #2f273f;
+  --ifm-footer-background-color:  #2d2442;
 }
-
