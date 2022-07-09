@@ -5,25 +5,25 @@ import Link from '@docusaurus/Link';
 
 const FeatureList = [
   {
-    title: 'Declare Features',
+    title: 'Declare',
     Svg: require('../../static/img/gwen-declare-features.svg').default,
     description: (
       <>
-        Write <Link to="/docs#declare-features">feature</Link> specs to describe how scenarios should behave.
+        Declare <Link to="/docs#declare-features">feature</Link> specs to describe how scenarios should behave.
       </>
     ),
   },
   {
-    title: 'Compose Meta',
+    title: 'Compose',
     Svg: require('../../static/img/gwen-compose-meta.svg').default,
     description: (
       <>
-        Write <Link to="/docs#compose-meta">meta</Link> specs to describe how steps will execute to automate scenarios.
+        Compose <Link to="/docs#compose-meta">meta</Link> specs to describe how steps will execute to automate scenarios.
       </>
     ),
   },
   {
-    title: 'Execute Features',
+    title: 'Automate',
     Svg: require('../../static/img/gwen-execute-features.svg').default,
     description: (
       <>
