@@ -35,10 +35,6 @@
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.06);
 }
 
-html[data-theme='dark'] .navbar {
-  background-color: #161616;
-}
-
 .hero--primary {
   --ifm-hero-background-color: var(--ifm-color-primary);
   --ifm-hero-text-color: var(--ifm-color-white);
@@ -220,6 +216,6 @@ html[data-theme='light'] .footer--dark {
 }
 
 html[data-theme='dark'] .footer--dark {
-  --ifm-footer-background-color:  #161616;
+  --ifm-footer-background-color:  #2f273f;
 }
 
