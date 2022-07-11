@@ -231,3 +231,8 @@ html[data-theme='light'] .navbar__link--active {
   --ifm-footer-link-color: var(--ifm-footer-color);
   --ifm-footer-title-color: var(--ifm-footer-color);
 }
+
+.logo {
+  border: 1px solid #c1d0f0;
+  display: inline-block;
+}
