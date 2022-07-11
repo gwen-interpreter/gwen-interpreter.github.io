@@ -219,8 +219,8 @@ html[data-theme='light'] .navbar__link--active {
   --ifm-navbar-link-color: var(--ifm-navbar-link-hover-color);
 }
 
-.footer--dark {
-  --ifm-footer-background-color:  #2d244a;
+.footer {
+  --ifm-footer-background-color: #28292a;
   --ifm-footer-color: var(--ifm-color-white);
   --ifm-footer-link-color: var(--ifm-footer-color);
   --ifm-footer-title-color: var(--ifm-footer-color);
