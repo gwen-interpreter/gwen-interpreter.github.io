@@ -14,11 +14,11 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Compose Meta',
-    Svg: require('../../static/img/gwen-compose-meta.svg').default,
+    title: 'Declare Meta',
+    Svg: require('../../static/img/gwen-declare-meta.svg').default,
     description: (
       <>
-        Compose <Link to="/docs#compose-meta">meta</Link> specs to describe how steps will execute to automate scenarios.
+        Declare <Link to="/docs#declare-meta">meta</Link> specs to describe what steps will execute to automate scenarios.
       </>
     ),
   },
