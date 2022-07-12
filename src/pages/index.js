@@ -16,11 +16,9 @@ function HomepageHeader() {
         <meta property="og:title" content="Gwen" data-react-helmet="true" />
       </Head>
       <div className="container">
-        <div className="hero__title_container">
-          <h1 className="hero__title">
-            <span className="highlight">Declarative</span> automation and robotics for Gherkin
-          </h1>
-        </div>
+        <h1 className="hero__title">
+          <span className="highlight">Declarative</span> automation and robotics for Gherkin
+        </h1>
         <br></br>
         <div className={styles.buttons}>
           <Link

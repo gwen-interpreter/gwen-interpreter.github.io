@@ -67,22 +67,13 @@
   --ifm-hero-text-color: var(--ifm-color-white);
 }
 
-
-.hero__title_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .hero__title {
   letter-spacing: 0.01rem;
-  text-align: left;
-  padding-left: 20px;
 }
 
 @media (max-width: 996px) {
   .hero__title {
-    font-size: 2.1rem;
+    font-size: 1.8rem;
     letter-spacing: 0.01rem;
   }
 }
