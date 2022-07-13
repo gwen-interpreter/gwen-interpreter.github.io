@@ -153,6 +153,18 @@ services:
     environment:
       - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD/gwen/output/.video
     command: ["-container-network", "gwen-net", "-video-output-dir", "/opt/selenoid/video"]
+  selenoid-ui:
+    depends_on:
+      - selenoid
+      - $GWEN_BROWSER
+    image: aerokube/selenoid-ui:latest
+    environment:
+      - GWEN_BROWSER
+    networks:
+      - gwen-net
+    ports: 
+      - "8999:8999"
+    command: ["--selenoid-uri", "http://selenoid:4444", "--listen", ":8999"]
   gwen:
     depends_on:
       - selenoid
@@ -173,7 +185,7 @@ services:
     volumes:
       - "$PWD:/project"
     working_dir: /project
-    command: bash -c "yarn install && yarn gwen:selenoid"
+    command: bash -c "yarn install && yarn gwen:selenoid -b"
     networks:
       - gwen-net
 networks:
@@ -268,7 +280,7 @@ This script will be called by the `gwen` container in the [docker-compose](#dock
 
 ```json {2}
 "scripts": {
-  "gwen:selenoid": "gwen -b -c gwen/browsers/selenoid.conf gwen/features"
+  "gwen:selenoid": "gwen -c gwen/browsers/selenoid.conf gwen/features"
 }
 ```
 
@@ -277,7 +289,7 @@ Or to run the samples bundled in Gwen:
 
 ```json {2}
 "scripts": {
-  "gwen:selenoid": "gwen -b -c gwen/browsers/selenoid.conf gwen/samples"
+  "gwen:selenoid": "gwen -c gwen/browsers/selenoid.conf gwen/samples"
 }
 ```
 
@@ -307,6 +319,28 @@ To execute features in parallel (you can pass any number of [environment varaibl
 
 ```shell
 GWEN_BROWSER=chrome GWEN_PARALLEL=true docker-compose -f gwen/docker-compose.yml run gwen
+```
+
+Tear it all down when done
+
+```shell
+GWEN_BROWSER=chrome docker-compose -f gwen/docker-compose.yml down
+```
+
+## Run Gwen locally with Selenoid UI
+
+Make sure `enableVNC = true` in your [selenoid settings](#gwen-settings-file). Then run the following command to launch the [Selenoid UI](https://aerokube.com/selenoid-ui/latest/) service in Docker
+
+```shell
+GWEN_BROWSER=chrome docker-compose -f gwen/docker-compose.yml run -d --service-ports selenoid-ui
+```
+
+Open [http://localhost:8999](http://localhost:8999) in a browser to check that the Selenoid UI is running and avaialable
+
+Run the following command to launch Gwen against your Selenoid instance in Docker. You will see browser session(s) appear in the Selenoid UI.
+
+```shell
+SELENIUM_HUB=localhost yarn gwen:selenoid
 ```
 
 Tear it all down when done
@@ -345,7 +379,7 @@ gwen {
 :::
 
 :::caution Limitation
-Since v3.16.0, videos will not be recorded when [parallel execution](/docs/modes/parallel) or [headless browser](/docs/settings/reference#gwen-web-browser-headless) modes are enabled.
+Videos will not be recorded when [parallel execution](/docs/modes/parallel), [headless browser](/docs/settings/reference#gwen-web-browser-headless), or interactive (non [--batch/-b](/docs/cli#gwen-cli-options-batch)) modes are enabled.
 :::
 
 ## Mac M1 notes
