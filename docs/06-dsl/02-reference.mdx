@@ -1769,6 +1769,37 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
+<details id="i-scroll-to-the-top-or-bottom-of-page">
+  <summary class="dsl">
+
+  ```gherkin
+  I scroll to the <top|bottom> of the page
+  ```
+  <p>Scrolls to the top or bottom of the current page.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;top|bottom&gt;</code> is one of:
+      <ul>
+        <li><code>top</code> to scroll to the top of the page</li>
+        <li><code>bottom</code> to scroll to the bottom of the page</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given I navigate to "https://automationintesting.com/selenium/testpage"
+      And I scroll to the bottom of the page
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-scroll-to-the-top-or-bottom-of-page">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.20.1">v3.20.1</Link></div>
+  </div>
+</details>
+
 ## Web elements
 
 ### Given
