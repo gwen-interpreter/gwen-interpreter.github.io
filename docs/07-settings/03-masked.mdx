@@ -16,7 +16,7 @@ It is a common security practice to never log sensitive data. To support this pr
 
 To flag a setting as masked, append `:masked` to its defined name.
 
-For example, to mask a custom property named `user.password`, define it as follows in your settings file:
+For example, to access a password stored in an environemnt variable named `USER_PASSOWRD`, you can read it into a masked setting named `user.password` as follows:
 
 <Tabs
     groupId="settings"
@@ -31,7 +31,7 @@ For example, to mask a custom property named `user.password`, define it as follo
 
   ```json
     user {
-      "password:masked" = "secret"
+      "password:masked" = "${env.USER_PASSWORD}"
     }
   ```
 
@@ -42,7 +42,7 @@ For example, to mask a custom property named `user.password`, define it as follo
   ```json
     {
       "user": {
-        "password:masked": "secret"
+        "password:masked": "${env.USER_PASSWORD}"
       }
     }
   ```
@@ -52,7 +52,7 @@ For example, to mask a custom property named `user.password`, define it as follo
   <TabItem value="properties">
 
   ```properties
-    user.password\:masked = secret
+    user.password\:masked = ${env.USER_PASSWORD}
   ```
 
   *Note*: You will need to escape `:` as `\:` in properties files
@@ -61,10 +61,10 @@ For example, to mask a custom property named `user.password`, define it as follo
 
   </Tabs>
 
-Alternatively, you can pass a masked setting directly to the [Gwen CLI](/docs/cli) as a system property if you don't wish to store it in a file:
+Alternatively, you can pass a masked setting directly to the [Gwen CLI](/docs/cli) if you don't wish to store it in your settings file:
 
 ```shell
--Duser.password:masked=secret
+-Duser.password:masked='${env.USER_PASSWORD}'
 ```
 
 ## Using masked settings
