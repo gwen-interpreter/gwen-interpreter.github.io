@@ -61,12 +61,6 @@ For example, to access a password stored in an environemnt variable named `USER_
 
   </Tabs>
 
-Alternatively, you can pass a masked setting directly to the [Gwen CLI](/docs/cli) if you don't wish to store it in your settings file:
-
-```shell
--Duser.password:masked='${env.USER_PASSWORD}'
-```
-
 ## Using masked settings
 
 To use a masked setting, just reference it anywhere you need to using it's name (excluding the `:masked` suffix).
