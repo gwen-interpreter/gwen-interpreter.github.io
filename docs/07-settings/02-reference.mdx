@@ -2172,7 +2172,7 @@ import TabItem from '@theme/TabItem';
   ```properties
   gwen.target.browser
   ```
-  <p>Sets the default browser that Gwen will target.
+  <p>Sets the default browser to target when no explicit settings are provided on launch.
     <br/><br/>Formerly <code>gwen.web.browser</code> (prior to v3.0.0)
   </p>
   </summary>
@@ -2236,6 +2236,82 @@ import TabItem from '@theme/TabItem';
     <div><Link to="#gwen-target-browser">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-target-env">
+  <summary class="setting">
+
+  ```properties
+  gwen.target.env
+  ```
+  <p>Sets the default environment settings to load when no explicit settings are provided on launch.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>
+      The name of the environment <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/env</i> folder to load when no <Link to ="/docs/cli#gwen-cli-options-conf"><code>-c/--config</code></Link> CLI option is provided. Example:
+      <ul>
+        <li><code>local</code> for your local development environment</li>
+        <li><code>dev</code> for your dedicated development environment</li>
+        <li><code>test</code> for your dedicated test environment</li>
+        <li><code>prod</code> for your production environment</li>
+        <li>Or the name of any other environment file you may create in your <i>gwen/env</i> folder</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      target {
+        env  = "local"
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "target": {
+          "env": "local"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.target.env = local
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-target-env">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
   </div>
 </details>
 

@@ -168,18 +168,19 @@ Omitting or setting it to `latest` will re-enable automatic updates.
 
 All the default [settings](/docs/settings) for your project are pre-configured in the `gwen.conf` file in the root of your project (created by the `init` command). You can change any of them at any time to suit your needs. 
 
-#### Default web browser
+#### Default web browser and target environment
 
-For example, Gwen is configured to use the Chrome browser by default. To change this, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) setting to a different browser.
+Gwen is configured to target the Chrome browser and your *local* environment by default. To change these, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) and [<code>gwen.target.env</code>](/docs/settings/reference#gwen-target-env) settings to your preferred values.
 
-:::note Amend setting
+:::note Amend settings
 
 *File: /project/gwen.conf*
 
-```json {3}
+```json {3, 4}
 gwen {
   target {
-    browser = "chrome"            # <- Change to firefox, safari, edge, or ie
+    browser = "chrome"            # chrome|firefox|safari|edge|ie
+    env = "local"                 # local|dev|test|prod|..
   }
 }
 ```
@@ -188,12 +189,12 @@ gwen {
 
 #### Gherkin style
 
-Also, the following defaults are pre-configured to help promote [good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/) practice:
+The following defaults are pre-configured to help promote [good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/) practice:
 
 - [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode) is set to `declarative` to confine your [DSL](/docs/dsl) usage to [meta](/docs/meta) and keep your features clean
 - [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) is set to `strict` to enforce proper [behavioral rules](/docs#behavioral-rules-and-semantics) and *Given-When-Then* order
 
-You might choose to relax these by setting them to `imperative` and `lenient` (respectively) if you find them too rigid.
+You can relax these by setting them to `imperative` and `lenient` (respectively) if you find them too rigid.
 
 #### Web driver settings
 
@@ -406,42 +407,33 @@ The `init` command will generate the following files and subdirectorie in your p
 
 All the default [settings](/docs/settings) for your project are pre-configured in the `gwen.conf` file in the root of your project (created by the `init` command). You can change any of them at any time to suit your needs. 
 
-#### Default web browser
+#### Default web browser and target environment
 
-For example, Gwen is configured to use the Chrome browser by default. To change this, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) setting to a different browser.
+Gwen is configured to target the Chrome browser and your *local* environment by default. To change these, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) and [<code>gwen.target.env</code>](/docs/settings/reference#gwen-target-env) settings to your preferred values.
 
-:::note Amend setting
+:::note Amend settings
 
 *File: /project/gwen.conf*
 
-```json {5}
+```json {3, 4}
 gwen {
-  cli {
-    options {
-      config = [
-        "browsers/chrome.conf", // <- Change to firefox, safari, edge, or ie
-        "env/local.conf"
-      ]
-    }
+  target {
+    browser = "chrome"            # chrome|firefox|safari|edge|ie
+    env = "local"                 # local|dev|test|prod|..
   }
 }
-```
-
-For example, to change it to Firefox, amend the highlighted settings line above to:
-```json
-"browsers/firefox.conf",
 ```
 
 :::
 
 #### Gherkin style
 
-Also, the following settings are pre-configured with [strictly good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/) in mind:
+The following settings are pre-configured with [strictly good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/) in mind:
 
 - [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode) is set to *declarative* to help keep your features high level and declarative
 - [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) is set to *strict* to enforce proper behavioral semantics and Given-When-Then order
 
-You might choose to relax these by setting them to *imperative* and *lenient* instead if you find them too rigid.
+You can relax these by setting them to *imperative* and *lenient* instead if you find them too rigid.
 
 #### Web driver settings
 
