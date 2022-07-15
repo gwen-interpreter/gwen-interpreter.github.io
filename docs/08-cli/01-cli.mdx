@@ -53,6 +53,7 @@ The following environment variables can be set to override configured settings:
 | Since   | Environment variable | Values                                                                           | Overrides setting                                                                 | Affects CLI option                           |
 | :-----: |:-------------------- | -------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- | :------------------------------------------- |
 | v3.16.0 | `GWEN_BROWSER`       | <code>chrome&#124;edge&#124;</code><br/><code>firefox&#124;safari&#124;ie</code> | [`gwen.target.browser`](/docs/settings/reference#gwen-target-browser)             |                                              |
+| v3.23.0 | `GWEN_ENV`           | <code>local&#124;dev&#124;</code><br/><code>test&#124;prod&#124;..</code>        | [`gwen.target.env`](/docs/settings/reference#gwen-target-env)                     |                                              |
 | v3.16.0 | `GWEN_DRY_RUN`       | <code>true&#124;false</code>                                                     | [`gwen.cli.options.dryRun`](/docs/settings/reference#gwen-cli-options-dry-run)    | [`-n, --dry-run`](#gwen-cli-options-dry-run) |
 | v3.16.0 | `GWEN_PARALLEL`      | <code>true&#124;false</code>                                                     | [`gwen.cli.options.parallel`](/docs/settings/reference#gwen-cli-options-parallel) | [`--parallel`](#gwen-cli-options-parallel)   |
 | v3.18.0 | `GWEN_THREADS`       | <code>auto&#124;number</code>                                                    | [`gwen.parallel.maxThreads`](/docs/settings/reference#gwen-parallel-maxThreads)   |                                              |
@@ -60,8 +61,6 @@ The following environment variables can be set to override configured settings:
 | v3.18.0 | `GWEN_VIDEO`         | <code>true&#124;false</code>                                                     | [`selenoid:options.enableVideo`](/docs/docker#video-capture)                      |                                              |
 
 <br/>
-
-Settings or options explicitly specified on the command line will override values set by the above variables.
 
 ### System properties and JVM options
 
@@ -1130,6 +1129,14 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
   <p>
   The <code>-p|--properties</code> option in early version of Gwen has been deprecated and replaced in favor of this option since Gwen 3. The former will still work for properties files until the next major release (and will be removed then). You should use this launch option going forward.
   </p>
+
+  <p>
+  The following settings files are implicity added as defaults:
+  <ul>
+    <li>Browser settings file if it exists and no other browser settings file is explicitly passed: <code>{<Link to="/docs/settings/reference#gwen-baseDir">gwen.baseDir</Link>}/browsers/${<Link to="/docs/settings/reference#gwen-target-browser">gwen.target.browser</Link>}.conf</code></li>
+    <li>Environment settings file if it exists and no other environemnt settings file is explicitly passed: <code>{<Link to="/docs/settings/reference#gwen-baseDir">gwen.baseDir</Link>}/env/${<Link to="/docs/settings/reference#gwen-target-env">gwen.target.env</Link>}.conf</code></li>
+  </ul>
+  </p>
   <br />
 
   <p>Examples</p>
@@ -1225,7 +1232,7 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-conf">Link</Link></div>
-    <div align="center">Defaults to: <Link to="/docs/settings/reference#gwen-cli-options-conf"><code>gwen.cli.options.conf</code></Link></div>
+    <div align="center">/Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
   </div>
 </details>

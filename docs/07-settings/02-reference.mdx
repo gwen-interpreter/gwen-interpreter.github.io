@@ -2172,17 +2172,21 @@ import TabItem from '@theme/TabItem';
   ```properties
   gwen.target.browser
   ```
-  <p>Sets the default browser to target when no explicit settings are provided on launch.
+  <p>Sets the default browser to target when Gwen is launched.
     <br/><br/>Formerly <code>gwen.web.browser</code> (prior to v3.0.0)
   </p>
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>chrome</code> for Chrome browser</li>
-    <li><code>firefox</code> for Firefox browser</li>
-    <li><code>safari</code> for Safari browser</li>
-    <li><code>edge</code> for Edge browser, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.35.0">v2.35.0</Link></li>
-    <li><code>ie</code> for IE browser</li>
+    <li>The name of the browser <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/browsers</i> folder to load by default if no other browser settings file is explicitly passed via the <Link to ="/docs/cli#gwen-cli-options-conf"><code>-c/--config</code></Link> CLI option
+    <ul>
+      <li><code>chrome</code> for Chrome browser</li>
+      <li><code>firefox</code> for Firefox browser</li>
+      <li><code>safari</code> for Safari browser</li>
+      <li><code>edge</code> for Edge browser, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.35.0">v2.35.0</Link></li>
+      <li><code>ie</code> for IE browser</li>
+    </ul>
+    </li>
   </ul>
   <Tabs
   groupId="settings"
@@ -2245,12 +2249,12 @@ import TabItem from '@theme/TabItem';
   ```properties
   gwen.target.env
   ```
-  <p>Sets the default environment settings to load when no explicit settings are provided on launch.</p>
+  <p>Sets the environment settings to load when Gwen is launched.</p>
   </summary>
   <p>Supported values</p>
   <ul>
     <li>
-      The name of the environment <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/env</i> folder to load when no <Link to ="/docs/cli#gwen-cli-options-conf"><code>-c/--config</code></Link> CLI option is provided. Example:
+      The name of the environment <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/env</i> folder to load by default if no other environment settings file is explicitly passed via the <Link to ="/docs/cli#gwen-cli-options-conf"><code>-c/--config</code></Link> CLI option
       <ul>
         <li><code>local</code> for your local development environment</li>
         <li><code>dev</code> for your dedicated development environment</li>
@@ -2270,7 +2274,7 @@ import TabItem from '@theme/TabItem';
   ]}>
   <TabItem value="conf">
 
-  Default value
+  Default value (can be overriden by setting <Link to="/docs/cli#environment-variables"><code>GWEN_ENV</code></Link> environment variable since v3.23.0)
 
   ```json
     gwen {
@@ -2283,7 +2287,7 @@ import TabItem from '@theme/TabItem';
   </TabItem>
   <TabItem value="json">
 
-  Default value
+  Default value (can be overriden by setting <Link to="/docs/cli#environment-variables"><code>GWEN_ENV</code></Link> environment variable since v3.23.0)
 
   ```json
     {
@@ -2298,7 +2302,7 @@ import TabItem from '@theme/TabItem';
   </TabItem>
   <TabItem value="properties">
 
-  Default value
+  Default value (can be overriden by setting <Link to="/docs/cli#environment-variables"><code>GWEN_ENV</code></Link> environment variable since v3.23.0)
 
   ```properties
     gwen.target.env = local
@@ -5363,125 +5367,6 @@ import TabItem from '@theme/TabItem';
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-dry-run">Link</Link></div>
     <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-dry-run"><code>-n|--dry-run</code></Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-cli-options-conf">
-  <summary class="setting">
-
-  ```properties
-  gwen.cli.options.conf
-  ```
-  <p>Sets the <code>-c|--conf</code> option to pass to the Gwen CLI by default.</p>
-  </summary>
-
-  <p>Supported values</p>
-  <ul>
-    <li>A list of zero or more settings file paths</li>
-  </ul>
-
-  <p><br/>Notes</p>
-  This setting is additive, meaning that all entries in all loaed settings files are merged.
-
-  <Tabs
-    groupId="settings"
-    defaultValue="conf"
-    values={[
-      {label: '.conf', value: 'conf'},
-      {label: '.json', value: 'json'},
-      {label: '.properties', value: 'properties'}
-    ]}>
-
-  <TabItem value="conf">
-
-  Default value (for projects only)
-
-  ```json
-    gwen {
-      cli {
-        options {
-          conf = [
-            "${gwen.baseDir}/browsers/${gwen.target.browser}.conf",
-            "${gwen.baseDir}/env/${gwen.target.env}.conf"
-          ]
-        }
-      }
-    }
-  ```
-
-  If you don't want a value, set it to empty. You'll then have to explictly specify the <code>-c|--config</code> option on the CLI when you want to load settings.
-
-  ```json
-    gwen {
-      cli {
-        options {
-          conf = [
-          ]
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="json">
-
-  Default value (for projects only)
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "conf": [
-              "${gwen.baseDir}/browsers/${gwen.target.browser}.conf",
-              "${gwen.baseDir}/env/${gwen.target.env}.conf"
-            ]
-          }
-        }
-      }
-    }
-  ```
-
-  If you don't want a value, set it to empty. You'll then have to explictly specify the <code>-c|--config</code> option on the CLI when you want to load settings.
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "conf": [
-            ]
-          }
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="properties">
-
-  Default value (for projects only) (multiple entries comma separated)
-
-  ```properties
-    gwen.cli.options.conf = ${gwen.baseDir}/browsers/${gwen.target.browser}.conf,${gwen.baseDir}/env/${gwen.target.env}.conf
-  ```
-
-  If you don't want a value, set it to blank. You'll then have to explictly specify the <code>-c|--config</code> option on the CLI when you want to load settings.
-
-  ```properties
-    gwen.cli.options.conf = 
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-cli-options-conf">Link</Link></div>
-    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-conf"><code>-c|--conf</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
   </div>
 </details>
