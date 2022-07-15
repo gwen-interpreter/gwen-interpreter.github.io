@@ -142,6 +142,7 @@ The `init` command will generate the following files and subdirectories in your 
        │   ├── local.conf
        │   ├── prod.conf
        │   ├── README.md
+       │   ├── staging.conf
        │   └── test.conf
        ├── /features           # Features and associative meta
        │   └── README.md
@@ -180,7 +181,7 @@ Gwen is configured to target the Chrome browser and your *local* environment by 
 gwen {
   target {
     browser = "chrome"            # chrome|firefox|safari|edge|ie
-    env = "local"                 # local|dev|test|prod|..
+    env = "local"                 # local|dev|test|staging|prod|..
   }
 }
 ```
@@ -419,7 +420,7 @@ Gwen is configured to target the Chrome browser and your *local* environment by 
 gwen {
   target {
     browser = "chrome"            # chrome|firefox|safari|edge|ie
-    env = "local"                 # local|dev|test|prod|..
+    env = "local"                 # local|dev|test|staging|prod|..
   }
 }
 ```
