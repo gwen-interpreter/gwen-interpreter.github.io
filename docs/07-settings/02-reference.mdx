@@ -2473,12 +2473,17 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
-<details id="gwen-web-capability-entry">
+<details id="gwen-web-capabilities">
   <summary class="setting">
 
   ```properties
   gwen.web.capability.<capabilities>
   ```
+  or Since v3.23.0 (preferred)
+  ```
+  gwen.web.capabilites.<capabilities>
+  ```
+
   <p>Sets a one or more web capabilities on the underlying web driver (including W3C protocol extensions).</p>
   </summary>
   <p>Where</p>
@@ -2516,7 +2521,7 @@ import TabItem from '@theme/TabItem';
   ```json
     gwen {
       web {
-        capability {
+        capabilites {
           acceptInsecureCerts = false
           "selenoid:options" {
             enableVideo = true
@@ -2535,7 +2540,7 @@ import TabItem from '@theme/TabItem';
     {
       "gwen": {
         "web": {
-          "capability": {
+          "capabilites": {
             "acceptInsecureCerts": false
             "selenoid:options": {
               "enableVideo": true
@@ -2552,8 +2557,8 @@ import TabItem from '@theme/TabItem';
   Example
 
   ```properties
-    gwen.web.capability.acceptInsecureCerts = false
-    gwen.web.capability.selenoid\:options.enableVideo = true
+    gwen.web.capabilites.acceptInsecureCerts = false
+    gwen.web.capabilites.selenoid\:options.enableVideo = true
   ```
 
   </TabItem>
@@ -2561,7 +2566,7 @@ import TabItem from '@theme/TabItem';
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-web-capability-entry">Link</Link></div>
+    <div><Link to="#gwen-web-capabilities">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.15.0">v2.15.0</Link></div>
   </div>
