@@ -93,6 +93,25 @@ The `testDiscovery` element locates every feature file in the `gwen/features` di
 
 More information about the [HyperExecute YAML here](https://www.lambdatest.com/support/docs/deep-dive-into-hyperexecute-yaml).
 
+### Locally or privately hosted pages and repositories
+
+If your Gwen features will be running over locally or privately hosted web pages, you will need to include the following in your `hyper-execute.yml` file to open a tunnel back to your network
+
+```yaml {1}
+tunnel: true
+```
+
+And to download your `package.json` dependencies from a local or private hosted repostitory, you will need to additionally configure npm to go through the LambaTest proxy in your `hyper-exeucte.yml` file
+
+```yaml {1,4}
+tunnel: true
+
+pre:
+  - npm config set proxy http://${LT_PROXY_HOST}/${LT_PROXY_PORT}
+  - yarn install
+```
+
+
 ## Browser specific capabilities
 
 If you want to configure browser specific [capabilities](/docs/settings/reference#gwen-web-capabilities), you can do so in the respective `.conf` files in your `gwen/browsers` directory:
