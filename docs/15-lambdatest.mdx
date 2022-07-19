@@ -114,13 +114,13 @@ If your Gwen features will be running over locally or privately hosted web pages
 tunnel: true
 ```
 
-And to download your `package.json` dependencies from a local or private hosted repository, you will need to additionally configure npm to go through the LambaTest proxy in your `hyper-exeucte.yml` file
+And to download your `package.json` dependencies from a local or private hosted repository, you will need to additionally configure yarn to go through the LambaTest proxy in your `hyper-exeucte.yml` file
 
 ```yaml {1,4}
 tunnel: true
 
 pre:
-  - npm config set proxy http://${LT_PROXY_HOST}:${LT_PROXY_PORT}
+  - yarn config set proxy http://${LT_PROXY_HOST}:${LT_PROXY_PORT}
   - yarn install
 ```
 
