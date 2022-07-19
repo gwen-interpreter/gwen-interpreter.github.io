@@ -43,6 +43,19 @@ gwen {
 
 You can enable more [LambdaTest capabilities](https://www.lambdatest.com/support/docs/selenium-automation-capabilities/#desired-capabilities-in-selenium-4) in the `LT:Options` block if you wish. This example just enables video.
 
+## Browser specific capabilities
+
+If you want to configure browser specific [capabilities](/docs/settings/reference#gwen-web-capabilities), you can do so in the respective `.conf` files in your `gwen/browsers` directory:
+
+```shell {4}
+./project                       # Your project root
+ └── /gwen
+     └── /browsers
+         ├──chrome.conf
+         ├──edge.conf
+         └──firefox.conf
+```
+
 ## HyperExecute YAML
 
 Next, create a `hyper-execute.yml` file in the `gwen` directory of your project. 
@@ -109,20 +122,6 @@ tunnel: true
 pre:
   - npm config set proxy http://${LT_PROXY_HOST}:${LT_PROXY_PORT}
   - yarn install
-```
-
-
-## Browser specific capabilities
-
-If you want to configure browser specific [capabilities](/docs/settings/reference#gwen-web-capabilities), you can do so in the respective `.conf` files in your `gwen/browsers` directory:
-
-```shell {4}
-./project                       # Your project root
- └── /gwen
-     └── /browsers
-         ├──chrome.conf
-         ├──edge.conf
-         └──firefox.conf
 ```
 
 ## Package JSON script
