@@ -203,7 +203,7 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   <name> is defined in <textRef> by regex "<expression>"
   ```
-  <p>Captures text from a referenced text value using the given regex expression and associates it with the given name. The value is resolved every time the name is referenced.</p>
+  <p>Captures text from a text reference using the given regex expression and associates it with the given name. The value is resolved every time the name is referenced.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -822,7 +822,7 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   I base64 decode <textRef>
   ```
-  <p>Base64 decodes the referenced text value and binds the result to the same name in the global scope.</p>
+  <p>Base64 decodes the text reference and binds the result to the same name in the global scope.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -853,7 +853,7 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   I base64 decode <textRef> as <name>
   ```
-  <p>Base64 decodes the referenced text value and binds the result to the give name in the global scope.</p>
+  <p>Base64 decodes the text reference and binds the result to the give name in the global scope.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -888,7 +888,7 @@ Feature specs should be declarative and written in the language of your domain a
   <textRef> should[ not] <match> "<expression>"
   ```
 
-  <p>Checks whether or not the referenced text value matches a given expression. Reports an assertion error if the match fails.</p>
+  <p>Checks whether or not the text reference matches a given expression. Reports an assertion error if the match fails.</p>
   </summary>
   <p>
 
@@ -2898,7 +2898,7 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   I <enter|type> <textRef> in <element>
   ```
-  <p>Enters or types a referenced text value into a web element.</p>
+  <p>Enters or types a text reference value into a web element.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -4951,7 +4951,7 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
-## Screenshots and attachments
+## Screenshots
 
 ### When
 
@@ -5005,42 +5005,6 @@ Feature specs should be declarative and written in the language of your domain a
     <div><Link to="#i-capture-the-current-screenshot-as-name">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.49.0">v2.49.0</Link></div>
-  </div>
-</details>
-
-<details id="i-attach-filepath-as-name">
-  <summary class="dsl">
-
-  ```gherkin
-  I attach "<filepath>" as "<name>"
-  ```
-  or since v3.0.0
-  ```gherkin
-  I attach "<filepath>" as <name>
-  ```
-
-  <p>Attaches a local file to the Gwen report and assigns it a name. The link to the attachment in the report will have the given name.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;filepath&gt;</code> the path to the local file to attach</li>
-    <li><code>&lt;name&gt;</code> the name to assign to the file attachment</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin
-     When I attach "path/to/data.csv" as "data"
-  ```
-  Or since <Link to="/docs/gwen3">Gwen 3</Link>
-
-  ```gherkin
-     When I attach "path/to/data.csv" as data
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-attach-filepath-as-name">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
   </div>
 </details>
 
@@ -5100,6 +5064,132 @@ Feature specs should be declarative and written in the language of your domain a
     <div><Link to="#i-capture-element-screenshot-of-element-as-name">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+## Files
+
+### When
+
+<details id="i-attach-filepath-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I attach "<filepath>" as "<name>"
+  ```
+  or since v3.0.0
+  ```gherkin
+  I attach "<filepath>" as <name>
+  ```
+
+  <p>Attaches a local file to the Gwen report and assigns it a name. The link to the attachment in the report will have the given name.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the local file to attach</li>
+    <li><code>&lt;name&gt;</code> the name to assign to the file attachment</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+     When I attach "path/to/data.csv" as "data"
+  ```
+  Or since <Link to="/docs/gwen3">Gwen 3</Link>
+
+  ```gherkin
+     When I attach "path/to/data.csv" as data
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-attach-filepath-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="i-write-text-to-file">
+  <summary class="dsl">
+
+  ```gherkin
+  I write "<text>" to "<filepath>" file
+  ```
+  <p>Appends text to a file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;text&gt;</code> the text to append to the file</li>
+    <li><code>&lt;filepath&gt;</code> the path to the local file to append the text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+     When I write "Gwen automation" to "path/to/file.txt" file
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-write-text-to-file">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.24.0">v3.24.0</Link></div>
+  </div>
+</details>
+
+<details id="i-write-text-ref-to-file">
+  <summary class="dsl">
+
+  ```gherkin
+  I write <textRef> to "<filepath>" file
+  ```
+  <p>Appends a text reference value to a file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to append to the file
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepath&gt;</code> the path to the local file to append the text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {6}
+     Given my content is
+           """
+           Gwen automation and robotics
+           for Gherkin
+           """
+     When I write my content to "path/to/file.txt" file
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-write-text-ref-to-file">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.24.0">v3.24.0</Link></div>
+  </div>
+</details>
+
+<details id="i-write-new-line-to-file">
+  <summary class="dsl">
+
+  ```gherkin
+  I write new line to "<filepath>" file
+  ```
+  <p>Appends a new line to a file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the local file to append the new line to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+     When I write new line to "path/to/file.txt" file
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-write-new-line-to-file">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.24.0">v3.24.0</Link></div>
   </div>
 </details>
 
