@@ -19,7 +19,7 @@ function HomepageHeader() {
         <h1 className="hero__title">
           <span className="highlight">Declarative</span> automation and robotics
         </h1>
-        <p className="hero__subtitle">Executable Gherkin Specifications</p>
+        <p className="hero__subtitle">Executable Specifications</p>
         <div className={styles.buttons}>
           <Link
             className="button banner-button button--lg"
