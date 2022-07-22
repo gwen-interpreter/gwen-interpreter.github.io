@@ -27,7 +27,7 @@ const FeatureList = [
     Svg: require('../../static/img/gwen-execute-features.svg').default,
     description: (
       <>
-        Launch Gwen to <Link to="/docs#launch-gwen">execute</Link> your features and automate your scenarios.
+        Launch Gwen to load your meta and <Link to="/docs#launch-gwen">execute</Link> your features to automate scenarios.
       </>
     ),
   },
