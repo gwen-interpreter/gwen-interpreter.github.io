@@ -69,7 +69,6 @@
 
 .hero__title {
   letter-spacing: 0.02rem;
-  font-size: 3.4rem;
 }
 
 @media (max-width: 996px) {
@@ -88,7 +87,7 @@
 @media (max-width: 996px) {
   .hero__subtitle {
     letter-spacing: 0.02rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 }
 
