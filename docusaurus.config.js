@@ -4,7 +4,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Gwen',
-  tagline: 'A readily executable Gherkin DSL for automated web testing and robotic processing',
+  tagline: 'A readily executable Gherkin language for automated web testing and robotic processing',
   url: 'https://gweninterpreter.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',

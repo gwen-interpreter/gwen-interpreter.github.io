@@ -17,7 +17,7 @@ function HomepageHeader() {
       </Head>
       <div className="container">
         <h1 className="hero__title">
-          <span className="highlight">Gwen</span> is a readily executable Gherkin DSL
+          <span className="highlight">Gwen</span> is a readily executable Gherkin language
         </h1>
         <p className="hero__subtitle">for automated web testing and robotic processing</p>
         <div className={styles.buttons}>
