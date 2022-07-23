@@ -17,7 +17,7 @@ function HomepageHeader() {
       </Head>
       <div className="container">
         <h1 className="hero__title">
-          <span className="highlight">Gwen</span> web automation and robotics
+          <span className="highlight">Web</span> automation and robotics
         </h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
