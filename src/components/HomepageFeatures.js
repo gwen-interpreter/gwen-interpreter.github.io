@@ -14,11 +14,11 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Declare Meta',
-    Svg: require('../../static/img/gwen-declare-meta.svg').default,
+    title: 'Compose Meta',
+    Svg: require('../../static/img/gwen-compose-meta.svg').default,
     description: (
       <>
-        Declare <Link to="/docs#declare-meta">meta</Link> specs to describe how scenarios will execute using the <Link to="/docs/dsl">Gwen DSL</Link>.
+        Compose <Link to="/docs#compose-meta">meta</Link> specs to formulate how scenarios will execute using the <Link to="/docs/dsl">Gwen DSL</Link>.
       </>
     ),
   },
@@ -27,7 +27,7 @@ const FeatureList = [
     Svg: require('../../static/img/gwen-execute-features.svg').default,
     description: (
       <>
-        Launch Gwen to load your meta and <Link to="/docs#launch-gwen">execute</Link> your features to automate scenarios.
+        Launch Gwen to load your meta and <Link to="/docs#launch-gwen">execute</Link> your specifications to automate.
       </>
     ),
   },
