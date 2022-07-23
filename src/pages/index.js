@@ -13,13 +13,13 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <Head>
         <title>{siteConfig.title} | {siteConfig.tagline}</title>
-        <meta property="og:title" content="Gwen" data-react-helmet="true" />
+        <meta property="og:title" content="{siteConfig.title} | {siteConfig.tagline}" data-react-helmet="true" />
       </Head>
       <div className="container">
         <h1 className="hero__title">
           <span className="highlight">Gwen</span> web automation and robotics
         </h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className="hero__subtitle">Meta programming for Gherkin</p>
         <div className={styles.buttons}>
           <Link
             className="button banner-button button--lg"
