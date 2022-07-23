@@ -3,8 +3,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Gwen',
-  tagline: 'Web automation and robotics for Gherkin',
+  title: 'Gwen web automation and robotics',
+  tagline: 'Meta programming for Gherkin',
   url: 'https://gweninterpreter.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
