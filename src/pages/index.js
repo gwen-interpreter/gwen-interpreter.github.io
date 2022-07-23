@@ -12,14 +12,14 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <Head>
-        <title>{siteConfig.title} | {siteConfig.tagline}</title>
-        <meta property="og:title" content="{siteConfig.title} | {siteConfig.tagline}" data-react-helmet="true" />
+        <title>{siteConfig.title}</title>
+        <meta property="og:title" content="{siteConfig.title}" data-react-helmet="true" />
       </Head>
       <div className="container">
         <h1 className="hero__title">
-          <span className="highlight">Web</span> automation and robotics
+          <span className="highlight">Web</span> automation and robotics for Gherkin
         </h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className="hero__subtitle">Executable specifications</p>
         <div className={styles.buttons}>
           <Link
             className="button banner-button button--lg"
@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description={`${siteConfig.tagline}`}>
+      description={`A Gherkin interpreter for driving automated testing and robotic processing with feature specifications.`}>
       <HomepageHeader />
       <main>
         <HomepageFeatures />
