@@ -9,7 +9,7 @@ const FeatureList = [
     Svg: require('../../static/img/gwen-declare-features.svg').default,
     description: (
       <>
-        Declare <Link to="/docs#declare-features">feature</Link> specs to describe how scenarios should behave in the language of your domain.
+        Declare <Link to="/docs#declare-features">feature</Link> specs to describe how scenarios should behave.
       </>
     ),
   },
@@ -18,7 +18,7 @@ const FeatureList = [
     Svg: require('../../static/img/gwen-compose-meta.svg').default,
     description: (
       <>
-        Compose <Link to="/docs#compose-meta">meta</Link> specs to formulate how scenarios will execute using the <Link to="/docs/dsl">Gwen DSL</Link>.
+        Compose <Link to="/docs#compose-meta">meta</Link> specs with the <Link to="/docs/dsl">Gwen DSL</Link> to formulate how scenarios will execute.
       </>
     ),
   },
@@ -27,7 +27,7 @@ const FeatureList = [
     Svg: require('../../static/img/gwen-execute-features.svg').default,
     description: (
       <>
-        Launch Gwen to load your meta and <Link to="/docs#launch-gwen">execute</Link> your specifications to automate.
+        Launch Gwen to bind your meta and <Link to="/docs#launch-gwen">execute</Link> your features to automate.
       </>
     ),
   },
