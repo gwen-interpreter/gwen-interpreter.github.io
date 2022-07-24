@@ -79,7 +79,15 @@
 }
 
 .hero__subtitle {
+  font-size: 1.5rem;
   letter-spacing: 0.02rem;
+}
+
+@media (max-width: 996px) {
+  .hero__subtitle {
+    font-size: 1.3rem;
+    letter-spacing: 0.02rem;
+  }
 }
 
 @media (max-width: 996px) {
