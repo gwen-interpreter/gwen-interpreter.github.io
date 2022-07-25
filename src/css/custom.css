@@ -73,21 +73,13 @@
 
 @media (max-width: 996px) {
   .hero__title {
-    font-size: 2.75rem;
+    font-size: 2.7rem;
     letter-spacing: 0.02rem;
   }
 }
 
 .hero__subtitle {
-  font-size: 1.5rem;
   letter-spacing: 0.02rem;
-}
-
-@media (max-width: 996px) {
-  .hero__subtitle {
-    font-size: 1.3rem;
-    letter-spacing: 0.02rem;
-  }
 }
 
 @media (max-width: 996px) {
