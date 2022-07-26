@@ -384,6 +384,84 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
+<details id="gwen-auto-trim-data-csv">
+  <summary class="setting">
+
+  ```properties
+  gwen.auto.trim.data.csv
+  ```
+  <p>Controls whether or not to trim surrounding whitespace from incoming CSV data.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to trim the CSV data</li>
+    <li><code>false</code> to not trim the CSV data</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      auto {
+        trim {
+          data {
+            csv = false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "auto": {
+          "trim": {
+            "data": {
+              "csv": false
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value since
+
+  ```properties
+    gwen.auto.trim.data.csv = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-auto-trim-data-csv">Link</Link></div>
+    <div align="center"><Link to="/docs/modes/data-driven">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.26.0">v3.26.0</Link></div>
+  </div>
+</details>
+
+
 <details id="gwen-auto-discover-meta">
   <summary class="setting">
 
