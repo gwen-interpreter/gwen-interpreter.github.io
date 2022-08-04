@@ -151,7 +151,9 @@ A feature detail report will be generated for each data record. If you specify t
 
 Consider the following scenario outline with an examples table
 
-:::note Scenario outline with inlined data
+:::note Example
+
+Scenario outline with inlined data
 
 ```gherkin
   Scenario Outline: I load items from CSV files
@@ -167,7 +169,17 @@ Consider the following scenario outline with an examples table
 
 The data table in the examples clause can be externalised to a CSV file and imported using the `@Examples` annotation as follows:
 
-:::note Scenario outline with externalised data
+:::note Example
+
+*CSV File: data/items.csv*
+```text
+Item,Status
+Walk the dog,pending
+Get the milk,done
+Take out trash,pending
+```
+
+Scenario outline with externalised data
 
 ```gherkin {1}
   @Examples("data/items.csv")
@@ -175,7 +187,7 @@ The data table in the examples clause can be externalised to a CSV file and impo
     When I add a <Status> "<Item>" item
 ```
 
-This will resolve to the same outline at runtime:
+This will resolve to an identical outline when expanded at runtime:
 
 ```gherkin
   Scenario Outline: I load items from CSV files
@@ -189,16 +201,18 @@ This will resolve to the same outline at runtime:
 ```
 :::
 
-### Where clause
+### Where filter
 
-> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.13.0">v3.13.0</Link>
+> Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.27.0">v3.27.0</Link>
 
-The data can also be filtered using a `where` clause. For example, to get all the records where the `Status` column matches `pending`:
+The data can also be filtered using a `where` JavaScript expression filter. For example, to get all the records where the data in the `Status` column matches `pending`:
 
-:::note Scenario outline with externalised and filtered data
+:::note Example
+
+Scenario outline with externalised and filtered data
 
 ```gherkin {1}
-  @Examples(file="data/items.csv",where="Status=pending")
+  @Examples(file="data/items.csv",where="'${Status}'=='pending'")
   Scenario Outline: I load items from CSV files
     When I add a <Status> "<Item>" item
 ```
@@ -209,21 +223,52 @@ Will resolve to the following containing `pending` Status records only:
   Scenario Outline: I load items from CSV files
     When I add a <Status> "<Item>" item
     
-    Examples: Data file: data/items.csv, where Status=pending
+    Examples: Data file: data/items.csv, where: '${Status}'=='pending'
       | Item         | Status  |
       | Walk the dog | pending |
       | Feed the cat | pending |
 ```
 :::
 
-String interpolation syntax can also be used to reference a value in the current scope. For example, to get all the records where the `Status` column matches the value bound to an in-memory attribute named `SelectedStatus`:
+String interpolation syntax can also be used to reference a value in the CSV record or current scope. For example, to get all the records where the `Status` column matches the value bound to an in-memory attribute named `SelectedStatus`:
 
-:::note Scenario outline with externalised and filtered data
+:::note Example
+
+Scenario outline with externalised and filtered data
 
 ```gherkin {1}
-  @Examples(file="data/items.csv",where="Status=${SelectedStatus}")
+  @Examples(file="data/items.csv",where="'${Status}'=='${SelectedStatus}'")
   Scenario Outline: I load items from CSV files
     When I add a <Status> "<Item>" item
+```
+:::
+
+### Name prefix 
+
+> Since [v3.20.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.20.0)
+
+A `prefix="string"` attribute can be added to prepend a prefix to each column name in the CSV heaader record. This is useful for avoiding any potential name clashes with existing data in the current scope.
+
+:::note Example
+
+Scenario outline sourced from CSV file having column names `Status, Item`
+
+```gherkin {1}
+  @Examples(file="data/items.csv",prefix="todo_",where="'${todo_Status}'=='pending'")
+  Scenario Outline: I load items from CSV files
+    When I add a <todo_Status> "<todo_Item>" item
+```
+
+Will result in the column names `todo_Status, todo_Item` when `todo_` prefix is applied at runtime
+
+```gherkin {5}
+  Scenario Outline: I load items from CSV files
+    When I add a <todo_Status> "<todo_Item>" item
+    
+    Examples: Data file: data/items.csv, prefix: todo_, where: '${todo_Status}'=='pending'
+      | todo_Item    | todo_Status |
+      | Walk the dog | pending     |
+      | Feed the cat | pending     |
 ```
 :::
 
@@ -233,10 +278,12 @@ String interpolation syntax can also be used to reference a value in the current
 
 A `required=true` attribute can be added to raise an error if no data is returned by the `where` clause filter.
 
-:::note Scenario outline which raises an error if externalised and filtered data is empty
+:::note Example
+
+Scenario outline which raises an error if externalised and filtered data is empty
 
 ```gherkin {1}
-  @Examples(file="data/items.csv",where="Status=${SelectedStatus}",required=true)
+  @Examples(file="data/items.csv",where="'${Status}'=='${SelectedStatus}'",required=true)
   Scenario Outline: I load items from CSV files
     When I add a <Status> "<Item>" item
 ```
