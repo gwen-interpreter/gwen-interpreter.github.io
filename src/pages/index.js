@@ -6,6 +6,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
 import Head from '@docusaurus/Head';
+import Introduction from '@site/docs/01-introduction.mdx';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -41,6 +42,20 @@ export default function Home() {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
+        <div className={clsx('col col--offset-1 col--10')}>
+          <hr />
+          <Introduction />
+        </div>
+        <div className={styles.buttons}>
+          <Link
+            className="button banner-button button--lg"
+            to="/docs/get-started">
+            Get Started
+          </Link>
+        </div>
+        <div>
+          <p> </p>
+        </div>
       </main>
     </Layout>
   );
