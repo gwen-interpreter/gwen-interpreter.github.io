@@ -43,7 +43,6 @@ export default function Home() {
       <main>
         <HomepageFeatures />
         <div className={clsx('col col--offset-1 col--10')}>
-          <hr />
           <Introduction />
         </div>
         <div className={styles.buttons}>
