@@ -254,19 +254,19 @@ A `prefix="string"` attribute can be added to prepend a prefix to each column na
 Scenario outline sourced from CSV file having column names `Status, Item`
 
 ```gherkin {1}
-  @Examples(file="data/items.csv",prefix="todo_",where="'${todo_Status}'=='pending'")
+  @Examples(file="data/items.csv",prefix="todo.",where="'${todo.Status}'=='pending'")
   Scenario Outline: I load items from CSV files
-    When I add a <todo_Status> "<todo_Item>" item
+    When I add a <todo.Status> "<todo.Item>" item
 ```
 
-Will result in the column names `todo_Status, todo_Item` when `todo_` prefix is applied at runtime
+Will result in the column names `todo.Status, todo.Item` when `todo.` prefix is applied at runtime
 
 ```gherkin {5}
   Scenario Outline: I load items from CSV files
-    When I add a <todo_Status> "<todo_Item>" item
+    When I add a <todo.Status> "<todo.Item>" item
     
-    Examples: Data file: data/items.csv, prefix: todo_, where: '${todo_Status}'=='pending'
-      | todo_Item    | todo_Status |
+    Examples: Data file: data/items.csv, prefix: todo., where: '${todo.Status}'=='pending'
+      | todo.Item    | todo.Status |
       | Walk the dog | pending     |
       | Feed the cat | pending     |
 ```
