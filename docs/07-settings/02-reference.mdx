@@ -653,6 +653,97 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
+<details id="gwen-dryRun-limit-tableData-outline-examples-records">
+  <summary class="setting">
+
+  ```properties
+  gwen.dryRun.limit.tableData.outline.examples.records
+  ```
+  <p>Sets the maximum number of outline examples table records to include in dry runs.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>
+      A positive integer representing the the maximum number of records to include
+      <ul>
+        <li>
+          or <code>infinity</code> to log all records
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      dryRun {
+        limit {
+          tableData {
+            outline {
+              examples {
+                records = "infinity"
+              }
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "dryRun": {
+          "limit": {
+            "tableData": {
+              "outline": {
+                "examples": {
+                  "records": = "infinity"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.dryRun.limit.tableData.outline.examples.records = infinity
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-dryRun-limit-tableData-outline-examples-records">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.28.0">v3.28.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-feature-dialect">
   <summary class="setting">
 
