@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Admonition from '@theme/Admonition';
+import CodeBlock from '@theme/CodeBlock';
 
 # Introduction
 
@@ -31,8 +32,9 @@ Feature specs are used to communicate requirements in the language of your domai
 <p>
 
 *File: features/todo.feature*
-```gherkin
-Feature: Add todo items
+
+<CodeBlock language="gherkin">
+{`Feature: Add todo items
  
   Scenario: Create todo list
     Given a new todo list
@@ -41,7 +43,9 @@ Feature: Add todo items
           | Get the milk  |
           | Walk the dog  |
      Then the list will contain 2 items
-```
+`}
+</CodeBlock>
+
 </p>
 </Admonition>
 
@@ -61,17 +65,18 @@ For example, the following meta describes how the scenario in the feature above 
 <p>
 
 *File: features/todo.meta*
-```gherkin
-Feature: Todo Meta
 
+<CodeBlock language="gherkin">
+{`Feature: Todo Meta
+  
   @Context
   @StepDef
   Scenario: a new todo list
     Given my todo list can be located by css ".todo-list"
-     When I navigate to "${todo.page.url}"
+     When I navigate to "\${todo.page.url}"
      Then the page title should contain "TodoMVC"
       And my todo list should be hidden
-
+  
   @Action
   @StepDef
   @DataTable
@@ -80,13 +85,15 @@ Feature: Todo Meta
     Given the todo field can be located by class "new-todo"
      When I enter Item in the todo field
      Then my todo list should contain Item
-
+  
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
     Given the displayed count can be located by css ".todo-count strong"
-     Then the displayed count should be "$<expected-count>"
-```
+     Then the displayed count should be "\$<expected-count>"
+`}
+</CodeBlock>
+
 
 </p>
 </Admonition>
@@ -100,9 +107,10 @@ The first StepDef in our meta example binds to the first step in the feature and
 <Admonition type="note" title="Feature Step 1">
 <p>
 
-```gherkin
-  Given a new todo list
-```
+<CodeBlock language="gherkin">
+{`  Given a new todo list
+`}
+</CodeBlock>
 
 </p>
 </Admonition>
@@ -110,15 +118,16 @@ The first StepDef in our meta example binds to the first step in the feature and
 <Admonition type="note" title="StepDef 1">
 <p>
 
-```gherkin {2-3}
-  @Context
+<CodeBlock language="gherkin" metastring='{2-3}'>
+{`  @Context
   @StepDef
   Scenario: a new todo list
     Given my todo list can be located by css ".todo-list"
-     When I navigate to "${todo.page.url}"
+     When I navigate to "\${todo.page.url}"
      Then the page title should contain "TodoMVC"
       And my todo list should be hidden
-```
+`}
+</CodeBlock>
 
 </p>
 </Admonition>
@@ -130,9 +139,10 @@ The first thing the above will do is bind the selector for locating the todo lis
 <Admonition type="note" title="StepDef 1, Step 1">
 <p>
 
-```gherkin
-  Given my todo list can be located by css ".todo-list"
-```
+<CodeBlock language="gherkin">
+{`  Given my todo list can be located by css ".todo-list"
+`}
+</CodeBlock>
 
 Calls DSL step:
 
@@ -150,9 +160,10 @@ The next step in this StepDef will open a new browser window and navigate to the
 <Admonition type="note" title="StepDef 1, Step 2">
 <p>
 
-```gherkin
-  When I navigate to "${todo.page.url}"
-```
+<CodeBlock language="gherkin">
+{`  When I navigate to "\${todo.page.url}"
+`}
+</CodeBlock>
 
 Calls DSL step:
 
@@ -171,10 +182,11 @@ We could have just hard coded the https://todomvc.com/examples/react URL in the 
 <p>
 
 *File: env/test.properties*
-```properties
-  # test instance url
+<CodeBlock language="properties">
+{`  # test instance url
   todo.page.url = https://todomvc.com/examples/react
-```
+`}
+</CodeBlock>
 
 </p>
 </Admonition>
@@ -186,9 +198,10 @@ The next step in the same StepDef checks that the page title in the browser wind
 <Admonition type="note" title="StepDef 1, Step 3">
 <p>
 
-```gherkin
-  Then the page title should contain "TodoMVC"
-```
+<CodeBlock language="gherkin">
+{`  Then the page title should contain "TodoMVC"
+`}
+</CodeBlock>
 
 Calls DSL step:
 
@@ -206,9 +219,10 @@ The last step in this StepDef verifies that the web element containing the curre
 <Admonition type="note" title="StepDef 1, Step 4">
 <p>
 
-```gherkin
-  And my todo list should be hidden
-```
+<CodeBlock language="gherkin">
+{`  And my todo list should be hidden
+`}
+</CodeBlock>
 
 Calls DSL step:
 
@@ -226,12 +240,13 @@ The second StepDef uses the `@DataTable` and `@ForEach` annotations which work t
 <Admonition type="note" title="Feature Step 2">
 <p>
 
-```gherkin
-  When the following items are added
+ <CodeBlock language="gherkin">
+{`  When the following items are added
        | Item          |
        | Get the milk  |
        | Walk the dog  |
-```
+`}
+</CodeBlock>
 
 </p>
 </Admonition>
@@ -239,8 +254,8 @@ The second StepDef uses the `@DataTable` and `@ForEach` annotations which work t
 <Admonition type="note" title="StepDef 2">
 <p>
 
-```gherkin {2-5}
-  @Action
+<CodeBlock language="gherkin" metastring='{2-5}'>
+{`  @Action
   @StepDef
   @DataTable
   @ForEach
@@ -248,7 +263,8 @@ The second StepDef uses the `@DataTable` and `@ForEach` annotations which work t
     Given the todo field can be located by class "new-todo"
      When I enter Item in the todo field
      Then my todo list should contain Item
-```
+`}
+</CodeBlock>
 
 </p>
 </Admonition>
@@ -258,10 +274,11 @@ Gwen will call the StepDef for each record in the table and bind each field valu
 <Admonition type="note" title="StepDef 2, Steps 2 and 3">
 <p>
 
-```gherkin
-  When I enter Item in the todo field
+<CodeBlock language="gherkin">
+{`  When I enter Item in the todo field
   Then my todo list should contain Item
-```
+`}
+</CodeBlock>
 
 Calls DSL steps:
 
@@ -280,9 +297,10 @@ The last StepDef accepts the number of expected items from the last step in the 
 <Admonition type="note" title="Feature Step 3">
 <p>
 
-```gherkin
-  Then the list will contain 2 items
-```
+<CodeBlock language="gherkin">
+{`  Then the list will contain 2 items
+`}
+</CodeBlock>
 
 </p>
 </Admonition>
@@ -290,13 +308,14 @@ The last StepDef accepts the number of expected items from the last step in the 
 <Admonition type="note" title="StepDef 3">
 <p>
 
-```gherkin {2-3,5}
-  @Assertion
+<CodeBlock language="gherkin" metastring='{2-3,5}'>
+{`  @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
     Given the displayed count can be located by css ".todo-count strong"
      Then the displayed count should be "$<expected-count>"
-```
+`}
+</CodeBlock>
 
 </p>
 </Admonition>
@@ -320,9 +339,10 @@ For example, the following binding will be permitted since the feature step is d
 <Admonition type="note" title="Feature Step 3">
 <p>
 
-```gherkin
-  Then the list will contain 2 items
-```
+<CodeBlock language="gherkin">
+{`  Then the list will contain 2 items
+`}
+</CodeBlock>
 
 </p>
 </Admonition>
@@ -330,13 +350,14 @@ For example, the following binding will be permitted since the feature step is d
 <Admonition type="note" title="StepDef 3">
 <p>
 
-```gherkin {1}
-  @Assertion
+<CodeBlock language="gherkin" metastring='{1}'>
+{`  @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
     Given the displayed count can be located by css ".todo-count strong"
      Then the displayed count should be "$<expected-count>"
-```
+`}
+</CodeBlock>
 
 </p>
 </Admonition>
@@ -400,9 +421,10 @@ The example presented in this introduction would execute to automate a test.
 
   Execute feature in test environment (passing in test environment settings):
 
-  ```shell
-  yarn gwen -b -c gwen/env/test.conf gwen/features/todo.feature
-  ```
+  <CodeBlock language="shell">
+  {`  yarn gwen -b -c gwen/env/test.conf gwen/features/todo.feature`}
+  </CodeBlock>
+
   [Gwen CLI](/docs/cli)
 
 </p>
@@ -417,9 +439,9 @@ The example presented in this introduction would execute to automate a test.
 
   Execute feature in test environment (passing in test environment settings):
 
-  ```shell
-  npm run gwen -- -b -c gwen/env/test.conf gwen/features/todo.feature
-  ```
+  <CodeBlock language="shell">
+  {`  npm run gwen -- -b -c gwen/env/test.conf gwen/features/todo.feature`}
+  </CodeBlock>
 
   [Gwen CLI](/docs/cli)
 
@@ -435,9 +457,9 @@ The example presented in this introduction would execute to automate a test.
 
   Execute feature in test environment (passing in test environment settings):
 
-  ```shell
-  pnpm gwen -b -c gwen/env/test.conf gwen/features/todo.feature
-  ```
+  <CodeBlock language="shell">
+  {`  pnpm gwen -b -c gwen/env/test.conf gwen/features/todo.feature`}
+  </CodeBlock>
 
   [Gwen CLI](/docs/cli)
 
@@ -457,9 +479,9 @@ The example presented in this introduction would execute to automate a test.
   
   Execute feature in test environment (passing in test environment settings):
 
-  ```shell
-  gwen -b -c env/test.conf features/todo.feature
-  ```
+  <CodeBlock language="shell">
+  {`  gwen -b -c env/test.conf features/todo.feature`}
+  </CodeBlock>
 
   [Gwen CLI](/docs/cli)
 
