@@ -45,15 +45,12 @@ export default function Home() {
         <div className={clsx('col col--offset-1 col--10')}>
           <Introduction />
         </div>
-        <div className={styles.buttons}>
+        <div className={styles.buttons} style={{'padding-top': '20px', 'padding-bottom': '37px'}}>
           <Link
             className="button banner-button button--lg"
             to="/docs/get-started">
             Get Started
           </Link>
-        </div>
-        <div>
-          <p> </p>
         </div>
       </main>
     </Layout>
