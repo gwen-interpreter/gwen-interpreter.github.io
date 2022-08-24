@@ -6284,19 +6284,25 @@ Feature specs should be declarative and written in the language of your domain a
 
   <p>Example</p>
 
-  Given the CSV file: gwen/TodoItems.csv
+  Given the CSV file: lookup/StateCodes.csv
 
-  ```csv
-  Item,Status
-  Walk the dog,pending
-  Get the milk,done
-  Take out trash,pending
+  ```csv {9}
+  Code,Name
+  ACT,Australian Capital Territory
+  NSW,New South Wales
+  NT,Northern Territory
+  QLD,Queensland
+  SA,South Australian
+  TAS,Tasmania
+  VIC,Victoria
+  WA,Western Australia
   ```
 
-  The following will bind the "Get the milk" value in the 2nd record to the variable named "Item" in the global scope
+  The following will bind "Western Australia" in the last record to <code>Name</code> in the global scope
 
-  ```gherkin
-    When I lookup Item in the "gwen/TodoItems.csv" file where "'${csv.record.Status}' == 'done'"
+  ```gherkin {1}
+    When I lookup Name in the "lookup/StateCodes.csv" file where "'${csv.record.Code}' == 'WA'"
+    Then Name should be "Western Australia"
   ```
 
   <div class="grid-3">
@@ -6331,20 +6337,26 @@ Feature specs should be declarative and written in the language of your domain a
 
   <p>Example</p>
 
-  Given the CSV file: gwen/TodoItems.csv
+  Given the CSV file: lookup/StateCodes.csv
 
-  ```csv
-  Item,Status
-  Walk the dog,pending
-  Get the milk,done
-  Take out trash,pending
+  ```csv {5}
+  Code,Name
+  ACT,Australian Capital Territory
+  NSW,New South Wales
+  NT,Northern Territory
+  QLD,Queensland
+  SA,South Australian
+  TAS,Tasmania
+  VIC,Victoria
+  WA,Western Australia
   ```
 
-  The following will bind the "Walk the dog" value in the 1st record to the variable named "Item" in the global scope
+  The following will bind "QLD" in the 4th record to <code>Code</code> in the global scope
 
   ```gherkin {2}
-    Given the mapping file is "gwen/TodoItems.csv"
-     When I lookup Item in the mapping file where "'${csv.record.Status}' == 'pending'"
+    Given mapping file is "lookup/StateCodes.csv"
+     When I lookup Code in mapping file where "'${csv.record.Name}' == 'Queensland'"
+     Then Code should be "QLD"
   ```
 
   <div class="grid-3">
@@ -6380,19 +6392,25 @@ Feature specs should be declarative and written in the language of your domain a
 
   <p>Example</p>
 
-  Given the CSV file: gwen/TodoItems.csv
+  Given the CSV file: lookup/StateCodes.csv
 
-  ```csv
-  Item,Status
-  Walk the dog,pending
-  Get the milk,done
-  Take out trash,pending
+  ```csv {3}
+  Code,Name
+  ACT,Australian Capital Territory
+  NSW,New South Wales
+  NT,Northern Territory
+  QLD,Queensland
+  SA,South Australian
+  TAS,Tasmania
+  VIC,Victoria
+  WA,Western Australia
   ```
 
-  The following will bind the "Get the milk" value in the 2nd record to the variable named "the item" in the global scope
+  The following will bind "New South Wales" in the 2nd record to <code>state name</code> in the global scope
 
-  ```gherkin
-    When I lookup Item in the "gwen/TodoItems.csv" file as the item where "'${csv.record.Status}' == 'done'"
+  ```gherkin {1}
+    When I lookup Name in the "lookup/StateCodes.csv" file as state name where "'${csv.record.Code}' == 'NSW'"
+    Then state name should be "New South Wales"
   ```
 
   <div class="grid-3">
@@ -6428,20 +6446,26 @@ Feature specs should be declarative and written in the language of your domain a
 
   <p>Example</p>
 
-  Given the CSV file: gwen/TodoItems.csv
+  Given the CSV file: lookup/StateCodes.csv
 
-  ```csv
-  Item,Status
-  Walk the dog,pending
-  Get the milk,done
-  Take out trash,pending
+  ```csv {8}
+  Code,Name
+  ACT,Australian Capital Territory
+  NSW,New South Wales
+  NT,Northern Territory
+  QLD,Queensland
+  SA,South Australian
+  TAS,Tasmania
+  VIC,Victoria
+  WA,Western Australia
   ```
 
-  The following will bind the "Walk the dog" value in the 1st record to the variable named "the item" in the global scope
+  The following will bind "VIC" in the 7th record to <code>state code</code> in the global scope
 
   ```gherkin {2}
-    Given the mapping file is "gwen/TodoItems.csv"
-     When I lookup Item in the mapping file as the item where "'${csv.record.Status}' == 'pending'"
+    Given mapping file is "lookup/StateCodes.csv"
+     When I lookup Code in mapping file as state code where "'${csv.record.Name}' == 'Victoria'"
+     Then state code should be "VIC"
   ```
 
   <div class="grid-3">
