@@ -6257,6 +6257,200 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
+## CSV Lookups
+
+<details id="i-lookup-name-in-the-filepath-file-where-filter">
+  <summary class="dsl">
+
+  ```gherkin
+  I lookup <name> in the "<filepath>" file where "<predicate>"
+  ```
+  <p>Looks up a named column value in a CSV file based on a predicate function and binds its value to the same name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code>the name of the column in the CSV file to look up the value of and the name to bind it to</li>
+    <li><code>&lt;filepath&gt;</code> the path to the CSV file to look up</li>
+    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+      <ul>
+        <li>For an expression: no <code>return</code> prefix is required</li>
+        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+      </ul>
+      CSV fields can be referenced in the preciate using the <code>$&#123;csv.record.NAME&#125;</code> notation.
+    </li>
+  </ul>
+
+  The column value contained in the first record in the CSV that satisifes the given predicate is the one that will be bound to the global scope. Otherwise if no records match, then no value is bound.
+
+  <p>Example</p>
+
+  Given the CSV file: gwen/TodoItems.csv
+
+  ```csv
+  Item,Status
+  Walk the dog,pending
+  Get the milk,done
+  Take out trash,pending
+  ```
+
+  The following will bind the "Get the milk" value in the 2nd record to the variable named "Item" in the global scope
+
+  ```gherkin
+    When I lookup Item in the "gwen/TodoItems.csv" file where "'${csv.record.Status}' == 'done'"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-lookup-name-in-the-filepath-file-where-filter">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.30.0">v3.30.0</Link></div>
+  </div>
+</details>
+
+<details id="i-lookup-name-in-the-filepath-ref-file-where-filter">
+  <summary class="dsl">
+
+  ```gherkin
+  I lookup <name> in <filepathRef> file where "<predicate>"
+  ```
+  <p>Looks up a named column value in a referenced CSV file based on a predicate function and binds its value to the same name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code>the name of the column in the CSV file to look up the value of and the name to bind it to</li>
+    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV file to look up</li>
+    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+      <ul>
+        <li>For an expression: no <code>return</code> prefix is required</li>
+        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+      </ul>
+      CSV fields can be referenced in the preciate using the <code>$&#123;csv.record.NAME&#125;</code> notation.
+    </li>
+  </ul>
+
+  The column value contained in the first record in the CSV that satisifes the given predicate is the one that will be bound to the global scope. Otherwise if no records match, then no value is bound.
+
+  <p>Example</p>
+
+  Given the CSV file: gwen/TodoItems.csv
+
+  ```csv
+  Item,Status
+  Walk the dog,pending
+  Get the milk,done
+  Take out trash,pending
+  ```
+
+  The following will bind the "Walk the dog" value in the 1st record to the variable named "Item" in the global scope
+
+  ```gherkin {2}
+    Given the mapping file is "gwen/TodoItems.csv"
+     When I lookup Item in the mapping file where "'${csv.record.Status}' == 'pending'"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-lookup-name-in-the-filepath-ref-file-where-filter">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.30.0">v3.30.0</Link></div>
+  </div>
+</details>
+
+<details id="i-lookup-column-in-the-filepath-file-as-name-where-filter">
+  <summary class="dsl">
+
+  ```gherkin
+  I lookup <name> in the "<filepath>" file as <name> where "<predicate>"
+  ```
+  <p>Looks up a named column value in a CSV file based on a predicate function and binds its value to a given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;column&gt;</code> the name of the column in the CSV file to look up the value of</li>
+    <li><code>&lt;filepath&gt;</code> the path to the CSV file to look up</li>
+    <li><code>&lt;name&gt;</code> the name to bind the looked up value to in the global scope</li>
+    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+      <ul>
+        <li>For an expression: no <code>return</code> prefix is required</li>
+        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+      </ul>
+      CSV fields can be referenced in the preciate using the <code>$&#123;csv.record.NAME&#125;</code> notation.
+    </li>
+  </ul>
+
+  The column value contained in the first record in the CSV that satisifes the given predicate is the one that will be bound to the global scope. Otherwise if no records match, then no value is bound.
+
+  <p>Example</p>
+
+  Given the CSV file: gwen/TodoItems.csv
+
+  ```csv
+  Item,Status
+  Walk the dog,pending
+  Get the milk,done
+  Take out trash,pending
+  ```
+
+  The following will bind the "Get the milk" value in the 2nd record to the variable named "the item" in the global scope
+
+  ```gherkin
+    When I lookup Item in the "gwen/TodoItems.csv" file as the item where "'${csv.record.Status}' == 'done'"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-lookup-column-in-the-filepath-file-as-name-where-filter">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.30.0">v3.30.0</Link></div>
+  </div>
+</details>
+
+<details id="i-lookup-column-in-the-filepath-ref-file-as-name-where-filter">
+  <summary class="dsl">
+
+  ```gherkin
+  I lookup <name> in <filepathRef> file where "<predicate>"
+  ```
+  <p>Looks up a named column value in a referenced CSV file based on a predicate function and binds its value to a given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;column&gt;</code> the name of the column in the CSV file to look up the value of</li>
+    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV file to look up</li>
+    <li><code>&lt;name&gt;</code> the name to bind the looked up value to in the global scope</li>
+    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+      <ul>
+        <li>For an expression: no <code>return</code> prefix is required</li>
+        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+      </ul>
+      CSV fields can be referenced in the preciate using the <code>$&#123;csv.record.NAME&#125;</code> notation.
+    </li>
+  </ul>
+
+  The column value contained in the first record in the CSV that satisifes the given predicate is the one that will be bound to the global scope. Otherwise if no records match, then no value is bound.
+
+  <p>Example</p>
+
+  Given the CSV file: gwen/TodoItems.csv
+
+  ```csv
+  Item,Status
+  Walk the dog,pending
+  Get the milk,done
+  Take out trash,pending
+  ```
+
+  The following will bind the "Walk the dog" value in the 1st record to the variable named "the item" in the global scope
+
+  ```gherkin {2}
+    Given the mapping file is "gwen/TodoItems.csv"
+     When I lookup Item in the mapping file as the item where "'${csv.record.Status}' == 'pending'"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-lookup-column-in-the-filepath-ref-file-as-name-where-filter">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.30.0">v3.30.0</Link></div>
+  </div>
+</details>
+
 ## SQL selects and updates
 
 ### Given
@@ -6267,6 +6461,7 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   <name> is defined in the <dbName> database by sql "<selectStmt>"
   ```
+  
   <p>Associates the result of an SQL database query to the given name in the global scope. The value is resolved every time the name is referenced.</p>
   </summary>
   <p>Where</p>
