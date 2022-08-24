@@ -30,7 +30,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: '/docs/gwen3',
+          href: '/docs/dsl/reference#csv-lookups',
           position: 'left',
           label: "What's new?",
         },
