@@ -20,7 +20,7 @@ function HomepageHeader() {
         <h1 className="hero__title">
           <span className="highlight">Automate</span> web testing and robotic processing
         </h1>
-        <p className="hero__subtitle">with declarative specifications</p>
+        <p className="hero__subtitle">with behavioral specifications</p>
         <div className={styles.buttons}>
           <Link
             className="button banner-button button--lg"
