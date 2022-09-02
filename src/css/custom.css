@@ -69,16 +69,29 @@
 
 .hero__title {
   letter-spacing: 0.02rem;
+  margin-bottom: 0px;
+}
+
+.container_title {
+  width: 60%;
+}
+
+@media (max-width: 996px) {
+  .container_title {
+    width: 100%;
+  }
 }
 
 @media (max-width: 996px) {
   .hero__title {
+    font-size: 2.5rem;
     letter-spacing: 0.02rem;
   }
 }
 
 .hero__subtitle {
   letter-spacing: 0.02rem;
+  margin-bottom: 0px;
 }
 
 @media (max-width: 996px) {

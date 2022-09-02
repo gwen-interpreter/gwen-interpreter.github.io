@@ -16,11 +16,11 @@ function HomepageHeader() {
         <title>{siteConfig.title} | {siteConfig.tagline}</title>
         <meta property="og:title" content={`${siteConfig.title} | ${siteConfig.tagline}`} data-react-helmet="true" />
       </Head>
-      <div className="container">
+      <div className="container container_title">
         <h1 className="hero__title">
-          <span className="highlight">Gwen</span> web automation and robotics
+          <span className="highlight">Automate</span> web testing and robotic processing with <span className="highlight">Gwen</span>
         </h1>
-        <p className="hero__subtitle">Behavior Driven Automation</p>
+        <p className="hero__subtitle">&nbsp;</p>
         <div className={styles.buttons}>
           <Link
             className="button banner-button button--lg"
