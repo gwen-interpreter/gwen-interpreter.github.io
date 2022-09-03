@@ -181,12 +181,52 @@ We could have just hard coded the https://todomvc.com/examples/react URL in the 
 <Admonition type="note" title="Properties">
 <p>
 
-*File: env/test.properties*
-<CodeBlock language="properties">
-{`  # test instance url
-  todo.page.url = https://todomvc.com/examples/react
-`}
-</CodeBlock>
+<Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  *File: gwen/env/test.conf*
+  <CodeBlock language="json">
+  {`  todo {
+    page {
+      url = "https://todomvc.com/examples/react"
+    }
+  }`}
+  </CodeBlock>
+
+  </TabItem>
+  <TabItem value="json">
+
+ *File: gwen/env/test.json*
+  <CodeBlock language="json">
+  {`  {
+    "todo": {
+      "page": {
+        "url": "https://todomvc.com/examples/react"
+      }
+    }
+  }`}
+  </CodeBlock>
+
+  </TabItem>
+  <TabItem value="properties">
+
+  *File: gwen/env/test.properties*
+  <CodeBlock language="properties">
+  {`  todo.page.url = https://todomvc.com/examples/react`}
+  </CodeBlock>
+  `
+
+  </TabItem>
+
+  </Tabs>
 
 </p>
 </Admonition>
