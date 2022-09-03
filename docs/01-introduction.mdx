@@ -178,9 +178,6 @@ Calls DSL step:
 
 We could have just hard coded the https://todomvc.com/examples/react URL in the above step, but externalising it enables us to target different environments through [string interpolation](/docs/advanced/string-interpolation) without changing our meta. This is useful during development when you want to execute against a locally running instance of the application or during testing when it is running on a different host or port. With this approach you can define a [settings](/docs/settings) file per environment and assign the URL for that environment to the `todo.page.url` property in each file. Then when you want to target an environment, you pass the settings file for that environment to Gwen and the URL will be resolved accordingly.
 
-<Admonition type="note" title="Properties">
-<p>
-
 <Tabs
   groupId="settings"
   defaultValue="conf"
@@ -192,6 +189,9 @@ We could have just hard coded the https://todomvc.com/examples/react URL in the 
 
   <TabItem value="conf">
 
+<Admonition type="note" title="Conf">
+<p>
+
   *File: gwen/env/test.conf*
   <CodeBlock language="json">
   {`  todo {
@@ -201,8 +201,14 @@ We could have just hard coded the https://todomvc.com/examples/react URL in the 
   }`}
   </CodeBlock>
 
+</p>
+</Admonition>
+
   </TabItem>
   <TabItem value="json">
+
+<Admonition type="note" title="Json">
+<p>
 
  *File: gwen/env/test.json*
   <CodeBlock language="json">
@@ -215,21 +221,26 @@ We could have just hard coded the https://todomvc.com/examples/react URL in the 
   }`}
   </CodeBlock>
 
+</p>
+</Admonition>
+
   </TabItem>
   <TabItem value="properties">
+
+<Admonition type="note" title="Properties">
+<p>
 
   *File: gwen/env/test.properties*
   <CodeBlock language="properties">
   {`  todo.page.url = https://todomvc.com/examples/react`}
   </CodeBlock>
-  `
+  
+</p>
+</Admonition>
 
   </TabItem>
 
   </Tabs>
-
-</p>
-</Admonition>
 
 ### Checking the page title
 
