@@ -375,11 +375,11 @@ The last StepDef accepts the number of expected items from the last step in the 
 
 The following annotations on StepDefs are used to associate behavior types and enforce the following rules when the [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) setting is set to `strict`.
 
-| StepDefs annotated with.. | can only bind steps tied to keyword.. | because..                      |
-| :-----------------------: | :-----------------------------------: | :----------------------------- |
-|       `@Context `         |                 Given                 | Givens imply context behavior  |
-|       `@Action`           |                 When                  | Whens imply action behavior    |
-|       `@Assertion`        |                 Then                  | Thens imply assertion behavior |
+| StepDefs annotated with.. | can only bind steps tied to keyword.. | because..                |
+| :-----------------------: | :-----------------------------------: | :----------------------- |
+|       `@Context `         |                 Given                 | Givens imply context     |
+|       `@Action`           |                 When                  | Whens imply actions      |
+|       `@Assertion`        |                 Then                  | Thens imply expectations |
 
 ---
 
