@@ -415,7 +415,7 @@ For example, the following binding will be permitted since the feature step is d
 
 If we were to change the keyword in the feature step to `When` however, it would not only read poorly but would no longer imply `@Assertion` behavior and Gwen would report the violation. Similarly, if we were to change the behavior annotation on the StepDef to `@Context`, then that behavior would not be implied by the `Then` keyword declared in the feature step.
 
-<Admonition type="info" title="Default Setting">
+<Admonition type="info" title="Strict by default">
 <p>
 Strict rules are enabled by default since <Link to="/docs/gwen3">Gwen 3</Link>. In prior versions, lenient was the default, meaning that these and other rules like <b>Given-When-Then</b> order were not enforced.
 </p>
@@ -430,7 +430,7 @@ features/todo.feature
 features/todo.meta
 ```
 
-<Admonition type="info" title="Default Setting">
+<Admonition type="info" title="Associative by default">
 <p>
 Associative meta is enabled by default since <Link to="/docs/gwen3">Gwen 3</Link>. In prior versions, all meta files discovered in a directory were unconditionally bound to all features in that directory and it's subdirectories.
 </p>
