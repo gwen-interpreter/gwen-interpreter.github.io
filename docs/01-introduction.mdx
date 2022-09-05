@@ -59,7 +59,7 @@ Compose [meta specs](/docs/meta) with the [Gwen DSL](/docs/dsl) to formulate how
 
 Meta specs are used to describe execution and are written in Gherkin too. [Step definitions](/docs/meta#stepdefs) and bindings are defined in meta so your features remain clean and unconcerned with automation details.
 
-For example, the following meta describes how the scenario in the feature above can be executed to automate a test against a running [todo application](https://todomvc.com/examples/react).
+For example, the following meta describes how each step in the scenario above can be executed to automate a test against a running [todo application](https://todomvc.com/examples/react).
 
 <Admonition type="note" title="Meta Spec">
 <p>
@@ -443,8 +443,6 @@ Launch Gwen to bind your meta and execute your features to automate.
 ### Invoke the CLI to execute
 
 The [CLI](/docs/cli) is used to launch Gwen and execute features. When launched on a directory, it will recursively discover and bind all meta and feature files in that directory and execute all the features. Any [settings files](/docs/settings) passed in will be loaded and all `${prop.name}` placeholder references throughout the meta and feature files will resolve during execution.
-
-The example presented in this introduction would execute to automate a test.
 
 <Tabs
   groupId="setup"
