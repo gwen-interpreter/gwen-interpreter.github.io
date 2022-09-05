@@ -72,27 +72,11 @@
   padding-bottom: 25px;
 }
 
-.container_title {
-  width: 70rem;
-}
-
-@media (max-width: 996px) {
-  .container_title {
-    width: 100%;
-  }
-}
-
 @media (max-width: 996px) {
   .hero__title {
     font-size: 2.5rem;
     letter-spacing: 0.02rem;
   }
-}
-
-.hero__subtitle {
-  font-size: 2rem;
-  letter-spacing: 0.02rem;
-  margin-bottom: 0px;
 }
 
 @media (max-width: 996px) {

@@ -17,9 +17,13 @@ function HomepageHeader() {
         <meta property="og:title" content={`${siteConfig.title} | ${siteConfig.tagline}`} data-react-helmet="true" />
       </Head>
       <div className="container container_title">
-        <h1 className="hero__title">
-          <span className="highlight">Automate</span> web testing and robotic processing with <span className="highlight">Gwen</span>
-        </h1>
+        <div className="row">
+          <div className="col col--12">
+            <h1 className="hero__title">
+              <span className="highlight">Automate</span> web testing and robotic processing with <span className="highlight">Gwen</span>
+            </h1>
+          </div>
+        </div>
         <div className={styles.buttons}>
           <Link
             className="button banner-button button--lg"
