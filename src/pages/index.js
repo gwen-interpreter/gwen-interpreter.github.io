@@ -41,8 +41,12 @@ export default function Home() {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
-        <div className={clsx('col col--offset-1 col--10')}>
-          <Introduction />
+        <div className="container">
+          <div className="row">
+            <div className="col col--12">
+              <Introduction />
+            </div>
+          </div>
         </div>
         <div className={styles.buttons} style={{'padding-top': '20px', 'padding-bottom': '37px'}}>
           <Link
