@@ -18,7 +18,7 @@ function HomepageHeader() {
       </Head>
       <div className="container container_title">
         <div className="row">
-          <div className="col col--12">
+          <div className="col col--10 col--offset-1">
             <h1 className="hero__title">
               <span className="highlight">Automate</span> web testing and robotic processing with <span className="highlight">Gwen</span>
             </h1>
