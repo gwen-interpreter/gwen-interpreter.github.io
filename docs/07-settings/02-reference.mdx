@@ -744,6 +744,119 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
+<details id="gwen-error-messages-inline-locators">
+  <summary class="setting">
+
+  ```properties
+  gwen.error.messages.inline.locators
+  ```
+  <p>Controls whether or not to inline locator information next to all named bindings in error messages.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to include locator information</li>
+    <li><code>false</code> to exclude locator information</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value since v3.30.1
+
+  ```json
+    gwen {
+      error {
+        messages {
+          inline {
+            locators = false
+          }
+        }
+      }
+    }
+  ```
+
+  Effecitve default value in prior versions when setting was not defined
+
+  ```json
+    gwen {
+      error {
+        messages {
+          inline {
+            locators = true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value since v3.31.0
+
+  ```json
+    {
+      "gwen": {
+        "error": {
+          "messages": {
+            "inline": {
+              "locators: false
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  Effecitve default value in prior versions when setting was not defined
+
+  ```json
+    {
+      "gwen": {
+        "error": {
+          "messages": {
+            "inline": {
+              "locators: true
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value since v3.31.0
+
+  ```properties
+    gwen.error.messages.inline.locators = false
+  ```
+
+  Effecitve default value in prior versions when setting was not defined
+
+  ```properties
+    gwen.error.messages.inline.locators = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-error-messages-inline-locators">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.31.0">v3.31.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-feature-dialect">
   <summary class="setting">
 
