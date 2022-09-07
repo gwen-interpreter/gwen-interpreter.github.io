@@ -20,7 +20,7 @@ function HomepageHeader() {
         <div className="row">
           <div className="col col--12">
             <h1 className="hero__title">
-              <span className="highlight">Automate</span> end-to-end web testing and robotic processing with <span className="highlight">Gwen</span>
+              <span className="highlight">Automate</span> <span style={{whiteSpace: "nowrap"}}>end-to-end</span> web testing and robotic processing with <span className="highlight">Gwen</span>
             </h1>
           </div>
         </div>
