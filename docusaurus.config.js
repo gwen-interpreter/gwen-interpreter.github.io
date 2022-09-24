@@ -54,6 +54,11 @@ module.exports = {
           href: 'https://gwenify.com',
           position: 'right'
         },
+        {
+          label: 'Sponsor',
+          href: 'https://github.com/sponsors/bjuric',
+          position: 'right'
+        },
       ],
     },
     footer: {
