@@ -55,7 +55,7 @@ module.exports = {
           position: 'right'
         },
         {
-          label: 'Sponsorship',
+          label: 'Sponsor',
           href: 'https://github.com/sponsors/bjuric',
           position: 'right'
         },
@@ -87,7 +87,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Drives Browsers',
+          title: 'Runs on',
           items: [
             {
               label: 'Chrome',
@@ -97,6 +97,11 @@ module.exports = {
               label: 'Edge',
               href: 'https://www.microsoft.com/en-us/edge',
             },
+          ],
+        },
+        {
+          title: '‎',
+          items: [
             {
               label: 'Firefox',
               href: 'https://www.mozilla.org/en-US/firefox/new/',
@@ -104,27 +109,6 @@ module.exports = {
             {
               label: 'Safari',
               href: 'https://www.apple.com/au/safari/',
-            },
-          ],
-        },
-        {
-          title: 'Runs On',
-          items: [
-            {
-              label: 'Docker',
-              href: 'https://www.docker.com/',
-            },
-            {
-              label: 'Selenoid',
-              href: 'https://aerokube.com/selenoid/',
-            },
-            {
-              label: 'BrowserStack',
-              href: 'https://www.browserstack.com/',
-            },
-            {
-              label: 'LambdaTest',
-              href: 'https://www.lambdatest.com/hyperexecute',
             },
           ],
         },
