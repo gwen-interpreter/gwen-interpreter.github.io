@@ -55,7 +55,7 @@ module.exports = {
           position: 'right'
         },
         {
-          label: 'Sponsor',
+          label: 'Sponsorship',
           href: 'https://github.com/sponsors/bjuric',
           position: 'right'
         },
