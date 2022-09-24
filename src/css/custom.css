@@ -240,3 +240,7 @@ html[data-theme='light'] .navbar__link--active {
 .highlight {
   color: #a9b7f7;
 }
+
+.sponsor {
+  display: flex;
+}
