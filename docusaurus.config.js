@@ -113,7 +113,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Known Users',
+          title: 'Users',
           items: [
             {
               label: 'SmartStream',
