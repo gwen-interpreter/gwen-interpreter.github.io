@@ -87,7 +87,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Runs on',
+          title: 'Drives',
           items: [
             {
               label: 'Chrome',
