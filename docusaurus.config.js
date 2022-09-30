@@ -57,7 +57,7 @@ module.exports = {
         {
           type: 'html',
           position: 'right',
-          value: '<div class="sponsor"><iframe src="https://github.com/sponsors/bjuric/button" title="Sponsor bjuric" height="32" width="114" style="border: 0; border-radius: 6.5px; overflow: hidden;"></iframe></div>',
+          value: '<div class="sponsor"><iframe src="https://github.com/sponsors/gwen-interpreter/button" title="Sponsor gwen-interpreter" height="32" width="114" style="border: 0; border-radius: 6.5px; overflow: hidden;"></iframe></div>',
         },
       ],
     },
