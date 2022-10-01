@@ -51,7 +51,7 @@ export default function Home() {
             <div className="col col--12">
                 <h3>Behaviour Driven</h3>
                 Gwen helps you automate acceptance testing and robotic processing with behaviour described in feature specifications.
-                An embedded web engine executes each step in your features according to your meta to automate all operations for you. Your features execute unchanged and unconcerned with automation details.
+                An embedded web engine executes each step in every scenario according to your meta to perform operations in browsers for you. Your features execute unchanged and unconcerned with automation details.
                 <div className={styles.buttons} style={{'padding-top': '20px', 'padding-bottom': '37px'}}>
                   <Link
                     className="button banner-button button--lg"
