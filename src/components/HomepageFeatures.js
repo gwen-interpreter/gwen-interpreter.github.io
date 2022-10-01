@@ -49,7 +49,7 @@ function Feature({Svg, title, description}) {
 
 export default function HomepageFeatures() {
   return (
-    <section className={styles.features}>
+    <section className={styles.features} style={{paddingTop: '20px', paddingBottom: '5px'}}>
       <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (

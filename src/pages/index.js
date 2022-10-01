@@ -12,7 +12,7 @@ import Introduction from '@site/docs/01-introduction.mdx';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header className={clsx('hero hero--primary', styles.heroBanner)} style={{paddingTop: '55px', paddingBottom: '55px'}}>
       <Head>
         <title>{siteConfig.title} | {siteConfig.tagline}</title>
         <meta property="og:title" content={`${siteConfig.title} | ${siteConfig.tagline}`} data-react-helmet="true" />

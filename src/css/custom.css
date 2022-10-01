@@ -69,7 +69,7 @@
 
 .hero__title {
   letter-spacing: 0.02rem;
-  padding-bottom: 25px;
+  padding-bottom: 20px;
 }
 
 @media (max-width: 996px) {
@@ -243,8 +243,4 @@ html[data-theme='light'] .navbar__link--active {
 
 .sponsor {
   display: flex;
-}
-
-section.features_src-components-HomepageFeatures-module {
-  padding-bottom: 10px;
 }
