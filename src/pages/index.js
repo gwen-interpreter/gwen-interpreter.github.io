@@ -50,8 +50,8 @@ export default function Home() {
           <div className="row">
             <div className="col col--12">
                 <h3>Behaviour Driven</h3>
-                Gwen helps you automate acceptance testing and robotic processing with behaviour described in <Link href="https://cucumber.io/docs/gherkin/reference/">Gherkin</Link> feature specifications.
-                An embedded <Link href="https://www.selenium.dev/">Selenium</Link> engine executes each step in your features according to the meta you compose to drive all operations in browsers for you. Your features stay clean an unconcerned with the details.
+                Gwen helps you automate acceptance testing and robotic processing with behaviour described in feature specifications.
+                An embedded web engine executes each step in your features according to your meta to automate all operations for you. Your features execute unchanged and remain unconcerned with automation details.
                 <div className={styles.buttons} style={{'padding-top': '20px', 'padding-bottom': '37px'}}>
                   <Link
                     className="button banner-button button--lg"
