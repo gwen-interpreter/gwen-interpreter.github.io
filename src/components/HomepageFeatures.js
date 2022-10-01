@@ -6,7 +6,7 @@ import Link from '@docusaurus/Link';
 const FeatureList = [
   {
     title: 'Feature Specs',
-    Svg: require('../../static/img/gwen-declare-features.svg').default,
+    Svg: require('../../static/img/feature-specs.svg').default,
     description: (
       <>
         <Link to="/docs#declare-features">Declare features</Link> to describe scenarios.
@@ -15,7 +15,7 @@ const FeatureList = [
   },
   {
     title: 'Meta Specs',
-    Svg: require('../../static/img/gwen-compose-meta.svg').default,
+    Svg: require('../../static/img/meta-specs.svg').default,
     description: (
       <>
         <Link to="/docs#compose-meta">Compose meta</Link> to formulate execution.
@@ -24,7 +24,7 @@ const FeatureList = [
   },
   {
     title: 'Gwen Interpreter',
-    Svg: require('../../static/img/gwen-execute-features.svg').default,
+    Svg: require('../../static/img/gwen-interpreter.svg').default,
     description: (
       <>
         <Link to="/docs#launch-gwen">Launch Gwen</Link> to execute and automate.
