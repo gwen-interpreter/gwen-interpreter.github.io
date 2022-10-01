@@ -49,8 +49,8 @@ export default function Home() {
         <div className="container">
           <div className="row">
             <div className="col col--12">
-                <h3>Behavior Driven Automation</h3>
-                Gwen is a tool for automating acceptance testing and robotic processing with the <Link href="https://cucumber.io/docs/gherkin/reference/">Gherkin</Link> language.
+                <h3>Behavior Driven</h3>
+                Gwen is a tool for automating acceptance testing and robotic processing with behavior defined in <Link href="https://cucumber.io/docs/gherkin/reference/">Gherkin</Link> feature specifications.
                 Automation is achieved through Gherkin bindings called <Link to="docs/meta">meta specs</Link>, composed with the <Link to="/docs/dsl">Gwen DSL</Link> and maintained alongside your feature files. An embedded <Link href="https://www.selenium.dev/">Selenium</Link> engine executes each step in your features according to your meta to automate operations in browsers for you.
                 <div className={styles.buttons} style={{'padding-top': '20px', 'padding-bottom': '37px'}}>
                   <Link
