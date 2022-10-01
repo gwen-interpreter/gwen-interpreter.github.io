@@ -87,7 +87,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Drives',
+          title: 'Drives Browsers',
           items: [
             {
               label: 'Chrome',
@@ -113,7 +113,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Users',
+          title: 'Known Users',
           items: [
             {
               label: 'SmartStream',

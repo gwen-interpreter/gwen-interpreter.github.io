@@ -7,34 +7,31 @@ import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import Admonition from '@theme/Admonition';
-import CodeBlock from '@theme/CodeBlock';
 
-# Behavior Driven Automation
+# Introduction
 
-> Gwen = [<b>G</b>]iven [<b>W</b>]hen Th[<b>en</b>]
+> Gwen = [G]iven [W]hen Th[en]
 
-Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter for driving automated testing and robotic processing with feature specifications that describe behavior.
-
+Gwen is a tool for automating acceptance testing and robotic processing with [Gherkin](https://cucumber.io/docs/gherkin/reference/) feature specifications that describe behavior.
 Automation is achieved through Gherkin bindings called [meta specs](/docs/meta), composed with the [Gwen DSL](/docs/dsl) and maintained alongside your feature files. An embedded [Selenium](https://www.selenium.dev/) engine executes each step in your features according to your meta to automate operations in browsers for you.
 
 ## Declare features
 
 Declare [feature specs](https://cucumber.io/docs/gherkin/reference/) to describe how scenarios should behave.
 
-<Admonition type="tip">
+:::tip
   <p>Write feature specs without giving any thought to automation.</p>
-</Admonition>
+:::
 
 Feature specs are used to communicate scenarios in the language of your domain. They should be clear, concise and declarative. For example, the following describes how adding items to a todo list should behave.
 
-<Admonition type="note" title="Feature Spec">
+:::note Feature Spec
 <p>
 
 *File: features/todo.feature*
 
-<CodeBlock language="gherkin">
-{`Feature: Add todo items
+```gherkin
+Feature: Add todo items
  
   Scenario: Create todo list
     Given a new todo list
@@ -43,37 +40,36 @@ Feature specs are used to communicate scenarios in the language of your domain. 
           | Get the milk  |
           | Walk the dog  |
      Then the list will contain 2 items
-`}
-</CodeBlock>
+```
 
 </p>
-</Admonition>
+:::
 
 ## Compose meta
 
 Compose [meta specs](/docs/meta) with the [Gwen DSL](/docs/dsl) to formulate how scenarios will execute.
 
-<Admonition type="tip">
+:::tip
   <p>Write meta specs with automation in mind (as if you were a robot).</p>
-</Admonition>
+:::
 
 Meta specs are used to describe execution and are written in Gherkin too. [Step definitions](/docs/meta#stepdefs) and bindings are defined in meta so your features remain clean and unconcerned with automation details.
 
 For example, the following meta describes how each step in the scenario above can be executed to automate a test against a running [todo application](https://todomvc.com/examples/react).
 
-<Admonition type="note" title="Meta Spec">
+:::note Meta Spec
 <p>
 
 *File: features/todo.meta*
 
-<CodeBlock language="gherkin">
-{`Feature: Todo Meta
+```gherkin
+Feature: Todo Meta
   
   @Context
   @StepDef
   Scenario: a new todo list
     Given my todo list can be located by css ".todo-list"
-     When I navigate to "\${todo.page.url}"
+     When I navigate to "${todo.page.url}"
      Then the page title should contain "TodoMVC"
       And my todo list should be hidden
   
@@ -90,13 +86,12 @@ For example, the following meta describes how each step in the scenario above ca
   @StepDef
   Scenario: the list will contain <expected-count> items
     Given the displayed count can be located by css ".todo-count strong"
-     Then the displayed count should be "\$<expected-count>"
-`}
-</CodeBlock>
+     Then the displayed count should be "$<expected-count>"
+```
 
 
 </p>
-</Admonition>
+:::
 
 ### Declaring step definitions
 
@@ -104,52 +99,49 @@ Each step definition is declared as a `@StepDef` annotated scenario with a name 
 
 The first StepDef in our meta example binds to the first step in the feature and will only execute when it is interpreted for execution by Gwen.
 
-<Admonition type="note" title="Feature Step 1">
+:::note Feature Step 1
 <p>
 
-<CodeBlock language="gherkin">
-{`  Given a new todo list
-`}
-</CodeBlock>
+```gherkin
+  Given a new todo list
+```
 
 </p>
-</Admonition>
+:::
 
-<Admonition type="note" title="StepDef 1">
+:::note StepDef 1
 <p>
 
-<CodeBlock language="gherkin" metastring='{2-3}'>
-{`  @Context
+```gherkin {2-3}
+  @Context
   @StepDef
   Scenario: a new todo list
     Given my todo list can be located by css ".todo-list"
-     When I navigate to "\${todo.page.url}"
+     When I navigate to "${todo.page.url}"
      Then the page title should contain "TodoMVC"
       And my todo list should be hidden
-`}
-</CodeBlock>
+```
 
 </p>
-</Admonition>
+:::
 
 ### Web elements selectors
 
 The first thing the above will do is bind the selector for locating the todo list element on the web page to the name `my todo list`. Later steps can then reference that element using this name to interact with it and Gwen will locate it dynamically.
 
-<Admonition type="note" title="StepDef 1, Step 1">
+:::note StepDef 1, Step 1
 <p>
 
-<CodeBlock language="gherkin">
-{`  Given my todo list can be located by css ".todo-list"
-`}
-</CodeBlock>
+```gherkin
+  Given my todo list can be located by css ".todo-list"
+```
 
 Calls DSL step:
 
 - [`<element> can be located by <selector> "<expression>"`](/docs/dsl/reference#element-can-be-located-by-selector-expression)
 
 </p>
-</Admonition>
+:::
 
 <p> </p>
 
@@ -157,20 +149,19 @@ Calls DSL step:
 
 The next step in this StepDef will open a new browser window and navigate to the URL in the `todo.page.url` property.
 
-<Admonition type="note" title="StepDef 1, Step 2">
+:::note StepDef 1, Step 2
 <p>
 
-<CodeBlock language="gherkin">
-{`  When I navigate to "\${todo.page.url}"
-`}
-</CodeBlock>
+```gherkin
+  When I navigate to "${todo.page.url}"
+```
 
 Calls DSL step:
 
 - [`I navigate to "<url>"`](/docs/dsl/reference#i-navigate-to-url)
 
 </p>
-</Admonition>
+:::
 
 <p> </p>
 
@@ -189,54 +180,54 @@ We could have just hard coded the https://todomvc.com/examples/react URL in the 
 
   <TabItem value="conf">
 
-<Admonition type="note" title="Conf">
+:::note Conf
 <p>
 
   *File: gwen/env/test.conf*
-  <CodeBlock language="json">
-  {`  todo {
+  ```json
+  todo {
     page {
       url = "https://todomvc.com/examples/react"
     }
-  }`}
-  </CodeBlock>
+  }
+  ```
 
 </p>
-</Admonition>
+:::
 
   </TabItem>
   <TabItem value="json">
 
-<Admonition type="note" title="Json">
+:::note Json
 <p>
 
  *File: gwen/env/test.json*
-  <CodeBlock language="json">
-  {`  {
+  ```json
+  {
     "todo": {
       "page": {
         "url": "https://todomvc.com/examples/react"
       }
     }
-  }`}
-  </CodeBlock>
+  }
+  ```
 
 </p>
-</Admonition>
+:::
 
   </TabItem>
   <TabItem value="properties">
 
-<Admonition type="note" title="Properties">
+:::note Properties
 <p>
 
   *File: gwen/env/test.properties*
-  <CodeBlock language="properties">
-  {`  todo.page.url = https://todomvc.com/examples/react`}
-  </CodeBlock>
+  ```properties
+    todo.page.url = https://todomvc.com/examples/react
+  ```
   
 </p>
-</Admonition>
+:::
 
   </TabItem>
 
@@ -246,20 +237,19 @@ We could have just hard coded the https://todomvc.com/examples/react URL in the 
 
 The next step in the same StepDef checks that the page title in the browser window contains the string literal "TodoMVC" in it. If it doesn't then an assertion error will be raised, otherwise execution will resume to the next step. It is generally a good idea when navigating to a page to verify that you did indeed land on that page before proceeding to interact with it. Checking the title is one way to do it which will suffice in this case.
 
-<Admonition type="note" title="StepDef 1, Step 3">
+:::note StepDef 1, Step 3
 <p>
 
-<CodeBlock language="gherkin">
-{`  Then the page title should contain "TodoMVC"
-`}
-</CodeBlock>
+```gherkin
+  Then the page title should contain "TodoMVC"
+```
 
 Calls DSL step:
 
 - [`the page title should[ not] <match> "<expression>"`](/docs/dsl/reference#the-page-title-should-match-expression)
 
 </p>
-</Admonition>
+:::
 
 <p> </p>
 
@@ -267,20 +257,19 @@ Calls DSL step:
 
 The last step in this StepDef verifies that the web element containing the current list of todo items is hidden from view. We expect it to not be displayed because we haven't added any items to it yet. Recall that we bound this element in the first step earlier to the name `my todo list`. So here we reference it by that name and if Gwen cannot see it on the page then execution will resume, otherwise an assertion error will be raised. 
 
-<Admonition type="note" title="StepDef 1, Step 4">
+:::note StepDef 1, Step 4
 <p>
 
-<CodeBlock language="gherkin">
-{`  And my todo list should be hidden
-`}
-</CodeBlock>
+```gherkin
+  And my todo list should be hidden
+```
 
 Calls DSL step:
 
 - [`<element> should[ not] be <state>`](/docs/dsl/reference#element-should-be-state)
 
 </p>
-</Admonition>
+:::
 
 <p> </p>
 
@@ -288,25 +277,24 @@ Calls DSL step:
 
 The second StepDef uses the `@DataTable` and `@ForEach` annotations which work together to process each record in the [data table](/docs/advanced/data-tables) of the second step in the feature.
 
-<Admonition type="note" title="Feature Step 2">
+:::note Feature Step 2
 <p>
 
- <CodeBlock language="gherkin">
-{`  When the following items are added
-       | Item          |
-       | Get the milk  |
-       | Walk the dog  |
-`}
-</CodeBlock>
+ ```gherkin
+   When the following items are added
+        | Item          |
+        | Get the milk  |
+        | Walk the dog  |
+```
 
 </p>
-</Admonition>
+:::
 
-<Admonition type="note" title="StepDef 2">
+:::note StepDef 2
 <p>
 
-<CodeBlock language="gherkin" metastring='{2-5}'>
-{`  @Action
+```gherkin {2-5}
+  @Action
   @StepDef
   @DataTable
   @ForEach
@@ -314,22 +302,20 @@ The second StepDef uses the `@DataTable` and `@ForEach` annotations which work t
     Given the todo field can be located by class "new-todo"
      When I enter Item in the todo field
      Then my todo list should contain Item
-`}
-</CodeBlock>
+```
 
 </p>
-</Admonition>
+:::
 
 Gwen will call the StepDef for each record in the table and bind each field value to its declared name in the header record. The second and third steps in this StepDef will enter each `Item` into the `todo field` and check that it was added to `my todo list`. This is the same `my todo list` that we earlier confirmed was absent when we opened the page in the browser. We reuse it here to check that it now contains and displays each item. If it does not, then an assertion error will be raised. 
 
-<Admonition type="note" title="StepDef 2, Steps 2 and 3">
+:::note StepDef 2, Steps 2 and 3
 <p>
 
-<CodeBlock language="gherkin">
-{`  When I enter Item in the todo field
+```gherkin
+  When I enter Item in the todo field
   Then my todo list should contain Item
-`}
-</CodeBlock>
+```
 
 Calls DSL steps:
 
@@ -337,7 +323,7 @@ Calls DSL steps:
 - [`<element> should[ not] <match> <expressionRef>`](/docs/dsl/reference#element-should-match-expression-ref)
 
 </p>
-</Admonition>
+:::
 
 <p> </p>
 
@@ -345,31 +331,29 @@ Calls DSL steps:
 
 The last StepDef accepts the number of expected items from the last step in the feature into a parameter placeholder named `expected-count` and then uses that to assert its value against `the displayed count` on the page. In this example, the value 2 will be passed as the parameter.
 
-<Admonition type="note" title="Feature Step 3">
+:::note Feature Step 3
 <p>
 
-<CodeBlock language="gherkin">
-{`  Then the list will contain 2 items
-`}
-</CodeBlock>
+```gherkin
+  Then the list will contain 2 items
+```
 
 </p>
-</Admonition>
+:::
 
-<Admonition type="note" title="StepDef 3">
+:::note StepDef 3
 <p>
 
-<CodeBlock language="gherkin" metastring='{2-3,5}'>
-{`  @Assertion
+```gherkin {2-3,5}
+  @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
     Given the displayed count can be located by css ".todo-count strong"
      Then the displayed count should be "$<expected-count>"
-`}
-</CodeBlock>
+```
 
 </p>
-</Admonition>
+:::
 
 ### Behavioral rules and semantics
 
@@ -387,39 +371,37 @@ When binding to a step declared with `And`, `But`, or `*`, then the keyword in t
 
 For example, the following binding will be permitted since the feature step is declared with the `Then` keyword and the StepDef is annotated with `@Assertion`.
 
-<Admonition type="note" title="Feature Step 3">
+:::note Feature Step 3
 <p>
 
-<CodeBlock language="gherkin">
-{`  Then the list will contain 2 items
-`}
-</CodeBlock>
+```gherkin
+  Then the list will contain 2 items
+```
 
 </p>
-</Admonition>
+:::
 
-<Admonition type="note" title="StepDef 3">
+:::note StepDef 3
 <p>
 
-<CodeBlock language="gherkin" metastring='{1}'>
-{`  @Assertion
+```gherkin {1}
+  @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
     Given the displayed count can be located by css ".todo-count strong"
      Then the displayed count should be "$<expected-count>"
-`}
-</CodeBlock>
+```
 
 </p>
-</Admonition>
+:::
 
 If we were to change the keyword in the feature step to `When` however, it would not only read poorly but would no longer imply `@Assertion` behavior and Gwen would report the violation. Similarly, if we were to change the behavior annotation on the StepDef to `@Context`, then that behavior would not be implied by the `Then` keyword declared in the feature step.
 
-<Admonition type="info" title="Strict by default">
+:::info Strict by default
 <p>
 Strict rules are enabled by default since <Link to="/docs/gwen3">Gwen 3</Link>. In prior versions, lenient was the default, meaning that these and other rules like <b>Given-When-Then</b> order were not enforced.
 </p>
-</Admonition>
+:::
 
 ### Associative meta
 
@@ -430,11 +412,11 @@ features/todo.feature
 features/todo.meta
 ```
 
-<Admonition type="info" title="Associative by default">
+:::info Associative by default
 <p>
 Associative meta is enabled by default since <Link to="/docs/gwen3">Gwen 3</Link>. In prior versions, all meta files discovered in a directory were unconditionally bound to all features in that directory and it's subdirectories.
 </p>
-</Admonition>
+:::
 
 ## Launch Gwen
 
@@ -465,55 +447,55 @@ The [CLI](/docs/cli) is used to launch Gwen and execute features. When launched 
 
   <TabItem value="yarn">
 
-<Admonition type="note" title="Invoking Gwen">
+:::note Invoking Gwen"
 <p>
 
   Execute feature in test environment (passing in test environment settings):
 
-  <CodeBlock language="shell">
-  {`  yarn gwen -b -c gwen/env/test.conf gwen/features/todo.feature`}
-  </CodeBlock>
+  ```shell
+    yarn gwen -b -c gwen/env/test.conf gwen/features/todo.feature
+  ```
 
   [Gwen CLI](/docs/cli)
 
 </p>
-</Admonition>
+:::
 
   </TabItem>
 
   <TabItem value="npm">
 
-<Admonition type="note" title="Invoking Gwen">
+:::note Invoking Gwen
 <p>
 
   Execute feature in test environment (passing in test environment settings):
 
-  <CodeBlock language="shell">
-  {`  npm run gwen -- -b -c gwen/env/test.conf gwen/features/todo.feature`}
-  </CodeBlock>
+  ```shell
+    npm run gwen -- -b -c gwen/env/test.conf gwen/features/todo.feature
+  ```
 
   [Gwen CLI](/docs/cli)
 
 </p>
-</Admonition>
+:::
 
   </TabItem>
 
   <TabItem value="pnpm">
 
-<Admonition type="note" title="Invoking Gwen">
+:::note Invoking Gwen
 <p>
 
   Execute feature in test environment (passing in test environment settings):
 
-  <CodeBlock language="shell">
-  {`  pnpm gwen -b -c gwen/env/test.conf gwen/features/todo.feature`}
-  </CodeBlock>
+  ```shell
+    pnpm gwen -b -c gwen/env/test.conf gwen/features/todo.feature
+  ```
 
   [Gwen CLI](/docs/cli)
 
 </p>
-</Admonition>
+:::
 
   </TabItem>
 
@@ -523,26 +505,26 @@ The [CLI](/docs/cli) is used to launch Gwen and execute features. When launched 
 
   <TabItem value="standalone">
 
-<Admonition type="note" title="Invoking Gwen">
+:::note Invoking Gwen
 <p>
   
   Execute feature in test environment (passing in test environment settings):
 
-  <CodeBlock language="shell">
-  {`  gwen -b -c env/test.conf features/todo.feature`}
-  </CodeBlock>
+  ```shell
+    gwen -b -c env/test.conf features/todo.feature
+  ```
 
   [Gwen CLI](/docs/cli)
 
 </p>
-</Admonition>
+:::
 
   </TabItem>
 
   </Tabs>
 
-<Admonition type="tip" title="Testing & Robotics">
+:::tip Testing & Robotics
 <p>
-Your Gwen usage need not be confined to just testing. You can automate robotic processing too!
+Your Gwen usage need not be confined to just testing. You can automate repetitive manual processesing too!
 </p>
-</Admonition>
+:::
