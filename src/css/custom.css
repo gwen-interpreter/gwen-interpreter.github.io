@@ -244,3 +244,7 @@ html[data-theme='light'] .navbar__link--active {
 .sponsor {
   display: flex;
 }
+
+section.features_src-components-HomepageFeatures-module {
+  padding-bottom: 10px;
+}
