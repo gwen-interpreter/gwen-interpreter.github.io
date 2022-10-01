@@ -12,7 +12,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 > Gwen = [G]iven [W]hen Th[en]
 
-Gwen is a tool for automating acceptance testing and robotic processing with behavior defined in [Gherkin](https://cucumber.io/docs/gherkin/reference/) feature specifications.
+Gwen is a tool for automating acceptance testing and robotic processing with behaviour defined in [Gherkin](https://cucumber.io/docs/gherkin/reference/) feature specifications.
 Automation is achieved through Gherkin bindings called [meta specs](/docs/meta), composed with the [Gwen DSL](/docs/dsl) and maintained alongside your feature files. An embedded [Selenium](https://www.selenium.dev/) engine executes each step in your features according to your meta to automate operations in browsers for you.
 
 ## Declare features
@@ -357,7 +357,7 @@ The last StepDef accepts the number of expected items from the last step in the 
 
 ### Behavioural rules and semantics
 
-The following annotations on StepDefs are used to associate behavior types and enforce the following rules when the [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) setting is set to `strict`.
+The following annotations on StepDefs are used to associate behaviour types and enforce the following rules when the [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) setting is set to `strict`.
 
 | StepDefs annotated with.. | can only bind steps tied to keyword.. | because..                |
 | :-----------------------: | :-----------------------------------: | :----------------------- |
@@ -395,7 +395,7 @@ For example, the following binding will be permitted since the feature step is d
 </p>
 :::
 
-If we were to change the keyword in the feature step to `When` however, it would not only read poorly but would no longer imply `@Assertion` behavior and Gwen would report the violation. Similarly, if we were to change the behavior annotation on the StepDef to `@Context`, then that behavior would not be implied by the `Then` keyword declared in the feature step.
+If we were to change the keyword in the feature step to `When` however, it would not only read poorly but would no longer imply `@Assertion` behaviour and Gwen would report the violation. Similarly, if we were to change the behaviour annotation on the StepDef to `@Context`, then that behaviour would not be implied by the `Then` keyword declared in the feature step.
 
 :::info Strict by default
 <p>
