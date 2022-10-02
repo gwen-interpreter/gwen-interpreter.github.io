@@ -213,18 +213,6 @@ a.banner-button:hover {
   color: #1A0B80;
 }
 
-a.feature-link {
-  color: var(--ifm-heading-color);
-}
-
-
-
-
-a.feature-link:hover {
-  text-decoration: none;
-  color: var(--ifm-navbar-link-hover-color);
-}
-
 html[data-theme='light'] .navbar__link {
   --ifm-navbar-link-color: #14085e;
 }
@@ -242,11 +230,6 @@ html[data-theme='light'] .navbar__link--active {
   --ifm-footer-color: var(--ifm-color-white);
   --ifm-footer-link-color: var(--ifm-footer-color);
   --ifm-footer-title-color: var(--ifm-footer-color);
-}
-
-.logo {
-  border: 1px solid #c1d0f0;
-  display: inline-block;
 }
 
 .highlight {
