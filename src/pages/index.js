@@ -49,9 +49,7 @@ export default function Home() {
         <div className="container">
           <div className="row">
             <div className="col col--12">
-              Gwen helps teams automate acceptance testing and robotic processing with behaviour described in feature specifications.
-              An embedded web engine executes each step in every scenario according to the meta provided to perform operations in browsers for you. Features execute unchanged and unconcerned with automation details.
-              <div className={styles.buttons} style={{'padding-top': '20px', 'padding-bottom': '30px'}}>
+              <div className={styles.buttons} style={{'padding-top': '10px', 'padding-bottom': '40px'}}>
                 <Link
                   className="button banner-button button--lg"
                   to="/docs/introduction">

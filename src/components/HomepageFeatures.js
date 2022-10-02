@@ -11,22 +11,25 @@ const FeatureList = [
     imageLight: '/img/gwen-declare-features.svg',
     imageDark: '/img/gwen-declare-features.svg',
     linkRef: '/docs#declare-features',
+    description: 'to describe scenarios',
   },
   {
     title: 'Compose Meta',
     imageLight: '/img/gwen-compose-meta.svg',
     imageDark: '/img/gwen-compose-meta.svg',
     linkRef: '/docs#compose-meta',
+    description: 'to formulate execution',
   },
   {
     title: 'Launch Gwen',
     imageLight: '/img/gwen-launch-gwen-color.svg',
     imageDark: '/img/gwen-launch-gwen-white.svg',
     linkRef: '/docs#launch-gwen',
+    description: 'to execute and automate',
   },
 ];
 
-function Feature({title, imageLight, imageDark, linkRef}) {
+function Feature({title, imageLight, imageDark, linkRef, description}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
@@ -41,7 +44,8 @@ function Feature({title, imageLight, imageDark, linkRef}) {
         />
       </div>
       <div className="text--center padding-horiz--md">
-        <h3><Link to={linkRef} className="feature-link">{title}</Link></h3>
+        <h3>{title}</h3>
+        <p><Link to={linkRef}>{title}</Link> {description}</p>
       </div>
     </div>
   );
