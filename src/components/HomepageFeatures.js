@@ -7,38 +7,26 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 const FeatureList = [
   {
-    title: 'Declare',
+    title: 'Declare Features',
     imageLight: '/img/gwen-declare-features.svg',
     imageDark: '/img/gwen-declare-features.svg',
-    description: (
-      <>
-        <Link to="/docs#declare-features">Declare features</Link> to describe scenarios.
-      </>
-    ),
+    linkRef: '/docs#declare-features',
   },
   {
-    title: 'Compose',
+    title: 'Compose Meta',
     imageLight: '/img/gwen-compose-meta.svg',
     imageDark: '/img/gwen-compose-meta.svg',
-    description: (
-      <>
-        <Link to="/docs#compose-meta">Compose meta</Link> to formulate execution.
-      </>
-    ),
+    linkRef: '/docs#compose-meta',
   },
   {
-    title: 'Launch',
+    title: 'Launch Gwen',
     imageLight: '/img/gwen-launch-gwen-color.svg',
     imageDark: '/img/gwen-launch-gwen-white.svg',
-    description: (
-      <>
-        <Link to="/docs#launch-gwen">Launch Gwen</Link> to execute and automate.
-      </>
-    ),
+    linkRef: '/docs#launch-gwen',
   },
 ];
 
-function Feature({imageLight, imageDark, title, description}) {
+function Feature({title, imageLight, imageDark, linkRef}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
@@ -53,8 +41,7 @@ function Feature({imageLight, imageDark, title, description}) {
         />
       </div>
       <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
-        <p>{description}</p>
+        <h3><Link to={linkRef} className="feature-link">{title}</Link></h3>
       </div>
     </div>
   );
