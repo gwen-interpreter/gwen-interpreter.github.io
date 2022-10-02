@@ -2,11 +2,14 @@ import React from 'react';
 import clsx from 'clsx';
 import styles from './HomepageFeatures.module.css';
 import Link from '@docusaurus/Link';
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 const FeatureList = [
   {
-    title: 'Feature Specs',
-    Svg: require('../../static/img/feature-specs.svg').default,
+    title: 'Declare',
+    imageLight: '/img/gwen-declare-features.svg',
+    imageDark: '/img/gwen-declare-features.svg',
     description: (
       <>
         <Link to="/docs#declare-features">Declare features</Link> to describe scenarios.
@@ -14,8 +17,9 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Meta Specs',
-    Svg: require('../../static/img/meta-specs.svg').default,
+    title: 'Compose',
+    imageLight: '/img/gwen-compose-meta.svg',
+    imageDark: '/img/gwen-compose-meta.svg',
     description: (
       <>
         <Link to="/docs#compose-meta">Compose meta</Link> to formulate execution.
@@ -23,8 +27,9 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Gwen Interpreter',
-    Svg: require('../../static/img/gwen-interpreter.svg').default,
+    title: 'Launch',
+    imageLight: '/img/gwen-launch-gwen-color.svg',
+    imageDark: '/img/gwen-launch-gwen-white.svg',
     description: (
       <>
         <Link to="/docs#launch-gwen">Launch Gwen</Link> to execute and automate.
@@ -33,11 +38,19 @@ const FeatureList = [
   },
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({imageLight, imageDark, title, description}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} alt={title} />
+        <ThemedImage
+            alt={title}
+            sources={{
+              light: useBaseUrl(imageLight),
+              dark: useBaseUrl(imageDark),
+            }}
+            width="200px" 
+            height="200px"
+        />
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>

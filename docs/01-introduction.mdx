@@ -7,8 +7,19 @@ import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
 
 # Introduction
+
+<ThemedImage
+  alt="Docusaurus themed image"
+  sources={{
+    light: useBaseUrl('/img/gwen-logo-landscape-color.svg'),
+    dark: useBaseUrl('/img/gwen-logo-landscape-white.svg'),
+  }}
+  width="250px"
+  height="125px"
+/>
 
 > Gwen = [G]iven [W]hen Th[en]
 
@@ -17,9 +28,9 @@ Automation is achieved through Gherkin bindings called [meta specs](/docs/meta),
 
 ## Declare features
 
-Declare [feature specs](https://cucumber.io/docs/gherkin/reference/) to describe how scenarios should behave.
+<img src="/img/gwen-declare-features.svg" width="200px" height="200px"/>
 
-<img src="/img/feature-specs-intro.svg" width="200px" height="200px"/>
+Declare [feature specs](https://cucumber.io/docs/gherkin/reference/) to describe how scenarios should behave.
 
 Feature specs are used to communicate scenarios in the language of your domain. They should be clear, concise and declarative.
 
@@ -51,9 +62,9 @@ Feature: Add todo items
 
 ## Compose meta
 
-Compose [meta specs](/docs/meta) to formulate how scenarios will execute.
+<img src="/img/gwen-compose-meta.svg" width="200px" height="200px"/>
 
-<img src="/img/meta-specs-intro.svg" width="200px" height="200px"/>
+Compose [meta specs](/docs/meta) to formulate how scenarios will execute.
 
 Meta specs are used to describe execution and are written in Gherkin too. [Step definitions](/docs/meta#stepdefs) and bindings are defined in meta so your features remain clean and unconcerned with automation details.
 
@@ -426,9 +437,17 @@ Associative meta is enabled by default since <Link to="/docs/gwen3">Gwen 3</Link
 
 ## Launch Gwen
 
-Launch Gwen to bind your meta and execute your features to automate.
+<ThemedImage
+  alt="Docusaurus themed image"
+  sources={{
+    light: useBaseUrl('/img/gwen-attractor-color.svg'),
+    dark: useBaseUrl('/img/gwen-attractor-white.svg'),
+  }}
+  width="100px" 
+  height="100px"
+/>
 
-<img src="/img/gwen-interpreter-intro.svg" width="200px" height="200px"/>
+Launch Gwen to bind your meta and execute your features to automate.
 
 ### Invoke the CLI to execute
 
