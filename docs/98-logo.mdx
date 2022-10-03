@@ -5,10 +5,20 @@ toc_max_heading_level: 2
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
 
 # About the Logo
 
-<p><img src={useBaseUrl('/img/gwen-logo.png')} width="330vh"/></p>
+<p>
+  <ThemedImage
+    alt="Gwen logo"
+    sources={{
+      light: useBaseUrl('/img/gwen-logo-c.svg'),
+      dark: useBaseUrl('/img/gwen-logo-w.svg'),
+    }}
+    width="250px"
+  />
+</p>
 
 The Gwen logo is a [Lorenz attractor](https://en.m.wikipedia.org/wiki/Lorenz_system) that looks like 
 a butterfly. Developed by [Nascent Creative](https://nascentcreative.com.au/).
