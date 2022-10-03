@@ -8,22 +8,22 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 const FeatureList = [
   {
     title: 'Declare Features',
-    imageLight: '/img/gwen-declare-features.svg',
-    imageDark: '/img/gwen-declare-features.svg',
+    imageLight: '/img/icon-feature.svg',
+    imageDark: '/img/icon-feature.svg',
     linkRef: '/docs#declare-features',
     description: 'to describe scenarios',
   },
   {
     title: 'Compose Meta',
-    imageLight: '/img/gwen-compose-meta.svg',
-    imageDark: '/img/gwen-compose-meta.svg',
+    imageLight: '/img/icon-meta.svg',
+    imageDark: '/img/icon-meta.svg',
     linkRef: '/docs#compose-meta',
     description: 'to formulate execution',
   },
   {
     title: 'Launch Gwen',
-    imageLight: '/img/gwen-launch-gwen-color.svg',
-    imageDark: '/img/gwen-launch-gwen-white.svg',
+    imageLight: '/img/icon-gwen-color.svg',
+    imageDark: '/img/icon-gwen-white.svg',
     linkRef: '/docs#launch-gwen',
     description: 'to execute and automate',
   },
