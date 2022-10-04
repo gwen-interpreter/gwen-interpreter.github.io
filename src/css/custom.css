@@ -213,18 +213,6 @@ a.banner-button:hover {
   color: #1A0B80;
 }
 
-html[data-theme='light'] .navbar__link {
-  --ifm-navbar-link-color: #14085e;
-}
-
-html[data-theme='light'] .navbar__link:hover {
-  --ifm-navbar-link-color: var(--ifm-navbar-link-hover-color);
-}
-
-html[data-theme='light'] .navbar__link--active {
-  --ifm-navbar-link-color: var(--ifm-navbar-link-hover-color);
-}
-
 .footer {
   --ifm-footer-background-color: #28292a;
   --ifm-footer-color: var(--ifm-color-white);
