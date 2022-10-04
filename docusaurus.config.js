@@ -36,7 +36,7 @@ module.exports = {
         },
         { 
           label: 'GitHub',
-          href: 'https://github.com/gwen-interpreter/gwen-web',
+          href: 'https://github.com/gwen-interpreter',
           position: 'right'
         },
         {
