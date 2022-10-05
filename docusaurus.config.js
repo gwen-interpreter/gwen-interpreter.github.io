@@ -19,8 +19,8 @@ module.exports = {
       title: 'gwen',
       logo: {
         alt: 'Gwen Home Page',
-        src: 'img/gwen-attractor-color.png',
-        srcDark: 'img/gwen-attractor-white.png',
+        src: 'img/gwen-navicon-color.png',
+        srcDark: 'img/gwen-navicon-white.png',
       },
       items: [
         {
