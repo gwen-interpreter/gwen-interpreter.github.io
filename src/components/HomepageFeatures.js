@@ -22,8 +22,8 @@ const FeatureList = [
   },
   {
     title: 'Launch Gwen',
-    imageLight: '/img/icon-attractor-color.png',
-    imageDark: '/img/icon-attractor-white.png',
+    imageLight: '/img/icon-attractor-c.png',
+    imageDark: '/img/icon-attractor-w.png',
     linkRef: '/docs#launch-gwen',
     description: 'to execute and automate',
   },
