@@ -21,7 +21,7 @@ function HomepageHeader() {
         <div className="row">
           <div className="col col--12">
             <h1 className="hero__title">
-              <span className="highlight">Gwen</span> automation and robotics for Gherkin
+              <span className="highlight">Gwen</span> automation and robotics
             </h1>
           </div>
         </div>
