@@ -47,7 +47,7 @@ export default function Home() {
         <div className="container">
           <div className="row">
             <div className="col col--12">
-              <div className={styles.buttons} style={{paddingTop: '0', paddingBottom: '65px'}}>
+              <div className={styles.buttons} style={{paddingTop: '0', paddingBottom: '45px'}}>
                 <Link
                   className="button banner-button button--lg"
                   to="/docs/introduction">

@@ -52,7 +52,7 @@ function Feature({title, imageLight, imageDark, linkRef, description}) {
 
 export default function HomepageFeatures() {
   return (
-    <section className={styles.features}>
+    <section className={styles.features} style={{paddingBottom: '15px'}}>
       <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (
