@@ -25,7 +25,7 @@ const FeatureList = [
     imageLight: '/img/icon-attractor-c.png',
     imageDark: '/img/icon-attractor-w.png',
     linkRef: '/docs#launch-gwen',
-    description: 'to execute and automate',
+    description: 'to automate scenarios',
   },
 ];
 
@@ -44,8 +44,8 @@ function Feature({title, imageLight, imageDark, linkRef, description}) {
         />
       </div>
       <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
-        <p><Link to={linkRef}>{title}</Link> {description}</p>
+        <h3 style={{marginBottom: '5px'}}><Link to={linkRef}>{title}</Link></h3>
+        <p style={{fontSize: '17px'}}>{description}</p>
       </div>
     </div>
   );
