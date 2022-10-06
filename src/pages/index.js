@@ -6,8 +6,6 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
 import Head from '@docusaurus/Head';
-import Admonition from '@theme/Admonition';
-import Introduction from '@site/docs/01-introduction.mdx';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -49,7 +47,7 @@ export default function Home() {
         <div className="container">
           <div className="row">
             <div className="col col--12">
-              <div className={styles.buttons} style={{'padding-top': '10px', 'padding-bottom': '40px'}}>
+              <div className={styles.buttons} style={{paddingTop: '0', paddingBottom: '65px'}}>
                 <Link
                   className="button banner-button button--lg"
                   to="/docs/introduction">

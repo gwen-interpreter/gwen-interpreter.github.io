@@ -25,7 +25,7 @@ const FeatureList = [
     imageLight: '/img/icon-attractor-c.png',
     imageDark: '/img/icon-attractor-w.png',
     linkRef: '/docs#launch-gwen',
-    description: 'to automate scenarios',
+    description: 'to execute and automate',
   },
 ];
 
@@ -44,8 +44,7 @@ function Feature({title, imageLight, imageDark, linkRef, description}) {
         />
       </div>
       <div className="text--center padding-horiz--md">
-        <h3 style={{marginBottom: '5px'}}><Link to={linkRef}>{title}</Link></h3>
-        <p style={{fontSize: '17px'}}>{description}</p>
+        <p style={{fontSize: '17px'}}><Link to={linkRef}><strong>{title}</strong></Link> {description}</p>
       </div>
     </div>
   );
@@ -53,7 +52,7 @@ function Feature({title, imageLight, imageDark, linkRef, description}) {
 
 export default function HomepageFeatures() {
   return (
-    <section className={styles.features} style={{paddingTop: '20px', paddingBottom: '5px'}}>
+    <section className={styles.features}>
       <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (
