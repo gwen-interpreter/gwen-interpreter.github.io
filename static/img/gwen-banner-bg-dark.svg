@@ -4,41 +4,41 @@
 	 viewBox="0 0 1345 1165.4" style="enable-background:new 0 0 1345 1165.4;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:url(#SVGID_1_);}
-	.st1{fill:url(#SVGID_00000046324912786693088890000006427683510074203787_);}
+	.st1{fill:url(#SVGID_00000016778382286992560740000011880138444528264076_);}
 </style>
 <g>
 	
 		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-22.4959" y1="1189.4968" x2="1529.8434" y2="410.426" gradientTransform="matrix(1 0 0 1 0 -258)">
-		<stop  offset="0.43" style="stop-color:#170859"/>
-		<stop  offset="0.5156" style="stop-color:#1B0856"/>
-		<stop  offset="0.5975" style="stop-color:#25084D"/>
-		<stop  offset="0.6769" style="stop-color:#33093E"/>
-		<stop  offset="0.7556" style="stop-color:#520B35"/>
-		<stop  offset="0.83" style="stop-color:#800E25"/>
-		<stop  offset="0.92" style="stop-color:#B8120D"/>
-		<stop  offset="0.92" style="stop-color:#B9120C"/>
-		<stop  offset="0.97" style="stop-color:#BB120C"/>
-		<stop  offset="0.99" style="stop-color:#C2130B"/>
-		<stop  offset="1" style="stop-color:#C8130B"/>
+		<stop  offset="0.43" style="stop-color:#1B0965"/>
+		<stop  offset="0.5156" style="stop-color:#1E0962"/>
+		<stop  offset="0.5975" style="stop-color:#2B0A59"/>
+		<stop  offset="0.6769" style="stop-color:#3E0B4A"/>
+		<stop  offset="0.7556" style="stop-color:#5E0C3D"/>
+		<stop  offset="0.83" style="stop-color:#8C1029"/>
+		<stop  offset="0.92" style="stop-color:#C4130E"/>
+		<stop  offset="0.92" style="stop-color:#C5130D"/>
+		<stop  offset="0.97" style="stop-color:#C7130D"/>
+		<stop  offset="0.99" style="stop-color:#CE140C"/>
+		<stop  offset="1" style="stop-color:#D4140C"/>
 	</linearGradient>
 	<rect class="st0" width="1345" height="1165.4"/>
 	
-		<linearGradient id="SVGID_00000057106732526062685010000016920816534499339942_" gradientUnits="userSpaceOnUse" x1="4950.5615" y1="4340.5991" x2="5217.918" y2="3895.9209" gradientTransform="matrix(-0.1045 0.9945 0.9945 0.1045 -2383.6599 -5324.5874)">
-		<stop  offset="0" style="stop-color:#B9120C"/>
-		<stop  offset="0" style="stop-color:#BB120C"/>
-		<stop  offset="0" style="stop-color:#C4130B"/>
-		<stop  offset="0" style="stop-color:#C8130B"/>
-		<stop  offset="0.24" style="stop-color:#C5130C"/>
-		<stop  offset="0.38" style="stop-color:#BD1210"/>
-		<stop  offset="0.51" style="stop-color:#AE1217"/>
-		<stop  offset="0.62" style="stop-color:#9A101F"/>
-		<stop  offset="0.72" style="stop-color:#7F0E29"/>
-		<stop  offset="0.81" style="stop-color:#5E0C34"/>
-		<stop  offset="0.9" style="stop-color:#38093A"/>
-		<stop  offset="0.98" style="stop-color:#200952"/>
-		<stop  offset="1" style="stop-color:#170859"/>
+		<linearGradient id="SVGID_00000046310466432682620570000015084931541699595676_" gradientUnits="userSpaceOnUse" x1="4950.5615" y1="4340.5991" x2="5217.918" y2="3895.9209" gradientTransform="matrix(-0.1045 0.9945 0.9945 0.1045 -2383.6599 -5324.5874)">
+		<stop  offset="0" style="stop-color:#C5130D"/>
+		<stop  offset="0" style="stop-color:#C7130D"/>
+		<stop  offset="0" style="stop-color:#D0140C"/>
+		<stop  offset="0" style="stop-color:#D4140C"/>
+		<stop  offset="0.24" style="stop-color:#D1140D"/>
+		<stop  offset="0.38" style="stop-color:#C91311"/>
+		<stop  offset="0.51" style="stop-color:#BA1318"/>
+		<stop  offset="0.62" style="stop-color:#A61122"/>
+		<stop  offset="0.72" style="stop-color:#8B102D"/>
+		<stop  offset="0.81" style="stop-color:#6A0D3A"/>
+		<stop  offset="0.9" style="stop-color:#450B46"/>
+		<stop  offset="0.98" style="stop-color:#250A5E"/>
+		<stop  offset="1" style="stop-color:#1B0965"/>
 	</linearGradient>
-	<path style="fill:url(#SVGID_00000057106732526062685010000016920816534499339942_);" d="M1344.8,0c0.1,0.1,0.1,0.2,0.2,0.2V0
+	<path style="fill:url(#SVGID_00000046310466432682620570000015084931541699595676_);" d="M1344.8,0c0.1,0.1,0.1,0.2,0.2,0.2V0
 		H1344.8z M910.1,199C828.5,122.9,767.5,54,733,0h-27c40.5,71.5,120.1,154.5,191.1,220.5c114.5,106.9,284.4,200.1,447.9,248.4v-27.5
 		C1185.8,393.7,1021.3,302.9,910.1,199z M1091.1,239.4C997.4,180.8,921.5,100.1,883,17.9C880.2,12,877.6,6,875.2,0h-24
 		c3.9,10.7,8.3,21.2,13.2,31.5c41.2,87.8,118.2,170,217,231.7c42.4,26.5,159.4,90.5,263.6,124.2v-27.9
