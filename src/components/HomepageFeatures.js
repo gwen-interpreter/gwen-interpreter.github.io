@@ -7,14 +7,14 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 const FeatureList = [
   {
-    title: 'Declare Features',
+    title: 'Declare features',
     imageLight: '/img/icon-feature.png',
     imageDark: '/img/icon-feature.png',
     linkRef: '/docs#declare-features',
     description: 'to describe scenarios.',
   },
   {
-    title: 'Compose Meta',
+    title: 'Compose meta',
     imageLight: '/img/icon-meta.png',
     imageDark: '/img/icon-meta.png',
     linkRef: '/docs#compose-meta',
