@@ -31,12 +31,12 @@ Automation is achieved through Gherkin bindings called [meta specs](/docs/meta),
 
 <p><img src="/img/icon-feature.png" width="200px" height="200px"/></p>
 
-Declare [feature specs](https://cucumber.io/docs/gherkin/reference/) to describe how scenarios should behave.
+> Declare [feature specs](https://cucumber.io/docs/gherkin/reference/) to describe how scenarios should [behave](https://cucumber.io/docs/bdd/better-gherkin/).
 
 Feature specs are used to communicate scenarios in the language of your domain. They should be clear, concise and declarative.
 
-:::tip
-  <p>Write feature specs without giving any thought to automation.</p>
+:::tip Keep features declarative
+  <p>Write feature specs from a user or system (third person) perspective without giving any thought to automation.</p>
 :::
 
 For example, the following describes how adding items to a todo list should behave.
@@ -65,12 +65,12 @@ Feature: Add todo items
 
 <p><img src="/img/icon-meta.png" width="200px" height="200px"/></p>
 
-Compose [meta specs](/docs/meta) to describe and formulate how scenarios will execute.
+> Compose [meta specs](/docs/meta) to describe and formulate how scenarios will execute.
 
 Meta specs are used to describe execution and are written in Gherkin too. [Step definitions](/docs/meta#stepdefs) and bindings are defined in meta so your features remain clean and unconcerned with automation details.
 
-:::tip
-  <p>Write meta specs with automation in mind (as if you were a robot).</p>
+:::info Meta is necessarily imperative
+  <p>Write meta specs from your own (first person) perspective with automation completely in mind.</p>
 :::
 
 For example, the following meta describes how each step in the scenario above can be executed to automate a test against a running [todo application](https://todomvc.com/examples/react).
@@ -450,7 +450,7 @@ Associative meta is enabled by default since <Link to="/docs/gwen3">Gwen 3</Link
 />
 </p>
 
-Launch Gwen to bind your meta and execute your features to automate scenarios.
+> Launch Gwen to bind your meta and execute your features to automate scenarios.
 
 ### Invoke the CLI to execute
 
