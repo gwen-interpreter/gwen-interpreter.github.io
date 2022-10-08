@@ -4,7 +4,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Gwen',
-  tagline: 'Automation and robotics',
+  tagline: 'Automation and Robotics',
   url: 'https://gweninterpreter.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -13,6 +13,9 @@ module.exports = {
   organizationName: 'gwen-interpreter', // Usually your GitHub org/user name.
   projectName: 'gwen-interpreter.github.io', // Usually your repo name.
   trailingSlash: false,
+  customFields: {
+    description: 'Automate end-to-end testing and robotic processing with the Gherkin language',
+  },
   themeConfig: {
     image: 'img/gwen-logo.png',
     navbar: {

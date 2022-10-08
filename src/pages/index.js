@@ -17,10 +17,17 @@ function HomepageHeader() {
       </Head>
       <div className="container container_title">
         <div className="row">
-          <div className="col col--12">
+          <div className={clsx('col col--12')}>
             <h1 className="hero__title">
-              <span className="highlight">Gwen</span> automation and robotics
+              <span className="highlight">Gwen</span> {siteConfig.tagline}
             </h1>
+            <div className="container">
+              <div className="row">
+                <div className={clsx('col col--offset-1 col--10')}>
+                  <p className="hero__subtitle">{siteConfig.customFields.description}</p>
+                </div>                
+              </div>
+            </div>
           </div>
         </div>
         <div className={styles.buttons}>
