@@ -82,11 +82,13 @@
   color: #e9e9fc;
   letter-spacing: 0.02rem;
   line-height: 1.4;
+  font-size: 1.3rem;
 }
 
 @media (max-width: 996px) {
   .hero__subtitle {
     letter-spacing: 0.02rem;
+    font-size: 1.3rem;
   }
 }
 
