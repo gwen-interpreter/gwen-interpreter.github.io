@@ -69,6 +69,7 @@
 
 .hero__title {
   letter-spacing: 0.02rem;
+  
 }
 
 @media (max-width: 996px) {

@@ -39,8 +39,8 @@ function Feature({title, imageLight, imageDark, linkRef, description}) {
               light: useBaseUrl(imageLight),
               dark: useBaseUrl(imageDark),
             }}
-            width="180px" 
-            height="180px"
+            width="185px" 
+            height="185px"
         />
       </div>
       <div className="text--center padding-horiz--md">
