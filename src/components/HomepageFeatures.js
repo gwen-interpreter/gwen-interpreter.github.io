@@ -25,7 +25,7 @@ const FeatureList = [
     imageLight: '/img/icon-attractor-c.png',
     imageDark: '/img/icon-attractor-w.png',
     linkRef: '/docs#launch-gwen',
-    description: 'to automate scenarios.',
+    description: 'to execute and automate.',
   },
 ];
 
