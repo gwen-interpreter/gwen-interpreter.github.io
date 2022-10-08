@@ -10,7 +10,7 @@ import Head from '@docusaurus/Head';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)} style={{paddingTop: '55px', paddingBottom: '55px'}}>
+    <header className={clsx('hero hero--primary', styles.heroBanner)} style={{paddingTop: '40px', paddingBottom: '55px'}}>
       <Head>
         <title>{siteConfig.title} | {siteConfig.tagline}</title>
         <meta property="og:title" content={`${siteConfig.title} | ${siteConfig.tagline}`} data-react-helmet="true" />
