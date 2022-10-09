@@ -36,7 +36,7 @@ Automation is achieved through Gherkin bindings called [meta specs](/docs/meta),
 Feature specs are used to communicate scenarios in the language of your domain. They should be clear, concise and declarative.
 
 :::tip Keep features declarative
-  <p>Write feature specs from a third person user or system perspective without giving any thought to automation.</p>
+  <p>Write feature specs without giving any thought to automation.</p>
 :::
 
 For example, the following describes how adding items to a todo list should behave.
@@ -69,8 +69,8 @@ Feature: Add todo items
 
 Meta specs are used to describe execution and are written in Gherkin too. [Step definitions](/docs/meta#stepdefs) and bindings are defined in meta so your features remain clean and unconcerned with automation details.
 
-:::info Meta is necessarily imperative
-  <p>Write meta specs from your own first person perspective with automation completely in mind.</p>
+:::tip Meta is necessarily imperative
+  <p>Write meta specs with execution and automation in mind.</p>
 :::
 
 For example, the following meta describes how each step in the scenario above can be executed to automate a test against a running [todo application](https://todomvc.com/examples/react).
