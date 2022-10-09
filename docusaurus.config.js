@@ -14,7 +14,7 @@ module.exports = {
   projectName: 'gwen-interpreter.github.io', // Usually your repo name.
   trailingSlash: false,
   customFields: {
-    subtitle: 'Automate E2E testing and robotic processing with the Gherkin language',
+    subtitle: 'Automate E2E testing and robotic processing with Gherkin language',
   },
   themeConfig: {
     image: 'img/gwen-logo.png',
