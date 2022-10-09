@@ -21,7 +21,7 @@ function HomepageHeader() {
             <h1 className="hero__title">
               <span className="highlight">Gwen</span> {siteConfig.tagline}
             </h1>
-              <p className="hero__subtitle">{siteConfig.customFields.description}</p>
+              <p className="hero__subtitle">{siteConfig.customFields.subtitle}</p>
           </div>
         </div>
         <div className={styles.buttons}>
