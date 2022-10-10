@@ -74,6 +74,10 @@ module.exports = {
               label: 'Apache 2 License',
               href: 'https://www.apache.org/licenses/LICENSE-2.0',
             },
+            {
+              label: 'Sponsor',
+              href: 'https://github.com/sponsors/gwen-interpreter',
+            },
           ],
         },
         {
