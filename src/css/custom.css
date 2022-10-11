@@ -74,7 +74,6 @@
 
 @media (max-width: 996px) {
   .hero__title {
-    font-size: 2.7rem;
     letter-spacing: 0.02rem;
   }
 }
@@ -209,7 +208,7 @@ html[data-theme='light'] .navbar__title:not(:hover) {
 .navbar__title {
   font-family: "OCRA";
   letter-spacing: -0.18rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-top: 2px;
   font-weight: 400;
 }
