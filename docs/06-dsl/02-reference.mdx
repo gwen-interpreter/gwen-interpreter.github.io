@@ -7484,13 +7484,14 @@ Feature specs should be declarative and written in the language of your domain a
   <summary class="dsl">
 
   ```gherkin
-  <step> if <condition>
+  <step> if[ not] <condition>
   ```
-  <p>Executes a step if a condition is true.</p>
+  <p>Executes a step depending on whether or not a JS condition evaluates to true.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
+    <li><code>not</code> negates the condition if included (<div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.4.0">v3.4.0</Link></div>)</li>
     <li>
       <code>&lt;condition&gt;</code> the name of a binding containing a javascript function or expression that will return true or false
       <ul>
@@ -7523,44 +7524,89 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
-<details id="step-if-not-condition">
+<details id="step-if-element-condition">
   <summary class="dsl">
 
   ```gherkin
-  <step> if not <condition>
+  <step> if <element> is[ not] <state>
   ```
-  <p>Executes a step if a condition is not true.</p>
+  <p>Executes a step depending on whether or not an element is in a given state.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
-    <li>
-      <code>&lt;condition&gt;</code> the name of a binding containing a javascript function or expression that will return true or false
+    <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
+    <li><code>not</code> negates the state if included</li>
+    <li><code>&lt;state&gt;</code> is one of:
       <ul>
-        <li>Since v3.14.1, the condition name cannot contain double qutoes</li>
+        <li><code>displayed</code> to execute the step if the element is displayed</li>
+        <li><code>hidden</code> to execute the step if the element is not displayed</li>
+        <li><code>checked</code> or <code>ticked</code> to execute the step if a checkbox is ticked</li>
+        <li><code>unchecked</code> or <code>unticked</code> to execute the step if a checkbox is not ticked</li>
+        <li><code>enabled</code> to execute the step if the element is enabled</li>
+        <li><code>disabled</code> to execute the step if the element is disabled</li>
       </ul>
     </li>
   </ul>
   <p>Example</p>
 
-  ```gherkin {12}
+  ```gherkin {6}
     Given the search field can be located by name "q"
-      And topic is "Automation Bindings"
+      And topic is "Automation"
       And topic link can be located by partial link text "${topic}"
-      And topic found is defined by js
-          """
-          [...document.querySelectorAll("a")]
-              .filter(a => a.textContent.includes('${topic}'))
-              .length > 0
-          """
      When I navigate to "https://google.com"
       And I enter "gwen automation" in the search field
-      And I refresh the current page if not topic found
+      And I click topic link if topic link is displayed
+     Then the page title should contain "${topic}"
   ```
 
   <div class="grid-3">
-    <div><Link to="#step-if-not-condition">Link</Link></div>
+    <div><Link to="#step-if-element-condition">Link</Link></div>
     <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.4.0">v3.4.0</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.33.0">v3.33.0</Link></div>
+  </div>
+</details>
+
+<details id="step-if-binding-defined">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> if <attribute> is[ not] defined
+  ```
+  <p>Executes a step depending on whether or not an attribute is bound in any the global or current scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
+    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>not</code> include to execute step if attribute is not bound</li>
+  </ul>
+  <p>Example</p>
+
+  Given the CSV file: lookup/StateCodes.csv
+
+  ```csv {3}
+  Code,Name
+  ACT,Australian Capital Territory
+  NSW,New South Wales
+  NT,Northern Territory
+  QLD,Queensland
+  SA,South Australian
+  TAS,Tasmania
+  VIC,Victoria
+  WA,Western Australia
+  ```
+
+  The following will bind "New South Wales" in the 2nd record to <code>state name</code> in the global scope
+  ```gherkin {3}
+   Given the state code is "UNKNOWN"
+    When I lookup Name in the "lookup/StateCodes.csv" file as state name where "'${csv.record.Code}' == '${the state code}'"
+    Then unresolved is "true" if state name is not defined
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-if-binding-defined">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.33.0">v3.33.0</Link></div>
   </div>
 </details>
