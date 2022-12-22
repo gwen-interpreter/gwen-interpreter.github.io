@@ -120,17 +120,17 @@ module.exports = {
           ],
         },
         {
-          title: 'Known Users',
+          title: 'Sponsors',
           items: [
-            {
-              label: 'SmartStream',
-              href: 'https://www.smartstream-stp.com',
-              className: 'navicon icon-smartstream'
-            },
             {
               label: 'Origin Energy',
               href: 'https://www.originenergy.com.au/',
               className: 'navicon icon-originenergy'
+            },
+            {
+              label: 'LambdaTest',
+              href: 'https://www.lambdatest.com/',
+              className: 'navicon icon-lambdatest'
             },
           ],
         },
