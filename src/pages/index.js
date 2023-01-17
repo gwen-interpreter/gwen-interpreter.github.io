@@ -41,7 +41,7 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description={`${siteConfig.tagline}`}>
+      description={`${siteConfig.customFields.subtitle}`}>
       <HomepageHeader />
       <main>
         <HomepageFeatures />
