@@ -17,7 +17,7 @@ module.exports = {
     subtitle: 'Automate E2E testing and robotic processing with the Gherkin language',
   },
   themeConfig: {
-    image: 'img/gwen-logo.png',
+    image: 'img/gwen-logo-media.png',
     navbar: {
       title: 'gwen',
       logo: {
