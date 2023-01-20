@@ -12,7 +12,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)} style={{paddingTop: '40px', paddingBottom: '55px'}}>
       <Head>
-        <title>{siteConfig.title} | {siteConfig.tagline}</title>
+        <title>{siteConfig.title} Automation</title>
         <meta property="og:title" content={`${siteConfig.title} | ${siteConfig.tagline}`} data-react-helmet="true" />
       </Head>
       <div className="container container_title">
@@ -41,7 +41,7 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description={`${siteConfig.customFields.subtitle}`}>
+      description={`${siteConfig.tagline}. ${siteConfig.customFields.subtitle}`}>
       <HomepageHeader />
       <main>
         <HomepageFeatures />
