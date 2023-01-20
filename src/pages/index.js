@@ -12,7 +12,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)} style={{paddingTop: '40px', paddingBottom: '55px'}}>
       <Head>
-        <title>{siteConfig.title} Automation</title>
+        <title>{siteConfig.title} Automation & Robotics</title>
         <meta property="og:title" content={`${siteConfig.title} | ${siteConfig.tagline}`} data-react-helmet="true" />
       </Head>
       <div className="container container_title">
