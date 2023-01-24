@@ -60,7 +60,7 @@ module.exports = {
         {
           type: 'html',
           position: 'right',
-          value: '<iframe src="https://github.com/sponsors/gwen-interpreter/button" title="Sponsor gwen-interpreter" height="32" width="114" style="border: 0; border-radius: 6px; margin-top: 6px;"></iframe>',
+          value: '<div class="sponsor"><iframe src="https://github.com/sponsors/gwen-interpreter/button" title="Sponsor gwen-interpreter" height="32" width="114" style="border: 0; border-radius: 6px; overflow: hidden;"></iframe></div>',
         },
       ],
     },
