@@ -11,21 +11,21 @@ const FeatureList = [
     imageLight: '/img/icon-feature.png',
     imageDark: '/img/icon-feature.png',
     linkRef: '/docs#declare-features',
-    description: 'to describe scenarios.',
+    description: 'to describe scenarios',
   },
   {
     title: 'Compose meta',
     imageLight: '/img/icon-meta.png',
     imageDark: '/img/icon-meta.png',
     linkRef: '/docs#compose-meta',
-    description: 'to describe execution.',
+    description: 'to describe execution',
   },
   {
     title: 'Launch Gwen',
     imageLight: '/img/icon-attractor-c.png',
     imageDark: '/img/icon-attractor-w.png',
     linkRef: '/docs#launch-gwen',
-    description: 'to execute and automate.',
+    description: 'to execute and automate',
   },
 ];
 
