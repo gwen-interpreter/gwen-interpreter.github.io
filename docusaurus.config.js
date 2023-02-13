@@ -14,7 +14,7 @@ module.exports = {
   projectName: 'gwen-interpreter.github.io', // Usually your repo name.
   trailingSlash: false,
   customFields: {
-    subtitle: 'Executable Gherkin Specifications',
+    subtitle: 'Readily Executable Gherkin DSL',
   },
   themeConfig: {
     image: 'img/gwen-logo-media.png',
