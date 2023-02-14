@@ -16,7 +16,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
   - Gwen uses the following embedded web driver manager to automatically download and manage native web driver binaries for you: [WebDriverManager](https://github.com/bonigarcia/webdrivermanager)
 
 > Since [v3.32.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.32.0)
-  - Gwen uses [Selenium's embedded driver manager](https://www.selenium.dev/blog/2022/introducing-selenium-manager/) (introduced in Selenium v4.6.0) to automatically download and manage native web driver binaries for you
+  - Gwen uses [SeleniumManager](https://www.selenium.dev/blog/2022/introducing-selenium-manager/) (introduced in Selenium v4.6.0) to automatically download and manage native web driver binaries for you
+
+> Since [v3.34.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.34.0)
+  - Gwen enables you to switch between [SeleniumManager](https://www.selenium.dev/blog/2022/introducing-selenium-manager/) (default) and [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) with the [`gwen.web.driver.manager`](/docs/settings/reference#gwen-web-driver-manager) setting
 
 Automatic web driver management will only be active if no `webdriver.xx.driver` properties are set. So if you are upgrading from an older version of Gwen, be sure to remove these from your Gwen settings files if you wish for Gwen to manage native drivers for you.
 
