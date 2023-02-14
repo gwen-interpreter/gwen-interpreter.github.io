@@ -82,13 +82,14 @@
 .hero__subtitle {
   color: #e9e9fc;
   letter-spacing: 0.02rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.4;
 }
 
 @media (max-width: 996px) {
   .hero__subtitle {
     font-size: 1.3rem;
+    font-weight: 400;
     letter-spacing: 0.02rem;
   }
 }
