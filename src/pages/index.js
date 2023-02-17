@@ -25,10 +25,10 @@ function HomepageHeader() {
           </div>
         </div>
         <div className={styles.buttons}>
-          <Link
+        <Link
             className="button banner-button button--lg"
-            to="/docs/get-started">
-            Get Started
+            to="/docs/introduction">
+            Learn More
           </Link>
         </div>
       </div>
@@ -49,11 +49,11 @@ export default function Home() {
           <div className="row">
             <div className="col col--12">
               <div className={styles.buttons} style={{paddingTop: '0', paddingBottom: '45px'}}>
-                <Link
-                  className="button banner-button button--lg"
-                  to="/docs/introduction">
-                  Learn More
-                </Link>
+              <Link
+                className="button banner-button button--lg"
+                to="/docs/get-started">
+                Get Started
+              </Link>
               </div>
             </div>
           </div>
