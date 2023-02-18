@@ -131,8 +131,12 @@ module.exports = {
           ],
         },
         {
-          title: '‎',
+          title: 'Support',
           items: [
+            {
+              label: 'Get support',
+              href: 'https://gwenify.com',
+            },
             {
               label: 'Become a sponsor',
               href: 'https://github.com/sponsors/gwen-interpreter',
