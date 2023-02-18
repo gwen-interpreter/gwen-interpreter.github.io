@@ -68,7 +68,7 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Open Source',
+          title: 'Open source',
           items: [
             {
               label: 'Apache 2 license',
@@ -81,7 +81,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Built On',
+          title: 'Built on',
           items: [
             {
               label: 'Gherkin',
@@ -94,7 +94,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Drives Browsers',
+          title: 'Drives browsers',
           items: [
             {
               label: 'Chrome',
