@@ -71,7 +71,7 @@ module.exports = {
           title: 'Open Source',
           items: [
             {
-              label: 'Apache 2 License',
+              label: 'Apache 2 license',
               href: 'https://www.apache.org/licenses/LICENSE-2.0',
             },
             {
