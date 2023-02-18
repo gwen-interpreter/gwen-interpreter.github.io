@@ -123,7 +123,7 @@ module.exports = {
           title: 'Support',
           items: [
             {
-              label: 'Get support',
+              label: 'Gwen support',
               href: 'https://gwenify.com',
             },
           ],
