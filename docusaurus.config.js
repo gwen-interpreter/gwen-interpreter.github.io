@@ -116,6 +116,19 @@ module.exports = {
           ],
         },
         {
+          title: 'Support',
+          items: [
+            {
+              label: 'Get support',
+              href: 'https://gwenify.com',
+            },
+            {
+              label: 'Become a sponsor',
+              href: 'https://github.com/sponsors/gwen-interpreter',
+            },
+          ],
+        },
+        {
           title: 'Sponsors',
           items: [
             {
@@ -127,19 +140,6 @@ module.exports = {
               label: 'LambdaTest',
               href: 'https://www.lambdatest.com/',
               className: 'navicon icon-lambdatest'
-            },
-          ],
-        },
-        {
-          title: 'Support',
-          items: [
-            {
-              label: 'Get support',
-              href: 'https://gwenify.com',
-            },
-            {
-              label: 'Become a sponsor',
-              href: 'https://github.com/sponsors/gwen-interpreter',
             },
           ],
         },
