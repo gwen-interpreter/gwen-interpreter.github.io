@@ -1,0 +1,628 @@
+--- 
+title: FAQ
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+- [What is Gwen?](#what-is-gwen)
+- [Can I get support?](#can-i-get-support)
+- [Why would I use Gwen over other tools?](#why-would-i-use-gwen-over-other-tools)
+- [Can I add Gwen to my JS project](#can-i-add-gwen-to-my-js-project)?
+- [What version of Java do I need?](#what-version-of-java-do-i-need)
+- [Does Gwen have a GUI interface?](#does-gwen-have-a-gui-interface)
+- [What are the batch and REPL modes?](#what-are-the-batch-and-repl-modes)
+- [What are the available REPL commands?](#what-are-the-available-repl-commands)
+- [How do I run a single feature file?](#how-do-i-run-a-single-feature-file)
+- [How do I run all features files in a directory?](#how-do-i-run-all-features-files-in-a-directory)
+- [How do I run multiple features in sequence?](#how-do-i-run-multiple-features-in-sequence)
+- [How do I run multiple features in parallel?](#how-do-i-run-multiple-features-in-parallel)
+- [Can I set a ramp up interval for staggered parallel execution?](#can-i-set-a-ramp-up-interval-for-staggered-parallel-execution)
+- [Can I run scenarios in parallel](#can-i-run-scenarios-in-parallel)
+- [How do I compose step definitions?](#how-do-i-compose-step-definitions)
+- [Can I validate my features?](#can-i-validate-my-features)
+- [Can I ignore (skip over) features and scenarios at execution time?](#can-i-ignore-skip-over-features-and-scenarios-at-execution-time)
+- [Can I execute certain tagged features and scenarios and exclude all others?](#can-i-execute-certain-tagged-features-and-scenarios-and-exclude-all-others)
+- [How do I generate evaluation reports?](#how-do-i-generate-evaluation-reports)
+- [Can I generate JUnit-XML reports?](#can-i-generate-junit-xml-reports)
+- [Can I generate JSON reports?](#can-i-generate-json-reports)
+- [Can I generate more than one type of report?](#can-i-generate-more-than-one-type-of-report)
+- [How can I feed CSV data to my features?](#how-can-i-feed-csv-data-to-my-features)
+- [Can I configure runtime settings?](#can-i-configure-runtime-settings)
+- [Is string interpolation supported?](#is-string-interpolation-supported)
+- [How do I configure logging?](#how-do-i-configure-logging)
+- [Can I access and work with database data?](#can-i-access-and-work-with-database-data)
+- [Are scenario outlines supported?](#are-scenario-outlines-supported)
+- [Are data tables supported?](#are-data-tables-supported)
+- [Can I use Doc Strings?](#can-i-use-doc-strings)
+- [Can I pass parameters to StepDefs?](#can-i-pass-parameters-to-stepdefs)
+- [Can I compare or match content using templates?](#can-i-compare-or-match-content-using-templates)
+- [Are soft assertions supported?](#are-soft-assertions-supported)
+- [Can I run Gwen in Jira?](#can-i-run-gwen-in-jira)
+- [Can Gwen help me to write good Gherkin?](#can-gwen-help-me-to-write-good-gherkin)
+- [Can I send my Gwen results to Report Portal?](#can-i-send-my-gwen-results-to-report-portal)
+- [How do I target a specific web browser?](#how-do-i-target-a-specific-web-browser)
+- [Can I locate elements in frames or other elements?](#can-i-locate-elements-in-frames-or-other-elements)
+- [Can I drive multiple browsers from a single feature?](#can-i-drive-multiple-browsers-from-a-single-feature)
+- [Can I run Gwen on docker](#can-i-run-gwen-on-docker)
+- [Can I run Gwen on BrowserStack or LamdaTest](#can-i-run-gwen-on-browserstack-or-lambdatest)
+- [Can I run Gwen on Jenkins?](#can-i-run-gwen-on-jenkins)
+- [Can I run a headless browser?](#can-i-run-a-headless-browser)
+- [Can I emulate mobile devices in browser?](#can-i-emulate-mobile-devices-in-browser)
+- [How do I upload files to a file input field?](#how-do-i-upload-files-to-a-file-input-field)
+
+### What is Gwen?
+
+Gwen is a [Gherkin](https://docs.cucumber.io/gherkin/reference/) interpreter with preprogrammed automation capabilities. Automation is achieved through Gherkin bindings called [meta specs](/docs/meta), composed with the [Gwen DSL](/docs/dsl) and maintained alongside your feature files. An embedded [Selenium](https://www.selenium.dev/) engine executes scenarios according to the your meta to perform operations in browsers for you.
+
+### Can I get support?
+Support is offered through [sponsorships](https://github.com/sponsors/gwen-interpreter). By purchasing support you will be sponsoring our open source work.
+
+### Why would I use Gwen over other tools?
+
+You can quickly [get started](/docs/get-started) and be productive without developing an automation framework from scratch. A readily [executable Gherkin DSL](/docs/dsl) enables you to formulate your automation through [meta](/docs/meta) and performs all operations for you in a consistent and reliable manner across browsers and platforms.
+
+### How mature is Gwen?
+
+Early adoptopers helped us mature Gwen in industry since it was open sourced in 2014. We regularly keep the project up to date with the latest Gherkin parser, Selenium library and other dependencies released by the open source community. We strive to maintain consistency, reliability and backwards compatibility at all times to minimise impact to users. We continue to make improvements based on feedback from users and new ideas. Many years of effort, experience and learnings have helped us to shape Gwen, making it very reliable and stable.
+
+### Can I add Gwen to my JS project?
+
+Yes, you can add Gwen to JS projects using npm and have all your executable Gherkin living next to your code and integrated into your development and testing process. See the [getting started](/docs/get-started) guide.
+
+### What version of Java do I need?
+
+Java 8 or higher. If you have more than one version of Java installed on your system, you can nominate which one Gwen will run on by setting the `JAVA_HOME` environment variable.
+
+### Does Gwen have a GUI interface?
+No. You can do everything with the [CLI](/docs/cli) and your favourite IDE or text editor.
+
+### What are the batch and REPL modes?
+
+[Batch mode](/docs/modes/batch) forces Gwen to immediately exit after a given feature or features have executed. You should always invoke Gwen in batch mode on server environments such as build servers.
+
+[REPL mode](/docs/cli/repl) leaves the interpreter session open after a given feature or features have executed, allowing you to interactively enter additional steps to execute or inspect bound data in memory. You should use this mode when you want to verify the execution of individual steps that you want to add to your features or when you want to diagnose a failing feature.
+
+### What are the available REPL commands?
+
+See [REPL commands](/docs/cli/repl#repl-commands).
+
+### How do I run a single feature file?
+
+Invoke the [CLI](/docs/cli) passing in the single feature file.
+
+<Tabs
+  groupId="setup"
+  defaultValue="project"
+  values={[
+    {label: 'Project', value: 'project'},
+    {label: 'Standalone', value: 'standalone'},
+  ]}>
+<TabItem value="project">
+<Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+<TabItem value="yarn">
+
+```shell
+yarn gwen -b path/to/File.feature
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```shell
+npm run gwen -- -b path/to/File.feature
+```
+
+</TabItem>
+<TabItem value="pnpm">
+
+```shell
+pnpm gwen -b path/to/File.feature
+```
+
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem value="standalone">
+
+```
+gwen -b path/to/File.feature
+```
+
+</TabItem>
+</Tabs>
+
+The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immediately after executing (omitting it will open the [REPL](/docs/cli/repl) instead).
+
+### How do I run all features files in a directory?
+
+Invoke the [CLI](/docs/cli) passing in the directory.
+
+<Tabs
+  groupId="setup"
+  defaultValue="project"
+  values={[
+    {label: 'Project', value: 'project'},
+    {label: 'Standalone', value: 'standalone'},
+  ]}>
+<TabItem value="project">
+<Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+<TabItem value="yarn">
+
+To run all feature files in the `features` directory, including all feature files in all sub-directories:
+
+```shell
+yarn gwen -b features
+```
+
+To run all feature files in the `features/todo` directory, including all feature files in all sub-directories:
+
+```shell
+yarn gwen -b features/todo
+```
+
+</TabItem>
+<TabItem value="npm">
+
+To run all feature files in the `features` directory, including all feature files in all sub-directories:
+
+```shell
+npm run gwen -- -b features
+```
+
+To run all feature files in the `features/todo` directory, including all feature files in all sub-directories:
+
+```shell
+npm run gwen -- -b features/todo
+```
+
+</TabItem>
+<TabItem value="pnpm">
+
+To run all feature files in the `features` directory, including all feature files in all sub-directories:
+
+```shell
+pnpm gwen -b features
+```
+
+To run all feature files in the `features/todo` directory, including all feature files in all sub-directories:
+
+```shell
+pnpm gwen -b features/todo
+```
+
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem value="standalone">
+
+```shell
+gwen -b features
+```
+
+To run all feature files in the `features/todo` directory, including all feature files in all sub-directories:
+
+```shell
+gwen -b features/todo
+```
+
+</TabItem>
+</Tabs>
+
+The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immediately after executing (omitting it will open the [REPL](/docs/cli/repl) instead).
+
+### How do I run multiple features in sequence?
+
+To run multiple feature files or directories of features in sequence:
+
+<Tabs
+  groupId="setup"
+  defaultValue="project"
+  values={[
+    {label: 'Project', value: 'project'},
+    {label: 'Standalone', value: 'standalone'},
+  ]}>
+<TabItem value="project">
+<Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+<TabItem value="yarn">
+
+```shell
+yarn gwen -b path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```shell
+npm run gwen -- -b path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
+```
+
+</TabItem>
+<TabItem value="pnpm">
+
+```shell
+pnpm gwen -b path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
+```
+
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem value="standalone">
+
+```
+gwen -b path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
+```
+
+</TabItem>
+</Tabs>
+
+The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immediately after executing (omitting it will open the [REPL](/docs/cli/repl) instead).
+
+### How do I run multiple features in parallel?
+
+To run multiple feature files or directories in parallel, specify the [`--parallel`](/docs/cli#gwen-cli-options-parallel) switch:
+
+<Tabs
+  groupId="setup"
+  defaultValue="project"
+  values={[
+    {label: 'Project', value: 'project'},
+    {label: 'Standalone', value: 'standalone'},
+  ]}>
+<TabItem value="project">
+<Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+<TabItem value="yarn">
+
+```shell
+yarn gwen --parallel path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```shell
+npm run gwen -- --parallel path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
+```
+
+</TabItem>
+<TabItem value="pnpm">
+
+```shell
+pnpm gwen --parallel path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
+```
+
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem value="standalone">
+
+```
+gwen --parallel path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
+```
+
+</TabItem>
+</Tabs>
+
+### Can I set a ramp up interval for staggered parallel execution?
+Yes. Configure the [`gwen.rampup.interval.seconds`](/docs/settings/reference#gwen-rampup-interval-seconds) setting. If you set this value to 5, the staggered execution will look like this:
+```
+  time  00   05   10   15   seconds
+        │    │    │    │
+core 1  │<── feature 1a ──>|<── feature 1b ──> ..
+core 2  │    │<── feature 2a ──>|<── feature 2b ──> ..
+core 3  │    │    │<── feature 3a ──>|<── feature 3b ──> ..
+core 4  │    │    │    │<── feature 4a ──>|<── feature 4b ──> ..
+```
+
+### Can I run scenarios in parallel?
+
+Yes, see: [parallel scenario execution](/docs/modes/parallel#parallel-scenario-execution)
+
+### How do I compose step definitions?
+
+By declaring a Scenario and annotating it with the `@StepDef` tag. See [StepDefs and Meta](/docs/meta#stepdefs).
+
+### Can I validate my features?
+
+Yes, see [dry run execution mode](/docs/modes/dry-runs).
+
+### Can I ignore (skip over) features and scenarios at execution time?
+
+Yes, you can either:
+
+- Annotate them with the `@Ignore` tag
+- Or annotate them with your your own tag like `@MyTag` and launch Gwen with the `-t ~@MyTag` or `--tags ~@MyTag` [CLI option](/docs/cli#gwen-cli-options-tags) to exclude them from execution
+
+### Can I execute certain tagged features and scenarios and exclude all others?
+
+Yes, to execute only those tagged with `@MyTag`, launch Gwen with the `-t @MyTag` or `--tags @MyTag` [CLI option](/docs/cli#gwen-cli-options-tags) to include only those and exclude all others.
+
+### How do I generate evaluation reports?
+
+[HTML evaluation reports](/docs/reports/html) are generated by default. You can specify [-r|--report](/docs/cli#gwen-cli-options-report) options when launching Gwen to generate other types of reports or change the report output directory.
+
+### Can I generate JUnit-XML reports?
+
+Yes, see [JUnit-XML reports](/docs/reports/junit-xml).
+
+### Can I generate JSON reports?
+
+Yes, see [JSON reports](/docs/reports/json).
+
+### Can I generate more than one type of report?
+
+Yes, To generate JUnit, JSON, and HTML reports:
+
+<Tabs
+  groupId="setup"
+  defaultValue="project"
+  values={[
+    {label: 'Project', value: 'project'},
+    {label: 'Standalone', value: 'standalone'},
+  ]}>
+<TabItem value="project">
+<Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+<TabItem value="yarn">
+
+```shell
+yarn gwen -b -r reports -f "junit,json,html"
+```
+
+or
+
+```shell
+yarn gwen --batch --report reports --format "junit,json,html"
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```shell
+yarn gwen -b -r reports -f "junit,json,html"
+```
+
+or
+
+```shell
+npm run gwen -- --batch --report reports --format "junit,json,html"
+```
+
+</TabItem>
+<TabItem value="pnpm">
+
+```shell
+pnpm gwen -b -r reports -f "junit,json,html"
+```
+
+or
+
+```shell
+pnpm gwen --batch --report reports --format "junit,json,html"
+```
+
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem value="standalone">
+
+```shell
+gwen -b -r reports -f "junit,json,html"
+```
+
+or
+
+```shell
+gwen --batch --report reports --format "junit,json,html"
+```
+
+</TabItem>
+</Tabs>
+
+- JUnit reports will be written to `reports/junit/TEST-*.xml`
+- JSON reports will be written to `reports/json/*.json`
+- HTML reports will be written to the `reports/html` directory with an index page at `reports/index.html`
+
+### How can I feed CSV data to my features?
+
+See [CSV data feeds](/docs/modes/data-driven#csv-data-feeds).
+
+### Can I configure runtime settings?
+
+Yes, see [Gwen settings](/docs/settings).
+
+### Is string interpolation supported?
+
+Yes, see [string interpolation](/docs/advanced/string-interpolation).
+
+### How do I configure logging?
+
+Gwen uses log4j to perform all logging using the configuration shown below. 
+This default configuration is defined in a `log4j.properties` file bundled 
+in the Gwen binary. To override this and specify your own configuration, 
+add a `log4j.configuration=file:/path-to-log4j-config-file` entry to your [settings](/docs/settings) file in your user home directory. Be sure to use forward slashes instead of backslashes. For more information 
+about log4j, see [the log4j site](https://logging.apache.org/log4j/2.x/index.html).
+
+```
+# Set root logger level to INFO and append to STDOUT
+log4j.rootLogger=INFO, STDOUT
+
+# STDOUT is set to be a ConsoleAppender.
+log4j.appender.STDOUT=org.apache.log4j.ConsoleAppender
+
+# STDOUT uses PatternLayout.
+log4j.appender.STDOUT.layout=org.apache.log4j.PatternLayout
+log4j.appender.STDOUT.layout.ConversionPattern=%p - %m%n
+
+# Gwen logging level
+log4j.logger.gwen=INFO
+```
+
+### Can I access and work with database data?
+Yes, see:
+- [SQL selects and updates](/docs/dsl/reference#sql-selects-and-updates) 
+- Blog article: [SQL Data Bindings for Gwen](https://gweninterpreter.wordpress.com/2017/02/13/sql-data-bindings-for-gwen/).
+
+### Are scenario outlines supported?
+Yes, see [Gwen Gets Scenario Outlines](https://gweninterpreter.wordpress.com/2017/03/13/gwen-gets-scenario-outlines/)
+
+### Are data tables supported?
+Yes, see [Data Tables](/docs/advanced/data-tables).
+
+### Can I use Doc Strings?
+Yes, see [Doc Strings](/docs/advanced/doc-strings).
+
+### Can I pass parameters to StepDefs?
+Yes, see [StepDefs with parameters](/docs/meta#stepdefs-with-parameters).
+
+### Can I compare or match content using templates?
+Yes, see [Template Matching](/docs/advanced/template-matching).
+
+### Are soft assertions supported?
+Yes, hard, soft and sustained assertions are supported. See [Assertion Modes](/docs/advanced/assertion).
+
+### Can I run Gwen in Jira?
+Yes, you can run your automated Gwen tests for your user stories, requirements and fixes in Jira with Xray.
+- See [Gwen Xray Tutorial](https://confluence.xpand-it.com/plugins/servlet/mobile?contentId=46888636#content/view/46888636)
+
+### Can Gwen help me to write good Gherkin?
+The [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) setting, when set to `strict`, can help you to write [Strictly Good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/)
+
+### Can I send my Gwen results to Report Portal?
+Yes, Gwen provides seamless integration with [report portal](/docs/reports/portal) for centralised reporting and analytics. 
+
+### How do I target a specific web browser?
+Gwen is configured to target the `chrome` browser by default. To change this, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) setting to your preferred value.
+
+<Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+<TabItem value="conf">
+
+*File: /project/gwen.conf*
+
+```json {3, 4}
+gwen {
+  target {
+    browser = "chrome"
+  }
+}
+```
+
+</TabItem>
+<TabItem value="json">
+
+*File: /project/gwen.json*
+
+```json {4, 5}
+{
+  "gwen": {
+    "target": {
+      "browser": "chrome"
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="properties">
+
+*File: /project/gwen.properties*
+
+```properties {1, 2}
+gwen.target.browser = chrome
+```
+
+</TabItem>
+</Tabs>
+
+### Can I locate elements in frames or other elements?
+
+Yes, see [Locator Chaining](/docs/advanced/locator-chaining).
+
+### Can I drive multiple browsers from a single feature?
+
+Yes, you can allocate names to browser sessions and switch between them. See [Named Browser Sessions](/docs/advanced/named-browser-sessions).
+
+### Can I run Gwen on docker
+
+Yes, you can run Gwen on docker using [Selenoid](https://aerokube.com/selenoid/)
+- [Running Gwen in Docker](/docs/docker)
+
+
+### Can I run Gwen on BrowserStack or LambdaTest
+
+Yes, see
+- [Running Gwen on BrowserStack](/docs/browserstack)
+- [Running Gwen on LambdaTest HyperExecute](/docs/lambdatest)
+
+### Can I run Gwen on Jenkins?
+
+Yes, see [Running Gwen on Jenkins](/docs/jenkins).
+
+### Can I run a headless browser?
+
+Yes, set [`gwen.web.browser.headless`](/docs/settings/reference#gwen-web-browser-headless) to `true`.
+
+### Can I emulate mobile devices in browser?
+
+Yes, see [mobile emulation](/docs/advanced/mobile-emulatioin).
+
+### How do I upload files to a file input field?
+
+1. Define a locator for the file input field:
+
+    `Given the file input field can be located by xpath "//input[@type='file']"`
+2. Use the following DSL to set the path to the file you want upload: 
+
+   `When I type "absolute/path/to/file.ex" in the file input field`
+
+Note that you can only use absolute paths. If you wish, you can use system properties or a custom Gwen setting to reference the location of the file: 
+
+   `When I type "${user.dir}/file.ext" in the file input field`
+   - where `user.dir` is a standard system property
+
+   `When I type "${custom.dir}/file.ext" in the file input field`
+   - where `custom.dir` is a custom property defined in your Gwen settings file

@@ -120,8 +120,12 @@ module.exports = {
           ],
         },
         {
-          title: 'Support',
+          title: 'Help',
           items: [
+            {
+              label: 'Gwen FAQ',
+              href: '/docs/faq',
+            },
             {
               label: 'Gwen support',
               href: 'https://gwenify.com',

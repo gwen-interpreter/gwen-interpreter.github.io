@@ -175,6 +175,16 @@ Gwen is configured to target the Chrome browser and your *local* environment by 
 
 :::note Amend settings
 
+<Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+<TabItem value="conf">
+
 *File: /project/gwen.conf*
 
 ```json {3, 4}
@@ -185,6 +195,35 @@ gwen {
   }
 }
 ```
+
+</TabItem>
+<TabItem value="json">
+
+*File: /project/gwen.json*
+
+```json {4, 5}
+{
+  "gwen": {
+    "target": {
+      "browser": "chrome"
+      "env": "local"
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="properties">
+
+*File: /project/gwen.properties*
+
+```properties {1, 2}
+gwen.target.browser = chrome
+gwen.target.env = local
+```
+
+</TabItem>
+</Tabs>
 
 :::
 
@@ -414,6 +453,16 @@ Gwen is configured to target the Chrome browser and your *local* environment by 
 
 :::note Amend settings
 
+<Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+<TabItem value="conf">
+
 *File: /project/gwen.conf*
 
 ```json {3, 4}
@@ -424,6 +473,36 @@ gwen {
   }
 }
 ```
+
+</TabItem>
+<TabItem value="json">
+
+*File: /project/gwen.json*
+
+```json {4, 5}
+{
+  "gwen": {
+    "target": {
+      "browser": "chrome"
+      "env": "local"
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="properties">
+
+*File: /project/gwen.properties*
+
+```properties {1, 2}
+gwen.target.browser = chrome
+gwen.target.env = local
+```
+
+</TabItem>
+</Tabs>
+
 
 :::
 
