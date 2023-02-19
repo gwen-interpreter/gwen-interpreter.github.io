@@ -10,14 +10,14 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  background-image: url('/img/gwen-banner-bg-l.svg');
+  background-image: url('/img/gwen-banner-bg-23.svg');
   background-position: right top;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 [data-theme='dark'] .heroBanner {
-  background-image: url('/img/gwen-banner-bg-d.svg');
+  background-image: url('/img/gwen-banner-bg-23.svg');
 }
 
 .buttons {
