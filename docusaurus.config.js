@@ -33,6 +33,12 @@ module.exports = {
           label: 'Docs',
         },
         {
+          type: 'doc',
+          docId: 'faq',
+          position: 'left',
+          label: 'FAQ',
+        },
+        {
           href: '/docs/dsl/reference#csv-lookups',
           position: 'left',
           label: "What's new?",
