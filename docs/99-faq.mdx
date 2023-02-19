@@ -12,18 +12,22 @@ import TabItem from '@theme/TabItem';
 
 Gwen is a [Gherkin](https://docs.cucumber.io/gherkin/reference/) interpreter with preprogrammed automation capabilities. Automation is achieved through Gherkin bindings called [meta specs](/docs/meta), composed with the [Gwen DSL](/docs/dsl) and maintained alongside your feature files. An embedded [Selenium](https://www.selenium.dev/) engine executes scenarios according to the meta you compose to perform operations in browsers for you.
 
+### Why are the key Gwen features?
+
+- The complete and standard [Gherkin syntax](https://cucumber.io/docs/gherkin/reference/) is supported, including [localisation](https://cucumber.io/docs/gherkin/languages/).
+- A readily executable [Gherkin DSL](/docs/dsl) performs all operations for you in a consistent and reliable manner across browsers and platforms.
+- Several execution modes including [sequential](/docs/modes/serial), [parallel](/docs/modes/parallel), [batch](/docs/modes/batch), [REPL](/docs/cli/repl), [debug](/docs/modes/interactive#debugging) and [dry runs](/docs/modes/dry-run) mode.
+- Several evaluation report formats including [HTML](/docs/reports/html), [JSON](/docs/reports/json), [JUnit-XML](/docs/reports/junit-xml), and [video capture](/docs/reports/video-recordings).
+- Highly configurable [settings](/docs/settings) and [CLI](/docs/cli) options.
+- Runs on Windows or Linux environments and in [Docker](/docs/docker) containers.
+- Runs locally, on premise or on the cloud.
+- Easily call out to locally accessible system processes, API's and package.json scripts.
+
 ### Why would I use Gwen over other tools?
 
 - You can quickly [get started](/docs/get-started) and be productive without having to develop a framework.
 - Just add Gwen to your JS project with NPM and go!
-- A readily [executable Gherkin DSL](/docs/dsl) enables you to formulate your automation in [meta](/docs/meta) and performs all operations for you in a consistent and reliable manner across browsers and platforms.
 - Your high level Gherkin features execute unchanged and remain clean and free of automation clutter.
-- Complete standard Gherkin syntax supported.
-- You can execute Gwen locally, on premise or on the cloud on Windows and Linux platforms or in Docker containers.
-- Several execution modes supported including sequential, parallel, batch, interactive REPL and dry run execution.
-- Several evaluation report formats supported including HTML, JSON, JUnit-XML and more.
-- Can call out to locally accessible API's and package.json scripts.
-- Highly configurable settings and CLI options.
 
 ### How mature is Gwen?
 
