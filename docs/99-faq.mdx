@@ -34,15 +34,15 @@ Java 8 or higher. If you have more than one version of Java installed on your sy
 ### Does Gwen have a GUI interface?
 No. You can do everything with the [CLI](/docs/cli) and your favourite IDE or text editor.
 
+### Can I debug my executable specifications?
+
+Breakpoints can be added to any feature or meta steps by prefixing them with the `@Breakpoint` keyword. See [debugging](/docs/modes/interactive#debugging).
+
 ### What are the batch and REPL modes?
 
 [Batch mode](/docs/modes/batch) forces Gwen to immediately exit after a given feature or features have executed. You should always invoke Gwen in batch mode on server environments such as build servers.
 
 [REPL mode](/docs/cli/repl) leaves the interpreter session open after a given feature or features have executed, allowing you to interactively enter additional steps to execute or inspect bound data in memory. You should use this mode when you want to verify the execution of individual steps that you want to add to your features or when you want to diagnose a failing feature.
-
-### Can I debug my executable specifications?
-
-Breakpoints can be added to any feature or meta steps by prefixing them with the `@Breakpoint` keyword. See [debugging](/docs/modes/interactive#debugging).
 
 ### What are the available REPL commands?
 
