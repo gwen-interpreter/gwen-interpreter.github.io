@@ -1,57 +1,12 @@
 --- 
 title: Gwen FAQ
-toc_min_heading_level: 2
-toc_max_heading_level: 2
+toc_min_heading_level: 3
+toc_max_heading_level: 3
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-- [What is Gwen?](#what-is-gwen)
-- [Can I get support?](#can-i-get-support)
-- [Why would I use Gwen over other tools?](#why-would-i-use-gwen-over-other-tools)
-- [Can I add Gwen to my JS project](#can-i-add-gwen-to-my-js-project)?
-- [What version of Java do I need?](#what-version-of-java-do-i-need)
-- [Does Gwen have a GUI interface?](#does-gwen-have-a-gui-interface)
-- [What are the batch and REPL modes?](#what-are-the-batch-and-repl-modes)
-- [What are the available REPL commands?](#what-are-the-available-repl-commands)
-- [How do I run a single feature file?](#how-do-i-run-a-single-feature-file)
-- [How do I run all features files in a directory?](#how-do-i-run-all-features-files-in-a-directory)
-- [How do I run multiple features in sequence?](#how-do-i-run-multiple-features-in-sequence)
-- [How do I run multiple features in parallel?](#how-do-i-run-multiple-features-in-parallel)
-- [Can I set a ramp up interval for staggered parallel execution?](#can-i-set-a-ramp-up-interval-for-staggered-parallel-execution)
-- [Can I run scenarios in parallel](#can-i-run-scenarios-in-parallel)
-- [How do I compose step definitions?](#how-do-i-compose-step-definitions)
-- [Can I validate my features?](#can-i-validate-my-features)
-- [Can I ignore (skip over) features and scenarios at execution time?](#can-i-ignore-skip-over-features-and-scenarios-at-execution-time)
-- [Can I execute certain tagged features and scenarios and exclude all others?](#can-i-execute-certain-tagged-features-and-scenarios-and-exclude-all-others)
-- [How do I generate evaluation reports?](#how-do-i-generate-evaluation-reports)
-- [Can I generate JUnit-XML reports?](#can-i-generate-junit-xml-reports)
-- [Can I generate JSON reports?](#can-i-generate-json-reports)
-- [Can I generate more than one type of report?](#can-i-generate-more-than-one-type-of-report)
-- [How can I feed CSV data to my features?](#how-can-i-feed-csv-data-to-my-features)
-- [Can I configure runtime settings?](#can-i-configure-runtime-settings)
-- [Is string interpolation supported?](#is-string-interpolation-supported)
-- [How do I configure logging?](#how-do-i-configure-logging)
-- [Can I access and work with database data?](#can-i-access-and-work-with-database-data)
-- [Are scenario outlines supported?](#are-scenario-outlines-supported)
-- [Are data tables supported?](#are-data-tables-supported)
-- [Can I use Doc Strings?](#can-i-use-doc-strings)
-- [Can I pass parameters to StepDefs?](#can-i-pass-parameters-to-stepdefs)
-- [Can I compare or match content using templates?](#can-i-compare-or-match-content-using-templates)
-- [Are soft assertions supported?](#are-soft-assertions-supported)
-- [Can Gwen help me to write good Gherkin?](#can-gwen-help-me-to-write-good-gherkin)
-- [Can I send my Gwen results to Report Portal?](#can-i-send-my-gwen-results-to-report-portal)
-- [How do I target a specific web browser?](#how-do-i-target-a-specific-web-browser)
-- [Can I locate elements in frames or other elements?](#can-i-locate-elements-in-frames-or-other-elements)
-- [Can I drive multiple browsers from a single feature?](#can-i-drive-multiple-browsers-from-a-single-feature)
-- [Can I run Gwen on docker](#can-i-run-gwen-on-docker)
-- [Can I run Gwen on BrowserStack or LambdaTest](#can-i-run-gwen-on-browserstack-or-lambdatest)
-- [Can I run Gwen on Jenkins?](#can-i-run-gwen-on-jenkins)
-- [Can I run a headless browser?](#can-i-run-a-headless-browser)
-- [Can I emulate mobile devices in browser?](#can-i-emulate-mobile-devices-in-browser)
-- [How do I upload files to a file input field?](#how-do-i-upload-files-to-a-file-input-field)
 
 ### What is Gwen?
 
