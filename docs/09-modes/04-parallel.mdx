@@ -42,7 +42,7 @@ When [`maxThreads`](#maximum-threads) is `auto` (default)
 > - the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option and your [state level](/docs/settings/reference#gwen-state-level) is set to `scenario`
 
 When [`maxThreads`](#maximum-threads) is `auto` (default)
-- If you launch Gwen on a 8 core machine with the `--parallel` option passing in many feature files (or a single directory containing many feature files), then at most 8 scenarios will run in parallel across the cores at any one time. If there are a total of 9 scenarios, then 8 of them will execute in parallel and the remaining scenario execution be deferred wait until one of those completes.
+- If you launch Gwen on a 8 core machine with the `--parallel` option passing in many feature files (or a single directory containing many feature files), then at most 8 scenarios will run in parallel across the cores at any one time. If there are a total of 9 scenarios, then 8 of them will execute in parallel and the remaining scenario execution be deferred until one of those completes.
 
 ## Staggering
 
