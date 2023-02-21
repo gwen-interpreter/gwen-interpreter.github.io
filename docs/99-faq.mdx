@@ -583,30 +583,20 @@ Yes, see [mobile emulation](/docs/advanced/mobile-emulatioin).
 
 ### How do I upload files to a file input field?
 
-1. Define a locator for the file input field:
+Define a locator for the file input field and set the path to the file you want upload. Note that you can only use absolute paths. If you wish, you can use system properties or a custom Gwen setting to reference the location of the file.
 
   ```gherkin
   Given the file input field can be located by xpath "//input[@type='file']"
-  ```
-
-2. Use the following DSL to set the path to the file you want upload: 
-
-  ```gherkin
-  When I type "absolute/path/to/file.ex" in the file input field
-  ```
-
-Note that you can only use absolute paths. If you wish, you can use system properties or a custom Gwen setting to reference the location of the file: 
-
-```gherkin
-When I type "${user.dir}/file.ext" in the file input field
-```
+   
+   # using a hard coded path
+   When I type "absolute/path/to/file.ex" in the file input field
   
-  - where `user.dir` is a standard system property
+   # or using the system user directory path
+   When I type "${user.dir}/file.ext" in the file input field
 
-```gherkin
-When I type "${custom.dir}/file.ext" in the file input field
-```
-  - where `custom.dir` is a custom property defined in your Gwen settings file
+   # or using a path defined in a custom setting
+   When I type "${custom.dir}/file.ext" in the file input field
+  ```
 
 ### Can I get support?
 Support is offered through [sponsorships](https://github.com/sponsors/gwen-interpreter). By purchasing support you will be sponsoring our open source work on this project.
