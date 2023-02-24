@@ -2236,9 +2236,10 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
 
   ```
   ./                           # Project root
+   ├── .gitignore              # Git ignore file
+   ├── README.md
    ├── gwen.conf               # Gwen settings file
    └── /gwen
-       ├── README.md
        ├── .gitignore          # Git ignore file
        ├── /browsers           # Browser settings
        │   ├── chrome.conf
@@ -2274,9 +2275,9 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
 
   ```
   ./                       # Project root
-   ├── gwen.conf           # Gwen settings file
-   ├── README.md
    ├── .gitignore          # Git ignore file
+   ├── README.md
+   ├── gwen.conf           # Gwen settings file
    ├── /browsers           # Browser settings
    │   ├── chrome.conf
    │   ├── edge.conf
@@ -2376,6 +2377,7 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
   ```
   ./                           # Project root
    └── /gwen
+       ├── .env                # Docker env file
        ├── docker-compose.yml  # Docker compose file
        ├── Dockerfile          # Docker image file
        └── /browsers           # Browser settings
