@@ -237,6 +237,10 @@ history
   Executes a previously entered command (history bang operator)
     # : the history command number
 
+load <meta-file>
+  Loads a meta file to pick up any changes
+    meta-file : the path to the meta file relative to project root
+
 Given|When|Then|And|But step-expression
   Evaluates a step
     step-expression : the step expression
@@ -285,7 +289,7 @@ You will then be able to enter or paste a multiple step without anything being e
 
 ```
 
-Then when you're ready to execute or want to exit the *paste* mode, insert a new empty line at the end and press press `cntl-D`. The REPL will then evaluate the step you entered before the empty line and return to the standard prompt when done.
+Then when you're ready to execute or want to exit the *paste* mode, insert a new empty line at the end and press press `ctrl-D`. The REPL will then evaluate the step you entered before the empty line and return to the standard prompt when done.
 
 ```
 Exiting paste mode, interpreting now..
@@ -303,6 +307,32 @@ Enter steps to evaluate or type exit to quit..
 
 gwen>
 ```
+
+### Meta reloads
+
+> Since [v3.36.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.36.0)
+
+If you make changes to a meta file whilst in a REPL console session, you can reload the changes by using the `load` command. This can save you time during meta development so you don't have to end your current REPL session and start a new one to pick up changes. 
+
+Reload a changed meta file in your current REPL session as follows. New or changed [StepDef](docs/meta#stepdefs)'s in the meta file will be immediately available after running the command.
+
+```shell
+gwen> load path/to/changed.meta
+```
+
+> The path to the meta file must be relative to your project root directory where you launched Gwen.
+
+:::tip
+
+The current state will not be impacted on reload if your meta declares StepDefs only.
+
+:::
+
+:::caution
+
+Any scenarios in the meta that are not StepDefs will be re-evaluated on reload and could result in side effects that modify the current state. If this becomes a problem, you should refactor or move such scenarios elsewhere so that your meta only declares StepDefs. Otherwise, you might need to manually restore to the prior state by running the necessary steps in the REPL to recover.
+
+:::
 
 ### Exiting the REPL
 

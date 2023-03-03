@@ -40,7 +40,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/dsl/reference#csv-lookups',
+          href: '/docs/cli/repl#meta-reloads',
           position: 'left',
           label: "What's new?",
         },
