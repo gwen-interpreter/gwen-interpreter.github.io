@@ -18,7 +18,7 @@ module.exports = {
     description: 'Gwen is a Gherkin interpreter with built-in automation capabilities that can readily be utilised for end-to-end testing and robotic processing.'
   },
   themeConfig: {
-    image: 'img/gwen-logo-media-c.png',
+    image: 'img/gwen-logo-media-cw.png',
     navbar: {
       title: 'gwen',
       logo: {
