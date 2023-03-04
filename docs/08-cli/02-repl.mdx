@@ -324,7 +324,7 @@ gwen> load path/to/changed.meta
 
 :::caution Potential effects on state
 
-Any scenarios in your meta that are not StepDefs will be re-evaluated on reload and this could result in side effects that modify the current state. Consider refactoring your meta to only declare StepDefs to avoid this impact.
+Any scenarios in your meta that are NOT StepDefs will be re-evaluated on reload and this could result in side effects that modify the current state. Consider refactoring your meta to only declare StepDefs to avoid this impact.
 
 :::
 
