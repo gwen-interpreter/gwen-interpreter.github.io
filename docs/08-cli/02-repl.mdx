@@ -312,7 +312,7 @@ gwen>
 
 > Since [v3.36.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.36.0)
 
-If you make changes to a meta file whilst in a REPL console session, you can reload the changes by using the `load` command. This can save you time during meta development so you don't have to end your current REPL session and start a new one to pick up changes. 
+If you make changes to a meta file whilst in a REPL session, you can reload the changes by using the `load` command. This can save you time during meta development so you don't have to end your current REPL session and start a new one to pick up the changes. 
 
 Reload a changed meta file in your current REPL session as follows. New or changed [StepDef](docs/meta#stepdefs)'s in the meta file will be immediately available after running the command.
 
@@ -322,15 +322,9 @@ gwen> load path/to/changed.meta
 
 > The path to the meta file must be relative to your project root directory where you launched Gwen.
 
-:::tip
+:::caution Potential effects on state
 
-The current state will not be impacted on reload if your meta declares StepDefs only.
-
-:::
-
-:::caution
-
-Any scenarios in the meta that are not StepDefs will be re-evaluated on reload and could result in side effects that modify the current state. If this becomes a problem, you should refactor or move such scenarios elsewhere so that your meta only declares StepDefs. Otherwise, you might need to manually restore to the prior state by running the necessary steps in the REPL to recover.
+Any scenarios in your meta that are not StepDefs will be re-evaluated on reload and this could result in side effects that modify the current state. Consider refactoring your meta to only declare StepDefs to avoid this impact.
 
 :::
 
