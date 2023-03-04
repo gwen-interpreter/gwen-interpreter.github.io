@@ -178,7 +178,7 @@ services:
     volumes:
       - "$PWD:/project"
     working_dir: /project
-    command: bash -c "yarn install && yarn gwen:selenoid -b"
+    command: bash -c "yarn install && yarn gwen -b -c gwen/browsers/selenoid.conf gwen/features"
     networks:
       - gwen-net
   gwen-dry-run:
@@ -284,32 +284,6 @@ gwen {
 }
 ```
 
-## Package JSON script
-
-Add the following `gwen:selenoid` script to the `scripts` section of the `package.json` file in your project.
-
-```shell {2}
-./project             # Your project root
- └── package.json     # Package json file
-```
-
-This script will be called by the `gwen` container in the [docker-compose](#docker-compose-file) file generated above.
-
-```json {2}
-"scripts": {
-  "gwen:selenoid": "gwen -c gwen/browsers/selenoid.conf gwen/features"
-}
-```
-
-Or to run the samples bundled in Gwen:
-
-
-```json {2}
-"scripts": {
-  "gwen:selenoid": "gwen -c gwen/browsers/selenoid.conf gwen/samples"
-}
-```
-
 ## Run Gwen in docker
 
 Start your docker desktop engine (see [getting started with Docker](https://docs.docker.com/get-started/) for more info).
@@ -363,7 +337,7 @@ Open [http://localhost:8999](http://localhost:8999) in a browser to check that t
 Run the following command to launch Gwen against your Selenoid instance in Docker. You will see browser session(s) appear in the Selenoid UI.
 
 ```shell
-SELENIUM_HUB=localhost yarn gwen:selenoid
+SELENIUM_HUB=localhost yarn gwen -b -c gwen/browsers/selenoid.conf gwen/features
 ```
 
 Tear it all down when done
