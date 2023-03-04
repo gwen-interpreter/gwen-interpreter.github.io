@@ -18,7 +18,7 @@ Gwen is a [Gherkin](https://docs.cucumber.io/gherkin/reference/) interpreter wit
 ### What are the key Gwen features?
 
 - Fully [Gherkin](https://cucumber.io/docs/gherkin/reference/) compliant interpreter.
-- Automation details confined to [meta](/docs/meta).
+- Composable [StepDefs](/docs/meta#stepdefs) and automation details confined to [meta](/docs/meta).
 - [Good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/) practice encouraged by default.
 - Consistent and reliable execution across [browsers](/docs/settings/reference#gwen-target-browser).
 - NPM package for quick [project setup](/docs/gwen3#init-project-command) and automatic updates.
@@ -44,7 +44,7 @@ Gwen is a [Gherkin](https://docs.cucumber.io/gherkin/reference/) interpreter wit
 ### Why would I use Gwen over other tools?
 
 - Quickly [get started](/docs/get-started) and be productive with less coding and deveopment.
-- Focus more on business process and less on automation details.
+- Focus more on business process and less on automation concerns.
 - Matured over many years in industry.
 - Get support from the project maintainers by [sponsoring](https://github.com/sponsors/gwen-interpreter).
 
@@ -67,7 +67,7 @@ Breakpoints can be added to any feature or meta steps by prefixing them with the
 
 [Batch mode](/docs/modes/batch) forces Gwen to immediately exit after a given feature or features have executed. You should always invoke Gwen in batch mode on server environments such as build servers.
 
-[REPL mode](/docs/cli/repl) leaves the interpreter session open after a given feature or features have executed, allowing you to interactively enter additional steps to execute or inspect bound data in memory. You should use this mode when you want to verify the execution of individual steps that you want to add to your features or when you want to diagnose a failing feature.
+[REPL mode](/docs/cli/repl) leaves the interpreter session open after a given feature or features have executed, allowing you to interactively enter additional steps to execute or inspect bound data in memory. You should use this mode to verify the execution of your [StepDefs](/docs/meta#stepdefs) as you develop your meta or when you want to diagnose a failing feature.
 
 ### What are the available REPL commands?
 
