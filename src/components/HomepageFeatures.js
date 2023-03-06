@@ -18,7 +18,7 @@ const FeatureList = [
     imageLight: '/img/icon-meta.png',
     imageDark: '/img/icon-meta.png',
     linkRef: '/docs#compose-meta',
-    description: 'to formulate execution',
+    description: 'to describe execution',
   },
   {
     title: 'Launch Gwen',
