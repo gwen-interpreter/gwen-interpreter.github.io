@@ -1705,11 +1705,87 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
-<details id="gwen-report-console-log-colors">
+<details id="gwen-report-stepdef-indent-pixels">
   <summary class="setting">
 
   ```properties
-  gwen.report.console.log.colors
+  gwen.report.stepDef.indent.pixels
+  ```
+  <p>Controls the left margin indent size of StepDefs in HTML reports.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A positive integer representing the indent size in pixels</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      report {
+        stepDef {
+          indent {
+            pixels = 30
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "report": {
+          "stepDef": {
+            "indent": {
+              "pixels": 30
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.report.stepDef.indent.pixels = 30
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-report-stepdef-indent-pixels">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.37.0">v3.37.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-console-log-colors">
+  <summary class="setting">
+
+  ```properties
+  gwen.console.log.colors
   ```
   <p>Controls whether to use ANSI colors to highlight Gherkin keywords and evaluation results in the console report output.</p>
   </summary>
@@ -1733,11 +1809,9 @@ import TabItem from '@theme/TabItem';
 
   ```json
     gwen {
-      report {
-        console {
-          log {
-            colors = true
-          }
+      console {
+        log {
+          colors = true
         }
       }
     }
@@ -1751,11 +1825,9 @@ import TabItem from '@theme/TabItem';
   ```json
     {
       "gwen": {
-        "report": {
-          "console": {
-            "log": {
-              "colors": true
-            }
+        "console": {
+          "log": {
+            "colors": true
           }
         }
       }
@@ -1768,7 +1840,7 @@ import TabItem from '@theme/TabItem';
   Default value
 
   ```properties
-    gwen.report.console.log.colors = true
+    gwen.console.log.colors = true
   ```
 
   </TabItem>
@@ -1776,17 +1848,17 @@ import TabItem from '@theme/TabItem';
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-report-console-log-colors">Link</Link></div>
+    <div><Link to="#gwen-console-log-colors">Link</Link></div>
     <div align="center"><div align="center">See also <Link to="/docs/reports/console#pretty-logging">Pretty console logging</Link></div></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-report-console-log-depth">
+<details id="gwen-console-log-depth">
   <summary class="setting">
 
   ```properties
-  gwen.report.console.log.depth
+  gwen.console.log.depth
   ```
   <p>Controls the step logging depth in the console report output.</p>
   </summary>
@@ -1816,11 +1888,9 @@ import TabItem from '@theme/TabItem';
 
   ```json
     gwen {
-      report {
-        console {
-          log {
-            depth = 1
-          }
+      console {
+        log {
+          depth = 1
         }
       }
     }
@@ -1830,11 +1900,9 @@ import TabItem from '@theme/TabItem';
 
   ```json
     gwen {
-      report {
-        console {
-          log {
-            depth = "infinity"
-          }
+      console {
+        log {
+          depth = "infinity"
         }
       }
     }
@@ -1848,11 +1916,9 @@ import TabItem from '@theme/TabItem';
   ```json
     {
       "gwen": {
-        "report": {
-          "console": {
-            "log": {
-              "depth": 1
-            }
+        "console": {
+          "log": {
+            "depth": 1
           }
         }
       }
@@ -1865,11 +1931,9 @@ import TabItem from '@theme/TabItem';
   ```json
     {
       "gwen": {
-        "report": {
-          "console": {
-            "log": {
-              "depth": "infinity"
-            }
+        "console": {
+          "log": {
+            "depth": "infinity"
           }
         }
       }
@@ -1882,13 +1946,13 @@ import TabItem from '@theme/TabItem';
   Default value
 
   ```properties
-    gwen.report.console.log.depth = 1
+    gwen.console.log.depth = 1
   ```
 
   To log all depths:
 
   ```properties
-    gwen.report.console.log.depth = infinity
+    gwen.console.log.depth = infinity
   ```
 
   </TabItem>
@@ -1896,7 +1960,7 @@ import TabItem from '@theme/TabItem';
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-report-console-log-depth">Link</Link></div>
+    <div><Link to="#gwen-console-log-depth">Link</Link></div>
     <div align="center"><div align="center">See also <Link to="/docs/reports/console#pretty-logging">Pretty console logging</Link></div></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.15.0">v3.15.0</Link></div>
   </div>
