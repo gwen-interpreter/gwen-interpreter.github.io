@@ -251,3 +251,9 @@ a.banner-button:hover {
 .sponsor {
   display: flex;
 }
+
+.logo-table {
+  border: none;
+  background-color: transparent;
+  text-align: center;
+}
