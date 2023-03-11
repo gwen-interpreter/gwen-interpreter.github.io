@@ -57,7 +57,7 @@ export default function Home() {
             </div>
             <div className="col col--6">
 <h2>Declare features</h2>
-<p>Write feature specs to describe how scenarios should behave.</p>
+<p>Write feature specs to describe scenarios.</p>
 <p>
 <i>File: gwen/features/todo.feature</i>
 <CodeBlock language="gherkin">
