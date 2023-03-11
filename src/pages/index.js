@@ -92,7 +92,7 @@ export default function Home() {
   @StepDef
   Scenario: a new todo list
     Given my todo list can be located by css ".todo-list"
-     When I navigate to "\${todo.page.url}"
+     When I navigate to "https://todomvc.com/examples/react"
      Then the page title should contain "TodoMVC"
       And my todo list should be hidden
   
@@ -129,7 +129,7 @@ export default function Home() {
             </div>
             <div className="col col--6">
             <h2>Launch Gwen</h2>
-              <p>Launch Gwen to execute features.</p>
+              <p>Launch Gwen to execute and automate.</p>
               <p>
                   <Tabs
                     groupId="jstool"
