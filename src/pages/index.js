@@ -109,8 +109,8 @@ export default function Home() {
   @StepDef
   Scenario: the list will contain <expected-count> items
     Given the item count can be located by css ".todo-count strong"
-     Then my todo list should be displayed
-      And the item count should be "$<expected-count>"
+     Then the item count should be "$<expected-count>"
+      And my todo list should be displayed
 `}
               </CodeBlock>
               </p>
