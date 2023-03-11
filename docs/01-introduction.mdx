@@ -130,6 +130,7 @@ Feature: Todo Meta
   Scenario: the list will contain <expected-count> items
     Given the item count can be located by css ".todo-count strong"
      Then the item count should be "$<expected-count>"
+      And my todo list should be displayed
 ```
 
 
@@ -393,7 +394,30 @@ The last StepDef accepts the number of expected items from the last step in the 
   Scenario: the list will contain <expected-count> items
     Given the item count can be located by css ".todo-count strong"
      Then the item count should be "$<expected-count>"
+      And my todo list should be displayed
 ```
+
+Calls DSL step:
+
+- [`<element> should[ not] <match> "<expression>"`](/docs/dsl/reference#element-should-match-expression)
+
+</p>
+:::
+
+#### Verifying that an element is displayed
+
+Lastly, the final step in this StepDef verifies that the web element containing the current list of todo items is displayed (which it should be after items have been added).
+
+:::note StepDef 3, Step 3
+<p>
+
+```gherkin
+  And my todo list should be displayed
+```
+
+Calls DSL step:
+
+- [`<element> should[ not] be <state>`](/docs/dsl/reference#element-should-be-state)
 
 </p>
 :::
@@ -433,6 +457,7 @@ For example, the following binding will be permitted since the feature step is d
   Scenario: the list will contain <expected-count> items
     Given the item count can be located by css ".todo-count strong"
      Then the item count should be "$<expected-count>"
+      And my todo list should be displayed
 ```
 
 </p>
