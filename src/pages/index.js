@@ -130,7 +130,7 @@ export default function Home() {
             </div>
             <div className="col col--6">
             <h2>Launch Gwen</h2>
-              <p>Launch Gwen to execute your feature specs.</p>
+              <p>Launch Gwen to execute your features.</p>
               <p>
                   <Tabs
                     groupId="jstool"
@@ -141,31 +141,31 @@ export default function Home() {
                       {label: 'pnpm', value: 'pnpm'}
                     ]}>
                     <TabItem value="yarn">
-                      Execute one feature spec
+                      Execute one feature
                       <CodeBlock language="shell">
                         {`yarn gwen -b gwen/features/todo.feature`}
                       </CodeBlock>
-                      Execute all feature specs in a directory
+                      Execute all features in a directory
                       <CodeBlock language="shell">
                         {`yarn gwen -b gwen/features`}
                       </CodeBlock>
                           </TabItem>
                           <TabItem value="npm">
-                          Execute one feature spec
+                          Execute one feature
                       <CodeBlock language="shell">
                         {`npm run gwen -- -b gwen/features/todo.feature`}
                       </CodeBlock>
-                      Execute all feature specs in a directory
+                      Execute all features in a directory
                       <CodeBlock language="shell">
                         {`npm run gwen -- -b gwen/features`}
                       </CodeBlock>
                     </TabItem>
                     <TabItem value="pnpm">
-                      Execute one feature spec
+                      Execute one feature
                       <CodeBlock language="shell">
                         {`pnpm gwen -b gwen/features/todo.feature`}
                       </CodeBlock>
-                      Execute all feature specs in a directory
+                      Execute all features in a directory
                       <CodeBlock language="shell">
                         {`pnpm gwen -b gwen/features`}
                       </CodeBlock>
