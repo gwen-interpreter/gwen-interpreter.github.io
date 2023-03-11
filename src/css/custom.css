@@ -23,6 +23,7 @@
   --ifm-color-info-lighter: #f5f8fd;
   --ifm-color-info-lightest: #ffffff;
   --ifm-color-info-contrast-background: rgb(234, 239, 250);
+
 }
 
 [data-theme='dark']:root {
@@ -34,16 +35,17 @@
   --ifm-color-primary-lighter: #afc8ff;
   --ifm-color-primary-lightest: #e7efff;
 
-  --ifm-color-info: #c1d0f0;
-  --ifm-color-info-dark: #9eb6e8;
-  --ifm-color-info-darker: #8da8e3;
-  --ifm-color-info-darkest: #5881d7;
-  --ifm-color-info-light: #e4eaf8;
-  --ifm-color-info-lighter: #f5f8fd;
-  --ifm-color-info-lightest: #ffffff;
+  --ifm-color-info: #9eb6e8;
+  --ifm-color-info-dark: #7e9ee1;
+  --ifm-color-info-darker: #6f92dd;
+  --ifm-color-info-darkest: #3f6fd2;
+  --ifm-color-info-light: #beceef;
+  --ifm-color-info-lighter: #cddaf3;
+  --ifm-color-info-lightest: #fdfdfe;
   --ifm-color-info-contrast-background: rgb(20, 36, 82);
 
   --ifm-color-secondary-contrast-background: #22222a;
+
 }
 
 .alert {
@@ -152,6 +154,10 @@ details a {
 
 details a:hover {
   --ifm-link-color: var(--ifm-color-primary);
+}
+
+details.alert--info {
+  --ifm-alert-border-color: var( --ifm-color-info);
 }
 
 .alert a:hover {
