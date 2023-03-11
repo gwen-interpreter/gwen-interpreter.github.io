@@ -6,6 +6,11 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
 import Head from '@docusaurus/Head';
+import CodeBlock from '@theme/CodeBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -25,7 +30,7 @@ function HomepageHeader() {
           </div>
         </div>
         <div className={styles.buttons}>
-        <Link
+          <Link
             className="button banner-button button--lg"
             to="/docs/introduction">
             Learn More
@@ -44,17 +49,141 @@ export default function Home() {
       description={`${siteConfig.tagline}. ${siteConfig.customFields.description}`}>
       <HomepageHeader />
       <main>
-        <HomepageFeatures />
-        <div className="container">
+        <div className="container" style={{paddingTop: '40px'}}>
           <div className="row">
-            <div className="col col--12">
-              <div className={styles.buttons} style={{paddingTop: '0', paddingBottom: '45px'}}>
-              <Link
-                className="button banner-button button--lg"
-                to="/docs/get-started">
-                Get Started
-              </Link>
-              </div>
+            <div className="col col--2"></div>
+            <div className="col col--2">
+              <p><img src="/img/icon-feature.png" className="feature-image"/></p>
+            </div>
+            <div className="col col--6">
+<h2>Declare features</h2>
+<p>Write feature specs to describe how scenarios should behave.</p>
+<p>
+<i>File: gwen/features/todo.feature</i>
+<CodeBlock language="gherkin">
+{`Feature: Add todo items
+
+  Scenario: Create todo list
+    Given a new todo list
+    When the following items are added
+          | Item          |
+          | Get the milk  |
+          | Walk the dog  |
+    Then the list will contain 2 items
+`}
+</CodeBlock>
+</p>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col col--2"></div>
+            <div className="col col--2">
+              <p><img src="/img/icon-meta.png" className="feature-image"/></p>
+            </div>
+            <div className="col col--6">
+            <h2>Compose meta</h2>
+              <p>Define StepDefs to describe how steps will execute.</p>
+              <p>
+              <i>File: gwen/features/todo.meta</i>
+              <CodeBlock language="gherkin">
+{`Feature: Todo Meta
+  
+  @Context
+  @StepDef
+  Scenario: a new todo list
+    Given my todo list can be located by css ".todo-list"
+     When I navigate to "\${todo.page.url}"
+     Then the page title should contain "TodoMVC"
+      And my todo list should be hidden
+  
+  @Action
+  @DataTable
+  @ForEach
+  @StepDef
+  Scenario: the following items are added
+    Given the todo field can be located by class "new-todo"
+     When I enter Item in the todo field
+     Then my todo list should contain Item
+  
+  @Assertion
+  @StepDef
+  Scenario: the list will contain <expected-count> items
+    Given the displayed count can be located by css ".todo-count strong"
+     Then the displayed count should be "$<expected-count>"
+`}
+              </CodeBlock>
+              </p>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col col--2"></div>
+            <div className="col col--2">
+              <ThemedImage
+                alt="Gwen logo"
+                sources={{
+                  light: useBaseUrl('/img/icon-gwen-attractor-c.png'),
+                  dark: useBaseUrl('/img/icon-gwen-attractor-w.png'),
+                }}
+                className="feature-image"
+              />
+            </div>
+            <div className="col col--6">
+            <h2>Launch Gwen</h2>
+              <p>Launch Gwen to execute features.</p>
+              <p>
+                  <Tabs
+                    groupId="jstool"
+                    defaultValue="yarn"
+                    values={[
+                      {label: 'Yarn', value: 'yarn'},
+                      {label: 'npm', value: 'npm'},
+                      {label: 'pnpm', value: 'pnpm'}
+                    ]}>
+                  <TabItem value="yarn">
+                  Execute single feature
+              <CodeBlock language="shell">
+{`yarn gwen -b gwen/features/todo.feature
+`}
+              </CodeBlock>
+              Execute all features in directory
+              <CodeBlock language="shell">
+{`yarn gwen -b gwen/features
+`}
+              </CodeBlock>
+                  </TabItem>
+                  <TabItem value="npm">
+                  Execute single feature
+              <CodeBlock language="shell">
+{`npm run gwen -- -b gwen/features/todo.feature
+`}
+              </CodeBlock>
+              Execute all features in directory
+              <CodeBlock language="shell">
+{`npm run gwen -- -b gwen/features
+`}
+              </CodeBlock>
+                  </TabItem>
+                  <TabItem value="pnpm">
+                  Execute single feature
+              <CodeBlock language="shell">
+{`pnpm gwen -b gwen/features/todo.feature
+`}
+              </CodeBlock>
+              Execute all features in directory
+              <CodeBlock language="shell">
+{`pnpm gwen -b gwen/features
+`}
+              </CodeBlock>
+                  </TabItem>
+                  </Tabs>
+              </p>
+              <p style={{paddingTop: '30px', paddingBottom: '35px'}}>
+                <Link
+                  className="button banner-button button--lg"
+                  to="/docs/get-started">
+                  Get Started
+                </Link>
+              </p>
             </div>
           </div>
         </div>

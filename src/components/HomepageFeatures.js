@@ -44,7 +44,7 @@ function Feature({title, imageLight, imageDark, linkRef, description}) {
         />
       </div>
       <div className="text--center padding-horiz--md">
-        <p style={{fontSize: '17px'}}><Link to={linkRef}><strong>{title}</strong></Link> {description}</p>
+        <p style={{fontSize: '17px'}}><Link to={linkRef}><strong>{title}</strong></Link></p>
       </div>
     </div>
   );
@@ -52,7 +52,7 @@ function Feature({title, imageLight, imageDark, linkRef, description}) {
 
 export default function HomepageFeatures() {
   return (
-    <section className={styles.features} style={{paddingBottom: '15px'}}>
+    <section className={styles.features}>
       <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (
