@@ -177,7 +177,13 @@ export default function Home() {
                   </TabItem>
                   </Tabs>
               </p>
-              <p style={{paddingTop: '30px', paddingBottom: '35px'}}>
+            </div>
+          </div>
+          <div className="row" style={{paddingTop: '30px', paddingBottom: '35px'}}>
+            <div className="col col--2"></div>
+            <div className="col col--2"></div>
+            <div className="col col--6">
+              <p>
                 <Link
                   className="button banner-button button--lg"
                   to="/docs/get-started">
