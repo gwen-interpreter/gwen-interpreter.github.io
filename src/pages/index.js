@@ -56,11 +56,11 @@ export default function Home() {
               <p><img src="/img/icon-feature.png" className="feature-image"/></p>
             </div>
             <div className="col col--6">
-<h2>Declare features</h2>
-<p>Write feature specs to describe scenarios.</p>
-<p>
-<i>File: gwen/features/todo.feature</i>
-<CodeBlock language="gherkin">
+              <h2>Declare features</h2>
+              <p>Write feature specs to describe scenarios.</p>
+              <p>
+              <i>File: gwen/features/todo.feature</i>
+                <CodeBlock language="gherkin">
 {`Feature: Add todo items
 
   Scenario: Create todo list
@@ -71,8 +71,8 @@ export default function Home() {
           | Walk the dog  |
     Then the list will contain 2 items
 `}
-</CodeBlock>
-</p>
+                </CodeBlock>
+              </p>
             </div>
           </div>
           <div className="row">
@@ -82,7 +82,7 @@ export default function Home() {
             </div>
             <div className="col col--6">
             <h2>Compose meta</h2>
-              <p>Define StepDefs to describe how steps will execute.</p>
+              <p>Write StepDefs to describe how steps will execute.</p>
               <p>
               <i>File: gwen/features/todo.meta</i>
               <CodeBlock language="gherkin">
@@ -108,8 +108,8 @@ export default function Home() {
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
-    Given the displayed count can be located by css ".todo-count strong"
-     Then the displayed count should be "$<expected-count>"
+    Given the item count can be located by css ".todo-count strong"
+     Then the item count should be "$<expected-count>"
 `}
               </CodeBlock>
               </p>
@@ -139,42 +139,36 @@ export default function Home() {
                       {label: 'npm', value: 'npm'},
                       {label: 'pnpm', value: 'pnpm'}
                     ]}>
-                  <TabItem value="yarn">
-                  Execute single feature
-              <CodeBlock language="shell">
-{`yarn gwen -b gwen/features/todo.feature
-`}
-              </CodeBlock>
-              Execute all features in directory
-              <CodeBlock language="shell">
-{`yarn gwen -b gwen/features
-`}
-              </CodeBlock>
-                  </TabItem>
-                  <TabItem value="npm">
-                  Execute single feature
-              <CodeBlock language="shell">
-{`npm run gwen -- -b gwen/features/todo.feature
-`}
-              </CodeBlock>
-              Execute all features in directory
-              <CodeBlock language="shell">
-{`npm run gwen -- -b gwen/features
-`}
-              </CodeBlock>
-                  </TabItem>
-                  <TabItem value="pnpm">
-                  Execute single feature
-              <CodeBlock language="shell">
-{`pnpm gwen -b gwen/features/todo.feature
-`}
-              </CodeBlock>
-              Execute all features in directory
-              <CodeBlock language="shell">
-{`pnpm gwen -b gwen/features
-`}
-              </CodeBlock>
-                  </TabItem>
+                    <TabItem value="yarn">
+                      Execute single feature
+                      <CodeBlock language="shell">
+                        {`yarn gwen -b gwen/features/todo.feature`}
+                      </CodeBlock>
+                      Execute all features in directory
+                      <CodeBlock language="shell">
+                        {`yarn gwen -b gwen/features`}
+                      </CodeBlock>
+                          </TabItem>
+                          <TabItem value="npm">
+                          Execute single feature
+                      <CodeBlock language="shell">
+                        {`npm run gwen -- -b gwen/features/todo.feature`}
+                      </CodeBlock>
+                      Execute all features in directory
+                      <CodeBlock language="shell">
+                        {`npm run gwen -- -b gwen/features`}
+                      </CodeBlock>
+                    </TabItem>
+                    <TabItem value="pnpm">
+                      Execute single feature
+                      <CodeBlock language="shell">
+                        {`pnpm gwen -b gwen/features/todo.feature`}
+                      </CodeBlock>
+                      Execute all features in directory
+                      <CodeBlock language="shell">
+                        {`pnpm gwen -b gwen/features`}
+                      </CodeBlock>
+                    </TabItem>
                   </Tabs>
               </p>
             </div>

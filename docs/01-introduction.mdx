@@ -128,8 +128,8 @@ Feature: Todo Meta
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
-    Given the displayed count can be located by css ".todo-count strong"
-     Then the displayed count should be "$<expected-count>"
+    Given the item count can be located by css ".todo-count strong"
+     Then the item count should be "$<expected-count>"
 ```
 
 
@@ -372,7 +372,7 @@ Calls DSL steps:
 
 #### Passing parameters to StepDefs
 
-The last StepDef accepts the number of expected items from the last step in the feature into a parameter placeholder named `expected-count` and then uses that to assert its value against `the displayed count` on the page. In this example, the value 2 will be passed as the parameter.
+The last StepDef accepts the number of expected items from the last step in the feature into a parameter placeholder named `expected-count` and then uses that to assert its value against `the item count` on the page. In this example, the value 2 will be passed as the parameter.
 
 :::note Feature Step 3
 <p>
@@ -391,8 +391,8 @@ The last StepDef accepts the number of expected items from the last step in the 
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
-    Given the displayed count can be located by css ".todo-count strong"
-     Then the displayed count should be "$<expected-count>"
+    Given the item count can be located by css ".todo-count strong"
+     Then the item count should be "$<expected-count>"
 ```
 
 </p>
@@ -431,8 +431,8 @@ For example, the following binding will be permitted since the feature step is d
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
-    Given the displayed count can be located by css ".todo-count strong"
-     Then the displayed count should be "$<expected-count>"
+    Given the item count can be located by css ".todo-count strong"
+     Then the item count should be "$<expected-count>"
 ```
 
 </p>

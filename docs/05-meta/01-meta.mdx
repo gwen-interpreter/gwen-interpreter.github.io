@@ -84,8 +84,8 @@ StepDefs can also be declared to accept parameters using one or more `<param-nam
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
-    Given the displayed count can be located by css ".todo-count strong"
-     Then the displayed count should be "$<expected-count>"
+    Given the item count can be located by css ".todo-count strong"
+     Then the item count should be "$<expected-count>"
 ```
 
 Calls DSL steps:
