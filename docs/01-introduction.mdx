@@ -114,7 +114,7 @@ Feature: Todo Meta
     Given my todo list can be located by css ".todo-list"
      When I navigate to "${todo.page.url}"
      Then the page title should contain "TodoMVC"
-      And my todo list should be hidden
+      And my todo list should not be displayed
   
   @Action
   @DataTable
@@ -163,7 +163,7 @@ The first StepDef in our meta example binds to the first step in the feature and
     Given my todo list can be located by css ".todo-list"
      When I navigate to "${todo.page.url}"
      Then the page title should contain "TodoMVC"
-      And my todo list should be hidden
+      And my todo list should not be displayed
 ```
 
 </p>
@@ -297,7 +297,7 @@ Calls DSL step:
 
 <p> </p>
 
-#### Verifying that an element is hidden from view
+#### Verifying that an element is not displayed
 
 The last step in this StepDef verifies that the web element containing the current list of todo items is hidden from view. We expect it to not be displayed because we haven't added any items to it yet. Recall that we bound this element in the first step earlier to the name `my todo list`. So here we reference it by that name and if Gwen cannot see it on the page then execution will resume, otherwise an assertion error will be raised. 
 
@@ -305,7 +305,7 @@ The last step in this StepDef verifies that the web element containing the curre
 <p>
 
 ```gherkin
-  And my todo list should be hidden
+  And my todo list should not be displayed
 ```
 
 Calls DSL step:
