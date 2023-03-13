@@ -102,11 +102,8 @@
   }
 }
 
-@media (max-width: 996px) {
-  .feature-image {
-    height: 165px;
-    width: 165px;
-  }
+.feature-image {
+  width: 165px;
 }
 
 .dsl:before {
