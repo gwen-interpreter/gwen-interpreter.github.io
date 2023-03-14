@@ -117,8 +117,7 @@ Feature: Todo Meta
       And my todo list should not be displayed
   
   @Action
-  @DataTable
-  @ForEach
+  @DataTable @ForEach
   @StepDef
   Scenario: the following items are added
     Given the todo field can be located by class "new-todo"
@@ -337,11 +336,10 @@ The second StepDef uses the `@DataTable` and `@ForEach` annotations which work t
 :::note StepDef 2
 <p>
 
-```gherkin {2-5}
+```gherkin {2-4}
   @Action
+  @DataTable @ForEach
   @StepDef
-  @DataTable
-  @ForEach
   Scenario: the following items are added
     Given the todo field can be located by class "new-todo"
      When I enter Item in the todo field
