@@ -144,7 +144,7 @@ export default function Home() {
                       <CodeBlock language="shell">
                         {`yarn gwen -b gwen/features/todo.feature`}
                       </CodeBlock>
-                      Execute one feature specExecute all feature specs in a directory
+                      Execute all feature specs in a directory
                       <CodeBlock language="shell">
                         {`yarn gwen -b gwen/features`}
                       </CodeBlock>
@@ -154,7 +154,7 @@ export default function Home() {
                       <CodeBlock language="shell">
                         {`npm run gwen -- -b gwen/features/todo.feature`}
                       </CodeBlock>
-                      Execute one feature specExecute all feature specs in a directory
+                      Execute all feature specs in a directory
                       <CodeBlock language="shell">
                         {`npm run gwen -- -b gwen/features`}
                       </CodeBlock>
@@ -164,7 +164,7 @@ export default function Home() {
                       <CodeBlock language="shell">
                         {`pnpm gwen -b gwen/features/todo.feature`}
                       </CodeBlock>
-                      Execute one feature specExecute all feature specs in a directory
+                      Execute all feature specs in a directory
                       <CodeBlock language="shell">
                         {`pnpm gwen -b gwen/features`}
                       </CodeBlock>
