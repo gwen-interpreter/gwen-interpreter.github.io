@@ -57,7 +57,7 @@ export default function Home() {
             </div>
             <div className="col col--6">
               <h2>Declare features</h2>
-              <p>Write feature specs to describe your scenarios.</p>
+              <p>Write feature specs to describe how scenarios should behave.</p>
               <p>
               <i>File: gwen/features/todo.feature</i>
                 <CodeBlock language="gherkin">
@@ -82,7 +82,7 @@ export default function Home() {
             </div>
             <div className="col col--6">
             <h2>Compose meta</h2>
-              <p>Write meta specs to define your step definitions.</p>
+              <p>Write meta specs to describe how steps will execute.</p>
               <p>
               <i>File: gwen/features/todo.meta</i>
               <CodeBlock language="gherkin">
@@ -129,7 +129,7 @@ export default function Home() {
             </div>
             <div className="col col--6">
             <h2>Launch Gwen</h2>
-              <p>Launch Gwen to execute your features.</p>
+              <p>Launch Gwen to automate execution.</p>
               <p>
                   <Tabs
                     groupId="jstool"
@@ -140,31 +140,31 @@ export default function Home() {
                       {label: 'pnpm', value: 'pnpm'}
                     ]}>
                     <TabItem value="yarn">
-                      Execute one feature
+                      Execute one feature spec
                       <CodeBlock language="shell">
                         {`yarn gwen -b gwen/features/todo.feature`}
                       </CodeBlock>
-                      Execute all features in a directory
+                      Execute one feature specExecute all feature specs in a directory
                       <CodeBlock language="shell">
                         {`yarn gwen -b gwen/features`}
                       </CodeBlock>
                           </TabItem>
                           <TabItem value="npm">
-                          Execute one feature
+                          Execute one feature spec
                       <CodeBlock language="shell">
                         {`npm run gwen -- -b gwen/features/todo.feature`}
                       </CodeBlock>
-                      Execute all features in a directory
+                      Execute one feature specExecute all feature specs in a directory
                       <CodeBlock language="shell">
                         {`npm run gwen -- -b gwen/features`}
                       </CodeBlock>
                     </TabItem>
                     <TabItem value="pnpm">
-                      Execute one feature
+                      Execute one feature spec
                       <CodeBlock language="shell">
                         {`pnpm gwen -b gwen/features/todo.feature`}
                       </CodeBlock>
-                      Execute all features in a directory
+                      Execute one feature specExecute all feature specs in a directory
                       <CodeBlock language="shell">
                         {`pnpm gwen -b gwen/features`}
                       </CodeBlock>
