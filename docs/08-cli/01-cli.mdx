@@ -7,6 +7,7 @@ toc_max_heading_level: 4
 import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Admonition from '@theme/Admonition';
 
 # Gwen CLI
 
@@ -21,29 +22,34 @@ All launch operations can be invoked using the Gwen CLI. To list the usage and a
 ```
 Usage: gwen [options] [files|dirs]
 
-  --version               Print Gwen version
-  --help                  Print CLI usage
-  --parallel              Execute features or scenarios in parallel
-                          - features if gwen.state.level = feature (default)
-                          - scenarios if gwen.state.level = scenario
-  -b, --batch             Exit when execution completes (omit to open REPL)
-  -v, --verbose           Enable verbose log output
-  -d, --debug             Enable breakpoints and interactive debugging
-  -n, --dry-run           Check all syntax and bindings and report errors
-  -c, --conf files        Settings files: conf, json or properties (comma separated)
-  -p, --properties files  Properties files (deprecated, use -c|--conf instead)
-  -r, --report dir        Directory to output generated report(s) to
-  -f, --formats reports   Report formats to include in output (comma separated)
-                          - html,junit,json,rp,none (default is html)
-  -t, --tags filter       Tags to @include or ~@exclude (comma separated)
-  -i, --input-data file   Input data feed (CSV file with column headers)
-  -m, --meta files|dirs   Meta files or directories to load (comma separated)
-  files|dirs              Feature files or directories to execute (space separated)
-Command: init [options] [dir]
-  dir                     Project directory to initialise (default is gwen)
-  --docker                Generate files in project for running Gwen in Docker
-  --jenkins               Generate files in project for running Gwen on Jenkins
-  --force                 Regenerate and overwrite previously initialised files
+  --version                Print Gwen version
+  --help                   Print CLI usage
+  --parallel               Execute features or scenarios in parallel
+                           - features if gwen.state.level = feature (default)
+                           - scenarios if gwen.state.level = scenario
+  -b, --batch              Exit when execution completes (omit to open REPL)
+  -v, --verbose            Enable verbose log output
+  -d, --debug              Enable breakpoints and interactive debugging
+  -n, --dry-run            Check all syntax and bindings and report errors
+  -c, --conf files         Settings files: conf, json or properties (comma separated)
+  -p, --properties files   Properties files (deprecated, use -c|--conf instead)
+  -r, --report dir         Directory to output generated report(s) to
+  -f, --formats reports    Report formats to include in output (comma separated)
+                           - html,junit,json,rp,none (default is html)
+  -t, --tags filter        Tags to @include or ~@exclude (comma separated)
+  -i, --input-data file    Input data feed (CSV file with column headers)
+  -m, --meta files|dirs    Meta files or directories to load (comma separated)
+  files|dirs               Feature files or directories to execute (space separated)
+Command: init [dir]
+Initialise project directory
+  dir                      Project directory to initialise (default is gwen)
+  --docker                 Generate files in project for running Gwen in Docker
+  --jenkins                Generate files in project for running Gwen on Jenkins
+  --force                  Regenerate and overwrite previously initialised files
+Command: format files|dirs
+Format feature and meta files
+  files|dirs               Feature/meta files or dirs to format (space separated)
+  --pretty                 Pretty Gherkin format (default)
 ```
 
 ### Environment variables
@@ -265,8 +271,16 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
     -i, --input-data file   Input data feed (CSV file with column headers)
     -m, --meta files|dirs   Meta files or directories to load (comma separated)
     files|dirs              Feature files or directories to execute (space separated)
-  Command: init [dir]
-    dir                     Project directory to initialise (default is gwen)
+ Command: init [dir]
+ Initialise project directory
+   dir                      Project directory to initialise (default is gwen)
+   --docker                 Generate files in project for running Gwen in Docker
+   --jenkins                Generate files in project for running Gwen on Jenkins
+   --force                  Regenerate and overwrite previously initialised files
+ Command: format files|dirs
+ Format feature and meta files
+   files|dirs               Feature/meta files or dirs to format (space separated)
+   --pretty                 Pretty Gherkin format (default)
   ```
 
   <div class="grid-3">
@@ -2134,7 +2148,7 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
 
 ### Init command
 
-<details id="gwen-cli-options-init">
+<details id="gwen-cli-init">
   <summary class="cli-options">
 
   ```shell
@@ -2149,12 +2163,12 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
   <ul>
     <li><code>[options]</code> Can be one or more space separated switches including:
       <ul>
-        <li><Link to="#gwen-cli-options-init-docker"><code>--docker</code></Link>
+        <li><Link to="#gwen-cli-init-options-docker"><code>--docker</code></Link>
           <ul>
             <li>Include to also generate files in your project for running Gwen in <Link to="/docs/docker">Docker</Link></li>
           </ul>
         </li>
-        <li><Link to="#gwen-cli-options-init-jenkins"><code>--jenkins</code></Link>
+        <li><Link to="#gwen-cli-init-options-jenkins"><code>--jenkins</code></Link>
           <ul>
             <li>Include to also generate a Jenkins pipeline file in your project</li>
           </ul>
@@ -2304,7 +2318,7 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-init">Link</Link></div>
+    <div><Link to="#gwen-cli-init">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
   </div>
@@ -2312,7 +2326,7 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
 
 #### Init options
 
-<details id="gwen-cli-options-init-docker">
+<details id="gwen-cli-init-options-docker">
   <summary class="cli-options">
 
   ```shell
@@ -2386,13 +2400,13 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
   ```
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-init-docker">Link</Link></div>
+    <div><Link to="#gwen-cli-init-options-docker">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.16.0">v3.16.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-init-jenkins">
+<details id="gwen-cli-init-options-jenkins">
   <summary class="cli-options">
 
   ```shell
@@ -2462,8 +2476,189 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
   ```
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-init-jenkins">Link</Link></div>
+    <div><Link to="#gwen-cli-init-options-jenkins">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.16.0">v3.16.0</Link></div>
+  </div>
+</details>
+
+### Pretty format command
+
+<details id="gwen-cli-format-pretty">
+  <summary class="cli-options">
+
+  ```
+  format --pretty <files|dirs>
+  ```
+  <p>Command for formatting feature and meta files for consistent and tidy Gherkin. Pretty formatting involves indenting all Gherkin nodes in a standard manner and removing all comment lines and uncecessary whitespace. Formatted files will be updated in place.</p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li><Link to="#gwen-cli-options-format-pretty"><code>--pretty</code></Link>
+      <ul>
+        <li>Is the pretty formatting option (default)</li>
+        <li>This is currently the default and only supported formatting option</li>
+      </ul>
+    </li>
+    <li><code>&lt;files|dirs&gt;</code> (mandatory) is a space separated list of feature/meta files or directories to format
+    </li>
+  </ul>
+
+  <Admonition type="caution" title="Comment erasure">
+    <p>This command will remove any comment lines you may have in your files. You should restore them manually after running the command if you don't want to lose them.</p>
+  </Admonition>
+
+  <p>Example</p>
+
+  <Tabs
+  groupId="setup"
+  defaultValue="project"
+  values={[
+    {label: 'Project', value: 'project'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="project">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="yarn">
+
+  To format all feature and meta files in the current directory
+  
+  ```shell
+  yarn gwen format --pretty .
+  ```
+
+  To format all feature and meta files in a given directory
+  
+  ```shell
+  yarn gwen format --pretty path/to/dir
+  ```
+
+  To format a single feature file
+  
+  ```shell
+  yarn gwen format --pretty path/to/file.feature
+  ```
+
+  To format a single feature file
+  
+  ```shell
+  yarn gwen format --pretty path/to/file.feature
+  ```
+
+  To format a single meta file
+  
+  ```shell
+  yarn gwen format --pretty path/to/file.meta
+  ```
+
+  </TabItem>
+
+  <TabItem value="npm">
+
+  To format all feature and meta files in the current directory
+  
+  ```shell
+  npm run gwen -- format --pretty .
+  ```
+
+  To format all feature and meta files in a given directory
+  
+  ```shell
+  npm run gwen -- format --pretty path/to/dir
+  ```
+
+  To format a single feature file
+  
+  ```shell
+  npm run gwen -- format --pretty path/to/file.feature
+  ```
+
+  To format a single meta file
+  
+  ```shell
+  npm run gwen -- format --pretty path/to/file.meta
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  To format all feature and meta files in the current directory
+  
+  ```shell
+  pnpm gwen format --pretty .
+  ```
+ 
+  To format all feature and meta files in a given directory
+  
+  ```shell
+  pnpm gwen format --pretty path/to/dir
+  ```
+
+  To format a single feature file
+
+  ```shell
+  pnpm gwen format --pretty path/to/file.feature
+  ```
+
+  To format a single meta file
+  
+  ```shell
+  pnpm gwen format --pretty path/to/file.meta
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>
+
+  <TabItem value="standalone">
+
+  To format all feature and meta files in the current directory
+  
+  ```shell
+  gwen format --pretty .
+  ```
+
+  To format all feature and meta files in a given directory
+  
+  ```shell
+  gwen format --pretty path/to/dir
+  ```
+
+  To format a single feature file
+  
+  ```shell
+  gwen format --pretty path/to/file.feature
+  ```
+
+  To format a single meta file
+  
+  ```shell
+  gwen format --pretty path/to/file.meta
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-cli-format-pretty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.38.0">v3.38.0</Link></div>
   </div>
 </details>
