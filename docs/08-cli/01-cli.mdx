@@ -54,7 +54,7 @@ Format feature and meta files
 
 ### Environment variables
 
-The following environment variables can be set to override configured settings:
+The following environment variables can be set to override certain settings as below:
 
 | Since   | Environment variable | Values                                                                                                    | Overrides setting                                                                 | Affects CLI option                           |
 | :-----: |:-------------------- | --------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- | :------------------------------------------- |
@@ -79,6 +79,8 @@ In addition to the above, you can also pass any number of Java system properties
 - `-J<JVM_OPTION>`
   - To pass a JVM option to the Java process that runs Gwen
   - The `-J` prefix will be stripped and `<JVM_OPTION>` will be passed through
+
+The enviornment variable overrides in the previous section however do have precedence over these.
 
 ### Configurable CLI options
 
