@@ -40,15 +40,15 @@ Ideally you should use one format for all your settings files, but using combina
 
 Settings are loaded in the following order of precedence, with those higher in the list overriding the lower.
 
-1. System properties
-    - Passed to the [Gwen CLI](/docs/cli) as `-Dname=value` pairs
-2. User settings
+1. [Environment variable](/docs/cli#environment-variables) overrides
+2. [System properties](/docs/cli#system-properties-and-jvm-options)
+3. User settings
     - A `gwen.conf`, `gwen.json`, or `gwen.properties` file in your user directory
-3. Launch settings
-    - Comma separated list of `*.conf`, `*.json`, or `*.properies` files passed to the Gwen CLI via the `-c|--conf` launch option (or `-p|--properties` for Gwen versions prior to v3.0.0). These are loaded in the order given with latter entries overriding the former.
-4. Project settings
+4. Launch settings
+    - Comma separated list of `*.conf`, `*.json`, or `*.properies` files passed to the Gwen CLI via the [`-c|--conf`](/docs/cli#gwen-cli-options-conf) launch option (or `-p|--properties` for Gwen versions prior to v3.0.0). These are loaded in the order given with latter entries overriding the former.
+5. Project settings
     - A `gwen.conf`, `gwen.json` or `gwen.properties` file in your root project directory
-5. Default settings
+6. Default settings
     - Internal Gwen defaults
 
 ## Maintaining settings
