@@ -124,7 +124,7 @@ export default function Home() {
                   light: useBaseUrl('/img/icon-gwen-attractor-c.png'),
                   dark: useBaseUrl('/img/icon-gwen-attractor-w.png'),
                 }}
-                className="feature-image"
+                className="attractor-image"
               />
             </div>
             <div className="col col--6">

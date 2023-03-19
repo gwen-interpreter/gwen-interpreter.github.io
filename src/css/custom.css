@@ -102,8 +102,18 @@
   }
 }
 
+@media screen and (min-width: 996px) {
+  h2 {
+    padding-top: 10px;
+  }
+}
+
 .feature-image {
   width: 165px;
+}
+
+.attractor-image {
+  width: 150px;
 }
 
 .dsl:before {
