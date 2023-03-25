@@ -1966,6 +1966,152 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
+<details id="gwen-console-repl-autoSuggestions">
+  <summary class="setting">
+
+  ```properties
+  gwen.console.repl.autoSuggestions
+  ```
+  <p>Controls whether or not auto suggestions based on user history are enabled or not in the REPL console.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable auto suggestions</li>
+    <li><code>false</code> to disable auto suggestions</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      console {
+        repl {
+          autoSuggestions = true
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "console": {
+          "repl": {
+            "autoSuggestions": true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.console.repl.autoSuggestions = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-console-repl-autoSuggestions">Link</Link></div>
+    <div align="center"><div align="center">See also <Link to="/docs/cli/repl#auto-suggestions">REPL Auto Suggestions</Link></div></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.40.0">v3.40.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-console-repl-tabCompletion">
+  <summary class="setting">
+
+  ```properties
+  gwen.console.repl.tabCompletion
+  ```
+  <p>Controls whether or not tab completion is enabled or not in the REPL console.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable tab completion</li>
+    <li><code>false</code> to disable tab completion</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      console {
+        repl {
+          tabCompletion = true
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "console": {
+          "repl": {
+            "tabCompletion": true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.console.repl.tabCompletion = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-console-repl-tabCompletion">Link</Link></div>
+    <div align="center"><div align="center">See also <Link to="/docs/cli/repl#tab-completion">REPL Tab Completion</Link></div></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.40.0">v3.40.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-report-suppress-meta">
   <summary class="setting">
 

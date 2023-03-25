@@ -255,6 +255,9 @@ ctrl-D
 tab
   Press the tab key for tab completion
 
+right-arrow
+  Press right arrow to accept auto suggestion
+
 c|continue|resume
   Continue executing from current breakpoint step (debug mode only)
 
@@ -263,6 +266,16 @@ c|continue|resume
 ### Tab completion
 
 You can press the tab key at any time to lookup and select available commands, [DSL Steps](/docs/dsl/reference) and custom [StepDefs](/docs/meta#stepdefs).
+
+Tab completion is enabled by default. You can disable it by setting [`gwen.console.repl.tabCompletion`](/docs/settings/reference#gwen-console-repl-tabCompletion) to `false`.
+
+### Auto suggestions
+
+> Since [v3.40.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.40.0)
+
+Auto suggestions based on your REPL history will appear in front of the cursor as your type. Pressing the right arrow key will accept them.
+
+Auto suggestions are enabled by default. You can disable them by setting [`gwen.console.repl.autoSuggestions`](/docs/settings/reference#gwen-console-repl-autoSuggestions) to `false`.
 
 ### Paste mode
 

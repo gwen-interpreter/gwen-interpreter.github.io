@@ -40,7 +40,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/cli#pretty-format-command',
+          href: '/docs/cli/repl#auto-suggestions',
           position: 'left',
           label: "What's new?",
         },
