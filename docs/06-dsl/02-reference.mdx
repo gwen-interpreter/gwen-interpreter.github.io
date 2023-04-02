@@ -899,6 +899,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <textRef> should[ not] be blank with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <textRef> should[ not] be blank with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to check
@@ -907,6 +925,8 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
     <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -944,6 +964,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <textRef> should[ not] <match> "<expression>" with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <textRef> should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to check
@@ -966,6 +1004,8 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1003,6 +1043,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <textRef> should[ not] <match> <expressionRef> with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <textRef> should[ not] <match> <expressionRef> with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;variable&gt;</code> is the name of the variable or setting to check</li>
@@ -1025,6 +1083,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1063,6 +1123,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <xmlRef> at xpath "<path>" should[ not>] be blank with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <xmlRef> at xpath "<path>" should[ not>] be blank with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML source text
@@ -1072,6 +1150,8 @@ Feature specs should be declarative and written in the language of your domain a
     </li>
     <li><code>path</code> is the XPath selector expression</li>
     <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1104,6 +1184,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <xmlRef> at xpath "<path>" should[ not>] <match> "<expression>" with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <xmlRef> at xpath "<path>" should[ not>] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML source text
@@ -1127,6 +1225,8 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the expression to match</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1159,6 +1259,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <jsonRef> at json path "<path>" should[ not>] be blank with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <jsonRef> at json path "<path>" should[ not>] be blank with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;jsonRef&gt;</code> is the name of the binding containing the JSON source text
@@ -1168,6 +1286,8 @@ Feature specs should be declarative and written in the language of your domain a
     </li>
     <li><code>path</code> is the <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON path</Link> selector expression</li>
     <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1200,6 +1320,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <jsonRef> at json path "<path>" should[ not>] <match> "<expression>" with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <jsonRef> at json path "<path>" should[ not>] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;jsonRef&gt;</code> is the name of the binding containing the JSON source text
@@ -1223,6 +1361,8 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the expression to match</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1255,9 +1395,29 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <name> should be absent with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <name> should be absent with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name of the binding to check</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1295,10 +1455,30 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <name> should be defined with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <name> should be defined with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name of the binding to check</li>
     <li><code>not</code> negates the check (for absence/non existence)</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1345,6 +1525,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <textRef> should[ not] <match> <percentage>% similar to "<text>"[ ignoring case] with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <textRef> should[ not] <match> <percentage>% similar to "<text>"[ ignoring case] with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;textRef&gt;</code> is the name of the binding containing a text reference
@@ -1364,6 +1562,8 @@ Feature specs should be declarative and written in the language of your domain a
     </li>
     <li><code>&lt;text&gt;</code> is the text to compare <code>&lt;textRef&gt;</code> against</li>
     <li><code> ignoring case</code> ignores case if included</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   The calculated similarity score is implicity bound to the <code>similarity score</code> attribute in the global scope.
   <p>Examples</p>
@@ -1402,6 +1602,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <textRef1> should[ not] <match> <percentage>% similar to <textRef2>[ ignoring case] with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <textRef1> should[ not] <match> <percentage>% similar to <textRef2>[ ignoring case] with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;textRef1&gt;</code> is the name of the binding containing the first text reference
@@ -1426,6 +1644,8 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
     <li><code> ignoring case</code> ignores case if included</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   The calculated similarity score is implicity bound to the <code>similarity score</code> attribute in the global scope.
   <p>Examples</p>
@@ -1683,9 +1903,29 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the current URL should[ not] be blank with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the current URL should[ not] be blank with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1718,6 +1958,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the current URL should[ not] <match> "<expression>" with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the current URL should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
@@ -1735,6 +1993,8 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1768,6 +2028,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the current URL should[ not] <match> <expressionRef> with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the current URL should[ not] <match> <expressionRef> with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
@@ -1789,6 +2067,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1824,9 +2104,29 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the page title should[ not] be blank with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the page title should[ not] be blank with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1858,6 +2158,24 @@ Feature specs should be declarative and written in the language of your domain a
   the page title should[ not] <match> "<expression>"  @Message("my custom assert fail message")
   ```
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the page title should[ not] <match> "<expression>" with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the page title should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
@@ -1875,6 +2193,8 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -1907,6 +2227,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the page title should[ not] <match> <expressionRef> with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the page title should[ not] <match> <expressionRef> with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
@@ -1928,6 +2266,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -3946,6 +4286,24 @@ Feature specs should be declarative and written in the language of your domain a
   <element> should[ not] be <state>  @Message("my custom assert fail message")
   ```
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <element> should[ not] be <state> with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <element> should[ not] be <state> with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to check</li>
@@ -3960,6 +4318,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>disabled</code> to check if the element is disabled</li>
       </ul>
     </li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -3993,6 +4353,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <element> should[ not] <match> "<expression>" with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <element> should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to check</li>
@@ -4011,6 +4389,8 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -4046,6 +4426,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <element> should[ not] <match> <expressionRef> with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <element> should[ not] <match> <expressionRef> with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to check</li>
@@ -4068,6 +4466,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -4104,6 +4504,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <dropdown> <text|value> should[ not] be blank with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <dropdown> <text|value> should[ not] be blank with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;dropdown&gt;</code> is the dropdown element to check</li>
@@ -4114,6 +4532,8 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
     <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -4148,6 +4568,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <dropdown> <text|value> should[ not] <match> "<expression>" with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <dropdown> <text|value> should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;dropdown&gt;</code> is the dropdown element to check</li>
@@ -4172,6 +4610,8 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -4206,6 +4646,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <dropdown> <text|value> should[ not] <match> <expressionRef> with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  <dropdown> <text|value> should[ not] <match> <expressionRef> with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>&lt;dropdown&gt;</code> is the dropdown element to check</li>
@@ -4234,6 +4692,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -5014,9 +5474,29 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the <alert|confirmation> popup message should[ not] be blank with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the <alert|confirmation> popup message should[ not] be blank with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -5052,6 +5532,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the <alert|confirmation> popup message should[ not] <match> "<expression>" with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the <alert|confirmation> popup message should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
@@ -5069,6 +5567,8 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
@@ -5103,6 +5603,24 @@ Feature specs should be declarative and written in the language of your domain a
   ```
 
   </p>
+  <hr/>
+  <p>
+  <p>Or with no timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the <alert|confirmation> popup message should[ not] <match> <expressionRef> with no <wait|timeout>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>Or with custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+
+  ```gherkin
+  the <alert|confirmation> popup message should[ not] <match> <expressionRef> with <timeoutSecs> second <wait|timeout>
+  ```
+  
+  </p>
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
@@ -5124,6 +5642,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
   <p>Example</p>
 
