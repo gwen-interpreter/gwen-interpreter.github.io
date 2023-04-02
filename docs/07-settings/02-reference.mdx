@@ -21,7 +21,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>hard</code> to halt feature execution on the first assertion error and report failure</li>
+    <li><code>hard</code> to halt feature execution on the first assertion error and report failure (default)</li>
     <li><code>soft</code> to collect all assertion errors and continue execution whilst reporting failures</li>
     <li><code>sustained</code> to collect all assertion errors and continue execution without reporting failures</li>
   </ul>
@@ -91,7 +91,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to enable association
+    <li><code>true</code> to enable association (default)
       <ul>
         <li>Gwen will load a discovered meta file only if it has the same name and is in the same directory as the current feature being executed.</li>
       </ul>
@@ -196,7 +196,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> (default) to bind table data to same named attributes in the current scope for each row</li>
+    <li><code>true</code> to bind table data to same named attributes in the current scope for each row (default)</li>
     <li><code>false</code> to not bind table data to attributes in the current scope</li>
   </ul>
   <Tabs
@@ -278,7 +278,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to enable</li>
-    <li><code>false</code> to disable
+    <li><code>false</code> to disable (default)
       <ul>
         <li>Prevents Gwen from automatically discovering and loading CSV files in the path of an executing feature, forcing the user to explicitly specify the CSV file to load through the <Link to="/docs/cli#gwen-cli-options-input-data"><code>-i|--input-data</code></Link> CLI option at launch time.</li>
       </ul>
@@ -395,7 +395,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to trim the CSV data</li>
-    <li><code>false</code> to not trim the CSV data</li>
+    <li><code>false</code> to not trim the CSV data (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -472,7 +472,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to enable</li>
+    <li><code>true</code> to enable (default)</li>
     <li><code>false</code> to disable
       <ul>
         <li>Prevents Gwen from automatically discovering and loading meta files in the path of an executing feature, forcing the user to load meta explicitly through the <Link to="/docs/cli#gwen-cli-options-meta"><code>-m|--meta</code></Link> CLI option or <Link to="/docs/meta/load-strategies#import-strategy">meta imports</Link>.</li>
@@ -551,7 +551,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>strict</code> to enforce the following strict rules:
+    <li><code>strict</code> to enforce the following strict rules (default):
       <ul>
         <li>Steps in scenarios and backgrounds must satisfy Given-When-Then order</li>
         <li>Givens must set context</li>
@@ -667,7 +667,7 @@ import TabItem from '@theme/TabItem';
       A positive integer representing the the maximum number of records to include
       <ul>
         <li>
-          or <code>infinity</code> to log all records
+          or <code>infinity</code> to log all records (default)
         </li>
       </ul>
     </li>
@@ -755,7 +755,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to include locator information</li>
-    <li><code>false</code> to exclude locator information</li>
+    <li><code>false</code> to exclude locator information (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -867,7 +867,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A spoken <Link to="https://cucumber.io/docs/gherkin/languages/">language ID</Link></li>
+    <li>A spoken <Link to="https://cucumber.io/docs/gherkin/languages/">language ID</Link> (default = <code>en</code>)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -937,7 +937,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to enable
+    <li><code>true</code> to enable (default)
       <ul>
         <li>Will fail a feature as soon as the first scenario fails before resuming with the next feature.</li>
       </ul>
@@ -1019,7 +1019,7 @@ import TabItem from '@theme/TabItem';
         <li>Will fail a feature as soon as the first scenario fails and exit immediately.</li>
       </ul>
     </li>
-    <li><code>false</code> to disable
+    <li><code>false</code> to disable (default)
       <ul>
         <li>Will resume with the next feature if the previous one fails.</li>
       </ul>
@@ -1095,7 +1095,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>declarative</code>
+    <li><code>declarative</code> (default)
       <ul>
         <li>DSL steps not permitted in feature specs</li>
         <li>Consider enabling <Link to="/docs/settings/reference#gwen-associative-meta">gwen.associative.meta</Link> with this option</li>
@@ -1205,7 +1205,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>Any single character</li>
+    <li>Any single character (default = <code>*</code>)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -1273,7 +1273,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A relative or absolute directory location
+    <li>A relative or absolute directory location (default = <code>gwen</code>)
       <ul>
         <li>The output directory</li>
       </ul>
@@ -1419,7 +1419,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A relative or absolute directory location
+    <li>A relative or absolute directory location (default = <code>$&#123;gwen.baseDir&#125;/output</code>)
       <ul>
         <li>The output directory</li>
       </ul>
@@ -1440,7 +1440,7 @@ import TabItem from '@theme/TabItem';
   
   ```json
     gwen {
-      outDir = "{gwen.baseDir}/output"
+      outDir = "${gwen.baseDir}/output"
     }
   ```
 
@@ -1452,7 +1452,7 @@ import TabItem from '@theme/TabItem';
   ```json
     {
       "gwen": {
-        "outDir": "{gwen.baseDir}/output"
+        "outDir": "${gwen.baseDir}/output"
       }
     }
   ```
@@ -1487,7 +1487,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>auto</code> (since v3.18.0) or <code>0</code> to run one thread on each available cores</li>
+    <li><code>auto</code> (since v3.18.0) or <code>0</code> to run one thread on each available cores (default)</li>
     <li>Or positive integer value denoting the maximum number of threads to allow
       <ul>
         <li>When less than the number of available cores, the remaining cores will be free</li>
@@ -1561,7 +1561,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li>A positive integer denoting the number of seconds to wait before executing successive features in parallel</li>
-    <li>Zero for no interval or delay between successive feature executions</li>
+    <li>Zero for no interval or delay between successive feature executions (default)</li>
   </ul>
   <p>
     <br/>Example: A 5 second interval would stagger parallel feature executions like this over 4 cores:<br/><br/>
@@ -1646,7 +1646,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to overwrite previous report</li>
+    <li><code>true</code> to overwrite previous report (default)</li>
     <li><code>false</code> to backup previous report into a timestamped directory</li>
   </ul>
   <Tabs
@@ -1715,7 +1715,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A positive integer representing the indent size in pixels</li>
+    <li>A positive integer representing the indent size in pixels (default = <code>20</code>)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -1791,7 +1791,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to use colors</li>
+    <li><code>true</code> to use colors (default)</li>
     <li><code>false</code> to not use colors</li>
   </ul>
   <Tabs
@@ -1865,7 +1865,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li>
-      A positive integer representing the step depth to log to
+      A positive integer representing the step depth to log to (default = <code>1</code>)
       <ul>
         <li>
           or <code>infinity</code> to log to all depths
@@ -1976,7 +1976,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to enable auto suggestions</li>
+    <li><code>true</code> to enable auto suggestions (default)</li>
     <li><code>false</code> to disable auto suggestions</li>
   </ul>
   <Tabs
@@ -2049,7 +2049,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to enable tab completion</li>
+    <li><code>true</code> to enable tab completion (default)</li>
     <li><code>false</code> to disable tab completion</li>
   </ul>
   <Tabs
@@ -2122,7 +2122,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to suppress meta</li>
+    <li><code>true</code> to suppress meta (default)</li>
     <li><code>false</code> to include meta</li>
   </ul>
   <Tabs
@@ -2227,7 +2227,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A positive integer denoting the number of frames per second</li>
+    <li>A positive integer denoting the number of frames per second (default = <code>4</code>)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -2299,7 +2299,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>feature</code> for feature level state that is shared across scenarios in a feature (each feature gets a new state)</li>
+    <li><code>feature</code> for feature level state that is shared across scenarios in a feature (each feature gets a new state) (default)</li>
     <li><code>scenario</code> for scenario level state that is not shared across scenarios (each scenario gets a new state)</li>
   </ul>
   <Tabs
@@ -2374,7 +2374,7 @@ import TabItem from '@theme/TabItem';
   </p>
   <p>Supported values</p>
   <ul>
-    <li>A relative or absolute directory location</li>
+    <li>A relative or absolute directory location (default = <code>$&#123;gwen.outDir&#125;/.video</code>)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -2392,7 +2392,7 @@ import TabItem from '@theme/TabItem';
   ```json
     gwen {
       video {
-        dir = {gwen.outDir}/.video
+        dir = ${gwen.outDir}/.video
       }
     }
   ```
@@ -2406,7 +2406,7 @@ import TabItem from '@theme/TabItem';
     {
       "gwen": {
         "video": {
-          "dir": "{gwen.outDir}/.video"
+          "dir": "${gwen.outDir}/.video"
         }
       }
     }
@@ -2448,7 +2448,7 @@ import TabItem from '@theme/TabItem';
   </p>
   <p>Supported values</p>
   <ul>
-    <li>A number of seconds wo wait</li>
+    <li>A number of seconds wo wait (default = <code>10</code>)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -2519,7 +2519,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to accept</li>
+    <li><code>true</code> to accept (default)</li>
     <li><code>false</code> to decline</li>
   </ul>
   <Tabs
@@ -2596,7 +2596,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to permit</li>
-    <li><code>false</code> to deny</li>
+    <li><code>false</code> to deny (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -2670,9 +2670,9 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>The name of the browser <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/browsers</i> folder to load by default if no other browser settings file is explicitly passed via the <Link to ="/docs/cli#gwen-cli-options-conf"><code>-c/--config</code></Link> CLI option
+    <li>The name of the browser <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/browsers</i> folder to load if no other browser settings file is explicitly passed via the <Link to ="/docs/cli#gwen-cli-options-conf"><code>-c/--config</code></Link> CLI option
     <ul>
-      <li><code>chrome</code> for Chrome browser</li>
+      <li><code>chrome</code> for Chrome browser (default)</li>
       <li><code>firefox</code> for Firefox browser</li>
       <li><code>safari</code> for Safari browser</li>
       <li><code>edge</code> for Edge browser, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.35.0">v2.35.0</Link></li>
@@ -2746,11 +2746,11 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li>
-      The name of the environment <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/env</i> folder to load by default if no other environment settings file is explicitly passed via the <Link to ="/docs/cli#gwen-cli-options-conf"><code>-c/--config</code></Link> CLI option
+      The name of the environment <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/env</i> folder to load if no other environment settings file is explicitly passed via the <Link to ="/docs/cli#gwen-cli-options-conf"><code>-c/--config</code></Link> CLI option
       <ul>
         <li><code>local</code> for your local development environment</li>
         <li><code>dev</code> for your dedicated development environment</li>
-        <li><code>test</code> for your dedicated test environment</li>
+        <li><code>test</code> for your dedicated test environment (default)</li>
         <li><code>staging</code> for your dedicated staging environment</li>
         <li><code>prod</code> for your production environment</li>
         <li>Or the name of any other environment file you may create in your <i>gwen/env</i> folder</li>
@@ -2767,7 +2767,17 @@ import TabItem from '@theme/TabItem';
   ]}>
   <TabItem value="conf">
 
-  Default value
+  Default value (since v3.41.0)
+
+  ```json
+    gwen {
+      target {
+        env  = "test"
+      }
+    }
+  ```
+
+  Default value in prior versions
 
   ```json
     gwen {
@@ -2780,7 +2790,19 @@ import TabItem from '@theme/TabItem';
   </TabItem>
   <TabItem value="json">
 
-  Default value 
+  Default value (since v3.41.0)
+
+  ```json
+    {
+      "gwen": {
+        "target": {
+          "env": "test"
+        }
+      }
+    }
+  ```
+
+  Default value in prior versions
 
   ```json
     {
@@ -2795,7 +2817,13 @@ import TabItem from '@theme/TabItem';
   </TabItem>
   <TabItem value="properties">
 
-  Default value
+  Default value (since v3.41.0)
+
+  ```properties
+    gwen.target.env = test
+  ```
+
+  Default value in prior versions
 
   ```properties
     gwen.target.env = local
@@ -2823,7 +2851,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to run headless</li>
-    <li><code>false</code> to not run headless</li>
+    <li><code>false</code> to not run headless (default)</li>
   </ul>
   <p><br/>Notes</p>
   Headless mode is supported for Chrome, Firefox, and Edge browsers only.
@@ -3077,7 +3105,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to enable</li>
-    <li><code>false</code> to disable</li>
+    <li><code>false</code> to disable (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -3154,7 +3182,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to enable</li>
-    <li><code>false</code> to disable</li>
+    <li><code>false</code> to disable (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -3231,7 +3259,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to keep duplicates</li>
-    <li><code>false</code> to discard duplicates</li>
+    <li><code>false</code> to discard duplicates (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -3307,7 +3335,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>SeleniumManager</code> to use the <Link to="https://www.selenium.dev/blog/2022/introducing-selenium-manager/">SeleniumManager</Link></li>
+    <li><code>SeleniumManager</code> to use the <Link to="https://www.selenium.dev/blog/2022/introducing-selenium-manager/">SeleniumManager</Link> (default)</li>
     <li><code>WebDriverManager</code> to use the <Link to="https://bonigarcia.dev/webdrivermanager//">WebDriverManager</Link></li>
   </ul>
   <Tabs
@@ -3380,7 +3408,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>HTML style strings</li>
+    <li>HTML style strings (default = <code>background: yellow; border: 2px solid gold;</code>)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -3452,7 +3480,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to enable auto focus</li>
+    <li><code>true</code> to enable auto focus (default)</li>
     <li><code>false</code> to disable auto focus</li>
   </ul>
   <Tabs
@@ -3529,8 +3557,8 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to enable auto moveTo</li>
-    <li><code>false</code> to disable auto moveto</li>
+    <li><code>true</code> to enable auto move to</li>
+    <li><code>false</code> to disable auto move to (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -3607,7 +3635,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to enable</li>
-    <li><code>false</code> to disable</li>
+    <li><code>false</code> to disable (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -3683,9 +3711,8 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A positive integer denoting a number of seconds</li>
+    <li>A positive integer denoting a number of seconds (default = <code>1</code>)</li>
   </ul>
-  Default value:
   <Tabs
   groupId="settings"
   defaultValue="conf"
@@ -3733,7 +3760,7 @@ import TabItem from '@theme/TabItem';
   </TabItem>
   <TabItem value="properties">
 
-  Example
+  Default value
 
   ```properties
     gwen.web.locator.wait.seconds = 1
@@ -3750,6 +3777,82 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
+<details id="gwen-web-assertions-wait-seconds">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.assertions.wait.seconds
+  ```
+  <p>Sets the time to wait for assertions to pass before timing out.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A zero or positive integer denoting a number of seconds (default = <code>1</code>)</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        assertions {
+          wait {
+            seconds = 1
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "assertions": {
+            "wait": {
+              "seconds": 1
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.assertions.wait.seconds = 1
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-assertions-wait-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.19.0">v2.19.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-web-maximize">
   <summary class="setting">
 
@@ -3761,7 +3864,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to maximize</li>
-    <li><code>false</code> to not maximize</li>
+    <li><code>false</code> to not maximize (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -3830,7 +3933,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to enable</li>
-    <li><code>false</code> to disable</li>
+    <li><code>false</code> to disable (default)</li>
   </ul>
   <p><br/>This setting is ignored if <Link to="/docs/settings/reference#gwen-web-remote-url"><code>gwen.web.remote.url</code></Link> is not set.</p>
   <Tabs
@@ -3972,7 +4075,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to clear first</li>
-    <li><code>false</code> to not clear first</li>
+    <li><code>false</code> to not clear first (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -4045,7 +4148,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to click first</li>
-    <li><code>false</code> to not click first</li>
+    <li><code>false</code> to not click first (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -4117,7 +4220,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A positive integer denoting a number of milliseconds. Set to zero for maxmum speed with no highlighting.</li>
+    <li>A positive integer denoting a number of milliseconds. Set to zero for maxmum speed with no highlighting (default = <code>100</code>).</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -4257,7 +4360,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A positive integer denoting a number of seconds</li>
+    <li>A positive integer denoting a number of seconds (default = <code>10</code>)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -5577,7 +5680,7 @@ import TabItem from '@theme/TabItem';
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to suppress</li>
-    <li><code>false</code> to not suppress</li>
+    <li><code>false</code> to not suppress (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -5647,12 +5750,12 @@ import TabItem from '@theme/TabItem';
   ```properties
   gwen.cli.options.parallel
   ```
-  <p>Controls whether or not the <code>--parallel</code> switch will be passed to the Gwen CLI by default.</p>
+  <p>Controls whether or not the <code>--parallel</code> switch will be passed to the Gwen CLI.</p>
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to always launch Gwen in parallel execution mode by default</li>
-    <li><code>false</code> to only launch Gwen in parallel execution mode if the <code>--parallel</code> switch is explicitly passed.</li>
+    <li><code>true</code> to always launch Gwen in parallel execution mode</li>
+    <li><code>false</code> to only launch Gwen in parallel execution mode if the <code>--parallel</code> switch is explicitly passed (default).</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -5722,12 +5825,12 @@ import TabItem from '@theme/TabItem';
   ```properties
   gwen.cli.options.batch
   ```
-  <p>Controls whether or not the <code>-b|--batch</code> switch will be passed to the Gwen CLI by default.</p>
+  <p>Controls whether or not the <code>-b|--batch</code> switch will be passed to the Gwen CLI.</p>
   </summary>
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to always launch Gwen in batch mode and disable the <Link to="/docs/cli/repl">REPL</Link>.</li>
-    <li><code>false</code> to launch Gwen in batch mode if the <code>-b|--batch</code> switch is explicitly passed and in REPL mode if it is not.</li>
+    <li><code>false</code> to launch Gwen in batch mode if the <code>-b|--batch</code> switch is explicitly passed and in REPL mode if it is not (default).</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -5797,12 +5900,12 @@ import TabItem from '@theme/TabItem';
   ```properties
   gwen.cli.options.verbose
   ```
-  <p>Controls whether or not the <code>-v|--verbose</code> switch will be passed to the Gwen CLI by default.</p>
+  <p>Controls whether or not the <code>-v|--verbose</code> switch will be passed to the Gwen CLI.</p>
   </summary>
   <p>Supported values</p>
   <ul>
     <li><code>true</code> for verbose logging mode</li>
-    <li><code>false</code> for pretty logging mode</li>
+    <li><code>false</code> for pretty logging mode (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -5872,12 +5975,12 @@ import TabItem from '@theme/TabItem';
   ```properties
   gwen.cli.options.dryRun
   ```
-  <p>Controls whether or not the <code>-n|--dry-run</code> switch will be passed to the Gwen CLI by default.</p>
+  <p>Controls whether or not the <code>-n|--dry-run</code> switch will be passed to the Gwen CLI.</p>
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to always launch Gwen in dry run mode by default</li>
-    <li><code>false</code> to only launch Gwen in dry run mode if the <code>-n|--dry-run</code> switch is explicitly passed.</li>
+    <li><code>true</code> to always launch Gwen in dry run mode</li>
+    <li><code>false</code> to only launch Gwen in dry run mode if the <code>-n|--dry-run</code> switch is explicitly passed (default).</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -5947,11 +6050,11 @@ import TabItem from '@theme/TabItem';
   ```properties
   gwen.cli.options.report
   ```
-  <p>Sets the <code>-r|--report</code> option to pass to the Gwen CLI by default.</p>
+  <p>Sets the <code>-r|--report</code> option to pass to the Gwen CLI.</p>
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A path to a directory to output all reports to.</li>
+    <li>A path to a directory to output all reports to (default = <code>$&#123;gwen.outDir&#125;/reports</code>).</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -6019,18 +6122,18 @@ import TabItem from '@theme/TabItem';
   ```properties
   gwen.cli.options.format
   ```
-  <p>Sets the <code>-f|--format</code> option to pass to the Gwen CLI by default.</p>
+  <p>Sets the <code>-f|--format</code> option to pass to the Gwen CLI.</p>
   </summary>
   
   <p>Supported values</p>
   <ul>
     <li>A list of zero or more of the following:
       <ul>
-        <li><code>html</code> to output <Link to="/docs/reports/html">HTML reports</Link> by default</li>
-        <li><code>junit</code> to output <Link to="/docs/reports/junit-xml">JUnit-XML reports</Link> by default</li>
-        <li><code>json</code> to output <Link to="/docs/reports/json">JSON reports</Link> by default</li>
-        <li><code>rp</code> to log results to a <Link to="/docs/reports/portal">Report Portal</Link> server by default</li>
-        <li><code>none</code> to not output any reports by default</li>
+        <li><code>html</code> to output <Link to="/docs/reports/html">HTML reports</Link></li>
+        <li><code>junit</code> to output <Link to="/docs/reports/junit-xml">JUnit-XML reports</Link></li>
+        <li><code>json</code> to output <Link to="/docs/reports/json">JSON reports</Link></li>
+        <li><code>rp</code> to log results to a <Link to="/docs/reports/portal">Report Portal</Link> server</li>
+        <li><code>none</code> to not output any reports</li>
       </ul>
     </li>
   </ul>
@@ -6146,7 +6249,7 @@ Default value (empty to pick up Gwen default format: html)
   ```properties
   gwen.cli.options.tags
   ```
-  <p>Sets the <code>-t|--tags</code> option to pass to the Gwen CLI by default.</p>
+  <p>Sets the <code>-t|--tags</code> option to pass to the Gwen CLI.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -6262,7 +6365,7 @@ Default value (empty to pick up Gwen default format: html)
   ```properties
   gwen.cli.options.inputData
   ```
-  <p>Sets the <code>-i|--input-data</code> option to pass to the Gwen CLI by default.</p>
+  <p>Sets the <code>-i|--input-data</code> option to pass to the Gwen CLI.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -6368,7 +6471,7 @@ Default value (empty to pick up Gwen default format: html)
   ```properties
   gwen.cli.options.meta
   ```
-  <p>Sets the <code>-m|--meta</code> option to pass to the Gwen CLI by default.</p>
+  <p>Sets the <code>-m|--meta</code> option to pass to the Gwen CLI.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -6484,7 +6587,7 @@ Default value (empty to pick up Gwen default format: html)
   ```properties
   gwen.cli.options.features
   ```
-  <p>Sets the list of feature files or directories to pass to the Gwen CLI by default.</p>
+  <p>Sets the list of feature files or directories to pass to the Gwen CLI.</p>
   </summary>
   <p>Supported values</p>
   <ul>

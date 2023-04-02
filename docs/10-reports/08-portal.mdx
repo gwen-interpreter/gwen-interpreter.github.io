@@ -335,7 +335,7 @@ In addition to the standard Report Portal [client properties](https://github.com
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-meta-true.png')} />
       <hr />
     </li>
-    <li><code>false</code> to not send meta results
+    <li><code>false</code> to not send meta results (default)
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-meta-false.png')} /><br />
     </li>
   </ul>
@@ -419,7 +419,7 @@ In addition to the standard Report Portal [client properties](https://github.com
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-stepDefs-nested.png')} />
       <hr />
     </li>
-    <li><code>none</code> to not send StepDefs
+    <li><code>none</code> to not send StepDefs (default)
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-stepDefs-none.png')} />
     </li>
   </ul>
@@ -495,7 +495,7 @@ In addition to the standard Report Portal [client properties](https://github.com
   <p>Only honoured when <Link to= "#gwen-rp-send-stepDefs">`gwen.rp.send.stepDefs`</Link> = <code>none</code>.</p>
   <p>Supported values</p>
   <ul>
-    <li><code>inlined</code> to inline failed StepDefs as log messages
+    <li><code>inlined</code> to inline failed StepDefs as log messages (default)
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-stepDefs-inlined.png')} />
       <hr />
     </li>
@@ -590,7 +590,7 @@ In addition to the standard Report Portal [client properties](https://github.com
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorTrace-inlined.png')} />
       <hr />
     </li>
-    <li><code>none</code> to not send error traces
+    <li><code>none</code> to not send error traces (default)
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorTrace-none.png')} />
     </li>
   </ul>
@@ -678,7 +678,7 @@ In addition to the standard Report Portal [client properties](https://github.com
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-envTrace-inlined.png')} />
       <hr />
     </li>
-    <li><code>none</code> to not send environment traces
+    <li><code>none</code> to not send environment traces (default)
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-envTrace-none.png')} />
     </li>
   </ul>
@@ -762,7 +762,7 @@ In addition to the standard Report Portal [client properties](https://github.com
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-hierarchy-attached.png')} />
       <hr />
     </li>
-    <li><code>inlined</code> to inline call trace hierarchies as log messages
+    <li><code>inlined</code> to inline call trace hierarchies as log messages (default)
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-hierarchy-inlined.png')} />
       <hr />
     </li>
@@ -850,7 +850,7 @@ In addition to the standard Report Portal [client properties](https://github.com
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-breadcrumbs-true.png')} />
       <hr />
     </li>
-    <li><code>false</code> to not send breadcrumbs
+    <li><code>false</code> to not send breadcrumbs (default)
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-breadcrumbs-false.png')} />
     </li>
   </ul>
@@ -934,7 +934,7 @@ In addition to the standard Report Portal [client properties](https://github.com
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorBlocks-leaf.png')} />
       <hr />
     </li>
-    <li><code>none</code> to not send error blocks
+    <li><code>none</code> to not send error blocks (default)
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-failed-errorBlocks-none.png')} />
       <hr />
     </li>
@@ -1016,7 +1016,7 @@ In addition to the standard Report Portal [client properties](https://github.com
   <p>Tags are arbitrary labels on a feature or scenario, e.g: @Todo, @Wip, @UAT</p>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to send tags
+    <li><code>true</code> to send tags (default)
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-tags-true.png')} />
       <hr />
     </li>
@@ -1098,7 +1098,7 @@ In addition to the standard Report Portal [client properties](https://github.com
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to send annotations</li>
-    <li><code>false</code> to not send annotations</li>
+    <li><code>false</code> to not send annotations (default)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -1172,7 +1172,7 @@ In addition to the standard Report Portal [client properties](https://github.com
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to log inlined steps in markdown blocks
+    <li><code>true</code> to log inlined steps in markdown blocks (default)
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-send-markdownBlocks-true.png')} />
       <hr />
     </li>
@@ -1252,7 +1252,7 @@ In addition to the standard Report Portal [client properties](https://github.com
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to enable heartbeats
+    <li><code>true</code> to enable heartbeats (default)
       <ul>
         <li>Gwen will send a HTTP GET request to the Report Portal health endpoint before executing the first step in each Scenario and fail it if a non 200 response or bad health status is returned.</li>
       </ul>
@@ -1332,7 +1332,7 @@ In addition to the standard Report Portal [client properties](https://github.com
   <p>Only honoured when <Link to= "#gwen-rp-heartbeat-enabled">`gwen.rp.heartbeat.enabled`</Link> = <code>true</code></p>
   <p>Supported values</p>
   <ul>
-    <li>A positive integer denoting the number of seconds to wait for a heartbeat response before timing out.
+    <li>A positive integer denoting the number of seconds to wait for a heartbeat response before timing out (default = <code>3</code>).
       <ul>
         <li>If the connection cannot be established within the set timeout period, then Gwen will fail fast and report a timeout error.</li>
       </ul>
@@ -1410,7 +1410,7 @@ In addition to the standard Report Portal [client properties](https://github.com
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>nodePath+params</code> to generate test case IDs based on the node path and parameters</li>
+    <li><code>nodePath+params</code> to generate test case IDs based on the node path and parameters (default)</li>
     <li><code>sourceRef+params</code> to generate test case IDs based on the source reference and parameters </li>
     <li><code>auto</code> to use the default automatic test case ID generation mechanism of the <Link to="https://github.com/reportportal/client-java">client-java</Link> RP library (codeRef + params)</li>
   </ul>
@@ -1490,7 +1490,7 @@ In addition to the standard Report Portal [client properties](https://github.com
       <img src={useBaseUrl('/img/reports/portal/gwen-rp-debug-true.png')} />
       <hr />
     </li>
-    <li><code>false</code> to not log debug messages in Report Portal</li>
+    <li><code>false</code> to not log debug messages in Report Portal (default)</li>
   </ul>
   <Tabs
   groupId="settings"

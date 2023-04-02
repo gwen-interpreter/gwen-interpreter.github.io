@@ -172,7 +172,7 @@ All the default [settings](/docs/settings) for your project are pre-configured i
 
 #### Default web browser and target environment
 
-Gwen is configured to target the Chrome browser and your *local* environment by default. To change these, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) and [<code>gwen.target.env</code>](/docs/settings/reference#gwen-target-env) settings to your preferred values.
+Gwen is configured to target the Chrome browser and your *test* environment by default. To change these, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) and [<code>gwen.target.env</code>](/docs/settings/reference#gwen-target-env) settings to your preferred values.
 
 :::note Amend settings
 
@@ -192,7 +192,7 @@ Gwen is configured to target the Chrome browser and your *local* environment by 
 gwen {
   target {
     browser = "chrome"            # chrome|firefox|safari|edge|ie
-    env = "local"                 # local|dev|test|staging|prod|..
+    env = "test"                  # local|dev|test|staging|prod|..
   }
 }
 ```
@@ -207,7 +207,7 @@ gwen {
   "gwen": {
     "target": {
       "browser": "chrome"
-      "env": "local"
+      "env": "test"
     }
   }
 }
@@ -220,7 +220,7 @@ gwen {
 
 ```properties {1, 2}
 gwen.target.browser = chrome
-gwen.target.env = local
+gwen.target.env = test
 ```
 
 </TabItem>
@@ -450,7 +450,7 @@ All the default [settings](/docs/settings) for your project are pre-configured i
 
 #### Default web browser and target environment
 
-Gwen is configured to target the Chrome browser and your *local* environment by default. To change these, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) and [<code>gwen.target.env</code>](/docs/settings/reference#gwen-target-env) settings to your preferred values.
+Gwen is configured to target the Chrome browser and your *test* environment by default. To change these, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) and [<code>gwen.target.env</code>](/docs/settings/reference#gwen-target-env) settings to your preferred values.
 
 :::note Amend settings
 
@@ -470,7 +470,7 @@ Gwen is configured to target the Chrome browser and your *local* environment by 
 gwen {
   target {
     browser = "chrome"            # chrome|firefox|safari|edge|ie
-    env = "local"                 # local|dev|test|staging|prod|..
+    env = "test"                  # local|dev|test|staging|prod|..
   }
 }
 ```
@@ -485,7 +485,7 @@ gwen {
   "gwen": {
     "target": {
       "browser": "chrome"
-      "env": "local"
+      "env": "test"
     }
   }
 }
@@ -498,7 +498,7 @@ gwen {
 
 ```properties {1, 2}
 gwen.target.browser = chrome
-gwen.target.env = local
+gwen.target.env = test
 ```
 
 </TabItem>
