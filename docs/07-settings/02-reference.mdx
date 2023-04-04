@@ -2585,18 +2585,18 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
-<details id="gwen-web-asserts-retryonfail">
+<details id="gwen-web-assertions-maxRetries">
   <summary class="setting">
 
   ```properties
-  gwen.web.asserts.retryOnFail
+  gwen.web.assertions.maxRetries
   ```
-  <p>Controls whether or not to enable or disable retries on failed assertions.</p>
+  <p>Control the maximum number of times to retry failed assertions before timing out.</p>
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to retry failed assertions until they succeed or a timeout occurs</li>
-    <li><code>false</code> to not retry failed assertions and fail fast before timeout (default)</li>
+    <li>A positive integer denoting the maximum number times to retry (default = <code>2</code>)</li>
+    <li><code>infinity</code> to continually retry an unlimited number of times before timing out</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -2609,13 +2609,25 @@ import TabItem from '@theme/TabItem';
 
   <TabItem value="conf">
 
-  Default value
+  Default value (since v3.41.0)
 
   ```json
     gwen {
       web {
-        asserts {
-          retryOnFail = false
+        assertions {
+          maxRetries = 2
+        }
+      }
+    }
+  ```
+
+  Default value in prior versions
+
+  ```json
+    gwen {
+      web {
+        assertions {
+          maxRetries = "infinity"
         }
       }
     }
@@ -2624,14 +2636,28 @@ import TabItem from '@theme/TabItem';
   </TabItem>
   <TabItem value="json">
 
-  Default value
+  Default value (since v3.41.0)
 
   ```json
     {
       "gwen": {
         "web": {
-          "asserts": {
-            "retryOnFail": false
+          "assertions": {
+            "maxRetries": 2
+          }
+        }
+      }
+    }
+  ```
+
+  Default value in prior versions
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "assertions": {
+            "maxRetries": "inifinity"
           }
         }
       }
@@ -2641,10 +2667,16 @@ import TabItem from '@theme/TabItem';
   </TabItem>
   <TabItem value="properties">
 
-  Default value
+  Default value (since v3.41.0)
 
   ```properties
-    gwen.web.asserts.retryOnFail = false
+    gwen.web.assertions.maxRetries = 2
+  ```
+
+  Default value in prior versions
+
+  ```properties
+    gwen.web.assertions.maxRetries = infinity
   ```
 
   </TabItem>
@@ -2652,9 +2684,9 @@ import TabItem from '@theme/TabItem';
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-web-asserts-retryonfail">Link</Link></div>
+    <div><Link to="#gwen-web-assertions-maxRetries">Link</Link></div>
     <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v1.0.0</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link></div>
   </div>
 </details>
 
