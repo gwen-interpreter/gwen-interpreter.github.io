@@ -40,7 +40,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/cli/repl#auto-suggestions',
+          href: '/docs/settings/reference#gwen-web-assertions-maxStrikes',
           position: 'left',
           label: "What's new?",
         },

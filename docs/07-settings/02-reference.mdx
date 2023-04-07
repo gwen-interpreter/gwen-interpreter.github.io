@@ -1860,7 +1860,7 @@ import TabItem from '@theme/TabItem';
   ```properties
   gwen.console.log.depth
   ```
-  <p>Controls the step logging depth in the console report output.</p>
+  <p>Controls the step logging depth in the console report output at evaluation time (excluding dry run mode which unconditionally logs all levels as of v3.41.0)</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -2585,18 +2585,18 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
-<details id="gwen-web-assertions-maxRetries">
+<details id="gwen-web-assertions-maxStrikes">
   <summary class="setting">
 
   ```properties
-  gwen.web.assertions.maxRetries
+  gwen.web.assertions.maxStrikes
   ```
-  <p>Control the maximum number of times to retry failed assertions before timing out.</p>
+  <p>Sets the maximum number of consecutive strikes an assertion can make within a timeout period before it is considered failed and reported.</p>
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A positive integer denoting the maximum number times to retry (default = <code>2</code>)</li>
-    <li><code>infinity</code> to continually retry an unlimited number of times before timing out</li>
+    <li>A number greater than zero denoting the maximum number of consecutive strikes to permit (default = <code>3</code>). You can tweak this value to optimise performance.</li>
+    <li><code>infinity</code> to continually retry on every strike until the assertion passes or the timeout period expires (sub optimal performance)</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -2615,7 +2615,7 @@ import TabItem from '@theme/TabItem';
     gwen {
       web {
         assertions {
-          maxRetries = 2
+          maxStrikes = 3
         }
       }
     }
@@ -2627,7 +2627,7 @@ import TabItem from '@theme/TabItem';
     gwen {
       web {
         assertions {
-          maxRetries = "infinity"
+          maxStrikes = "infinity"
         }
       }
     }
@@ -2643,7 +2643,7 @@ import TabItem from '@theme/TabItem';
       "gwen": {
         "web": {
           "assertions": {
-            "maxRetries": 2
+            "maxStrikes": 3
           }
         }
       }
@@ -2657,7 +2657,7 @@ import TabItem from '@theme/TabItem';
       "gwen": {
         "web": {
           "assertions": {
-            "maxRetries": "inifinity"
+            "maxStrikes": "inifinity"
           }
         }
       }
@@ -2670,13 +2670,13 @@ import TabItem from '@theme/TabItem';
   Default value (since v3.41.0)
 
   ```properties
-    gwen.web.assertions.maxRetries = 2
+    gwen.web.assertions.maxStrikes = 3
   ```
 
   Default value in prior versions
 
   ```properties
-    gwen.web.assertions.maxRetries = infinity
+    gwen.web.assertions.maxStrikes = infinity
   ```
 
   </TabItem>
@@ -2684,7 +2684,7 @@ import TabItem from '@theme/TabItem';
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-web-assertions-maxRetries">Link</Link></div>
+    <div><Link to="#gwen-web-assertions-maxStrikes">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link></div>
   </div>
