@@ -13,13 +13,13 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Meta specs
 
-Meta specs are [Gherkin](https://cucumber.io/docs/gherkin/reference/) specifications that describe what steps in features will execute and are the automation glue in Gwen. They define all the step definitions and bindings required for automation and attach to features at runtime.
+Meta specs are [Gherkin](https://cucumber.io/docs/gherkin/reference/) specifications that describe how steps in features will execute and are the automation glue in Gwen. They define all the step definitions and bindings required for automation and attach to features at runtime.
 
 ## StepDefs
 
 ### Composable step definitions
 
-Step definitions are defined as <code>@StepDef</code> annotated [Scenarios](https://cucumber.io/docs/gherkin/reference/#example) with names that match feature steps and bodies that call out to one or many [DSL steps](/docs/dsl/reference) to perform operations.
+Step definitions are defined as <code>@StepDef</code> annotated [Scenarios](https://cucumber.io/docs/gherkin/reference/#example) with names that map to steps in features and bodies that call out to [DSL steps](/docs/dsl/reference) to perform operations.
 
 :::tip
 
