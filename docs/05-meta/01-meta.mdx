@@ -64,7 +64,7 @@ Calls DSL steps:
 
 :::
 
-Notice how the name of the StepDef matches the name of the feature step (excluding the leading *Given* keyword). This is how step definitions bind to feature steps in Gwen; by name. Notice also that the body calls out to several DSL steps to perform the desired operations. Composing StepDefs in meta is all you need to do to make your features executable.
+Notice how the name of the StepDef matches the name of the feature step (excluding the leading *Given* keyword). This is how step definitions bind to feature steps in Gwen; by name. Notice also that the body calls out to several DSL steps to perform the desired operations. Composing StepDefs in this manner is all you need to do to make your features executable.
 
 ### StepDefs with parameters
 
@@ -95,7 +95,7 @@ Calls DSL steps:
 
 :::
 
-Here the name of the StepDef matches the feature step when the value <code>2</code> (in the feature step) is substituted in place of `<expected-count>` in the StepDef name. This is how parameters are passed to StepDefs in Gwen; by substitution. The last step in the body extracts the parameter value with `$<expected-count>`.
+Here the name of the StepDef matches the name of the step in the feature when the value <code>2</code> (in the feature step) is substituted in place of `<expected-count>` in the StepDef name. This is how parameters are passed to StepDefs in Gwen; by substitution. The last step in the body utilises the parameter value as `$<expected-count>`.
 
 
 ### Synchronized StepDefs
