@@ -2667,7 +2667,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A number greater than zero denoting the maximum number of consecutive strikes to permit (default = <code>3</code>). You can tweak this value to optimise performance.</li>
+    <li>A number greater than zero denoting the maximum number of consecutive strikes to permit (default = <code>5</code>). You can tweak this value to optimise performance.</li>
     <li><code>infinity</code> to continually retry on every strike until the assertion passes or the timeout period expires (sub optimal performance)</li>
   </ul>
   <Tabs
@@ -2680,6 +2680,18 @@ import TabItem from '@theme/TabItem';
   ]}>
 
   <TabItem value="conf">
+
+  Default value (since v3.42.9)
+
+  ```json
+    gwen {
+      web {
+        assertions {
+          maxStrikes = 5
+        }
+      }
+    }
+  ```
 
   Default value (since v3.41.0)
 
@@ -2707,6 +2719,20 @@ import TabItem from '@theme/TabItem';
 
   </TabItem>
   <TabItem value="json">
+
+  Default value (since v3.42.9)
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "assertions": {
+            "maxStrikes": 5
+          }
+        }
+      }
+    }
+  ```
 
   Default value (since v3.41.0)
 
@@ -2738,6 +2764,12 @@ import TabItem from '@theme/TabItem';
 
   </TabItem>
   <TabItem value="properties">
+
+  Default value (since v3.42.9)
+
+  ```properties
+    gwen.web.assertions.maxStrikes = 5
+  ```
 
   Default value (since v3.41.0)
 
