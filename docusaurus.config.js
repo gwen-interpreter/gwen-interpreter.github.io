@@ -40,7 +40,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/settings/reference#gwen-web-assertions-maxStrikes',
+          href: '/docs/advanced/assertion#step-level-annotations',
           position: 'left',
           label: "What's new?",
         },
