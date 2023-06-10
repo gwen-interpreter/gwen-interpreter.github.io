@@ -21,7 +21,7 @@ Assertion modes only apply to steps that perform actual assertions.
 
 With hard assertions, the first assertion error to be detected will be reported as a failure and execution will halt.
 
-> Since [v2.43.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.43.0), the `@Hard` annotation can be used on any assertion step to make it fail hard.
+> Since [v3.43.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.43.0), the `@Hard` annotation can be used on any assertion step to make it fail hard.
 
 ```gherkin
   Then @Hard the page title should contain "xGwen automation"
@@ -33,7 +33,7 @@ With hard assertions, the first assertion error to be detected will be reported 
 
 With soft assertions, every assertion error that is detected is collected and reported as a failure without halting execution.
 
-> Since [v2.43.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.43.0), the `@Soft` annotation can be used on any assertion step to make it fail soft.
+> Since [v3.43.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.43.0), the `@Soft` annotation can be used on any assertion step to make it fail soft.
 
 ```gherkin
   Then @Soft the page title should contain "xGwen automation"
@@ -45,7 +45,7 @@ With soft assertions, every assertion error that is detected is collected and re
 
 With sustained assertions, every assertion error that is detected is collected and reported as a sustained error without halting execution or raising failure.
 
-> Since [v2.43.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.43.0), the `@Sustained` annotation can be used on any assertion step to make it sustained.
+> Since [v3.43.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.43.0), the `@Sustained` annotation can be used on any assertion step to make it sustained.
 
 ```gherkin
   Then @Sustained the page title should contain "xGwen automation"
@@ -64,7 +64,7 @@ Hard, soft, or sustained assertions can be configured as the default through the
     - `sustained` to collect all assertion errors and continue execution without reporting them as failures
 
 ## Step Level Annotations
-The `@Hard`, `@Soft` and `@Sustained` annotations introduced in [v2.43.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.43.0) can be used on individiual steps to override the default assertion mode setting.
+The `@Hard`, `@Soft` and `@Sustained` annotations introduced in [v3.43.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.43.0) can be used on individiual steps to override the default assertion mode setting.
 
 For example, if the [`gwen.assertion.mode`](/docs/settings/reference#gwen-assertion-mode) setting is set to `hard`, the following would perform a hard assertion since no overriding annotation is specified.
 
