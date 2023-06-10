@@ -7998,6 +7998,369 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
+<details id="step-until-or-while-element-state">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <element> is[ not] <state>
+  ```
+  <p>Repeatedly exectues a step until or while an element is in a given state using a default delay and timeout period. The default delay between iterations is one tenth of the configured <code>gwen.web.wait.seconds</code> setting (or 1 second if not set). The default timeout period is 30 times the delay.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
+    <li><code>not</code> negates the state if included</li>
+    <li><code>&lt;state&gt;</code> is one of:
+      <ul>
+        <li><code>displayed</code> to execute the step until or while the element is displayed</li>
+        <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
+        <li><code>checked</code> or <code>ticked</code> to execute the step until or while a checkbox is ticked</li>
+        <li><code>unchecked</code> or <code>unticked</code> to execute the step until or while a checkbox is not ticked</li>
+        <li><code>enabled</code> to execute the step until or while the element is enabled</li>
+        <li><code>disabled</code> to execute the step until or while the element is disabled</li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+      Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And I click the next page link while the next page link is displayed
+       Then the next page link should not be displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-element-state">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.44.0">v3.44.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-element-state-using-delay">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <element> is[ not] <state> using <delay> <delayUnit> delay
+  ```
+  <p>Repeatedly exectues a step until or while an element is in a given state using the given delay interval and default timeout period. The default timeout period is 30 times the specified delay.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
+    <li><code>not</code> negates the state if included</li>
+    <li><code>&lt;state&gt;</code> is one of:
+      <ul>
+        <li><code>displayed</code> to execute the step until or while the element is displayed</li>
+        <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
+        <li><code>checked</code> or <code>ticked</code> to execute the step until or while a checkbox is ticked</li>
+        <li><code>unchecked</code> or <code>unticked</code> to execute the step until or while a checkbox is not ticked</li>
+        <li><code>enabled</code> to execute the step until or while the element is enabled</li>
+        <li><code>disabled</code> to execute the step until or while the element is disabled</li>
+      </ul>
+    </li>
+    <li><code>&lt;delay&gt;</code> is the delay period between steps repetitions</li>
+    <li><code>&lt;delayUnit&gt;</code> is one of:
+      <ul>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And I click the next page link until the next page link is not displayed using 1 second delay
+       Then the next page link should not be displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-element-state-using-delay">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.44.0">v3.44.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-element-state-using-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <element> is[ not] <state> using <timeout> <timeoutUnit> timeout
+  ```
+  <p>Repeatedly exectues a step until or while an element is in a given state using a default delay and given timeout period. The default delay between iterations is one tenth of the configured gwen.web.wait.seconds setting (or 1 second if not set).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
+    <li><code>not</code> negates the state if included</li>
+    <li><code>&lt;state&gt;</code> is one of:
+      <ul>
+        <li><code>displayed</code> to execute the step until or while the element is displayed</li>
+        <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
+        <li><code>checked</code> or <code>ticked</code> to execute the step until or while a checkbox is ticked</li>
+        <li><code>unchecked</code> or <code>unticked</code> to execute the step until or while a checkbox is not ticked</li>
+        <li><code>enabled</code> to execute the step until or while the element is enabled</li>
+        <li><code>disabled</code> to execute the step until or while the element is disabled</li>
+      </ul>
+    </li>
+    <li><code>&lt;timeout&gt;</code> is the timeout period</li>
+    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+      <ul>
+        <li><code>minute</code></li>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And I click the next page link while the next page link is displayed using 1 minute timeout
+       Then the next page link should not be displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-element-state-using-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.44.0">v3.44.0</Link></div>
+  </div>
+</details>
+
+
+<details id="step-until-or-while-element-state-using-delay-and-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <element> is[ not] <state> using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout
+  ```
+  <p>Repeatedly exectues a step until or while an element is in a given state using the given delay interval and timeout period.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
+    <li><code>not</code> negates the state if included</li>
+    <li><code>&lt;state&gt;</code> is one of:
+      <ul>
+        <li><code>displayed</code> to execute the step until or while the element is displayed</li>
+        <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
+        <li><code>checked</code> or <code>ticked</code> to execute the step until or while a checkbox is ticked</li>
+        <li><code>unchecked</code> or <code>unticked</code> to execute the step until or while a checkbox is not ticked</li>
+        <li><code>enabled</code> to execute the step until or while the element is enabled</li>
+        <li><code>disabled</code> to execute the step until or while the element is disabled</li>
+      </ul>
+    </li>
+    <li><code>&lt;delay&gt;</code> is the delay period between steps repetitions</li>
+    <li><code>&lt;delayUnit&gt;</code> is one of:
+      <ul>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li><code>&lt;timeout&gt;</code> is the timeout period</li>
+    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+      <ul>
+        <li><code>minute</code></li>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And I click the next page link until the next page link is not displayed using 5 seoncd delay 1 minute timeout
+       Then the next page link should not be displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-element-state-using-delay-and-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.44.0">v3.44.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-element-state-using-no-delay-and-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <element> is[ not] <state> using no delay and <timeout> <timeoutUnit> timeout
+  ```
+  <p>Repeatedly exectues a step until or while an element is in a given state using no delay and the given timeout period.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
+    <li><code>not</code> negates the state if included</li>
+    <li><code>&lt;state&gt;</code> is one of:
+      <ul>
+        <li><code>displayed</code> to execute the step until or while the element is displayed</li>
+        <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
+        <li><code>checked</code> or <code>ticked</code> to execute the step until or while a checkbox is ticked</li>
+        <li><code>unchecked</code> or <code>unticked</code> to execute the step until or while a checkbox is not ticked</li>
+        <li><code>enabled</code> to execute the step until or while the element is enabled</li>
+        <li><code>disabled</code> to execute the step until or while the element is disabled</li>
+      </ul>
+    </li>
+    <li><code>&lt;timeout&gt;</code> is the timeout period</li>
+    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+      <ul>
+        <li><code>minute</code></li>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And I click the next page link while the next page link is displayed using no delay and 45 second timeout
+       Then the next page link should not be displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-element-state-using-no-delay-and-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.44.0">v3.44.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-element-state-using-no-delay">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <element> is[ not] <state> using no delay
+  ```
+  <p>Repeatedly exectues a step until or while an element is in a given state using no delay and the default timeout period of 30 seconds.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
+    <li><code>not</code> negates the state if included</li>
+    <li><code>&lt;state&gt;</code> is one of:
+      <ul>
+        <li><code>displayed</code> to execute the step until or while the element is displayed</li>
+        <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
+        <li><code>checked</code> or <code>ticked</code> to execute the step until or while a checkbox is ticked</li>
+        <li><code>unchecked</code> or <code>unticked</code> to execute the step until or while a checkbox is not ticked</li>
+        <li><code>enabled</code> to execute the step until or while the element is enabled</li>
+        <li><code>disabled</code> to execute the step until or while the element is disabled</li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And I click the next page link until the next page link is not displayed using no delay
+       Then the next page link should not be displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-element-state-using-no-delay">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.44.0">v3.44.0</Link></div>
+  </div>
+</details>
+
 ### If
 
 <details id="step-if-condition">
