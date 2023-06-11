@@ -8004,7 +8004,7 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   <step> <until|while> <element> is[ not] <state>
   ```
-  <p>Repeatedly exectues a step until or while an element is in a given state using a default delay and timeout period. The default delay between iterations is one tenth of the configured <code>gwen.web.wait.seconds</code> setting (or 1 second if not set). The default timeout period is 30 times the delay.</p>
+  <p>Repeatedly exectues a step until or while an element is in a given state using a 1 second delay interval and 1 minute timeout period.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -8058,7 +8058,7 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   <step> <until|while> <element> is[ not] <state> using <delay> <delayUnit> delay
   ```
-  <p>Repeatedly exectues a step until or while an element is in a given state using the given delay interval and default timeout period. The default timeout period is 30 times the specified delay.</p>
+  <p>Repeatedly exectues a step until or while an element is in a given state using the given delay interval and 1 minute timeout period.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -8102,7 +8102,7 @@ Feature specs should be declarative and written in the language of your domain a
         And the next page link can be located by id "pnnext"
        When I navigate to "https://google.com"
         And I enter "gwen interpreter" in the search field
-        And I click the next page link until the next page link is not displayed using 1 second delay
+        And I click the next page link until the next page link is not displayed using 3 second delay
        Then the next page link should not be displayed
   ```
 
@@ -8119,7 +8119,7 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   <step> <until|while> <element> is[ not] <state> using <timeout> <timeoutUnit> timeout
   ```
-  <p>Repeatedly exectues a step until or while an element is in a given state using a default delay and given timeout period. The default delay between iterations is one tenth of the configured gwen.web.wait.seconds setting (or 1 second if not set).</p>
+  <p>Repeatedly exectues a step until or while an element is in a given state using a 1 second delay interval and given timeout period.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -8164,7 +8164,7 @@ Feature specs should be declarative and written in the language of your domain a
         And the next page link can be located by id "pnnext"
        When I navigate to "https://google.com"
         And I enter "gwen interpreter" in the search field
-        And I click the next page link while the next page link is displayed using 1 minute timeout
+        And I click the next page link while the next page link is displayed using 2 minute timeout
        Then the next page link should not be displayed
   ```
 
@@ -8234,7 +8234,7 @@ Feature specs should be declarative and written in the language of your domain a
         And the next page link can be located by id "pnnext"
        When I navigate to "https://google.com"
         And I enter "gwen interpreter" in the search field
-        And I click the next page link until the next page link is not displayed using 5 seoncd delay 1 minute timeout
+        And I click the next page link until the next page link is not displayed using 5 seoncd delay 2 minute timeout
        Then the next page link should not be displayed
   ```
 
@@ -8251,7 +8251,7 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   <step> <until|while> <element> is[ not] <state> using no delay and <timeout> <timeoutUnit> timeout
   ```
-  <p>Repeatedly exectues a step until or while an element is in a given state using no delay and the given timeout period.</p>
+  <p>Repeatedly exectues a step until or while an element is in a given state using no delay interval and the given timeout period.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -8313,7 +8313,7 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   <step> <until|while> <element> is[ not] <state> using no delay
   ```
-  <p>Repeatedly exectues a step until or while an element is in a given state using no delay and the default timeout period of 30 seconds.</p>
+  <p>Repeatedly exectues a step until or while an element is in a given state using no delay interval and 1 minute timeout period.</p>
   </summary>
   <p>Where</p>
   <ul>
