@@ -71,7 +71,7 @@ Run the following command in the root of your project to generate all the necess
      └──Dockerfile           # Docker image file
 ```
 
-The init --docker commad will create a `gwen/DockerFile` with the following content to build an Alpine Linux node and Yarn based image with bash and Open JDK 8 JRE installed.
+The init --docker commad will create a `gwen/DockerFile` with the following content to build an Alpine Linux node and Yarn based image with bash and Open JDK 11 JRE installed.
 
 ```
 # base alpine image with node
@@ -80,7 +80,7 @@ FROM node:17-alpine
 # install bash and java
 RUN apk update \
     && apk add bash \
-    && apk add openjdk8-jre
+    && apk add openjdk11-jre
 
 # Run as a non root user
 RUN addgroup -S gwen && adduser -S gwen -G gwen -u 4936
@@ -89,8 +89,8 @@ USER gwen
 
 Should you prefer a Red Hat Linux and Open JDK 8 based image with node and Yarn installed instead, you can change the content to this:
 ```
-# base Red Hat image with open JDK 8
-FROM adoptopenjdk/openjdk8:ubi
+# base Red Hat image with open JDK 11
+FROM adoptopenjdk/openjdk11:ubi
 
 # install node & yarn
 RUN dnf module install nodejs:16 -y
