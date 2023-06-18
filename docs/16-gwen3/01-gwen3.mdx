@@ -8,6 +8,7 @@ import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
 
 # Gwen 3 Release
 
@@ -50,7 +51,13 @@ The [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) settin
 
 Gwen now logs pretty execution results to the [console](/docs/reports/console).
 
-![Example pretty log](/img/log/gwen-pretty-log.png)
+<ThemedImage
+  alt="Pretty console logging"
+  sources={{
+    light: useBaseUrl('/img/log/gwen-pretty-log-w.png'),
+    dark: useBaseUrl('/img/log/gwen-pretty-log-b.png'),
+  }}
+/>
 
 #### New CLI option for verbose logging
 

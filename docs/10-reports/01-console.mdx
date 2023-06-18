@@ -6,6 +6,8 @@ toc_max_heading_level: 2
 import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
 
 # Console Reports
 
@@ -15,7 +17,13 @@ import TabItem from '@theme/TabItem';
 
 Pretty execution results and statistics are logged to the console in real time (or deferred time in [parallel](/docs/modes/parallel) mode).
 
-![Example pretty log](/img/log/gwen-pretty-log.png)
+<ThemedImage
+  alt="Pretty console logging"
+  sources={{
+    light: useBaseUrl('/img/log/gwen-pretty-log-w.png'),
+    dark: useBaseUrl('/img/log/gwen-pretty-log-b.png'),
+  }}
+/>
 
 ### Colors
 
