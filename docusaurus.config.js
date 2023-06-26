@@ -45,7 +45,7 @@ module.exports = {
           label: "What's new?",
         },
         { 
-          label: 'GitHub',
+          label: 'GitHub', 
           href: 'https://github.com/gwen-interpreter',
           position: 'right'
         },
