@@ -37,7 +37,7 @@ Usage: gwen [options] [files|dirs]
   -f, --formats reports    Report formats to include in output (comma separated)
                            - html,junit,json,rp,none (default is html)
   -t, --tags filter        Tags to @include or ~@exclude (comma separated)
-  -i, --input-data file    Input data feed (CSV file with column headers)
+  -i, --input-data file    Input data feed (csv or json file)
   -m, --meta files|dirs    Meta files or directories to load (comma separated)
   files|dirs               Feature files or directories to execute (space separated)
 Command: init [dir]
@@ -270,7 +270,7 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
     -f, --formats reports   Report formats to include in output (comma separated)
                             - html,junit,json,rp,none (default is html)
     -t, --tags filter       Tags to @include or ~@exclude (comma separated)
-    -i, --input-data file   Input data feed (CSV file with column headers)
+    -i, --input-data file   Input data feed (csv or json file)
     -m, --meta files|dirs   Meta files or directories to load (comma separated)
     files|dirs              Feature files or directories to execute (space separated)
  Command: init [dir]
@@ -1768,7 +1768,7 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
   ```shell
   -i|--input-data <file>
   ```
-  <p>Optional CSV data feed file.</p>
+  <p>Optional CSV of JSON data feed file.</p>
 
   </summary>
 
@@ -1781,12 +1781,12 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
         <li><code>--input-data</code> for longhand</li>
       </ul>
     </li>
-    <li><code>&lt;file&gt;</code> is a path to a CSV data file</li>
+    <li><code>&lt;file&gt;</code> is a path to a CSV or JSON data file</li>
   </ul>
 
   <br />
   <p>
-  See <Link to="/docs/modes/data-driven">CSV data feeds</Link> for more details.
+  See <Link to="/docs/modes/data-driven">data feeds</Link> for more details.
   </p>
   <br />
 
@@ -1825,6 +1825,18 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
   yarn gwen -b --input-data gwen/data/records.csv gwen/features/file.feature
   ```
 
+  To execute all feature files in a directory for every record in a JSON file (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
+  
+  ```shell
+  yarn gwen -b -i gwen/data/records.json gwen/features/dir
+  ```
+
+  To execute a feature file for every record in a JSON file (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
+  
+  ```shell
+  yarn gwen -b --input-data gwen/data/records.json gwen/features/file.feature
+  ```
+
   </TabItem>
 
   <TabItem value="npm">
@@ -1841,6 +1853,18 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
   npm run gwen -- -b --input-data gwen/data/records.csv gwen/features/file.feature
   ```
 
+  To execute all feature files in a directory for every record in a JSON file (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
+  
+  ```shell
+  npm run gwen -- -b -i gwen/data/records.json gwen/features/dir
+  ```
+
+  To execute a feature file for every record in a JSON file (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
+  
+  ```shell
+  npm run gwen -- -b --input-data gwen/data/records.json gwen/features/file.feature
+  ```
+
   </TabItem>
 
   <TabItem value="pnpm">
@@ -1855,6 +1879,18 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
   
   ```shell
   pnpm gwen -b --input-data gwen/data/records.csv gwen/features/file.feature
+  ```
+
+  To execute all feature files in a directory for every record in a JSON file (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
+  
+  ```shell
+  pnpm gwen -b -i gwen/data/records.json gwen/features/dir
+  ```
+
+  To execute a feature file for every record in a JSON file (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
+  
+  ```shell
+  pnpm gwen -b --input-data gwen/data/records.json gwen/features/file.feature
   ```
 
   </TabItem>
@@ -1875,6 +1911,18 @@ CLI options can be configured in [settings](/docs/settings/reference#cli-setting
   
   ```shell
   gwen -b --input-data data/records.csv features/file.feature
+  ```
+
+  To execute all feature files in a directory for every record in a JSON file (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
+  
+  ```shell
+  gwen -b -i data/records.json features/dir
+  ```
+
+  To execute a feature file for every record in a JSON file (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
+  
+  ```shell
+  gwen -b --input-data data/records.json features/file.feature
   ```
 
   </TabItem>

@@ -379,7 +379,7 @@ import TabItem from '@theme/TabItem';
 
   <div class="grid-3">
     <div><Link to="#gwen-auto-discover-data-csv">Link</Link></div>
-    <div align="center"><Link to="/docs/modes/data-driven">Learn more</Link></div>
+    <div align="center"><Link to="/docs/modes/data-driven#csv-data-feeds">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link></div>
   </div>
 </details>
@@ -444,7 +444,7 @@ import TabItem from '@theme/TabItem';
   </TabItem>
   <TabItem value="properties">
 
-  Default value since
+  Default value
 
   ```properties
     gwen.auto.trim.data.csv = false
@@ -456,8 +456,166 @@ import TabItem from '@theme/TabItem';
 
   <div class="grid-3">
     <div><Link to="#gwen-auto-trim-data-csv">Link</Link></div>
-    <div align="center"><Link to="/docs/modes/data-driven">Learn more</Link></div>
+    <div align="center"><Link to="/docs/modes/data-driven#csv-data-feeds">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.26.0">v3.26.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-auto-discover-data-json">
+  <summary class="setting">
+
+  ```properties
+  gwen.auto.discover.data.json
+  ```
+  <p>Enables or disables automatic discovery and loading of JSON data feed files.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to enable</li>
+    <li><code>false</code> to disable (default)
+      <ul>
+        <li>Prevents Gwen from automatically discovering and loading JSON files in the path of an executing feature, forcing the user to explicitly specify the JSON file to load through the <Link to="/docs/cli#gwen-cli-options-input-data"><code>-i|--input-data</code></Link> CLI option at launch time.</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      auto {
+        discover {
+          data {
+            json = false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "auto": {
+          "discover": {
+            "data": {
+              "json": false
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value 
+
+  ```properties
+    gwen.auto.discover.data.json = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-auto-discover-data-json">Link</Link></div>
+    <div align="center"><Link to="/docs/modes/data-driven#json-data-feeds">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-auto-trim-data-json">
+  <summary class="setting">
+
+  ```properties
+  gwen.auto.trim.data.json
+  ```
+  <p>Controls whether or not to trim surrounding whitespace from incoming JSON data.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to trim the JSON data</li>
+    <li><code>false</code> to not trim the JSON data (default)</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      auto {
+        trim {
+          data {
+            json = false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "auto": {
+          "trim": {
+            "data": {
+              "json": false
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.auto.trim.data.json = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-auto-trim-data-json">Link</Link></div>
+    <div align="center"><Link to="/docs/modes/data-driven#json-data-feeds">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link></div>
   </div>
 </details>
 
@@ -6503,7 +6661,7 @@ Default value (empty to pick up Gwen default format: html)
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A path to a CSV data feed file to pass to Gwen on every launch</li>
+    <li>A path to a CSV or JSON data feed file to pass to Gwen on every launch</li>
   </ul>
   <Tabs
   groupId="settings"
@@ -6528,13 +6686,25 @@ Default value (empty to pick up Gwen default format: html)
     }
   ```
 
-  Example setting a default data file
+  Example setting a default CSV data file
   
   ```json
     gwen {
       cli {
         options {
           inputData = "data/file1.csv"
+        }
+      }
+    }
+  ```
+
+  Example setting a default JSON data file
+  
+  ```json
+    gwen {
+      cli {
+        options {
+          inputData = "data/file1.json"
         }
       }
     }
@@ -6558,7 +6728,7 @@ Default value (empty to pick up Gwen default format: html)
     }
   ```
 
-  Example setting a default data file
+  Example setting a default CSV data file
 
   ```json
     {
@@ -6566,6 +6736,20 @@ Default value (empty to pick up Gwen default format: html)
         "cli": {
           "options": {
             "inputData": "data/file1.csv"
+          }
+        }
+      }
+    }
+  ```
+
+  Example setting a default JSON data file
+
+  ```json
+    {
+      "gwen": {
+        "cli": {
+          "options": {
+            "inputData": "data/file1.json"
           }
         }
       }
@@ -6582,10 +6766,16 @@ Default value (empty to pick up Gwen default format: html)
     gwen.cli.options.inputData = 
   ```
 
-  Example setting a default data file
+  Example setting a default CSV data file
 
   ```properties
     gwen.cli.options.inputData = data/file.csv
+  ```
+
+  Example setting a default JSON data file
+
+  ```properties
+    gwen.cli.options.inputData = data/file.json
   ```
 
   </TabItem>

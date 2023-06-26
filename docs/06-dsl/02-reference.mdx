@@ -6777,7 +6777,7 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
-## CSV Lookups
+## Data Lookups
 
 <details id="i-lookup-name-in-the-filepath-file-where-filter">
   <summary class="dsl">
@@ -6785,24 +6785,30 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   I lookup <name> in the "<filepath>" file where "<predicate>"
   ```
-  <p>Looks up a named column value in a CSV file based on a predicate function and binds its value to the same name in the global scope.</p>
+  <p>Looks up a named data value in a CSV or JSON file based on a predicate function and binds its value to the same name in the global scope.</p>
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;name&gt;</code>the name of the column in the CSV file to look up the value of and the name to bind it to</li>
-    <li><code>&lt;filepath&gt;</code> the path to the CSV file to look up</li>
+    <li><code>&lt;name&gt;</code>the name of the data to look up the value of and the name to bind it to</li>
+    <li><code>&lt;filepath&gt;</code> the path to the CSV or JSON file to look up</li>
     <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
       </ul>
-      CSV fields can be referenced in the preciate using the <code>$&#123;csv.record.NAME&#125;</code> notation.
+      Data fields can be referenced in the predicate using either:
+      <ul>
+        <li><code>$&#123;data.record.NAME&#125;</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)</li>
+        <li><code>$&#123;csv.record.NAME&#125;</code> for CSV data or <code>$&#123;json.record.NAME&#125;</code> for JSON data (for prior versions)</li>
+      </ul>
     </li>
   </ul>
 
-  The column value contained in the first record in the CSV that satisifes the given predicate is the one that will be bound to the global scope. Otherwise if no records match, then no value is bound.
+  The data value contained in the first record that satisifes the given predicate will be bound to the global scope. Otherwise if no records match, then no value will be bound.
 
-  <p>Example</p>
+  <p>Examples</p>
+
+  ### CSV Lookup
 
   Given the CSV file: lookup/StateCodes.csv
 
@@ -6812,7 +6818,7 @@ Feature specs should be declarative and written in the language of your domain a
   NSW,New South Wales
   NT,Northern Territory
   QLD,Queensland
-  SA,South Australian
+  SA,South Australia
   TAS,Tasmania
   VIC,Victoria
   WA,Western Australia
@@ -6821,7 +6827,33 @@ Feature specs should be declarative and written in the language of your domain a
   The following will bind "Western Australia" in the last record to <code>Name</code> in the global scope
 
   ```gherkin {1}
-    When I lookup Name in the "lookup/StateCodes.csv" file where "'${csv.record.Code}' == 'WA'"
+    When I lookup Name in the "lookup/StateCodes.csv" file where "'${data.record.Code}' == 'WA'"
+    Then Name should be "Western Australia"
+  ```
+
+  ### JSON Lookup
+ 
+  > Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>
+
+  Given the JSON file: lookup/StateCodes.json
+
+  ```json {5}
+  [
+    { "Code": "ACT", "Name": "Australian Capital Territory" },
+    { "Code": "NSW", "Name": "New South Wales" },
+    { "Code": "NT",  "Name": "Northern Territory" },
+    { "Code": "QLD", "Name": "Queensland" },
+    { "Code": "SA",  "Name": "South Australia" },
+    { "Code": "TAS", "Name": "Tasmania" },
+    { "Code": "VIC", "Name": "Victoria" },
+    { "Code": "WA",  "Name": "Western Australia" }
+  ]
+  ```
+
+  The following will bind "Western Australia" in the last record to <code>Name</code> in the global scope
+
+  ```gherkin {1}
+    When I lookup Name in the "lookup/StateCodes.json" file where "'${data.record.Code}' == 'WA'"
     Then Name should be "Western Australia"
   ```
 
@@ -6838,24 +6870,30 @@ Feature specs should be declarative and written in the language of your domain a
   ```gherkin
   I lookup <name> in <filepathRef> file where "<predicate>"
   ```
-  <p>Looks up a named column value in a referenced CSV file based on a predicate function and binds its value to the same name in the global scope.</p>
+  <p>Looks up a named data value in a referenced CSV or JSON file based on a predicate function and binds its value to the same name in the global scope.</p>
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;name&gt;</code>the name of the column in the CSV file to look up the value of and the name to bind it to</li>
-    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV file to look up</li>
+    <li><code>&lt;name&gt;</code>the name of the data to look up the value of and the name to bind it to</li>
+    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV or JSON file to look up</li>
     <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
       </ul>
-      CSV fields can be referenced in the preciate using the <code>$&#123;csv.record.NAME&#125;</code> notation.
+      Data fields can be referenced in the predicate using either:
+      <ul>
+        <li><code>$&#123;data.record.NAME&#125;</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)</li>
+        <li><code>$&#123;csv.record.NAME&#125;</code> for CSV data or <code>$&#123;json.record.NAME&#125;</code> for JSON data (for prior versions)</li>
+      </ul>
     </li>
   </ul>
 
-  The column value contained in the first record in the CSV that satisifes the given predicate is the one that will be bound to the global scope. Otherwise if no records match, then no value is bound.
+  The data value contained in the first record that satisifes the given predicate will be bound to the global scope. Otherwise if no records match, then no value will be bound.
 
-  <p>Example</p>
+  <p>Examples</p>
+
+  ### CSV Lookup
 
   Given the CSV file: lookup/StateCodes.csv
 
@@ -6865,7 +6903,7 @@ Feature specs should be declarative and written in the language of your domain a
   NSW,New South Wales
   NT,Northern Territory
   QLD,Queensland
-  SA,South Australian
+  SA,South Australia
   TAS,Tasmania
   VIC,Victoria
   WA,Western Australia
@@ -6875,7 +6913,34 @@ Feature specs should be declarative and written in the language of your domain a
 
   ```gherkin {2}
     Given mapping file is "lookup/StateCodes.csv"
-     When I lookup Code in mapping file where "'${csv.record.Name}' == 'Queensland'"
+     When I lookup Code in mapping file where "'${data.record.Name}' == 'Queensland'"
+     Then Code should be "QLD"
+  ```
+
+  ### JSON Lookup
+ 
+  > Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>
+
+  Given the JSON file: lookup/StateCodes.json
+
+  ```json {5}
+  [
+    { "Code": "ACT", "Name": "Australian Capital Territory" },
+    { "Code": "NSW", "Name": "New South Wales" },
+    { "Code": "NT",  "Name": "Northern Territory" },
+    { "Code": "QLD", "Name": "Queensland" },
+    { "Code": "SA",  "Name": "South Australia" },
+    { "Code": "TAS", "Name": "Tasmania" },
+    { "Code": "VIC", "Name": "Victoria" },
+    { "Code": "WA",  "Name": "Western Australia" }
+  ]
+  ```
+
+  The following will bind "QLD" in the 4th record to <code>Code</code> in the global scope
+
+  ```gherkin {2}
+    Given mapping file is "lookup/StateCodes.json"
+     When I lookup Code in mapping file where "'${data.record.Name}' == 'Queensland'"
      Then Code should be "QLD"
   ```
 
@@ -6890,27 +6955,33 @@ Feature specs should be declarative and written in the language of your domain a
   <summary class="dsl">
 
   ```gherkin
-  I lookup <name> in the "<filepath>" file as <name> where "<predicate>"
+  I lookup <dataName> in the "<filepath>" file as <name> where "<predicate>"
   ```
-  <p>Looks up a named column value in a CSV file based on a predicate function and binds its value to a given name in the global scope.</p>
+  <p>Looks up a named data value in a CSV or JSON file based on a predicate function and binds its value to a given name in the global scope.</p>
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;column&gt;</code> the name of the column in the CSV file to look up the value of</li>
-    <li><code>&lt;filepath&gt;</code> the path to the CSV file to look up</li>
+    <li><code>&lt;dataName&gt;</code> the name of the data to look up the value of</li>
+    <li><code>&lt;filepath&gt;</code> the path to the CSV or JSON file to look up</li>
     <li><code>&lt;name&gt;</code> the name to bind the looked up value to in the global scope</li>
     <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
       </ul>
-      CSV fields can be referenced in the preciate using the <code>$&#123;csv.record.NAME&#125;</code> notation.
+      Data fields can be referenced in the predicate using either:
+      <ul>
+        <li><code>$&#123;data.record.NAME&#125;</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)</li>
+        <li><code>$&#123;csv.record.NAME&#125;</code> for CSV data or <code>$&#123;json.record.NAME&#125;</code> for JSON data (for prior versions)</li>
+      </ul>
     </li>
   </ul>
 
-  The column value contained in the first record in the CSV that satisifes the given predicate is the one that will be bound to the global scope. Otherwise if no records match, then no value is bound.
+  The data value contained in the first record that satisifes the given predicate will be bound to the global scope. Otherwise if no records match, then no value will be bound.
 
-  <p>Example</p>
+  <p>Examples</p>
+
+  ### CSV Lookup
 
   Given the CSV file: lookup/StateCodes.csv
 
@@ -6920,7 +6991,7 @@ Feature specs should be declarative and written in the language of your domain a
   NSW,New South Wales
   NT,Northern Territory
   QLD,Queensland
-  SA,South Australian
+  SA,South Australia
   TAS,Tasmania
   VIC,Victoria
   WA,Western Australia
@@ -6929,7 +7000,33 @@ Feature specs should be declarative and written in the language of your domain a
   The following will bind "New South Wales" in the 2nd record to <code>state name</code> in the global scope
 
   ```gherkin {1}
-    When I lookup Name in the "lookup/StateCodes.csv" file as state name where "'${csv.record.Code}' == 'NSW'"
+    When I lookup Name in the "lookup/StateCodes.csv" file as state name where "'${data.record.Code}' == 'NSW'"
+    Then state name should be "New South Wales"
+  ```
+
+  ### JSON Lookup
+ 
+  > Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>
+
+  Given the JSON file: lookup/StateCodes.json
+
+  ```json {5}
+  [
+    { "Code": "ACT", "Name": "Australian Capital Territory" },
+    { "Code": "NSW", "Name": "New South Wales" },
+    { "Code": "NT",  "Name": "Northern Territory" },
+    { "Code": "QLD", "Name": "Queensland" },
+    { "Code": "SA",  "Name": "South Australia" },
+    { "Code": "TAS", "Name": "Tasmania" },
+    { "Code": "VIC", "Name": "Victoria" },
+    { "Code": "WA",  "Name": "Western Australia" }
+  ]
+  ```
+
+  The following will bind "New South Wales" in the 2nd record to <code>state name</code> in the global scope
+
+  ```gherkin {1}
+    When I lookup Name in the "lookup/StateCodes.json" file as state name where "'${data.record.Code}' == 'NSW'"
     Then state name should be "New South Wales"
   ```
 
@@ -6944,27 +7041,33 @@ Feature specs should be declarative and written in the language of your domain a
   <summary class="dsl">
 
   ```gherkin
-  I lookup <name> in <filepathRef> file where "<predicate>"
+  I lookup <dataName> in <filepathRef> file as <name> where "<predicate>"
   ```
-  <p>Looks up a named column value in a referenced CSV file based on a predicate function and binds its value to a given name in the global scope.</p>
+  <p>Looks up a named column value in a referenced CSV or JSON file based on a predicate function and binds its value to a given name in the global scope.</p>
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;column&gt;</code> the name of the column in the CSV file to look up the value of</li>
-    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV file to look up</li>
+    <li><code>&lt;dataName&gt;</code> the name of the data in the CSV or JSON file to look up the value of</li>
+    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV or JSON file to look up</li>
     <li><code>&lt;name&gt;</code> the name to bind the looked up value to in the global scope</li>
     <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
       </ul>
-      CSV fields can be referenced in the preciate using the <code>$&#123;csv.record.NAME&#125;</code> notation.
+      Data fields can be referenced in the predicate using either:
+      <ul>
+        <li><code>$&#123;data.record.NAME&#125;</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)</li>
+        <li><code>$&#123;csv.record.NAME&#125;</code> for CSV data or <code>$&#123;json.record.NAME&#125;</code> for JSON data (for prior versions)</li>
+      </ul>
     </li>
   </ul>
 
-  The column value contained in the first record in the CSV that satisifes the given predicate is the one that will be bound to the global scope. Otherwise if no records match, then no value is bound.
+  The data value contained in the first record that satisifes the given predicate will be bound to the global scope. Otherwise if no records match, then no value will be bound.
 
-  <p>Example</p>
+  <p>Examples</p>
+
+  ### CSV Lookup
 
   Given the CSV file: lookup/StateCodes.csv
 
@@ -6974,7 +7077,7 @@ Feature specs should be declarative and written in the language of your domain a
   NSW,New South Wales
   NT,Northern Territory
   QLD,Queensland
-  SA,South Australian
+  SA,South Australia
   TAS,Tasmania
   VIC,Victoria
   WA,Western Australia
@@ -6984,7 +7087,34 @@ Feature specs should be declarative and written in the language of your domain a
 
   ```gherkin {2}
     Given mapping file is "lookup/StateCodes.csv"
-     When I lookup Code in mapping file as state code where "'${csv.record.Name}' == 'Victoria'"
+     When I lookup Code in mapping file as state code where "'${data.record.Name}' == 'Victoria'"
+     Then state code should be "VIC"
+  ```
+
+  ### JSON Lookup
+ 
+  > Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>
+
+  Given the JSON file: lookup/StateCodes.json
+
+  ```json {5}
+  [
+    { "Code": "ACT", "Name": "Australian Capital Territory" },
+    { "Code": "NSW", "Name": "New South Wales" },
+    { "Code": "NT",  "Name": "Northern Territory" },
+    { "Code": "QLD", "Name": "Queensland" },
+    { "Code": "SA",  "Name": "South Australia" },
+    { "Code": "TAS", "Name": "Tasmania" },
+    { "Code": "VIC", "Name": "Victoria" },
+    { "Code": "WA",  "Name": "Western Australia" }
+  ]
+  ```
+
+  The following will bind "VIC" in the 7th record to <code>state code</code> in the global scope
+
+  ```gherkin {2}
+    Given mapping file is "lookup/StateCodes.json"
+     When I lookup Code in mapping file as state code where "'${data.record.Name}' == 'Victoria'"
      Then state code should be "VIC"
   ```
 
@@ -8474,7 +8604,7 @@ Feature specs should be declarative and written in the language of your domain a
   NSW,New South Wales
   NT,Northern Territory
   QLD,Queensland
-  SA,South Australian
+  SA,South Australia
   TAS,Tasmania
   VIC,Victoria
   WA,Western Australia
@@ -8483,7 +8613,7 @@ Feature specs should be declarative and written in the language of your domain a
   The following will bind "New South Wales" in the 2nd record to <code>state name</code> in the global scope
   ```gherkin {3}
    Given the state code is "UNKNOWN"
-    When I lookup Name in the "lookup/StateCodes.csv" file as state name where "'${csv.record.Code}' == '${the state code}'"
+    When I lookup Name in the "lookup/StateCodes.csv" file as state name where "'${data.record.Code}' == '${the state code}'"
     Then unresolved is "true" if state name is not defined
   ```
 

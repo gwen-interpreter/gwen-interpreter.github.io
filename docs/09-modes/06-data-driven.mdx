@@ -145,6 +145,142 @@ Gwen will read in the CSV file, and for each record will:
 
 A feature detail report will be generated for each data record. If you specify the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option, the feature will execute all records in parallel.
 
+## JSON data feeds
+
+> Since [v3.47.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0)
+
+JSV data files can be passed into the interpreter to perform feature execution over multiple data sets. The values in each record will be bound to attributes in the feature scope by their names. Feature steps can reference the bound data using these names.
+
+Say you have a `users.json` file containing following user records.
+
+:::note CSV
+
+*File: data/users.csv*
+```json
+[
+  { "FIRST_NAME": "Gwen",    "LAST_NAME": "Stefani", "JOB": "Pop Singer"      },
+  { "FIRST_NAME": "Gwyneth", "LAST_NAME": "Paltrow", "JOB": "Actress"         },
+  { "FIRST_NAME": "Gwen",    "LAST_NAME": "Cooper",  "JOB": "Torchwood Agent" }
+]
+```
+
+:::
+
+Now say you wanted to submit the details for each user to a web page through a single `submit-user.feature` file that accepts all the user data as input one at a time. You can do this in the feature by referencing JSON data values by their names as follows:
+
+:::note Feature
+
+*File: features/submit-user.feature*
+```gherkin
+Feature: Submit user ${FIRST_NAME} ${LAST_NAME}
+
+  Scenario: submit user details
+    Given I navigate to the user details page
+     When I type FIRST_NAME in the first name field
+      And I type LAST_NAME in the last name field
+      And I type JOB in the job field
+      And I click the save button
+     Then the alert msg should be "User ${FIRST_NAME} saved"
+```
+
+Note: Interpolation of JSON fields `${FIRST_NAME} ${LAST_NAME}` is supported in the feature name and description too.
+
+:::
+
+> The current JSON record number (starting at 1) is available as an implicit attribute named `data record number` and can be accessed by reference or [interpolation](/docs/advanced/string-interpolation).
+
+You can execute this feature for all users in the JSON file by launching Gwen with the [`-i|--input-data`](/docs/cli#gwen-cli-options-input-data) CLI option.
+
+#### Examples
+
+<Tabs
+  groupId="setup"
+  defaultValue="project"
+  values={[
+    {label: 'Project', value: 'project'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="project">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="yarn">
+
+  ```shell
+  yarn gwen -b -i gwen/data/users.json gwen/features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  yarn gwen -b --input-data gwen/data/users.json gwen/features/submit-user.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="npm">
+
+  ```shell
+  npm run gwen -- -b -i gwen/data/users.json gwen/features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  npm run gwen -- -b --input-data gwen/data/users.json gwen/features/submit-user.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+  
+
+  ```shell
+  pnpm gwen -b -i gwen/data/users.json gwen/features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  pnpm gwen -b --input-data gwen/data/users.json gwen/features/submit-user.feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  ```shell
+  gwen -b -i data/users.json features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  gwen -b --input-data data/users.json features/submit-user.feature
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+Gwen will read in the JSON file, and for each record will:
+* Bind the data to the feature
+* And execute the feature
+
+A feature detail report will be generated for each data record. If you specify the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option, the feature will execute all records in parallel.
+
 ## @Examples annotation
 
 > Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.10.0">v2.10.0</Link>
@@ -156,7 +292,7 @@ Consider the following scenario outline with an examples table
 Scenario outline with inlined data
 
 ```gherkin
-  Scenario Outline: I load items from CSV files
+  Scenario Outline: I load items from data files
     When I add a <Status> "<Item>" item
     
     Examples:
@@ -166,6 +302,8 @@ Scenario outline with inlined data
       | Feed the cat | pending |
 ```
 :::
+
+### CSV Data
 
 The data table in the examples clause can be externalised to a CSV file and imported using the `@Examples` annotation as follows:
 
@@ -179,21 +317,60 @@ Get the milk,done
 Take out trash,pending
 ```
 
-Scenario outline with externalised data
+Scenario outline with externalised CSV data
 
 ```gherkin {1}
   @Examples("data/items.csv")
-  Scenario Outline: I load items from CSV files
+  Scenario Outline: I load items from data files
     When I add a <Status> "<Item>" item
 ```
 
 This will resolve to an identical outline when expanded at runtime:
 
 ```gherkin
-  Scenario Outline: I load items from CSV files
+  Scenario Outline: I load items from data files
     When I add a <Status> "<Item>" item
     
     Examples: Data file: data/items.csv
+      | Item         | Status  |
+      | Walk the dog | pending |
+      | Get the milk | done    |
+      | Feed the cat | pending |
+```
+:::
+
+### JSON Data
+
+> Since [v3.47.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0)
+
+The data table in the examples clause can be externalised to a JSON file and imported using the `@Examples` annotation as follows:
+
+:::note Example
+
+*JSON File: data/items.json*
+```json
+[
+  { "Item": "Walk the dog",   "Status": "pending" },
+  { "Item": "Get the milk",   "Status": "done" },
+  { "Item": "Take out trash", "Status": "pending" }
+]
+```
+
+Scenario outline with externalised JSON data
+
+```gherkin {1}
+  @Examples("data/items.json")
+  Scenario Outline: I load items from data files
+    When I add a <Status> "<Item>" item
+```
+
+This will resolve to an identical outline when expanded at runtime:
+
+```gherkin
+  Scenario Outline: I load items from data files
+    When I add a <Status> "<Item>" item
+    
+    Examples: Data file: data/items.json
       | Item         | Status  |
       | Walk the dog | pending |
       | Get the milk | done    |
@@ -213,14 +390,14 @@ Scenario outline with externalised and filtered data
 
 ```gherkin {1}
   @Examples(file="data/items.csv",where="'${Status}'=='pending'")
-  Scenario Outline: I load items from CSV files
+  Scenario Outline: I load items from data files
     When I add a <Status> "<Item>" item
 ```
 
 Will resolve to the following containing `pending` Status records only:
 
 ```gherkin {6,7}
-  Scenario Outline: I load items from CSV files
+  Scenario Outline: I load items from data files
     When I add a <Status> "<Item>" item
     
     Examples: Data file: data/items.csv, where: '${Status}'=='pending'
@@ -230,7 +407,7 @@ Will resolve to the following containing `pending` Status records only:
 ```
 :::
 
-String interpolation syntax can also be used to reference a value in the CSV record or current scope. For example, to get all the records where the `Status` column matches the value bound to an in-memory attribute named `SelectedStatus`:
+String interpolation syntax can also be used to reference a value in the data record or current scope. For example, to get all the records where the `Status` matches the value bound to an in-memory attribute named `SelectedStatus`:
 
 :::note Example
 
@@ -238,10 +415,12 @@ Scenario outline with externalised and filtered data
 
 ```gherkin {1}
   @Examples(file="data/items.csv",where="'${Status}'=='${SelectedStatus}'")
-  Scenario Outline: I load items from CSV files
+  Scenario Outline: I load items from data files
     When I add a <Status> "<Item>" item
 ```
 :::
+
+Since [v3.47.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0), a JSON data file can also be used.
 
 ### Name prefix 
 
@@ -255,14 +434,14 @@ Scenario outline sourced from CSV file having column names `Status, Item`
 
 ```gherkin {1}
   @Examples(file="data/items.csv",prefix="todo.",where="'${todo.Status}'=='pending'")
-  Scenario Outline: I load items from CSV files
+  Scenario Outline: I load items from data files
     When I add a <todo.Status> "<todo.Item>" item
 ```
 
 Will result in the column names `todo.Status, todo.Item` when `todo.` prefix is applied at runtime
 
 ```gherkin {5}
-  Scenario Outline: I load items from CSV files
+  Scenario Outline: I load items from data files
     When I add a <todo.Status> "<todo.Item>" item
     
     Examples: Data file: data/items.csv, prefix: todo., where: '${todo.Status}'=='pending'
@@ -271,6 +450,8 @@ Will result in the column names `todo.Status, todo.Item` when `todo.` prefix is 
       | Feed the cat | pending     |
 ```
 :::
+
+Since [v3.47.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0), a JSON data file can also be used.
 
 ### Required flag
 
@@ -284,8 +465,10 @@ Scenario outline which raises an error if externalised and filtered data is empt
 
 ```gherkin {1}
   @Examples(file="data/items.csv",where="'${Status}'=='${SelectedStatus}'",required=true)
-  Scenario Outline: I load items from CSV files
+  Scenario Outline: I load items from data files
     When I add a <Status> "<Item>" item
 ```
 
 :::
+
+Since [v3.47.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0), a JSON data file can also be used.

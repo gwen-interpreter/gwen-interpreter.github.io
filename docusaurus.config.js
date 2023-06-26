@@ -40,7 +40,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/advanced/assertion#step-level-annotations',
+          href: '/docs/modes/data-driven#json-data-feeds',
           position: 'left',
           label: "What's new?",
         },
