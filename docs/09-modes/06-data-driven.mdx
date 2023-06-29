@@ -22,7 +22,7 @@ Say you have a `users.csv` file containing following user records.
 
 *File: data/users.csv*
 ```text
-FIRST_NAME,LAST_NAME,JOB
+name,surname,job
 Gwen,Stefani,Pop Singer
 Gwyneth,Paltrow,Actress
 Gwen,Cooper,Torchwood Agent
@@ -36,22 +36,28 @@ The first row in this file specifies a comma separated list of column names. The
 
 *File: features/submit-user.feature*
 ```gherkin
-Feature: Submit user ${FIRST_NAME} ${LAST_NAME}
+Feature: Submit user ${name} ${surname}
 
   Scenario: submit user details
     Given I navigate to the user details page
-     When I type FIRST_NAME in the first name field
-      And I type LAST_NAME in the last name field
-      And I type JOB in the job field
+     When I type name in the first name field
+      And I type surname in the last name field
+      And I type job in the job field
       And I click the save button
-     Then the alert msg should be "User ${FIRST_NAME} saved"
+     Then the alert msg should be "User ${name} saved"
 ```
 
-Note: Interpolation of CSV fields `${FIRST_NAME} ${LAST_NAME}` in the feature name and description is supported since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.1">v3.12.1</Link>
+Note: Interpolation of CSV fields `${name} ${surname}` in the feature name and description is supported since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.1">v3.12.1</Link>
 
 :::
 
 > The current CSV record number (starting at 1) is available as an implicit attribute named `data record number` and can be accessed by reference or [interpolation](/docs/advanced/string-interpolation).
+>
+> Or since Since [v3.48.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0):
+> <ul>
+>  <li><code>data.record.number</code> = current record number starting at 1</li>
+>  <li><code>data.record.index</code> = current record index starting at 0</li>
+> </ul>
 
 You can execute this feature for all users in the CSV file by launching Gwen with the [`-i|--input-data`](/docs/cli#gwen-cli-options-input-data) CLI option.
 
@@ -149,18 +155,18 @@ A feature detail report will be generated for each data record. If you specify t
 
 > Since [v3.47.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0)
 
-JSV data files can be passed into the interpreter to perform feature execution over multiple data sets. The values in each record will be bound to attributes in the feature scope by their names. Feature steps can reference the bound data using these names.
+JSON data files can be passed into the interpreter to perform feature execution over multiple data sets. The values in each record will be bound to attributes in the feature scope by their names. Feature steps can reference the bound data using these names.
 
 Say you have a `users.json` file containing following user records.
 
-:::note CSV
+:::note JSON
 
-*File: data/users.csv*
+*File: data/users.json*
 ```json
 [
-  { "FIRST_NAME": "Gwen",    "LAST_NAME": "Stefani", "JOB": "Pop Singer"      },
-  { "FIRST_NAME": "Gwyneth", "LAST_NAME": "Paltrow", "JOB": "Actress"         },
-  { "FIRST_NAME": "Gwen",    "LAST_NAME": "Cooper",  "JOB": "Torchwood Agent" }
+  { "name": "Gwen",    "surname": "Stefani", "job": "Pop Singer"      },
+  { "name": "Gwyneth", "surname": "Paltrow", "job": "Actress"         },
+  { "name": "Gwen",    "surname": "Cooper",  "job": "Torchwood Agent" }
 ]
 ```
 
@@ -172,22 +178,28 @@ Now say you wanted to submit the details for each user to a web page through a s
 
 *File: features/submit-user.feature*
 ```gherkin
-Feature: Submit user ${FIRST_NAME} ${LAST_NAME}
+Feature: Submit user ${name} ${surname}
 
   Scenario: submit user details
     Given I navigate to the user details page
-     When I type FIRST_NAME in the first name field
-      And I type LAST_NAME in the last name field
-      And I type JOB in the job field
+     When I type name in the first name field
+      And I type surname in the last name field
+      And I type job in the job field
       And I click the save button
-     Then the alert msg should be "User ${FIRST_NAME} saved"
+     Then the alert msg should be "User ${name} saved"
 ```
 
-Note: Interpolation of JSON fields `${FIRST_NAME} ${LAST_NAME}` is supported in the feature name and description too.
+Note: Interpolation of JSON fields `${name} ${surname}` is supported in the feature name and description too.
 
 :::
 
 > The current JSON record number (starting at 1) is available as an implicit attribute named `data record number` and can be accessed by reference or [interpolation](/docs/advanced/string-interpolation).
+>
+> Or since Since [v3.48.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0):
+> <ul>
+>  <li><code>data.record.number</code> = current record number starting at 1</li>
+>  <li><code>data.record.index</code> = current record index starting at 0</li>
+> </ul>
 
 You can execute this feature for all users in the JSON file by launching Gwen with the [`-i|--input-data`](/docs/cli#gwen-cli-options-input-data) CLI option.
 
