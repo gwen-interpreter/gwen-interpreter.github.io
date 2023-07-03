@@ -32,8 +32,8 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button banner-button button--lg"
-            to="/docs/introduction">
-            Learn More
+            to="/docs/get-started">
+            Get Started
           </Link>
         </div>
       </div>
@@ -178,11 +178,11 @@ export default function Home() {
             <div className="col col--2"></div>
             <div className="col col--6">
               <p>
-                <Link
-                  className="button banner-button button--lg"
-                  to="/docs/get-started">
-                  Get Started
-                </Link>
+              <Link
+                className="button banner-button button--lg"
+                to="/docs/introduction">
+                Learn More
+              </Link>
               </p>
             </div>
           </div>
