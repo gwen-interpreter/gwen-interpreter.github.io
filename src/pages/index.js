@@ -140,6 +140,13 @@ export default function Home() {
                       {label: 'pnpm', value: 'pnpm'}
                     ]}>
                     <TabItem value="yarn">
+                      Quick setup (see <Link to="/docs/get-started">getting started</Link>)
+                      <CodeBlock language="shell">
+{`yarn add -D @gweninterpreter/gwen-web
+yarn gwen init
+cp -R gwen/samples/* gwen/features
+`}
+                      </CodeBlock>
                       Execute one feature spec
                       <CodeBlock language="shell">
                         {`yarn gwen -b gwen/features/todo.feature`}
@@ -150,6 +157,13 @@ export default function Home() {
                       </CodeBlock>
                           </TabItem>
                           <TabItem value="npm">
+                          Quick setup (see <Link to="/docs/get-started">getting started</Link>)
+                      <CodeBlock language="shell">
+{`npm i --save-dev @gweninterpreter/gwen-web
+npm run gwen init
+cp -R gwen/samples/* gwen/features
+`}
+                      </CodeBlock>
                           Execute one feature spec
                       <CodeBlock language="shell">
                         {`npm run gwen -- -b gwen/features/todo.feature`}
@@ -160,6 +174,13 @@ export default function Home() {
                       </CodeBlock>
                     </TabItem>
                     <TabItem value="pnpm">
+                    Quick setup (see <Link to="/docs/get-started">getting started</Link>)
+                      <CodeBlock language="shell">
+{`pnpm add -D @gweninterpreter/gwen-web
+pnpm gwen init
+cp -R gwen/samples/* gwen/features
+`}
+                      </CodeBlock>
                       Execute one feature spec
                       <CodeBlock language="shell">
                         {`pnpm gwen -b gwen/features/todo.feature`}
