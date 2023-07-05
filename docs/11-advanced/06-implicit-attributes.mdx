@@ -154,7 +154,7 @@ The following attributes are implicitly available to all feature and meta files 
   ```properties
   gwen.eval.status.keyword
   ```
-  <p>The current evaluation status (<code>Pending</code>, <code>Failed</code>  or <code>Sustained</code>.</p>
+  <p>The current evaluation status (<code>Passed</code> or <code>Failed</code>).</p>
 
   </summary>
 
@@ -162,6 +162,40 @@ The following attributes are implicitly available to all feature and meta files 
     <div><Link to="#gwen-eval-status-keyword">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.3.0">v3.3.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-eval-status-isPassed">
+  <summary class="setting">
+
+  ```properties
+  gwen.eval.status.isPassed
+  ```
+  <p><code>true</code> if the current evaluation status is <code>Passed</code>, <code>false</code> otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-eval-status-isPassed">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-eval-status-isFailed">
+  <summary class="setting">
+
+  ```properties
+  gwen.eval.status.isFailed
+  ```
+  <p><code>true</code> if the current evaluation status is <code>Failed</code>, <code>false</code> otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-eval-status-isFailed">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></div>
   </div>
 </details>
 
@@ -179,6 +213,23 @@ The following attributes are implicitly available to all feature and meta files 
     <div><Link to="#gwen-eval-status-message">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.3.0">v3.3.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-eval-status-message-escaped">
+  <summary class="setting">
+
+  ```properties
+  gwen.eval.status.message.escaped
+  ```
+  <p>The current evaluation status message with all new line and special characters escaped (using Java escaping rules). Non blank if the evaluation status is <code>Failed</code> or <code>Sustained</code>, blank otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-eval-status-message-escaped">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></div>
   </div>
 </details>
 
