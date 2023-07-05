@@ -154,7 +154,7 @@ The following attributes are implicitly available to all feature and meta files 
   ```properties
   gwen.eval.status.keyword
   ```
-  <p>The current evaluation status (<code>Passed</code> or <code>Failed</code>).</p>
+  <p>The current evaluation status (<code>Pending</code>, <code>Passed</code> or <code>Failed</code>).</p>
 
   </summary>
 
@@ -165,13 +165,47 @@ The following attributes are implicitly available to all feature and meta files 
   </div>
 </details>
 
+<details id="gwen-eval-status-keyword-upperCased">
+  <summary class="setting">
+
+  ```properties
+  gwen.eval.status.keyword.upperCased
+  ```
+  <p>The current evaluation status in upper case (<code>PENDING</code>, <code>PASSED</code> or <code>FAILED</code>).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-eval-status-keyword-upperCased">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.51.0">v3.51.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-eval-status-keyword-lowerCased">
+  <summary class="setting">
+
+  ```properties
+  gwen.eval.status.keyword.lowerCased
+  ```
+  <p>The current evaluation status in lower case (<code>pending</code>, <code>passed</code> or <code>failed</code>).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-eval-status-keyword-lowerCased">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.51.0">v3.51.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-eval-status-isPassed">
   <summary class="setting">
 
   ```properties
   gwen.eval.status.isPassed
   ```
-  <p><code>true</code> if the current evaluation status is <code>Passed</code>, <code>false</code> otherwise.</p>
+  <p><code>true</code> if the current evaluation status is not <code>Failed</code>, <code>false</code> otherwise.</p>
 
   </summary>
 
@@ -205,7 +239,7 @@ The following attributes are implicitly available to all feature and meta files 
   ```properties
   gwen.eval.status.message
   ```
-  <p>The current evaluation status message if the evaluation status is <code>Failed</code> or <code>Sustained</code>, blank otherwise.</p>
+  <p>The current evaluation status message if the evaluation status is <code>Failed</code>, blank otherwise.</p>
 
   </summary>
 
@@ -222,7 +256,7 @@ The following attributes are implicitly available to all feature and meta files 
   ```properties
   gwen.eval.status.message.escaped
   ```
-  <p>The current evaluation status message with all new line and special characters escaped (using Java escaping rules). Non blank if the evaluation status is <code>Failed</code> or <code>Sustained</code>, blank otherwise.</p>
+  <p>The current evaluation status message with all new line and special characters escaped (using Java escaping rules). Non blank if the evaluation status is <code>Failed</code>, blank otherwise.</p>
 
   </summary>
 
