@@ -2825,8 +2825,14 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A number greater than zero denoting the maximum number of consecutive strikes to permit (default = <code>5</code>). You can tweak this value to optimise performance.</li>
+    <li>A number greater than zero denoting the maximum number of consecutive strikes to permit. You can tweak this value to optimise performance.</li>
     <li><code>infinity</code> to continually retry on every strike until the assertion passes or the timeout period expires (sub optimal performance)</li>
+    <li><code>auto</code> to let Gwen decide (default), Since v3.52.0
+      <ul>
+        <li>Since 3.52.0, Gwen sets this to the same value configured in <Link to="#gwen-web-wait-seconds">gwen-web-wait-seconds</Link>. For example, if your configured timeout is 10 seconds, then your max strike count will be 10.</li>
+        <li>This might change in future to use smarter approaches as Gwen evolves</li>
+      </ul>
+    </li>
   </ul>
   <Tabs
   groupId="settings"
@@ -2838,6 +2844,18 @@ import TabItem from '@theme/TabItem';
   ]}>
 
   <TabItem value="conf">
+
+  Default value (since v3.52.0)
+
+  ```json
+    gwen {
+      web {
+        assertions {
+          maxStrikes = auto
+        }
+      }
+    }
+  ```
 
   Default value (since v3.42.9)
 
@@ -2869,7 +2887,7 @@ import TabItem from '@theme/TabItem';
     gwen {
       web {
         assertions {
-          maxStrikes = "infinity"
+          maxStrikes = infinity
         }
       }
     }
@@ -2877,6 +2895,20 @@ import TabItem from '@theme/TabItem';
 
   </TabItem>
   <TabItem value="json">
+
+  Default value (since v3.52.0)
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "assertions": {
+            "maxStrikes": "auto"
+          }
+        }
+      }
+    }
+  ```
 
   Default value (since v3.42.9)
 
@@ -2922,6 +2954,12 @@ import TabItem from '@theme/TabItem';
 
   </TabItem>
   <TabItem value="properties">
+
+  Default value (since v3.52.0)
+
+  ```properties
+    gwen.web.assertions.maxStrikes = auto
+  ```
 
   Default value (since v3.42.9)
 
