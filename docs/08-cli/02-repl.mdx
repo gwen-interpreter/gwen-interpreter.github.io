@@ -1,6 +1,6 @@
 --- 
 toc_min_heading_level: 2
-toc_max_heading_level: 3
+toc_max_heading_level: 4
 ---
 
 import Link from '@docusaurus/Link';
@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 
 > Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
 
-Gwen comes with a REPL (Read-Eval-Print-Loop) console. This is a command line shell that prompts you for steps, evaluates them, and outputs their status in real time. It enables you to interactively observe the execution of your steps (and [StepDefs](/docs/meta#stepdefs)) as you enter or paste them into the prompt which is very useful for automation development, debugging and analysis. Everything you enter is stored in a local history file and you can use the up and down arrow keys to recall previous inputs.
+Gwen comes with a REPL (Read-Eval-Print-Loop) console. This is a command line shell that prompts you for steps, evaluates them, and outputs their status in real time. It enables you to interactively observe the execution of your steps (and [StepDefs](/docs/meta#stepdefs)) as you enter or paste them into the prompt which is very useful for automation development, [debugging](#debugging) and analysis. Everything you enter is stored in a local history file and you can use the up and down arrow keys to recall previous inputs.
 
 ```
    __ ___      _____ _ __     _    
@@ -338,6 +338,60 @@ gwen> load path/to/changed.meta
 :::caution Potential effects on state
 
 Any scenarios in your meta that are NOT StepDefs will be re-evaluated on reload and this could result in side effects that modify the current state. Consider refactoring your meta to only declare StepDefs to avoid this impact.
+
+:::
+
+### Debugging
+
+#### Breakpoints
+
+> Since [v3.2.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.2.0)
+
+Breakpoints can be added to any feature or meta steps by prefixing their expressions with `@Breakpoint `. These are ignored unless debugging is explicitly enabled with the [-d|--debug](/docs/cli#gwen-cli-options-debug) CLI option.
+
+#####  Example
+
+:::note Breakpoint in feature file
+
+*File: features/todo.feature*
+```gherkin {9}
+Feature: Add todo items
+ 
+  Scenario: Create todo list
+    Given a new todo list
+     When the following items are added
+          | Item          |
+          | Get the milk  |
+          | Walk the dog  |
+     Then @Breakpoint the list will contain 2 items
+```
+
+:::
+
+:::info
+To activate breakpoints, launch Gwen in debug mode by specifying the [-d|--debug](/docs/cli#gwen-cli-options-debug) CLI option. 
+:::
+
+When a breakpoint on a step is encountered and debugging is enabled, Gwen will pause execution, open the [REPL](/docs/cli/repl), and prompt the user to continue execution from that step or to quit (or to perform other [REPL operations](/docs/cli/repl#repl-commands)).
+
+:::note Sample breakpoint prompt in REPL
+
+```text {10-15}
+Feature: Add todo items
+
+  Scenario: Create todo list
+    Given a new todo list  [6s 344ms] Passed
+     When the following items are added
+          | Item         |
+          | Get the milk |
+          | Walk the dog |  [2s 200ms] Passed
+
+Paused at features/todo.feature:9
+    Then @Breakpoint the list will contain 2 items
+Enter c to continue or q to quit (or type help for more options)..
+
+gwen@Breakpoint> _
+```
 
 :::
 
