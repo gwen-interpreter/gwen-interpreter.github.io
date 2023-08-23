@@ -60,7 +60,7 @@ module.exports = {
           position: 'right'
         },
         {
-          label: 'Support',
+          label: 'Gwenify',
           href: 'https://gwenify.com',
           position: 'right'
         },
@@ -134,7 +134,7 @@ module.exports = {
               href: '/docs/faq',
             },
             {
-              label: 'Gwen support',
+              label: 'Gwenify',
               href: 'https://gwenify.com',
             },
           ],
