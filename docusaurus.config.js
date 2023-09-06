@@ -40,7 +40,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/modes/data-driven#json-data-feeds',
+          href: '/docs/dsl/reference#i-capture-pdf-text-from-the-current-url',
           position: 'left',
           label: "What's new?",
         },
