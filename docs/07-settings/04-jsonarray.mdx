@@ -1,0 +1,93 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# JSONArray Notation
+
+> Since [v3.53.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.53.0)
+
+Lists can be stored in settings in various ways. For example, a list of values could be stored in your settings file as follows:
+
+<Tabs
+    groupId="settings"
+    defaultValue="conf"
+    values={[
+      {label: '.conf', value: 'conf'},
+      {label: '.json', value: 'json'},
+      {label: '.properties', value: 'properties'}
+    ]}>
+
+  <TabItem value="conf">
+
+  ```json
+    my {
+      values = [
+        "Gwen", 
+        "Jenkins", 
+        "Yarn", 
+        "Docker"
+      ]
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  ```json
+    {
+      "my": {
+        "values": [ 
+          "Gwen", 
+          "Jenkins", 
+          "Yarn", 
+          "Docker"
+        ]
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  ```properties
+    my.values = Gwen,Jenkins,Yarn,Docker
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+To access a list of values configured in your settings as a JSON array, append `:JSONArray` to its setting name in the placeholder references in your feature or [meta](/docs/meta) steps. A JSON array literal containing the values will then be expanded inline.
+
+<p><b>Example 1</b></p>
+
+The following will bind the JSON Array `["Gwen","Jenkins","Yarn","Docker"]` to the `values` variable in the current scope:
+```gherkin
+  Given values is "${my.values:JSONArray}"
+```
+
+Will expand to:
+
+```gherkin
+  Given values is "["Gwen","Jenkins","Yarn","Docker"]"
+```
+
+<p><b>Example 2</b></p>
+
+The following will inline the JSON Array into a JavaScript expression to get the length and store that in the `length` variable in the current scope:
+```gherkin
+  Given length is defined by js "${my.values:JSONArray}.length"
+   Then length should be "4"
+```
+
+Will expand to:
+```gherkin
+  Given length is defined by js "["Gwen","Jenkins","Yarn","Docker"].length"
+   Then length should be "4"
+```
