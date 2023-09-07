@@ -3407,7 +3407,7 @@ import TabItem from '@theme/TabItem';
   ```
   or Since v3.23.0 (preferred)
   ```
-  gwen.web.capabilites.<capabilities>
+  gwen.web.capabilities.<capabilities>
   ```
 
   <p>Sets a one or more web capabilities on the underlying web driver (including W3C protocol extensions).</p>
@@ -3416,15 +3416,15 @@ import TabItem from '@theme/TabItem';
   <ul>
     <li><code>&lt;capabilities&gt;</code> can include one more standard, browser specific or vendor specific capabilities.
       <ul>
-        <li><Link to="https://www.selenium.dev/documentation/webdriver/capabilities/shared/">Standard capabilites</Link> at top level</li>
+        <li><Link to="https://www.selenium.dev/documentation/webdriver/capabilities/shared/">Standard capabilities</Link> at top level</li>
         <li>Nested browser and vendor specific capabilities (protocol extensions)
           <ul>
-            <li><Link to="https://chromedriver.chromium.org/capabilities#h.p_ID_106">Chrome capabilites</Link> inside a <code>goog:chromeOptions</code> block</li>
-            <li><Link to="https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class">Edge capabilites</Link> inside a <code>ms:edgeOptions</code> block</li>
-            <li><Link to="https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html">Firefox capabilites</Link> inside a <code>moz:firefoxOptions</code> block</li>
-            <li><Link to="https://aerokube.com/selenoid/latest/#_special_capabilities">Selenoid capabilites</Link> inside a <code>selenoid:options</code> block</li>
-            <li><Link to="https://www.browserstack.com/automate/capabilities?tag=selenium-4#">BrowserStack capabilites</Link> inside a <code>bstack:options</code> block</li>
-            <li><Link to="https://www.lambdatest.com/support/docs/selenium-automation-capabilities/#desired-capabilities-in-selenium-4">LambdaTest capabilites</Link> inside a <code>LT:Options</code> block</li>
+            <li><Link to="https://chromedriver.chromium.org/capabilities#h.p_ID_106">Chrome capabilities</Link> inside a <code>goog:chromeOptions</code> block</li>
+            <li><Link to="https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class">Edge capabilities</Link> inside a <code>ms:edgeOptions</code> block</li>
+            <li><Link to="https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html">Firefox capabilities</Link> inside a <code>moz:firefoxOptions</code> block</li>
+            <li><Link to="https://aerokube.com/selenoid/latest/#_special_capabilities">Selenoid capabilities</Link> inside a <code>selenoid:options</code> block</li>
+            <li><Link to="https://www.browserstack.com/automate/capabilities?tag=selenium-4#">BrowserStack capabilities</Link> inside a <code>bstack:options</code> block</li>
+            <li><Link to="https://www.lambdatest.com/support/docs/selenium-automation-capabilities/#desired-capabilities-in-selenium-4">LambdaTest capabilities</Link> inside a <code>LT:Options</code> block</li>
             <li>And similarly for other vendors. See vendor documentation for nested block (protocol key) name</li>
           </ul>
         </li>
@@ -3447,7 +3447,7 @@ import TabItem from '@theme/TabItem';
   ```json
     gwen {
       web {
-        capabilites {
+        capabilities {
           acceptInsecureCerts = false
           "selenoid:options" {
             enableVideo = true
@@ -3466,7 +3466,7 @@ import TabItem from '@theme/TabItem';
     {
       "gwen": {
         "web": {
-          "capabilites": {
+          "capabilities": {
             "acceptInsecureCerts": false
             "selenoid:options": {
               "enableVideo": true
@@ -3483,8 +3483,8 @@ import TabItem from '@theme/TabItem';
   Example
 
   ```properties
-    gwen.web.capabilites.acceptInsecureCerts = false
-    gwen.web.capabilites.selenoid\:options.enableVideo = true
+    gwen.web.capabilities.acceptInsecureCerts = false
+    gwen.web.capabilities.selenoid\:options.enableVideo = true
   ```
 
   </TabItem>
