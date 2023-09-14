@@ -16,6 +16,14 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Dry runs can be performed on features to verify that they are syntactically correct and that all references have bindings that will resolve at runtime. This allows you to quickly validate features and catch potential errors before committing them to an execution cycle. The [`-n|--dry-run`](/docs/cli#gwen-cli-options-dry-run) CLI option is used to launch Gwen in this mode.
 
+The primary purpose of dry runs is to perform static validation of all syntax, bindings and [StepDefs](/docs/meta#stepdefs) throughout your feature and [meta](/docs/meta) files. In a dry run:
+- Browsers sessions are never started
+- Web pages are never loaded (and web elements can therefore cannot be accessed)
+- Non static bindings are never evaluated
+- JavaScript is never evaluated
+- System processes are never evaluated
+- Databases are never accessed
+
 Results will be logged to the console and in [HTML reports](/docs/reports/html) that you can inspect to find discovered issues.
 
 #### Example 
@@ -23,3 +31,176 @@ Results will be logged to the console and in [HTML reports](/docs/reports/html) 
 If you leave out or forget to define a selector for an input field, it would be detected by a dry run and reported in the HTML report as follows:
 
 ![Example dry run with error](/img/reports/sample-html-dry-run-error.png)
+
+## DryRun Annotations
+
+> Coming soon to [v3.55.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.55.0)
+
+`@DryRun` annotations can be used on any step to assign a value (or values) to any reference in a dry run evaluation.
+
+These are useful in dry runs when: 
+- A reference to a binding cannot be evaluated and causes failures that otherwise would not normally occur
+- You want to exercise all step definitions and combinations of parameters to step definitions
+- You want to exercise an abstraction over a fixed set of inputs
+
+:::info
+DryRun annotations are only honoured in dry run evaluations and are completely ignored otherwise!
+:::
+
+#### Example 
+
+Consider a [meta](/docs/meta) file with the following step definitions:
+
+```gherkin
+  @StepDef
+  Scenario: I perform step 1
+    When I do this thing
+
+  @StepDef
+  Scenario: I perform step 2
+    When I do that thing
+```
+
+Consider the following scenario where you might want to call step the 1st or 2nd step definition by fetching a `number` from an input field on a web page.
+
+```gherkin {3}
+  Given number can be located by css "input[name='number']"
+   When I navigate to "https://example.com"
+    And I perform step ${number}
+   Then ..
+```
+
+This would work perfecly fine when the value evaluates to 1 or 2 in a web page loaded in a browser. However during a dry run, browsers sessions are never started, web pages are never loaded and looking up web elements and fetching their values is not possible. Therefore the 3rd step above would fail since the number in the input field is nowhere to be accessed. In this instance, the standard Gwen behavior is to return a dry run placeholder value of `$[dryValue:webElementText]`. That step on the 3rd line would resolve to the following:
+
+```gherkin
+  And I perform step $[dryValue:webElementText]
+```
+
+This would result in an unsupported or undefined step error being raised since it cannot be matched to any step definitions.
+
+#### A terrible workaround
+
+Prior to `@DryRun` annotations being introduced, one way to work around this problem involved introducing predicates and using those as guards on calls to each step definition explicitly as follows:
+
+``` gherkin {2-3,5-6}
+  Given number can be located by css "input[name='number']"
+    And number 1 is defined by js "${number} == 1"
+    And number 2 is defined by js "${number} == 2"
+   When I navigate to "https://example.com"
+    And I perform step 1 if number 1
+    And I perform step 2 if number 2
+   Then ..
+```
+
+This works since Gwen will always resolve a predicate to `true` in a dry run. However this is not ideal since it introduces unwanted redundancy and is the primary reason `@DryRun` annotations were introduced; so we never have to do this!
+
+:::tip 
+Use DryRun annotions to avoid redundant workarounds and keep your scenarios clean and intact.
+:::
+
+
+### Single Values
+
+> Annotation synax: `@DryRun(name='<name>',value='<value>')`
+
+The solution is to provide a dry run value for `number` on the step using the `@DryRun` annotation as follows:
+
+```gherkin {3}
+  Given number can be located by css "input[name='number']"
+   When I navigate to "https://example.com"
+    And I perform step ${number}    @DryRun(name='number',value='1')
+   Then ..
+```
+
+Now when you do a dry run on this, the `${number}` reference will take on the value `1` and resolve to the following step:
+
+```gherkin
+  And I perform step 1
+```
+
+This would result in a successful call the 1st step definition. So it will be exercised in the dry run.
+
+### Multiple Values
+
+> Annotation synax: `@DryRun(name='<name>',value={'<value-1>','<value-2>','<value-N>'})`
+
+What if we wanted to exercise both step defenitions 1 and 2? The solution is to provide multiple dry run values for `number` on the calling step using the `@DryRun` annotation as follows:
+
+```gherkin {3} showLineNumbers
+  Given number can be located by css "input[name='number']"
+   When I navigate to "https://example.com"
+    And I perform step ${number}    @DryRun(name='number',value={'1','2'})
+   Then ..
+```
+
+Now when you do a dry run on this, the `${number}` reference will take on the value `1` followed by `2` and the step on line 3 above will expand and resolve into the following two steps:
+
+```gherkin
+  And I perform step 1
+  And I perform step 2
+```
+
+This would result in a successful call to both the 1st and 2nd step definitions. So both will be exercised in the dry run.
+
+### Delimited Values
+
+Similarly, you can also assign a dry run value to any binding that cannot be evaluated during a dry run such as a JavaScript binding, for example.
+
+Consider the following where you want to source a space delmited list of values from a script binding and loop over each value, making each one available to a step definition.
+
+``` gherkin {11,14-15} showLineNumbers
+  @StepDef
+  Scenario: I perform step one
+    When I do this thing
+    
+  @StepDef
+  Scenario: I perform step two
+    When I do that thing
+
+  @StepDef
+  Scenario: I perform step
+    Given I perform step ${name}
+
+  Scenario: Process each value
+    Given names is defined by js "$('.name').toArray().join(' ')"
+     When I perform step for each name in names delimited by " "
+     Then ..
+```
+
+The highlighted step on line 11 would fail in a dry run scenario, reslting in an unsupported or underfined step error because it would have resolved to the following:
+
+``` gherkin
+   Given I perform step $[dryValue:javascript]
+```
+
+In this instance, Gwen has substituted the `$[dryValue:javascript]` placeholder value for the `names` javascript binding on line 14 which cannot be evaluated during a dry run. This placeholder value is then used in the `for each` loop on line 15, and since it has no spaces in it, the entire placeholder value becomes the sole loop value.
+
+The solution is to assign a dry run value to the javascript binding in our scenario as follows:
+
+``` gherkin {2}
+  Scenario: Process each value
+    Given names is defined by js "$('.name').toArray().join(' ')"    @DryRun(name='names',value='one two')
+     When I perform step for each name in names delimited by " "
+     Then ..
+```
+
+Note: If you're using the [docstring](/docs/advanced/doc-strings) synax for your binding, you could do it like this:
+
+``` gherkin {2-5}
+  Scenario: Process each value
+    Given names is defined by js    @DryRun(name='names',value='one two')
+          """
+          $('.name').toArray().join(' ')
+          """
+     When I perform step for each name in names delimited by " "
+     Then ..
+```
+
+Now when you do a dry run, the `names` reference will take on the value `one two` and both our step definitions will be called:
+
+```gherkin
+  Given I perform step one
+  Given I perform step two
+```
+
+This would result in a successful call to both the step definitions. So both will be exercised in the dry run.

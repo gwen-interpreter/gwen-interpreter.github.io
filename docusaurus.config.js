@@ -40,7 +40,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/dsl/reference#i-capture-pdf-text-from-the-current-url',
+          href: '/docs/modes/dry-runs#dryrun-annotations',
           position: 'left',
           label: "What's new?",
         },
