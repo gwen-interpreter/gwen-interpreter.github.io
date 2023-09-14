@@ -144,6 +144,8 @@ This would result in a successful call to both the 1st and 2nd step definitions.
 
 ### Delimited Values
 
+> Annotation synax: `@DryRun(name='<name>',value='<value-1> <value-2> <value-N>')` (space delimited example)
+
 Similarly, you can also assign a dry run value to any binding that cannot be evaluated during a dry run such as a JavaScript binding, for example.
 
 Consider the following where you want to source a space delmited list of values from a script binding and loop over each value, making each one available to a step definition.
