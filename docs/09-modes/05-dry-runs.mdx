@@ -78,7 +78,7 @@ This would work perfecly fine when the value evaluates to 1 or 2 in a web page l
 
 This would result in an unsupported or undefined step error being raised since it cannot be matched to any step definitions.
 
-#### A terrible workaround
+#### A possible workaround
 
 Prior to `@DryRun` annotations being introduced, one way to work around this problem involved introducing predicates and using those as guards on calls to each step definition explicitly as follows:
 
@@ -95,7 +95,7 @@ Prior to `@DryRun` annotations being introduced, one way to work around this pro
 This works since Gwen will always resolve a predicate to `true` in a dry run. However this is not ideal since it introduces unwanted redundancy and is the primary reason `@DryRun` annotations were introduced; so we never have to do this!
 
 :::tip 
-Use DryRun annotions to avoid redundant workarounds and keep your scenarios clean and intact.
+Use DryRun annotions to avoid workarounds that introduce redundancy and keep your scenarios clean and intact.
 :::
 
 
