@@ -36,9 +36,9 @@ If you leave out or forget to define a selector for an input field, it would be 
 
 > Coming soon to [v3.55.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.55.0)
 
-`@DryRun` annotations can be used on any step to assign a value (or values) to any reference in a dry run evaluation.
+`@DryRun` annotations can be used on any step to assign a value (or values) to any reference in a dry run.
 
-These are useful in dry runs when: 
+These are useful when: 
 - A reference to a binding cannot be evaluated and causes failures that otherwise would not occur outside of a dry run
 - You want to exercise all step definitions and combinations of parameters to step definitions
 - You want to exercise an abstraction over a fixed set of inputs
@@ -61,16 +61,16 @@ Consider a [meta](/docs/meta) file with the following step definitions:
     When I do that thing
 ```
 
-Consider the following scenario where you might want to call step the 1st or 2nd step definition by fetching a `number` from an input field on a web page.
+Consider the following scenario where you might want to call the 1st or 2nd step definition depending on the value contained in a `number` displayed on a web page.
 
 ```gherkin {3}
-  Given number can be located by css "input[name='number']"
+  Given number can be located by class "number"
    When I navigate to "https://example.com"
     And I perform step ${number}
    Then ..
 ```
 
-This would work perfecly fine when the value evaluates to 1 or 2 in a web page loaded in a browser. However during a dry run, browsers sessions are never started, web pages are never loaded and looking up web elements and fetching their values is not possible. Therefore the 3rd step above would fail since the number in the input field is nowhere to be accessed. In this instance, the standard Gwen behavior is to return a dry run placeholder value of `$[dryValue:webElementText]`. That step on the 3rd line would resolve to the following:
+This would work perfeclty fine when the value evaluates to 1 or 2 in a web page loaded in a browser. However during a dry run, browsers sessions are never started, web pages are never loaded and looking up web elements and fetching their values is not possible. Therefore the 3rd step above would fail since the number in the web element is nowhere to be accessed. In this instance, the standard Gwen behavior is to return a dry run placeholder value of `$[dryValue:webElementText]`. That step on the 3rd line would resolve to the following:
 
 ```gherkin
   And I perform step $[dryValue:webElementText]
@@ -83,7 +83,7 @@ This would result in an undefined step error being raised since it cannot be mat
 Prior to `@DryRun` annotations being introduced, one way to work around this problem involved introducing predicates and using those as guards on calls to each step definition explicitly as follows:
 
 ``` gherkin {2-3,5-6}
-  Given number can be located by css "input[name='number']"
+  Given number can be located by class "number"
     And number 1 is defined by js "${number} == 1"
     And number 2 is defined by js "${number} == 2"
    When I navigate to "https://example.com"
@@ -106,7 +106,7 @@ Use DryRun annotions to avoid workarounds that introduce redundancy and keep you
 The solution is to provide a dry run value for the `number` reference in the step using the `@DryRun` annotation as follows:
 
 ```gherkin {3}
-  Given number can be located by css "input[name='number']"
+  Given number can be located by class "number"
    When I navigate to "https://example.com"
     And I perform step ${number}    @DryRun(name='number',value='1')
    Then ..
@@ -127,7 +127,7 @@ This would result in a successful call the 1st step definition. So it will be ex
 What if we wanted to exercise both step definitions 1 and 2? The solution is to provide multiple dry run values for `number` on the calling step using the `@DryRun` annotation as follows:
 
 ```gherkin {3} showLineNumbers
-  Given number can be located by css "input[name='number']"
+  Given number can be located by class "number"
    When I navigate to "https://example.com"
     And I perform step ${number}    @DryRun(name='number',value={'1','2'})
    Then ..
