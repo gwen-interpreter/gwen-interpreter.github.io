@@ -10,7 +10,7 @@ Use annotations in [meta](/docs/meta) and avoid them in features where possible.
 :::
 
 | Annotation                                                    | Level(s)                                                           | Description                                                                                                                          |
-| :------------------------------------------------------------ | :----------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
+| :------------------------------------------------------------ | :----------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------- |
 | [`@StepDef`](/docs/meta#stepdefs)                             | Scenario                                                           | Turns a Gherkin Scenario into a callable step definition                                                                             |
 | [`@Import`](/docs/meta/load-strategies#import-strategy)       | Feature<br/>Meta                                                   | Loads only specified meta files into a feature (or another meta) instead relying on the default loading mechanisms                   |
 | [`@Synchronized`](/docs/meta#synchronized-stepdefs)           | StepDef                                                            | Ensures that only one thread can call a StepDef at any one time during parallel execution                                            |
