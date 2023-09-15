@@ -39,7 +39,7 @@ If you leave out or forget to define a selector for an input field, it would be 
 `@DryRun` annotations can be used on any step to assign a value (or values) to any reference in a dry run evaluation.
 
 These are useful in dry runs when: 
-- A reference to a binding cannot be evaluated and causes failures that otherwise would not normally occur outside of a dry run
+- A reference to a binding cannot be evaluated and causes failures that otherwise would not occur outside of a dry run
 - You want to exercise all step definitions and combinations of parameters to step definitions
 - You want to exercise an abstraction over a fixed set of inputs
 
@@ -76,7 +76,7 @@ This would work perfecly fine when the value evaluates to 1 or 2 in a web page l
   And I perform step $[dryValue:webElementText]
 ```
 
-This would result in an unsupported or undefined step error being raised since it cannot be matched to any step definitions.
+This would result in an undefined step error being raised since it cannot be matched to any step definitions.
 
 #### A non-ideal workaround
 
@@ -95,7 +95,7 @@ Prior to `@DryRun` annotations being introduced, one way to work around this pro
 This works since Gwen will always resolve a predicate to `true` in a dry run. However this is not ideal since it introduces unwanted redundancy and is the primary reason `@DryRun` annotations were introduced; so we never have to do this!
 
 :::tip 
-Use DryRun annotions to avoid workarounds that introduce redundancy and keep your scenarios clean and intact.
+Use DryRun annotions to avoid workarounds that introduce redundancy and keep your abstractions intact.
 :::
 
 
@@ -103,7 +103,7 @@ Use DryRun annotions to avoid workarounds that introduce redundancy and keep you
 
 > Annotation synax: `@DryRun(name='<name>',value='<value>')`
 
-The solution is to provide a dry run value for `number` on the step using the `@DryRun` annotation as follows:
+The solution is to provide a dry run value for the `number` reference in the step using the `@DryRun` annotation as follows:
 
 ```gherkin {3}
   Given number can be located by css "input[name='number']"
@@ -118,13 +118,13 @@ Now when you do a dry run on this, the `${number}` reference will take on the va
   And I perform step 1
 ```
 
-This would result in a successful call the 1st step definition. So it will be exercised in the dry run.
+This would result in a successful call the 1st step definition. So it will be exercised.
 
 ### Multiple Values
 
 > Annotation synax: `@DryRun(name='<name>',value={'<value-1>','<value-2>','<value-N>'})`
 
-What if we wanted to exercise both step defenitions 1 and 2? The solution is to provide multiple dry run values for `number` on the calling step using the `@DryRun` annotation as follows:
+What if we wanted to exercise both step definitions 1 and 2? The solution is to provide multiple dry run values for `number` on the calling step using the `@DryRun` annotation as follows:
 
 ```gherkin {3} showLineNumbers
   Given number can be located by css "input[name='number']"
@@ -133,14 +133,14 @@ What if we wanted to exercise both step defenitions 1 and 2? The solution is to 
    Then ..
 ```
 
-Now when you do a dry run on this, the `${number}` reference will take on the value `1` followed by `2` and the step on line 3 above will expand and resolve into the following two steps:
+Now when you do a dry run on this, the `${number}` reference will take on the value `1` followed by `2` and the step on line 3 above will be expanded in-place into the following two steps:
 
 ```gherkin
   And I perform step 1
   And I perform step 2
 ```
 
-This would result in a successful call to both the 1st and 2nd step definitions. So both will be exercised in the dry run.
+This will result in a successful call to both the 1st and 2nd step definitions. So both will be exercised.
 
 ### Delimited Values
 
@@ -169,15 +169,15 @@ Consider the following where you want to source a space delmited list of values 
      Then ..
 ```
 
-The highlighted step on line 11 would fail in a dry run scenario, reslting in an unsupported or underfined step error because it would have resolved to the following:
+The highlighted step on line 11 would fail in a dry run scenario, resulting in an underfined step error because it would have resolved to the following:
 
 ``` gherkin
    Given I perform step $[dryValue:javascript]
 ```
 
-In this instance, Gwen has substituted the `$[dryValue:javascript]` placeholder value for the `names` javascript binding on line 14 which cannot be evaluated during a dry run. This placeholder value is then used in the `for each` loop on line 15, and since it has no spaces in it, the entire placeholder value becomes the sole loop value.
+In this instance, Gwen has substituted the `$[dryValue:javascript]` placeholder value for the `names` binding on line 14 which binds to a JavaScript expression that cannot be evaluated during a dry run. This placeholder value is then used in the `for each` loop on line 15, and since it has no spaces in it, the entire value itself becomes the sole loop value.
 
-The solution is to assign a dry run value to the javascript binding in our scenario as follows:
+The solution is to assign a dry run value to the JavaScript binding in our scenario as follows:
 
 ``` gherkin {2}
   Scenario: Process each value
@@ -186,7 +186,7 @@ The solution is to assign a dry run value to the javascript binding in our scena
      Then ..
 ```
 
-Note: If you're using the [docstring](/docs/advanced/doc-strings) synax for your binding, you could do it like this:
+Note: If you're using the [DocString](/docs/advanced/doc-strings) synax for your binding, you could do it like this:
 
 ``` gherkin {2-5}
   Scenario: Process each value
@@ -205,7 +205,7 @@ Now when you do a dry run, the `names` reference will take on the value `one two
   Given I perform step two
 ```
 
-This would result in a successful call to both the step definitions. So both will be exercised in the dry run.
+This will result in a successful call to both step definitions. So both will be exercised.
 
 :::note
 You also also source values from settings in annoations using the `${setting.name}` syntax in the `value` attribute.
