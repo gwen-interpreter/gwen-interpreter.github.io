@@ -70,7 +70,7 @@ Consider the following scenario where you might want to call the 1st or 2nd step
    Then ..
 ```
 
-This would work perfeclty fine when the value evaluates to 1 or 2 in a web page loaded in a browser. However during a dry run, browsers sessions are never started, web pages are never loaded and looking up web elements and fetching their values is not possible. Therefore the 3rd step above would fail since the number in the web element is nowhere to be accessed. In this instance, the standard Gwen behavior is to return a dry run placeholder value of `$[dryValue:webElementText]`. That step on the 3rd line would resolve to the following:
+This would work perfectly fine when the value evaluates to 1 or 2 in a web page loaded in a browser. However during a dry run, browsers sessions are never started, web pages are never loaded and looking up web elements and fetching their values is not possible. Therefore the 3rd step above would fail since the number in the web element is nowhere to be accessed. In this instance, the standard Gwen behavior is to return a dry run placeholder value of `$[dryValue:webElementText]`. That step on the 3rd line would resolve to the following:
 
 ```gherkin
   And I perform step $[dryValue:webElementText]
