@@ -102,7 +102,7 @@ Use DryRun annotations to manage dry run values and preserve your abstractions.
 The solution is to provide a dry run value for the `number` reference in the step using the `@DryRun` annotation as follows:
 
 ```gherkin {3}
-  Scenario: Perform all steps
+  Scenario: Perform a step
     Given number can be located by css ".n"
      When I perform step ${number}    @DryRun(name='number',value='1')
      Then ..
@@ -123,7 +123,7 @@ This would result in a successful dry run of the 1st step definition.
 What if we wanted to exercise both step definitions 1 and 2 in the meta? The solution is to provide a list of dry run values for `number` on the calling step using the `@DryRun` annotation as follows:
 
 ```gherkin {3}
-  Scenario: Perform all steps
+  Scenario: Perform a step
     Given number can be located by css ".n"
      When I perform step ${number}    @DryRun(name='number',value={'1','2'})
      Then ..
