@@ -36,7 +36,7 @@ If you leave out or forget to define a selector for an input field, it would be 
 
 > Since [v3.55.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.55.0)
 
-`@DryRun` annotations can be used on any step to assign a value (or values) to a named reference at dry run time and are very useful when: 
+`@DryRun` annotations can be used on any step to assign a value (or values) to a named reference at dry-runtime and are very useful when: 
 - You want to exercise a step definition over a fixed set of inputs
 - A reference to a binding cannot be evaluated and causes failures that otherwise would not occur outside of a dry run
 
@@ -68,7 +68,7 @@ Consider the following scenario where you might want to call the 1st or 2nd step
    Then ..
 ```
 
-This would work perfectly fine when `${number}` evaluates to 1 or 2 in a web page loaded in a browser. However during a dry run, browsers sessions are never started, web pages are never loaded and looking up web elements and fetching their values is not possible. Therefore the 3rd step above would fail since the number in the web element is nowhere to be accessed. In this instance, the standard Gwen behavior is to return a dry run placeholder value of `$[dryValue:webElementText]`. That step on the 3rd line would resolve to the following:
+This would work perfectly fine when `${number}` evaluates to 1 or 2 in a web page loaded in a browser. However during a dry run, browsers sessions are never started, web pages are never loaded and looking up web elements and fetching their values is therfore not possible. The 2nd step above would fail since the number in the web element is nowhere to be found. In this instance, the standard Gwen behavior is to return a dry run placeholder value of `$[dryValue:webElementText]`. That step on the 2nd line would resolve to the following:
 
 ```gherkin
   When I perform step $[dryValue:webElementText]
@@ -114,7 +114,7 @@ Now when you do a dry run on this, the `${number}` reference will take on the va
   When I perform step 1
 ```
 
-This would result in a successful call to the 1st step definition. So it will be exercised.
+This would result in a successful dry run of the 1st step definition.
 
 ### Multiple Values
 
@@ -135,7 +135,7 @@ Now when you perform a dry run on this, the `${number}` reference will take on t
   When I perform step 2
 ```
 
-This will result in a successful call to both the 1st and 2nd step definitions. So now both will be exercised.
+This will result in a successful dry run of both the 1st and 2nd step definitions. So now the entire meta and feature will be exercised.
 
 ### Delimited Values
 
@@ -169,7 +169,7 @@ The call to the step in the loop on line 11 would fail in a dry run scenario, re
 
 In this instance, Gwen will have assigned the `$[dryValue:javascript]` placeholder value to the `numbers` binding on line 10 since it is defined with a JavaScript expression which cannot be evaluated in a dry run. This placeholder value would then used to feed the loop, and since it has no spaces in it, the entire value itself becomes the sole undelimited value.
 
-The solution is to assign a dry run value `1 2` to the `numbers` binding as follows:
+The solution is to assign a dry run value of `1 2` to the `numbers` binding as follows:
 
 ``` gherkin {1}
  Given numbers is defined by js "$('.n').toArray().join(' ')"   @DryRun(name='numbers',value='1 2')
@@ -188,15 +188,15 @@ Note: If you're using the [DocString](/docs/advanced/doc-strings) synax, you can
     Then ..
 ```
 
-Now when you perform a dry run, the `numbers` reference will take on the value `1 2` and both our step definitions will be called in the the loop on line 11:
+Now when you perform a dry run, the `numbers` reference will take on the value `1 2` and both our step definitions will be called in the the loop:
 
 ```gherkin
   When I perform step 1
   When I perform step 2
 ```
 
-This will result in a successful call to both step definitions. So both will be exercised.
+This will result in a successful dry run of both step definitions.
 
 :::note
-You also also source values from settings in annoations using the `${setting.name}` syntax in the `value` attribute.
+You can also source values from settings in annoations using the `${setting.name}` syntax in the `value` attribute, should you wish to externalise your dry run values.
 :::
