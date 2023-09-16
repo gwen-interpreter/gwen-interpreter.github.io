@@ -136,13 +136,13 @@ Now when you perform a dry run on this, the `${number}` reference will take on t
    And I perform step 2
 ```
 
-This will result in a successful dry run of both the 1st and 2nd step definitions. So now the entire meta and will be exercised.
+This will result in a successful dry run of both the 1st and 2nd step definitions. So now the entire meta will be exercised.
 
 ### Delimited Values
 
 > Annotation synax: `@DryRun(name='<name>',value='<value-1> <value-2> <value-N>')` (space delimited example)
 
-Similarly, you can also assign a dry run value to any binding that cannot be evaluated during a dry run such as a JavaScript binding, for example.
+Similarly, you can also assign a dry run value to any binding that cannot be evaluated during in dry run mode such as a JavaScript binding, for example.
 
 Consider the following where you want to source a space delmited list of numbers from a script and loop over each one and call the step definition with that number.
 
