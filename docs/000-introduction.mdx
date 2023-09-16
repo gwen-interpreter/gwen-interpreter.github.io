@@ -36,7 +36,7 @@ Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter wit
 - Pretty [HTML](/docs/reports/html) reporting.
 - Configurable [settings](/docs/settings) and [CLI](/docs/cli) options.
 - Multiple web element [locator mechanisms](https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/) including JavaScript
-- [String interpolation](/docs/advanced/string-interpolation).
+- [String interpolation](/docs/string-interpolation).
 - Runs on Windows, Linux and [Docker](/docs/docker).
 
 :::info Frequently asked questions
@@ -205,7 +205,7 @@ Calls DSL step:
 
 #### Accessing externalised properties
 
-We could have just hard coded the https://todomvc.com/examples/react URL in the above step, but externalising it enables us to target different environments through [string interpolation](/docs/advanced/string-interpolation) without changing our meta. This is useful during development when you want to execute against a locally running instance of the application or during testing when it is running on a different host or port. With this approach you can define a [settings](/docs/settings) file per environment and assign the URL for that environment to the `todo.page.url` property in each file. Then when you want to target an environment, you pass the settings file for that environment to Gwen and the URL will be resolved accordingly.
+We could have just hard coded the https://todomvc.com/examples/react URL in the above step, but externalising it enables us to target different environments through [string interpolation](/docs/string-interpolation) without changing our meta. This is useful during development when you want to execute against a locally running instance of the application or during testing when it is running on a different host or port. With this approach you can define a [settings](/docs/settings) file per environment and assign the URL for that environment to the `todo.page.url` property in each file. Then when you want to target an environment, you pass the settings file for that environment to Gwen and the URL will be resolved accordingly.
 
 <Tabs
   groupId="settings"
@@ -313,7 +313,7 @@ Calls DSL step:
 
 #### Processing records in data tables
 
-The second StepDef uses the `@DataTable` and `@ForEach` annotations which work together to process each record in the [data table](/docs/advanced/data-tables) of the second step in the feature.
+The second StepDef uses the `@DataTable` and `@ForEach` annotations which work together to process each record in the [data table](/docs/data-tables) of the second step in the feature.
 
 :::note Feature Step 2
 <p>

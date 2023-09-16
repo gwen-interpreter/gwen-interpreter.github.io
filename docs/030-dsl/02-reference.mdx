@@ -32,7 +32,7 @@ Feature specs should be declarative and written in the language of your domain a
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name to bind the value to</li>
-    <li><code>&lt;value&gt;</code> is the value to bind (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;value&gt;</code> is the value to bind (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
     
   </ul>
   <p>Example</p>
@@ -60,7 +60,7 @@ Feature specs should be declarative and written in the language of your domain a
   <ul>
     <li><code>&lt;name&gt;</code> is the name to associate</li>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;expression&gt;</code> is the javascript expression or anonymous function that will return the value (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+    <li><code>&lt;expression&gt;</code> is the javascript expression or anonymous function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
@@ -68,7 +68,7 @@ Feature specs should be declarative and written in the language of your domain a
     </li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
@@ -216,7 +216,7 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;expression&gt;</code> is the regex selector expression</li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
@@ -264,7 +264,7 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;expression&gt;</code> is the XPath selector expression</li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
@@ -312,7 +312,7 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;expression&gt;</code> is the XPath selector expression</li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
@@ -346,10 +346,10 @@ Feature specs should be declarative and written in the language of your domain a
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name to associated the returned value to</li>
-    <li><code>&lt;expression&gt;</code> is the system process that will return the value to assign (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;expression&gt;</code> is the system process that will return the value to assign (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
@@ -381,7 +381,7 @@ Feature specs should be declarative and written in the language of your domain a
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name to associated the returned value to</li>
-    <li><code>&lt;expression&gt;</code> is the system process that will return the value to assign (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+    <li><code>&lt;expression&gt;</code> is the system process that will return the value to assign (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>Delmiters are required for special cases such as when unbalanced quoted strings are passed as arguments (see example).</li>
       </ul>
@@ -389,7 +389,7 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;delmiters&gt;</code> is a regex pattern defining the delimiter(s) used in <code>&lt;expression&gt;</code></li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
@@ -421,10 +421,10 @@ Feature specs should be declarative and written in the language of your domain a
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name to associated the returned value to</li>
-    <li><code>&lt;expression&gt;</code> is the unix system process that will return the value to assign (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;expression&gt;</code> is the unix system process that will return the value to assign (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
@@ -470,10 +470,10 @@ Feature specs should be declarative and written in the language of your domain a
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name to associated the file contents</li>
-    <li><code>&lt;filepath&gt;</code> the path to the file (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;filepath&gt;</code> the path to the file (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
@@ -539,7 +539,7 @@ Feature specs should be declarative and written in the language of your domain a
   <ul>
     <li><code>&lt;name&gt;</code> is the name to bind the returned value to</li>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;expression&gt;</code> is the javascript expression or anonymous function that will return the value (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+    <li><code>&lt;expression&gt;</code> is the javascript expression or anonymous function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
@@ -1160,11 +1160,11 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
     <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
     <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
@@ -1235,8 +1235,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
     <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
@@ -1381,8 +1381,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the expression to match</li>
@@ -1517,8 +1517,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the expression to match</li>
@@ -1845,7 +1845,7 @@ Feature specs should be declarative and written in the language of your domain a
   <p>Where</p>
   <ul>
     <li><code>&lt;page&gt;</code> is the name of the page</li>
-    <li><code>&lt;url&gt;</code> is the page URL (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;url&gt;</code> is the page URL (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
   </ul>
   <p>Example</p>
 
@@ -1929,7 +1929,7 @@ Feature specs should be declarative and written in the language of your domain a
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;url&gt;</code> is the URL to navigate to (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;url&gt;</code> is the URL to navigate to (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
   </ul>
   <p>Example</p>
 
@@ -2149,11 +2149,11 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
     <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
     <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
@@ -2219,8 +2219,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
     <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
@@ -2349,11 +2349,11 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON path</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
     <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
     <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
@@ -2418,8 +2418,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON path</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
     <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
@@ -3117,7 +3117,7 @@ Feature specs should be declarative and written in the language of your domain a
       </ul>
     </li>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> , since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;javascript&gt;</code> is the javascript expression or anonymous function that will perform the desired action (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+    <li><code>&lt;javascript&gt;</code> is the javascript expression or anonymous function that will perform the desired action (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
         <li>For an expression: no <code>return</code> prefix is required</li>
@@ -4310,7 +4310,7 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;of|on|in&gt;</code> is <code>of</code>, <code>on</code> or <code>in</code></li>
     <li><code>&lt;element&gt;</code> is the name of the element to execute the javascript on</li>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;javascript&gt;</code> is the JavaScript expression or anonymous function to execute (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+    <li><code>&lt;javascript&gt;</code> is the JavaScript expression or anonymous function to execute (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
         <li>For an expression: no <code>return</code> prefix is required</li>
@@ -4545,11 +4545,11 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
     <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
     <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
@@ -4618,8 +4618,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
     <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
@@ -4766,11 +4766,11 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
     <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
     <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
@@ -4844,8 +4844,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
     <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
@@ -5172,7 +5172,7 @@ Feature specs should be declarative and written in the language of your domain a
     Then the page title should contain "Google"
   ```
   
-  If used in conjunction with <Link to="/docs/advanced/try-steps"><code>@Try</code></Link>, will switch to the parent window regardless of whether or not a tab or window was closed (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.4">3.12.4</Link>).
+  If used in conjunction with <Link to="/docs/try-steps"><code>@Try</code></Link>, will switch to the parent window regardless of whether or not a tab or window was closed (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.4">3.12.4</Link>).
   <div class="grid-3">
     <div><Link to="#i-close-tab-or-window-occurrence">Link</Link></div>
     <div align="center"></div>
@@ -5230,7 +5230,7 @@ Feature specs should be declarative and written in the language of your domain a
       And I close the child tab
   ```
   
-  If used in conjunction with <Link to="/docs/advanced/try-steps"><code>@Try</code></Link>, will switch to the parent window regardless of whether or not a child window was closed (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.4">3.12.4</Link>).
+  If used in conjunction with <Link to="/docs/try-steps"><code>@Try</code></Link>, will switch to the parent window regardless of whether or not a child window was closed (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.4">3.12.4</Link>).
   <div class="grid-3">
     <div><Link to="#i-close-the-child-tab-or-window">Link</Link></div>
     <div align="center"></div>
@@ -5289,7 +5289,7 @@ Feature specs should be declarative and written in the language of your domain a
       And I close child tab 1
   ```
 
-  If used in conjunction with <Link to="/docs/advanced/try-steps"><code>@Try</code></Link>, will switch to the parent window regardless of whether or not a child window was closed (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.4">3.12.4</Link>).
+  If used in conjunction with <Link to="/docs/try-steps"><code>@Try</code></Link>, will switch to the parent window regardless of whether or not a child window was closed (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.4">3.12.4</Link>).
   <div class="grid-3">
     <div><Link to="#i-close-child-tab-or-window-occurrence">Link</Link></div>
     <div align="center"></div>
@@ -5723,11 +5723,11 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
     <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
     <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
   </ul>
@@ -5794,8 +5794,8 @@ Feature specs should be declarative and written in the language of your domain a
         <li><code>match regex</code> for regex match</li>
         <li><code>match xpath</code> for XML match</li>
         <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
-        <li><code>match template</code> for <Link to="/docs/advanced/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
-        <li><code>match template file</code> for <Link to="/docs/advanced/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
     <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
@@ -6471,7 +6471,7 @@ Feature specs should be declarative and written in the language of your domain a
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;javascript&gt;</code> is the javascript expression or anonymous function returning a boolean value (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+    <li><code>&lt;javascript&gt;</code> is the javascript expression or anonymous function returning a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a boolean</li>
@@ -6867,7 +6867,7 @@ Feature specs should be declarative and written in the language of your domain a
   <p>Where</p>
   <ul>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;expression&gt;</code> is the JavaScript expression or anonymous function to execute (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+    <li><code>&lt;expression&gt;</code> is the JavaScript expression or anonymous function to execute (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
       </ul>
@@ -7022,7 +7022,7 @@ Feature specs should be declarative and written in the language of your domain a
   <ul>
     <li><code>&lt;name&gt;</code>the name of the data to look up the value of and the name to bind it to</li>
     <li><code>&lt;filepath&gt;</code> the path to the CSV or JSON file to look up</li>
-    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
@@ -7107,7 +7107,7 @@ Feature specs should be declarative and written in the language of your domain a
   <ul>
     <li><code>&lt;name&gt;</code>the name of the data to look up the value of and the name to bind it to</li>
     <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV or JSON file to look up</li>
-    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
@@ -7195,7 +7195,7 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;dataName&gt;</code> the name of the data to look up the value of</li>
     <li><code>&lt;filepath&gt;</code> the path to the CSV or JSON file to look up</li>
     <li><code>&lt;name&gt;</code> the name to bind the looked up value to in the global scope</li>
-    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
@@ -7281,7 +7281,7 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;dataName&gt;</code> the name of the data in the CSV or JSON file to look up the value of</li>
     <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV or JSON file to look up</li>
     <li><code>&lt;name&gt;</code> the name to bind the looked up value to in the global scope</li>
-    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)
+    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
@@ -7373,7 +7373,7 @@ Feature specs should be declarative and written in the language of your domain a
   <ul>
     <li><code>&lt;name&gt;</code> is the name to bind the SQL query result to</li>
     <li><code>&lt;dbName&gt;</code> the name of the configured database to execute the query on</li>
-    <li><code>&lt;selectStmt&gt;</code> is the SQL query that will return the value to assign (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;selectStmt&gt;</code> is the SQL query that will return the value to assign (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
   </ul>
 
   <p>Configuration</p>
@@ -7384,7 +7384,7 @@ Feature specs should be declarative and written in the language of your domain a
   </ul>
 
   <p>
-    Optionally accepts the <Link href="/docs/advanced/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
@@ -7457,7 +7457,7 @@ Feature specs should be declarative and written in the language of your domain a
   <p>Where</p>
   <ul>
     <li><code>&lt;dbName&gt;</code> the name of the configured database to run the update statement on</li>
-    <li><code>&lt;updateStmt&gt;</code> is the SQL update statement to execute (can be in <Link to="/docs/advanced/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;updateStmt&gt;</code> is the SQL update statement to execute (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
   </ul>
 
   <p>Returns</p>

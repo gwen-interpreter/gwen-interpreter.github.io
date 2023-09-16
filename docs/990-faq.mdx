@@ -26,12 +26,12 @@ Gwen is a [Gherkin](https://docs.cucumber.io/gherkin/reference/) interpreter wit
 - Interactive [REPL](/docs/cli/repl) console and [debugging](/docs/cli/repl#debugging).
 - [HTML](/docs/reports/html), [JSON](/docs/reports/json) and [JUnit-XML](/docs/reports/junit-xml) reports.
 - Configurable [settings](/docs/settings) and [CLI](/docs/cli) options.
-- Hard, soft, and sustained [assertion modes](/docs/advanced/assertion).
+- Hard, soft, and sustained [assertion modes](/docs/assertion).
 - Multiple web element [locator mechanisms](https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/) including JavaScript
-- JavaScript [function bindings](/docs/advanced/doc-strings#javascript-function-bindings).
+- JavaScript [function bindings](/docs/doc-strings#javascript-function-bindings).
 - [System process](/docs/dsl/reference#name-is-defined-by-system-process-expression) calls.
 - [CSV and JSON data feeds](/docs/modes/data-driven).
-- [String interpolation](/docs/advanced/string-interpolation).
+- [String interpolation](/docs/string-interpolation).
 - Runs on Windows, Linux and [Docker](/docs/docker).
 
 ### What are the system requirements
@@ -458,7 +458,7 @@ Yes, see [Gwen settings](/docs/settings).
 
 ### Is string interpolation supported?
 
-Yes, see [string interpolation](/docs/advanced/string-interpolation).
+Yes, see [string interpolation](/docs/string-interpolation).
 
 ### How do I configure logging?
 
@@ -492,19 +492,19 @@ Yes, see:
 Yes, see [Gwen Gets Scenario Outlines](https://gweninterpreter.wordpress.com/2017/03/13/gwen-gets-scenario-outlines/)
 
 ### Are data tables supported?
-Yes, see [Data Tables](/docs/advanced/data-tables).
+Yes, see [Data Tables](/docs/data-tables).
 
 ### Can I use Doc Strings?
-Yes, see [Doc Strings](/docs/advanced/doc-strings).
+Yes, see [Doc Strings](/docs/doc-strings).
 
 ### Can I pass parameters to StepDefs?
 Yes, see [StepDefs with parameters](/docs/meta#stepdefs-with-parameters).
 
 ### Can I compare or match content using templates?
-Yes, see [Template Matching](/docs/advanced/template-matching).
+Yes, see [Template Matching](/docs/template-matching).
 
 ### Are soft assertions supported?
-Yes, hard, soft and sustained assertions are supported. See [Assertion Modes](/docs/advanced/assertion).
+Yes, hard, soft and sustained assertions are supported. See [Assertion Modes](/docs/assertion).
 
 ### Can Gwen help me to write good Gherkin?
 The [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) setting, when set to `strict`, can help you to write [Strictly Good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/)
@@ -564,11 +564,11 @@ gwen.target.browser = chrome
 
 ### Can I locate elements in frames or other elements?
 
-Yes, see [Locator Chaining](/docs/advanced/locator-chaining).
+Yes, see [Locator Chaining](/docs/locator-chaining).
 
 ### Can I drive multiple browsers from a single feature?
 
-Yes, you can allocate names to browser sessions and switch between them. See [Named Browser Sessions](/docs/advanced/named-browser-sessions).
+Yes, you can allocate names to browser sessions and switch between them. See [Named Browser Sessions](/docs/named-browser-sessions).
 
 ### Can I run Gwen on docker
 
@@ -592,7 +592,7 @@ Yes, set [`gwen.web.browser.headless`](/docs/settings/reference#gwen-web-browser
 
 ### Can I emulate mobile devices in browser?
 
-Yes, see [mobile emulation](/docs/advanced/mobile-emulatioin).
+Yes, see [mobile emulation](/docs/mobile-emulatioin).
 
 ### How do I upload files to a file input field?
 
