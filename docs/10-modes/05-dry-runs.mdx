@@ -41,14 +41,14 @@ If you leave out or forget to define a selector for an input field, it would be 
 - Or a binding cannot be evaluated and causes failures that otherwise would not occur outside of a dry run
 
 :::info
-DryRun annotations are only honoured in dry run evaluations and are completely ignored otherwise!
+DryRun annotations are only honoured at dry-runtime and are completely ignored otherwise!
 :::
 
 #### Example 
 
 Consider a [meta](/docs/meta) file with the following step definitions:
 
-*meta file*
+*meta*
 ```gherkin
   @StepDef
   Scenario: I perform step 1
@@ -61,14 +61,13 @@ Consider a [meta](/docs/meta) file with the following step definitions:
 
 Consider the following scenario where you might want to call the 1st or 2nd step definition depending on the value contained in some number displayed on a web page.
 
-*feature file*
-```gherkin {2}
-  Given number can be located by css ".n"
-   When I perform step ${number}
-   Then ..
+```gherkin {3}
+  Scenario: Perfom a step
+    Given number can be located by css ".n"
+     When I perform step ${number}
 ```
 
-This would work perfectly fine when `${number}` evaluates to 1 or 2 in a web page loaded in a browser. However during a dry run, browsers sessions are never started, web pages are never loaded and looking up web elements and fetching their values is therfore not possible. The 2nd step above would fail since the number in the web element is nowhere to be found. In this instance, the standard Gwen behavior is to return a dry run placeholder value of `$[dryValue:webElementText]`. That step on the 2nd line would resolve to the following:
+This would work perfectly fine when `${number}` evaluates to 1 or 2 in a web page loaded in a browser. However during a dry run, browsers sessions are never started, web pages are never loaded and looking up web elements and fetching their values is therfore not possible. The 2nd step above would fail since the number in the web element is nowhere to be found. In this instance, the standard Gwen behavior is to return a dry run placeholder value of `$[dryValue:webElementText]`. That 2nd step would resolve to the following:
 
 ```gherkin
   When I perform step $[dryValue:webElementText]
@@ -102,10 +101,11 @@ Use DryRun annotations to manage dry run values and preserve your abstractions.
 
 The solution is to provide a dry run value for the `number` reference in the step using the `@DryRun` annotation as follows:
 
-```gherkin {2}
-  Given number can be located by css ".n"
-   When I perform step ${number}    @DryRun(name='number',value='1')
-   Then ..
+```gherkin {3}
+  Scenario: Perform all steps
+    Given number can be located by css ".n"
+     When I perform step ${number}    @DryRun(name='number',value='1')
+     Then ..
 ```
 
 Now when you do a dry run on this, the `${number}` reference will take on the value `1` and resolve to the following step:
@@ -120,22 +120,23 @@ This would result in a successful dry run of the 1st step definition.
 
 > Annotation synax: `@DryRun(name='<name>',value={'<value-1>','<value-2>','<value-N>'})`
 
-What if we wanted to exercise both step definitions 1 and 2 in the meta? The solution is to provide multiple dry run values for `number` on the calling step using the `@DryRun` annotation as follows:
+What if we wanted to exercise both step definitions 1 and 2 in the meta? The solution is to provide a list of dry run values for `number` on the calling step using the `@DryRun` annotation as follows:
 
-```gherkin {2} showLineNumbers
-  Given number can be located by css ".n"
-   When I perform step ${number}    @DryRun(name='number',value={'1','2'})
-   Then ..
+```gherkin {3}
+  Scenario: Perform all steps
+    Given number can be located by css ".n"
+     When I perform step ${number}    @DryRun(name='number',value={'1','2'})
+     Then ..
 ```
 
-Now when you perform a dry run on this, the `${number}` reference will take on the value `1` followed by `2` and the step on line 2 above will be expanded in-place into the following two steps:
+Now when you perform a dry run on this, the `${number}` reference will take on the value `1` followed by `2` and the 2nd step above will be expanded in-place into the following two steps:
 
 ```gherkin
   When I perform step 1
   When I perform step 2
 ```
 
-This will result in a successful dry run of both the 1st and 2nd step definitions. So now the entire meta and feature will be exercised.
+This will result in a successful dry run of both the 1st and 2nd step definitions. So now the entire meta and will be exercised.
 
 ### Delimited Values
 
@@ -145,7 +146,7 @@ Similarly, you can also assign a dry run value to any binding that cannot be eva
 
 Consider the following where you want to source a space delmited list of numbers from a script and loop over each one and call the step definition with that number.
 
-*meta file*
+*meta*
 ``` gherkin {10-11} showLineNumbers
   @StepDef
   Scenario: I perform step 1
@@ -169,7 +170,7 @@ The call to the step in the loop on line 11 would fail in a dry run scenario, re
 
 In this instance, Gwen will have assigned the `$[dryValue:javascript]` placeholder value to the `numbers` binding on line 10 since it is defined with a JavaScript expression which cannot be evaluated in a dry run. This placeholder value would then used to feed the loop, and since it has no spaces in it, the entire value itself becomes the sole undelimited value.
 
-The solution is to assign a dry run value of `1 2` to the `numbers` binding as follows:
+The solution is to assign a space delimited dry run value of `1 2` to the `numbers` binding as follows:
 
 ``` gherkin {1}
  Given numbers is defined by js "$('.n').toArray().join(' ')"   @DryRun(name='numbers',value='1 2')
@@ -198,5 +199,5 @@ Now when you perform a dry run, the `numbers` reference will take on the value `
 This will result in a successful dry run of both step definitions.
 
 :::note
-You can also source values from settings in annoations using the `${setting.name}` syntax in the `value` attribute, should you wish to externalise your dry run values.
+You can also source values from settings in annotations using the `${setting.name}` syntax in the `value` attribute, should you wish to externalise your dry run values.
 :::
