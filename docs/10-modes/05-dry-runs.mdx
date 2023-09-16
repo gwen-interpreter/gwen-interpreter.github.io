@@ -36,10 +36,9 @@ If you leave out or forget to define a selector for an input field, it would be 
 
 > Since [v3.55.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.55.0)
 
-`@DryRun` annotations can be used on any step to assign a value (or values) to any reference in a dry run, and are very useful when: 
+`@DryRun` annotations can be used on any step to assign a value (or values) to a named reference at dry run time and are very useful when: 
+- You want to exercise a step definition over a fixed set of inputs
 - A reference to a binding cannot be evaluated and causes failures that otherwise would not occur outside of a dry run
-- You want to exercise all step definitions and combinations of parameters to step definitions
-- You want to exercise an abstraction over a fixed set of inputs
 
 :::info
 DryRun annotations are only honoured in dry run evaluations and are completely ignored otherwise!
@@ -49,6 +48,7 @@ DryRun annotations are only honoured in dry run evaluations and are completely i
 
 Consider a [meta](/docs/meta) file with the following step definitions:
 
+*meta file*
 ```gherkin
   @StepDef
   Scenario: I perform step 1
@@ -61,8 +61,9 @@ Consider a [meta](/docs/meta) file with the following step definitions:
 
 Consider the following scenario where you might want to call the 1st or 2nd step definition depending on the value contained in some number displayed on a web page.
 
+*feature file*
 ```gherkin {3}
-  Given number can be located by css "span.number"
+  Given number can be located by css ".n"
    When I navigate to "https://example.com"
     And I perform step ${number}
    Then ..
@@ -81,7 +82,7 @@ This would result in an undefined step error being reported since it cannot be m
 Before `@DryRun` annotations were introduced, one way to work around this problem involved introducing predicates and using those as guards on calls to each step definition explicitly as follows:
 
 ``` gherkin {2-3,5-6}
-  Given number can be located by css "span.number"
+  Given number can be located by css ".n"
     And number 1 is defined by js "${number} == 1"
     And number 2 is defined by js "${number} == 2"
    When I navigate to "https://example.com"
@@ -104,7 +105,7 @@ Use DryRun annotations to manage dry run values and preserve your abstractions.
 The solution is to provide a dry run value for the `number` reference in the step using the `@DryRun` annotation as follows:
 
 ```gherkin {3}
-  Given number can be located by css "span.number"
+  Given number can be located by css ".n"
    When I navigate to "https://example.com"
     And I perform step ${number}    @DryRun(name='number',value='1')
    Then ..
@@ -125,7 +126,7 @@ This would result in a successful call to the 1st step definition. So it will be
 What if we wanted to exercise both step definitions 1 and 2 in the meta? The solution is to provide multiple dry run values for `number` on the calling step using the `@DryRun` annotation as follows:
 
 ```gherkin {3} showLineNumbers
-  Given number can be located by css "span.number"
+  Given number can be located by css ".n"
    When I navigate to "https://example.com"
     And I perform step ${number}    @DryRun(name='number',value={'1','2'})
    Then ..
@@ -146,61 +147,56 @@ This will result in a successful call to both the 1st and 2nd step definitions. 
 
 Similarly, you can also assign a dry run value to any binding that cannot be evaluated during a dry run such as a JavaScript binding, for example.
 
-Consider the following where you want to source a space delmited list of values from a script and loop over each value, making each one available to a step definition.
+Consider the following where you want to source a space delmited list of numbers from a script and loop over each one and call the step definition with that number.
 
-``` gherkin {11,14-15} showLineNumbers
+*meta file*
+``` gherkin {10-11} showLineNumbers
   @StepDef
-  Scenario: I perform step one
+  Scenario: I perform step 1
     When I do this thing
     
   @StepDef
-  Scenario: I perform step two
+  Scenario: I perform step 2
     When I do that thing
 
-  @StepDef
-  Scenario: I perform step
-    Given I perform step ${name}
-
-  Scenario: Process each value
-    Given names is defined by js "$('.name').toArray().join(' ')"
-     When I perform step for each name in names delimited by " "
+  Scenario: Perform all steps
+    Given numbers is defined by js "$('.n').toArray().join(' ')"
+     When I perform step ${number} for each number in numbers delimited by " "
      Then ..
 ```
 
-The highlighted step on line 11 would fail in a dry run scenario, resulting in an undefined step error because it would have resolved to the following:
+The call to the step in the loop on line 11 would fail in a dry run scenario, resulting in an undefined step error because it would resolve to the following:
 
 ``` gherkin
    Given I perform step $[dryValue:javascript]
 ```
 
-In this instance, Gwen has substituted the `$[dryValue:javascript]` placeholder value for the `names` binding on line 14 which binds to a JavaScript expression that cannot be evaluated during a dry run. This placeholder value is then used in the `for each` loop on line 15, and since it has no spaces in it, the entire value itself becomes the sole loop value.
+In this instance, Gwen will have assigned the `$[dryValue:javascript]` placeholder value to the `numbers` binding on line 10 since it is defined with a JavaScript expression which cannot be evaluated in a dry run. This placeholder value would then used to feed the loop, and since it has no spaces in it, the entire value itself becomes the sole undelimited value.
 
-The solution is to assign a dry run value to the JavaScript binding as follows:
+The solution is to assign a dry run value `1 2` to the `numbers` binding as follows:
 
-``` gherkin {2}
-  Scenario: Process each value
-    Given names is defined by js "$('.name').toArray().join(' ')"    @DryRun(name='names',value='one two')
-     When I perform step for each name in names delimited by " "
-     Then ..
+``` gherkin {1}
+ Given numbers is defined by js "$('.n').toArray().join(' ')"   @DryRun(name='numbers',value='1 2')
+  When I perform step ${number} for each number in numbers delimited by " "
+  Then ..
 ```
 
 Note: If you're using the [DocString](/docs/advanced/doc-strings) synax, you can do it like this:
 
-``` gherkin {2-5}
-  Scenario: Process each value
-    Given names is defined by js    @DryRun(name='names',value='one two')
-          """
-          $('.name').toArray().join(' ')
-          """
-     When I perform step for each name in names delimited by " "
-     Then ..
+``` gherkin {1-4}
+  Given numbers is defined by js    @DryRun(name='numbers',value='1 2')
+        """
+        $('.n').toArray().join(' ')
+        """
+    When I perform step ${number} for each number in numbers delimited by " "
+    Then ..
 ```
 
-Now when you perform a dry run, the `names` reference will take on the value `one two` and both our step definitions will be called in the for-each the loop:
+Now when you perform a dry run, the `numbers` reference will take on the value `1 2` and both our step definitions will be called in the the loop on line 11:
 
 ```gherkin
-  Given I perform step one
-  Given I perform step two
+  Given I perform step 1
+  Given I perform step 2
 ```
 
 This will result in a successful call to both step definitions. So both will be exercised.
