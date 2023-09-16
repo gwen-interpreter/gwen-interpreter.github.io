@@ -52,27 +52,26 @@ Consider a [meta](/docs/meta) file with the following step definitions:
 ```gherkin
   @StepDef
   Scenario: I perform step 1
-    When I do this thing
+    Then number should be "1"
 
   @StepDef
   Scenario: I perform step 2
-    When I do that thing
+    Then number should not be "1"
 ```
 
 Consider the following scenario where you might want to call the 1st or 2nd step definition depending on the value contained in some number displayed on a web page.
 
 *feature file*
-```gherkin {3}
+```gherkin {2}
   Given number can be located by css ".n"
-   When I navigate to "https://example.com"
-    And I perform step ${number}
+   When I perform step ${number}
    Then ..
 ```
 
 This would work perfectly fine when `${number}` evaluates to 1 or 2 in a web page loaded in a browser. However during a dry run, browsers sessions are never started, web pages are never loaded and looking up web elements and fetching their values is not possible. Therefore the 3rd step above would fail since the number in the web element is nowhere to be accessed. In this instance, the standard Gwen behavior is to return a dry run placeholder value of `$[dryValue:webElementText]`. That step on the 3rd line would resolve to the following:
 
 ```gherkin
-  And I perform step $[dryValue:webElementText]
+  When I perform step $[dryValue:webElementText]
 ```
 
 This would result in an undefined step error being reported since it cannot be matched to any step definition in our meta.
@@ -81,12 +80,11 @@ This would result in an undefined step error being reported since it cannot be m
 
 Before `@DryRun` annotations were introduced, one way to work around this problem involved introducing predicates and using those as guards on calls to each step definition explicitly as follows:
 
-``` gherkin {2-3,5-6}
+``` gherkin {2-5}
   Given number can be located by css ".n"
     And number 1 is defined by js "${number} == 1"
     And number 2 is defined by js "${number} == 2"
-   When I navigate to "https://example.com"
-    And I perform step 1 if number 1
+   When I perform step 1 if number 1
     And I perform step 2 if number 2
    Then ..
 ```
@@ -104,17 +102,16 @@ Use DryRun annotations to manage dry run values and preserve your abstractions.
 
 The solution is to provide a dry run value for the `number` reference in the step using the `@DryRun` annotation as follows:
 
-```gherkin {3}
+```gherkin {2}
   Given number can be located by css ".n"
-   When I navigate to "https://example.com"
-    And I perform step ${number}    @DryRun(name='number',value='1')
+   When I perform step ${number}    @DryRun(name='number',value='1')
    Then ..
 ```
 
 Now when you do a dry run on this, the `${number}` reference will take on the value `1` and resolve to the following step:
 
 ```gherkin
-  And I perform step 1
+  When I perform step 1
 ```
 
 This would result in a successful call to the 1st step definition. So it will be exercised.
@@ -125,18 +122,17 @@ This would result in a successful call to the 1st step definition. So it will be
 
 What if we wanted to exercise both step definitions 1 and 2 in the meta? The solution is to provide multiple dry run values for `number` on the calling step using the `@DryRun` annotation as follows:
 
-```gherkin {3} showLineNumbers
+```gherkin {2} showLineNumbers
   Given number can be located by css ".n"
-   When I navigate to "https://example.com"
-    And I perform step ${number}    @DryRun(name='number',value={'1','2'})
+   When I perform step ${number}    @DryRun(name='number',value={'1','2'})
    Then ..
 ```
 
-Now when you perform a dry run on this, the `${number}` reference will take on the value `1` followed by `2` and the step on line 3 above will be expanded in-place into the following two steps:
+Now when you perform a dry run on this, the `${number}` reference will take on the value `1` followed by `2` and the step on line 2 above will be expanded in-place into the following two steps:
 
 ```gherkin
-  And I perform step 1
-  And I perform step 2
+  When I perform step 1
+  When I perform step 2
 ```
 
 This will result in a successful call to both the 1st and 2nd step definitions. So now both will be exercised.
@@ -153,11 +149,11 @@ Consider the following where you want to source a space delmited list of numbers
 ``` gherkin {10-11} showLineNumbers
   @StepDef
   Scenario: I perform step 1
-    When I do this thing
+    Then number should be "1"
     
   @StepDef
   Scenario: I perform step 2
-    When I do that thing
+    Then number should not be "1"
 
   Scenario: Perform all steps
     Given numbers is defined by js "$('.n').toArray().join(' ')"
@@ -168,7 +164,7 @@ Consider the following where you want to source a space delmited list of numbers
 The call to the step in the loop on line 11 would fail in a dry run scenario, resulting in an undefined step error because it would resolve to the following:
 
 ``` gherkin
-   Given I perform step $[dryValue:javascript]
+   When I perform step $[dryValue:javascript]
 ```
 
 In this instance, Gwen will have assigned the `$[dryValue:javascript]` placeholder value to the `numbers` binding on line 10 since it is defined with a JavaScript expression which cannot be evaluated in a dry run. This placeholder value would then used to feed the loop, and since it has no spaces in it, the entire value itself becomes the sole undelimited value.
@@ -195,8 +191,8 @@ Note: If you're using the [DocString](/docs/advanced/doc-strings) synax, you can
 Now when you perform a dry run, the `numbers` reference will take on the value `1 2` and both our step definitions will be called in the the loop on line 11:
 
 ```gherkin
-  Given I perform step 1
-  Given I perform step 2
+  When I perform step 1
+  When I perform step 2
 ```
 
 This will result in a successful call to both step definitions. So both will be exercised.
