@@ -41,8 +41,13 @@ If you leave out or forget to define a selector for an input field, it would be 
 - Or a binding cannot be evaluated and causes failures that otherwise would not occur outside of a dry run
 
 :::info
-DryRun annotations are only honoured at dry-runtime and are completely ignored otherwise!
+DryRun annotations are only honoured by dry runs and are completely ignored otherwise.
 :::
+
+:::tip 
+Use DryRun annotations sparingly or when necessary only.
+:::
+
 
 #### Example 
 
@@ -89,11 +94,6 @@ Before `@DryRun` annotations were introduced, one way to work around this proble
 ```
 
 This effectively works since Gwen always resolves predicates to `true` values in dry runs. However, this is not ideal because it forces you to break your abstraction and introduces unwanted redundancies. This is the primary reason why `@DryRun` annotations were introduced; to avoid this kind of workaround.
-
-:::tip 
-Use DryRun annotations to manage dry run values and preserve your abstractions.
-:::
-
 
 ### Single Values
 
@@ -168,7 +168,7 @@ The call to the step in the loop on line 11 would fail in a dry run scenario, re
    When I perform step $[dryValue:javascript]
 ```
 
-In this instance, Gwen will have assigned the `$[dryValue:javascript]` placeholder value to the `numbers` binding on line 10 since it is defined with a JavaScript expression which cannot be evaluated in a dry run. This placeholder value would then used to feed the loop, and since it has no spaces in it, the entire value itself becomes the sole undelimited value.
+In this instance, Gwen will have assigned the `$[dryValue:javascript]` placeholder value to the `numbers` binding on line 10 since it is defined with a JavaScript expression which cannot be evaluated at dry-runtime. This placeholder value would then used to feed the loop, and since it has no spaces in it, the entire value itself becomes the sole undelimited value.
 
 The solution is to assign a space delimited dry run value of `1 2` to the `numbers` binding as follows:
 
