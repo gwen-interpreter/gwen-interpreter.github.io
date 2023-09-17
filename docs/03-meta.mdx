@@ -16,7 +16,7 @@ Meta specs are [Gherkin](https://cucumber.io/docs/gherkin/reference/) specificat
 
 ### Composable step definitions
 
-Step definitions are defined as <code>@StepDef</code> annotated [Scenarios](https://cucumber.io/docs/gherkin/reference/#example) with names that map to steps in features and bodies that call out to [DSL steps](/docs/dsl/reference) to perform operations.
+Step definitions are defined as <code>@StepDef</code> annotated [Scenarios](https://cucumber.io/docs/gherkin/reference/#example) with names that map to steps in features and bodies that call out to [DSL steps](/docs/dsl) to perform operations.
 
 :::tip
 
@@ -54,10 +54,10 @@ A step definition for executing this step could be defined in meta as follows:
 
 Calls DSL steps:
 
-- [`<element> can be located by <selector> "<expression>"`](/docs/dsl/reference#element-can-be-located-by-selector-expression)
-- [`I navigate to "<url>"`](/docs/dsl/reference#i-navigate-to-url)
-- [`the page title should[ not] <match> "<expression>"`](/docs/dsl/reference#the-page-title-should-match-expression)
-- [`<element> should[ not] be <state>`](/docs/dsl/reference#element-should-be-state)
+- [`<element> can be located by <selector> "<expression>"`](/docs/dsl#element-can-be-located-by-selector-expression)
+- [`I navigate to "<url>"`](/docs/dsl#i-navigate-to-url)
+- [`the page title should[ not] <match> "<expression>"`](/docs/dsl#the-page-title-should-match-expression)
+- [`<element> should[ not] be <state>`](/docs/dsl#element-should-be-state)
 
 :::
 
@@ -87,8 +87,8 @@ StepDefs can also be declared to accept parameters using one or more `<param-nam
 
 Calls DSL steps:
 
-- [`<element> can be located by <selector> "<expression>"`](/docs/dsl/reference#element-can-be-located-by-selector-expression)
-- [`<textRef> should[ not] <match> "<expression>"`](/docs/dsl/reference#text-ref-should-match-expression)
+- [`<element> can be located by <selector> "<expression>"`](/docs/dsl#element-can-be-located-by-selector-expression)
+- [`<textRef> should[ not] <match> "<expression>"`](/docs/dsl#text-ref-should-match-expression)
 
 :::
 
@@ -105,7 +105,7 @@ In the rare case where you might need to synchronize the execution of your StepD
 
 > Since [v2.40.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.40.0)
 
-When [associative meta](/docs/settings/reference#gwen-associative-meta) is enabled, a meta and feature file are considered to be associated with each other if the two files are in the same directory and have the same names (excluding their file extensions). The associative strategy will, for every feature:
+When [associative meta](/docs/settings#gwen-associative-meta) is enabled, a meta and feature file are considered to be associated with each other if the two files are in the same directory and have the same names (excluding their file extensions). The associative strategy will, for every feature:
 1. Auto discover all the meta files in the path to the feature file and only load those that are either:
     - Not associated with any feature (one or many)
     - Associated with the current feature (one or none)
@@ -461,7 +461,7 @@ With [associative meta](/docs/meta/load-strategies#associative-strategy) enabled
 
 :::tip Use imports in associative meta
 
-Although it's possible to specify imports directly in feature files, we do not recommend you doing so since it would introduce automation concerns into your features. Confining imports to associative meta instead will keep your features clean and untouched. You must enable [associative meta](/docs/settings/reference#gwen-associative-meta) to use this approach (note that this setting is enabled by default in since <Link to="docs/gwen3">Gwen 3</Link>).
+Although it's possible to specify imports directly in feature files, we do not recommend you doing so since it would introduce automation concerns into your features. Confining imports to associative meta instead will keep your features clean and untouched. You must enable [associative meta](/docs/settings#gwen-associative-meta) to use this approach (note that this setting is enabled by default in since <Link to="docs/gwen3">Gwen 3</Link>).
 
 :::
 

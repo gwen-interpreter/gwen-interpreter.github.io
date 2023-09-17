@@ -172,7 +172,7 @@ All the default [settings](/docs/settings) for your project are pre-configured i
 
 #### Default web browser and target environment
 
-Gwen is configured to target the Chrome browser and your *test* environment by default. To change these, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) and [<code>gwen.target.env</code>](/docs/settings/reference#gwen-target-env) settings to your preferred values.
+Gwen is configured to target the Chrome browser and your *test* environment by default. To change these, amend the  [<code>gwen.target.browser</code>](/docs/settings#gwen-target-browser) and [<code>gwen.target.env</code>](/docs/settings#gwen-target-env) settings to your preferred values.
 
 :::note Amend settings
 
@@ -232,14 +232,14 @@ gwen.target.env = test
 
 The following defaults are pre-configured to help promote [good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/) practice:
 
-- [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode) is set to `declarative` to confine your [DSL](/docs/dsl) usage to [meta](/docs/meta) and keep your features clean
-- [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) is set to `strict` to enforce proper [behavioural rules](/docs#behavioural-rules-and-semantics) and *Given-When-Then* order
+- [`gwen.feature.mode`](/docs/settings#gwen-feature-mode) is set to `declarative` to confine your [DSL](/docs/dsl) usage to [meta](/docs/meta) and keep your features clean
+- [`gwen.behavior.rules`](/docs/settings#gwen-behavior-rules) is set to `strict` to enforce proper [behavioural rules](/docs#behavioural-rules-and-semantics) and *Given-When-Then* order
 
 You can relax these by setting them to `imperative` and `lenient` (respectively) if you find them too rigid.
 
 #### Web driver settings
 
-Gwen has an embedded web driver manager which automatically downloads and installs native web drivers for you on most platforms. If however you need to manage this manually, see [Web Driver Management](/docs/web-driver-management) and [Web Settings](/docs/settings/reference#web-settings) for options.
+Gwen has an embedded web driver manager which automatically downloads and installs native web drivers for you on most platforms. If however you need to manage this manually, see [Web Driver Management](/docs/web-driver-management) and [Web Settings](/docs/settings#web-settings) for options.
 
 ### Execute the samples
 
@@ -450,7 +450,7 @@ All the default [settings](/docs/settings) for your project are pre-configured i
 
 #### Default web browser and target environment
 
-Gwen is configured to target the Chrome browser and your *test* environment by default. To change these, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) and [<code>gwen.target.env</code>](/docs/settings/reference#gwen-target-env) settings to your preferred values.
+Gwen is configured to target the Chrome browser and your *test* environment by default. To change these, amend the  [<code>gwen.target.browser</code>](/docs/settings#gwen-target-browser) and [<code>gwen.target.env</code>](/docs/settings#gwen-target-env) settings to your preferred values.
 
 :::note Amend settings
 
@@ -511,14 +511,14 @@ gwen.target.env = test
 
 The following settings are pre-configured with [strictly good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/) in mind:
 
-- [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode) is set to *declarative* to help keep your features high level and declarative
-- [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) is set to *strict* to enforce proper behavioural semantics and Given-When-Then order
+- [`gwen.feature.mode`](/docs/settings#gwen-feature-mode) is set to *declarative* to help keep your features high level and declarative
+- [`gwen.behavior.rules`](/docs/settings#gwen-behavior-rules) is set to *strict* to enforce proper behavioural semantics and Given-When-Then order
 
 You can relax these by setting them to *imperative* and *lenient* instead if you find them too rigid.
 
 #### Web driver settings
 
-Gwen has an embedded web driver manager which automatically downloads and installs native web drivers for you on most platforms. If however you need to manage this manually, see [Web Driver Management](/docs/web-driver-management) and [Web Settings](/docs/settings/reference#web-settings) for options.
+Gwen has an embedded web driver manager which automatically downloads and installs native web drivers for you on most platforms. If however you need to manage this manually, see [Web Driver Management](/docs/web-driver-management) and [Web Settings](/docs/settings#web-settings) for options.
 
 ### Execute the samples
 

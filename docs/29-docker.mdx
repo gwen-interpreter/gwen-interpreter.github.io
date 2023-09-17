@@ -369,14 +369,14 @@ gwen {
 ```
 
 :::note video settings
-- [`gwen-video.dir`](/docs/settings/reference#gwen-video.dir) 
+- [`gwen-video.dir`](/docs/settings#gwen-video.dir) 
   - Should match host directory mounted to `/opt/selenoid/video` in Selenoid video-recorder
-- [`gwen-video.timeoutSecs`](/docs/settings/reference#gwen-video.timeoutSecs) 
+- [`gwen-video.timeoutSecs`](/docs/settings#gwen-video.timeoutSecs) 
   - Time to wait for asyncronous video writes to complete (override only if default does not suffice)
 :::
 
 :::caution Limitation
-Videos will not be recorded when [parallel execution](/docs/execution-modes#parallel), [headless browser](/docs/settings/reference#gwen-web-browser-headless), or interactive (non [--batch/-b](/docs/cli#gwen-cli-options-batch)) modes are enabled.
+Videos will not be recorded when [parallel execution](/docs/execution-modes#parallel), [headless browser](/docs/settings#gwen-web-browser-headless), or interactive (non [--batch/-b](/docs/cli#gwen-cli-options-batch)) modes are enabled.
 :::
 
 ## Mac ARM notes

@@ -133,7 +133,7 @@ Feature: Todo Meta
 
 #### Declaring step definitions
 
-Each step definition is declared as a `@StepDef` annotated scenario with a name that matches that of the step in the feature it binds to. Each one calls out to one or more [DSL Steps](/docs/dsl/reference) (or potentially other StepDefs) in its body to perform the specified operations at run time.
+Each step definition is declared as a `@StepDef` annotated scenario with a name that matches that of the step in the feature it binds to. Each one calls out to one or more [DSL Steps](/docs/dsl) (or potentially other StepDefs) in its body to perform the specified operations at run time.
 
 The first StepDef in our meta example binds to the first step in the feature and will only execute when it is interpreted for execution by Gwen.
 
@@ -176,7 +176,7 @@ The first thing the above will do is bind the selector for locating the todo lis
 
 Calls DSL step:
 
-- [`<element> can be located by <selector> "<expression>"`](/docs/dsl/reference#element-can-be-located-by-selector-expression)
+- [`<element> can be located by <selector> "<expression>"`](/docs/dsl#element-can-be-located-by-selector-expression)
 
 </p>
 :::
@@ -196,7 +196,7 @@ The next step in this StepDef will open a new browser window and navigate to the
 
 Calls DSL step:
 
-- [`I navigate to "<url>"`](/docs/dsl/reference#i-navigate-to-url)
+- [`I navigate to "<url>"`](/docs/dsl#i-navigate-to-url)
 
 </p>
 :::
@@ -284,7 +284,7 @@ The next step in the same StepDef checks that the page title in the browser wind
 
 Calls DSL step:
 
-- [`the page title should[ not] <match> "<expression>"`](/docs/dsl/reference#the-page-title-should-match-expression)
+- [`the page title should[ not] <match> "<expression>"`](/docs/dsl#the-page-title-should-match-expression)
 
 </p>
 :::
@@ -304,7 +304,7 @@ The last step in this StepDef verifies that the web element containing the curre
 
 Calls DSL step:
 
-- [`<element> should[ not] be <state>`](/docs/dsl/reference#element-should-be-state)
+- [`<element> should[ not] be <state>`](/docs/dsl#element-should-be-state)
 
 </p>
 :::
@@ -356,8 +356,8 @@ Gwen will call the StepDef for each record in the table and bind each field valu
 
 Calls DSL steps:
 
-- [`I <enter|type> <textRef> in <element>`](/docs/dsl/reference#i-enter-or-type-text-ref-in-element)
-- [`<element> should[ not] <match> <expressionRef>`](/docs/dsl/reference#element-should-match-expression-ref)
+- [`I <enter|type> <textRef> in <element>`](/docs/dsl#i-enter-or-type-text-ref-in-element)
+- [`<element> should[ not] <match> <expressionRef>`](/docs/dsl#element-should-match-expression-ref)
 
 </p>
 :::
@@ -392,7 +392,7 @@ The last StepDef accepts the number of expected items from the last step in the 
 
 Calls DSL step:
 
-- [`<element> should[ not] <match> "<expression>"`](/docs/dsl/reference#element-should-match-expression)
+- [`<element> should[ not] <match> "<expression>"`](/docs/dsl#element-should-match-expression)
 
 </p>
 :::
@@ -410,14 +410,14 @@ Lastly, the final step in this StepDef verifies that the web element containing 
 
 Calls DSL step:
 
-- [`<element> should[ not] be <state>`](/docs/dsl/reference#element-should-be-state)
+- [`<element> should[ not] be <state>`](/docs/dsl#element-should-be-state)
 
 </p>
 :::
 
 #### Behavioural rules and semantics
 
-The following annotations on StepDefs are used to associate behaviour types and enforce the following rules when the [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) setting is set to `strict`.
+The following annotations on StepDefs are used to associate behaviour types and enforce the following rules when the [`gwen.behavior.rules`](/docs/settings#gwen-behavior-rules) setting is set to `strict`.
 
 | StepDefs annotated with.. | can only bind steps tied to keyword.. | because..                |
 | :-----------------------: | :-----------------------------------: | :----------------------- |
@@ -466,7 +466,7 @@ Strict rules are enabled by default since <Link to="/docs/gwen3">Gwen 3</Link>. 
 
 #### Associative meta
 
-When the [`gwen.associative.meta`](/docs/settings/reference#gwen-associative-meta) setting is enabled, Gwen will automatically associate and bind all same named feature and meta files discovered in a directory with each other. In the following case, the meta would be considered associative.
+When the [`gwen.associative.meta`](/docs/settings#gwen-associative-meta) setting is enabled, Gwen will automatically associate and bind all same named feature and meta files discovered in a directory with each other. In the following case, the meta would be considered associative.
 
 ```
 features/todo.feature
@@ -511,7 +511,7 @@ The [CLI](/docs/cli) is used to launch Gwen and execute features. When launched 
 
 :::note Set default environment
 
-  Set the default target environment to `test` by updating the [`gwen.target.env`](/docs/settings/reference#gwen-target-env) setting in the `gwen.conf` file in the project root. This will ensure that all settings in the <code>env/test.conf</code> file are loaded when Gwen is launched and that all `${prop.name}` placeholder references throughout all meta and feature files are resolved.
+  Set the default target environment to `test` by updating the [`gwen.target.env`](/docs/settings#gwen-target-env) setting in the `gwen.conf` file in the project root. This will ensure that all settings in the <code>env/test.conf</code> file are loaded when Gwen is launched and that all `${prop.name}` placeholder references throughout all meta and feature files are resolved.
   
   *File: gwen.conf*
 

@@ -20,7 +20,7 @@ Gwen is a [Gherkin](https://docs.cucumber.io/gherkin/reference/) interpreter wit
 - Fully [Gherkin](https://cucumber.io/docs/gherkin/reference/) compliant interpreter.
 - Composable [StepDefs](/docs/meta#stepdefs) and automation details confined to [meta](/docs/meta).
 - [Good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/) practice encouraged by default.
-- Consistent and reliable execution across [browsers](/docs/settings/reference#gwen-target-browser).
+- Consistent and reliable execution across [browsers](/docs/settings#gwen-target-browser).
 - NPM package for quick [project setup](/docs/get-started) and automatic updates.
 - [Sequential](/docs/execution-modes#sequential), [parallel](/docs/execution-modes#parallel), [batch](/docs/execution-modes#batch) and [dry run](/docs/execution-modes#dry-runs) execution modes.
 - Interactive [REPL](/docs/repl) console and [debugging](/docs/repl#debugging).
@@ -29,7 +29,7 @@ Gwen is a [Gherkin](https://docs.cucumber.io/gherkin/reference/) interpreter wit
 - Hard, soft, and sustained [assertion modes](/docs/assertions#assertion-modes).
 - Multiple web element [locator mechanisms](https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/) including JavaScript
 - JavaScript [function bindings](/docs/doc-strings#javascript-function-bindings).
-- [System process](/docs/dsl/reference#name-is-defined-by-system-process-expression) calls.
+- [System process](/docs/dsl#name-is-defined-by-system-process-expression) calls.
 - [CSV and JSON data feeds](/docs/data-feeds).
 - [String interpolation](/docs/string-interpolation).
 - Runs on Windows, Linux and [Docker](/docs/docker).
@@ -319,7 +319,7 @@ gwen --parallel path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-
 </Tabs>
 
 ### Can I set a ramp up interval for staggered parallel execution?
-Yes. Configure the [`gwen.rampup.interval.seconds`](/docs/settings/reference#gwen-rampup-interval-seconds) setting. If you set this value to 5, the staggered execution will look like this:
+Yes. Configure the [`gwen.rampup.interval.seconds`](/docs/settings#gwen-rampup-interval-seconds) setting. If you set this value to 5, the staggered execution will look like this:
 ```
   time  00   05   10   15   seconds
         │    │    │    │
@@ -485,7 +485,7 @@ log4j.logger.gwen=INFO
 
 ### Can I access and work with database data?
 Yes, see:
-- [SQL selects and updates](/docs/dsl/reference#sql-selects-and-updates) 
+- [SQL selects and updates](/docs/dsl#sql-selects-and-updates) 
 - Blog article: [SQL Data Bindings for Gwen](https://gweninterpreter.wordpress.com/2017/02/13/sql-data-bindings-for-gwen/).
 
 ### Are scenario outlines supported?
@@ -507,13 +507,13 @@ Yes, see [Template Matching](/docs/template-matching).
 Yes, hard, soft and sustained assertions are supported. See [Assertion Modes](/docs/assertions#assertion-modes).
 
 ### Can Gwen help me to write good Gherkin?
-The [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) setting, when set to `strict`, can help you to write [Strictly Good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/)
+The [`gwen.behavior.rules`](/docs/settings#gwen-behavior-rules) setting, when set to `strict`, can help you to write [Strictly Good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/)
 
 ### Can I send my Gwen results to Report Portal?
 Yes, Gwen provides seamless integration with [report portal](/docs/reports/portal) for centralised reporting and analytics. 
 
 ### How do I target a specific web browser?
-Gwen is configured to target the `chrome` browser by default. To change this, amend the  [<code>gwen.target.browser</code>](/docs/settings/reference#gwen-target-browser) setting to your preferred value.
+Gwen is configured to target the `chrome` browser by default. To change this, amend the  [<code>gwen.target.browser</code>](/docs/settings#gwen-target-browser) setting to your preferred value.
 
 <Tabs
   groupId="settings"
@@ -588,7 +588,7 @@ Yes, see [Running Gwen on Jenkins](/docs/jenkins).
 
 ### Can I run a headless browser?
 
-Yes, set [`gwen.web.browser.headless`](/docs/settings/reference#gwen-web-browser-headless) to `true`.
+Yes, set [`gwen.web.browser.headless`](/docs/settings#gwen-web-browser-headless) to `true`.
 
 ### Can I emulate mobile devices in browser?
 

@@ -72,7 +72,7 @@ User-level settings can optionally be defined in a `gwen.conf|json|properties` f
 
 ### Launch settings
 
-You can maintain any settings and properties (except [CLI options](/docs/settings/reference#cli-settings)) in your own files and explicitly pass them to Gwen at launch time using the [`-c|conf`](/docs/cli#gwen-cli-options-conf) CLI option. For convenience, you would typically store these somewhere within your project where your `features` directory lives however you are free to store them in any location you wish.
+You can maintain any settings and properties (except [CLI options](/docs/settings#cli-settings)) in your own files and explicitly pass them to Gwen at launch time using the [`-c|conf`](/docs/cli#gwen-cli-options-conf) CLI option. For convenience, you would typically store these somewhere within your project where your `features` directory lives however you are free to store them in any location you wish.
 
 ### Project settings
 
@@ -87,7 +87,7 @@ When you [set up](/docs/get-started) and initialise your project, all project le
 
 > Since [v2.48.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0)
 
-It is a common security practice to never log sensitive data. To support this practice, Gwen will hide all [settings](/docs/settings/reference) that you flag as "masked" by logging their values as `*****` in all logs, reports, error messages and console outputs.
+It is a common security practice to never log sensitive data. To support this practice, Gwen will hide all [settings](/docs/settings) that you flag as "masked" by logging their values as `*****` in all logs, reports, error messages and console outputs.
 
 ### Flagging masked settings
 
@@ -174,7 +174,7 @@ It is your resposibility to enter sensitive data such as passwords into password
 
 ### Custom mask character
 
-You can change the default mask character from `*` to another character of your choice by assigning it to the [`gwen.mask.char`](/docs/settings/reference#gwen-mask-char) setting.
+You can change the default mask character from `*` to another character of your choice by assigning it to the [`gwen.mask.char`](/docs/settings#gwen-mask-char) setting.
 
 
 ## JSONArray Notation
@@ -1512,7 +1512,7 @@ Will expand to:
     <li><code>declarative</code> (default)
       <ul>
         <li>DSL steps not permitted in feature specs</li>
-        <li>Consider enabling <Link to="/docs/settings/reference#gwen-associative-meta">gwen.associative.meta</Link> with this option</li>
+        <li>Consider enabling <Link to="/docs/settings#gwen-associative-meta">gwen.associative.meta</Link> with this option</li>
       </ul>
     </li>
     <li><code>imperative</code>
@@ -3594,7 +3594,7 @@ Will expand to:
       </ul>
     </li>
   </ul>
-  <p>This setting has no default value and will not be honoured if <Link to="/docs/settings/reference#gwen-web-maximize"><code>gwen.web.maximize</code></Link> is set to <code>true</code>.</p>
+  <p>This setting has no default value and will not be honoured if <Link to="/docs/settings#gwen-web-maximize"><code>gwen.web.maximize</code></Link> is set to <code>true</code>.</p>
   <Tabs
   groupId="settings"
   defaultValue="conf"
@@ -4521,7 +4521,7 @@ Will expand to:
     <li><code>true</code> to enable</li>
     <li><code>false</code> to disable (default)</li>
   </ul>
-  <p><br/>This setting is ignored if <Link to="/docs/settings/reference#gwen-web-remote-url"><code>gwen.web.remote.url</code></Link> is not set.</p>
+  <p><br/>This setting is ignored if <Link to="/docs/settings#gwen-web-remote-url"><code>gwen.web.remote.url</code></Link> is not set.</p>
   <Tabs
   groupId="settings"
   defaultValue="conf"
@@ -5085,7 +5085,7 @@ Will expand to:
 
   <div class="grid-3">
     <div><Link to="#gwen-web-chrome-args">Link</Link></div>
-    <div align="center">See also <Link to="/docs/settings/reference#gwen-web-chrome-args-seq-no"><code>gwen.web.chrome.args.&lt;seqNo&gt;</code></Link></div>
+    <div align="center">See also <Link to="/docs/settings#gwen-web-chrome-args-seq-no"><code>gwen.web.chrome.args.&lt;seqNo&gt;</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.8.0">v1.8.0</Link></div>
   </div>
 </details>
@@ -5640,7 +5640,7 @@ Will expand to:
 
   <div class="grid-3">
     <div><Link to="#gwen-web-edge-args">Link</Link></div>
-    <div align="center">See also <Link to="/docs/settings/reference#gwen-web-edge-args-seq-no"><code>gwen.web.edge.args.&lt;seqNo&gt;</code></Link></div>
+    <div align="center">See also <Link to="/docs/settings#gwen-web-edge-args-seq-no"><code>gwen.web.edge.args.&lt;seqNo&gt;</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0">v2.48.0</Link></div>
   </div>
 </details>

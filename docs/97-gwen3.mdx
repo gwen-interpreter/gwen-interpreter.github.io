@@ -42,9 +42,9 @@ Two new [settings](/docs/settings) formats are now supported in addition to prop
 
 ### Better defaults for better Gherkin
 
-The [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode) setting now defaults to *declarative* instead of *imperative* to keep DSL steps confined to meta and out of feature specifications.
+The [`gwen.feature.mode`](/docs/settings#gwen-feature-mode) setting now defaults to *declarative* instead of *imperative* to keep DSL steps confined to meta and out of feature specifications.
 
-The [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) setting now defaults to *strict* instead of *lenient* to enforce correct behavioural semantics and proper Given-When-Then order.
+The [`gwen.behavior.rules`](/docs/settings#gwen-behavior-rules) setting now defaults to *strict* instead of *lenient* to enforce correct behavioural semantics and proper Given-When-Then order.
 
 ### Pretty logging
 
@@ -64,7 +64,7 @@ Use the new `-v|--verbose` CLI option for verbose logging instead (equivalent to
 
 ### Configurable CLI options
 
-CLI options are now [configurable](/docs/settings/reference#cli-settings) enabling you to customize your own Gwen launch profile.
+CLI options are now [configurable](/docs/settings#cli-settings) enabling you to customize your own Gwen launch profile.
 
 ### Selenium 4
 
@@ -72,12 +72,12 @@ The embedded web engine now uses Selenium 4
 
 New DSLs have been added to support:
 
-- [Relative locators](/docs/dsl/reference#relative-locators)
-- [Windows and tabs](/docs/dsl/reference#windows-and-tabs)
-- [Element level screenshots](/docs/dsl/reference#element-level-screenshots)
+- [Relative locators](/docs/dsl#relative-locators)
+- [Windows and tabs](/docs/dsl#windows-and-tabs)
+- [Element level screenshots](/docs/dsl#element-level-screenshots)
 
 Support for W3C compliant capabilities has been added, since [v3.20.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.20.0):
-- [Setting capabilities via protocol extensions](/docs/settings/reference#gwen-web-capabilities)
+- [Setting capabilities via protocol extensions](/docs/settings#gwen-web-capabilities)
 
 ## What's dropped
 
@@ -174,10 +174,10 @@ The following settings have been renamed.
 
 | Gwen 2 name                    | Gwen 3 name                                                                                            |
 | :----------------------------- | :------------------------------------------------------------------------------------------------------ |
-| `gwen.feature.failfast`        | [`gwen.feature.failfast.enabled`](/docs/settings/reference#gwen-feature-failfast-enabled)               |
+| `gwen.feature.failfast`        | [`gwen.feature.failfast.enabled`](/docs/settings#gwen-feature-failfast-enabled)               |
 | `gwen.rp.heartbeat`            | [`gwen.rp.heartbeat.enabled`](/docs/reports/portal#gwen-rp-heartbeat-enabled)                           |
-| `gwen.web.capture.screenshots` | [`gwen.web.capture.screenshots.enabled`](/docs/settings/reference#gwen-web-capture-screenshots-enabled) |
-| `gwen.web.browser`             | [`gwen.target.browser`](/docs/settings/reference#gwen-target-browser)                                   |
+| `gwen.web.capture.screenshots` | [`gwen.web.capture.screenshots.enabled`](/docs/settings#gwen-web-capture-screenshots-enabled) |
+| `gwen.web.browser`             | [`gwen.target.browser`](/docs/settings#gwen-target-browser)                                   |
 
 #### Removed alias
 
@@ -185,7 +185,7 @@ The following settings alias has been removed.
 
 | Removed                | Always use this name                                                  |
 | :--------------------- | :-------------------------------------------------------------------- |
-| `gwen.behaviour.rules` | [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) |
+| `gwen.behaviour.rules` | [`gwen.behavior.rules`](/docs/settings#gwen-behavior-rules) |
 
 #### New defaults
 
@@ -193,11 +193,11 @@ The following settings have new defaults. If you want to continue using prior de
 
 | Setting                                                                                                           | Gwen 2 default | Gwen 3 default |
 | :---------------------------------------------------------------------------------------------------------------- | :------------: | :------------: |
-| [`gwen.associative.meta`](/docs/settings/reference#gwen-associative-meta)                                         | `false`        | `true`         |
-| [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules)                                             | `lenient`      | `strict`       |
-| [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode)                                                 | `imperative`   | `declarative`  |
-| [`gwen.report.suppress.meta`](/docs/settings/reference#gwen-report-suppress-meta)                                 | `false`        | `true`         |
-| [`gwen.auto.discover.data.csv`](/docs/settings/reference#gwen-auto-discover-data-csv)                             | `true`         | `false`        |
+| [`gwen.associative.meta`](/docs/settings#gwen-associative-meta)                                         | `false`        | `true`         |
+| [`gwen.behavior.rules`](/docs/settings#gwen-behavior-rules)                                             | `lenient`      | `strict`       |
+| [`gwen.feature.mode`](/docs/settings#gwen-feature-mode)                                                 | `imperative`   | `declarative`  |
+| [`gwen.report.suppress.meta`](/docs/settings#gwen-report-suppress-meta)                                 | `false`        | `true`         |
+| [`gwen.auto.discover.data.csv`](/docs/settings#gwen-auto-discover-data-csv)                             | `true`         | `false`        |
 
 #### New setttings impacting prior behaviour
 
@@ -205,11 +205,11 @@ The following new settings have configured defaults that change prior behaviour.
 
 | New Setting                                                                                                       | Since   | Prior default | New default |
 | :---------------------------------------------------------------------------------------------------------------- | :-----: | :-----------: | :---------: |
-| [`gwen.auto.bind.tableData.outline.examples`](/docs/settings/reference#gwen-auto-bind-tableData-outline-examples) | v3.15.0 | `false`       | `true`      |
-| [`gwen.error.messages.inline.locators`](/docs/settings/reference#gwen-error-messages-inline-locators)             | v3.31.0 | `true`        | `false`     |
-| [`gwen.web.assertions.maxStrikes`](/docs/settings/reference#gwen-web-assertions-maxStrikes)                       | v3.41.0 | `infinity`    | `3`         |
-| [`gwen.web.assertions.maxStrikes`](/docs/settings/reference#gwen-web-assertions-maxStrikes)                       | v3.42.9 | `infinity`    | `5`         |
-| [`gwen.web.assertions.maxStrikes`](/docs/settings/reference#gwen-web-assertions-maxStrikes)                       | v3.52.0 | `infinity`    | `auto`      |
+| [`gwen.auto.bind.tableData.outline.examples`](/docs/settings#gwen-auto-bind-tableData-outline-examples) | v3.15.0 | `false`       | `true`      |
+| [`gwen.error.messages.inline.locators`](/docs/settings#gwen-error-messages-inline-locators)             | v3.31.0 | `true`        | `false`     |
+| [`gwen.web.assertions.maxStrikes`](/docs/settings#gwen-web-assertions-maxStrikes)                       | v3.41.0 | `infinity`    | `3`         |
+| [`gwen.web.assertions.maxStrikes`](/docs/settings#gwen-web-assertions-maxStrikes)                       | v3.42.9 | `infinity`    | `5`         |
+| [`gwen.web.assertions.maxStrikes`](/docs/settings#gwen-web-assertions-maxStrikes)                       | v3.52.0 | `infinity`    | `auto`      |
 
 #### New formats
 
@@ -454,7 +454,7 @@ The `-p|--properties` CLI option has been deprecated and replaced with the [`-c|
 
 #### Default `-r|--report` option
 
-The output directory for all Gwen reports now has a default value configured in the new [`gwen.cli.options.report`](/docs/settings/reference#gwen-cli-options-report) default CLI setting. So you no longer need to explicitly specify the [`-r|--report`](/docs/cli#gwen-cli-options-report) CLI option every time you launch Gwen and want reports to be generated. You can however continue to explicitly pass it through and override the default if you want to. Alternatively, change the default.
+The output directory for all Gwen reports now has a default value configured in the new [`gwen.cli.options.report`](/docs/settings#gwen-cli-options-report) default CLI setting. So you no longer need to explicitly specify the [`-r|--report`](/docs/cli#gwen-cli-options-report) CLI option every time you launch Gwen and want reports to be generated. You can however continue to explicitly pass it through and override the default if you want to. Alternatively, change the default.
 
 #### HTML reports by default
 

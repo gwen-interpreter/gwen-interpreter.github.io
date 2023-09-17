@@ -1,4 +1,5 @@
 --- 
+title: DSL
 toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
@@ -10,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 # Gwen DSL
 
-Every Gherkin step that matches a [prescribed DSL](/docs/dsl/reference) is readily executable by Gwen.
+Every Gherkin step that matches a [prescribed DSL](/docs/dsl) is readily executable by Gwen.
 
 :::note Example
 
@@ -22,7 +23,7 @@ The following is a DSL Step:
 
 Since it matches:
 
-- [`the page title should[ not] <match> "<expression>"`](/docs/dsl/reference#the-page-title-should-match-expression)
+- [`the page title should[ not] <match> "<expression>"`](/docs/dsl#the-page-title-should-match-expression)
 
 :::
 
@@ -86,10 +87,10 @@ You could compose a StepDef as follows:
 
 Calls DSL steps:
 
-- [`<element> can be located by <selector> "<expression>"`](/docs/dsl/reference#element-can-be-located-by-selector-expression)
-- [`I navigate to <url>`](/docs/dsl/reference#i-navigate-to-url)
-- [`the page title should[ not] <match> "<expression>"`](/docs/dsl/reference#the-page-title-should-match-expression)
-- [`<element> should[ not] be <state>`](/docs/dsl/reference#element-should-be-state)
+- [`<element> can be located by <selector> "<expression>"`](/docs/dsl#element-can-be-located-by-selector-expression)
+- [`I navigate to <url>`](/docs/dsl#i-navigate-to-url)
+- [`the page title should[ not] <match> "<expression>"`](/docs/dsl#the-page-title-should-match-expression)
+- [`<element> should[ not] be <state>`](/docs/dsl#element-should-be-state)
 
 :::
 
@@ -99,7 +100,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
 :::info The DSL is meant for meta
 
-Feature specs should be declarative and written in the language of your domain and not the Gwen DSL. To encourage this and restrict DSL usage to [meta](/docs/meta) in [Gwen 3](/docs/gwen3), we have toggled the default of the [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode) setting from *imperative* to *declarative*.
+Feature specs should be declarative and written in the language of your domain and not the Gwen DSL. To encourage this and restrict DSL usage to [meta](/docs/meta) in [Gwen 3](/docs/gwen3), we have toggled the default of the [`gwen.feature.mode`](/docs/settings#gwen-feature-mode) setting from *imperative* to *declarative*.
 
 :::
 
