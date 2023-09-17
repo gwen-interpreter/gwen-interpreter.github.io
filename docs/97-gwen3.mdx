@@ -1,5 +1,4 @@
 --- 
-title: Migration
 toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
@@ -7,8 +6,86 @@ toc_max_heading_level: 3
 import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
 
-# Gwen 3 Migration Guide
+# Gwen 3
+
+## What's New
+
+### Add Gwen to your JS project
+
+You can now [add Gwen to projects](/docs/get-started) using npm and have all your executable Gherkin living next to your code and integrated into your development and testing process.
+
+Thanks to [Ruby Juric](https://github.com/Sorixelle) for building [gwen-web-npm](https://github.com/gwen-interpreter/gwen-web-npm).
+
+### `Init` project command
+
+A new [`gwen init`](/docs/cli#init-command) command initialises Gwen in your project directory by creating the following:
+
+- Project, browser, and environment level settings files
+- Feature and meta subdirectories
+- Sample feature and meta files
+- Docker files
+- Jenkins pipeline file
+
+You also get automatic gwen udpates by default.
+
+### HOCON and JSON settings
+
+Two new [settings](/docs/settings) formats are now supported in addition to properties:
+
+- [HOCON](https://github.com/lightbend/config/blob/master/HOCON.md#hocon-human-optimized-config-object-notation) (Human-Optimized Config Object Notation)
+  - A superset of JSON
+- JSON
+  - Pure JSON format
+
+### Better defaults for better Gherkin
+
+The [`gwen.feature.mode`](/docs/settings/reference#gwen-feature-mode) setting now defaults to *declarative* instead of *imperative* to keep DSL steps confined to meta and out of feature specifications.
+
+The [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) setting now defaults to *strict* instead of *lenient* to enforce correct behavioural semantics and proper Given-When-Then order.
+
+### Pretty logging
+
+Gwen now logs pretty execution results to the [console](/docs/reports/console).
+
+<ThemedImage
+  alt="Pretty console logging"
+  sources={{
+    light: useBaseUrl('/img/log/gwen-pretty-log-w.png'),
+    dark: useBaseUrl('/img/log/gwen-pretty-log-b.png'),
+  }}
+/>
+
+#### New CLI option for verbose logging
+
+Use the new `-v|--verbose` CLI option for verbose logging instead (equivalent to Gwen 2 logging).
+
+### Configurable CLI options
+
+CLI options are now [configurable](/docs/settings/reference#cli-settings) enabling you to customize your own Gwen launch profile.
+
+### Selenium 4
+
+The embedded web engine now uses Selenium 4
+
+New DSLs have been added to support:
+
+- [Relative locators](/docs/dsl/reference#relative-locators)
+- [Windows and tabs](/docs/dsl/reference#windows-and-tabs)
+- [Element level screenshots](/docs/dsl/reference#element-level-screenshots)
+
+Support for W3C compliant capabilities has been added, since [v3.20.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.20.0):
+- [Setting capabilities via protocol extensions](/docs/settings/reference#gwen-web-capabilities)
+
+## What's dropped
+
+- Gwen workspaces have been dropped in favor of Gwen projects
+- Applitools integration has been removed
+- [Interpolation](/docs/string-interpolation#interpolation-by-substitution) by concatenation deprecated in favor of substitution (dropped in <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.14.0">v3.14.0</Link>)
+
+## Migration Guide
 
 :::tip 
 
@@ -18,7 +95,7 @@ See what's new in [Gwen 3](/docs/gwen3).
 
 This guide will help you to migrate an existing Gwen project over to Gwen 3. If you want to start a new project from scratch, go straight to the [getting started](/docs/get-started) guide instead.
 
-## 1. Setup
+### 1. Setup
 
 #### Choose your current Gwen 2 setup
 
@@ -87,11 +164,11 @@ gwen.gwen-web.version = 2.53.6
 
 </Tabs>
 
-## 2. Settings
+### 2. Settings
 
 The following settings changes have been made to Gwen 3. Scan all your *.properties* files and update accordingly.
 
-### New names
+#### New names
 
 The following settings have been renamed.
 
@@ -102,7 +179,7 @@ The following settings have been renamed.
 | `gwen.web.capture.screenshots` | [`gwen.web.capture.screenshots.enabled`](/docs/settings/reference#gwen-web-capture-screenshots-enabled) |
 | `gwen.web.browser`             | [`gwen.target.browser`](/docs/settings/reference#gwen-target-browser)                                   |
 
-### Removed alias
+#### Removed alias
 
 The following settings alias has been removed.
 
@@ -110,7 +187,7 @@ The following settings alias has been removed.
 | :--------------------- | :-------------------------------------------------------------------- |
 | `gwen.behaviour.rules` | [`gwen.behavior.rules`](/docs/settings/reference#gwen-behavior-rules) |
 
-### New defaults
+#### New defaults
 
 The following settings have new defaults. If you want to continue using prior defaults for these, explicity set them in your current properties file.
 
@@ -122,7 +199,7 @@ The following settings have new defaults. If you want to continue using prior de
 | [`gwen.report.suppress.meta`](/docs/settings/reference#gwen-report-suppress-meta)                                 | `false`        | `true`         |
 | [`gwen.auto.discover.data.csv`](/docs/settings/reference#gwen-auto-discover-data-csv)                             | `true`         | `false`        |
 
-### New setttings impacting prior behaviour
+#### New setttings impacting prior behaviour
 
 The following new settings have configured defaults that change prior behaviour. If you want to revert to the prior behaviour, you will need to explicitly set these in your settings file accordingly.
 
@@ -134,7 +211,7 @@ The following new settings have configured defaults that change prior behaviour.
 | [`gwen.web.assertions.maxStrikes`](/docs/settings/reference#gwen-web-assertions-maxStrikes)                       | v3.42.9 | `infinity`    | `5`         |
 | [`gwen.web.assertions.maxStrikes`](/docs/settings/reference#gwen-web-assertions-maxStrikes)                       | v3.52.0 | `infinity`    | `auto`      |
 
-### New formats
+#### New formats
 
 Two new settings formats have been introduced:
 
@@ -152,9 +229,9 @@ The legacy Java style properties format is still supported and you can continue 
   - Flat `name = value` pairs
   - Maintained in `*.properties` files
 
-### Migrate your settings (optional)
+#### Migrate your settings (optional)
 
-#### Choose one of three options:
+##### Choose one of three options:
 
 <Tabs
   groupId="settings"
@@ -173,7 +250,7 @@ Repeat the following to convert every *.properties* file you have:
   - See example below
 - Discard your *.properties* file when done (or rename with the *.properties.bak* extension)
 
-#### Example
+##### Example
 
 Properties file: *gwen.properties*
 
@@ -278,7 +355,7 @@ Repeat the following to convert every *.properties* file you have:
   - See example below
 - Discard your *.properties* file when done (or rename with the *.properties.bak* extension)
 
-#### Example
+##### Example
 
 Properties file: *gwen.properties*
 
@@ -369,26 +446,27 @@ Continue using your properties files as before.
 </TabItem>
 </Tabs>
 
-## 3. CLI
+### 3. CLI
 
-### New `-c|--conf` option
+#### New `-c|--conf` option
 
 The `-p|--properties` CLI option has been deprecated and replaced with the [`-c|--conf`](/docs/cli#gwen-cli-options-conf) option which now accepts *.conf*, *.json*, and *.properties* files. The former will still work for *.properties* files until the next major release (and will be removed then). You should use the new launch option going forward.
 
-### Default `-r|--report` option
+#### Default `-r|--report` option
 
 The output directory for all Gwen reports now has a default value configured in the new [`gwen.cli.options.report`](/docs/settings/reference#gwen-cli-options-report) default CLI setting. So you no longer need to explicitly specify the [`-r|--report`](/docs/cli#gwen-cli-options-report) CLI option every time you launch Gwen and want reports to be generated. You can however continue to explicitly pass it through and override the default if you want to. Alternatively, change the default.
 
-### HTML reports by default
+#### HTML reports by default
 
 [HTML reports](/docs/reports/html) will now be generated by default when you launch Gwen since the report output directory now has a configured default. They will also be generated by default for dry runs when you specify the [`-n|--dry-run`](/docs/cli#gwen-cli-options-dry-run) switch.
 
 If you don't want any reports generated, invoke Gwen with the [`-f|--format`](/docs/cli#gwen-cli-options-format) CLI option passing in `none`.
 
-## 4. String interpolation
+### 4. String interpolation
 
 [Interpolation](/docs/string-interpolation#interpolation-by-substitution) by concatenation has been deprecated in favor of substitution. You should convert all usages of conatenation to their substitution equivalents. Concatenation has been dropped since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.14.0">v3.14.0</Link>.
 
-## 5. Log4j
+### 5. Log4j
 
 Gwen uses log4j2 as of v3.1.0 for Gwen 3 (and v2.54.0 for Gwen 2). If you are using custom `log4j.properties` files with Gwen, you will need to convert them over to [version 2 equivalents](https://logging.apache.org/log4j/2.x/manual/configuration.html#Configuration_with_Properties). 
+

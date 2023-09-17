@@ -23,7 +23,7 @@ Gwen is a [Gherkin](https://docs.cucumber.io/gherkin/reference/) interpreter wit
 - Consistent and reliable execution across [browsers](/docs/settings/reference#gwen-target-browser).
 - NPM package for quick [project setup](/docs/get-started) and automatic updates.
 - [Sequential](/docs/execution-modes#sequential), [parallel](/docs/execution-modes#parallel), [batch](/docs/execution-modes#batch) and [dry run](/docs/execution-modes#dry-runs) execution modes.
-- Interactive [REPL](/docs/cli/repl) console and [debugging](/docs/cli/repl#debugging).
+- Interactive [REPL](/docs/repl) console and [debugging](/docs/repl#debugging).
 - [HTML](/docs/reports/html), [JSON](/docs/reports/json) and [JUnit-XML](/docs/reports/junit-xml) reports.
 - Configurable [settings](/docs/settings) and [CLI](/docs/cli) options.
 - Hard, soft, and sustained [assertion modes](/docs/assertions#assertion-modes).
@@ -62,17 +62,17 @@ No. You can do everything with the [CLI](/docs/cli) and your favourite IDE or te
 
 ### Can I debug my executable specifications?
 
-Breakpoints can be added to any feature or meta steps by prefixing them with the `@Breakpoint` annotation. See [debugging](/docs/cli/repl#debugging).
+Breakpoints can be added to any feature or meta steps by prefixing them with the `@Breakpoint` annotation. See [debugging](/docs/repl#debugging).
 
 ### What are the batch and REPL modes?
 
 [Batch mode](/docs/execution-modes#batch) forces Gwen to immediately exit after a given feature or features have executed. You should always invoke Gwen in batch mode on server environments such as build servers.
 
-[REPL mode](/docs/cli/repl) leaves the interpreter session open after a given feature or features have executed, allowing you to interactively enter additional steps to execute or inspect bound data in memory. You should use this mode to verify the execution of your [StepDefs](/docs/meta#stepdefs) as you develop your meta or when you want to diagnose a failing feature.
+[REPL mode](/docs/repl) leaves the interpreter session open after a given feature or features have executed, allowing you to interactively enter additional steps to execute or inspect bound data in memory. You should use this mode to verify the execution of your [StepDefs](/docs/meta#stepdefs) as you develop your meta or when you want to diagnose a failing feature.
 
 ### What are the available REPL commands?
 
-See [REPL commands](/docs/cli/repl#repl-commands).
+See [REPL commands](/docs/repl#repl-commands).
 
 ### How do I run a single feature file?
 
@@ -126,7 +126,7 @@ gwen -b path/to/File.feature
 </TabItem>
 </Tabs>
 
-The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immediately after executing (omitting it will open the [REPL](/docs/cli/repl) instead).
+The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immediately after executing (omitting it will open the [REPL](/docs/repl) instead).
 
 ### How do I run all features files in a directory?
 
@@ -210,7 +210,7 @@ gwen -b features/todo
 </TabItem>
 </Tabs>
 
-The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immediately after executing (omitting it will open the [REPL](/docs/cli/repl) instead).
+The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immediately after executing (omitting it will open the [REPL](/docs/repl) instead).
 
 ### How do I run multiple features in sequence?
 
@@ -264,7 +264,7 @@ gwen -b path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
 </TabItem>
 </Tabs>
 
-The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immediately after executing (omitting it will open the [REPL](/docs/cli/repl) instead).
+The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immediately after executing (omitting it will open the [REPL](/docs/repl) instead).
 
 ### How do I run multiple features in parallel?
 

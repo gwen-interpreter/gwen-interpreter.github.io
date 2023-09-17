@@ -7,9 +7,265 @@ import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Settings Reference
+# Settings
 
-## Core Settings
+## Settings Files
+
+All Gwen settings and properties are maintained in settings files in your project.
+
+### Formats
+
+The following settings file formats are supported:
+
+- [HOCON](https://github.com/lightbend/config/blob/master/HOCON.md#hocon-human-optimized-config-object-notation) (Human-Optimized Config Object Notation), since [Gwen 3](/docs/gwen3)
+  - The recommended and default format
+  - A superset of JSON
+  - Maintained in `.conf` files
+- JSON, since [Gwen 3](/docs/gwen3)
+  - Pure JSON format
+  - Maintained in `.json` files
+- Properties, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link>
+  - Legacy Java properties style format
+  - Flat `name = value` pairs
+  - Maintained in `.properties` files
+
+Ideally you should use one format for all your settings files, but using combinations of the above is also permitted. Priority will be given in the order shown to same named files in a directory having different formats:
+
+1. `.conf`
+2. `.json`
+3. `.properties`
+
+## Load order and precedence
+
+Settings are loaded in the following order of precedence, with those higher in the list overriding the lower.
+
+1. [Environment variable](/docs/cli#environment-variables) overrides
+2. [System properties](/docs/cli#system-properties-and-jvm-options)
+3. User settings
+    - A `gwen.conf`, `gwen.json`, or `gwen.properties` file in your user directory
+4. Launch settings
+    - Comma separated list of `*.conf`, `*.json`, or `*.properies` files passed to the Gwen CLI via the [`-c|--conf`](/docs/cli#gwen-cli-options-conf) launch option (or `-p|--properties` for Gwen versions prior to v3.0.0). These are loaded in the order given with latter entries overriding the former.
+5. Project settings
+    - A `gwen.conf`, `gwen.json` or `gwen.properties` file in your root project directory
+6. Default settings
+    - Internal Gwen defaults
+
+## Maintaining settings
+
+:::info System properties override all other settings
+
+`-Dname=value` pairs passed to the Gwen CLI as system properties have topmost precedence and will always override ALL other settings.
+
+:::
+
+You can maintain settings and override internal defaults at various levels as described here.
+
+### User settings
+
+User-level settings can optionally be defined in a `gwen.conf|json|properties` file in the root of your user directory on a machine. These are useful when you want to override certain settings on a machine for a user.
+
+```
+ /Users
+ └── /<username> (~/) 
+     └── gwen.conf           # User-level overrides
+```
+
+### Launch settings
+
+You can maintain any settings and properties (except [CLI options](/docs/settings/reference#cli-settings)) in your own files and explicitly pass them to Gwen at launch time using the [`-c|conf`](/docs/cli#gwen-cli-options-conf) CLI option. For convenience, you would typically store these somewhere within your project where your `features` directory lives however you are free to store them in any location you wish.
+
+### Project settings
+
+When you [set up](/docs/get-started) and initialise your project, all project level settings are stored in a `gwen.conf|json|properties` file in the root of the project. Gwen automatically discovers and loads this file for you, so you don't need to explictly pass it to Gwen when you launch in the project directory.
+
+```
+ /project                    # Your project root
+ └── gwen.conf               # Project settings
+```
+
+## Masked Settings
+
+> Since [v2.48.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0)
+
+It is a common security practice to never log sensitive data. To support this practice, Gwen will hide all [settings](/docs/settings/reference) that you flag as "masked" by logging their values as `*****` in all logs, reports, error messages and console outputs.
+
+### Flagging masked settings
+
+To flag a setting as masked, append `:masked` to its defined name.
+
+For example, to access a password stored in an environemnt variable named `USER_PASSOWRD`, you can read it into a masked setting named `user.password` as follows:
+
+<Tabs
+    groupId="settings"
+    defaultValue="conf"
+    values={[
+      {label: '.conf', value: 'conf'},
+      {label: '.json', value: 'json'},
+      {label: '.properties', value: 'properties'}
+    ]}>
+
+  <TabItem value="conf">
+
+  ```json
+    user {
+      "password:masked" = "${env.USER_PASSWORD}"
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  ```json
+    {
+      "user": {
+        "password:masked": "${env.USER_PASSWORD}"
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  ```properties
+    user.password\:masked = ${env.USER_PASSWORD}
+  ```
+
+  *Note*: You will need to escape `:` as `\:` in properties files
+
+  </TabItem>
+
+  </Tabs>
+
+### Using masked settings
+
+To use a masked setting, just reference it anywhere you need to using it's name (excluding the `:masked` suffix).
+
+Example:
+
+```gherkin
+  When I enter "${user.password}" in the password field
+```
+
+When evaluated, the above will be logged as follows in all outputs:
+
+```gherkin
+  When I enter "*****" in the password field
+```
+
+:::note Sample outputs
+
+Console output
+
+![Example masked setting logged to console](/img/settings/masked-setting-console.png)
+
+[HTML report](/docs/reports/html) output
+
+![Example masked setting logged to HTML report](/img/settings/masked-setting-html-report.png)
+
+:::
+
+:::caution
+
+It is your resposibility to enter sensitive data such as passwords into password protected fields to prevent them from being displayed in the browser.
+
+:::
+
+### Custom mask character
+
+You can change the default mask character from `*` to another character of your choice by assigning it to the [`gwen.mask.char`](/docs/settings/reference#gwen-mask-char) setting.
+
+
+## JSONArray Notation
+
+> Since [v3.53.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.53.0)
+
+Lists can be stored in settings in various ways. For example, a list of values could be stored in your settings file as follows:
+
+<Tabs
+    groupId="settings"
+    defaultValue="conf"
+    values={[
+      {label: '.conf', value: 'conf'},
+      {label: '.json', value: 'json'},
+      {label: '.properties', value: 'properties'}
+    ]}>
+
+  <TabItem value="conf">
+
+  ```json
+    my {
+      values = [
+        "Gwen", 
+        "Jenkins", 
+        "Yarn", 
+        "Docker"
+      ]
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  ```json
+    {
+      "my": {
+        "values": [ 
+          "Gwen", 
+          "Jenkins", 
+          "Yarn", 
+          "Docker"
+        ]
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  ```properties
+    my.values = Gwen,Jenkins,Yarn,Docker
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+To access a list of values configured in your settings as a JSON array, append `:JSONArray` to its setting name in the placeholder references in your feature or [meta](/docs/meta) steps. A JSON array literal containing the values will then be expanded inline.
+
+<p><b>Example 1</b></p>
+
+The following will bind the JSON Array `["Gwen","Jenkins","Yarn","Docker"]` to the `values` variable in the current scope:
+```gherkin
+  Given values is "${my.values:JSONArray}"
+```
+
+Will expand to:
+
+```gherkin
+  Given values is "["Gwen","Jenkins","Yarn","Docker"]"
+```
+
+<p><b>Example 2</b></p>
+
+The following will inline the JSON Array into a JavaScript expression to get the length and store that in the `length` variable in the current scope:
+```gherkin
+  Given length is defined by js "${my.values:JSONArray}.length"
+   Then length should be "4"
+```
+
+Will expand to:
+```gherkin
+  Given length is defined by js "["Gwen","Jenkins","Yarn","Docker"].length"
+   Then length should be "4"
+```
+
+## Settings Reference
+
+### Core Settings
 
 <details id="gwen-assertion-mode">
   <summary class="setting">
@@ -2192,7 +2448,7 @@ import TabItem from '@theme/TabItem';
 
   <div class="grid-3">
     <div><Link to="#gwen-console-repl-autoSuggestions">Link</Link></div>
-    <div align="center"><div align="center">See also <Link to="/docs/cli/repl#auto-suggestions">REPL Auto Suggestions</Link></div></div>
+    <div align="center"><div align="center">See also <Link to="/docs/repl#auto-suggestions">REPL Auto Suggestions</Link></div></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.40.0">v3.40.0</Link></div>
   </div>
 </details>
@@ -2265,7 +2521,7 @@ import TabItem from '@theme/TabItem';
 
   <div class="grid-3">
     <div><Link to="#gwen-console-repl-tabCompletion">Link</Link></div>
-    <div align="center"><div align="center">See also <Link to="/docs/cli/repl#tab-completion">REPL Tab Completion</Link></div></div>
+    <div align="center"><div align="center">See also <Link to="/docs/repl#tab-completion">REPL Tab Completion</Link></div></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.40.0">v3.40.0</Link></div>
   </div>
 </details>
@@ -2664,7 +2920,7 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
-## Web Settings
+### Web Settings
 
 <details id="gwen-web-accept-untrusted-certs">
   <summary class="setting">
@@ -4752,7 +5008,7 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
-### Chrome
+#### Chrome
 
 <details id="gwen-web-chrome-args">
   <summary class="setting">
@@ -5307,7 +5563,7 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
-### Edge
+#### Edge
 
 <details id="gwen-web-edge-args">
   <summary class="setting">
@@ -5862,7 +6118,7 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
-### Firefox
+#### Firefox
 
 <details id="gwen-web-firefox-prefs">
   <summary class="setting">
@@ -6072,7 +6328,7 @@ import TabItem from '@theme/TabItem';
   </div>
 </details>
 
-## CLI Settings
+### CLI Settings
 
 <details id="gwen-cli-options-parallel">
   <summary class="setting">
@@ -6159,7 +6415,7 @@ import TabItem from '@theme/TabItem';
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to always launch Gwen in batch mode and disable the <Link to="/docs/cli/repl">REPL</Link>.</li>
+    <li><code>true</code> to always launch Gwen in batch mode and disable the <Link to="/docs/repl">REPL</Link>.</li>
     <li><code>false</code> to launch Gwen in batch mode if the <code>-b|--batch</code> switch is explicitly passed and in REPL mode if it is not (default).</li>
   </ul>
   <Tabs
