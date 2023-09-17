@@ -22,7 +22,7 @@ Gwen is a [Gherkin](https://docs.cucumber.io/gherkin/reference/) interpreter wit
 - [Good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/) practice encouraged by default.
 - Consistent and reliable execution across [browsers](/docs/settings/reference#gwen-target-browser).
 - NPM package for quick [project setup](/docs/get-started) and automatic updates.
-- [Sequential](/docs/modes/serial), [parallel](/docs/modes/parallel), [batch](/docs/modes/batch) and [dry run](/docs/modes/dry-runs) execution modes.
+- [Sequential](/docs/exeuction-modes#sequential), [parallel](/docs/exeuction-modes#parallel), [batch](/docs/exeuction-modes#batch) and [dry run](/docs/exeuction-modes#dry-runs) execution modes.
 - Interactive [REPL](/docs/cli/repl) console and [debugging](/docs/cli/repl#debugging).
 - [HTML](/docs/reports/html), [JSON](/docs/reports/json) and [JUnit-XML](/docs/reports/junit-xml) reports.
 - Configurable [settings](/docs/settings) and [CLI](/docs/cli) options.
@@ -30,7 +30,7 @@ Gwen is a [Gherkin](https://docs.cucumber.io/gherkin/reference/) interpreter wit
 - Multiple web element [locator mechanisms](https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/) including JavaScript
 - JavaScript [function bindings](/docs/doc-strings#javascript-function-bindings).
 - [System process](/docs/dsl/reference#name-is-defined-by-system-process-expression) calls.
-- [CSV and JSON data feeds](/docs/modes/data-driven).
+- [CSV and JSON data feeds](/docs/data-feeds).
 - [String interpolation](/docs/string-interpolation).
 - Runs on Windows, Linux and [Docker](/docs/docker).
 
@@ -66,7 +66,7 @@ Breakpoints can be added to any feature or meta steps by prefixing them with the
 
 ### What are the batch and REPL modes?
 
-[Batch mode](/docs/modes/batch) forces Gwen to immediately exit after a given feature or features have executed. You should always invoke Gwen in batch mode on server environments such as build servers.
+[Batch mode](/docs/exeuction-modes#batch) forces Gwen to immediately exit after a given feature or features have executed. You should always invoke Gwen in batch mode on server environments such as build servers.
 
 [REPL mode](/docs/cli/repl) leaves the interpreter session open after a given feature or features have executed, allowing you to interactively enter additional steps to execute or inspect bound data in memory. You should use this mode to verify the execution of your [StepDefs](/docs/meta#stepdefs) as you develop your meta or when you want to diagnose a failing feature.
 
@@ -331,7 +331,7 @@ core 4  │    │    │    │<── feature 4a ──>|<── feature 4b �
 
 ### Can I run scenarios in parallel?
 
-Yes, see: [parallel scenario execution](/docs/modes/parallel#parallel-scenario-execution)
+Yes, see: [parallel scenario execution](execution-modes#parallel-scenario-execution)
 
 ### How do I compose step definitions?
 
@@ -339,7 +339,7 @@ By declaring a Scenario and annotating it with the `@StepDef` tag. See [StepDefs
 
 ### Can I validate my features?
 
-Yes, see [dry run execution mode](/docs/modes/dry-runs).
+Yes, see [dry run execution mode](/docs/exeuction-modes#dry-runs).
 
 ### Can I ignore (skip over) features and scenarios at execution time?
 
@@ -446,11 +446,11 @@ gwen --batch --report reports --format "junit,json,html"
 
 ### How can I feed CSV data to my features?
 
-See [CSV data feeds](/docs/modes/data-driven#csv-data-feeds).
+See [CSV data feeds](/docs/data-feeds#csv-data-feeds).
 
 ### How can I feed JSON data to my features?
 
-See [JSON data feeds](/docs/modes/data-driven#json-data-feeds).
+See [JSON data feeds](/docs/data-feeds#json-data-feeds).
 
 ### Can I configure runtime settings?
 

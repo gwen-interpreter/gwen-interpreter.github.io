@@ -1,6 +1,6 @@
 --- 
 toc_min_heading_level: 2
-toc_max_heading_level: 3
+toc_max_heading_level: 4
 ---
 
 import Link from '@docusaurus/Link';
@@ -8,11 +8,88 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Dry Runs
+# Execution Modes
+
+## Batch
 
 > Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
 
-## Catch syntax and binding errors
+Batch mode forces Gwen to immediately exit after a given feature or features have executed. You should always invoke Gwen in batch mode on server environments such as build servers.
+
+To execute Gwen in batch mode, simply specify the [`-b|--batch`](/docs/cli#gwen-cli-options-batch) command line switch. Omitting it will open the [REPL](/docs/cli/repl) otherwise.
+
+## Interactive REPL
+
+> Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
+
+Gwen will open the [REPL console](/docs/cli/repl) when it finishes executing features unless [batch](/docs/exeuction-modes#batch) mode is enabled.
+
+## Sequential
+
+> Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
+
+Gwen will execute given feature files one after the other unless [parallel](/docs/exeuction-modes#parallel) execution is enabled.
+
+## Parallel
+
+Gwen can execute features and scenarios in parallel threads.
+
+### Maximum threads
+
+The maximum number of parallel threads can be controlled through the following setting:
+
+- [`gwen.parallel.maxThreads`](/docs/settings/reference#gwen-parallel-maxThreads)
+  - By default this is set to `auto`, meaning that one thread will execute on each available CPU core (for example: 8 threads would execute on an 8 core machine)
+  - This can be set to a desired number of threads
+    - When less than the number of available cores, the remaining cores will be free
+    - When greater than the number of available cores, more than one thread may execute on some or all cores (use judiciously)
+
+### Parallel feature execution
+
+> Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
+
+
+> Features will run in parallel if you specify:
+> -  the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option and your [state level](/docs/settings/reference#gwen-state-level) is set to `feature`
+
+When [`maxThreads`](#maximum-threads) is `auto` (default)
+- If you launch Gwen on an 8 core machine with the `--parallel` option passing in 8 feature files (or a single directory containing 8 feature files), then the 8 features will run in parallel across the cores. If you instead provide 9 features, then 8 of them will execute in parallel and the remaining feature execution will be deferred until one of those completes.
+
+
+### Parallel scenario execution
+
+> Since [v2.22.1](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.22.1)
+
+> Scenarios will run in parallel if you specify:
+> - the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option and your [state level](/docs/settings/reference#gwen-state-level) is set to `scenario`
+
+When [`maxThreads`](#maximum-threads) is `auto` (default)
+- If you launch Gwen on a 8 core machine with the `--parallel` option passing in many feature files (or a single directory containing many feature files), then at most 8 scenarios will run in parallel across the cores at any one time. If there are a total of 9 scenarios, then 8 of them will execute in parallel and the remaining scenario execution be deferred until one of those completes.
+
+### Staggering
+
+> Since [v1.1.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.1.0)
+
+An optional [ramp up interval](/docs/settings/reference#gwen-rampup-interval-seconds) can be configured to stagger parallel executions.
+
+##### Example: 
+
+A 5 second interval would stagger parallel feature executions like this over 4 cores:
+
+```text
+    time  00   05   10   15   seconds
+          │    │    │    │
+  core 1  │<── feature 1a ──>|<── feature 1b ──> ..
+  core 2  │    │<── feature 2a ──>|<── feature 2b ──> ..
+  core 3  │    │    │<── feature 3a ──>|<── feature 3b ──> ..
+  core 4  │    │    │    │<── feature 4a ──>|<── feature 4b ──> ..
+  ```
+
+## Dry Runs
+
+> Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
+
+### Catch syntax and binding errors
 
 Dry runs can be performed on features to verify that they are syntactically correct and that all references have bindings that will resolve at runtime. This allows you to quickly validate features and catch potential errors before committing them to an execution cycle. The [`-n|--dry-run`](/docs/cli#gwen-cli-options-dry-run) CLI option is used to launch Gwen in this mode.
 
@@ -26,13 +103,13 @@ The primary purpose of dry runs is to perform static validation of all syntax, b
 
 Results will be logged to the console and in [HTML reports](/docs/reports/html) that you can inspect to find discovered issues.
 
-#### Example 
+##### Example 
 
 If you leave out or forget to define a selector for an input field, it would be detected by a dry run and reported in the HTML report as follows:
 
 ![Example dry run with error](/img/reports/sample-html-dry-run-error.png)
 
-## DryRun Annotations
+### DryRun Annotations
 
 > Since [v3.55.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.55.0)
 
@@ -49,7 +126,7 @@ Use DryRun annotations sparingly or when necessary only.
 :::
 
 
-#### Example 
+##### Example 
 
 Consider a [meta](/docs/meta) file with the following step definitions:
 
@@ -80,7 +157,7 @@ This would work perfectly fine when `${number}` evaluates to 1 or 2 in a web pag
 
 This would result in an undefined step error being reported since it cannot be matched to any step definition in our meta.
 
-#### A non-ideal workaround
+##### A non-ideal workaround
 
 Before `@DryRun` annotations were introduced, one way to work around this problem involved introducing predicates and using those as guards on calls to each step definition explicitly as follows:
 
@@ -95,7 +172,7 @@ Before `@DryRun` annotations were introduced, one way to work around this proble
 
 This effectively works since Gwen always resolves predicates to `true` values in dry runs. However, this is not ideal because it forces you to break your abstraction and introduces unwanted redundancies. This is the primary reason why `@DryRun` annotations were introduced; to avoid this kind of workaround.
 
-### Single Values
+#### Single Values
 
 > Annotation synax: `@DryRun(name='<name>',value='<value>')`
 
@@ -116,7 +193,7 @@ Now when you do a dry run on this, the `${number}` reference will take on the va
 
 This would result in a successful dry run of the 1st step definition.
 
-### Multiple Values
+#### Multiple Values
 
 > Annotation synax: `@DryRun(name='<name>',value={'<value-1>','<value-2>','<value-N>'})`
 
@@ -138,7 +215,7 @@ Now when you perform a dry run on this, the `${number}` reference will take on t
 
 This will result in a successful dry run of both the 1st and 2nd step definitions. So now the entire meta will be exercised.
 
-### Delimited Values
+#### Delimited Values
 
 > Annotation synax: `@DryRun(name='<name>',value='<value-1> <value-2> <value-N>')` (space delimited example)
 
