@@ -9,11 +9,11 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Assertion Modes
+# Assertions
 
 > Since [v2.30.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.30.0)
 
-## Hard, Soft, and Sustained Assertions
+## Assertion Modes
 
 Assertion modes only apply to steps that perform actual assertions.
 
@@ -27,7 +27,7 @@ With hard assertions, the first assertion error to be detected will be reported 
   Then @Hard the page title should contain "xGwen automation"
 ```
 
-![Hard assertions report](/img/modes/assertion/hard-assertions.png)
+![Hard assertions report](/img/assertions/hard-assertions.png)
 
 ### Soft assertions
 
@@ -39,7 +39,7 @@ With soft assertions, every assertion error that is detected is collected and re
   Then @Soft the page title should contain "xGwen automation"
 ```
 
-![Soft assertions report](/img/modes/assertion/soft-assertions.png)
+![Soft assertions report](/img/assertions/soft-assertions.png)
 
 ### Sustained assertions
 
@@ -51,9 +51,9 @@ With sustained assertions, every assertion error that is detected is collected a
   Then @Sustained the page title should contain "xGwen automation"
 ```
 
-![Sustained assertions report](/img/modes/assertion/sustained-assertions.png)
+![Sustained assertions report](/img/assertions/sustained-assertions.png)
 
-## Default assertion mode
+### Default mode
 
 Hard, soft, or sustained assertions can be configured as the default through the following setting:
 
@@ -63,7 +63,7 @@ Hard, soft, or sustained assertions can be configured as the default through the
     - `soft` to collect all assertion errors and continue execution whilst reporting them as failures
     - `sustained` to collect all assertion errors and continue execution without reporting them as failures
 
-## Step Level Annotations
+### Mode annotations
 The `@Hard`, `@Soft` and `@Sustained` annotations introduced in [v3.43.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.43.0) can be used on individiual steps to override the default assertion mode setting.
 
 For example, if the [`gwen.assertion.mode`](/docs/settings/reference#gwen-assertion-mode) setting is set to `hard`, the following would perform a hard assertion since no overriding annotation is specified.
@@ -90,6 +90,30 @@ Similarly, the following would perform a sustained assertion since the `@Sustain
   Then @Sustained the page title should contain "xGwen automation"
 ```
 
+## Message Annotation
 
+> Since [v3.29.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.29.0)
 
+`@Message` annotations can be used to override default error messages reported by failed assertions with custom messages to provide better meaning and context.
 
+#### Example
+
+Consider the following which checks that a form error should not be displayed on a page.
+
+```gherkin {2}
+  Given form error can be located by css `.form-error`
+   Then form error should not be displayed
+```    
+
+The assertion on line 2 will fail and report the following message if the error is displayed:
+- `assertion failed: form error should not be displayed`
+
+The default message suggests that an error was displayed but it does not explain what the error was. To override this and provide a more informative message, add a `@Message` annotation to the assertion as follows:
+
+```gherkin {2}
+  Given form error can be located by css `.form-error`
+   Then form error should not be displayed    @Message("Form error was: ${form error}")
+```
+
+This will now output a more meaninful error and include the contents of the form error in it too.
+- Example: `Form error was: Please provide all mandatory fields`
