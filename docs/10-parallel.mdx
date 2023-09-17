@@ -1,0 +1,64 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Parallel Execution
+
+Gwen can execute features and scenarios in parallel threads.
+
+## Maximum threads
+
+The maximum number of parallel threads can be controlled through the following setting:
+
+- [`gwen.parallel.maxThreads`](/docs/settings#gwen-parallel-maxThreads)
+  - By default this is set to `auto`, meaning that one thread will execute on each available CPU core (for example: 8 threads would execute on an 8 core machine)
+  - This can be set to a desired number of threads
+    - When less than the number of available cores, the remaining cores will be free
+    - When greater than the number of available cores, more than one thread may execute on some or all cores (use judiciously)
+
+## Parallel feature execution
+
+> Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
+
+
+> Features will run in parallel if you specify:
+> -  the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option and your [state level](/docs/settings#gwen-state-level) is set to `feature`
+
+When [`maxThreads`](#maximum-threads) is `auto` (default)
+- If you launch Gwen on an 8 core machine with the `--parallel` option passing in 8 feature files (or a single directory containing 8 feature files), then the 8 features will run in parallel across the cores. If you instead provide 9 features, then 8 of them will execute in parallel and the remaining feature execution will be deferred until one of those completes.
+
+
+## Parallel scenario execution
+
+> Since [v2.22.1](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.22.1)
+
+> Scenarios will run in parallel if you specify:
+> - the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option and your [state level](/docs/settings#gwen-state-level) is set to `scenario`
+
+When [`maxThreads`](#maximum-threads) is `auto` (default)
+- If you launch Gwen on a 8 core machine with the `--parallel` option passing in many feature files (or a single directory containing many feature files), then at most 8 scenarios will run in parallel across the cores at any one time. If there are a total of 9 scenarios, then 8 of them will execute in parallel and the remaining scenario execution be deferred until one of those completes.
+
+## Staggering
+
+> Since [v1.1.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.1.0)
+
+An optional [ramp up interval](/docs/settings#gwen-rampup-interval-seconds) can be configured to stagger parallel executions.
+
+#### Example: 
+
+A 5 second interval would stagger parallel feature executions like this over 4 cores:
+
+```text
+    time  00   05   10   15   seconds
+          │    │    │    │
+  core 1  │<── feature 1a ──>|<── feature 1b ──> ..
+  core 2  │    │<── feature 2a ──>|<── feature 2b ──> ..
+  core 3  │    │    │<── feature 3a ──>|<── feature 3b ──> ..
+  core 4  │    │    │    │<── feature 4a ──>|<── feature 4b ──> ..
+  ```

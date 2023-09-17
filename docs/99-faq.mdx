@@ -22,7 +22,7 @@ Gwen is a [Gherkin](https://docs.cucumber.io/gherkin/reference/) interpreter wit
 - [Good Gherkin](https://gweninterpreter.wordpress.com/2020/03/09/strictly-good-gherkin-with-gwen/) practice encouraged by default.
 - Consistent and reliable execution across [browsers](/docs/settings#gwen-target-browser).
 - NPM package for quick [project setup](/docs/get-started) and automatic updates.
-- [Sequential](/docs/execution-modes#sequential), [parallel](/docs/execution-modes#parallel), [batch](/docs/execution-modes#batch) and [dry run](/docs/execution-modes#dry-runs) execution modes.
+- [Parallel](/docs/parallel) and [dry run](/docs/dry-run) execution modes.
 - Interactive [REPL](/docs/repl) console and [debugging](/docs/repl#debugging).
 - [HTML](/docs/reports/html), [JSON](/docs/reports/json) and [JUnit-XML](/docs/reports/junit-xml) reports.
 - Configurable [settings](/docs/settings) and [CLI](/docs/cli) options.
@@ -66,7 +66,7 @@ Breakpoints can be added to any feature or meta steps by prefixing them with the
 
 ### What are the batch and REPL modes?
 
-[Batch mode](/docs/execution-modes#batch) forces Gwen to immediately exit after a given feature or features have executed. You should always invoke Gwen in batch mode on server environments such as build servers.
+Batch mode forces Gwen to immediately exit after a given feature or features have executed. You should always invoke Gwen in batch mode on server environments such as build servers.
 
 [REPL mode](/docs/repl) leaves the interpreter session open after a given feature or features have executed, allowing you to interactively enter additional steps to execute or inspect bound data in memory. You should use this mode to verify the execution of your [StepDefs](/docs/meta#stepdefs) as you develop your meta or when you want to diagnose a failing feature.
 
@@ -331,7 +331,7 @@ core 4  │    │    │    │<── feature 4a ──>|<── feature 4b �
 
 ### Can I run scenarios in parallel?
 
-Yes, see: [parallel scenario execution](execution-modes#parallel-scenario-execution)
+Yes, see: [parallel scenario execution](/docs/parallel#parallel-scenario-execution)
 
 ### How do I compose step definitions?
 
@@ -339,7 +339,7 @@ By declaring a Scenario and annotating it with the `@StepDef` tag. See [StepDefs
 
 ### Can I validate my features?
 
-Yes, see [dry run execution mode](/docs/execution-modes#dry-runs).
+Yes, see [dry run execution mode](/docs/dry-run).
 
 ### Can I ignore (skip over) features and scenarios at execution time?
 

@@ -40,7 +40,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/execution-modes/#dryrun-annotations',
+          href: '/docs/dry-run/#dryrun-annotations',
           position: 'left',
           label: "What's new?",
         },

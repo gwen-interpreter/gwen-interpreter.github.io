@@ -98,7 +98,7 @@ Here the name of the StepDef matches the name of the step in the feature when th
 
 ### Synchronized StepDefs
 
-In the rare case where you might need to synchronize the execution of your StepDef to a single thread (due to resource contention or a conflict for example), you can do so by tagging it with the `@Synchronized` annotation. Gwen will then guarantee that only one thread will execute your StepDef at any given time when multiple features or scenarios are executed in [parallel mode](/docs/execution-modes#parallel) by concurrent threads.
+In the rare case where you might need to synchronize the execution of your StepDef to a single thread (due to resource contention or a conflict for example), you can do so by tagging it with the `@Synchronized` annotation. Gwen will then guarantee that only one thread will execute your StepDef at any given time when multiple features or scenarios are executed in [parallel mode](/docs/parallel) by concurrent threads.
 
 ## Meta Load Strategies
 
