@@ -121,6 +121,7 @@ This would result in a successful dry run of the 1st step definition.
 > Since [v3.55.4](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.55.4)
 
 > Annotation synax: `@DryRun(name='<name>',value=['<value-1>','<value-2>','<value-N>'])`
+> - `[` and `]` interchangeable with `{` and `}`
 
 What if we wanted to exercise both step definitions 1 and 2 in the meta? The solution is to provide a list of dry run values for `number` on the calling step using the `@DryRun` annotation as follows:
 
