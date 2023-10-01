@@ -14,15 +14,16 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 It is often useful to reference settings, captured values and other text throughout your feature and meta files. To support this, Gwen provides a placholder substitution mechanism.
 
-#### Placeholders
+### Placeholder Syntax
 
-A placeholder can be:
+Placeholders are declared using the `${placholder}` syntax and can include:
 
 - An environment variable name (since gwen-web 2.36.0)
   - example: `${env.USER}` for the `USER` variable
 - A system property name
 - A [Gwen setting](/docs/settings) name
-- A named attribute bound to an accessible scope
+- A named binding in the currently accessible scope
+- Inlined [JavaScript](/docs/js-functions#inlined-functions) or [utility](/docs/utility-functions) functions
  
 ## Examples
 

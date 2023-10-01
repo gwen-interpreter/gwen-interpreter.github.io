@@ -198,7 +198,7 @@ The arrow function equivalent is much cleaner and simpler:
 
 Functions can be used in placehoders references inline.
 
-#### One liners
+#### Expressions
 
 Consider the following which uses the `@Eager` annotation to immediately evaluate a function and store the result in `uppercased name`:
 
@@ -215,7 +215,7 @@ Another way to do this could be to declare the function inline as follows:
 
 Functions can be inlined in this manner wherever placehoders are used. When used in this way, they evaluate immediately and cannot be reused elsewhere.
 
-#### Code blocks
+#### Blocks
 
 A more complex example follows. If `name` resolves to 'GWEN' and `surname` resolves to 'Stacey', then the following function would set `fancy full nane` to 'STACEY, Gwen'.
 
@@ -226,19 +226,49 @@ A more complex example follows. If `name` resolves to 'GWEN' and `surname` resol
         """
         ${ 
             (name, surname) => {
-              const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
-              const uppercaseSurname = surname.toUpperCase()
-              return uppercaseSurname + ', ' + properName
+              const firstName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
+              const lastName = surname.toUpperCase()
+              return lastName + ', ' + firstName
             }
         }
         """
 ```
 
-#### Nestings
+#### Nested
 
 Inlined functions can also be nested. The following example reads a number from a web page, pads it with leading zeroes and then uses that to reference a value configured in another binding. In this example, if the `number` field on a web page contains 1, then `username` will be assigned to the username bound to `user.001.username1` (which could be a configured setting or something else).
 
 ```gherkin
   Given number can be located by css ".number"
     And username is "${user.${ number => ('00' + number).slice(-3) }.username}"
+```
+
+### REPL Support
+
+You can also exeucte arrow functions directly in the [REPL console](/docs/repl).
+
+```script
+   __ ___      _____ _ __     _    
+  / _` \ \ /\ / / _ \ '_ \   { \," 
+ | (_| |\ V  V /  __/ | | | {_`/   
+  \__, | \_/\_/ \___|_| |_|   `    
+  |___/                            
+
+Welcome to gwen-web v3.56.0
+gweninterpreter.org
+
+
+REPL Console
+
+Enter steps to evaluate or type help for more options..
+
+gwen> Given name is "Gwen"
+
+  [10ms] ✔
+
+gwen> name => name.toUpperCase()
+
+  'GWEN'
+
+gwen> 
 ```
