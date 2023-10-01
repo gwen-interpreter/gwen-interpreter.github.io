@@ -1,0 +1,59 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Utility Functions
+
+> Since [v3.56.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0)
+
+##  Date formatter
+
+If a field on screen provides a date in a specific format, you can convert it to a different format using the date format utility.
+
+> For supported date and time patterns, see [SimpleDateFormat](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html)
+
+### Example
+
+```gherkin {2}
+  Given iso date can be located by css ".date"
+    And dmy date is "${ (date = iso date) :=> date.from('yyyy-MM-dd').to('dd/MM/yyyy') }"
+```
+
+##  Element selector
+
+If you define a selector for a parent element, you can locate the child relative to the parent by reusing the parent.
+
+### Example
+
+```gherkin {2}
+  Given nav can be located by js "document.getElementsByClassName('navbar__items')[1]"
+    And nav item can be located by js "${ (elem = nav) :=> elem.selector }.children[0]"
+```
+
+##  Element state checker
+
+Capture a boolean `true` or `false` denoting whether or not an element is displayed, hidden, checked, ticked, unchecked, unticked, enabled, or disabled.
+
+### Example
+
+```gherkin {2}
+  Given nav can be located by js "document.getElementsByClassName('navbar__items')[1]"
+    And nav visible is "${ (elem = nav) :=> elem.displayed }"
+```
+
+##  Element attribute getter
+
+Capture the value of any attribute on an element.
+
+### Example
+
+```gherkin {2}
+  Given the date field can be located by css ".data"
+    And the date field type is "${ (elem = the data field) :=> elem.attr('type') }"
+```

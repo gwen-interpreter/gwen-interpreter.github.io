@@ -2052,6 +2052,79 @@ Will expand to:
   </div>
 </details>
 
+<details id="gwen-report-attach-functions">
+  <summary class="setting">
+
+  ```properties
+  gwen.report.attach.functions
+  ```
+  <p>Controls whether or not the scripts of evaluated functions are attached to steps in the Gwen report (default is <code>true</code>).</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to attach (default)</li>
+    <li><code>false</code> to not attach</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: '.conf', value: 'conf'},
+    {label: '.json', value: 'json'},
+    {label: '.properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      report {
+        attach {
+          functions = true
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "report": {
+          "attach: {
+            "functions": true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.report.attach.functions = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-report-attach-functions">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-report-overwrite">
   <summary class="setting">
 

@@ -53,6 +53,8 @@ For example, consider the following script that returns the current date in yyyy
 })();
 ```
 
+> See also: [arrow syntax](/docs/js-functions) as a preferred alternative to anonymous function wrappers
+
 In the absence of Doc Strings, you would have to compact this to a one-liner expression and use it as follows (which is inelegant and hard to read):
 ```
 Given the current date is defined by javascript "(function() {var d = new Date(); var year = d.getFullYear(); var month = ('0' + (d.getMonth() + 1)).slice(-2); var day = ('0' + d.getDate()).slice(-2); return year + '-' + month + '-' + day; })();"

@@ -148,10 +148,13 @@ Feature specs should be declarative and written in the language of your domain a
   <ul>
     <li><code>&lt;name&gt;</code> is the name to associate</li>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;expression&gt;</code> is the javascript expression or anonymous function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li><code>&lt;expression&gt;</code> is the javascript expression, anonymous function or <Link to="/docs/js-functions">arrow function</Link> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>) that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
-        <li>For an expression: no <code>return</code> prefix is required</li>
-        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+        <ul>
+          <li>For an expression: no <code>return</code> prefix is required</li>
+          <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+          <li>For an arrow function: see <Link to="/docs/js-functions">syntax here</Link></li>
+        </ul>
       </ul>
     </li>
   </ul>
@@ -627,17 +630,18 @@ Feature specs should be declarative and written in the language of your domain a
   <ul>
     <li><code>&lt;name&gt;</code> is the name to bind the returned value to</li>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;expression&gt;</code> is the javascript expression or anonymous function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li><code>&lt;expression&gt;</code> is the javascript expression, anonymous function or <Link to="/docs/js-functions">arrow function</Link> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>) that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+        <li>For an arrow function: see <Link to="/docs/js-functions">syntax here</Link></li>
       </ul>
     </li>
   </ul>
   <p>Example</p>
 
   ```gherkin {1}
-     When I capture iso date by js "new Date().toISOString().substring(0, 10)"
+     When I capture iso date by js "() => new Date().toISOString().substring(0, 10)"
      Then iso date should match regex "^\d{4}-([0]\d|1[0-2])-([0-2]\d|3[01])$"
   ```
 
@@ -3208,8 +3212,6 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;javascript&gt;</code> is the javascript expression or anonymous function that will perform the desired action (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
-        <li>For an expression: no <code>return</code> prefix is required</li>
-        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
       </ul>
     </li>
   </ul>
@@ -4398,11 +4400,9 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;of|on|in&gt;</code> is <code>of</code>, <code>on</code> or <code>in</code></li>
     <li><code>&lt;element&gt;</code> is the name of the element to execute the javascript on</li>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;javascript&gt;</code> is the JavaScript expression or anonymous function to execute (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li><code>&lt;javascript&gt;</code> is the javascript expression or anonymous function to execute (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
-        <li>For an expression: no <code>return</code> prefix is required</li>
-        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
       </ul>
     </li>
   </ul>
@@ -6559,10 +6559,11 @@ Feature specs should be declarative and written in the language of your domain a
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;javascript&gt;</code> is the javascript expression or anonymous function returning a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li><code>&lt;javascript&gt;</code> is the javascript expression, anonymous function or <Link to="/docs/js-functions">arrow function</Link> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>) returning a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
-        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a boolean</li>
+        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+        <li>For an arrow function: see <Link to="/docs/js-functions">syntax here</Link></li>
       </ul>
     </li>
   </ul>
@@ -6592,10 +6593,11 @@ Feature specs should be declarative and written in the language of your domain a
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;javascript&gt;</code> is the javascript expression or anonymous function returning a boolean value
+    <li><code>&lt;javascript&gt;</code> is the javascript expression, anonymous function or <Link to="/docs/js-functions">arrow function</Link> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>) returning a boolean value
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
-        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a boolean</li>
+        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+        <li>For an arrow function: see <Link to="/docs/js-functions">syntax here</Link></li>
       </ul>
     </li>
     <li><code>&lt;delay&gt;</code> is the delay period between repetitive checks</li>
@@ -6632,10 +6634,10 @@ Feature specs should be declarative and written in the language of your domain a
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;javascript&gt;</code> is the javascript expression or anonymous function returning a boolean value
+    <li><code>&lt;javascript&gt;</code> is the javascript expression, anonymous function or <Link to="/docs/js-functions">arrow function</Link> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>) returning a boolean value
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
-        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a boolean</li>
+        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
@@ -6674,10 +6676,11 @@ Feature specs should be declarative and written in the language of your domain a
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;javascript&gt;</code> is the javascript expression or anonymous function returning a boolean value
+    <li><code>&lt;javascript&gt;</code> is the javascript expression, anonymous function or <Link to="/docs/js-functions">arrow function</Link> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>) returning a boolean value
       <ul>
         <li>For an expression: no <code>return</code> prefix is required</li>
-        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a boolean</li>
+        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
+        <li>For an arrow function: see <Link to="/docs/js-functions">syntax here</Link></li>
       </ul>
     </li>
     <li><code>&lt;delay&gt;</code> is the delay period between repetitive checks</li>
@@ -6955,7 +6958,7 @@ Feature specs should be declarative and written in the language of your domain a
   <p>Where</p>
   <ul>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;expression&gt;</code> is the JavaScript expression or anonymous function to execute (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li><code>&lt;expression&gt;</code> is the javascript expression, anonymous function or <Link to="/docs/js-functions">arrow function</Link> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>) to execute (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
       </ul>
@@ -7110,11 +7113,7 @@ Feature specs should be declarative and written in the language of your domain a
   <ul>
     <li><code>&lt;name&gt;</code>the name of the data to look up the value of and the name to bind it to</li>
     <li><code>&lt;filepath&gt;</code> the path to the CSV or JSON file to look up</li>
-    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
-      <ul>
-        <li>For an expression: no <code>return</code> prefix is required</li>
-        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
-      </ul>
+    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       Data fields can be referenced in the predicate using either:
       <ul>
         <li><code>$&#123;data.record.NAME&#125;</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)</li>
@@ -7195,11 +7194,7 @@ Feature specs should be declarative and written in the language of your domain a
   <ul>
     <li><code>&lt;name&gt;</code>the name of the data to look up the value of and the name to bind it to</li>
     <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV or JSON file to look up</li>
-    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
-      <ul>
-        <li>For an expression: no <code>return</code> prefix is required</li>
-        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
-      </ul>
+    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       Data fields can be referenced in the predicate using either:
       <ul>
         <li><code>$&#123;data.record.NAME&#125;</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)</li>
@@ -7283,11 +7278,7 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;dataName&gt;</code> the name of the data to look up the value of</li>
     <li><code>&lt;filepath&gt;</code> the path to the CSV or JSON file to look up</li>
     <li><code>&lt;name&gt;</code> the name to bind the looked up value to in the global scope</li>
-    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
-      <ul>
-        <li>For an expression: no <code>return</code> prefix is required</li>
-        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
-      </ul>
+    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       Data fields can be referenced in the predicate using either:
       <ul>
         <li><code>$&#123;data.record.NAME&#125;</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)</li>
@@ -7369,11 +7360,7 @@ Feature specs should be declarative and written in the language of your domain a
     <li><code>&lt;dataName&gt;</code> the name of the data in the CSV or JSON file to look up the value of</li>
     <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV or JSON file to look up</li>
     <li><code>&lt;name&gt;</code> the name to bind the looked up value to in the global scope</li>
-    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression or anonymous function that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
-      <ul>
-        <li>For an expression: no <code>return</code> prefix is required</li>
-        <li>For an anonymous function: the syntax is <code>(function()&#123; body &#125;)()</code> where body must return a value</li>
-      </ul>
+    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       Data fields can be referenced in the predicate using either:
       <ul>
         <li><code>$&#123;data.record.NAME&#125;</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)</li>

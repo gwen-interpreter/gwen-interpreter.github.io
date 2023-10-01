@@ -1,0 +1,244 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 4
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# JavaScript Functions
+
+> Since [v3.56.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0)
+
+##  Arrow Syntax
+
+You can execute JS functions in Gwen using the arrow syntax.
+
+### Zero argument expressions
+
+These accept no arguments and have either: 
+- a single expression in the body which returns a value
+- a block containing zero or more statments, followed by a return expression
+
+```gherkin
+  Given today is defined by js "() => new Date().toISOString().substring(0, 10)"
+```
+```gherkin
+    And tomorrow is defined by js
+        """
+        () => { 
+            const today = new Date()
+            const tomorrow = new Date()
+            tomorrow.setDate(today.getDate() + 1)
+            return tomorrow.toISOString().substring(0, 10)
+        }
+        """
+```
+
+Prior to arrow functions being introduced, the equivalent of the above was:
+
+```gherkin
+    And tomorrow is defined by js
+        """
+        (function() { 
+            const today = new Date()
+            const tomorrow = new Date()
+            tomorrow.setDate(today.getDate() + 1)
+            return tomorrow.toISOString().substring(0, 10)
+        })()
+        """
+```
+
+### Single argument functions
+
+These accept a single argument and have either: 
+- a single expression that operates on the arginemnt in the body and returns a value
+- a block containing zero or more statments that operate on the argument, followed by a return expression
+
+#### Implict argument binding
+
+An argument is implicity bound to a same named reference. In this example, the argument `name` on line 2 takes on the value of the `name` reference one line 1 which sources text from an element on a web page.
+
+```gherkin showLineNumbers
+  Given name can be located by css ".name"
+    And uppercased name is defined by js "(name) => name.toUpperCase()"
+```
+
+Prior to arrow functions being introduced, the equivalent of the above was:
+
+```gherkin
+    And uppercased name is defined by js "'${name}'.toUpperCase()"
+```
+
+So if `name` contained a single quote in it such as `O'Reilly` for example, the above would have resolved to `'O'Reilly'.toUpperCase()` which would then result in a missing closed quote error at runtime. With arrow functions, this would never happen since the value is bound to the argument name and not a quoted literal. So arrow functions are much safer in this regard.
+
+#### Explicit argument binding
+
+When references have spaces in their names, they can't be implicitly bound to function arguments in the same manner as above (since JavaScript does not permit spaces in argument names). The solution is to explicitly assign the reference to the argument using the `=` operator. Here, the argument `name` on line 4 takes on the value of the `first name` reference on line 1 which source text from an element on a web page.
+
+```gherkin {1,4} showLineNumbers
+    Given first name can be located by css ".first_name"
+      And cap name is defined by js
+          """
+          (name = first name) => { 
+              const head = name.charAt(0).toUpperCase()
+              const tail = name.slice(1).toLowerCase()
+              return head + tail
+          }
+          """
+```
+
+#### Dynamic argument binding
+
+Suppose we wanted to reuse the above function to captitalise multiple names? The first step would be to redefine it without binding the name argument to anything as follows:
+
+```gherkin
+    Given capitalise is defined by js
+          """
+          (name) => { 
+              const head = name.charAt(0).toUpperCase()
+              const tail = name.slice(1).toLowerCase()
+              return head + tail
+          }
+          """
+```
+
+Then we can apply the function to different names by binding each one. In the following example, line 3 binds the `name` argument to the value returned by `first name`, applies the `capitalise` function (above) to that and then stores the result in `cap first name`. Line 4 does the same but with `last name` instead.
+
+```gherkin {3-4} showLineNumbers
+  Given first name can be located by css ".first_name"
+    And last name can be located by css ".last_name"
+    And cap first name is defined by capitalise applied to "${first name}"
+    And proper last name is defined by capitalise applied to "${last name}"
+```
+
+### Multi argument functions
+
+These accept multiple arguments and have either: 
+- a single expression that operates on the arginemnts in the body and returns a value
+- a block containing zero or more statments that operate on the arguments, followed by a return expression
+
+#### Implict argument binding
+
+Arguments are implicity bound to same named references. In this example, the arguments `name` and `surname` on line 3 take on the values of the `name` and `surname` references on line 1 and 2 respecitvely, which each source their values from two different elements on a web page.
+
+```gherkin showLineNumbers
+  Given name can be located by css ".name"
+    And surname can be located by css ".surname"
+    And full name is defined by js "(name, surname) => name + ' ' + surname"
+```
+
+#### Explicit argument binding
+
+Here, the arguments `name` and `surname` on line 5 take on the values of the `first name` and `last name` reference on lines 1 and 2 which source their values from two different elements on a web page.
+
+```gherkin {1,4} showLineNumbers
+    Given first name can be located by css ".first_name"
+      And last name can be located by css ".last_name"
+      And full name is defined by js
+          """
+          (name = first name, surname = last name) => name + ' ' + surname
+          """
+```
+
+#### Dynamic argument binding
+
+Suppose we wanted to reuse the above functions to captitalise the first and last names in the full name?
+
+First, we capitalise the names by reusing the `capitalise` function we defined earlier above:
+
+```gherkin
+  Given capitalise is defined by js
+        """
+        (name) => { 
+            const head = name.charAt(0).toUpperCase()
+            const tail = name.slice(1).toLowerCase()
+            return head + tail
+        }
+        """
+```
+
+```gherkin
+  And first name can be located by css ".first_name"
+  And last name can be located by css ".last_name"
+  And proper first name is defined by capitalise applied to "${first name}"
+  And proper last name is defined by capitalise applied to "${last name}"
+```
+
+Then we reuse and apply the `full name` function to captitalise the names:
+
+```gherkin
+  And full name is defined by js "(name, surname) => name + ' ' + surname"
+```
+
+```gherkin
+  And proper full name is defined by full name applied to "${proper first name},${proper last name}" delimited by ","
+```
+
+Prior to arrow functions being introduced, the `full name` function needed to be defined like this:
+
+```gherkin
+  And full name is defined by js 
+      """
+      (function(name, surname) { 
+        return name + ' ' + surname
+      })(arguments[0], arguments[1])
+      """
+```
+
+The arrow function equivalent is much cleaner and simpler:
+
+```gherkin
+  And full name is defined by js "(name, surname) => name + ' ' + surname"
+```
+
+###  Inlined functions
+
+Functions can be used in placehoders references inline.
+
+#### One liners
+
+Consider the following which uses the `@Eager` annotation to immediately evaluate a function and store the result in `uppercased name`:
+
+```gherkin
+  Given name can be located by css ".name"
+    And @Eager uppercased name is defined by js " name => name.toUpperCase() "
+```
+
+Another way to do this could be to declare the function inline as follows:
+
+```gherkin
+    And uppercased name is "${ name => name.toUpperCase() }"
+```
+
+Functions can be inlined in this manner wherever placehoders are used. When used in this way, they evaluate immediately and cannot be reused elsewhere.
+
+#### Code blocks
+
+A more complex example follows. If `name` resolves to 'GWEN' and `surname` resolves to 'Stacey', then the following function would set `fancy full nane` to 'STACEY, Gwen'.
+
+```gherkin
+  Given name can be located by css ".name"
+    And surname can be located by css ".surname"
+    And fancy full name is 
+        """
+        ${ 
+            (name, surname) => {
+              const properName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
+              const uppercaseSurname = surname.toUpperCase()
+              return uppercaseSurname + ', ' + properName
+            }
+        }
+        """
+```
+
+#### Nestings
+
+Inlined functions can also be nested. The following example reads a number from a web page, pads it with leading zeroes and then uses that to reference a value configured in another binding. In this example, if the `number` field on a web page contains 1, then `username` will be assigned to the username bound to `user.001.username1` (which could be a configured setting or something else).
+
+```gherkin
+  Given number can be located by css ".number"
+    And username is "${user.${ number => ('00' + number).slice(-3) }.username}"
+```
