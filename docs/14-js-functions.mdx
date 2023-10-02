@@ -10,9 +10,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # JavaScript Functions
 
-> Since [v3.56.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0)
-
 ##  Arrow Syntax
+
+> Coming soon to [v3.56.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0)
 
 You can execute JS functions in Gwen using the arrow syntax.
 
@@ -241,6 +241,15 @@ Inlined functions can also be nested. The following example reads a number from 
 ```gherkin
   Given number can be located by css ".number"
     And username is "${user.${ number => ('00' + number).slice(-3) }.username}"
+```
+
+Nesting should be used sparingly and would require the following annotation for a successful [dry run](/docs/dry-run):
+
+```gherkin
+  And username is    @DryRun(name=`number => ('00' + number).slice(-3)`,value='001')
+      """
+      ${user.${ number => ('00' + number).slice(-3) }.username}
+      """
 ```
 
 ### REPL Support
