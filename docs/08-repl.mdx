@@ -248,9 +248,6 @@ Given|When|Then|And|But step-expression
 (args) => body
   Evaluates a JavaScript arrow function 
 
-(args) :=> body
-  Evaluates a built in Gwen utility function
-
 q|exit|quit|bye
   Closes the REPL session and exits
 
@@ -418,25 +415,6 @@ gwen> name => name.toUpperCase()
 
 gwen> 
 ```
-
-### Utility Functions
-
-> Since [v3.56.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0)
-
-Develop and experiment with built-in Gwen [utility functions](/docs/utility-functions) by entering them directly in the REPL.
-
-```script
-gwen> Given iso date is "2023-10-01"
-
-  [1ms] ✔
-
-gwen> (date = iso date) :=> date.from('yyyy-MM-dd').to('dd/MM/yyyy')
-
-  '01/10/2023'
-
-gwen> 
-```
-
 
 ### Exiting the REPL
 

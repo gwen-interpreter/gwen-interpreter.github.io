@@ -40,7 +40,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/js-functions#arrow-syntax',
+          href: '/docs/js-functions',
           position: 'left',
           label: "What's new?",
         },
