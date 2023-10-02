@@ -134,7 +134,7 @@ Arguments are implicity bound to same named references. In this example, the arg
 
 Here, the arguments `name` and `surname` on line 5 take on the values of the `first name` and `last name` reference on lines 1 and 2 which source their values from two different elements on a web page.
 
-```gherkin {1,4} showLineNumbers
+```gherkin {1-2,5} showLineNumbers
     Given first name can be located by css ".first_name"
       And last name can be located by css ".last_name"
       And full name is defined by js
@@ -202,7 +202,7 @@ Functions can be used in placehoder references inline.
 
 Consider the following which uses the `@Eager` annotation to immediately evaluate a function and store the result in `uppercased name`:
 
-```gherkin
+```gherkin {2}
   Given name can be located by css ".name"
     And @Eager uppercased name is defined by js " name => name.toUpperCase() "
 ```
@@ -219,7 +219,7 @@ Functions can be inlined in this manner wherever placehoders are used. When used
 
 A more complex example follows. If `name` resolves to 'GWEN' and `surname` resolves to 'Stacey', then the following function would set `fancy full nane` to 'STACEY, Gwen'.
 
-```gherkin
+```gherkin {3-12}
   Given name can be located by css ".name"
     And surname can be located by css ".surname"
     And fancy full name is 
@@ -238,7 +238,7 @@ A more complex example follows. If `name` resolves to 'GWEN' and `surname` resol
 
 Inlined functions can also be nested. The following example reads a number from a web page, pads it with leading zeroes and then uses that to reference a value configured in another binding. In this example, if the `number` field on a web page contains 1, then `username` will be assigned to the username bound to `user.001.username1` (which could be a configured setting or something else).
 
-```gherkin
+```gherkin {2}
   Given number can be located by css ".number"
     And username is "${user.${ number => ('00' + number).slice(-3) }.username}"
 ```
