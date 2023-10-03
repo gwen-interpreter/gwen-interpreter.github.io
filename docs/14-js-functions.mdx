@@ -78,7 +78,7 @@ When references have spaces in their names, they cannot be implicitly bound to f
 
 ```gherkin {1,4} showLineNumbers
     Given first name can be located by css ".first_name"
-      And capitalised name is defined by js
+      And proper name is defined by js
           """
           (name = first name) => { 
               const head = name.charAt(0).toUpperCase()
@@ -103,13 +103,13 @@ Suppose we wanted to reuse the above function to captitalise several names? The 
           """
 ```
 
-We can then apply it to different names by binding each one. In the following example, line 3 binds the `name` argument to the value returned by `first name`, applies our `capitalise` function (above) to that and stores the resulting value in `capitalised first name`. Line 4 does the same but with `last name` instead.
+We can then apply it to different names by binding each one. In the following example, line 3 binds the `name` argument to the value returned by `first name`, applies our `capitalise` function (above) to that and stores the resulting value in `proper first name`. Line 4 does the same but with `last name` instead.
 
 ```gherkin {3-4} showLineNumbers
   Given first name can be located by css ".first_name"
     And last name can be located by css ".last_name"
-    And capitalised first name is defined by capitalise applied to "${first name}"
-    And capitalised last name is defined by capitalise applied to "${last name}"
+    And proper first name is defined by capitalise applied to "${first name}"
+    And proper last name is defined by capitalise applied to "${last name}"
 ```
 
 ## Multi argument functions
@@ -143,7 +143,7 @@ Here, the arguments `name` and `surname` on line 5 take on the resolved values o
 
 ### Dynamic argument binding
 
-Suppose we wanted to reuse the above functions to captitalise both the first and last names and combine them into a capitalised full name?
+Suppose we wanted to reuse the above functions to captitalise both the first and last names and combine them into a proper full name?
 
 First, we capitalise the names by reusing the `capitalise` function we defined earlier above:
 
@@ -158,26 +158,21 @@ First, we capitalise the names by reusing the `capitalise` function we defined e
         """
   And first name can be located by css ".first_name"
   And last name can be located by css ".last_name"
-  And capitalised first name is defined by capitalise applied to "${first name}"
-  And capitalised last name is defined by capitalise applied to "${last name}"
+  And proper first name is defined by capitalise applied to "${first name}"
+  And proper last name is defined by capitalise applied to "${last name}"
 ```
 
 Then we reuse and apply the first `full name` function we defined earlier to combine the two:
 
 ```gherkin {2}
   And full name is defined by js "(name, surname) => name + ' ' + surname"
-  And capitalised full name is defined by full name applied to "${capitalised first name},${capitalised last name}" delimited by ","
+  And proper full name is defined by full name applied to "${proper first name},${proper last name}" delimited by ","
 ```
 
 Prior to arrow functions being introduced, the `full name` function needed to be defined like this:
 
 ```gherkin
-  And full name is defined by js 
-      """
-      (function(name, surname) { 
-        return name + ' ' + surname
-      })(arguments[0], arguments[1])
-      """
+  And full name is defined by js "(function(name, surname) { return name + ' ' + surname })(arguments[0], arguments[1])"
 ```
 
 The arrow function equivalent is much cleaner and simpler:
