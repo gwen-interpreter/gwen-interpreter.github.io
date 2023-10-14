@@ -14,7 +14,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Catch syntax and binding errors
 
-Dry runs can be performed on features to verify that they are syntactically correct and that all references have bindings that will resolve at runtime. This allows you to quickly validate features and catch potential errors before committing them to an execution cycle. The [`-n|--dry-run`](/docs/cli#gwen-cli-options-dry-run) CLI option is used to launch Gwen in this mode.
+Dry runs can be performed on features to verify that they are syntactically correct and that all references have [bindings](/docs/dsl#bindings) that will resolve at runtime. This allows you to quickly validate features and catch potential errors before committing them to an execution cycle. The [`-n|--dry-run`](/docs/cli#gwen-cli-options-dry-run) CLI option is used to launch Gwen in this mode.
 
 The primary purpose of dry runs is to perform static validation of all syntax, bindings and [StepDefs](/docs/meta#stepdefs) throughout your feature and [meta](/docs/meta) files. In a dry run:
 - Browsers sessions are never started

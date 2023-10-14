@@ -10,13 +10,13 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Eager or Lazy Bindings
 
-`@Eager` and `@Lazy` annotations can be used on the following DSL steps to control when expressions are evaluated and bound to names. In the absence of either annotation, expressions will be evaluated every time they are referenced by name and discarded once used.
+`@Eager` and `@Lazy` annotations can be used to control when [bindings](/docs/dsl#bindings) are evaluated. In the absence of either annotation, bindings will be evaluated every time they are referenced and discarded once used.
 
 ## @Eager
 
 > Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>
 
-The `@Eager` annotation can be used to immediately evaluate and bind the result an expression to a name. The eagerly bound value is instantly returned whenever the name is referenced.
+The `@Eager` annotation can be used to immediately evaluate a binding. The eagerly bound value is instantly returned whenever the name is referenced.
 
 :::note Eager example
 
@@ -35,7 +35,7 @@ The `@Eager` annotation can be used to immediately evaluate and bind the result 
 
 > Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>
 
-The `@Lazy` annotation can be used to evaluate and bind the result an expression to a name when that name is first referenced. The lazily bound value is returned whenever the name is referenced thereafter.
+The `@Lazy` annotation can be used to evaluate bindings when they are first referenced. The lazily bound value is returned whenever the name is referenced thereafter.
 
 :::note Eager example
 
@@ -54,7 +54,7 @@ The `@Lazy` annotation can be used to evaluate and bind the result an expression
 
 > Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link>
 
-In the absence of either annoation, the expression will be unconditionally evaluated every time the name is referenced without being saved to memory. This is the default behaviour.
+In the absence of either annoation, the bindings will be unconditionally evaluated every time the name is referenced without being saved to memory. This is the default behaviour.
 
 :::note Eager example
 
@@ -66,19 +66,3 @@ In the absence of either annoation, the expression will be unconditionally evalu
 ```
 
 `time 1` and `time 2` will have different values since `time` is evaluated, bound and discarded at steps 2 and 3.
-
-## DSLs
-
-The following DSLs support eager or lazy bindngs:
-
-- [`<name> is defined by <javascript|js> "<expression>"`](/docs/dsl#name-is-defined-by-javascript-expression)
-- [`<name> is defined by <javascriptRef> applied to "<argument>"`](/docs/dsl#name-is-defined-by-js-function-applied-to-arg)
-- [`<name> is defined by <javascriptRef> applied to "<arguments>" delimited by "<delimiter>"`](/docs/dsl#name-is-defined-by-js-function-applied-to-args-delimited-by)
-- [`<name> is defined in <textRef> by regex "<expression>"`](/docs/dsl#name-is-defined-in-text-ref-by-regex-expression)
-- [`<name> is defined by the <nodeType> in <xmlRef> by xpath "<expression>"`](/docs/dsl#name-is-defined-by-the-node-type-in-xml-ref-by-xpath-expression)
-- [`<name> is defined in <jsonRef> by json path "<expression>"`](/docs/dsl#name-is-defined-in-json-ref-by-json-path-expression)
-- [`<name> is defined by system process "<expression>"`](/docs/dsl#name-is-defined-by-system-process-expression)
-- [`<name> is defined by system process "<expression>" delimited by "<delimiters>"`](/docs/dsl#name-is-defined-by-system-process-expression-delimited-by-delimiters)
-- [`<name> is defined by unix system process "<expression>"`](/docs/dsl#name-is-defined-by-unix-system-process-expression)
-- [`<name> is defined by file "<filepath>"`](/docs/dsl#name-is-defined-by-file)
-- [`<name> is defined in the <dbName> database by sql "<selectStmt>"`](/docs/dsl#name-is-defined-by-database-select-statement)
