@@ -57,7 +57,7 @@ For example, consider the following script that returns the current date in yyyy
 
 In the absence of Doc Strings, you would have to compact this to a one-liner expression and use it as follows (which is inelegant and hard to read):
 ```
-Given the current date is defined by javascript "() => {var d = new Date(); var year = d.getFullYear(); var month = ('0' + (d.getMonth() + 1)).slice(-2); var day = ('0' + d.getDate()).slice(-2); return year + '-' + month + '-' + day; };"
+Given the current date is defined by javascript "() => { var d = new Date(); var year = d.getFullYear(); var month = ('0' + (d.getMonth() + 1)).slice(-2); var day = ('0' + d.getDate()).slice(-2); return year + '-' + month + '-' + day; };"
 ```
 
 With Doc Strings, you can now do this as follows instead:
