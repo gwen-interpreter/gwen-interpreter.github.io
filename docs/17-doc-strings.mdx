@@ -29,11 +29,11 @@ One use case is multiline strings. In the absence of Doc Strings there was no wa
 ```gherkin
   Given my paragraph is
        """
-       Gwen is a Gherkin interpreter that turns Given-When-Then steps into automation instructions and executes
-       them for you so you don't have to do all the programming work. It has an abstracted evaluation engine
-       allowing any type of automation capability to be built and mixed in. Meta specifications (also expressed
-       in Gherkin) are used to capture automation bindings and allow you to compose step definitions by mapping
-       'declarative' steps in features to 'imperative' steps in engines that perform operations.
+       Gwen is a Gherkin interpreter with built-in automation capabilities that can readily be 
+       utilised for end-to-end testing and robotic processing. Automation is achieved through 
+       Gherkin bindings called meta specs, composed with the Gwen DSL and maintained alongside 
+       your feature files. An embedded Selenium engine executes scenarios according to the meta 
+       you provide to perform operations in browsers for you.
        """
 ```
 
@@ -56,8 +56,8 @@ For example, consider the following script that returns the current date in yyyy
 > See also: [arrow syntax](/docs/js-functions) as a preferred alternative to anonymous function wrappers
 
 In the absence of Doc Strings, you would have to compact this to a one-liner expression and use it as follows (which is inelegant and hard to read):
-```
-Given the current date is defined by javascript "() => { var d = new Date(); var year = d.getFullYear(); var month = ('0' + (d.getMonth() + 1)).slice(-2); var day = ('0' + d.getDate()).slice(-2); return year + '-' + month + '-' + day; };"
+```gherkin
+  Given the current date is defined by javascript "() => { var d = new Date(); var year = d.getFullYear(); var month = ('0' + (d.getMonth() + 1)).slice(-2); var day = ('0' + d.getDate()).slice(-2); return year + '-' + month + '-' + day; };"
 ```
 
 With Doc Strings, you can now do this as follows instead:
