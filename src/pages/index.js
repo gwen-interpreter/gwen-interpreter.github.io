@@ -97,7 +97,8 @@ export default function Home() {
       And my todo list should not be displayed
   
   @Action
-  @DataTable @ForEach
+  @DataTable
+  @ForEach
   @StepDef
   Scenario: the following items are added
     Given the todo field can be located by class "new-todo"

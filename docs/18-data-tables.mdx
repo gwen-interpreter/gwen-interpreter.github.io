@@ -33,8 +33,9 @@ A [StepDef](/docs/meta#stepdefs) could be defined to process each row of data in
 
 :::note StepDef for processing data table
 
-```gherkin {1,6-7}
-  @DataTable @ForEach
+```gherkin {1-2,7-8}
+  @DataTable
+  @ForEach
   @StepDef
   Scenario: the following items are added
     Given the todo field can be located by class "new-todo"
