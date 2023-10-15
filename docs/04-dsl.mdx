@@ -10,100 +10,13 @@ import TabItem from '@theme/TabItem';
 
 # Gwen DSL
 
-> Jump to [DSL Reference](#dsl-reference)
-
-Every Gherkin step that matches a [prescribed DSL](#dsl-reference) is readily executable by Gwen.
-
-:::note Example
-
-The following is a DSL Step:
-
-```gherkin
-  Then the page title should contain "TodoMVC"
-```
-
-Since it matches:
-
-- [`the page title should[ not] <match> "<expression>"`](/docs/dsl#the-page-title-should-match-expression)
-
-:::
-
-## All execution happens in the DSL
-
-Every step interpreted by Gwen will either directly or inderectly through [StepDefs](/docs/meta#stepdefs), result in:
-- One or many DSL steps being executed
-- One or many undefined steps being reported
-- Or a combination of the above
-
-If you've got everything right, all steps will execute. It is your job as a Gwen user to define StepDefs for every non DSL step in your features (and in your meta if you introduce any there). 
-
 :::tip
-
-Use [dry runs](/docs/dry-run) to check for syntax and binding errors and identify any missing StepDefs before committing to an automation cycle.
-
-:::
-
-:::note Step execution rules
-
-Gwen interprets steps for execution according to the following rules:
-
-1. StepDef rule
-   - If the step is bound to a StepDef then apply these rules to every step in the body of that StepDef
-2. DSL rule
-   - If the step is a DSL step then execute it using built-in code
-3. Undefined rule
-   - If neither of the above rules are satisfied then report an undefined step error
-   
-:::
-
-## Compose StepDefs using DSL
-
-To make the following feature step executable:
-
-:::note Step in feature
-
-*File: features/todo.feature*
-
-```gherkin
-  Given a new todo list
-```
-
-:::
-
-You could compose a StepDef as follows:
-
-:::note StepDef in meta
-
-*File: features/todo.meta*
-
-```gherkin {4-7}
-  @Context
-  @StepDef
-  Scenario: a new todo list
-    Given my todo list can be located by css ".todo-list"
-     When I navigate to "https://todomvc.com/examples/react"
-     Then the page title should contain "TodoMVC"
-      And my todo list should not be displayed
-```
-
-Calls DSL steps:
-
-- [`<element> can be located by <selector> "<expression>"`](/docs/dsl#element-can-be-located-by-selector-expression)
-- [`I navigate to <url>`](/docs/dsl#i-navigate-to-url)
-- [`the page title should[ not] <match> "<expression>"`](/docs/dsl#the-page-title-should-match-expression)
-- [`<element> should[ not] be <state>`](/docs/dsl#element-should-be-state)
-
+Use the DSL to compose [StepDefs](/docs/meta#stepdefs) in your [meta](/docs/meta).
 :::
 
 ## DSL Reference
 
 All Gherkin steps that match the DSL expressions described here are readily executable by Gwen. The DSL matched is the operation that will be performed at execution time.
-
-:::info The DSL is meant for meta
-
-Feature specs should be declarative and written in the language of your domain and not the Gwen DSL. To encourage this and restrict DSL usage to [meta](/docs/meta) in [Gwen 3](/docs/gwen3), we have toggled the default of the [`gwen.feature.mode`](/docs/settings#gwen-feature-mode) setting from *imperative* to *declarative*.
-
-:::
 
 ### Bindings
 
