@@ -12,7 +12,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 > Since [v1.1.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.1.0)
 
-Gwen has a locator chaining mechanism allowing you to locate elements within other elements or frames. 
+Gwen has a [locator](/docs/dsl#element-locators) chaining mechanism allowing you to locate elements within other elements or frames. 
 
 ## Locating elements in frames
 
@@ -53,14 +53,3 @@ There is no limit to the number of locators you can chain. For example, you can 
     And my form can be located by name "form_name" in my frame
     And my input field can be located by name "input_name" in my form
 ```
-
-## DSLs
-
-The following DSLs support locator chaining:
-
-- [`<element> can be located by <selector> "<expression>" at index <index> in <otherElement>`](/docs/dsl#element-can-be-located-by-selector-expression-in-other-element-at-index)
-- [`<element> can be located by <selector> "<expression>" at index <index> in <otherElement> with no <wait|timeout>`](/docs/dsl#element-can-be-located-by-selector-expression-at-index-in-other-element-with-no-timeout)
-- [`<element> can be located by <selector> "<expression>" at index <index> in <otherElement>  with <timeoutSecs> second <wait|timeout>`](/docs/dsl#element-can-be-located-by-selector-expression-at-index-in-other-element-with-timeout)
-- [`<element> can be located by <selector> "<expression>" <relativeTo> <otherElement>`](/docs/dsl#element-can-be-located-by-selector-expression-relative-to-other-element)
-- [`<element> can be located by <selector> "<expression>" <relativeTo> <otherElement> with no <wait|timeout>`](/docs/dsl#element-can-be-located-by-selector-expression-relative-to-other-element-with-no-timeout)
-- [`<element> can be located by <selector> "<expression>" <relativeTo> <otherElement>  with <timeoutSecs> second <wait|timeout>`](/docs/dsl#element-can-be-located-by-selector-expression-relative-to-other-element-with-timeout)
