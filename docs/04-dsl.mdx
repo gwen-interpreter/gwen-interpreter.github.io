@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 
 > Jump to [DSL Reference](#dsl-reference)
 
-Every Gherkin step that matches a [prescribed DSL](/docs/dsl) is readily executable by Gwen.
+Every Gherkin step that matches a [prescribed DSL](#dsl-reference) is readily executable by Gwen.
 
 :::note Example
 
@@ -56,7 +56,7 @@ Gwen interprets steps for execution according to the following rules:
    
 :::
 
-## Compose StepDefs with DSL steps
+## Compose StepDefs using DSL
 
 To make the following feature step executable:
 
@@ -136,33 +136,20 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
-#### JS function bindings
+#### File bindings
 
-<details id="name-is-defined-by-javascript-expression">
+<details id="name-is-defined-by-file">
   <summary class="dsl">
 
   ```gherkin
-  <name> is defined by <javascript|js> "<script>"
+  <name> is defined by file "<filepath>"
   ```
-  <p>Associates a name with the return value of a JavaScript expression or function.</p>
+  <p>Associates a name with the contents of a file. The value is resolved every time the name is referenced.</p>
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;name&gt;</code> is the name to associate</li>
-    <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;script&gt;</code> is the javascript expression or function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
-      <ul>
-        <ul>
-          <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
-          <li>For a function, use either:
-            <ul>
-              <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>(arg1, arg2, ..argN) =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
-              <li>Or anonymous function syntax (legacy): <code>(function(arg1, arg2, ..argN)&#123; body &#125;)(arguments[0], arguments[1], ..arguments[N])</code></li>
-            </ul>
-          </li>
-        </ul>
-      </ul>
-    </li>
+    <li><code>&lt;name&gt;</code> is the name to associated the file contents</li>
+    <li><code>&lt;filepath&gt;</code> the path to the file (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
   </ul>
   <p>
     Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
@@ -172,115 +159,16 @@ Feature specs should be declarative and written in the language of your domain a
       <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
     </ul>
   </p>
-  <p>Examples</p>
-
-  ```gherkin {1}
-    Given iso date is defined by js "new Date().toISOString().substring(0, 10)"
-     Then iso date should match regex "^\d{4}-([0]\d|1[0-2])-([0-2]\d|3[01])$"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#name-is-defined-by-javascript-expression">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="name-is-defined-by-js-function-applied-to-arg">
-  <summary class="dsl">
+  <p>Example</p>
 
   ```gherkin
-  <name> is defined by <javascriptRef> applied to "<argument>"
-  ```
-  <p>Applies a JavaScript function to an argument and binds the result to <code>&lt;name&gt;</code> in the global scope.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;name&gt;</code> is the name to bind the function result to</li>
-    <li><code>&lt;javascriptRef&gt;</code> is the name of the binding containing the javascript function to apply</li>
-    <li><code>&lt;argument&gt;</code> argument to apply the function</li>
-  </ul>
-  <p>Examples</p>
-
-  ```gherkin {9}
-    Given iso date is defined by js "new Date().toISOString().substring(0, 10)"
-      And toDMY is defined by js
-          """
-          (ymd) => {
-            var parts = ymd.split('-');
-            return parts[2] + '/' + parts[1] + '/' + parts[0];
-          }
-          """
-      And dmy date is defined by toDMY applied to "${iso date}"
-     Then dmy date should match regex "^([0-2]\d|3[01])/([0]\d|1[0-2])/\d{4}$"
-  ```
-
-  ```gherkin {9}
-    Given toMDY is defined by js
-          """
-          (ymd) => {
-            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            var parts = ymd.split('-');
-            return months[parseInt(parts[1]) - 1] + ' ' + parts[2] + ' ' + parts[0];
-          }
-          """
-      And dmy date is defined by toMDY applied to "2022-04-05"
-     Then dmy date should be "Apr 05 2022"
+    Given the content is defined by file "path/to/file.txt"
   ```
 
   <div class="grid-3">
-    <div><Link to="#name-is-defined-by-js-function-applied-to-arg">Link</Link></div>
+    <div><Link to="#name-is-defined-by-file">Link</Link></div>
     <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.10.1">v3.10.1</Link></div>
-  </div>
-</details>
-
-<details id="name-is-defined-by-js-function-applied-to-args-delimited-by">
-  <summary class="dsl">
-
-  ```gherkin
-  <name> is defined by <javascriptRef> applied to "<arguments>" delimited by "<delimiter>"
-  ```
-  <p>Applies a JavaScript function to mutiple arguments using a customer delimiter and binds the result to <code>&lt;name&gt;</code> in the global scope.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;name&gt;</code> is the name to bind the function result to</li>
-    <li><code>&lt;javascriptRef&gt;</code> is the name of the binding containing the javascript function to apply</li>
-    <li><code>&lt;arguments&gt;</code> a delimited list of arguments to apply the function to</li>
-    <li><code>&lt;delimiter&gt;</code> is the delmiter used in <code>&lt;arguments&gt;</code>
-      <ul>
-        <li>The 1st agrument is referenced in the JavaScript as <code>arguments[0]</code>, the 2nd argument as <code>arguments[1]</code>, the 3rd as <code>arguments[2]</code> and so on.</li>
-      </ul>
-    </li>
-  </ul>
-  <p>Examples</p>
-
-  ```gherkin {3}
-    Given iso date is defined by js "new Date().toISOString().substring(0, 10)"
-      And toDMY is defined by js "(y,m,d) => d + '/' + m + '/' + y"
-      And dmy date is defined by toDMY applied to "${iso date}" delimited by "-"
-     Then dmy date should match regex "^([0-2]\d|3[01])/([0]\d|1[0-2])/\d{4}$"
-  ```
-  
-  ```gherkin {10}
-    Given toISO is defined by js
-          """
-          (m,d,y) => {
-            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            var mNo = months.indexOf(m) + 1;
-            if (mNo < 10) mNo = '0' + mNo;
-            return y + '-' + mNo + '-' + d;
-          }
-          """
-      And iso date is defined by toISO applied to "Apr 05 2022" delimited by " "
-     Then iso date should be "2022-04-05"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#name-is-defined-by-js-function-applied-to-args-delimited-by">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.10.0">v3.10.0</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.11.0">v1.11.0</Link></div>
   </div>
 </details>
 
@@ -457,6 +345,154 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
+#### JS bindings
+
+<details id="name-is-defined-by-javascript-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by <javascript|js> "<script>"
+  ```
+  <p>Associates a name with the return value of a JavaScript expression or function.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to associate</li>
+    <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
+    <li><code>&lt;script&gt;</code> is the javascript expression or function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+      <ul>
+        <ul>
+          <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
+          <li>For a function, use either:
+            <ul>
+              <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>(arg1, arg2, ..argN) =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
+              <li>Or anonymous function syntax (legacy): <code>(function(arg1, arg2, ..argN)&#123; body &#125;)(arguments[0], arguments[1], ..arguments[N])</code></li>
+            </ul>
+          </li>
+        </ul>
+      </ul>
+    </li>
+  </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+    </ul>
+  </p>
+  <p>Examples</p>
+
+  ```gherkin {1}
+    Given iso date is defined by js "new Date().toISOString().substring(0, 10)"
+     Then iso date should match regex "^\d{4}-([0]\d|1[0-2])-([0-2]\d|3[01])$"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-javascript-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="name-is-defined-by-js-function-applied-to-arg">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by <javascriptRef> applied to "<argument>"
+  ```
+  <p>Applies a JavaScript function to an argument and binds the result to <code>&lt;name&gt;</code> in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the function result to</li>
+    <li><code>&lt;javascriptRef&gt;</code> is the name of the binding containing the javascript function to apply</li>
+    <li><code>&lt;argument&gt;</code> argument to apply the function</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {9}
+    Given iso date is defined by js "new Date().toISOString().substring(0, 10)"
+      And toDMY is defined by js
+          """
+          (ymd) => {
+            var parts = ymd.split('-');
+            return parts[2] + '/' + parts[1] + '/' + parts[0];
+          }
+          """
+      And dmy date is defined by toDMY applied to "${iso date}"
+     Then dmy date should match regex "^([0-2]\d|3[01])/([0]\d|1[0-2])/\d{4}$"
+  ```
+
+  ```gherkin {9}
+    Given toMDY is defined by js
+          """
+          (ymd) => {
+            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var parts = ymd.split('-');
+            return months[parseInt(parts[1]) - 1] + ' ' + parts[2] + ' ' + parts[0];
+          }
+          """
+      And dmy date is defined by toMDY applied to "2022-04-05"
+     Then dmy date should be "Apr 05 2022"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-js-function-applied-to-arg">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.10.1">v3.10.1</Link></div>
+  </div>
+</details>
+
+<details id="name-is-defined-by-js-function-applied-to-args-delimited-by">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by <javascriptRef> applied to "<arguments>" delimited by "<delimiter>"
+  ```
+  <p>Applies a JavaScript function to mutiple arguments using a customer delimiter and binds the result to <code>&lt;name&gt;</code> in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the function result to</li>
+    <li><code>&lt;javascriptRef&gt;</code> is the name of the binding containing the javascript function to apply</li>
+    <li><code>&lt;arguments&gt;</code> a delimited list of arguments to apply the function to</li>
+    <li><code>&lt;delimiter&gt;</code> is the delmiter used in <code>&lt;arguments&gt;</code>
+      <ul>
+        <li>The 1st agrument is referenced in the JavaScript as <code>arguments[0]</code>, the 2nd argument as <code>arguments[1]</code>, the 3rd as <code>arguments[2]</code> and so on.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {3}
+    Given iso date is defined by js "new Date().toISOString().substring(0, 10)"
+      And toDMY is defined by js "(y,m,d) => d + '/' + m + '/' + y"
+      And dmy date is defined by toDMY applied to "${iso date}" delimited by "-"
+     Then dmy date should match regex "^([0-2]\d|3[01])/([0]\d|1[0-2])/\d{4}$"
+  ```
+  
+  ```gherkin {10}
+    Given toISO is defined by js
+          """
+          (m,d,y) => {
+            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var mNo = months.indexOf(m) + 1;
+            if (mNo < 10) mNo = '0' + mNo;
+            return y + '-' + mNo + '-' + d;
+          }
+          """
+      And iso date is defined by toISO applied to "Apr 05 2022" delimited by " "
+     Then iso date should be "2022-04-05"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-js-function-applied-to-args-delimited-by">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.10.0">v3.10.0</Link></div>
+  </div>
+</details>
+
 #### System Processes bindings
 
 <details id="name-is-defined-by-system-process-expression">
@@ -583,43 +619,7 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
-#### File bindings
-
-<details id="name-is-defined-by-file">
-  <summary class="dsl">
-
-  ```gherkin
-  <name> is defined by file "<filepath>"
-  ```
-  <p>Associates a name with the contents of a file. The value is resolved every time the name is referenced.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;name&gt;</code> is the name to associated the file contents</li>
-    <li><code>&lt;filepath&gt;</code> the path to the file (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
-  </ul>
-  <p>
-    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
-    <ul>
-      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
-      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
-      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
-    </ul>
-  </p>
-  <p>Example</p>
-
-  ```gherkin
-    Given the content is defined by file "path/to/file.txt"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#name-is-defined-by-file">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.11.0">v1.11.0</Link></div>
-  </div>
-</details>
-
-#### Web element locators
+#### Element locators
 
 <details id="element-can-be-located-by-selector-expression">
   <summary class="dsl">
@@ -1526,6 +1526,112 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
+<details id="i-capture-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <element>
+  ```
+  <p>Captures the text value of an element and binds it to the element name in the global scode.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to capture the text of</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the heading can be located by tag "h1"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I capture the heading
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-element-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <element> as <name>
+  ```
+  <p>Captures the text value of an element and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to capture the text of</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the heading can be located by tag "h1"
+     When I navigate to "https://todomvc.com/examples/react"
+      And I capture the heading as my heading
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-element-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-name-of-element-by-javascript-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <name> <of|on|in> <element> by <javascript|js> "<script>"
+  ```
+  <p>Executes a JavaScript expression or function on an element and binds the result to the given name.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the javascript return value to</li>
+    <li><code>&lt;of|on|in&gt;</code> is <code>of</code>, <code>on</code> or <code>in</code></li>
+    <li><code>&lt;element&gt;</code> is the name of the element to execute the javascript on</li>
+    <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
+    <li><code>&lt;script&gt;</code> is the javascript expression or function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+      <ul>
+        <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
+        <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
+        <li>For a function, use either:
+          <ul>
+            <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
+            <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4-11}
+    Given the red checkbox can be located by id "red"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I click the red checkbox
+      And I capture my favorite color in the red checkbox by js
+          """
+          () => {
+            var color = element.value
+            if (!element.checked) color = "Blue"
+            return color;
+          }
+          """
+     Then my favorite color should be "Red"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-name-of-element-by-javascript-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
+  </div>
+</details>
+
 #### Regex capture
 
 <details id="i-capture-the-text-in-text-ref-by-regex-expression-as-name">
@@ -2220,62 +2326,7 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
-#### Web element text capture
-
-<details id="i-capture-element">
-  <summary class="dsl">
-
-  ```gherkin
-  I capture <element>
-  ```
-  <p>Captures the text value of an element and binds it to the element name in the global scode.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the name of the element to capture the text of</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {3}
-    Given the heading can be located by tag "h1"
-     When I navigate to "https://todomvc.com/examples/react"
-      And I capture the heading
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-capture-element">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="i-capture-element-as-name">
-  <summary class="dsl">
-
-  ```gherkin
-  I capture <element> as <name>
-  ```
-  <p>Captures the text value of an element and binds it to the given name in the global scope.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the name of the element to capture the text of</li>
-    <li><code>&lt;name&gt;</code> is the name to bind the captured text to</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {3}
-    Given the heading can be located by tag "h1"
-     When I navigate to "https://todomvc.com/examples/react"
-      And I capture the heading as my heading
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-capture-element-as-name">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
+#### Dropdown capture
 
 <details id="i-capture-dropdown">
   <summary class="dsl">
@@ -2343,59 +2394,6 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
-#### Web element text capture by JS
-
-<details id="i-capture-name-of-element-by-javascript-expression">
-  <summary class="dsl">
-
-  ```gherkin
-  I capture <name> <of|on|in> <element> by <javascript|js> "<script>"
-  ```
-  <p>Executes a JavaScript expression or function on an element and binds the result to the given name.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;name&gt;</code> is the name to bind the javascript return value to</li>
-    <li><code>&lt;of|on|in&gt;</code> is <code>of</code>, <code>on</code> or <code>in</code></li>
-    <li><code>&lt;element&gt;</code> is the name of the element to execute the javascript on</li>
-    <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;script&gt;</code> is the javascript expression or function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
-      <ul>
-        <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
-        <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
-        <li>For a function, use either:
-          <ul>
-            <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
-            <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {4-11}
-    Given the red checkbox can be located by id "red"
-     When I navigate to "https://automationintesting.com/selenium/testpage"
-      And I click the red checkbox
-      And I capture my favorite color in the red checkbox by js
-          """
-          () => {
-            var color = element.value
-            if (!element.checked) color = "Blue"
-            return color;
-          }
-          """
-     Then my favorite color should be "Red"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-capture-name-of-element-by-javascript-expression">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
-  </div>
-</details>
-
 #### Screenshot capture
 
 <details id="i-capture-the-current-screenshot">
@@ -2451,7 +2449,7 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
-#### Element screenhot capture
+#### Element capture
 
 <details id="i-capture-element-screenshot-of-element">
   <summary class="dsl">
@@ -2894,7 +2892,7 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
-#### Web element actions
+#### Element actions
 
 <details id="i-click-element">
   <summary class="dsl">
@@ -6712,7 +6710,7 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
-#### Element state asserts
+#### Element asserts
 
 <details id="element-should-be-state">
   <summary class="dsl">
@@ -6779,8 +6777,6 @@ Feature specs should be declarative and written in the language of your domain a
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
-
-#### Element text asserts
 
 <details id="element-should-match-expression">
   <summary class="dsl">
@@ -6933,7 +6929,7 @@ Feature specs should be declarative and written in the language of your domain a
   </div>
 </details>
 
-#### Dropdown selection asserts
+#### Dropdown asserts
 
 <details id="drodown-text-or-value-should-match-blank">
   <summary class="dsl">
