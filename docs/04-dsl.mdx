@@ -8713,6 +8713,278 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
+<details id="step-until-or-while-defined">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <attribute> is[ not] defined
+  ```
+  <p>Repeatedly exectues a step until or while an attribute is defined (or not) using a 1 second delay interval and 1 minute timeout period.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>not</code> include to execute step until or while attribute is not defined</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-defined">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.57.0">v3.57.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-defined-using-delay">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <attribute> is[ not] defined using <delay> <delayUnit> delay
+  ```
+  <p>Repeatedly exectues a step until or while an attribute is defined (or not) using the given delay interval and 1 minute timeout period.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>not</code> include to execute step until or while attribute is not defined</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+    <li><code>&lt;delay&gt;</code> is the delay period between steps repetitions</li>
+    <li><code>&lt;delayUnit&gt;</code> is one of:
+      <ul>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-defined-using-delay">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.57.0">v3.57.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-defined-using-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <attribute> is[ not] defined using <timeout> <timeoutUnit> timeout
+  ```
+  <p>Repeatedly exectues a step until or while an attribute is defined (or not) using a 1 second delay interval and given timeout period.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>not</code> include to execute step until or while attribute is not defined</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+    <li><code>&lt;timeout&gt;</code> is the timeout period</li>
+    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+      <ul>
+        <li><code>minute</code></li>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-defined-using-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.57.0">v3.57.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-defined-using-delay-and-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <attribute> is[ not] defined using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout
+  ```
+  <p>Repeatedly exectues a step until or while an attribute is defined (or not) using the given delay interval and timeout period.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>not</code> include to execute step until or while attribute is not defined</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+    <li><code>&lt;delay&gt;</code> is the delay period between steps repetitions</li>
+    <li><code>&lt;delayUnit&gt;</code> is one of:
+      <ul>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li><code>&lt;timeout&gt;</code> is the timeout period</li>
+    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+      <ul>
+        <li><code>minute</code></li>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-defined-using-delay-and-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.57.0">v3.57.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-defined-using-no-delay-and-timeout">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <attribute> is[ not] defined using no delay and <timeout> <timeoutUnit> timeout
+  ```
+  <p>Repeatedly exectues a step until or while an attribute is defined (or not) using no delay interval and the given timeout period.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>not</code> include to execute step until or while attribute is not defined</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+    <li><code>&lt;timeout&gt;</code> is the timeout period</li>
+    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+      <ul>
+        <li><code>minute</code></li>
+        <li><code>second</code></li>
+        <li><code>millisecond</code></li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-defined-using-no-delay-and-timeout">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.57.0">v3.57.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-defined-using-no-delay">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <attribute> is[ not] defined using no delay
+  ```
+  <p>Repeatedly exectues a step until or while an attribute is defined (or not) using no delay interval and 1 minute timeout period.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li><code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>not</code> include to execute step until or while attribute is not defined</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-defined-using-no-delay">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.57.0">v3.57.0</Link></div>
+  </div>
+</details>
+
 #### If
 
 <details id="step-if-condition">
