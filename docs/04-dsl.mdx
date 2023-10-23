@@ -4303,6 +4303,114 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
+#### Download actions
+
+<details id="i-download-to-file">
+  <summary class="dsl">
+
+  ```gherkin
+  I download "<url>" to "<filepath>"
+  ```
+  <p>Downloads a resource from a URL to a file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;url&gt;</code> is URL to the resource to download</li>
+    <li><code>&lt;filepath&gt;</code> is the path of the file to download the resource to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+     When I download "https://gweninterpreter.org/assets/docs/gwen-reportportal-userguide.pdf" to "output/download/gwen-reportportal-userguide.pdf"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-download-to-file">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.58.0">v3.58.0</Link></div>
+  </div>
+</details>
+
+<details id="i-download-to-file-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  I download "<url>" to <filepathRef>
+  ```
+  <p>Downloads a resource from a URL to a referenced file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;url&gt;</code> is URL to the resource to download</li>
+    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the file to download the resource to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given my out file is "output/download/gwen-reportportal-userguide.pdf"
+     When I download "https://gweninterpreter.org/assets/docs/gwen-reportportal-userguide.pdf" to my out file
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-download-to-file-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.58.0">v3.58.0</Link></div>
+  </div>
+</details>
+
+<details id="i-download-current-url-to-file">
+  <summary class="dsl">
+
+  ```gherkin
+  I download the current URL to "<filepath>"
+  ```
+  <p>Downloads the resource at the current URL to a file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> is the path of the file to download the resource to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+     When I navigate to "https://gweninterpreter.org/assets/docs/gwen-reportportal-userguide.pdf"
+      And I download the current URL to "output/download/gwen-reportportal-userguide.pdf"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-download-current-url-to-file">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.58.0">v3.58.0</Link></div>
+  </div>
+</details>
+
+<details id="i-download-current-url-to-file-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  I download the current URL to <filepathRef>
+  ```
+  <p>Downloads a resource at the current URL to a referenced file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the file to download the resource to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given my out file is "output/download/gwen-reportportal-userguide.pdf"
+     When I navigate to "https://gweninterpreter.org/assets/docs/gwen-reportportal-userguide.pdf"
+      And I download the current URL to my out file
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-download-current-url-to-file-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.58.0">v3.58.0</Link></div>
+  </div>
+</details>
+
 #### File actions
 
 <details id="i-attach-filepath-as-name">
