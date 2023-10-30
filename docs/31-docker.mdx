@@ -379,6 +379,59 @@ gwen {
 Videos will not be recorded when [parallel execution](/docs/parallel), [headless browser](/docs/settings#gwen-web-browser-headless), or interactive (non [--batch/-b](/docs/cli#gwen-cli-options-batch)) modes are enabled.
 :::
 
+
+## Downloading Files in Chrome
+
+Configure the following in your `browsers/selenoid.conf` file to enable automatic file downloads for Chrome in the Selenoid/Docker container.
+
+```json {8-30}
+gwen {
+  web {
+    capabilities {
+      "selenoid:options" {
+        enableVNC = true
+        enableVideo = false
+      }
+      "goog:chromeOptions" {
+        prefs {
+           download {
+             prompt_for_download = false
+             directory_upgrade = true
+             default_directory = "/home/selenium/Downloads"
+           }
+           profile {
+             default_content_settings {
+               popups = 0
+             }
+             default_content_setting_values {
+               automatic_downloads = 1
+             }
+           }
+           safebrowsing {
+             enabled = false
+           }
+           plugins: {
+             plugins_disabled = false
+           }
+         }
+      }
+    }
+    remote {
+      url = "http://${env.SELENIUM_HUB}:4444/wd/hub"
+    }
+  }
+}
+```
+
+To access the download files, you can use the Selenoid download API through a URL as follows:
+
+```
+   http://${env.SELENIUM_HUB}/download/${gwen.web.sessionId}/<filename>
+```
+
+Where `<filename>` is the name of the downloaded file.
+
+
 ## Mac ARM notes
 
 ### Chrome or Edge crashes
