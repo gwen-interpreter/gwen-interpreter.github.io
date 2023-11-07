@@ -349,12 +349,14 @@ Will expand to:
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to enable association (default)
+    <li>
+      <code>true</code> to enable association (default)
       <ul>
         <li>Gwen will load a discovered meta file only if it has the same name and is in the same directory as the current feature being executed.</li>
       </ul>
     </li>
-    <li><code>false</code> to disable association
+    <li>
+      <code>false</code> to disable association
       <ul>
         <li>Gwen will unconditionally load every meta file discovered in the path to the current feature being executed.</li>
       </ul>
@@ -536,7 +538,8 @@ Will expand to:
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to enable</li>
-    <li><code>false</code> to disable (default)
+    <li>
+      <code>false</code> to disable (default)
       <ul>
         <li>Prevents Gwen from automatically discovering and loading CSV files in the path of an executing feature, forcing the user to explicitly specify the CSV file to load through the <Link to="/docs/cli#gwen-cli-options-input-data"><code>-i|--input-data</code></Link> CLI option at launch time.</li>
       </ul>
@@ -730,7 +733,8 @@ Will expand to:
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to enable</li>
-    <li><code>false</code> to disable (default)
+    <li>
+      <code>false</code> to disable (default)
       <ul>
         <li>Prevents Gwen from automatically discovering and loading JSON files in the path of an executing feature, forcing the user to explicitly specify the JSON file to load through the <Link to="/docs/cli#gwen-cli-options-input-data"><code>-i|--input-data</code></Link> CLI option at launch time.</li>
       </ul>
@@ -889,7 +893,8 @@ Will expand to:
   <p>Supported values</p>
   <ul>
     <li><code>true</code> to enable (default)</li>
-    <li><code>false</code> to disable
+    <li>
+      <code>false</code> to disable
       <ul>
         <li>Prevents Gwen from automatically discovering and loading meta files in the path of an executing feature, forcing the user to load meta explicitly through the <Link to="/docs/cli#gwen-cli-options-meta"><code>-m|--meta</code></Link> CLI option or <Link to="/docs/meta#import-strategy">meta imports</Link>.</li>
       </ul>
@@ -961,20 +966,23 @@ Will expand to:
   ```properties
   gwen.behavior.rules
   ```
-  <p>Controls whether strict or lenient rules around Given-When-Then usage will be enforced for features.
+  <p>
+    Controls whether strict or lenient rules around Given-When-Then usage will be enforced for features.
     <br/><br/><em>Note</em>: <code>gwen.behaviour.rules</code> is no longer a supported alias (since v3.0.0)
   </p>
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>strict</code> to enforce the following strict rules (default):
+    <li>
+      <code>strict</code> to enforce the following strict rules (default):
       <ul>
         <li>Steps in scenarios and backgrounds must satisfy Given-When-Then order</li>
         <li>Givens must set context</li>
         <li>Whens must perform actions</li>
         <li>Thens must assert expectations</li>
         <li>Buts must perform assertions (and are permitted after Then steps)</li>
-        <li>StepDefs tagged with
+        <li>
+          StepDefs tagged with
           <ul>
             <li><code>@Context</code> : can only be called by Givens</li>
             <li><code>@Action</code> : can only be called by Whens</li>
@@ -1347,13 +1355,15 @@ Will expand to:
   ```properties
   gwen.feature.failfast.enabled
   ```
-  <p>Enables or disables fail fast mode at the feature level.
+  <p>
+    Enables or disables fail fast mode at the feature level.
     <br/><br/>Formerly <code>gwen.feature.failfast</code> (prior to v3.0.0)
   </p>
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to enable (default)
+    <li>
+      <code>true</code> to enable (default)
       <ul>
         <li>Will fail a feature as soon as the first scenario fails before resuming with the next feature.</li>
       </ul>
@@ -1430,12 +1440,14 @@ Will expand to:
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>true</code> to enable
+    <li>
+      <code>true</code> to enable
       <ul>
         <li>Will fail a feature as soon as the first scenario fails and exit immediately.</li>
       </ul>
     </li>
-    <li><code>false</code> to disable (default)
+    <li>
+      <code>false</code> to disable (default)
       <ul>
         <li>Will resume with the next feature if the previous one fails.</li>
       </ul>
@@ -1511,13 +1523,15 @@ Will expand to:
   </summary>
   <p>Supported values</p>
   <ul>
-    <li><code>declarative</code> (default)
+    <li>
+      <code>declarative</code> (default)
       <ul>
         <li>DSL steps not permitted in feature specs</li>
         <li>Consider enabling <Link to="/docs/settings#gwen-associative-meta">gwen.associative.meta</Link> with this option</li>
       </ul>
     </li>
-    <li><code>imperative</code>
+    <li>
+      <code>imperative</code>
       <ul>
         <li>DSL steps permitted in feature specs</li>
       </ul>
@@ -1689,7 +1703,8 @@ Will expand to:
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A relative or absolute directory location (default = <code>gwen</code>)
+    <li>
+      A relative or absolute directory location (default = <code>gwen</code>)
       <ul>
         <li>The output directory</li>
       </ul>
@@ -1835,7 +1850,8 @@ Will expand to:
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>A relative or absolute directory location (default = <code>$&#123;gwen.baseDir&#125;/output</code>)
+    <li>
+      A relative or absolute directory location (default = <code>$&#123;gwen.baseDir&#125;/output</code>)
       <ul>
         <li>The output directory</li>
       </ul>
@@ -1904,7 +1920,8 @@ Will expand to:
   <p>Supported values</p>
   <ul>
     <li><code>auto</code> (since v3.18.0) or <code>0</code> to run one thread on each available cores (default)</li>
-    <li>Or positive integer value denoting the maximum number of threads to allow
+    <li>
+      Or positive integer value denoting the maximum number of threads to allow
       <ul>
         <li>When less than the number of available cores, the remaining cores will be free</li>
         <li>When greater than the number of available cores, more than one thread may execute on some or all cores (use judiciously)</li>
@@ -3158,7 +3175,8 @@ Will expand to:
   <ul>
     <li>A number greater than zero denoting the maximum number of consecutive strikes to permit. You can tweak this value to optimise performance.</li>
     <li><code>infinity</code> to continually retry on every strike until the assertion passes or the timeout period expires (sub optimal performance)</li>
-    <li><code>auto</code> to let Gwen decide (default), Since v3.52.0
+    <li>
+      <code>auto</code> to let Gwen decide (default), Since v3.52.0
       <ul>
         <li>Since 3.52.0, Gwen sets this to the same value configured in <Link to="#gwen-web-wait-seconds">gwen.web.wait.seconds</Link>. For example, if your configured timeout is 10 seconds, then your max strike count will be 10.</li>
         <li>This might change in future to use smarter approaches as Gwen evolves</li>
@@ -3401,20 +3419,22 @@ Will expand to:
   ```properties
   gwen.target.browser
   ```
-  <p>Sets the default browser to target when Gwen is launched. Chrome, Firefox, Safari and Edge are supported (IE to be dropped soon).
+  <p>
+    Sets the default browser to target when Gwen is launched. Chrome, Firefox, Safari and Edge are supported (IE to be dropped soon).
     <br/><br/>Formerly <code>gwen.web.browser</code> (prior to v3.0.0)
   </p>
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>The name of the browser <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/browsers</i> folder to load if no other browser settings file is explicitly passed via the <Link to ="/docs/cli#gwen-cli-options-conf"><code>-c/--config</code></Link> CLI option
-    <ul>
-      <li><code>chrome</code> for Chrome browser (default)</li>
-      <li><code>firefox</code> for Firefox browser</li>
-      <li><code>safari</code> for Safari browser</li>
-      <li><code>edge</code> for Edge browser, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.35.0">v2.35.0</Link></li>
-      <li><code>ie</code> for IE browser (deprecated)</li>
-    </ul>
+    <li>
+      The name of the browser <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/browsers</i> folder to load if no other browser settings file is explicitly passed via the <Link to ="/docs/cli#gwen-cli-options-conf"><code>-c/--config</code></Link> CLI option
+      <ul>
+        <li><code>chrome</code> for Chrome browser (default)</li>
+        <li><code>firefox</code> for Firefox browser</li>
+        <li><code>safari</code> for Safari browser</li>
+        <li><code>edge</code> for Edge browser, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.35.0">v2.35.0</Link></li>
+        <li><code>ie</code> for IE browser (deprecated)</li>
+      </ul>
     </li>
   </ul>
   <Tabs
@@ -3662,7 +3682,8 @@ Will expand to:
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>String of format <code>&lt;width&gt; x &lt;height&gt;</code>, where:
+    <li>
+      String of format <code>&lt;width&gt; x &lt;height&gt;</code>, where:
       <ul>
         <li><code>&lt;width&gt;</code> is a positive integer denoting the desired width</li>
         <li><code>&lt;height&gt;</code> is a positive integer denoting the desired height</li>
@@ -3745,10 +3766,12 @@ Will expand to:
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;capabilities&gt;</code> can include one more standard, browser specific or vendor specific capabilities.
+    <li>
+      <code>&lt;capabilities&gt;</code> can include one more standard, browser specific or vendor specific capabilities.
       <ul>
         <li><Link to="https://www.selenium.dev/documentation/webdriver/capabilities/shared/">Standard capabilities</Link> at top level</li>
-        <li>Nested browser and vendor specific capabilities (protocol extensions)
+        <li>
+          Nested browser and vendor specific capabilities (protocol extensions)
           <ul>
             <li><Link to="https://chromedriver.chromium.org/capabilities#h.p_ID_106">Chrome capabilities</Link> inside a <code>goog:chromeOptions</code> block</li>
             <li><Link to="https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class">Edge capabilities</Link> inside a <code>ms:edgeOptions</code> block</li>
@@ -3835,7 +3858,8 @@ Will expand to:
   ```properties
   gwen.web.capture.screenshots.enabled
   ```
-  <p>Controls whether or not to capture screenshots and generate slideshow.
+  <p>
+    Controls whether or not to capture screenshots and generate slideshow.
     <br/><br/>Formerly <code>gwen.web.capture.screenshots</code> (prior to v3.0.0)
   </p>
   </summary>
@@ -5308,7 +5332,8 @@ Will expand to:
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;emulation&gt;</code> can be one or more of: 
+    <li>
+      <code>&lt;emulation&gt;</code> can be one or more of: 
       <ul>
         <li><code>deviceName</code> for the device name</li>
         <li><code>width</code> for the device width</li>
@@ -5437,7 +5462,8 @@ Will expand to:
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>The path the the Chrome application.
+    <li>
+      The path the the Chrome application.
       <ul>
         <li>On macOS, this should be the actual binary, not just the app (e.g., /Applications/Google Chrome.app/Contents/MacOS/Google Chrome).</li>
       </ul>
@@ -5863,7 +5889,8 @@ Will expand to:
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;emulation&gt;</code> can be one or more of: 
+    <li>
+      <code>&lt;emulation&gt;</code> can be one or more of: 
       <ul>
         <li><code>deviceName</code> for the device name</li>
         <li><code>width</code> for the device width</li>
@@ -5992,7 +6019,8 @@ Will expand to:
   </summary>
   <p>Supported values</p>
   <ul>
-    <li>The path the the Edge application.
+    <li>
+      The path the the Edge application.
       <ul>
         <li>On macOS, this should be the actual binary.</li>
       </ul>
@@ -6788,7 +6816,8 @@ Will expand to:
   
   <p>Supported values</p>
   <ul>
-    <li>A list of zero or more of the following:
+    <li>
+      A list of zero or more of the following:
       <ul>
         <li><code>html</code> to output <Link to="/docs/reports/html">HTML reports</Link></li>
         <li><code>junit</code> to output <Link to="/docs/reports/junit-xml">JUnit-XML reports</Link></li>

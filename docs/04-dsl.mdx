@@ -124,7 +124,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name of the name to associate the captured value to</li>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the source text
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the source text
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -167,14 +168,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name of the name to associate the captured value to</li>
-    <li><code>&lt;nodeType&gt;</code> is one of:
+    <li>
+      <code>&lt;nodeType&gt;</code> is one of:
       <ul>
         <li><code>text</code> to capture the text node</li>
         <li><code>node</code> to capture a single node</li>
         <li><code>nodeset</code> to capture multiple nodes</li>
       </ul>
     </li>
-    <li><code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML source
+    <li>
+      <code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML source
       <ul>
         <li>Can be the name of any binding that contains or resolves to XML text, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -217,14 +220,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name of the name to associate the captured value to</li>
-    <li><code>&lt;nodeType&gt;</code> is one of:
+    <li>
+      <code>&lt;nodeType&gt;</code> is one of:
       <ul>
         <li><code>text</code> to capture the text node</li>
         <li><code>node</code> to capture a single node</li>
         <li><code>nodeset</code> to capture multiple nodes</li>
       </ul>
     </li>
-    <li><code>&lt;sourceRef&gt;</code> is the name of the binding containing the XML source
+    <li>
+      <code>&lt;sourceRef&gt;</code> is the name of the binding containing the XML source
       <ul>
         <li>Can be the name of any binding that contains or resolves to XML text, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -298,11 +303,13 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;name&gt;</code> is the name to associate</li>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;script&gt;</code> is the javascript expression or function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;script&gt;</code> is the javascript expression or function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <ul>
           <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
-          <li>For a function, use either:
+          <li>
+            For a function, use either:
             <ul>
               <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>(arg1, arg2, ..argN) =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
               <li>Or anonymous function syntax (legacy): <code>(function(arg1, arg2, ..argN)&#123; body &#125;)(arguments[0], arguments[1], ..arguments[N])</code></li>
@@ -396,7 +403,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;name&gt;</code> is the name to bind the function result to</li>
     <li><code>&lt;javascriptRef&gt;</code> is the name of the binding containing the javascript function to apply</li>
     <li><code>&lt;arguments&gt;</code> a delimited list of arguments to apply the function to</li>
-    <li><code>&lt;delimiter&gt;</code> is the delmiter used in <code>&lt;arguments&gt;</code>
+    <li>
+      <code>&lt;delimiter&gt;</code> is the delmiter used in <code>&lt;arguments&gt;</code>
       <ul>
         <li>The 1st agrument is referenced in the JavaScript as <code>arguments[0]</code>, the 2nd argument as <code>arguments[1]</code>, the 3rd as <code>arguments[2]</code> and so on.</li>
       </ul>
@@ -480,7 +488,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code> is the name to associated the returned value to</li>
-    <li><code>&lt;expression&gt;</code> is the system process that will return the value to assign (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;expression&gt;</code> is the system process that will return the value to assign (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>Delmiters are required for special cases such as when unbalanced quoted strings are passed as arguments (see example).</li>
       </ul>
@@ -572,7 +581,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -613,7 +623,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -655,7 +666,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -698,7 +710,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -740,7 +753,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -783,7 +797,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -827,7 +842,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -871,7 +887,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -916,7 +933,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -970,7 +988,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
+    <li>
+      <code>&lt;selector n&gt;</code> is the nth selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -1023,7 +1042,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
+    <li>
+      <code>&lt;selector n&gt;</code> is the nth selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -1077,7 +1097,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
+    <li>
+      <code>&lt;selector n&gt;</code> is the nth selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -1132,7 +1153,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector n&gt;</code> is the nth selector type, one of:
+    <li>
+      <code>&lt;selector n&gt;</code> is the nth selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -1182,7 +1204,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -1196,17 +1219,20 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;relativeTo&gt;</code> is one of
+    <li>
+      <code>&lt;relativeTo&gt;</code> is one of
       <ul>
         <li><code>in</code> to select element contained in <code>&lt;otherElement&gt;</code></li>
-        <li>Or since <Link to="/docs/gwen3">Gwen 3</Link>
+        <li>
+          Or since <Link to="/docs/gwen3">Gwen 3</Link>
           <ul>
             <li><code>above</code> to select element above <code>&lt;otherElement&gt;</code></li>
             <li><code>below</code> to select element below <code>&lt;otherElement&gt;</code></li>
             <li><code>to left of</code> to select element to the left of <code>&lt;otherElement&gt;</code></li>
             <li><code>to right of</code> to select element to the right of <code>&lt;otherElement&gt;</code></li>
             <li><code>near</code> to select element near <code>&lt;otherElement&gt;</code></li>
-            <li><code>near and within &lt;noOfPixels&gt; pixel[s] of</code> to select element near and within a given number of pixels of <code>&lt;otherElement&gt;</code>
+            <li>
+              <code>near and within &lt;noOfPixels&gt; pixel[s] of</code> to select element near and within a given number of pixels of <code>&lt;otherElement&gt;</code>
               <ul>
                 <li>Where <code>&lt;noOfPixels&gt;</code> is a postive integer denoting a number of pixels (max proximity to <code>&lt;otherElement&gt;</code>)</li>
               </ul>
@@ -1246,7 +1272,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -1260,17 +1287,20 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;relativeTo&gt;</code> is one of
+    <li>
+      <code>&lt;relativeTo&gt;</code> is one of
       <ul>
         <li><code>in</code> to select element contained in <code>&lt;otherElement&gt;</code></li>
-        <li>Or since <Link to="/docs/gwen3">Gwen 3</Link>
+        <li>
+          Or since <Link to="/docs/gwen3">Gwen 3</Link>
           <ul>
             <li><code>above</code> to select element above <code>&lt;otherElement&gt;</code></li>
             <li><code>below</code> to select element below <code>&lt;otherElement&gt;</code></li>
             <li><code>to left of</code> to select element to the left of <code>&lt;otherElement&gt;</code></li>
             <li><code>to right of</code> to select element to the right of <code>&lt;otherElement&gt;</code></li>
             <li><code>near</code> to select element near <code>&lt;otherElement&gt;</code></li>
-            <li><code>near and within &lt;noOfPixels&gt; pixel[s] of</code> to select element near and within a given number of pixels of <code>&lt;otherElement&gt;</code>
+            <li>
+              <code>near and within &lt;noOfPixels&gt; pixel[s] of</code> to select element near and within a given number of pixels of <code>&lt;otherElement&gt;</code>
               <ul>
                 <li>Where <code>&lt;noOfPixels&gt;</code> is a postive integer denoting a number of pixels (max proximity to <code>&lt;otherElement&gt;</code>)</li>
               </ul>
@@ -1311,7 +1341,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -1325,17 +1356,20 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;relativeTo&gt;</code> is one of
+    <li>
+      <code>&lt;relativeTo&gt;</code> is one of
       <ul>
         <li><code>in</code> to select element contained in <code>&lt;otherElement&gt;</code></li>
-        <li>Or since <Link to="/docs/gwen3">Gwen 3</Link>
+        <li>
+          Or since <Link to="/docs/gwen3">Gwen 3</Link>
           <ul>
             <li><code>above</code> to select element above <code>&lt;otherElement&gt;</code></li>
             <li><code>below</code> to select element below <code>&lt;otherElement&gt;</code></li>
             <li><code>to left of</code> to select element to the left of <code>&lt;otherElement&gt;</code></li>
             <li><code>to right of</code> to select element to the right of <code>&lt;otherElement&gt;</code></li>
             <li><code>near</code> to select element near <code>&lt;otherElement&gt;</code></li>
-            <li><code>near and within &lt;noOfPixels&gt; pixel[s] of</code> to select element near and within a given number of pixels of <code>&lt;otherElement&gt;</code>
+            <li>
+              <code>near and within &lt;noOfPixels&gt; pixel[s] of</code> to select element near and within a given number of pixels of <code>&lt;otherElement&gt;</code>
               <ul>
                 <li>Where <code>&lt;noOfPixels&gt;</code> is a postive integer denoting a number of pixels (max proximity to <code>&lt;otherElement&gt;</code>)</li>
               </ul>
@@ -1382,7 +1416,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </ul>
   <p>Notes</p>
   <ul>
-    <li>Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.21.0">v2.21.0</Link>, this DSL stores all values as thread local settings (instead of system properties).
+    <li>
+      Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.21.0">v2.21.0</Link>, this DSL stores all values as thread local settings (instead of system properties).
       <ul>
         <li>This supports different settings for different features in the case of parallel execution.</li>
         <li>Settings loaded from properties files and system properties at startup time are not replaced, but can be overridden with values set here.</li>
@@ -1443,7 +1478,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the source text
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the source text
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -1534,11 +1570,13 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;of|on|in&gt;</code> is <code>of</code>, <code>on</code> or <code>in</code></li>
     <li><code>&lt;element&gt;</code> is the name of the element to execute the javascript on</li>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;script&gt;</code> is the javascript expression or function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;script&gt;</code> is the javascript expression or function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
         <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
-        <li>For a function, use either:
+        <li>
+          For a function, use either:
           <ul>
             <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
             <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
@@ -1583,7 +1621,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the source text
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the source text
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -1648,14 +1687,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;nodeType&gt;</code> is one of:
+    <li>
+      <code>&lt;nodeType&gt;</code> is one of:
       <ul>
         <li><code>text</code> to capture the text node</li>
         <li><code>node</code> to capture a single node</li>
         <li><code>nodeset</code> to capture multiple nodes</li>
       </ul>
     </li>
-    <li><code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML text
+    <li>
+      <code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML text
       <ul>
         <li>Can be the name of any binding that contains or resolves to an XML text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -1688,7 +1729,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;nodeType&gt;</code> is one of:
+    <li>
+      <code>&lt;nodeType&gt;</code> is one of:
       <ul>
         <li><code>text</code> to capture the text node</li>
         <li><code>node</code> to capture a single node</li>
@@ -1727,7 +1769,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;jsonRef&gt;</code> is the name of the binding containing the source JSON source
+    <li>
+      <code>&lt;jsonRef&gt;</code> is the name of the binding containing the source JSON source
       <ul>
         <li>Can be the name of any binding that contains or resolves to a JSON text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -1762,7 +1805,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing a text reference
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing a text reference
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -1800,12 +1844,14 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef1&gt;</code> is the name of the binding containing a text reference
+    <li>
+      <code>&lt;textRef1&gt;</code> is the name of the binding containing a text reference
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
-    <li><code>&lt;textRef2&gt;</code> is the name of the binding containing the second text reference to compare &lt;textRef1&gt; against
+    <li>
+      <code>&lt;textRef2&gt;</code> is the name of the binding containing the second text reference to compare &lt;textRef1&gt; against
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -1841,7 +1887,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing a text reference
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing a text reference
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -1874,12 +1921,14 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef1&gt;</code> is the name of the binding containing a text reference
+    <li>
+      <code>&lt;textRef1&gt;</code> is the name of the binding containing a text reference
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
-    <li><code>&lt;textRef2&gt;</code> is the name of the binding containing the second text reference to compare &lt;textRef1&gt; against
+    <li>
+      <code>&lt;textRef2&gt;</code> is the name of the binding containing the second text reference to compare &lt;textRef1&gt; against
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -2077,7 +2126,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to decode
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to decode
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -2108,7 +2158,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to decode
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to decode
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -2278,7 +2329,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;dropdown&gt;</code> is the name of the dropdown element to capture the text or value of</li>
-    <li><code>&lt;dropdown&gt;</code> is one of:
+    <li>
+      <code>&lt;dropdown&gt;</code> is one of:
       <ul>
         <li><code>text</code> to captured the displayed text of the selection</li>
         <li><code>value</code> to captured the option value of the selection</li>
@@ -2311,7 +2363,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;dropdown&gt;</code> is the name of the dropdown element to capture the text or value of</li>
-    <li><code>&lt;dropdown&gt;</code> is one of:
+    <li>
+      <code>&lt;dropdown&gt;</code> is one of:
       <ul>
         <li><code>text</code> to captured the displayed text of the selection</li>
         <li><code>value</code> to captured the option value of the selection</li>
@@ -2461,7 +2514,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;name&gt;</code>the name of the data to look up the value of and the name to bind it to</li>
     <li><code>&lt;filepath&gt;</code> the path to the CSV or JSON file to look up</li>
-    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       Data fields can be referenced in the predicate using either:
       <ul>
         <li><code>$&#123;data.record.NAME&#125;</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)</li>
@@ -2542,7 +2596,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;name&gt;</code>the name of the data to look up the value of and the name to bind it to</li>
     <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV or JSON file to look up</li>
-    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       Data fields can be referenced in the predicate using either:
       <ul>
         <li><code>$&#123;data.record.NAME&#125;</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)</li>
@@ -2626,7 +2681,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;dataName&gt;</code> the name of the data to look up the value of</li>
     <li><code>&lt;filepath&gt;</code> the path to the CSV or JSON file to look up</li>
     <li><code>&lt;name&gt;</code> the name to bind the looked up value to in the global scope</li>
-    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       Data fields can be referenced in the predicate using either:
       <ul>
         <li><code>$&#123;data.record.NAME&#125;</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)</li>
@@ -2708,7 +2764,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;dataName&gt;</code> the name of the data in the CSV or JSON file to look up the value of</li>
     <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV or JSON file to look up</li>
     <li><code>&lt;name&gt;</code> the name to bind the looked up value to in the global scope</li>
-    <li><code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       Data fields can be referenced in the predicate using either:
       <ul>
         <li><code>$&#123;data.record.NAME&#125;</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)</li>
@@ -2843,7 +2900,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;click|right click|double click&gt;</code> is one of:
+    <li>
+      <code>&lt;click|right click|double click&gt;</code> is one of:
       <ul>
         <li><code>click</code> to click the element</li>
         <li><code>right click</code> to right click the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></li>
@@ -2877,7 +2935,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;click|right click|double click&gt;</code> is one of:
+    <li>
+      <code>&lt;click|right click|double click&gt;</code> is one of:
       <ul>
         <li><code>click</code> to click the element</li>
         <li><code>right click</code> to right click the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></li>
@@ -2912,13 +2971,15 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;modifierKeys&gt;</code> is a <code>+</code> separated list of modifier keys to hold down during the click
+    <li>
+      <code>&lt;modifierKeys&gt;</code> is a <code>+</code> separated list of modifier keys to hold down during the click
       <ul>
         <li>Modifier keys can be single keyboard characters or any supported <Link to="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/Keys.html">key constants</Link></li>
         <li><i>Node:</i> Keys behave differently on different platforms</li>
       </ul>
     </li>
-    <li><code>&lt;click|right click|double click&gt;</code> is one of:
+    <li>
+      <code>&lt;click|right click|double click&gt;</code> is one of:
       <ul>
         <li><code>click</code> to click the element</li>
         <li><code>right click</code> to right click the element</li>
@@ -2951,7 +3012,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;check|uncheck|tick|untick&gt;</code> is one of:
+    <li>
+      <code>&lt;check|uncheck|tick|untick&gt;</code> is one of:
       <ul>
         <li><code>check</code> (or <code>tick</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to tick the checkbox element</li>
         <li><code>uncheck</code> (or <code>untick</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to untick the checkbox element</li>
@@ -3011,7 +3073,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;enter|type&gt;</code> is one of:
+    <li>
+      <code>&lt;enter|type&gt;</code> is one of:
       <ul>
         <li><code>enter</code> to send the text to the field followed by the enter key</li>
         <li><code>type</code> to send the text to the field only (without trailing enter key)</li>
@@ -3045,13 +3108,15 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;enter|type&gt;</code> is one of:
+    <li>
+      <code>&lt;enter|type&gt;</code> is one of:
       <ul>
         <li><code>enter</code> to send the text to the field followed by the enter key</li>
         <li><code>type</code> to send the text to the field only (without trailing enter key)</li>
       </ul>
     </li>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to send to the field
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to send to the field
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -3113,7 +3178,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to append to the element
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to append to the element
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -3147,7 +3213,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;enter|tab&gt;</code> is one of:
+    <li>
+      <code>&lt;enter|tab&gt;</code> is one of:
       <ul>
         <li><code>enter</code> to send the enter key</li>
         <li><code>tab</code> to send the tab key</li>
@@ -3180,7 +3247,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;keys&gt;</code> is a <code>,</code> or <code>+</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link>) separated list of keys to send.
+    <li>
+      <code>&lt;keys&gt;</code> is a <code>,</code> or <code>+</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link>) separated list of keys to send.
       <ul>
         <li>Keys can be single keyboard characters or any supported <Link to="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/Keys.html">key constants</Link></li>
         <li><i>Note:</i> Keys behave differently on different platforms</li>
@@ -3285,10 +3353,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;select|deselect&gt;</code> is one of:
+    <li>
+      <code>&lt;select|deselect&gt;</code> is one of:
       <ul>
         <li><code>select</code> to select the option</li>
-        <li><code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
+        <li>
+          <code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
           <ul>
             <li><i>Note</i>: Deselect will only work for multi-select dropdowns.</li>
           </ul>
@@ -3296,7 +3366,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;position&gt;</code> is the position number of the option(1 for first position)</li>
-    <li><code>&lt;st|nd|rd|th&gt;</code> is one of:
+    <li>
+      <code>&lt;st|nd|rd|th&gt;</code> is one of:
       <ul>
         <li><code>st</code> if the position number ends in 1</li>
         <li><code>nd</code> if the position number ends in 2</li>
@@ -3331,10 +3402,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;select|deselect&gt;</code> is one of:
+    <li>
+      <code>&lt;select|deselect&gt;</code> is one of:
       <ul>
         <li><code>select</code> to select the option</li>
-        <li><code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
+        <li>
+          <code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
           <ul>
             <li><i>Note</i>: Deselect will only work for multi-select dropdowns.</li>
           </ul>
@@ -3369,17 +3442,20 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;select|deselect&gt;</code> is one of:
+    <li>
+      <code>&lt;select|deselect&gt;</code> is one of:
       <ul>
         <li><code>select</code> to select the option</li>
-        <li><code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
+        <li>
+          <code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
           <ul>
             <li><i>Note</i>: Deselect will only work for multi-select dropdowns.</li>
           </ul>
         </li>
       </ul>
     </li>
-    <li><code>&lt;optionRef&gt;</code> is the name of the binding containing the displayed option text
+    <li>
+      <code>&lt;optionRef&gt;</code> is the name of the binding containing the displayed option text
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -3412,10 +3488,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;select|deselect&gt;</code> is one of:
+    <li>
+      <code>&lt;select|deselect&gt;</code> is one of:
       <ul>
         <li><code>select</code> to select the option</li>
-        <li><code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
+        <li>
+          <code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
           <ul>
             <li><i>Note</i>: Deselect will only work for multi-select dropdowns.</li>
           </ul>
@@ -3450,17 +3528,20 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;select|deselect&gt;</code> is one of:
+    <li>
+      <code>&lt;select|deselect&gt;</code> is one of:
       <ul>
         <li><code>select</code> to select the option</li>
-        <li><code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
+        <li>
+          <code>deselect</code> to deselect the option, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link>
           <ul>
             <li><i>Note</i>: Deselect will only work for multi-select dropdowns.</li>
           </ul>
         </li>
       </ul>
     </li>
-    <li><code>&lt;optionRef&gt;</code> is the name of the binding containing the hidden option value
+    <li>
+      <code>&lt;optionRef&gt;</code> is the name of the binding containing the hidden option value
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -3757,7 +3838,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;tab|window&gt;</code> is either <code>tab</code> or <code>window</code></li>
-    <li><code>&lt;occurrence&gt;</code> is the tab or window occurrence to switch to (1st opened is occurrence 1, 2nd is 2, ..)
+    <li>
+      <code>&lt;occurrence&gt;</code> is the tab or window occurrence to switch to (1st opened is occurrence 1, 2nd is 2, ..)
       <ul>
         <li><em>Note:</em> the occurrence number of the default tab/window in a new browser session is 0</li>
       </ul>
@@ -3791,7 +3873,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;tab|window&gt;</code> is either <code>tab</code> or <code>window</code></li>
-    <li><code>&lt;occurrence&gt;</code> is the tab or window occurrence to close to (1st opened is occurrence 1, 2nd is 2, ..)
+    <li>
+      <code>&lt;occurrence&gt;</code> is the tab or window occurrence to close to (1st opened is occurrence 1, 2nd is 2, ..)
       <ul>
         <li><em>Note:</em> you cannot close the default tab/window opened by starting a new browser session with this DSL. Use <Link to="#i-close-the-current-browser"><code>I close the[ current] browser</code></Link> instead in that case.</li>
       </ul>
@@ -4025,7 +4108,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;keys&gt;</code> is a <code>,</code> or <code>+</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link>) separated list of keys to send.
+    <li>
+      <code>&lt;keys&gt;</code> is a <code>,</code> or <code>+</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link>) separated list of keys to send.
       <ul>
         <li>Keys can be single keyboard characters or any supported <Link to="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/Keys.html">key constants</Link></li>
         <li><i>Note:</i> Keys behave differently on different platforms</li>
@@ -4058,7 +4142,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;alert|confirmation&gt;</code> is either:
+    <li>
+      <code>&lt;alert|confirmation&gt;</code> is either:
       <ul>
         <li><code>alert</code> for an alert box with an OK button</li>
         <li><code>confirmation</code> for a confirmation box with OK and Cancel buttons</li>
@@ -4115,7 +4200,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;alert|confirmation&gt;</code> is either:
+    <li>
+      <code>&lt;alert|confirmation&gt;</code> is either:
       <ul>
         <li><code>alert</code> for an alert box with an OK button</li>
         <li><code>confirmation</code> for a confirmation box with OK and Cancel buttons</li>
@@ -4148,7 +4234,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;alert|confirmation&gt;</code> is either:
+    <li>
+      <code>&lt;alert|confirmation&gt;</code> is either:
       <ul>
         <li><code>alert</code> for an alert box with an OK button</li>
         <li><code>confirmation</code> for a confirmation box with OK and Cancel buttons</li>
@@ -4183,7 +4270,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;top|bottom&gt;</code> is one of:
+    <li>
+      <code>&lt;top|bottom&gt;</code> is one of:
       <ul>
         <li><code>top</code> to scroll to the top of the page</li>
         <li><code>bottom</code> to scroll to the bottom of the page</li>
@@ -4214,7 +4302,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;top|bottom&gt;</code> is one of:
+    <li>
+      <code>&lt;top|bottom&gt;</code> is one of:
       <ul>
         <li><code>top</code> to scroll to the top of the element</li>
         <li><code>bottom</code> to scroll to the bottom of the element</li>
@@ -4283,7 +4372,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to register the action on</li>
-    <li><code>&lt;actioned&gt;</code> is one of:
+    <li>
+      <code>&lt;actioned&gt;</code> is one of:
       <ul>
         <li><code>clicked</code> to perform the action when the element is clicked</li>
         <li><code>right clicked</code> to perform the action when the element is right clicked, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></li>
@@ -4301,11 +4391,13 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> , since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;script&gt;</code> is the javascript expression or function that will perform the action (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;script&gt;</code> is the javascript expression or function that will perform the action (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
         <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
-        <li>For a function, use either:
+        <li>
+          For a function, use either:
           <ul>
             <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
             <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
@@ -4485,7 +4577,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;write|append&gt;</code> is one of:
+    <li>
+      <code>&lt;write|append&gt;</code> is one of:
       <ul>
         <li><code>&lt;write&gt;</code> to overwrite entire content of file with the provided text</li>
         <li><code>&lt;append&gt;</code> to append the provided text to existing content in file</li>
@@ -4517,13 +4610,15 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;write|append&gt;</code> is one of:
+    <li>
+      <code>&lt;write|append&gt;</code> is one of:
       <ul>
         <li><code>&lt;write&gt;</code> to overwrite entire content of file with the provided text</li>
         <li><code>&lt;append&gt;</code> to append the provided text to existing content in file</li>
       </ul>
     </li>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to write or append to the file
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to write or append to the file
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -4558,7 +4653,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;write|append&gt;</code> is one of:
+    <li>
+      <code>&lt;write|append&gt;</code> is one of:
       <ul>
         <li><code>&lt;write&gt;</code> to overwrite entire content of file with a new line</li>
         <li><code>&lt;append&gt;</code> to append a new line to existing content in file</li>
@@ -4589,7 +4685,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;write|append&gt;</code> is one of:
+    <li>
+      <code>&lt;write|append&gt;</code> is one of:
       <ul>
         <li><code>&lt;write&gt;</code> to overwrite entire content of file with the provided text</li>
         <li><code>&lt;append&gt;</code> to append the provided text to existing content in file</li>
@@ -4622,13 +4719,15 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;write|append&gt;</code> is one of:
+    <li>
+      <code>&lt;write|append&gt;</code> is one of:
       <ul>
         <li><code>&lt;write&gt;</code> to overwrite entire content of file with the provided text</li>
         <li><code>&lt;append&gt;</code> to append the provided text to existing content in file</li>
       </ul>
     </li>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to write or append to the file
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to write or append to the file
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -4664,7 +4763,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;write|append&gt;</code> is one of:
+    <li>
+      <code>&lt;write|append&gt;</code> is one of:
       <ul>
         <li><code>&lt;write&gt;</code> to overwrite entire content of file with a new line</li>
         <li><code>&lt;append&gt;</code> to append a new line to existing content in file</li>
@@ -4700,7 +4800,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;duration&gt;</code> is the number of seconds to sleep</li>
     <li><code>&lt;element&gt;</code> the name of the web element</li>
-    <li><code>&lt;actioned&gt;</code> is one of:
+    <li>
+      <code>&lt;actioned&gt;</code> is one of:
       <ul>
         <li><code>clicked</code> to sleep when the element is clicked</li>
         <li><code>right clicked</code> to sleep when the element is right clicked, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></li>
@@ -4744,14 +4845,17 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;condition&gt;</code> is either:
+    <li>
+      <code>&lt;condition&gt;</code> is either:
       <ul>
-        <li>Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
           <ul>
             <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
           </ul>
         </li>
-        <li>Or in prior versions
+        <li>
+          Or in prior versions
           <ul>
             <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
             <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
@@ -4760,7 +4864,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;element&gt;</code> the name of the web element</li>
-    <li><code>&lt;actioned&gt;</code> is one of:
+    <li>
+      <code>&lt;actioned&gt;</code> is one of:
       <ul>
         <li><code>clicked</code> to wait when the element is clicked</li>
         <li><code>right clicked</code> to wait when the element is right clicked, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></li>
@@ -4925,7 +5030,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
     <li><code>not</code> negates the state if included</li>
-    <li><code>&lt;state&gt;</code> is one of:
+    <li>
+      <code>&lt;state&gt;</code> is one of:
       <ul>
         <li><code>displayed</code> to wait until the element is displayed</li>
         <li><code>hidden</code> to wait until the element is not displayed</li>
@@ -4963,10 +5069,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;javascript&gt;</code> is the javascript expression or function that will return a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;javascript&gt;</code> is the javascript expression or function that will return a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
-        <li>For a function, use either:
+        <li>
+          For a function, use either:
           <ul>
             <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
             <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
@@ -5001,10 +5109,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;javascript&gt;</code> is the javascript expression or function that will return a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;javascript&gt;</code> is the javascript expression or function that will return a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
-        <li>For a function, use either:
+        <li>
+          For a function, use either:
           <ul>
             <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
             <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
@@ -5013,7 +5123,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;delay&gt;</code> is the delay period between repetitive checks</li>
-    <li><code>&lt;delayUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;delayUnit&gt;</code> is one of:
       <ul>
         <li><code>second</code></li>
         <li><code>millisecond</code></li>
@@ -5046,10 +5157,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;javascript&gt;</code> is the javascript expression or function that will return a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;javascript&gt;</code> is the javascript expression or function that will return a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
-        <li>For a function, use either:
+        <li>
+          For a function, use either:
           <ul>
             <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
             <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
@@ -5058,7 +5171,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -5093,10 +5207,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;javascript&gt;</code> is the javascript expression or function that will return a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;javascript&gt;</code> is the javascript expression or function that will return a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
-        <li>For a function, use either:
+        <li>
+          For a function, use either:
           <ul>
             <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
             <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
@@ -5105,14 +5221,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;delay&gt;</code> is the delay period between repetitive checks</li>
-    <li><code>&lt;delayUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;delayUnit&gt;</code> is one of:
       <ul>
         <li><code>second</code></li>
         <li><code>millisecond</code></li>
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -5146,14 +5264,17 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;condition&gt;</code> is either:
+    <li>
+      <code>&lt;condition&gt;</code> is either:
       <ul>
-        <li>Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
           <ul>
             <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
           </ul>
         </li>
-        <li>Or in prior versions
+        <li>
+          Or in prior versions
           <ul>
             <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
             <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
@@ -5189,14 +5310,17 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;condition&gt;</code> is either:
+    <li>
+      <code>&lt;condition&gt;</code> is either:
       <ul>
-        <li>Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
           <ul>
             <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
           </ul>
         </li>
-        <li>Or in prior versions
+        <li>
+          Or in prior versions
           <ul>
             <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
             <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
@@ -5205,7 +5329,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;delay&gt;</code> is the delay period between repetitive checks</li>
-    <li><code>&lt;delayUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;delayUnit&gt;</code> is one of:
       <ul>
         <li><code>second</code></li>
         <li><code>millisecond</code></li>
@@ -5239,14 +5364,17 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;condition&gt;</code> is either:
+    <li>
+      <code>&lt;condition&gt;</code> is either:
       <ul>
-        <li>Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
           <ul>
             <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
           </ul>
         </li>
-        <li>Or in prior versions
+        <li>
+          Or in prior versions
           <ul>
             <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
             <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
@@ -5255,7 +5383,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -5290,14 +5419,17 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;condition&gt;</code> is either:
+    <li>
+      <code>&lt;condition&gt;</code> is either:
       <ul>
-        <li>Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
           <ul>
             <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
           </ul>
         </li>
-        <li>Or in prior versions
+        <li>
+          Or in prior versions
           <ul>
             <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
             <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
@@ -5306,14 +5438,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;delay&gt;</code> is the delay period between repetitive checks</li>
-    <li><code>&lt;delayUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;delayUnit&gt;</code> is one of:
       <ul>
         <li><code>second</code></li>
         <li><code>millisecond</code></li>
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -5377,10 +5511,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
-    <li><code>&lt;script&gt;</code> is the javascript expression or function to execute (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+    <li>
+      <code>&lt;script&gt;</code> is the javascript expression or function to execute (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       <ul>
         <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
-        <li>For a function, use either:
+        <li>
+          For a function, use either:
           <ul>
             <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
             <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
@@ -5440,7 +5576,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;expression&gt;</code> the delimited system process to execute
+    <li>
+      <code>&lt;expression&gt;</code> the delimited system process to execute
       <ul>
         <li>Delmiters are required for special cases such as when unbalanced quoted strings are passed as arguments (see example).</li>
       </ul>
@@ -5506,7 +5643,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;expression&gt;</code> the delimited system process to execute
+    <li>
+      <code>&lt;expression&gt;</code> the delimited system process to execute
       <ul>
         <li>Delmiters are required for special cases such as when unbalanced quoted strings are passed as arguments (see example).</li>
       </ul>
@@ -5732,7 +5870,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to check
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to check
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -5797,13 +5936,15 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the text to check
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to check
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -5878,7 +6019,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;variable&gt;</code> is the name of the variable or setting to check</li>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -5891,7 +6033,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
         <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+    <li>
+      <code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
       <ul>
         <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -5955,13 +6098,15 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing a text reference
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing a text reference
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
     <li><code>not</code> negates the match if included</li>
-    <li><code>match</code> is one of:
+    <li>
+      <code>match</code> is one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>be less than</code> for less than match</li>
@@ -6032,13 +6177,15 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <p>Where</p>
   <ul>
-    <li><code>&lt;textRef1&gt;</code> is the name of the binding containing the first text reference
+    <li>
+      <code>&lt;textRef1&gt;</code> is the name of the binding containing the first text reference
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
     <li><code>not</code> negates the match if included</li>
-    <li><code>match</code> is one of:
+    <li>
+      <code>match</code> is one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>be less than</code> for less than match</li>
@@ -6048,7 +6195,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;percentage&gt;</code> is a percentage number between 0 and 100 (internally rounded to 2 decimal places)</li>
-    <li><code>&lt;textRef2&gt;</code> is the name of the binding containing the second text reference to compare <code>&lt;textRef1&gt;</code> against
+    <li>
+      <code>&lt;textRef2&gt;</code> is the name of the binding containing the second text reference to compare <code>&lt;textRef1&gt;</code> against
       <ul>
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -6118,7 +6266,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <p>Where</p>
   <ul>
-    <li><code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML source text
+    <li>
+      <code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML source text
       <ul>
         <li>Can be the name of any binding that contains or resolves to an XML text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -6179,14 +6328,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <p>Where</p>
   <ul>
-    <li><code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML source text
+    <li>
+      <code>&lt;xmlRef&gt;</code> is the name of the binding containing the XML source text
       <ul>
         <li>Can be the name of any binding that contains or resolves to an XML text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
     <li><code>path</code> is the XPath selector expression</li>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -6256,7 +6407,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <p>Where</p>
   <ul>
-    <li><code>&lt;jsonRef&gt;</code> is the name of the binding containing the JSON source text
+    <li>
+      <code>&lt;jsonRef&gt;</code> is the name of the binding containing the JSON source text
       <ul>
         <li>Can be the name of any binding that contains or resolves to a JSON text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -6317,14 +6469,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <p>Where</p>
   <ul>
-    <li><code>&lt;jsonRef&gt;</code> is the name of the binding containing the JSON source text
+    <li>
+      <code>&lt;jsonRef&gt;</code> is the name of the binding containing the JSON source text
       <ul>
         <li>Can be the name of any binding that contains or resolves to a JSON text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
     <li><code>path</code> is the <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON path</Link> selector expression</li>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -6450,7 +6604,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -6520,7 +6675,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -6533,7 +6689,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
         <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+    <li>
+      <code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
       <ul>
         <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -6652,7 +6809,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -6721,7 +6879,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -6734,7 +6893,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
         <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+    <li>
+      <code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
       <ul>
         <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -6797,7 +6957,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to check</li>
     <li><code>not</code> negates the state if included</li>
-    <li><code>&lt;state&gt;</code> is one of:
+    <li>
+      <code>&lt;state&gt;</code> is one of:
       <ul>
         <li><code>displayed</code> to check if the element is displayed</li>
         <li><code>hidden</code> to check if the element is not displayed</li>
@@ -6864,7 +7025,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to check</li>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -6937,7 +7099,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;element&gt;</code> is the name of the element to check</li>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -6950,7 +7113,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
         <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+    <li>
+      <code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
       <ul>
         <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -7016,7 +7180,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;dropdown&gt;</code> is the dropdown element to check</li>
-    <li><code>&lt;text|value&gt;</code> is one of:
+    <li>
+      <code>&lt;text|value&gt;</code> is one of:
       <ul>
         <li><code>text</code> to check the displayed text of the selection</li>
         <li><code>value</code> to check the option value of the selection</li>
@@ -7080,14 +7245,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;dropdown&gt;</code> is the dropdown element to check</li>
-    <li><code>&lt;text|value&gt;</code> is one of:
+    <li>
+      <code>&lt;text|value&gt;</code> is one of:
       <ul>
         <li><code>text</code> to check the displayed text of the selection</li>
         <li><code>value</code> to check the option value of the selection</li>
       </ul>
     </li>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -7158,14 +7325,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;dropdown&gt;</code> is the dropdown element to check</li>
-    <li><code>&lt;text|value&gt;</code> is one of:
+    <li>
+      <code>&lt;text|value&gt;</code> is one of:
       <ul>
         <li><code>text</code> to check the displayed text of the selection</li>
         <li><code>value</code> to check the option value of the selection</li>
       </ul>
     </li>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -7178,7 +7347,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
         <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+    <li>
+      <code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
       <ul>
         <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -7378,7 +7548,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -7449,7 +7620,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>not</code> negates the match if included</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>be</code> for exact match</li>
         <li><code>contain</code> for partial match</li>
@@ -7462,7 +7634,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
         <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
       </ul>
     </li>
-    <li><code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+    <li>
+      <code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
       <ul>
         <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -7640,7 +7813,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
     <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -7686,7 +7860,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
     <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -7733,7 +7908,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
     <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -7781,7 +7957,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
     <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -7829,7 +8006,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
     <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -7878,7 +8056,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
     <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
-    <li><code>&lt;selector&gt;</code> is the selector type, one of:
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
       <ul>
         <li><code>id</code> for selecting by id attribute</li>
         <li><code>name</code> for selecting by name attribute</li>
@@ -8015,7 +8194,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each delimited entry</li>
     <li><code>&lt;entry&gt;</code> is the name that will be assigned to the current entry occurrence (entry is accessible in <code>&lt;step&gt;</code> by this name)</li>
-    <li><code>&lt;textRef&gt;</code> is the name of the binding containing the delimitted values
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the delimitted values
       <ul>
         <li>Can be the name of any binding that contains or resolves to a delmited list of values, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
@@ -8060,20 +8240,24 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the condition is satisfied</li>
         <li><code>while</code> to repeat while the condition is satisfied</li>
       </ul>
     </li>
-    <li><code>&lt;condition&gt;</code> is either:
+    <li>
+      <code>&lt;condition&gt;</code> is either:
       <ul>
-        <li>Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
           <ul>
             <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
           </ul>
         </li>
-        <li>Or in prior versions
+        <li>
+          Or in prior versions
           <ul>
             <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
             <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
@@ -8126,20 +8310,24 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the condition is satisfied</li>
         <li><code>while</code> to repeat while the condition is satisfied</li>
       </ul>
     </li>
-    <li><code>&lt;condition&gt;</code> is either:
+    <li>
+      <code>&lt;condition&gt;</code> is either:
       <ul>
-        <li>Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
           <ul>
             <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
           </ul>
         </li>
-        <li>Or in prior versions
+        <li>
+          Or in prior versions
           <ul>
             <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
             <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
@@ -8148,7 +8336,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;delay&gt;</code> is the delay period between steps repetitions</li>
-    <li><code>&lt;delayUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;delayUnit&gt;</code> is one of:
       <ul>
         <li><code>second</code></li>
         <li><code>millisecond</code></li>
@@ -8199,20 +8388,24 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the condition is satisfied</li>
         <li><code>while</code> to repeat while the condition is satisfied</li>
       </ul>
     </li>
-    <li><code>&lt;condition&gt;</code> is either:
+    <li>
+      <code>&lt;condition&gt;</code> is either:
       <ul>
-        <li>Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
           <ul>
             <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
           </ul>
         </li>
-        <li>Or in prior versions
+        <li>
+          Or in prior versions
           <ul>
             <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
             <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
@@ -8221,7 +8414,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -8274,20 +8468,24 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the condition is satisfied</li>
         <li><code>while</code> to repeat while the condition is satisfied</li>
       </ul>
     </li>
-    <li><code>&lt;condition&gt;</code> is either:
+    <li>
+      <code>&lt;condition&gt;</code> is either:
       <ul>
-        <li>Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
           <ul>
             <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
           </ul>
         </li>
-        <li>Or in prior versions
+        <li>
+          Or in prior versions
           <ul>
             <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
             <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
@@ -8296,14 +8494,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;delay&gt;</code> is the delay period between steps repetitions</li>
-    <li><code>&lt;delayUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;delayUnit&gt;</code> is one of:
       <ul>
         <li><code>second</code></li>
         <li><code>millisecond</code></li>
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -8355,20 +8555,24 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the condition is satisfied</li>
         <li><code>while</code> to repeat while the condition is satisfied</li>
       </ul>
     </li>
-    <li><code>&lt;condition&gt;</code> is either:
+    <li>
+      <code>&lt;condition&gt;</code> is either:
       <ul>
-        <li>Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
           <ul>
             <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
           </ul>
         </li>
-        <li>Or in prior versions
+        <li>
+          Or in prior versions
           <ul>
             <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
             <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
@@ -8377,7 +8581,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -8429,20 +8634,24 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the condition is satisfied</li>
         <li><code>while</code> to repeat while the condition is satisfied</li>
       </ul>
     </li>
-    <li><code>&lt;condition&gt;</code> is either:
+    <li>
+      <code>&lt;condition&gt;</code> is either:
       <ul>
-        <li>Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
           <ul>
             <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
           </ul>
         </li>
-        <li>Or in prior versions
+        <li>
+          Or in prior versions
           <ul>
             <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
             <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
@@ -8495,7 +8704,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the condition is satisfied</li>
         <li><code>while</code> to repeat while the condition is satisfied</li>
@@ -8503,7 +8713,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     </li>
     <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
     <li><code>not</code> negates the state if included</li>
-    <li><code>&lt;state&gt;</code> is one of:
+    <li>
+      <code>&lt;state&gt;</code> is one of:
       <ul>
         <li><code>displayed</code> to execute the step until or while the element is displayed</li>
         <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
@@ -8549,7 +8760,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the condition is satisfied</li>
         <li><code>while</code> to repeat while the condition is satisfied</li>
@@ -8557,7 +8769,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     </li>
     <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
     <li><code>not</code> negates the state if included</li>
-    <li><code>&lt;state&gt;</code> is one of:
+    <li>
+      <code>&lt;state&gt;</code> is one of:
       <ul>
         <li><code>displayed</code> to execute the step until or while the element is displayed</li>
         <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
@@ -8568,7 +8781,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;delay&gt;</code> is the delay period between steps repetitions</li>
-    <li><code>&lt;delayUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;delayUnit&gt;</code> is one of:
       <ul>
         <li><code>second</code></li>
         <li><code>millisecond</code></li>
@@ -8610,7 +8824,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the condition is satisfied</li>
         <li><code>while</code> to repeat while the condition is satisfied</li>
@@ -8618,7 +8833,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     </li>
     <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
     <li><code>not</code> negates the state if included</li>
-    <li><code>&lt;state&gt;</code> is one of:
+    <li>
+      <code>&lt;state&gt;</code> is one of:
       <ul>
         <li><code>displayed</code> to execute the step until or while the element is displayed</li>
         <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
@@ -8629,7 +8845,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -8673,7 +8890,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the condition is satisfied</li>
         <li><code>while</code> to repeat while the condition is satisfied</li>
@@ -8681,7 +8899,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     </li>
     <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
     <li><code>not</code> negates the state if included</li>
-    <li><code>&lt;state&gt;</code> is one of:
+    <li>
+      <code>&lt;state&gt;</code> is one of:
       <ul>
         <li><code>displayed</code> to execute the step until or while the element is displayed</li>
         <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
@@ -8692,14 +8911,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;delay&gt;</code> is the delay period between steps repetitions</li>
-    <li><code>&lt;delayUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;delayUnit&gt;</code> is one of:
       <ul>
         <li><code>second</code></li>
         <li><code>millisecond</code></li>
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -8742,7 +8963,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the condition is satisfied</li>
         <li><code>while</code> to repeat while the condition is satisfied</li>
@@ -8750,7 +8972,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     </li>
     <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
     <li><code>not</code> negates the state if included</li>
-    <li><code>&lt;state&gt;</code> is one of:
+    <li>
+      <code>&lt;state&gt;</code> is one of:
       <ul>
         <li><code>displayed</code> to execute the step until or while the element is displayed</li>
         <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
@@ -8761,7 +8984,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -8804,7 +9028,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the condition is satisfied</li>
         <li><code>while</code> to repeat while the condition is satisfied</li>
@@ -8812,7 +9037,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     </li>
     <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
     <li><code>not</code> negates the state if included</li>
-    <li><code>&lt;state&gt;</code> is one of:
+    <li>
+      <code>&lt;state&gt;</code> is one of:
       <ul>
         <li><code>displayed</code> to execute the step until or while the element is displayed</li>
         <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
@@ -8851,20 +9077,21 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> <until|while> <attribute> is[ not] defined
+  <step> <until|while> <name> is[ not] defined
   ```
   <p>Repeatedly exectues a step until or while an attribute is defined (or not) using a 1 second delay interval and 1 minute timeout period.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the attribute is defined (or not)</li>
         <li><code>while</code> to repeat while the attribute is defined (or not)</li>
       </ul>
     </li>
-    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>&lt;name&gt;</code> is the name of the attribute to check</li>
     <li><code>not</code> include to execute step until or while attribute is not defined</li>
     <li>
       The following implicit binding is available in <code>&lt;step&gt;</code>:
@@ -8885,20 +9112,21 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> <until|while> <attribute> is[ not] defined using <delay> <delayUnit> delay
+  <step> <until|while> <name> is[ not] defined using <delay> <delayUnit> delay
   ```
   <p>Repeatedly exectues a step until or while an attribute is defined (or not) using the given delay interval and 1 minute timeout period.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the attribute is defined (or not)</li>
         <li><code>while</code> to repeat while the attribute is defined (or not)</li>
       </ul>
     </li>
-    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>&lt;name&gt;</code> is the name of the attribute to check</li>
     <li><code>not</code> include to execute step until or while attribute is not defined</li>
     <li>
       The following implicit binding is available in <code>&lt;step&gt;</code>:
@@ -8907,7 +9135,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;delay&gt;</code> is the delay period between steps repetitions</li>
-    <li><code>&lt;delayUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;delayUnit&gt;</code> is one of:
       <ul>
         <li><code>second</code></li>
         <li><code>millisecond</code></li>
@@ -8932,20 +9161,21 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> <until|while> <attribute> is[ not] defined using <timeout> <timeoutUnit> timeout
+  <step> <until|while> <name> is[ not] defined using <timeout> <timeoutUnit> timeout
   ```
   <p>Repeatedly exectues a step until or while an attribute is defined (or not) using a 1 second delay interval and given timeout period.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the attribute is defined (or not)</li>
         <li><code>while</code> to repeat while the attribute is defined (or not)</li>
       </ul>
     </li>
-    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>&lt;name&gt;</code> is the name of the attribute to check</li>
     <li><code>not</code> include to execute step until or while attribute is not defined</li>
     <li>
       The following implicit binding is available in <code>&lt;step&gt;</code>:
@@ -8954,7 +9184,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -8980,20 +9211,21 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> <until|while> <attribute> is[ not] defined using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout
+  <step> <until|while> <name> is[ not] defined using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout
   ```
   <p>Repeatedly exectues a step until or while an attribute is defined (or not) using the given delay interval and timeout period.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the attribute is defined (or not)</li>
         <li><code>while</code> to repeat while the attribute is defined (or not)</li>
       </ul>
     </li>
-    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>&lt;name&gt;</code> is the name of the attribute to check</li>
     <li><code>not</code> include to execute step until or while attribute is not defined</li>
     <li>
       The following implicit binding is available in <code>&lt;step&gt;</code>:
@@ -9002,14 +9234,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;delay&gt;</code> is the delay period between steps repetitions</li>
-    <li><code>&lt;delayUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;delayUnit&gt;</code> is one of:
       <ul>
         <li><code>second</code></li>
         <li><code>millisecond</code></li>
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -9035,20 +9269,21 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> <until|while> <attribute> is[ not] defined using no delay and <timeout> <timeoutUnit> timeout
+  <step> <until|while> <name> is[ not] defined using no delay and <timeout> <timeoutUnit> timeout
   ```
   <p>Repeatedly exectues a step until or while an attribute is defined (or not) using no delay interval and the given timeout period.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the attribute is defined (or not)</li>
         <li><code>while</code> to repeat while the attribute is defined (or not)</li>
       </ul>
     </li>
-    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>&lt;name&gt;</code> is the name of the attribute to check</li>
     <li><code>not</code> include to execute step until or while attribute is not defined</li>
     <li>
       The following implicit binding is available in <code>&lt;step&gt;</code>:
@@ -9057,7 +9292,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;timeout&gt;</code> is the timeout period</li>
-    <li><code>&lt;timeoutUnit&gt;</code> is one of:
+    <li>
+      <code>&lt;timeoutUnit&gt;</code> is one of:
       <ul>
         <li><code>minute</code></li>
         <li><code>second</code></li>
@@ -9083,20 +9319,21 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> <until|while> <attribute> is[ not] defined using no delay
+  <step> <until|while> <name> is[ not] defined using no delay
   ```
   <p>Repeatedly exectues a step until or while an attribute is defined (or not) using no delay interval and 1 minute timeout period.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li><code>&lt;until|while&gt;</code> is one of:
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
       <ul>
         <li><code>until</code> to repeat until the attribute is defined (or not)</li>
         <li><code>while</code> to repeat while the attribute is defined (or not)</li>
       </ul>
     </li>
-    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>&lt;name&gt;</code> is the name of the attribute to check</li>
     <li><code>not</code> include to execute step until or while attribute is not defined</li>
     <li>
       The following implicit binding is available in <code>&lt;step&gt;</code>:
@@ -9133,14 +9370,17 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
     <li><code>not</code> negates the condition if included (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.4.0">v3.4.0</Link>)</li>
-    <li><code>&lt;condition&gt;</code> is either:
+    <li>
+      <code>&lt;condition&gt;</code> is either:
       <ul>
-        <li>Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
           <ul>
             <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
           </ul>
         </li>
-        <li>Or in prior versions
+        <li>
+          Or in prior versions
           <ul>
             <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
             <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
@@ -9188,7 +9428,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
     <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
     <li><code>not</code> negates the state if included</li>
-    <li><code>&lt;state&gt;</code> is one of:
+    <li>
+      <code>&lt;state&gt;</code> is one of:
       <ul>
         <li><code>displayed</code> to execute the step if the element is displayed</li>
         <li><code>hidden</code> to execute the step if the element is not displayed</li>
@@ -9222,14 +9463,14 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> if <attribute> is[ not] defined
+  <step> if <name> is[ not] defined
   ```
   <p>Executes a step depending on whether or not an attribute is bound in the global or current scope.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
-    <li><code>&lt;attribute&gt;</code> is the name of the attribute to check</li>
+    <li><code>&lt;name&gt;</code> is the name of the attribute to check</li>
     <li><code>not</code> include to execute step if attribute is not bound</li>
   </ul>
   <p>Example</p>
@@ -9266,14 +9507,14 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> if <attribute> is[ not] blank
+  <step> if <name> is[ not] blank
   ```
   <p>Executes a step depending on whether or not an element or attribute is bound to a blank value.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
-    <li><code>&lt;attribute&gt;</code> is the name of the element or attribute to check</li>
+    <li><code>&lt;name&gt;</code> is the name of the element or attribute to check</li>
     <li><code>not</code> include to execute step if attribute is not blank</li>
   </ul>
   <p>Example</p>
@@ -9295,14 +9536,14 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> if <attribute> is[ not] "<expression>"
+  <step> if <name> is[ not] "<expression>"
   ```
   <p>Executes a step depending on whether or not an element or attribute is equal to a value.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
-    <li><code>&lt;attribute&gt;</code> is the name of the element or attribute to check</li>
+    <li><code>&lt;name&gt;</code> is the name of the element or attribute to check</li>
     <li><code>not</code> include to execute step if the attribute is not equal to the given value</li>
   </ul>
   <p>Example</p>
@@ -9324,15 +9565,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> if <attribute> <match> "<expression>"`
+  <step> if <name> <match> "<expression>"`
   ```
   <p>Executes a step depending on whether or not an element or attribute matches an expression.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
-    <li><code>&lt;attribute&gt;</code> is the name of the element or attribute to check</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li><code>&lt;name&gt;</code> is the name of the element or attribute to check</li>
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>contains</code> for partial match</li>
         <li><code>starts with</code> for partial leading match</li>
@@ -9364,15 +9606,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> if <attribute> does not <match> "<expression>"`
+  <step> if <name> does not <match> "<expression>"`
   ```
   <p>Executes a step depending on whether or not an element or attribute does not match an expression.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
-    <li><code>&lt;attribute&gt;</code> is the name of the element or attribute to check</li>
-    <li><code>&lt;match&gt;</code> is the type of match to perform, one of:
+    <li><code>&lt;name&gt;</code> is the name of the element or attribute to check</li>
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
       <ul>
         <li><code>contain</code> for partial match</li>
         <li><code>start with</code> for partial leading match</li>

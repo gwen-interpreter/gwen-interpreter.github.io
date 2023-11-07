@@ -620,7 +620,8 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li>Option name is either:
+    <li>
+      Option name is either:
       <ul>
         <li><code>-b</code> for shorthand</li>
         <li><code>--batch</code> for longhand</li>
@@ -786,7 +787,8 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li>Option name is either:
+    <li>
+      Option name is either:
       <ul>
         <li><code>-v</code> for shorthand</li>
         <li><code>--verbose</code> for longhand</li>
@@ -896,7 +898,8 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li>Option name is either:
+    <li>
+      Option name is either:
       <ul>
         <li><code>-d</code> for shorthand</li>
         <li><code>--debug</code> for longhand</li>
@@ -1006,7 +1009,8 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li>Option name is either:
+    <li>
+      Option name is either:
       <ul>
         <li><code>-n</code> for shorthand</li>
         <li><code>--dry-run</code> for longhand</li>
@@ -1132,7 +1136,8 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li>Option name is either:
+    <li>
+      Option name is either:
       <ul>
         <li><code>-c</code> for shorthand</li>
         <li><code>--conf</code> for longhand</li>
@@ -1259,9 +1264,11 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   ```shell
   -p|--properties <files>
   ```
-  <p>Optional list of properties files to load. These are loaded in the order given with latter entries overriding the former.
+  <p>
+  Optional list of properties files to load. These are loaded in the order given with latter entries overriding the former.
   </p>
-  <p><b>Deprecated</b> since Gwen 3, use <code>-c|--conf</code> instead.
+  <p>
+  <b>Deprecated</b> since Gwen 3, use <code>-c|--conf</code> instead.
   </p>
 
   </summary>
@@ -1269,7 +1276,8 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li>Option name is either:
+    <li>
+      Option name is either:
       <ul>
         <li><code>-p</code> for shorthand</li>
         <li><code>--properties</code> for longhand</li>
@@ -1312,7 +1320,8 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li>Option name is either:
+    <li>
+      Option name is either:
       <ul>
         <li><code>-r</code> for shorthand</li>
         <li><code>--report</code> for longhand</li>
@@ -1468,13 +1477,15 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li>Option name is either:
+    <li>
+      Option name is either:
       <ul>
         <li><code>-f</code> for shorthand</li>
         <li><code>--format</code> for longhand</li>
       </ul>
     </li>
-    <li><code>&lt;reports&gt;</code> is a comma separated list of one or more of the following:
+    <li>
+      <code>&lt;reports&gt;</code> is a comma separated list of one or more of the following:
       <ul>
         <li><code>html</code> for <Link to="/docs/reports/html">HTML reports</Link></li>
         <li><code>junit</code> for <Link to="/docs/reports/junit-xml">JUnit-XML reports</Link></li>
@@ -1602,13 +1613,15 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li>Option name is either:
+    <li>
+      Option name is either:
       <ul>
         <li><code>-t</code> for shorthand</li>
         <li><code>--tags</code> for longhand</li>
       </ul>
     </li>
-    <li><code>&lt;filter&gt;</code> is a comma separated list of one or more of the following tag patterns:
+    <li>
+      <code>&lt;filter&gt;</code> is a comma separated list of one or more of the following tag patterns:
       <ul>
         <li><code>@Tag</code> to include a tag</li>
         <li><code>~@Tag</code> to exclude a tag</li>
@@ -1775,7 +1788,8 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li>Option name is either:
+    <li>
+      Option name is either:
       <ul>
         <li><code>-i</code> for shorthand</li>
         <li><code>--input-data</code> for longhand</li>
@@ -1949,7 +1963,8 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li>Option name is either:
+    <li>
+      Option name is either:
       <ul>
         <li><code>-m</code> for shorthand</li>
         <li><code>--meta</code> for longhand</li>
@@ -2211,26 +2226,31 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li><code>[options]</code> Can be one or more space separated switches including:
+    <li>
+      <code>[options]</code> Can be one or more space separated switches including:
       <ul>
-        <li><Link to="#gwen-cli-init-options-docker"><code>--docker</code></Link>
+        <li>
+          <Link to="#gwen-cli-init-options-docker"><code>--docker</code></Link>
           <ul>
             <li>Include to also generate files in your project for running Gwen in <Link to="/docs/docker">Docker</Link></li>
           </ul>
         </li>
-        <li><Link to="#gwen-cli-init-options-jenkins"><code>--jenkins</code></Link>
+        <li>
+          <Link to="#gwen-cli-init-options-jenkins"><code>--jenkins</code></Link>
           <ul>
             <li>Include to also generate a Jenkins pipeline file in your project</li>
           </ul>
         </li>
-        <li><code>--force</code>
+        <li>
+          <code>--force</code>
           <ul>
             <li>Include to regenerate and overwrite any previously initialised files.</li>
           </ul>
         </li>
       </ul>
     </li>
-    <li><code>[dir]</code> is
+    <li>
+      <code>[dir]</code> is
       <ul>
         <li>Defaults to a <code>gwen</code> subdirectory in your project if not specified</li>
       </ul>
@@ -2389,12 +2409,14 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li><code>--force</code>
+    <li>
+      <code>--force</code>
       <ul>
         <li>Include to regenerate and overwrite any previously generated docker files.</li>
       </ul>
     </li>
-    <li><code>[dir]</code> is the directory to generate the docker files into
+    <li>
+      <code>[dir]</code> is the directory to generate the docker files into
       <ul>
         <li>Defaults to the <code>gwen</code> subdirectory in your project if not specifed</li>
       </ul>
@@ -2470,12 +2492,14 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li><code>--force</code>
+    <li>
+      <code>--force</code>
       <ul>
         <li>Include to regenerate and overwrite any previously generated Jenkinsfile.</li>
       </ul>
     </li>
-    <li><code>[dir]</code> is the directory to generate the Jenkinfile into
+    <li>
+      <code>[dir]</code> is the directory to generate the Jenkinfile into
       <ul>
         <li>Defaults to the <code>gwen</code> subdirectory in your project if not specifed</li>
       </ul>
@@ -2547,13 +2571,15 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Where</p>
 
   <ul>
-    <li><Link to="#gwen-cli-options-format-pretty"><code>--pretty</code></Link>
+    <li>
+      <Link to="#gwen-cli-options-format-pretty"><code>--pretty</code></Link>
       <ul>
         <li>Is the pretty formatting option (default)</li>
         <li>This is currently the default and only supported formatting option</li>
       </ul>
     </li>
-    <li><code>&lt;files|dirs&gt;</code> (mandatory) is a space separated list of feature/meta files or directories to format
+    <li>
+      <code>&lt;files|dirs&gt;</code> (mandatory) is a space separated list of feature/meta files or directories to format
     </li>
   </ul>
 
