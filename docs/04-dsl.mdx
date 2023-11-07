@@ -49,6 +49,32 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
+<details id="name-is-literal">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is <blank|true|false>
+  ```
+  <p>Binds a literal value to a name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the literal value to</li>
+    
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    Given my name is blank
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-literal">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.59.0">v3.59.0</Link></div>
+  </div>
+</details>
+
 #### File bindings
 
 <details id="name-is-defined-by-file">
