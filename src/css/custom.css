@@ -210,14 +210,6 @@ a.navicon:hover {
   width: 24px;
 }
 
-.icon-smartstream:before {
-  content: url(/static/img/logos/smartstream-icon.jpeg);
-}
-
-.icon-originenergy:before {
-  content: url(/static/img/logos/origin-energy-icon.jpeg);
-}
-
 .icon-lambdatest:before {
   content: url(/static/img/logos/lambdatest-icon.png);
 }
