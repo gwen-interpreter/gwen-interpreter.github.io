@@ -16,11 +16,11 @@
   background-size: cover;
 }
 
-@media (max-width: 696px) {
+@media (max-width: 596px) {
   .heroBanner {
     background-image: url('/img/gwen-banner-bg-mob.png');
   }
-}
+} 
 
 .buttons {
   display: flex;
