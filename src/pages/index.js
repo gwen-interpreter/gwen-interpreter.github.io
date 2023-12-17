@@ -24,7 +24,7 @@ function HomepageHeader() {
         <div className="row">
           <div className={clsx('col col--12')}>
             <h1 className="hero__title">
-              <span className="highlight">Gwen</span> {siteConfig.tagline}
+              Gwen {siteConfig.tagline}
             </h1>
               <p className="hero__subtitle">{siteConfig.customFields.subtitle}</p>
           </div>

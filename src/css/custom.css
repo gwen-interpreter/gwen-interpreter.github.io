@@ -65,7 +65,7 @@
 }
 
 .hero--primary {
-  --ifm-hero-background-color: var(--ifm-color-primary);
+  --ifm-hero-background-color: #08141d;
   --ifm-hero-text-color: var(--ifm-color-white);
 }
 
@@ -82,7 +82,7 @@
 }
 
 .hero__subtitle {
-  color: #e9e9fc;
+  color: #b3b8cc;
   letter-spacing: 0.02rem;
   font-weight: 400;
   line-height: 1.4;
