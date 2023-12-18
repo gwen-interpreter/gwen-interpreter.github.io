@@ -69,32 +69,8 @@
   --ifm-hero-text-color: var(--ifm-color-white);
 }
 
-.hero__title {
-  letter-spacing: 0.02rem;
-  
-}
-
-@media (max-width: 996px) {
-  .hero__title {
-    font-size: 2.4rem;
-    letter-spacing: 0.02rem;
-  }
-}
-
 .hero__subtitle {
-  font-size: 1.55rem;
   color: #b3b8cc;
-  letter-spacing: 0.02rem;
-  font-weight: 400;
-  line-height: 1.4;
-}
-
-@media (max-width: 996px) {
-  .hero__subtitle {
-    font-size: 1.2rem;
-    font-weight: 400;
-    letter-spacing: 0.02rem;
-  }
 }
 
 @media (max-width: 996px) {
