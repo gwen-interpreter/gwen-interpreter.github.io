@@ -14,7 +14,7 @@ module.exports = {
   projectName: 'gwen-interpreter.github.io', // Usually your repo name.
   trailingSlash: false,
   customFields: {
-    subtitle: 'Executable Gherkin Language',
+    subtitle: 'Executable Specifications Language',
     description: 'Gwen is a Gherkin interpreter with built-in automation capabilities that can readily be utilised for end-to-end testing and robotic processing.'
   },
   themeConfig: {
