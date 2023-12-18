@@ -21,6 +21,9 @@ function HomepageHeader() {
         <meta property="og:title" content={`${siteConfig.title} | ${siteConfig.tagline}`} data-react-helmet="true" />
       </Head>
       <div className="container container_title">
+        <div>
+          <img src="/img/icon-attractor-w.png" className="banner-attractor"/>
+        </div>
         <div className="row">
           <div className={clsx('col col--12')}>
             <h1 className="hero__title">
@@ -29,7 +32,7 @@ function HomepageHeader() {
               <p className="hero__subtitle">{siteConfig.customFields.subtitle}</p>
           </div>
         </div>
-        <div className={styles.buttons}>
+        <div className={styles.buttons} style={{paddingTop: '20px'}}>
           <Link
             className="button banner-button button--lg"
             to="/docs/get-started">
