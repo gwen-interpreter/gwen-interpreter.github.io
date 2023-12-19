@@ -64,6 +64,10 @@
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.06);
 }
 
+.hero__title {
+  letter-spacing: 0.2rem;
+}
+
 .hero--primary {
   --ifm-hero-background-color: #08141d;
   --ifm-hero-text-color: var(--ifm-color-white);
@@ -71,6 +75,9 @@
 
 .hero__subtitle {
   color: #b3b8cc;
+  letter-spacing: 0.08rem;
+  font-weight: 600;
+  font-size: 1.3rem;
 }
 
 @media (max-width: 996px) {
