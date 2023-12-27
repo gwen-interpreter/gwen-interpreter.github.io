@@ -11,14 +11,14 @@
   position: relative;
   overflow: hidden;
   background-image: url('/img/gwen-banner-bg.png');
-  background-position: right top;
+  background-position: top right;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 @media (max-width: 596px) {
   .heroBanner {
-    background-image: url('/img/gwen-banner-bg-mob.png');
+    background-image: url('/img/gwen-banner-bg.png');
   }
 } 
 
