@@ -65,7 +65,9 @@
 }
 
 .hero__title {
-  letter-spacing: 0.2rem;
+  font-family: "OCRA";
+  letter-spacing: -0.4rem;
+  font-weight: 400;
 }
 
 .hero--primary {
@@ -75,9 +77,8 @@
 
 .hero__subtitle {
   color: #b3b8cc;
-  letter-spacing: 0.08rem;
-  font-weight: 600;
-  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 996px) {
@@ -97,7 +98,7 @@
 }
 
 .banner-attractor {
-  width: 110px;
+  width: 90px;
 }
 
 .attractor-image {

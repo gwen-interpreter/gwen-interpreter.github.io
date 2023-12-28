@@ -14,13 +14,8 @@
   background-position: top right;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #37428f;
 }
-
-@media (max-width: 596px) {
-  .heroBanner {
-    background-image: url('/img/gwen-banner-bg.png');
-  }
-} 
 
 .buttons {
   display: flex;
