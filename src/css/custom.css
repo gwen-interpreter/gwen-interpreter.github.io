@@ -79,6 +79,7 @@
   color: #b3b8cc;
   letter-spacing: 0.1rem;
   margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 @media (max-width: 996px) {
