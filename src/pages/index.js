@@ -22,14 +22,15 @@ function HomepageHeader() {
       </Head>
       <div className="container container_title">
         <div>
-          <img src="/img/gwen-navicon-w.png" className="banner-attractor"/>
+          
         </div>
         <div className="row">
           <div className={clsx('col col--12')}>
             <h1 className="hero__title">
-              gwen
+              <img src="/img/gwen-navicon-w.png" className="banner-attractor"/>
+              <span style={{verticalAlign: "top"}}>gwen</span>
             </h1>
-              <p className="hero__subtitle">{siteConfig.customFields.subtitle}</p>
+            <p className="hero__subtitle">{siteConfig.customFields.subtitle}</p>
           </div>
         </div>
         <div className={styles.buttons}>

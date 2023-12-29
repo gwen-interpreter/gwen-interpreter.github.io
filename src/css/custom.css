@@ -66,8 +66,10 @@
 
 .hero__title {
   font-family: "OCRA";
-  letter-spacing: -0.4rem;
+  letter-spacing: -0.5rem;
   font-weight: 400;
+  font-size: 4rem;
+  margin-bottom: 0;
 }
 
 .hero--primary {
@@ -76,10 +78,19 @@
 }
 
 .hero__subtitle {
-  color: #b3b8cc;
+  color: #c1c5d5;
   letter-spacing: 0.1rem;
-  margin-bottom: 1rem;
+  line-height: 3rem;
+  margin-bottom: 2rem;
   font-weight: 600;
+  font-size: 2.35rem;
+}
+
+@media (max-width: 996px) {
+  .hero__subtitle {
+    font-weight: 600;
+    font-size: 1.75rem;
+  }
 }
 
 @media (max-width: 996px) {
