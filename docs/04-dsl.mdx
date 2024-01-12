@@ -9532,11 +9532,11 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
-<details id="step-if-binding-expression">
+<details id="step-if-binding-is-value">
   <summary class="dsl">
 
   ```gherkin
-  <step> if <name> is[ not] "<expression>"
+  <step> if <name> is[ not] "<value>"
   ```
   <p>Executes a step depending on whether or not an element or attribute is equal to a value.</p>
   </summary>
@@ -9545,6 +9545,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
     <li><code>&lt;name&gt;</code> is the name of the element or attribute to check</li>
     <li><code>not</code> include to execute step if the attribute is not equal to the given value</li>
+    <li><code>value</code> is the given value</li>
   </ul>
   <p>Example</p>
 
@@ -9555,7 +9556,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```
 
   <div class="grid-3">
-    <div><Link to="#step-if-binding-expression">Link</Link></div>
+    <div><Link to="#step-if-binding-is-value">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.59.0">v3.59.0</Link></div>
   </div>
