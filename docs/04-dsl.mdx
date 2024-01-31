@@ -1517,7 +1517,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {3}
     Given the heading can be located by tag "h1"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I capture the heading
   ```
 
@@ -1545,7 +1545,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {3}
     Given the heading can be located by tag "h1"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I capture the heading as my heading
   ```
 
@@ -2400,7 +2400,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {4}
     Given the todo field can be located by class "new-todo"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Walk the dog" in the todo field
       And I capture the current screenshot
   ```
@@ -2428,7 +2428,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {4}
     Given the todo field can be located by class "new-todo"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Walk the dog" in the todo field
       And I capture the current screenshot as the screenshot image
      Then the screenshot image should contain "path/to/image.png"
@@ -2459,7 +2459,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {4}
     Given the todo field can be located by class "new-todo"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I type "Walk the dog" in the todo field
       And I capture element screenshot of the todo field
   ```
@@ -2488,7 +2488,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {4}
     Given the todo field can be located by class "new-todo"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I type "Walk the dog" in the todo field
       And I capture element screenshot of the todo field as my element screenshot
   ```
@@ -2856,7 +2856,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin
-    When I navigate to "https://todomvc.com/examples/react"
+    When I navigate to "https://todomvc.com/examples/react/dist"
   ```
 
   <div class="grid-3">
@@ -3087,7 +3087,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {3}
     Given the todo field can be located by class "new-todo"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Walk the dog" in the todo field
   ```
 
@@ -3128,7 +3128,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {4}
     Given the todo field can be located by class "new-todo"
       And my item is "Walk the dog"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter my item in the todo field
   ```
 
@@ -3607,7 +3607,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {1}
     Given I have an open browser
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
      Then I should have 1 open browser
   ```
 
@@ -3630,7 +3630,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {1}
     Given I have no open browser
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
      Then I should have 1 open browser
   ```
 
@@ -3679,7 +3679,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin {2,4}
-    When I navigate to "https://todomvc.com/examples/react"
+    When I navigate to "https://todomvc.com/examples/react/dist"
      And I close the current browser
      And I navigate to "https://todomvc.com/examples/vue/"
      And I close the browser
@@ -3708,7 +3708,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {1,3}
     When I start a browser for React
-     And I navigate to "https://todomvc.com/examples/react"
+     And I navigate to "https://todomvc.com/examples/react/dist"
      And I start a browser for Vue
      And I navigate to "https://todomvc.com/examples/vue/"
     Then I should have 2 open browsers
@@ -3737,7 +3737,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {5}
     When I start a browser for React
-     And I navigate to "https://todomvc.com/examples/react"
+     And I navigate to "https://todomvc.com/examples/react/dist"
      And I start a browser for Vue
      And I navigate to "https://todomvc.com/examples/vue/"
      And I switch to React
@@ -3767,7 +3767,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {3}
     When I start a browser for React
-     And I navigate to "https://todomvc.com/examples/react"
+     And I navigate to "https://todomvc.com/examples/react/dist"
      And I close the browser for React
   ```
 
@@ -3817,7 +3817,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {2}
     When I navigate to "https://google.com"
      And I start a new browser tab
-     And I navigate to "https://todomvc.com/examples/react"
+     And I navigate to "https://todomvc.com/examples/react/dist"
   ```
 
   <div class="grid-3">
@@ -3850,7 +3850,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {4}
     When I navigate to "https://google.com"
      And I start a new browser tab
-     And I navigate to "https://todomvc.com/examples/react"
+     And I navigate to "https://todomvc.com/examples/react/dist"
      And I switch to window 1
     Then the page title should contain "Google"
   ```
@@ -3885,7 +3885,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {4}
     When I navigate to "https://google.com"
      And I start a new browser tab
-     And I navigate to "https://todomvc.com/examples/react"
+     And I navigate to "https://todomvc.com/examples/react/dist"
      And I close tab 1
     Then the page title should contain "Google"
   ```
@@ -4060,7 +4060,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin {2}
-    When I navigate to "https://todomvc.com/examples/react"
+    When I navigate to "https://todomvc.com/examples/react/dist"
      And I maximize the window
   ```
 
@@ -4087,7 +4087,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin {2}
-    When I navigate to "https://todomvc.com/examples/react"
+    When I navigate to "https://todomvc.com/examples/react/dist"
      And I resize the window to width 1280 and height 720
   ```
 
@@ -5047,7 +5047,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {5}
     Given my todo list can be located by css ".todo-list"
       And the todo field can be located by class "new-todo"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Get the milk" in the todo field
       And I wait until my todo list is displayed
   ```
@@ -5885,7 +5885,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {6}
     Given the todo field can be located by class "new-todo"
       And my todo list can be located by css ".todo-list"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Get the milk" in the todo field
       And I capture my todo list as current items
      Then current items should not be blank
@@ -5966,7 +5966,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {6}
     Given the todo field can be located by class "new-todo"
       And my todo list can be located by css ".todo-list"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Get the milk" in the todo field
       And I capture my todo list as current items
      Then current items should contain "Get the milk"
@@ -6048,7 +6048,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     Given the todo field can be located by class "new-todo"
       And my todo list can be located by css ".todo-list"
       And my item is "Feed the cat"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter my item in the todo field
       And I capture my todo list as current items
      Then current items should contain my item
@@ -6555,7 +6555,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin {2}
-    When I navigate to "https://todomvc.com/examples/react"
+    When I navigate to "https://todomvc.com/examples/react/dist"
     Then the current URL should not be blank
   ```
   
@@ -6625,7 +6625,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin {2,3}
-    When I navigate to "https://todomvc.com/examples/react"
+    When I navigate to "https://todomvc.com/examples/react/dist"
     Then the current URL should contain "todomvc.com"
      And the current URL should not contain "other.com"
   ```
@@ -6703,7 +6703,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {4,5}
     Given my domain is "todomvc.com"
       And some other domain is "someother.com"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
      Then the current URL should contain my domain
       And the current URL should not contain some other domain
   ```
@@ -6761,7 +6761,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin {2}
-    When I navigate to "https://todomvc.com/examples/react"
+    When I navigate to "https://todomvc.com/examples/react/dist"
     Then the page title should not be blank
   ```
 
@@ -6830,7 +6830,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin {2}
-    When I navigate to "https://todomvc.com/examples/react"
+    When I navigate to "https://todomvc.com/examples/react/dist"
     Then the page title should contain "TodoMVC"
   ```
 
@@ -6906,7 +6906,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {3}
     Given the app name is "TodoMVC"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
      Then the page title should contain the app name
   ```
 
@@ -6975,7 +6975,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {3}
     Given my todo list can be located by css ".todo-list"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
      Then my todo list should not be displayed
   ```
 
@@ -7048,7 +7048,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {5}
     Given the todo field can be located by class "new-todo"
       And my todo list can be located by css ".todo-list"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Get the milk" in the todo field
      Then my todo list should contain "Get the milk"
   ```
@@ -7128,7 +7128,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     Given the todo field can be located by class "new-todo"
       And my todo list can be located by css ".todo-list"
       And my item is "Feed the cat"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter my item in the todo field
      Then my todo list should contain my item
   ```
@@ -7398,7 +7398,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {3}
    Given I have no open browser
-    When I navigate to "https://todomvc.com/examples/react"
+    When I navigate to "https://todomvc.com/examples/react/dist"
     Then I should have 1 open browser
   ```
 
@@ -7437,7 +7437,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {5}
    Given I have no open browser
-    When I navigate to "https://todomvc.com/examples/react"
+    When I navigate to "https://todomvc.com/examples/react/dist"
      And I start a browser for Vue
      And I navigate to "https://todomvc.com/examples/vue"
     Then I should have 2 open browsers
@@ -7833,12 +7833,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {6}
     Given the todo field can be located by class "new-todo"
-      And the active count can be located by css ".todo-count strong"
-     When I navigate to "https://todomvc.com/examples/react"
+      And the active count can be located by css ".todo-count"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Walk the dog" in the todo field
       And I enter "Feed the cat" in the todo field
       And I tick todo item for each todo item located by css ".todo-list .toggle"
-     Then the active count should be "0"
+     Then the active count should contain "0"
   ```
 
   <div class="grid-3">
@@ -7881,12 +7881,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {6}
     Given the todo field can be located by class "new-todo"
-      And the active count can be located by css ".todo-count strong"
-     When I navigate to "https://todomvc.com/examples/react"
+      And the active count can be located by css ".todo-count"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Walk the dog" in the todo field
       And I enter "Feed the cat" in the todo field
       And I tick todo item for each todo item located by css ".todo-list .toggle" with no wait
-     Then the active count should be "0"
+     Then the active count should contain "0"
   ```
 
   <div class="grid-3">
@@ -7930,12 +7930,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {6}
     Given the todo field can be located by class "new-todo"
-      And the active count can be located by css ".todo-count strong"
-     When I navigate to "https://todomvc.com/examples/react"
+      And the active count can be located by css ".todo-count"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Walk the dog" in the todo field
       And I enter "Feed the cat" in the todo field
       And I tick todo item for each todo item located by css ".todo-list .toggle" with 5 second timeout
-     Then the active count should be "0"
+     Then the active count should contain "0"
   ```
 
   <div class="grid-3">
@@ -7979,12 +7979,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {7}
     Given the todo field can be located by class "new-todo"
       And the todo list can be located by class "todo-list"
-      And the active count can be located by css ".todo-count strong"
-     When I navigate to "https://todomvc.com/examples/react"
+      And the active count can be located by css ".todo-count"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Walk the dog" in the todo field
       And I enter "Feed the cat" in the todo field
       And I tick todo item for each todo item located by class "toggle" in the todo list
-     Then the active count should be "0"
+     Then the active count should contain "0"
   ```
 
   <div class="grid-3">
@@ -8029,12 +8029,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {7}
     Given the todo field can be located by class "new-todo"
       And the todo list can be located by class "todo-list"
-      And the active count can be located by css ".todo-count strong"
-     When I navigate to "https://todomvc.com/examples/react"
+      And the active count can be located by css ".todo-count"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Walk the dog" in the todo field
       And I enter "Feed the cat" in the todo field
       And I tick todo item for each todo item located by class "toggle" in the todo list with no timeout
-     Then the active count should be "0"
+     Then the active count should contain "0"
   ```
 
   <div class="grid-3">
@@ -8080,12 +8080,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {7}
     Given the todo field can be located by class "new-todo"
       And the todo list can be located by class "todo-list"
-      And the active count can be located by css ".todo-count strong"
-     When I navigate to "https://todomvc.com/examples/react"
+      And the active count can be located by css ".todo-count"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Walk the dog" in the todo field
       And I enter "Feed the cat" in the todo field
       And I tick todo item for each todo item located by class "toggle" in the todo list with 3 second wait
-     Then the active count should be "0"
+     Then the active count should contain "0"
   ```
 
   <div class="grid-3">
@@ -8113,13 +8113,13 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {7}
     Given the todo field can be located by class "new-todo"
-      And the active count can be located by css ".todo-count strong"
+      And the active count can be located by css ".todo-count"
       And all todo items can be located by css ".todo-list .toggle"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Walk the dog" in the todo field
       And I enter "Feed the cat" in the todo field
       And I tick todo item for each todo item in all todo items
-     Then the active count should be "0"
+     Then the active count should contain "0"
   ```
 
   <div class="grid-3">
@@ -8169,10 +8169,10 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     @DataTable
     Scenario: I have the following active items
       Given the todo field can be located by class "new-todo"
-        And the active count can be located by css ".todo-count strong"
-       When I navigate to "https://todomvc.com/examples/react"
+        And the active count can be located by css ".todo-count"
+       When I navigate to "https://todomvc.com/examples/react/dist"
         And I enter Item in the todo field for each data record
-       Then the active count should be "3"
+       Then the active count should contain "3"
   ```
 
   <div class="grid-3">
@@ -8206,11 +8206,11 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {5}
     Given the todo field can be located by class "new-todo"
-      And the active count can be located by css ".todo-count strong"
+      And the active count can be located by css ".todo-count"
       And my items is "Walk the dog, Feed the cat, Get the milk"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter todo item in the todo field for each todo item in my items delimited by ","
-     Then the active count should be "3"
+     Then the active count should contain "3"
   ```
 
   <div class="grid-3">

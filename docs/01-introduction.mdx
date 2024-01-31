@@ -93,7 +93,7 @@ Meta specs are used to describe execution and are written in Gherkin too. [Step 
   <p>Write meta specs with execution and automation in mind.</p>
 :::
 
-For example, the following meta describes how each step in the scenario above can be executed to automate a test against a running [todo application](https://todomvc.com/examples/react).
+For example, the following meta describes how each step in the scenario above can be executed to automate a test against a running [todo application](https://todomvc.com/examples/react/dist).
 
 :::note Meta Spec
 <p>
@@ -123,8 +123,8 @@ Feature: Todo Meta
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
-    Given the item count can be located by css ".todo-count strong"
-     Then the item count should be "$<expected-count>"
+    Given the item count can be located by css ".todo-count"
+     Then the item count should contain "$<expected-count>"
       And my todo list should be displayed
 ```
 
@@ -206,7 +206,7 @@ Calls DSL step:
 
 #### Accessing externalised properties
 
-We could have just hard coded the https://todomvc.com/examples/react URL in the above step, but externalising it enables us to target different environments through [string interpolation](/docs/string-interpolation) without changing our meta. This is useful during development when you want to execute against a locally running instance of the application or during testing when it is running on a different host or port. With this approach you can define a [settings](/docs/settings) file per environment and assign the URL for that environment to the `todo.page.url` property in each file. Then when you want to target an environment, you pass the settings file for that environment to Gwen and the URL will be resolved accordingly.
+We could have just hard coded the https://todomvc.com/examples/react/dist URL in the above step, but externalising it enables us to target different environments through [string interpolation](/docs/string-interpolation) without changing our meta. This is useful during development when you want to execute against a locally running instance of the application or during testing when it is running on a different host or port. With this approach you can define a [settings](/docs/settings) file per environment and assign the URL for that environment to the `todo.page.url` property in each file. Then when you want to target an environment, you pass the settings file for that environment to Gwen and the URL will be resolved accordingly.
 
 <Tabs
   groupId="settings"
@@ -226,7 +226,7 @@ We could have just hard coded the https://todomvc.com/examples/react URL in the 
   ```json
   todo {
     page {
-      url = "https://todomvc.com/examples/react"
+      url = "https://todomvc.com/examples/react/dist"
     }
   }
   ```
@@ -245,7 +245,7 @@ We could have just hard coded the https://todomvc.com/examples/react URL in the 
   {
     "todo": {
       "page": {
-        "url": "https://todomvc.com/examples/react"
+        "url": "https://todomvc.com/examples/react/dist"
       }
     }
   }
@@ -262,7 +262,7 @@ We could have just hard coded the https://todomvc.com/examples/react URL in the 
 
   *File: gwen/env/test.properties*
   ```properties
-    todo.page.url = https://todomvc.com/examples/react
+    todo.page.url = https://todomvc.com/examples/react/dist
   ```
   
 </p>
@@ -387,8 +387,8 @@ The last StepDef accepts the number of expected items from the last step in the 
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
-    Given the item count can be located by css ".todo-count strong"
-     Then the item count should be "$<expected-count>"
+    Given the item count can be located by css ".todo-count"
+     Then the item count should contain "$<expected-count>"
       And my todo list should be displayed
 ```
 
@@ -450,8 +450,8 @@ For example, the following binding will be permitted since the feature step is d
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
-    Given the item count can be located by css ".todo-count strong"
-     Then the item count should be "$<expected-count>"
+    Given the item count can be located by css ".todo-count"
+     Then the item count should contain "$<expected-count>"
       And my todo list should be displayed
 ```
 

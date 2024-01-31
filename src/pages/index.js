@@ -96,7 +96,7 @@ export default function Home() {
   @StepDef
   Scenario: a new todo list
     Given my todo list can be located by css ".todo-list"
-     When I navigate to "https://todomvc.com/examples/react"
+     When I navigate to "https://todomvc.com/examples/react/dist"
      Then the page title should contain "TodoMVC"
       And my todo list should not be displayed
   
@@ -112,8 +112,8 @@ export default function Home() {
   @Assertion
   @StepDef
   Scenario: the list will contain <expected-count> items
-    Given the item count can be located by css ".todo-count strong"
-     Then the item count should be "$<expected-count>"
+    Given the item count can be located by css ".todo-count"
+     Then the item count should contain "$<expected-count>"
       And my todo list should be displayed
 `}
               </CodeBlock>
