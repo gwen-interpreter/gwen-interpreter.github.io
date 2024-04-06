@@ -41,7 +41,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/js-functions',
+          href: '/docs/assertions#accumulated-assertions',
           position: 'left',
           label: "What's new?",
         },

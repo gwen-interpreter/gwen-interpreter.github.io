@@ -1,6 +1,6 @@
 --- 
 toc_min_heading_level: 2
-toc_max_heading_level: 3
+toc_max_heading_level: 4
 ---
 
 import Link from '@docusaurus/Link';
@@ -116,3 +116,96 @@ The default message suggests that an error was displayed but it does not explain
 
 This will now output a more meaninful error and include the contents of the form error in it too.
 - Example: `Form error was: Please provide all mandatory fields`
+
+## Accumulated Assertions
+
+> Since [v3.61.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.61.0)
+
+Error messages raised by a series [soft](#soft-assertions) or [sustained](#sustained-assertions) assertions can be aggregated into a single error with an [accumulated assert](/docs/dsl#accumulated-asserts).
+
+### Usage
+
+ <p>Example</p>
+
+  ```gherkin {4} showLineNumbers
+    Then @Soft x should not be blank
+     And @Soft y should be "1"
+     And @Soft z should be true
+     And there should be no accumulated errors
+  ```
+
+  Line 4 will pass if all the preceeding assertions pass. If however, the assertions on line 1 and 3 fail (and the one on line 2 passes), then it will raise an assertion error containing the two failed messages as follows:
+
+  ```
+  2 errors:
+  (1) x should not be blank
+  (2) z should be true but got false
+  ```
+
+  So only the messages of all failed assertions leading up to line 4 will be included.
+
+  ### Resetting
+
+  You can also [reset accumulated](/docs/dsl#i-reset-accumulated-errors) errors if you need to start a new series of accumulated assertions after the current one has completed.
+
+### Implicit variables
+
+#### Text Form
+
+  Accumulated error messages can also be referenced through the implicit [`gwen.accumulated.errors`](/docs/implicit-values#gwen-accumulated-errors) variable.
+
+  <p>Example</p>
+
+  ```gherkin {4} showLineNumbers
+    Then @Soft x should not be blank
+     And @Soft y should be "1"
+     And @Soft z should be true
+     And errors is "${gwen.accumulated.errors}"
+  ```
+
+  If the assertions on line 1 and 3 fail, `errors` on line 4 will contain:
+
+  ```
+  2 errors:
+  (1) x should not be blank
+  (2) z should be true but got false
+  ```
+
+  #### JSON Form
+
+  You can also reference the accumulated error messages as a JSON array through the implicit [`gwen.accumulated.errors:JSONArray`](/docs/implicit-values#gwen-accumulated-errors-json-array) variable.  This approach is very flexible as it allows you to customise.
+
+  <p>Example</p>
+
+  ```gherkin {4} showLineNumbers
+    Then @Soft x should not be blank
+     And @Soft y should be "1"
+     And @Soft z should be true
+     And errors is defined by js
+         """
+         () => {
+           const errorsJson = ${gwen.accumulated.errors:JSONArray}
+           return `${errorsJson.length} error(s) = ${errorsJson.join(', ')}`
+         }
+         """
+  ```
+
+  If the assertions on line 1 and 3 fail, `gwen.accumulated.errors:JSONArray` will resolve to:
+
+  ```json
+  ["x should not be blank","z should be true but got false"]
+  ```
+
+  And `errors` will evaluate to:
+
+  ```
+  2 error(s) = x should not be blank, z should be true but got false
+  ```
+
+  You could also use it to get the number of errors as follows:
+
+  ```gherkin
+     And error count is defined by js "${gwen.accumulated.errors:JSONArray}.length"
+  ```
+
+  This `error count` expression would evaluate to 2 in this example. 
