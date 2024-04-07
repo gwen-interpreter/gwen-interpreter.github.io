@@ -41,7 +41,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/assertions#accumulated-assertions',
+          href: '/docs/assertions#cumulative-assertions',
           position: 'left',
           label: "What's new?",
         },

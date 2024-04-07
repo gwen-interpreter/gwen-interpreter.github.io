@@ -117,15 +117,13 @@ The default message suggests that an error was displayed but it does not explain
 This will now output a more meaninful error and include the contents of the form error in it too.
 - Example: `Form error was: Please provide all mandatory fields`
 
-## Accumulated Assertions
+## Cumulative Assertions
 
 > Since [v3.61.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.61.0)
 
-Error messages raised by a series [soft](#soft-assertions) or [sustained](#sustained-assertions) assertions can be aggregated into a single error with an [accumulated assert](/docs/dsl#accumulated-asserts).
+Error messages raised by a series [soft](#soft-assertions) or [sustained](#sustained-assertions) assertions can be aggregated into a single error with a [cumulative assert](/docs/dsl#cumulative-asserts).
 
 ### Usage
-
- <p>Example</p>
 
   ```gherkin {4} showLineNumbers
     Then @Soft x should not be blank
@@ -142,19 +140,19 @@ Error messages raised by a series [soft](#soft-assertions) or [sustained](#susta
   (2) z should be true but got false
   ```
 
-  So only the messages of all failed assertions leading up to line 4 will be included.
-
   ### Resetting
 
-  You can also [reset accumulated](/docs/dsl#i-reset-accumulated-errors) errors if you need to start a new series of accumulated assertions after the current one has completed.
+  You can also [reset accumulated errors](/docs/dsl#i-reset-accumulated-errors) if you need to start a new series of asserts. All currently accumulated errors will be cleared.
+
+  ```gherkin
+    And I reset accumulated errors
+  ```
 
 ### Implicit variables
 
 #### Text Form
 
   Accumulated error messages can also be referenced through the implicit [`gwen.accumulated.errors`](/docs/implicit-values#gwen-accumulated-errors) variable.
-
-  <p>Example</p>
 
   ```gherkin {4} showLineNumbers
     Then @Soft x should not be blank
@@ -174,8 +172,6 @@ Error messages raised by a series [soft](#soft-assertions) or [sustained](#susta
   #### JSON Form
 
   You can also reference the accumulated error messages as a JSON array through the implicit [`gwen.accumulated.errors:JSONArray`](/docs/implicit-values#gwen-accumulated-errors-json-array) variable.  This approach is very flexible as it allows you to customise.
-
-  <p>Example</p>
 
   ```gherkin {4} showLineNumbers
     Then @Soft x should not be blank
