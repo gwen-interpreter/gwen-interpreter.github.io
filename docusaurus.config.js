@@ -66,9 +66,9 @@ module.exports = {
           position: 'right'
         },
         {
-          type: 'html',
-          position: 'right',
-          value: '<div class="sponsor"><iframe src="https://github.com/sponsors/gwen-interpreter/button" title="Sponsor gwen-interpreter" height="32" width="114" style="border: 0; border-radius: 6px; overflow: hidden;"></iframe></div>',
+          label: '♡ Sponsor',
+          href: 'https://github.com/sponsors/gwen-interpreter',
+          position: 'right'
         },
       ],
     },
