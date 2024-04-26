@@ -4617,8 +4617,9 @@ Will expand to:
   </summary>
   <p>Supported values</p>
   <ul>
+    <li><code>auto</code> to automatically enable for remote driver sessions only (default)</li>
     <li><code>true</code> to enable</li>
-    <li><code>false</code> to disable (default)</li>
+    <li><code>false</code> to disable</li>
   </ul>
   <p><br/>This setting is ignored if <Link to="/docs/settings#gwen-web-remote-url"><code>gwen.web.remote.url</code></Link> is not set.</p>
   <Tabs
@@ -4638,7 +4639,7 @@ Will expand to:
     gwen {
       web {
         remote {
-          localFileDetector = false
+          localFileDetector = auto
         }
       }
     }
@@ -4654,7 +4655,7 @@ Will expand to:
       "gwen": {
         "web": {
           "remote": {
-            "localFileDetector": false
+            "localFileDetector": "auto"
           }
         }
       }
@@ -4667,7 +4668,7 @@ Will expand to:
   Default value
 
   ```properties
-    gwen.web.remote.localFileDetector = false
+    gwen.web.remote.localFileDetector = auto
   ```
 
   </TabItem>
