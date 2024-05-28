@@ -4750,6 +4750,84 @@ Will expand to:
   </div>
 </details>
 
+<details id="gwen-web-remote-sessionRetries">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.remote.sessionRetries
+  ```
+  <p>Controls whether or not to retry failed session creation attempts.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to retry</li>
+    <li><code>false</code> to not retry</li>
+    <li><code>auto</code> to retry only for remote sessions and when <Link to="#gwen-web-remote-url"><code>gwen-web-remote-url</code></Link> is set (default)</li>
+  </ul>
+  <p>
+  When enabled, the number of retry attempts is determined by the number of available CPU cores divided by 4. The first attempt waits 1 second, the next 2 seconds, the next 3 seconds and so on until all attempts are exausted.
+  </p>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        remote {
+          sessionRetries = auto
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "remote": {
+            "sessionRetries": "auto"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.remote.sessionRetries = auto
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-remote-sessionRetries">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.63.0">v3.63.0</Link></div>
+  </div>
+</details>
+
+
 <details id="gwen-web-sendKeys-clearFirst">
   <summary class="setting">
 
