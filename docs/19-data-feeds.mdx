@@ -151,11 +151,11 @@ Gwen will read in the CSV file, and for each record will:
 
 A feature detail report will be generated for each data record. If you specify the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option, the feature will execute all records in parallel.
 
-## JSON data feeds
+## Flat JSON data feeds
 
 > Since [v3.47.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0)
 
-JSON data files can be passed into the interpreter to perform feature execution over multiple data sets. The values in each record will be bound to attributes in the feature scope by their names. Feature steps can reference the bound data using these names.
+Flat JSON data files can be passed into the interpreter to perform feature execution over multiple data sets. The values in each record will be bound to attributes in the feature scope by their names. Feature steps can reference the bound data using these names.
 
 Say you have a `users.json` file containing following user records.
 
@@ -164,9 +164,9 @@ Say you have a `users.json` file containing following user records.
 *File: data/users.json*
 ```json
 [
-  { "name": "Gwen",    "surname": "Stefani", "job": "Pop Singer"      },
-  { "name": "Gwyneth", "surname": "Paltrow", "job": "Actress"         },
-  { "name": "Gwen",    "surname": "Cooper",  "job": "Torchwood Agent" }
+  { "name": "Gwen", "surname": "Stefani", "job": "Pop Singer" },
+  { "name": "Gwyneth", "surname": "Paltrow", "job": "Actress" },
+  { "name": "Gwen", "surname": "Cooper",  "job": "Torchwood Agent" }
 ]
 ```
 
@@ -192,6 +192,183 @@ Feature: Submit user ${name} ${surname}
 Note: Interpolation of JSON fields `${name} ${surname}` is supported in the feature name and description too.
 
 :::
+
+> The current JSON record number (starting at 1) is available as an implicit attribute named `data record number` and can be accessed by reference or [interpolation](/docs/string-interpolation).
+>
+> Or since Since [v3.48.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0):
+> <ul>
+>  <li><code>data.record.number</code> = current record number starting at 1</li>
+>  <li><code>data.record.index</code> = current record index starting at 0</li>
+> </ul>
+
+You can execute this feature for all users in the JSON file by launching Gwen with the [`-i|--input-data`](/docs/cli#gwen-cli-options-input-data) CLI option.
+
+#### Examples
+
+<Tabs
+  groupId="setup"
+  defaultValue="project"
+  values={[
+    {label: 'Project', value: 'project'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+  <TabItem value="project">
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="yarn">
+
+  ```shell
+  yarn gwen -b -i gwen/data/users.json gwen/features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  yarn gwen -b --input-data gwen/data/users.json gwen/features/submit-user.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="npm">
+
+  ```shell
+  npm run gwen -- -b -i gwen/data/users.json gwen/features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  npm run gwen -- -b --input-data gwen/data/users.json gwen/features/submit-user.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+  
+
+  ```shell
+  pnpm gwen -b -i gwen/data/users.json gwen/features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  pnpm gwen -b --input-data gwen/data/users.json gwen/features/submit-user.feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  </TabItem>  
+
+  <TabItem value="standalone">
+
+  ```shell
+  gwen -b -i data/users.json features/submit-user.feature
+  ```
+
+  or 
+
+  ```shell
+  gwen -b --input-data data/users.json features/submit-user.feature
+  ```
+
+  </TabItem>
+  
+  </Tabs>
+
+Gwen will read in the JSON file, and for each record will:
+* Bind the data to the feature
+* And execute the feature
+
+A feature detail report will be generated for each data record. If you specify the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option, the feature will execute all records in parallel.
+
+## Structured JSON data feeds
+
+> Since [v3.64.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.64.0)
+
+Structured JSON data files can be passed into the interpreter to perform feature execution over multiple data sets. The values in each record will be bound to attributes in the feature scope by their path names. Feature steps can reference the bound data using these path names.
+
+Say you have a `users.json` file containing following user records.
+
+:::note JSON
+
+*File: data/users.json*
+```json
+[
+  { 
+    "user": { 
+      "name": "Gwen",
+      "surname": "Stefani",
+      "jobs": [
+        "Pop Singer",
+        "Solo Artist"
+      ]
+    }
+  },
+  { 
+    "user": { 
+      "name": "Gwyneth",
+      "surname": "Paltrow",
+      "jobs": [
+        "Actress"
+        "Singer"
+      ]
+    }
+  },
+  { 
+    "user": { 
+      "name": "Gwen",
+      "surname": "Cooper",
+      "jobs": [
+        "Actress"
+        "Torchwood Agent"
+      ]
+    }
+  }
+]
+```
+
+:::
+
+Now say you wanted to submit the details for each user to a web page through a single `submit-user.feature` file that accepts all the user data as input one at a time. You can do this in the feature by referencing JSON data values by their path names as follows:
+
+:::note Feature
+
+*File: features/submit-user.feature*
+```gherkin
+Feature: Submit user ${user.name} ${user.surname}
+
+  Scenario: submit user details
+    Given I navigate to the user details page
+     When I type user.name in the first name field
+      And I type user.surname in the last name field
+      And I click the save button
+     Then the alert msg should be "User ${user.name} saved"
+```
+
+Note: Interpolation of JSON fields `${user.name} ${user.surname}` is supported in the feature name and description too.
+
+:::
+
+### Nested Arrays
+
+Nested arrays can be referenced as JSON Array objects, for example:
+```gherkin
+  And job 1 is defined by js "${user.job}[0]"
+  And job 2 is defined by js "${user.job}[1]"
+  And job count is defined by js "${user.job}.length"
+```
 
 > The current JSON record number (starting at 1) is available as an implicit attribute named `data record number` and can be accessed by reference or [interpolation](/docs/string-interpolation).
 >
@@ -351,7 +528,7 @@ This will resolve to an identical outline when expanded at runtime:
 ```
 :::
 
-### JSON Data
+### Flat JSON Data
 
 > Since [v3.47.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0)
 
@@ -387,6 +564,58 @@ This will resolve to an identical outline when expanded at runtime:
       | Walk the dog | pending |
       | Get the milk | done    |
       | Feed the cat | pending |
+```
+:::
+
+### Structured JSON Data
+
+> Since [v3.64.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.64.0)
+
+:::note Example
+
+*JSON File: data/items2.json*
+```json
+[
+  {
+    "Item": {
+      "Name": "Mow the lawn",
+      "Status": "pending"
+    }
+  },
+  {
+    "Item": {
+      "Name": "Do the washing",
+      "Status": "done"
+    }
+  },
+  {
+    "Item": {
+      "Name": "Take a break",
+      "Status": "pending"
+    }
+  }
+]
+```
+
+Scenario outline with externalised JSON data
+
+```gherkin {1}
+  @Examples("data/items2.json")
+  Scenario Outline: I load items from data files
+    When I add a <Item.Status> "<Item.Name>" item
+```
+
+This will resolve to the following outline when expanded at runtime:
+
+```gherkin
+  Scenario Outline: I load items from data files
+    When I add a <Item.Status> "<Item.Name>" item
+    
+    Examples: Data file: data/items2.json
+      | Item.Name    | Item.Status |
+      | Walk the dog | pending     |
+      | Get the milk | done        |
+      | Feed the cat | pending     |
 ```
 :::
 
