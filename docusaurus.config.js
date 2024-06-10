@@ -41,7 +41,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/assertions#cumulative-assertions',
+          href: '/docs/data-feeds#structured-json-data-feeds',
           position: 'left',
           label: "What's new?",
         },

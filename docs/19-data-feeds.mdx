@@ -361,14 +361,7 @@ Note: Interpolation of JSON fields `${user.name} ${user.surname}` is supported i
 
 :::
 
-### Nested Arrays
-
-Nested arrays can be referenced as JSON Array objects, for example:
-```gherkin
-  And job 1 is defined by js "${user.job}[0]"
-  And job 2 is defined by js "${user.job}[1]"
-  And job count is defined by js "${user.job}.length"
-```
+You can execute this feature for all users in the JSON file by launching Gwen with the [`-i|--input-data`](/docs/cli#gwen-cli-options-input-data) CLI option.
 
 > The current JSON record number (starting at 1) is available as an implicit attribute named `data record number` and can be accessed by reference or [interpolation](/docs/string-interpolation).
 >
@@ -378,7 +371,60 @@ Nested arrays can be referenced as JSON Array objects, for example:
 >  <li><code>data.record.index</code> = current record index starting at 0</li>
 > </ul>
 
-You can execute this feature for all users in the JSON file by launching Gwen with the [`-i|--input-data`](/docs/cli#gwen-cli-options-input-data) CLI option.
+
+### Nested Arrays
+
+Nested arrays can be referenced as JSON Array objects, for example:
+```gherkin
+  And job 1 is defined by js "${user.jobs}[0]"
+  And job 2 is defined by js "${user.jobs}[1]"
+  And job count is defined by js "${user.jobs}.length"
+```
+
+### Looping Nested Arrays
+
+> Since [v3.65.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.65.0)
+
+You can loop over JSON arrays with the following DSL
+- [`<step> for each <entry> in <json|JSON> array <arrayRef>`](/docs/dsl#for-each-entry-in-json-array)
+
+Example:
+
+```gherkin
+  And I type job in the job field for each job in json array user.jobs
+```
+
+### Single JSON Object
+
+> Since [v3.64.1](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.64.1)
+
+If your input JSON contains a single object instead of an array, it will be treated as an array containing a single record of that object.
+
+For example, this:
+
+```json
+  { 
+    "user": { 
+      "name": "Gwen",
+      "surname": "Stefani",
+      "job": "Pop Singer"
+    }
+  }
+```
+
+Will be treated as:
+
+```json
+  [
+    { 
+      "user": { 
+        "name": "Gwen",
+        "surname": "Stefani",
+        "job": "Pop Singer"
+      }
+    }
+  ]
+```
 
 #### Examples
 
