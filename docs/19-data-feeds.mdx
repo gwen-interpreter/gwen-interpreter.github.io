@@ -421,6 +421,32 @@ Will be treated as:
   ]
 ```
 
+### Top-level Array of JSON values
+
+If your input JSON contains an array of non-object values (Strings or other primatives), each value will be bound to the name `data` when iterated.
+
+For example, this:
+
+```json
+  [
+    "string 1",
+    "string 2",
+    "string 3"
+  ]
+```
+
+Will be treated the same as:
+
+```json
+  {
+    "data" : [
+      "string 1",
+      "string 2",
+      "string 3"
+    ]
+  }
+```
+
 #### Examples
 
 <Tabs
