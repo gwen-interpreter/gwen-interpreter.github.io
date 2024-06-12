@@ -8440,7 +8440,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> for each <entry> in <json|JSON> <arrayRef>"
+  <step> for each <entry> in <arrayRef> array"
   ```
   <p>Executes a step for each text entry in a JSON array.</p>
   </summary>
@@ -8469,14 +8469,14 @@ All Gherkin steps that match the DSL expressions described here are readily exec
           ]
           """
      When I navigate to "https://todomvc.com/examples/react/dist"
-      And I enter item in the todo field for each item in json array my items
+      And I enter item in the todo field for each item in my items array
      Then the active count should contain "3"
   ```
 
   <div class="grid-3">
     <div><Link to="#for-each-entry-in-json-array">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.65.0">v3.65.0</Link></div>
+    <div align="center"><Link to="/docs/data-feeds#looping-nested-arrays">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.66.0">v3.66.0</Link></div>
   </div>
 </details>
 
