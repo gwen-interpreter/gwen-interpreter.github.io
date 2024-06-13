@@ -295,7 +295,7 @@ A feature detail report will be generated for each data record. If you specify t
 
 ## Structured JSON data feeds
 
-> Since [v3.65.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.65.0)
+> Since [v3.66.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.66.0)
 
 Structured JSON data files can be passed into the interpreter to perform feature execution over multiple data sets. The values in each record will be bound to attributes in the feature scope by their path names. Feature steps can reference the bound data using these path names.
 
@@ -304,7 +304,7 @@ Say you have a `users.json` file containing following user records.
 :::note JSON
 
 *File: data/users.json*
-```json
+```json {4-5,14-15,24-25}
 [
   { 
     "user": { 
@@ -346,7 +346,7 @@ Now say you wanted to submit the details for each user to a web page through a s
 :::note Feature
 
 *File: features/submit-user.feature*
-```gherkin
+```gherkin {1,5-6,8}
 Feature: Submit user ${user.name} ${user.surname}
 
   Scenario: submit user details
@@ -381,8 +381,6 @@ Nested arrays can be referenced as JSON Array objects, for example:
 ```
 
 ### Looping Nested Arrays
-
-> Since [v3.66.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.66.0)
 
 You can loop over JSON arrays with the following DSL
 - [`<step> for each <entry> in <arrayRef> array`](/docs/dsl#for-each-entry-in-json-array)
@@ -666,7 +664,7 @@ This will resolve to an identical outline when expanded at runtime:
 
 ### Structured JSON Data
 
-> Since [v3.65.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.65.0)
+> Since [v3.66.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.66.0)
 
 :::note Example
 
