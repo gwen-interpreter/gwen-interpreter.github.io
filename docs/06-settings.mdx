@@ -5639,10 +5639,12 @@ Will expand to:
     gwen {
       web {
         chrome {
-          prefs = [
-            "download.default_directory=path/to/dir",
-            "download.prompt_for_download=false"
-          ]
+          prefs {
+            download {
+              default_directory = path/to/dir
+              prompt_for_download = false
+            }
+          }
         }
       }
     }
@@ -5658,10 +5660,12 @@ Will expand to:
       "gwen": {
         "web": {
           "chrome": {
-            "prefs": [
-              "download.default_directory=path/to/dir",
-              "download.prompt_for_download=false"
-            ]
+            "prefs": {
+              "download": {
+                "default_directory": "path/to/dir",
+                "prompt_for_download": false
+              }
+            }
           }
         }
       }
@@ -6196,10 +6200,12 @@ Will expand to:
     gwen {
       web {
         edge {
-          prefs = [
-            "download.default_directory=path/to/dir",
-            "download.prompt_for_download=false"
-          ]
+          prefs {
+            download {
+              default_directory = path/to/dir
+              prompt_for_download = false
+            }
+          }
         }
       }
     }
@@ -6215,10 +6221,12 @@ Will expand to:
       "gwen": {
         "web": {
           "edge": {
-            "prefs": [
-              "download.default_directory=path/to/dir",
-              "download.prompt_for_download=false"
-            ]
+            "prefs": {
+              "download": {
+                "default_directory": "path/to/dir",
+                "prompt_for_download": false
+              }
+            }
           }
         }
       }
@@ -6333,10 +6341,14 @@ Will expand to:
     gwen {
       web {
         firefox {
-          prefs = [
-            "browser.download.useDownloadDir=false",
-            "browser.download.loglevel=Error"
-          ]
+          prefs {
+            browser {
+              download {
+                useDownloadDir = false
+                loglevel = Error
+              }
+            }
+          }
         }
       }
     }
@@ -6352,10 +6364,14 @@ Will expand to:
       "gwen": {
         "web": {
           "firefox": {
-            "prefs": [
-              "browser.download.useDownloadDir=false",
-              "browser.download.loglevel=Error"
-            ]
+            "prefs": {
+              "browser": {
+                "download": {
+                  "useDownloadDir": false,
+                  "loglevel": "Error"
+                }
+              }
+            }
           }
         }
       }
