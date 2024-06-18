@@ -133,11 +133,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;expression&gt;</code> is the regex selector expression</li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
-      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
     </ul>
   </p>
   <p>Example</p>
@@ -185,11 +186,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;expression&gt;</code> is the XPath selector expression</li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
-      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
     </ul>
   </p>
   <p>Example</p>
@@ -237,11 +239,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;expression&gt;</code> is the XPath selector expression</li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
-      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
     </ul>
   </p>
   <p>Example</p>
@@ -320,11 +323,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     </li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
-      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
     </ul>
   </p>
   <p>Examples</p>
@@ -355,6 +359,15 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;javascriptRef&gt;</code> is the name of the binding containing the javascript function to apply</li>
     <li><code>&lt;argument&gt;</code> argument to apply the function</li>
   </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
+    </ul>
+  </p>
   <p>Examples</p>
 
   ```gherkin {9}
@@ -410,6 +423,15 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
   </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
+    </ul>
+  </p>
   <p>Examples</p>
 
   ```gherkin {3}
@@ -456,11 +478,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;expression&gt;</code> is the system process that will return the value to assign (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
-      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
     </ul>
   </p>
   <p>Example</p>
@@ -497,11 +520,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;delmiters&gt;</code> is a regex pattern defining the delimiter(s) used in <code>&lt;expression&gt;</code></li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
-      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
     </ul>
   </p>
   <p>Example</p>
@@ -532,11 +556,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <li><code>&lt;expression&gt;</code> is the unix system process that will return the value to assign (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
   </ul>
   <p>
-    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
-      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
     </ul>
   </p>
   <p>Example</p>
@@ -5710,11 +5735,12 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </ul>
 
   <p>
-    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
     <ul>
       <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
       <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
-      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
     </ul>
   </p>
 
