@@ -808,3 +808,23 @@ Scenario outline which raises an error if externalised and filtered data is empt
 :::
 
 Since [v3.47.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0), a JSON data file can also be used.
+
+### Parallel processing
+
+> Since [v3.69.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.69.0)
+
+The `Parallel` annotion can be used on examples to force each entry to run in parallel
+
+```gherkin {2}
+  @Examples("data/items.csv")
+  @Parallel
+  Scenario Outline: I load items from data files
+    When I add a <Status> "<Item>" item
+```
+
+> <p><b>Restrictions</b></p>
+> The `Parallel` annotation:
+>  - Cannot be used in a nested manner (an error will be raised on any such detection)
+>  - Will come to effect only when Gwen is invoked without the [`--parallel`](/docs/cli#gwen-cli-options-parallel) option (i.e: when no other parallel execution is taking place), and will be implicity removed otherwise.
+
+See also: [Parallel Scenario Outline Examples](/docs/parallel#parallel-scenario-outline-examples)

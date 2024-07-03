@@ -41,7 +41,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/data-feeds#structured-json-data-feeds',
+          href: '/docs/parallel#parallel-scenario-outline-examples',
           position: 'left',
           label: "What's new?",
         },

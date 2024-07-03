@@ -44,6 +44,38 @@ When [`maxThreads`](#maximum-threads) is `auto` (default)
 When [`maxThreads`](#maximum-threads) is `auto` (default)
 - If you launch Gwen on a 8 core machine with the `--parallel` option passing in many feature files (or a single directory containing many feature files), then at most 8 scenarios will run in parallel across the cores at any one time. If there are a total of 9 scenarios, then 8 of them will execute in parallel and the remaining scenario execution be deferred until one of those completes.
 
+### Parallel scenario outline examples
+
+> Since [v3.69.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.69.0)
+
+The `Parallel` annotion can be used on examples to force each entry to run in parallel
+
+```gherkin {4}
+  Scenario Outline: I load items from data files
+    When I add a <Status> "<Item>" item
+    
+    @Parallel
+    Examples: add item
+      | Item         | Status  |
+      | Walk the dog | pending |
+      | Get the milk | done    |
+      | Feed the cat | pending |
+```
+
+It can also be used in conjunction with `Examples` annotations
+
+```gherkin {2}
+  @Examples("data/items.csv")
+  @Parallel
+  Scenario Outline: I load items from data files
+    When I add a <Status> "<Item>" item
+```
+
+> <p><b>Restrictions</b></p>
+> The `Parallel` annotation:
+>  - Cannot be used in a nested manner (an error will be raised on any such detection)
+>  - Will come to effect only when Gwen is invoked without the [`--parallel`](/docs/cli#gwen-cli-options-parallel) option (i.e: when no other parallel execution is taking place), and will be implicity removed otherwise.
+
 ## Staggering
 
 > Since [v1.1.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.1.0)
