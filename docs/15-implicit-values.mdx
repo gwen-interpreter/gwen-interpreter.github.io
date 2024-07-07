@@ -12,6 +12,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 The following values are implicitly available to all feature and meta files at runtime by reference and [interpolation](/docs/string-interpolation).
 
+## Feature Level
+
 <details id="gwen-feature-file-name">
   <summary class="setting">
 
@@ -114,62 +116,15 @@ The following values are implicitly available to all feature and meta files at r
   </div>
 </details>
 
-<details id="gwen-scenario-name">
-  <summary class="setting">
-
-  ```properties
-  gwen.scenario.name
-  ```
-  <p>The current scenario name (as specified in Scenario clause).</p>
-
-  </summary>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-scenario-name">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-rule-name">
-  <summary class="setting">
-
-  ```properties
-  gwen.rule.name
-  ```
-  <p>The current rule name (as specified in Rule clause).</p>
-
-  </summary>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-rule-name">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.21.0">v2.21.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-stepdef-name">
-  <summary class="setting">
-
-  ```properties
-  gwen.stepDef.name
-  ```
-  <p>The currently executing StepDef name (as resolved at runtime).</p>
-
-  </summary>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-stepdef-name">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.39.0">v3.39.0</Link></div>
-  </div>
-</details>
-
 <details id="gwen-eval-status-keyword">
   <summary class="setting">
 
   ```properties
   gwen.eval.status.keyword
+  ```
+  Or since v3.70.0:
+  ```properties
+  gwen.feature.eval.status.keyword
   ```
   <p>The current evaluation status (<code>Pending</code>, <code>Passed</code> or <code>Failed</code>).</p>
 
@@ -188,6 +143,10 @@ The following values are implicitly available to all feature and meta files at r
   ```properties
   gwen.eval.status.keyword.upperCased
   ```
+  Or since v3.70.0:
+  ```properties
+  gwen.feature.eval.status.keyword.upperCased
+  ```
   <p>The current evaluation status in upper case (<code>PENDING</code>, <code>PASSED</code> or <code>FAILED</code>).</p>
 
   </summary>
@@ -204,6 +163,10 @@ The following values are implicitly available to all feature and meta files at r
 
   ```properties
   gwen.eval.status.keyword.lowerCased
+  ```
+  Or since v3.70.0:
+  ```properties
+  gwen.feature.eval.status.keyword.lowerCased
   ```
   <p>The current evaluation status in lower case (<code>pending</code>, <code>passed</code> or <code>failed</code>).</p>
 
@@ -222,6 +185,10 @@ The following values are implicitly available to all feature and meta files at r
   ```properties
   gwen.eval.status.isPassed
   ```
+  Or since v3.70.0:
+  ```properties
+  gwen.feature.eval.status.isPassed
+  ```
   <p><code>true</code> if the current evaluation status is not <code>Failed</code>, <code>false</code> otherwise.</p>
 
   </summary>
@@ -238,6 +205,10 @@ The following values are implicitly available to all feature and meta files at r
 
   ```properties
   gwen.eval.status.isFailed
+  ```
+  Or since v3.70.0:
+  ```properties
+  gwen.feature.eval.status.isFailed
   ```
   <p><code>true</code> if the current evaluation status is <code>Failed</code>, <code>false</code> otherwise.</p>
 
@@ -256,6 +227,10 @@ The following values are implicitly available to all feature and meta files at r
   ```properties
   gwen.eval.status.message
   ```
+  Or since v3.70.0:
+  ```properties
+  gwen.feature.eval.status.message
+  ```
   <p>The current evaluation status message if the evaluation status is <code>Failed</code>, blank otherwise.</p>
 
   </summary>
@@ -273,6 +248,10 @@ The following values are implicitly available to all feature and meta files at r
   ```properties
   gwen.eval.status.message.escaped
   ```
+  Or since v3.70.0:
+  ```properties
+  gwen.feature.eval.status.message.escaped
+  ```
   <p>The current evaluation status message with all new line and special characters escaped (using Java escaping rules). Non blank if the evaluation status is <code>Failed</code>, blank otherwise.</p>
 
   </summary>
@@ -283,6 +262,639 @@ The following values are implicitly available to all feature and meta files at r
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></div>
   </div>
 </details>
+
+<details id="gwen-eval-duration">
+  <summary class="setting">
+
+  ```properties
+  gwen.eval.duration
+  ```
+  Or since v3.70.0:
+  ```properties
+  gwen.feature.eval.duration
+  ```
+  <p>Provides access the elapsed duration since the beginning of a feature execution in human readable format. Example: 12s 345ms</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-eval-duration">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.68.0">v3.68.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-eval-duration-msecs">
+  <summary class="setting">
+
+  ```properties
+  gwen.eval.duration.msecs
+  ```
+  Or since v3.70.0:
+  ```properties
+  gwen.feature.eval.duration.msecs
+  ```
+  <p>Provides access the elapsed duration since the beginning of a feature execution in milliseconds.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-eval-duration-msecs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.68.0">v3.68.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-eval-duration-secs">
+  <summary class="setting">
+
+  ```properties
+  gwen.eval.duration.secs
+  ```
+  Or since v3.70.0:
+  ```properties
+  gwen.feature.eval.duration.secs
+  ```
+  <p>Provides access the elapsed duration since the beginning of a feature execution in seconds.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-eval-duration-secs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.68.1">v3.68.1</Link></div>
+  </div>
+</details>
+
+## Rule Level
+
+<details id="gwen-rule-name">
+  <summary class="setting">
+
+  ```properties
+  gwen.rule.name
+  ```
+  <p>The current rule name (as specified in Rule clause).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rule-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.21.0">v2.21.0</Link></div>
+  </div>
+</details>
+
+
+<details id="gwen-rule-eval-status-keyword">
+  <summary class="setting">
+
+  ```properties
+  gwen.rule.eval.status.keyword
+  ```
+  <p>The current rule level evaluation status (<code>Pending</code>, <code>Passed</code> or <code>Failed</code>).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rule-eval-status-keyword">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rule-eval-status-keyword-upperCased">
+  <summary class="setting">
+
+  ```properties
+  gwen.rule.eval.status.keyword.upperCased
+  ```
+  <p>The current rule level evaluation status in upper case (<code>PENDING</code>, <code>PASSED</code> or <code>FAILED</code>).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rule-eval-status-keyword-upperCased">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rule-eval-status-keyword-lowerCased">
+  <summary class="setting">
+
+  ```properties
+  gwen.rule.eval.status.keyword.lowerCased
+  ```
+  <p>The current rule level evaluation status in lower case (<code>pending</code>, <code>passed</code> or <code>failed</code>).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rule-eval-status-keyword-lowerCased">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rule-eval-status-isPassed">
+  <summary class="setting">
+
+  ```properties
+  gwen.rule.eval.status.isPassed
+  ```
+  <p><code>true</code> if the rule scenario level evaluation status is not <code>Failed</code>, <code>false</code> otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rule-eval-status-isPassed">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rule-eval-status-isFailed">
+  <summary class="setting">
+
+  ```properties
+  gwen.rule.eval.status.isFailed
+  ```
+  <p><code>true</code> if rule level the current evaluation status is <code>Failed</code>, <code>false</code> otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rule-eval-status-isFailed">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rule-eval-status-message">
+  <summary class="setting">
+
+  ```properties
+  gwen.rule.eval.status.message
+  ```
+  <p>The current rule level evaluation status message if the evaluation status is <code>Failed</code>, blank otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rule-eval-status-message">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rule-eval-status-message-escaped">
+  <summary class="setting">
+
+  ```properties
+  gwen.rule.eval.status.message.escaped
+  ```
+  <p>The current rule level evaluation status message with all new line and special characters escaped (using Java escaping rules). Non blank if the evaluation status is <code>Failed</code>, blank otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rule-eval-status-message-escaped">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rule-eval-duration">
+  <summary class="setting">
+
+  ```
+  gwen.rule.eval.duration
+  ```
+  <p>Provides access the elapsed duration since the beginning of a rule execution in human readable format. Example: 12s 345ms</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rule-eval-duration">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rule-eval-duration-msecs">
+  <summary class="setting">
+
+  ```
+  gwen.rule.eval.duration.msecs
+  ```
+  <p>Provides access the elapsed duration since the beginning of a rule execution in milliseconds.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rule-eval-duration-msecs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-rule-eval-duration-secs">
+  <summary class="setting">
+
+  ```
+  gwen.rule.eval.duration.secs
+  ```
+  <p>Provides access the elapsed duration since the beginning of a rule execution in seconds.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-rule-eval-duration-secs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+## Scenario Level
+
+<details id="gwen-scenario-name">
+  <summary class="setting">
+
+  ```properties
+  gwen.scenario.name
+  ```
+  <p>The current scenario name (as specified in Scenario clause).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-scenario-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-scenario-eval-status-keyword">
+  <summary class="setting">
+
+  ```properties
+  gwen.scenario.eval.status.keyword
+  ```
+  <p>The current scenario level evaluation status (<code>Pending</code>, <code>Passed</code> or <code>Failed</code>).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-scenario-eval-status-keyword">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-scenario-eval-status-keyword-upperCased">
+  <summary class="setting">
+
+  ```properties
+  gwen.scenario.eval.status.keyword.upperCased
+  ```
+  <p>The current scenario level evaluation status in upper case (<code>PENDING</code>, <code>PASSED</code> or <code>FAILED</code>).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-scenario-eval-status-keyword-upperCased">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-scenario-eval-status-keyword-lowerCased">
+  <summary class="setting">
+
+  ```properties
+  gwen.scenario.eval.status.keyword.lowerCased
+  ```
+  <p>The current scenario level evaluation status in lower case (<code>pending</code>, <code>passed</code> or <code>failed</code>).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-scenario-eval-status-keyword-lowerCased">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-scenario-eval-status-isPassed">
+  <summary class="setting">
+
+  ```properties
+  gwen.scenario.eval.status.isPassed
+  ```
+  <p><code>true</code> if the current scenario level evaluation status is not <code>Failed</code>, <code>false</code> otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-scenario-eval-status-isPassed">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-scenario-eval-status-isFailed">
+  <summary class="setting">
+
+  ```properties
+  gwen.scenario.eval.status.isFailed
+  ```
+  <p><code>true</code> if scenario level the current evaluation status is <code>Failed</code>, <code>false</code> otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-scenario-eval-status-isFailed">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-scenario-eval-status-message">
+  <summary class="setting">
+
+  ```properties
+  gwen.scenario.eval.status.message
+  ```
+  <p>The current scenario level evaluation status message if the evaluation status is <code>Failed</code>, blank otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-scenario-eval-status-message">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-scenario-eval-status-message-escaped">
+  <summary class="setting">
+
+  ```properties
+  gwen.scenario.eval.status.message.escaped
+  ```
+  <p>The current scenario level evaluation status message with all new line and special characters escaped (using Java escaping rules). Non blank if the evaluation status is <code>Failed</code>, blank otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-scenario-eval-status-message-escaped">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-scenario-eval-duration">
+  <summary class="setting">
+
+  ```
+  gwen.scenario.eval.duration
+  ```
+  <p>Provides access the elapsed duration since the beginning of a scenario execution in human readable format. Example: 12s 345ms</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-scenario-eval-duration">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-scenario-eval-duration-msecs">
+  <summary class="setting">
+
+  ```
+  gwen.scenario.eval.duration.msecs
+  ```
+  <p>Provides access the elapsed duration since the beginning of a scenario execution in milliseconds.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-scenario-eval-duration-msecs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-scenario-eval-duration-secs">
+  <summary class="setting">
+
+  ```
+  gwen.scenario.eval.duration.secs
+  ```
+  <p>Provides access the elapsed duration since the beginning of a scenario execution in seconds.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-scenario-eval-duration-secs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+## StepDef Level
+
+<details id="gwen-stepdef-name">
+  <summary class="setting">
+
+  ```properties
+  gwen.stepDef.name
+  ```
+  <p>The currently executing StepDef name (as resolved at runtime).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-stepdef-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.39.0">v3.39.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-stepDef-eval-status-keyword">
+  <summary class="setting">
+
+  ```properties
+  gwen.stepDef.eval.status.keyword
+  ```
+  <p>The current StepDef level evaluation status (<code>Pending</code>, <code>Passed</code> or <code>Failed</code>).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-stepDef-eval-status-keyword">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-stepDef-eval-status-keyword-upperCased">
+  <summary class="setting">
+
+  ```properties
+  gwen.stepDef.eval.status.keyword.upperCased
+  ```
+  <p>The current StepDef level evaluation status in upper case (<code>PENDING</code>, <code>PASSED</code> or <code>FAILED</code>).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-stepDef-eval-status-keyword-upperCased">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-stepDef-eval-status-keyword-lowerCased">
+  <summary class="setting">
+
+  ```properties
+  gwen.stepDef.eval.status.keyword.lowerCased
+  ```
+  <p>The current StepDef level evaluation status in lower case (<code>pending</code>, <code>passed</code> or <code>failed</code>).</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-stepDef-eval-status-keyword-lowerCased">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-stepDef-eval-status-isPassed">
+  <summary class="setting">
+
+  ```properties
+  gwen.stepDef.eval.status.isPassed
+  ```
+  <p><code>true</code> if the current StepDef level evaluation status is not <code>Failed</code>, <code>false</code> otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-stepDef-eval-status-isPassed">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-stepDef-eval-status-isFailed">
+  <summary class="setting">
+
+  ```properties
+  gwen.stepDef.eval.status.isFailed
+  ```
+  <p><code>true</code> if StepDef level the current evaluation status is <code>Failed</code>, <code>false</code> otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-stepDef-eval-status-isFailed">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-stepDef-eval-status-message">
+  <summary class="setting">
+
+  ```properties
+  gwen.stepDef.eval.status.message
+  ```
+  <p>The current StepDef level evaluation status message if the evaluation status is <code>Failed</code>, blank otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-stepDef-eval-status-message">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-stepDef-eval-status-message-escaped">
+  <summary class="setting">
+
+  ```properties
+  gwen.stepDef.eval.status.message.escaped
+  ```
+  <p>The current StepDef level evaluation status message with all new line and special characters escaped (using Java escaping rules). Non blank if the evaluation status is <code>Failed</code>, blank otherwise.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-stepDef-eval-status-message-escaped">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-stepDef-eval-duration">
+  <summary class="setting">
+
+  ```
+  gwen.stepDef.eval.duration
+  ```
+  <p>Provides access the elapsed duration since the beginning of a StepDef execution in human readable format. Example: 12s 345ms</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-stepDef-eval-duration">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-stepDef-eval-duration-msecs">
+  <summary class="setting">
+
+  ```
+  gwen.stepDef.eval.duration.msecs
+  ```
+  <p>Provides access the elapsed duration since the beginning of a StepDef execution in milliseconds.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-stepDef-eval-duration-msecs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-stepDef-eval-duration-secs">
+  <summary class="setting">
+
+  ```
+  gwen.stepDef.eval.duration.secs
+  ```
+  <p>Provides access the elapsed duration since the beginning of a StepDef execution in seconds.</p>
+
+  </summary>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-stepDef-eval-duration-secs">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.70.0">v3.70.0</Link></div>
+  </div>
+</details>
+
+## Web Session
 
 <details id="gwen-web-session-id">
   <summary class="setting">
@@ -300,6 +912,8 @@ The following values are implicitly available to all feature and meta files at r
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.57.0">v3.57.0</Link></div>
   </div>
 </details>
+
+## For-Each Iteration
 
 <details id="iteration-index">
   <summary class="setting">
@@ -334,6 +948,8 @@ The following values are implicitly available to all feature and meta files at r
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.48.0">v3.48.0</Link></div>
   </div>
 </details>
+
+## Input Data Record
 
 <details id="data-record-index">
   <summary class="setting">
@@ -403,6 +1019,8 @@ The following values are implicitly available to all feature and meta files at r
   </div>
 </details>
 
+## Accumulated Errors
+
 <details id="gwen-accumulated-errors">
   <summary class="setting">
 
@@ -434,56 +1052,5 @@ The following values are implicitly available to all feature and meta files at r
     <div><Link to="#gwen-accumulated-errors-json-array">Link</Link></div>
     <div align="center"><Link to="/docs/assertions#json-form">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.61.0">v3.61.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-eval-duration">
-  <summary class="setting">
-
-  ```
-  gwen.eval.duration
-  ```
-  <p>Provides access the elapsed duration since the beginning of a feature execution in human readable format. Example: 12s 345ms</p>
-
-  </summary>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-eval-duration">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.68.0">v3.68.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-eval-duration-msecs">
-  <summary class="setting">
-
-  ```
-  gwen.eval.duration.msecs
-  ```
-  <p>Provides access the elapsed duration since the beginning of a feature execution in milliseconds.</p>
-
-  </summary>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-eval-duration-msecs">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.68.0">v3.68.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-eval-duration-secs">
-  <summary class="setting">
-
-  ```
-  gwen.eval.duration.secs
-  ```
-  <p>Provides access the elapsed duration since the beginning of a feature execution in seconds.</p>
-
-  </summary>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-eval-duration-ssecs">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.68.1">v3.68.1</Link></div>
   </div>
 </details>
