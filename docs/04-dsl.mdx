@@ -111,6 +111,41 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
+<details id="name-is-defined-by-encoding-file">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by <encoding> file "<filepath>"
+  ```
+  <p>Associates a name with the contents of a file using a given character encoding. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to associated the file contents</li>
+    <li><code>&lt;encoding&gt;</code> is the <Link to="https://docs.oracle.com/javase/8/docs/technotes/guides/intl/encoding.doc.html">encoding</Link> to use when reading the file</li>
+    <li><code>&lt;filepath&gt;</code> the path to the file (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+  </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code> or <code>@Lazy</code></Link> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either annotation, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+    </ul>
+  </p>
+  <p>Example</p>
+
+  ```gherkin
+    Given the content is defined by UTF-8 file "path/to/file.txt"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-encoding-file">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.71.0">v3.71.0</Link></div>
+  </div>
+</details>
+
 #### Regex bindings
 
 <details id="name-is-defined-in-text-ref-by-regex-expression">
