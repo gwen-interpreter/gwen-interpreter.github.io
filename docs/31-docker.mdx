@@ -114,7 +114,6 @@ USER gwen
 The init --docker commad will create a `gwen/docker-compose.yml` file with the following content to create containers for Gwen, Chrome, Firefox, and Edge web browsers, a video recorder, and a Selenoid hub that Gwen will connect to.
 
 ```yaml
-version: '3.5'
 services:
   chrome:
     image: selenoid/chrome:latest
@@ -445,8 +444,7 @@ If you're running Chrome or Edge in a Selenoid docker container on a Mac ARM pro
 Make the following changes to the following files to use the experimanal [Seleniarm](https://github.com/seleniumhq-community/docker-seleniarm) images instead and try again.
 
 File: *gwen/docker-compose.yml*
-```yaml {4,8}
-version: '3.5'
+```yaml {3,7}
 services:
   chrome:
     image: seleniarm/standalone-chromium:latest
