@@ -3858,28 +3858,6 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
-<details id="i-switch-to-the-default-content">
-  <summary class="dsl">
-
-  ```gherkin
-  I switch to the default content
-  ```
-  <p>Switches from an iframe to the default or main content window.</p>
-  </summary>
-  <p>Example</p>
-
-  ```gherkin {2}
-    When I navigate to "https://page-with-iframes"
-     And I switch to the default content
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-switch-to-the-default-content">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></div>
-  </div>
-</details>
-
 <details id="i-start-a-new-browser-tab-or-window">
   <summary class="dsl">
 
@@ -4207,6 +4185,30 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <div><Link to="#i-send-keys">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.44.0">v2.44.0</Link></div>
+  </div>
+</details>
+
+#### Frame actions
+
+<details id="i-switch-to-the-default-content">
+  <summary class="dsl">
+
+  ```gherkin
+  I switch to the default content
+  ```
+  <p>Switches to either the first frame on the page, or the main document when a page contains iframes.</p>
+  </summary>
+  <p>Example</p>
+
+  ```gherkin {2}
+    When I navigate to "https://page-with-iframes"
+     And I switch to the default content
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-switch-to-the-default-content">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></div>
   </div>
 </details>
 
