@@ -56,15 +56,16 @@ Format feature and meta files
 
 The following environment variables can be set to override certain settings as below:
 
-| Since   | Environment variable | Values                                                                                                    | Overrides setting                                                                 | Affects CLI option                           |
-| :-----: |:-------------------- | --------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- | :------------------------------------------- |
+| Since   | Environment variable | Values                                                                                                    | Overrides setting                                                       | Affects CLI option                           |
+| :-----: |:-------------------- | --------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------- | :------------------------------------------- |
 | v3.16.0 | `GWEN_BROWSER`       | <code>chrome&#124;edge&#124;</code><br/><code>firefox&#124;safari&#124;ie</code>                          | [`gwen.target.browser`](/docs/settings#gwen-target-browser)             |                                              |
 | v3.23.0 | `GWEN_ENV`           | <code>local&#124;dev&#124;</code><br/><code>test&#124;staging&#124;</code><br/><code>prod&#124;..</code>  | [`gwen.target.env`](/docs/settings#gwen-target-env)                     |                                              |
 | v3.16.0 | `GWEN_DRY_RUN`       | <code>true&#124;false</code>                                                                              | [`gwen.cli.options.dryRun`](/docs/settings#gwen-cli-options-dry-run)    | [`-n, --dry-run`](#gwen-cli-options-dry-run) |
 | v3.16.0 | `GWEN_PARALLEL`      | <code>true&#124;false</code>                                                                              | [`gwen.cli.options.parallel`](/docs/settings#gwen-cli-options-parallel) | [`--parallel`](#gwen-cli-options-parallel)   |
 | v3.18.0 | `GWEN_THREADS`       | <code>auto&#124;number</code>                                                                             | [`gwen.parallel.maxThreads`](/docs/settings#gwen-parallel-maxThreads)   |                                              |
 | v3.16.0 | `GWEN_HEADLESS`      | <code>true&#124;false</code>                                                                              | [`gwen.web.browser.headless`](/docs/settings#gwen-web-browser-headless) |                                              |
-| v3.18.0 | `GWEN_VIDEO`         | <code>true&#124;false</code>                                                                              | [`selenoid:options.enableVideo`](/docs/docker#video-capture)                      |                                              |
+| v3.18.0 | `GWEN_VIDEO`         | <code>true&#124;false</code>                                                                              | [`selenoid:options.enableVideo`](/docs/docker#video-capture)            |                                              |
+| v3.71.3 | `GWEN_WEB_VERSION`   | Version or Semver range (Overrides Gwen web version in package.json)                                      |                                                                         |                                              |
 
 <br/>
 
