@@ -4212,6 +4212,35 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
+<details id="i-switch-to-frame-content">
+  <summary class="dsl">
+
+  ```gherkin
+  I switch to <frame> content
+  ```
+  <p>Switches the context to a frame.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;frame&gt;</code> is a frame binding name
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given the frame can be located by id "frame_id"
+    When I navigate to "https://page-with-iframes"
+     And I switch to the frame content
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-switch-to-frame-content">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.72.0">v2.72.0</Link></div>
+  </div>
+</details>
+
 #### Alert and Popup actions
 
 <details id="i-accept-the-alert-or-confirmation-popup">
