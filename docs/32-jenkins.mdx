@@ -97,30 +97,45 @@ pipeline {
     stage("Prepare") {
       steps {
         script {
-          // Create output dir to avoid potential permission issues in docker
+          // Prepare output dir
           sh 'mkdir -p gwen/output'
+          sh 'rm -rf gwen/output/**'
         }
       }
     }
     stage("Gwen") {
       steps {
-        script {
+        try {
           // Spin up environment and execute Gwen in docker
-          sh "docker-compose -f gwen/docker-compose.yml run gwen"
+          sh "docker-compose -p ${env.BUILD_TAG.toLowerCase()} -f gwen/docker-compose.yml run gwen"
+          if (!fileExists('gwen/output/reports/html/index.html')) {
+            error 'Evaluation report not generated'
+          }
+        } catch(err) {
+          if (fileExists('gwen/output/reports/html/index.html')) {
+            unstable 'Gwen completed with failure(s) reported.'
+          } else {
+            error "Gwen failed to execute or complete: ${err.getMessage()}"
+          }
         }
       }
       post {
         always {
-          sh "docker-compose -f gwen/docker-compose.yml down"
+          sh "docker-compose -p ${env.BUILD_TAG.toLowerCase()} -f gwen/docker-compose.yml down || true"
           archiveArtifacts artifacts: 'gwen/output/reports/**'
           publishHTML(target: [
-                        allowMissing          : false,
-                        alwaysLinkToLastBuild : true,
+                        allowMissing          : true,
+                        alwaysLinkToLastBuild : false,
                         keepAll               : true,
                         reportDir             : "gwen/output/reports/html",
                         reportFiles           : 'index.html',
                         reportName            : "Gwen-Report"
           ])
+        }
+        failure {
+          script {
+            // something went wrong, raise alert here
+          }
         }
       }
     }
