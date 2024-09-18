@@ -57,11 +57,9 @@ The timeout annotation can be used used on various [wait](/docs/dsl#sleeps-and-w
   # will cause lookup to fail if the username is not available on the page after waiting 20 seconds
   And @Timeout('20s') the username can be located by id "username"
 
-  # will cause lookup to fail if the username is not available on the page after waiting 1m and 30 seconds
+  # will cause lookup to fail if the username is not available on the page after waiting 1 minute and 30 seconds
   And @Timeout('1m30s') the username can be located by id "username"
 
-  # will cause lookup to fail if the username is not available on the page after configured wait time (default behaviour)
-  And the username can be located by id "username"
 ```
 
 ### DSL Approach
@@ -78,8 +76,6 @@ The timeout annotation can be used used on various [wait](/docs/dsl#sleeps-and-w
   # will cause lookup to fail if the username is not available on the page after waiting 20 seconds
   And the username can be located by id "username" with 20 second timeout
 
-  # will cause lookup to fail if the username is not available on the page after configured wait time (default behaviour)
-  And the username can be located by id "username"
 ```
 
 ## DSLs
