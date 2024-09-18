@@ -41,7 +41,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/parallel#parallel-scenario-outline-examples',
+          href: '/docs/locator-level-timeouts#timeout-annotations',
           position: 'left',
           label: "What's new?",
         },

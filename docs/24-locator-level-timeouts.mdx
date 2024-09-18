@@ -14,7 +14,62 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Gwen supports specifying [locator](/docs/dsl#element-locators) level timeouts for overriding the default timeout [`gwen.web.locator.wait.seconds`](/docs/settings#gwen-web-locator-wait-seconds). This is useful for cases where you may want to increase the locator timeout period for some web elements without impacting others. A web element that takes a long time to load for example can have a higher locator timeout  without slowing down the rest of your locators.
 
-### Examples
+### Timeout Annotations
+
+> Since [v2.73.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.73.0)
+
+Syntax
+
+```gherkin
+@Timeout('<duration>')
+```
+
+Where:
+- `<duration>` can be any of:
+  - `#h#m#s#ms` for a number of hours, minutes, seconds and milliseconds - example: `@Timeout('1h2m30s100ms')`
+  - `#h#m#s` for a number of hours, minutes and seconds - example: `@Timeout('1h2m30s')`
+  - `#h#m#ms` for a number of hours, minutes and milliseconds - example: `@Timeout('1h2m100ms')`
+  - `#h#ms` for a number of hours and milliseconds - example: `@Timeout('1h100ms')`
+  - `#h` for a number of hours - example: `@Timeout('1h')`
+  - `#m#s#ms` for a number of minutes, seconds and milliseconds - example: `@Timeout('2m30s100ms')`
+  - `#m#s` for a number of minutes and seconds - example: `@Timeout('2m30s')`
+  - `#m#ms` for a number of minutes and milliseconds - example: `@Timeout('2m100ms')`
+  - `#m` for a number of minutes - example: `@Timeout('2m')`
+  - `#s#ms` for a number of seconds and milliseconds - example: `@Timeout('30s100ms')`
+  - `#s` for a number of seconds - example: `@Timeout('30s')`
+  - `#ms` for a number of milliseconds - example: `@Timeout('100ms')`
+  - `0h` for no timeout period - example: `@Timeout('0h')`
+  - `0m` for no timeout period - example: `@Timeout('0m')`
+  - `0s` for no timeout period - example: `@Timeout('0s')`
+  - `0ms` for no timeout period - example: `@Timeout('0ms')`
+
+The timeout annotation can be used used on various [wait](/docs/dsl#sleeps-and-waits), [until/while](/docs/dsl#untilwhile), [for each](/docs/dsl#foreach), [assertion](/docs/dsl#assertions) or [locator](/docs/dsl#element-locators) steps.
+
+> #### Delay Annotation
+> The same duration patterns also apply to `@Delay` annotations used to control the delay time between repeated operations in the various [wait](/docs/dsl#sleeps-and-waits), [until/while](/docs/dsl#untilwhile) loops. 
+
+#### Examples
+
+```gherkin
+  # will cause lookup to fail immediately if username is not present on the page
+  And @Timeout('0s') the username can be located by id "username"
+
+  # will cause lookup to fail if the username is not available on the page after waiting 20 seconds
+  And @Timeout('20s') the username can be located by id "username"
+
+  # will cause lookup to fail if the username is not available on the page after waiting 1m and 30 seconds
+  And @Timeout('1m30s') the username can be located by id "username"
+
+  # will cause lookup to fail if the username is not available on the page after configured wait time (default behaviour)
+  And the username can be located by id "username"
+```
+
+### DSL Approach
+
+:::caution Deprecated
+  Deprecated since v3.73.0 and will be dropped in next major Gwen 4 release. 
+  <p>Instead use above annotation approach.</p>
+  :::
 
 ```gherkin
   # will cause lookup to fail immediately if username is not present on the page
@@ -27,12 +82,12 @@ Gwen supports specifying [locator](/docs/dsl#element-locators) level timeouts fo
   And the username can be located by id "username"
 ```
 
-
 ## DSLs
 
 The following DSLs support locator timeouts:
 
-- [`<element> can be located by <selector> "<expression>" with no <wait|timeout>`](/docs/dsl#element-can-be-located-by-selector-expression-with-no-timeout)
+  - [`<element> can be located by <selector> "<expression>"`](/docs/dsl#element-can-be-located-by-selector-expression)
+  - [`<element> can be located by <selector> "<expression>" with no <wait|timeout>`](/docs/dsl#element-can-be-located-by-selector-expression-with-no-timeout)
   - [`<element> can be located by <selector> "<expression>" with <timeoutSecs> second <wait|timeout>`](/docs/dsl#element-can-be-located-by-selector-expression-with-timeout)
   - [`<element> can be located by <selector> "<expression>" at index <index> with no <wait|timeout>`](/docs/dsl#element-can-be-located-by-selector-expression-at-index-with-no-timeout)
   - [`<element> can be located by <selector> "<expression>" at index <index> in <otherElement> with no <wait|timeout>`](/docs/dsl#element-can-be-located-by-selector-expression-at-index-in-other-element-with-no-timeout)
