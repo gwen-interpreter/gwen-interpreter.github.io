@@ -636,7 +636,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <element> can be located by <selector> "<expression>"
   ```
 
-  <p>Binds a selector for a web element to the current scope with a default lookup timeout.</p>
+  <p>Binds a selector for a web element to the current scope with a default lookup timeout that can be overridden with the `@Timeout` annotation.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -682,6 +682,277 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <div><Link to="#element-can-be-located-by-selector-expression">Link</Link></div>
     <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-at-index">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" at index <index>
+  ```
+
+  <p>Binds an indexed selector for a web element to the current scope with a default lookup timeout that can be overridden with the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given the first item can be located by css ".todo-list label" at index 0
+     Then the first item should contain "Walk the dog"
+  ```
+
+  With explicit timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {1}
+    Given @Timeout('12s') the first item can be located by css ".todo-list label" at index 0
+     Then the first item should contain "Walk the dog"
+  ```
+
+  Without any timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {1}
+    Given @Timeout('0s') the first item can be located by css ".todo-list label" at index 0
+     Then the first item should contain "Walk the dog"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-at-index">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-expression-in-other-element-at-index">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by <selector> "<expression>" at index <index> in <otherElement>
+  ```
+
+  <p>Binds an indexed selector for a web element (contained in another) to the current scope with a default lookup timeout that can be overridden with the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression</li>
+    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
+    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the count info can be located by class "todo-count"
+      And the count unit can be located by tag "span" at index 1 in the count info
+     Then the count unit should contain "item"
+  ```
+
+  With explicit timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {2}
+    Given @Timeout('20s') the count info can be located by class "todo-count"
+      And @Timeout('10s') the count unit can be located by tag "span" at index 1 in the count info
+     Then the count unit should contain "item"
+  ```
+
+  Without any timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {2}
+    Given @Timeout('0s') the count info can be located by class "todo-count"
+      And @Timeout('0s') the count unit can be located by tag "span" at index 1 in the count info
+     Then the count unit should contain "item"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-expression-in-other-element-at-index">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-with-fallbacks">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located by
+    | selector     | expression     |
+    | <selector 1> | <expression 1> |
+    | <selector 2> | <expression 2> |
+    |      ..      |       ..       |
+    | <selector n> | <expression n> |
+  ```
+
+  <p>
+    Binds primary and fallback selectors for a web element to the current scope with a default lookup timeout that can be overridden with the `@Timeout` annotation.
+    Lookups will be attempted in the order specified until one succeeds.
+  </p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li>
+      <code>&lt;selector n&gt;</code> is the nth selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1-5}
+    Given the todo field can be located by
+          | selector | expression  |
+          | name     | todo-field  |
+          | css      | .todo input |
+          | class    | new-todo    |
+     When I type "Feed the cat" in the todo field
+  ```
+
+  With explicit timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {1-5}
+    Given @Timeout('8s') the todo field can be located by
+          | selector | expression  |
+          | name     | todo-field  |
+          | css      | .todo input |
+          | class    | new-todo    |
+     When I type "Feed the cat" in the todo field
+  ```
+
+  Without any timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {1-5}
+    Given @Timeout('0s') the todo field can be located by
+          | selector | expression  |
+          | name     | todo-field  |
+          | css      | .todo input |
+          | class    | new-todo    |
+     When I type "Feed the cat" in the todo field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-with-fallbacks">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.11.0">v2.11.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-located-by-selector-with-fallbacks-at-index">
+  <summary class="dsl">
+
+  ```gherkin
+  <element> can be located at index <index> by
+    | selector     | expression     |
+    | <selector 1> | <expression 1> |
+    | <selector 2> | <expression 2> |
+    |      ..      |       ..       |
+    | <selector n> | <expression n> |
+  ```
+
+  <p>
+    Binds indexed primary and fallback selectors for a web element to the current scope with a default lookup timeout that can be overridden with the `@Timeout` annotation.
+    Lookups will be attempted in the order specified until one succeeds.
+  </p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the web element name</li>
+    <li>
+      <code>&lt;selector n&gt;</code> is the nth selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
+    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression n&gt;</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1-5}
+    Given the second item can be located at index 1 by
+          | selector | expression       |
+          | name     | todo-label       |
+          | class    | todo-label       |
+          | css      | .todo-list label |
+     Then the second item should contain "Feed the cat"
+  ```
+
+  With explicit timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {1-5}
+    Given @Timeout('9s') the second item can be located at index 1 by
+          | selector | expression       |
+          | name     | todo-label       |
+          | class    | todo-label       |
+          | css      | .todo-list label |
+     Then the second item should contain "Feed the cat"
+  ```
+
+  Without any timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {1-5}
+    Given @Timeout('0s') the second item can be located at index 1 by
+          | selector | expression       |
+          | name     | todo-label       |
+          | class    | todo-label       |
+          | css      | .todo-list label |
+     Then the second item should contain "Feed the cat"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-located-by-selector-with-fallbacks-at-index">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
   </div>
 </details>
 
@@ -800,63 +1071,6 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
-<details id="element-can-be-located-by-selector-expression-at-index">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" at index <index>
-  ```
-
-  <p>Binds an indexed selector for a web element to the current scope with a default lookup timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li>
-      <code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1}
-    Given the first item can be located by css ".todo-list label" at index 0
-     Then the first item should contain "Walk the dog"
-  ```
-
-  With explicit timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-
-  ```gherkin {1}
-    Given @Timeout('12s') the first item can be located by css ".todo-list label" at index 0
-     Then the first item should contain "Walk the dog"
-  ```
-
-  Without any timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-
-  ```gherkin {1}
-    Given @Timeout('0s') the first item can be located by css ".todo-list label" at index 0
-     Then the first item should contain "Walk the dog"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-at-index">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
-  </div>
-</details>
-
 <details id="element-can-be-located-by-selector-expression-at-index-with-no-timeout">
   <summary class="dsl">
 
@@ -969,67 +1183,6 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   <div class="grid-3">
     <div><Link to="#element-can-be-located-by-selector-expression-at-index-with-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-expression-in-other-element-at-index">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by <selector> "<expression>" at index <index> in <otherElement>
-  ```
-
-  <p>Binds an indexed selector for a web element (contained in another) to the current scope with a default lookup timeout.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li>
-      <code>&lt;selector&gt;</code> is the selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression&gt;</code> is the selector expression</li>
-    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression&gt;</code></li>
-    <li><code>&lt;otherElement&gt;</code> is the name of the web element that this one is relative to</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {2}
-    Given the count info can be located by class "todo-count"
-      And the count unit can be located by tag "span" at index 1 in the count info
-     Then the count unit should contain "item"
-  ```
-
-  With explicit timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-
-  ```gherkin {2}
-    Given @Timeout('20s') the count info can be located by class "todo-count"
-      And @Timeout('10s') the count unit can be located by tag "span" at index 1 in the count info
-     Then the count unit should contain "item"
-  ```
-
-  Without any timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-
-  ```gherkin {2}
-    Given @Timeout('0s') the count info can be located by class "todo-count"
-      And @Timeout('0s') the count unit can be located by tag "span" at index 1 in the count info
-     Then the count unit should contain "item"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-expression-in-other-element-at-index">Link</Link></div>
     <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
   </div>
@@ -1153,159 +1306,6 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   <div class="grid-3">
     <div><Link to="#element-can-be-located-by-selector-expression-at-index-in-other-element-with-timeout">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-with-fallbacks">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located by
-    | selector     | expression     |
-    | <selector 1> | <expression 1> |
-    | <selector 2> | <expression 2> |
-    |      ..      |       ..       |
-    | <selector n> | <expression n> |
-  ```
-
-  <p>
-    Binds primary and fallback selectors for a web element to the current scope with a default lookup timeout.
-    Lookups will be attempted in the order specified until one succeeds.
-  </p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li>
-      <code>&lt;selector n&gt;</code> is the nth selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1-5}
-    Given the todo field can be located by
-          | selector | expression  |
-          | name     | todo-field  |
-          | css      | .todo input |
-          | class    | new-todo    |
-     When I type "Feed the cat" in the todo field
-  ```
-
-  With explicit timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-
-  ```gherkin {1-5}
-    Given @Timeout('8s') the todo field can be located by
-          | selector | expression  |
-          | name     | todo-field  |
-          | css      | .todo input |
-          | class    | new-todo    |
-     When I type "Feed the cat" in the todo field
-  ```
-
-  Without any timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-
-  ```gherkin {1-5}
-    Given @Timeout('0s') the todo field can be located by
-          | selector | expression  |
-          | name     | todo-field  |
-          | css      | .todo input |
-          | class    | new-todo    |
-     When I type "Feed the cat" in the todo field
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-with-fallbacks">Link</Link></div>
-    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.11.0">v2.11.0</Link></div>
-  </div>
-</details>
-
-<details id="element-can-be-located-by-selector-with-fallbacks-at-index">
-  <summary class="dsl">
-
-  ```gherkin
-  <element> can be located at index <index> by
-    | selector     | expression     |
-    | <selector 1> | <expression 1> |
-    | <selector 2> | <expression 2> |
-    |      ..      |       ..       |
-    | <selector n> | <expression n> |
-  ```
-
-  <p>
-    Binds indexed primary and fallback selectors for a web element to the current scope with a default lookup timeout.
-    Lookups will be attempted in the order specified until one succeeds.
-  </p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the web element name</li>
-    <li>
-      <code>&lt;selector n&gt;</code> is the nth selector type, one of:
-      <ul>
-        <li><code>id</code> for selecting by id attribute</li>
-        <li><code>name</code> for selecting by name attribute</li>
-        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
-        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
-        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
-        <li><code>xpath</code> for selecting by XPath</li>
-        <li><code>link text</code> for selecting by link text</li>
-        <li><code>partial link text</code> for selecting by partial link text</li>
-        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
-      </ul>
-    </li>
-    <li><code>&lt;expression n&gt;</code> is the nth selector expression</li>
-    <li><code>&lt;index&gt;</code> is the index of the element to select in list returned by <code>&lt;expression n&gt;</code></li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {1-5}
-    Given the second item can be located at index 1 by
-          | selector | expression       |
-          | name     | todo-label       |
-          | class    | todo-label       |
-          | css      | .todo-list label |
-     Then the second item should contain "Feed the cat"
-  ```
-
-  With explicit timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-
-  ```gherkin {1-5}
-    Given @Timeout('9s') the second item can be located at index 1 by
-          | selector | expression       |
-          | name     | todo-label       |
-          | class    | todo-label       |
-          | css      | .todo-list label |
-     Then the second item should contain "Feed the cat"
-  ```
-
-  Without any timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-
-  ```gherkin {1-5}
-    Given @Timeout('0s') the second item can be located at index 1 by
-          | selector | expression       |
-          | name     | todo-label       |
-          | class    | todo-label       |
-          | css      | .todo-list label |
-     Then the second item should contain "Feed the cat"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#element-can-be-located-by-selector-with-fallbacks-at-index">Link</Link></div>
     <div align="center"><Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.28.0">v2.28.0</Link></div>
   </div>
@@ -1479,7 +1479,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <element> can be located by <selector> "<expression>" <relativeTo> <otherElement>
   ```
 
-  <p>Binds a selector for a web element (relative to another) to the current scope with a default lookup timeout.</p>
+  <p>Binds a selector for a web element (relative to another) to the current scope with a default lookup timeout that can be overridden with the `@Timeout` annotation.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -2922,14 +2922,14 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  I lookup <name> in <filepathRef> file where "<predicate>"
+  I lookup <name> in <filepathRef file> where "<predicate>"
   ```
   <p>Looks up a named data value in a referenced CSV or JSON file based on a predicate function and binds its value to the same name in the global scope.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;name&gt;</code>the name of the data to look up the value of and the name to bind it to</li>
-    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV or JSON file to look up</li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the CSV or JSON file to look up</li>
     <li>
       <code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
       Data fields can be referenced in the predicate using either:
@@ -3089,14 +3089,14 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  I lookup <dataName> in <filepathRef> file as <name> where "<predicate>"
+  I lookup <dataName> in <filepathRef file> as <name> where "<predicate>"
   ```
   <p>Looks up a named column value in a referenced CSV or JSON file based on a predicate function and binds its value to a given name in the global scope.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;dataName&gt;</code> the name of the data in the CSV or JSON file to look up the value of</li>
-    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the CSV or JSON file to look up</li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the CSV or JSON file to look up</li>
     <li><code>&lt;name&gt;</code> the name to bind the looked up value to in the global scope</li>
     <li>
       <code>&lt;predicate&gt;</code> is the javascript predicate expression that will return <code>true</code> when a match is found for a record or <code>false</code> otherwise (can be in <Link to="/docs/doc-strings">DocString</Link> position)
@@ -4818,14 +4818,14 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  I download "<url>" to <filepathRef>
+  I download "<url>" to <filepathRef file>
   ```
   <p>Downloads a resource from a URL to a referenced file.</p>
   </summary>
   <p>Where</p>
   <ul>
     <li><code>&lt;url&gt;</code> is URL to the resource to download</li>
-    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the file to download the resource to</li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to download the resource to</li>
   </ul>
   <p>Example</p>
 
@@ -4871,13 +4871,13 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  I download the current URL to <filepathRef>
+  I download the current URL to <filepathRef file>
   ```
   <p>Downloads a resource at the current URL to a referenced file.</p>
   </summary>
   <p>Where</p>
   <ul>
-    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the file to download the resource to</li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to download the resource to</li>
   </ul>
   <p>Example</p>
 
@@ -5044,7 +5044,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  I <write|append> "<text>" to <filepathRef> file
+  I <write|append> "<text>" to <filepathRef file>
   ```
   <p>Writes or appends text to a referenced file.</p>
   </summary>
@@ -5058,7 +5058,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       </ul>
     </li>
     <li><code>&lt;text&gt;</code> the text to write or append to the file</li>
-    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the file to write or append the provided text to</li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to write or append the provided text to</li>
   </ul>
   <p>Example</p>
 
@@ -5078,7 +5078,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  I <write|append> <textRef> to <filepathRef> file
+  I <write|append> <textRef> to <filepathRef file>
   ```
   <p>Writes or appends a text reference value to a referenced file.</p>
   </summary>
@@ -5097,7 +5097,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
         <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
       </ul>
     </li>
-    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the file to write or append the provided text to</li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to write or append the provided text to</li>
   </ul>
   <p>Example</p>
 
@@ -5122,7 +5122,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  I <write|append> new line to <filepathRef> file
+  I <write|append> new line to <filepathRef file>
   ```
   <p>Writes or appends a new line to a referenced file.</p>
   </summary>
@@ -5135,7 +5135,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
         <li><code>&lt;append&gt;</code> to append a new line to existing content in file</li>
       </ul>
     </li>
-    <li><code>&lt;filepathRef&gt;</code> is the name of the binding containing the path of the file to write or append the new line to</li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to write or append the new line to</li>
   </ul>
   <p>Example</p>
 
@@ -5153,12 +5153,386 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
 #### Sleeps and waits
 
-<details id="i-wait-duration-seconds-when-element-is-actioned">
+<details id="i-wait-for-element">
   <summary class="dsl">
 
   ```gherkin
+  I wait for <element>
+  ```
+  <p>Waits for an element to appear on a page for a default number of seconds before timing out. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # Wait for a dynamically rendered input field 
+    Given the dynamic input field can be located by tag "input"
+     When I wait for the dynamic input field
+     Then the dynamic input field should be displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-for-element-text">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for <element> text
+  ```
+  <p>Waits for the text of an element to appear on a page for a default number of seconds before timing out.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for the text to appear</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # Wait for a dynamically displayed token
+    Given the one time token can be located by javascript "$('.token').get(0)"
+     When I wait for the one time token text
+      And I capture the one time token
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-element-text">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-element-is-state">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <element> is[ not] <state>
+  ```
+  <p>Waits for an element to transition to a given state. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
+    <li><code>not</code> negates the state if included</li>
+    <li>
+      <code>&lt;state&gt;</code> is one of:
+      <ul>
+        <li><code>displayed</code> to wait until the element is displayed</li>
+        <li><code>hidden</code> to wait until the element is not displayed</li>
+        <li><code>checked</code> (or <code>ticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to wait until a checkbox is ticked</li>
+        <li><code>unchecked</code> (or <code>unticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to wait until a checkbox is not ticked</li>
+        <li><code>enabled</code> to wait until the element is enabled</li>
+        <li><code>disabled</code> to wait until the element is disabled</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given my todo list can be located by css ".todo-list"
+      And the todo field can be located by class "new-todo"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Get the milk" in the todo field
+      And I wait until my todo list is displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-element-is-state">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.25.0">v2.25.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-javascript">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until "<javascript>"
+  ```
+  <p>Repeatedly executes the given javascript expression or function until true is returned using no delay interval and default timeout period. The default timeout period is equal to the configured <code>gwen.web.wait.seconds</code> setting value. The default timeout can be overridden using the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;javascript&gt;</code> is the javascript expression or function that will return a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+      <ul>
+        <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
+        <li>
+          For a function, use either:
+          <ul>
+            <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
+            <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given the heading can be located by tag "h1"
+    When I navigate to "https://challengers.flood.io/start"
+     And I wait until "!!$('h1')"
+    Then the heading should be "Welcome to our Script Challenge"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-javascript">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-filepath-exists">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until "<filepath>" file[ not] exists
+  ```
+  <p>Waits until a file exists (or not). The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the @Timeout annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the file</li>
+    <li><code>not</code> to wait until the file does not exist (negation)</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin
+     Then I wait until "path/to/filename1.csv" file exists
+      And I wait until "path/to/filename2.csv" file not exists
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-filepath-exists">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-filepath-does not exist">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until "<filepath>" file does not exist
+  ```
+  <p>Waits until a file does not exist. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the @Timeout annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the file</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin
+      And I wait until "path/to/filename2.csv" file does not exist
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-filepath-does-not-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-filepathref-exists">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <filepathRef file>[ not] exists
+  ```
+  <p>Waits until a file exists (or not). The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the @Timeout annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file</li>
+    <li><code>not</code> to wait until the file does not exist (negation)</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {2-3}
+    Given my file is "path/to/filename.csv""
+     Then I wait until my file exists
+      And I wait until my file not exists
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-filepathref-exists">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-filepathref-does-not-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <filepathRef file> does not exist
+  ```
+  <p>Waits until a file does not exist. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the @Timeout annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {2}
+    Given my file is "path/to/filename.csv""
+      And I wait until my file does not exist
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-filepathref-does-not-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-filepath-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until "<filepath>" file is[ not] empty
+  ```
+  <p>Waits until a file is empty. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the @Timeout annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the file</li>
+    <li><code>not</code> to wait until the file is not empty (negation)</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin
+     Then I wait until "path/to/filename1.csv" file is empty
+      And I wait until "path/to/filename2.csv" file is not empty
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-filepath-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-filepathref-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <filepathRef file> is[ not] empty
+  ```
+  <p>Waits until a file is empty. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the @Timeout annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file</li>
+    <li><code>not</code> to wait until the file is not empty (negation)</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {2-3}
+    Given my file is "path/to/filename.csv""
+     Then I wait until my file is empty
+      And I wait until my file is not empty
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-filepathref-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-condition">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <condition>
+  ```
+  <p>Waits until a condition is satisfied. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;condition&gt;</code> is either:
+      <ul>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+          <ul>
+            <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
+          </ul>
+        </li>
+        <li>
+          Or in prior versions
+          <ul>
+            <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
+            <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+   Given the heading can be located by tag "h1"
+     And the heading is displayed is defined by javascript "!!$('h1')"
+    When I navigate to "https://challengers.flood.io/start"
+     And I wait until the heading is displayed
+    Then the heading should be "Welcome to our Script Challenge"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-condition">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-duration-seconds">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait <duration> second[s]
+  ```
+  <p>Sleeps for the given number of seconds.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;duration&gt;</code> is the number of seconds to sleep</li>
+    <li>Include trailing <code>s</code> when specifying a <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    When I wait for 5 seconds
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-duration-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-duration-seconds-when-element-is-actioned">
+  <summary class="dsl">
+
+  :::caution Deprecated
+  Deprecated since v3.74.4 and will be dropped in next major Gwen 4 release. 
+  ```gherkin
   I wait <duration> second[s] when <element> is <actioned>
   ```
+  :::
+  
   <p>Triggers a sleep for a given number of seconds whenever a specific action is performed on an element.</p>
   </summary>
   <p>Where</p>
@@ -5203,9 +5577,13 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 <details id="i-wait-until-condition-when-element-is-actioned">
   <summary class="dsl">
 
+  :::caution Deprecated
+  Deprecated since 3.74.4 and will be dropped in next major Gwen 4 release. 
   ```gherkin
   I wait until <condition> when <element> is <actioned>
   ```
+  :::
+  
   <p>Triggers a wait for a condition whenever a specific action is performed on an element.</p>
   </summary>
   <p>Where</p>
@@ -5267,34 +5645,6 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
-<details id="i-wait-for-element">
-  <summary class="dsl">
-
-  ```gherkin
-  I wait for <element>
-  ```
-  <p>Waits for an element to appear on a page for a default number of seconds before timing out.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {3}
-    # Wait for a dynamically rendered input field 
-    Given the dynamic input field can be located by tag "input"
-     When I wait for the dynamic input field
-     Then the dynamic input field should be displayed
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-wait-for-element">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
 <details id="i-wait-for-element-for-duration-seconds">
   <summary class="dsl">
 
@@ -5328,34 +5678,6 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   <div class="grid-3">
     <div><Link to="#i-wait-for-element-for-duration-seconds">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="i-wait-for-element-text">
-  <summary class="dsl">
-
-  ```gherkin
-  I wait for <element> text
-  ```
-  <p>Waits for the text of an element to appear on a page for a default number of seconds before timing out.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the name of the element to wait for the text to appear</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {3}
-    # Wait for a dynamically displayed token
-    Given the one time token can be located by javascript "$('.token').get(0)"
-     When I wait for the one time token text
-      And I capture the one time token
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-wait-for-element-text">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
@@ -5396,87 +5718,6 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   <div class="grid-3">
     <div><Link to="#i-wait-for-element-text-for-duration-seconds">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="i-wait-until-element-is-state">
-  <summary class="dsl">
-
-  ```gherkin
-  I wait until <element> is[ not] <state>
-  ```
-  <p>Waits for an element to transition to a given state.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
-    <li><code>not</code> negates the state if included</li>
-    <li>
-      <code>&lt;state&gt;</code> is one of:
-      <ul>
-        <li><code>displayed</code> to wait until the element is displayed</li>
-        <li><code>hidden</code> to wait until the element is not displayed</li>
-        <li><code>checked</code> (or <code>ticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to wait until a checkbox is ticked</li>
-        <li><code>unchecked</code> (or <code>unticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to wait until a checkbox is not ticked</li>
-        <li><code>enabled</code> to wait until the element is enabled</li>
-        <li><code>disabled</code> to wait until the element is disabled</li>
-      </ul>
-    </li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {5}
-    Given my todo list can be located by css ".todo-list"
-      And the todo field can be located by class "new-todo"
-     When I navigate to "https://todomvc.com/examples/react/dist"
-      And I enter "Get the milk" in the todo field
-      And I wait until my todo list is displayed
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-wait-until-element-is-state">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.25.0">v2.25.0</Link></div>
-  </div>
-</details>
-
-<details id="i-wait-until-javascript">
-  <summary class="dsl">
-
-  ```gherkin
-  I wait until "<javascript>"
-  ```
-  <p>Repeatedly executes the given javascript expression or function until true is returned using no delay interval and default timeout period. The default timeout period is equal to the configured <code>gwen.web.wait.seconds</code> setting value.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li>
-      <code>&lt;javascript&gt;</code> is the javascript expression or function that will return a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
-      <ul>
-        <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
-        <li>
-          For a function, use either:
-          <ul>
-            <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
-            <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {3}
-   Given the heading can be located by tag "h1"
-    When I navigate to "https://challengers.flood.io/start"
-     And I wait until "!!$('h1')"
-    Then the heading should be "Welcome to our Script Challenge"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-wait-until-javascript">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
@@ -5692,52 +5933,6 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <div><Link to="#i-wait-until-javascript-using-delay-and-timeout">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link></div>
-  </div>
-</details>
-
-<details id="i-wait-until-condition">
-  <summary class="dsl">
-
-  ```gherkin
-  I wait until <condition>
-  ```
-  <p>Waits until a condition is satisfied.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li>
-      <code>&lt;condition&gt;</code> is either:
-      <ul>
-        <li>
-          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
-          <ul>
-            <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
-          </ul>
-        </li>
-        <li>
-          Or in prior versions
-          <ul>
-            <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
-            <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {4}
-   Given the heading can be located by tag "h1"
-     And the heading is displayed is defined by javascript "!!$('h1')"
-    When I navigate to "https://challengers.flood.io/start"
-     And I wait until the heading is displayed
-    Then the heading should be "Welcome to our Script Challenge"
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-wait-until-condition">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
@@ -5972,32 +6167,6 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <div><Link to="#i-wait-until-condition-using-delay-and-timeout">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link></div>
-  </div>
-</details>
-
-<details id="i-wait-duration-seconds">
-  <summary class="dsl">
-
-  ```gherkin
-  I wait <duration> second[s]
-  ```
-  <p>Sleeps for the given number of seconds.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;duration&gt;</code> is the number of seconds to sleep</li>
-    <li>Include trailing <code>s</code> when specifying a <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin
-    When I wait for 5 seconds
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#i-wait-duration-seconds">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
@@ -6815,6 +6984,124 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <div><Link to="#text-ref-1-should-be-similar-to-text-ref-2">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.0">v3.12.0</Link></div>
+  </div>
+</details>
+
+#### File asserts
+
+<details id="filepath-should-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  "<filepath>" file should[ not] exist
+  ```
+  <p>Assers that a file should exist (or not).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the file to check</li>
+    <li><code>not</code>to check that the file does not exist (negation)</li>
+  </ul>
+  
+  <p>Example</p>
+
+  ```gherkin
+     Then "path/to/existing.txt" file should exist
+      And "path/to/missing.txt" file should not exist
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#filepath-should-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="filepathref-should-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  <filepathRef file> should[ not] exist
+  ```
+  <p>Assers that a file should exist (or not).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to check</li>
+    <li><code>not</code>to check that the file does not exist (negation)</li>
+  </ul>
+  
+  <p>Example</p>
+
+  ```gherkin {3-4}
+    Given my existing file is "path/to/existing.txt"
+      And my missing file is "path/to/missing.txt"
+     Then my existing file should exist
+     Then my missing file should not exist
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#filepathref-should-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="filepath-should-be-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  "<filepath>" file should[ not] be empty
+  ```
+  <p>Assers that a file should be empty (or not).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the file to check</li>
+    <li><code>not</code>to check that the file is not empty (negation)</li>
+  </ul>
+  
+  <p>Example</p>
+
+  ```gherkin
+     Then "path/to/empty.txt" file should be empty
+      And "path/to/populated.txt" file should not be empty
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#filepath-should-be-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="filepathref-should-be-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  <filepathRef file> should[ not] be empty
+  ```
+  <p>Assers that a file should be empty (or not).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to check</li>
+    <li><code>not</code>to check that the file is not empty (negation)</li>
+  </ul>
+  
+  <p>Example</p>
+
+  ```gherkin {3-4}
+    Given my empty file is "path/to/empty.txt"
+      And my populated file is "path/to/populated.txt"
+     Then my empty file should be empty
+     Then my populated file should not be empty
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#filepathref-should-is-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
   </div>
 </details>
 
@@ -8819,7 +9106,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin
   <step> for each <element> located by <selector> "<expression>"
   ```
-  <p>Executes a step for each element in a list of elements in the current scope with a default lookup timeout.</p>
+  <p>Executes a step for each element in a list of elements in the current scope with a default lookup timeout that can be overridden with the `@Timeout` annotation.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -9027,7 +9314,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin
   <step> for each <element> located by <selector> "<expression>" in <containerElement>
   ```
-  <p>Executes a step for each element in a list of elements in a container element in the current scope with a default lookup timeout.</p>
+  <p>Executes a step for each element in a list of elements in a container element in the current scope with a default lookup timeout that can be overridden with the `@Timeout` annotation.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -9245,7 +9532,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin
   <step> for each <element> in <elements>
   ```
-  <p>Executes a step for each element in a list of elements in the current scope with a default lookup timeout.</p>
+  <p>Executes a step for each element in a list of elements in the current scope with a default lookup timeout that can be overridden with the `@Timeout` annotation.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -9423,7 +9710,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin
   <step> <until|while> <condition>
   ```
-  <p>Repeatedly exectues a step until or while a condition is satisfied using a default delay and timeout period. The default delay between iterations is one tenth of the configured <code>gwen.web.wait.seconds</code> setting (or 1 second if not set). The default timeout period is 30 times the delay.</p>
+  <p>Repeatedly exectues a step until or while a condition is satisfied using a default delay and timeout period. The default delay between iterations is one tenth of the configured <code>gwen.web.wait.seconds</code> setting (or 1 second if not set). The default timeout period is 30 times the delay. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
   </summary>
   <p>Where</p>
   <ul>
@@ -9524,6 +9811,328 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <div><Link to="#step-until-or-while-condition">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-element-state">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <element> is[ not] <state>
+  ```
+  <p>Repeatedly exectues a step until or while an element is in a given state using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
+    <li><code>not</code> negates the state if included</li>
+    <li>
+      <code>&lt;state&gt;</code> is one of:
+      <ul>
+        <li><code>displayed</code> to execute the step until or while the element is displayed</li>
+        <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
+        <li><code>checked</code> or <code>ticked</code> to execute the step until or while a checkbox is ticked</li>
+        <li><code>unchecked</code> or <code>unticked</code> to execute the step until or while a checkbox is not ticked</li>
+        <li><code>enabled</code> to execute the step until or while the element is enabled</li>
+        <li><code>disabled</code> to execute the step until or while the element is disabled</li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+      Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And I click the next page link while the next page link is displayed
+       Then the next page link should not be displayed
+  ```
+
+  With explicit delay and timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+   ```gherkin {5}
+      Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And @Delay('5s') @Timeout('40s') I click the next page link while the next page link is displayed
+       Then the next page link should not be displayed
+  ```
+
+  With no delay or timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+   ```gherkin {5}
+      Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And @Delay('0s') @Timeout('0s') I click the next page link while the next page link is displayed
+       Then the next page link should not be displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-element-state">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.44.0">v3.44.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-defined">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <name> is[ not] defined
+  ```
+  <p>Repeatedly exectues a step until or while an attribute is defined (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;name&gt;</code> is the name of the attribute to check</li>
+    <li><code>not</code> include to execute step until or while attribute is not defined</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-defined">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.57.0">v3.57.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-filepath-exists">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> "<filepath>" file[ not] exists
+  ```
+  <p>Repeatedly exectues a step until or while a file exists (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepath&gt;</code> the path to the file to check</li>
+    <li><code>not</code>to wait until the file does not exist (negation)</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-filepath-exists">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-filepath-does-not-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> "<filepath>" file does not exist
+  ```
+  <p>Repeatedly exectues a step until or while a file does not exist using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepath&gt;</code> the path to the file to check</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-filepath-does-not-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+
+<details id="step-until-or-while-filepath-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> "<filepath>" file is[ not] empty
+  ```
+  <p>Repeatedly exectues a step until or while a file is empty (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepath&gt;</code> the path to the file to check</li>
+    <li><code>not</code>to wait until the file is not empty (negation)</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-filepath-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-filepathref-exists">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <filepathRef file>[ not] exists
+  ```
+  <p>Repeatedly exectues a step until or while a file exists (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to check</li>
+    <li><code>not</code>to wait until the file does not exist (negation)</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-filepathref-exists">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-filepathref-does-not-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <filepathRef file> does not exist
+  ```
+  <p>Repeatedly exectues a step until or while a file does not exist using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to check</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-filepathref-does-not-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-filepathref-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <filepathRef file> is[ not] empty
+  ```
+  <p>Repeatedly exectues a step until or while a file is empty (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to check</li>
+    <li><code>not</code>to wait until the file is not empty (negation)</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-filepathref-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
   </div>
 </details>
 
@@ -10071,84 +10680,6 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
-<details id="step-until-or-while-element-state">
-  <summary class="dsl">
-
-  ```gherkin
-  <step> <until|while> <element> is[ not] <state>
-  ```
-  <p>Repeatedly exectues a step until or while an element is in a given state using a 1 second delay interval and 1 minute timeout period.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li>
-      <code>&lt;until|while&gt;</code> is one of:
-      <ul>
-        <li><code>until</code> to repeat until the condition is satisfied</li>
-        <li><code>while</code> to repeat while the condition is satisfied</li>
-      </ul>
-    </li>
-    <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
-    <li><code>not</code> negates the state if included</li>
-    <li>
-      <code>&lt;state&gt;</code> is one of:
-      <ul>
-        <li><code>displayed</code> to execute the step until or while the element is displayed</li>
-        <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
-        <li><code>checked</code> or <code>ticked</code> to execute the step until or while a checkbox is ticked</li>
-        <li><code>unchecked</code> or <code>unticked</code> to execute the step until or while a checkbox is not ticked</li>
-        <li><code>enabled</code> to execute the step until or while the element is enabled</li>
-        <li><code>disabled</code> to execute the step until or while the element is disabled</li>
-      </ul>
-    </li>
-    <li>
-      The following implicit binding is available in <code>&lt;step&gt;</code>:
-      <ul>
-        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
-      </ul>
-    </li>
-  </ul>
-  <p>Example</p>
-
-  ```gherkin {5}
-      Given the search field can be located by name "q"
-        And the next page link can be located by id "pnnext"
-       When I navigate to "https://google.com"
-        And I enter "gwen interpreter" in the search field
-        And I click the next page link while the next page link is displayed
-       Then the next page link should not be displayed
-  ```
-
-  With explicit delay and timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-
-   ```gherkin {5}
-      Given the search field can be located by name "q"
-        And the next page link can be located by id "pnnext"
-       When I navigate to "https://google.com"
-        And I enter "gwen interpreter" in the search field
-        And @Delay('5s') @Timeout('40s') I click the next page link while the next page link is displayed
-       Then the next page link should not be displayed
-  ```
-
-  With no delay or timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-
-   ```gherkin {5}
-      Given the search field can be located by name "q"
-        And the next page link can be located by id "pnnext"
-       When I navigate to "https://google.com"
-        And I enter "gwen interpreter" in the search field
-        And @Delay('0s') @Timeout('0s') I click the next page link while the next page link is displayed
-       Then the next page link should not be displayed
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#step-until-or-while-element-state">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.44.0">v3.44.0</Link></div>
-  </div>
-</details>
-
 <details id="step-until-or-while-element-state-using-delay">
   <summary class="dsl">
 
@@ -10575,41 +11106,6 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <div><Link to="#step-until-or-while-element-state-using-no-delay">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.44.0">v3.44.0</Link></div>
-  </div>
-</details>
-
-<details id="step-until-or-while-defined">
-  <summary class="dsl">
-
-  ```gherkin
-  <step> <until|while> <name> is[ not] defined
-  ```
-  <p>Repeatedly exectues a step until or while an attribute is defined (or not) using a 1 second delay interval and 1 minute timeout period.</p>
-  </summary>
-  <p>Where</p>
-  <ul>
-    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
-    <li>
-      <code>&lt;until|while&gt;</code> is one of:
-      <ul>
-        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
-        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
-      </ul>
-    </li>
-    <li><code>&lt;name&gt;</code> is the name of the attribute to check</li>
-    <li><code>not</code> include to execute step until or while attribute is not defined</li>
-    <li>
-      The following implicit binding is available in <code>&lt;step&gt;</code>:
-      <ul>
-        <li><code>iteration number</code> (or <code>iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
-      </ul>
-    </li>
-  </ul>
-
-  <div class="grid-3">
-    <div><Link to="#step-until-or-while-defined">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.57.0">v3.57.0</Link></div>
   </div>
 </details>
 
@@ -11217,3 +11713,169 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
+<details id="step-if-filepath-exists">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> if "<filepath>" file[ not] exists
+  ```
+  <p>Executes a step if a file exists (or not).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
+    <li><code>&lt;filepath&gt;</code> the path to the file</li>
+    <li><code>not</code> to execute step if file does not exist (negation)</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin
+     Then call step 1 if "path/to/filename1.csv" file exists
+      And call step 2 if "path/to/filename2.csv" file not exists
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-if-filepath-exists">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-if-filepath-does-not-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> if "<filepath>" file does not exist
+  ```
+  <p>Executes a step if a file does not exist.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
+    <li><code>&lt;filepath&gt;</code> the path to the file</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin
+      And call step 2 if "path/to/filename2.csv" file does not exist
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-if-filepath-does-not-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-if-filepath-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> if "<filepath>" file is[ not] empty
+  ```
+  <p>Executes a step if a file is empty (or not).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
+    <li><code>&lt;filepath&gt;</code> the path to the file</li>
+    <li><code>not</code> to execute step if file is not empty (negation)</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin
+     Then call step 1 if "path/to/filename1.csv" file is empty
+      And call step 2 if "path/to/filename2.csv" file is not empty
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-if-filepath-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-if-filepathref-exists">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> if <filepathRef file>[ not] exists
+  ```
+  <p>Executes a step if a file exists (or not).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file</li>
+    <li><code>not</code> to execute step if file does not exist (negation)</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {2-3}
+    Given my file is "path/to/filename.csv"
+     Then call step 1 if my file exists
+      And call step 2 if my file not exists
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-if-filepathref-exists">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-if-filepathref-does-not-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> if <filepathRef file> does not exist
+  ```
+  <p>Executes a step if a file does not exist.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {2}
+    Given my file is "path/to/filename.csv"
+      And call step 2 if my file does not exist
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-if-filepathref-does-not-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-if-filepathref-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> if <filepathRef file> is[ not] empty
+  ```
+  <p>Executes a step if a file is empty (or not).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to potentially execute</li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file</li>
+    <li><code>not</code> to execute step if file is not empty (negation)</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {2-3}
+    Given my file is "path/to/filename.csv"
+     Then call step 1 if my file is empty
+      And call step 2 if my file is not empty
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-if-filepathref-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
