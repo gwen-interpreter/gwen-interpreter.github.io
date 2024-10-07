@@ -1,7 +1,7 @@
 --- 
 title: CSV Reports
 toc_min_heading_level: 2
-toc_max_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 import Link from '@docusaurus/Link';
@@ -15,7 +15,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Gwen can also generate CSV reports for you.
 
-## Configure CSV files
+## Configuration
 
 By default, Gwen will generate the following CSV files under `reports/results` subdirectory in your configured [`output`](/docs/settings#gwen-outDir) directory, but you can completely reconfigure this to suit your own requirements:
 - Feature level results:
@@ -27,11 +27,12 @@ By default, Gwen will generate the following CSV files under `reports/results` s
   - scenario-results-FAILED.csv - A log of all failed scenario results including the failed reason
   - scenario-results-ALL.csv - A log of all scenario results (passed or failed) including the failed reason (for failed)
 
-### Configuration
+### Results files
 
-Files can be configured within the `gwen.reports.results.files` element in your settings file.
+CSV files can be configured within the `gwen.reports.results.files` element in your [settings file](/docs/settings#settings-files).
+
 ```json
-<name> {
+<fileId> {
   file = "<filename>" 
   scope = "[scope]"
   status = "[status]"
@@ -47,7 +48,7 @@ Files can be configured within the `gwen.reports.results.files` element in your 
 Where:
 
 <ul>
-  <li><code>&lt;name&gt;</code> - (Mandatory) Is an arbitatry name for the file element</li>
+  <li><code>&lt;fileId&gt;</code> - (Mandatory) Is an arbitatry Id for the file element</li>
   <li>
     <code>&lt;filename&gt;</code> - (Mandatory) - Is the name or path to the target CSV file
     <ul>
@@ -64,7 +65,7 @@ Where:
       <li><code>Scenario: &lt;name&gt;</code> - To log the results of a specifically named scenario only to the CSV file as it completes, where <code>&lt;name&gt;</code> is the name of the scenario to log the results for</li>
       <li><code>StepDef</code> - To log the results of all <Link to="/docs/meta#stepdefs">StepDefs</Link> to the CSV file as they complete</li>
       <li><code>StepDef: &lt;name&gt;</code> - To log the results of a specifically named StepDef only to the CSV file as it completes, where <code>&lt;name&gt;</code> is the name of the StepDef to log the results for</li>
-      <li>Or blank to not log any results automatically (for when you want explicitly manage CSV logging yourself)</li>
+      <li>Or blank to not log any results automatically (for when you want explicitly manage CSV logging yourself through a [`@Results`](#results-annotation) annotation</li>
     </ul>
   </li>
   <li>
@@ -78,7 +79,9 @@ Where:
   <li><code>fields</code> - (Mandatory) - Contains an array of fields as described below</li>
 </ul>
 
-Fields are configured as arrays witihin the `fields` attribute and have the following structure:
+### Results fields
+
+CSV fields are configured as arrays witihin the `fields` attribute and have the following structure:
 
 ```json
 { name = "<fieldName>", ref = [reference], optional = [optionality] }
@@ -616,6 +619,102 @@ In this configuration, fields are replicated across file definitions (note: fiel
 
 </Tabs>
 
+## Results Annotation
+
+Used to log results to a file at a specific Feature, Scenario, StepDef, Scenaro Outline, or Examples node level.
+
+### Syntax:
+
+```gherkin
+@Results('<fileId>')
+```
+
+Where:
+
+<ul>
+  <li>
+    <code>&lt;fileId&gt;</code> - Is a configured file Id under the `gwen.reports.results.files` settings element.
+  </li>
+</ul>
+
+### Example:
+
+The configuration for `my.csv` might be defiend as follows in your [settings file](/docs/settings#settings-files). Note that the `scope` attribute is deliberately absent here, since we will using the `Results` annotation to specify where the scope will be.
+
+<i>gwen.conf</i>
+```json
+gwen {
+  ..
+  reports {
+    results {
+      files {
+        my {
+          csv {
+            file = "file.csv"
+            fields = [
+              { field = "status",   ref = "gwen.scenario.eval.status.keyword.upperCased" }
+              { field = "name",     ref = "my name" }
+              { field = "job",      ref = "my job" }
+              { field = "duration", ref = "gwen.scenario.eval.duration" }
+            ]
+          }
+        }
+      }
+    }
+  }
+  ..
+}
+```
+
+Specifying the `@Results('my.csv')` annoation on a scenario, would then log to results to the configured file when the scenario completes. 
+The scope of the `my.csv` file would then be bound to this Scenario.
+
+<i>my.feature</i>
+```gherkin {3}
+Feature: My feature
+
+  @Results('my.csv')
+  Scenario: My scenario
+    Given my name is "Gwen"
+      And my job is "Automation"
+      ..
+```
+
+And the generated results file would then contain:
+
+<i>file.csv</i>
+```csv
+status,name,job,duration
+PASSED,Gwen,Automation,1ms
+```
+
+When used on a Scenario Outline, each Examples scenario would be logged.
+
+<i>my.feature</i>
+```gherkin {3}
+Feature: My feature
+
+  @Results('my.csv')
+  Scenario Outline: My scenario
+    Given my name is <name>
+      And my job is <job>
+    Examples:
+      | name    | job        |
+      | Gwen    | Automation |
+      | Stacey  | Agent      |
+      ..
+```
+
+The generated results file would then contain:
+
+<i>file.csv</i>
+```csv
+status,name,job,duration
+PASSED,Gwen,Automation,1ms
+PASSED,Gwen,Automation,2ms
+..
+```
+
 ## Logging Results
 
 With the above settings in place, CSV files containing evaluated results will automatiacally be logged when you launch Gwen to execute with the `-f results` [CLI](/docs/cli) option.
@@ -712,13 +811,6 @@ pnpm  -b f html,results gwen/features/todo
 </TabItem>
 
 </Tabs>
-
-### Output
-
-- The CSV results logged to:
-  - `output/reports/results/`
-- The HTML report will be generated at
-  - `output/reports/index.html`.
   
 </TabItem>
 
@@ -782,13 +874,13 @@ gwen -b f html,results features\todo
 
 </Tabs>
 
-### Output
+</TabItem>
+
+</Tabs>
+
+<b>Output</b>
 
 - The CSV results logged to:
   - `output/reports/results/`
 - The HTML report will be generated at
   - `output/reports/index.html`.
-
-</TabItem>
-
-</Tabs>
