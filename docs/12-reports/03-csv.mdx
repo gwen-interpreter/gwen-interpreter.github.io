@@ -58,9 +58,13 @@ Where:
   <li>
     <code>[scope]</code> - (Optional) is either:
     <ul>
-      <li><code>Feature</code> - To log feature level results to the CSV file when a feature completes</li>
-      <li><code>Scdenario</code> - To log scenario level to the CSV file when a scenario completes</li>
-      <li>Or blank to not log any records automatically (used for manually managed CSV logging)</li>
+      <li><code>Feature</code> - To log the results of all features to the CSV file as they complete</li>
+      <li><code>Feature: &lt;name&gt;</code> - To log the results of a specifically named feature only to the CSV file as it completes, where <code>&lt;name&gt;</code> is the name of the feature to log the results for</li>
+      <li><code>Scenario</code> - To log the results of all scenarios to the CSV file as they complete</li>
+      <li><code>Scenario: &lt;name&gt;</code> - To log the results of a specifically named scenario only to the CSV file as it completes, where <code>&lt;name&gt;</code> is the name of the scenario to log the results for</li>
+      <li><code>StepDef</code> - To log the results of all <Link to="/docs/meta#stepdefs">StepDefs</Link> to the CSV file as they complete</li>
+      <li><code>StepDef: &lt;name&gt;</code> - To log the results of a specifically named StepDef only to the CSV file as it completes, where <code>&lt;name&gt;</code> is the name of the StepDef to log the results for</li>
+      <li>Or blank to not log any results automatically (for when you want explicitly manage CSV logging yourself)</li>
     </ul>
   </li>
   <li>
@@ -87,12 +91,12 @@ Where:
     <code>[reference]</code> - (Optional) - Can be one of:
     <ul>
       <li>The name of a varaible in scope containing the value to bind</li>
-      <li>If blank, will use the value refered to by variable of same name as <code>&lt;fieldName&gt;</code></li>
+      <li>If blank, will use the value bound to the variable of same name as <code>&lt;fieldName&gt;</code></li>
       <li>
         If <code>&lt;fieldName&gt;</code> is set to <code>*</code>, then:
         <ul>
-          <li>This reference must specify a path to the CSV template file containing the names of all fields to bind in the first row (and the name of such fields will also be used as the binding references)</li>
-          <li>Can also be set to the special reference <code>$&lt;gwen.options.dataFile&gt;</code> which will resolve to the input CSV (data feed) file passed to Gwen via the [<code>-i|--input-data &lt;file&gt;</code>](/docs/cli#gwen-cli-options-input-data) CLI option. In the case all fields provided in the input file will be included and resolved by name.</li>
+          <li>This reference must specify a path to the CSV template file containing the names of all fields to bind in the first row (and the names of such fields will also be used as the binding references)</li>
+          <li>Can also be set to the special reference <code>$&lt;gwen.options.dataFile&gt;</code> which will resolve to the input CSV (data feed) file passed to Gwen via the [<code>-i|--input-data &lt;file&gt;</code>](/docs/cli#gwen-cli-options-input-data) CLI option. In the case all the fields present in the input file will be included and resolved by name.</li>
         </ul>
       </li>
     </ul>
