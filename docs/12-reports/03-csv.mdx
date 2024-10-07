@@ -60,12 +60,10 @@ Where:
     <code>[scope]</code> - (Optional) is either:
     <ul>
       <li><code>Feature</code> - To log the results of all features to the CSV file as they complete</li>
-      <li><code>Feature: &lt;name&gt;</code> - To log the results of a specifically named feature only to the CSV file as it completes, where <code>&lt;name&gt;</code> is the name of the feature to log the results for</li>
+      <li><code>Rule</code> - To log the results of all rules to the CSV file as they complete</li>
       <li><code>Scenario</code> - To log the results of all scenarios to the CSV file as they complete</li>
-      <li><code>Scenario: &lt;name&gt;</code> - To log the results of a specifically named scenario only to the CSV file as it completes, where <code>&lt;name&gt;</code> is the name of the scenario to log the results for. Alternatively use the preferred [`@Results`](#results-annotation) annotation which is not susceptible to name clases..</li>
       <li><code>StepDef</code> - To log the results of all <Link to="/docs/meta#stepdefs">StepDefs</Link> to the CSV file as they complete</li>
-      <li><code>StepDef: &lt;name&gt;</code> - To log the results of a specifically named StepDef only to the CSV file as it completes, where <code>&lt;name&gt;</code> is the name of the StepDef to log the results for. Alternatively use the preferred [`@Results`](#results-annotation) annotation which is not susceptible to name clases.</li>
-      <li>Or blank to not log any results automatically (for when you want explicitly manage CSV logging yourself through a [`@Results`](#results-annotation) annotation</li>
+      <li>Or blank to not log any results automatically for when you want explicitly manage CSV logging yourself through a [`@Results`](#results-annotation) annotation</li>
     </ul>
   </li>
   <li>
