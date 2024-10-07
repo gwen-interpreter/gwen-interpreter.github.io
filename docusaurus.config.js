@@ -41,7 +41,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/reports/csv-results',
+          href: '/docs/reports/csv',
           position: 'left',
           label: "What's new?",
         },
