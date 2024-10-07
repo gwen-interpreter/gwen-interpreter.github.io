@@ -41,7 +41,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/locator-level-timeouts#timeout-annotations',
+          href: '/docs/reports/csv-results',
           position: 'left',
           label: "What's new?",
         },

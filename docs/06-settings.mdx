@@ -3102,6 +3102,24 @@ Will expand to:
   </div>
 </details>
 
+<details id="gwen-reports-results-files">
+  <summary class="setting">
+
+  ```properties
+  gwen.reports.results.files
+  ```
+  <p>Controls how CSV result files are generated.</p>
+  </summary>
+  
+  See <Link to="/docs/reports/csv-results">CSV Reports</Link> for details.
+
+  <div class="grid-3">
+    <div><Link to="#gwen-reports-results-files">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.77.0">v3.77.0</Link></div>
+  </div>
+</details>
+
 ### Web Settings
 
 <details id="gwen-web-accept-untrusted-certs">
@@ -7007,7 +7025,8 @@ Will expand to:
         <li><code>html</code> to output <Link to="/docs/reports/html">HTML reports</Link></li>
         <li><code>junit</code> to output <Link to="/docs/reports/junit-xml">JUnit-XML reports</Link></li>
         <li><code>json</code> to output <Link to="/docs/reports/json">JSON reports</Link></li>
-        <li><code>rp</code> to log results to a <Link to="/docs/reports/portal">Report Portal</Link> server</li>
+        <li><code>results</code> for <Link to="/docs/reports/csv-results">CSV results</Link> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.77.0">v3.77.0</Link>)</li>
+        <li><code>rp</code> to log results to a <Link to="/docs/reports/portal">Report Portal</Link> server (deprectated since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.72.1">v3.72.1</Link>)</li>
         <li><code>none</code> to not output any reports</li>
       </ul>
     </li>
@@ -7048,7 +7067,7 @@ Will expand to:
         options {
           format = [ 
             "html",
-            "junit"
+            "results"
           ]
         }
       }
@@ -7083,7 +7102,7 @@ Will expand to:
           "options": {
             "format": [ 
               "html",
-              "junit"
+              "results"
             ]
           }
         }
@@ -7104,7 +7123,7 @@ Default value (empty to pick up Gwen default format: html)
   Example with multiple entries (comma separated)
 
   ```properties
-    gwen.cli.options.format = html,junit
+    gwen.cli.options.format = html,results
   ```
 
   </TabItem>

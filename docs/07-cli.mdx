@@ -35,7 +35,7 @@ Usage: gwen [options] [files|dirs]
   -p, --properties files   Properties files (deprecated, use -c|--conf instead)
   -r, --report dir         Directory to output generated report(s) to
   -f, --formats reports    Report formats to include in output (comma separated)
-                           - html,junit,json,rp,none (default = html, rp deprecated)
+                           - html,results,junit,json,rp,none (default = html, rp deprecated)
   -t, --tags filter        Tags to @include or ~@exclude (comma separated)
   -i, --input-data file    Input data feed (csv or json file)
   -m, --meta files|dirs    Meta files or directories to load (comma separated)
@@ -1491,7 +1491,8 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
         <li><code>html</code> for <Link to="/docs/reports/html">HTML reports</Link></li>
         <li><code>junit</code> for <Link to="/docs/reports/junit-xml">JUnit-XML reports</Link></li>
         <li><code>json</code> for <Link to="/docs/reports/json">JSON reports</Link></li>
-        <li><code>rp</code> to log results to a <Link to="/docs/reports/portal">Report Portal</Link> server</li>
+        <li><code>results</code> for <Link to="/docs/reports/csv-results">CSV results</Link> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.77.0">v3.77.0</Link>)</li>
+        <li><code>rp</code> to log results to a <Link to="/docs/reports/portal">Report Portal</Link> server (deprectated since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.72.1">v3.72.1</Link>)</li>
         <li><code>none</code> for no reports</li>
       </ul>
     </li>

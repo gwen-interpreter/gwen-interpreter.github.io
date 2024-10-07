@@ -1,0 +1,790 @@
+--- 
+title: CSV Results
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# CSV Reports
+
+> Coming soon to [v3.77.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.77.0)
+
+Gwen can also generate CSV reports for you.
+
+## Configure CSV files
+
+By default, Gwen will generate the following CSV files under `reports/results` subdirectory in your configured [`output`](/docs/settings#gwen-outDir) directory, but you can completely reconfigure this to suit your own requirements:
+- Feature level files:
+  - feature-results-PASSED.csv - A log of all passed feature results
+  - feature-results-FAILED.csv - A log of all failed feature results including the failed reason
+  - feature-results-ALL.csv - A log of all feature results (passed or failed) including the failed reason (for failed)
+- Scenario level files:
+  - scenario-results-PASSED.csv - A log of all passed scenario results
+  - scenario-results-FAILED.csv - A log of all failed scenario results including the failed reason
+  - scenario-results-ALL.csv - A log of all scenario results (passed or failed) including the failed reason (for failed)
+
+### Configuration
+
+Files can be configured within the `gwen.reports.results.files` element in your settings file.
+```json
+<name> {
+  file = "<filename>" 
+  scope = "[scope]"
+  status = "[status]"
+  fields = [
+    { name = "<fieldName 1>", ref = [reference 1], optional = [optionality 1] }
+    { name = "<fieldName 2>", ref = [reference 2], optional = [optionality 2] }
+    ..
+    { name = "<fieldName N>", ref = [reference N], optional = [optionality N] }
+  ]
+}
+```
+
+Where:
+
+<ul>
+  <li><code>&lt;name&gt;</code> - (Mandatory) Is an arbitatry name for the file element</li>
+  <li>
+    <code>&lt;filename&gt;</code> - (Mandatory) - Is the name or path to the target CSV file
+    <ul>
+      <li>If a file name only is specified (without a prefixed path), then the named file will be written to the `reports/results` subdirectory within your configured [`output`](/docs/settings#gwen-outDir) directory</li>
+      <li>If the file name is prefixed with a path, then the named file will be written to that location</li>
+    </ul>
+  </li>
+  <li>
+    <code>[scope]</code> - (Optional) is either:
+    <ul>
+      <li><code>Feature</code> - To log feature level results to the CSV file when a feature completes</li>
+      <li><code>Scdenario</code> - To log scenario level to the CSV file when a scenario completes</li>
+      <li>Or blank to not log any records automatically (used for manually managed CSV logging)</li>
+    </ul>
+  </li>
+  <li>
+    <code>[status]</code> - (Optional) is either:
+    <ul>
+      <li><code>Passed</code> - To log only passed results to the CSV file</li>
+      <li><code>Failed</code> - To log only failed results to the CSV file</li>
+      <li>Or blank to log passed or failed results to the CSV file</li>
+    </ul>
+  </li>
+  <li><code>fields</code> - (Mandatory) - Contains an array of fields as described below</li>
+</ul>
+
+Fields are configured as arrays witihin the `fields` attribute and have the following structure:
+
+```json
+{ name = "<fieldName>", ref = [reference], optional = [optionality] }
+```
+
+Where:
+<ul>
+  <li><code>&lt;fieldName&gt;</code> - (Mandatory) - Is the name of the field as it will appear in generated CSV</li>
+  <li>
+    <code>[reference]</code> - (Optional) - Can be one of:
+    <ul>
+      <li>The name of a varaible in scope containing the value to bind</li>
+      <li>If blank, will use the value refered to by variable of same name as <code>&lt;fieldName&gt;</code></li>
+      <li>
+        If <code>&lt;fieldName&gt;</code> is set to <code>*</code>, then:
+        <ul>
+          <li>This reference must specify a path to the CSV template file containing the names of all fields to bind in the first row (and the name of such fields will also be used as the binding references)</li>
+          <li>Can also be set to the special reference <code>$&lt;gwen.options.dataFile&gt;</code> which will resolve to the input CSV (data feed) file passed to Gwen via the [<code>-i|--input-data &lt;file&gt;</code>](/docs/cli#gwen-cli-options-input-data) CLI option. In the case all fields provided in the input file will be included and resolved by name.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <code>[optionality]</code> - (Optional) - Can be either of:
+    <ul>
+      <li><code>true</code> - (Default) - To make this field mandatory. Will result in an undefined binding error being raised at runtime if the field binding does does not exist (i.e: is not in scope) at the time the record is written. </li>
+      <li><code>false</code> - To make this field optional. Will resolve to blank at runtime if the field binding does does not exist (i.e: is not in scope) at the time the record is written. </li>
+    </ul>
+  </li>
+</ul>
+
+### Default configuration
+
+<Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+<TabItem value="conf">
+
+<Tabs
+  groupId="settings"
+  defaultValue="default"
+  values={[
+    {label: 'default', value: 'default'},
+    {label: 'redundant', value: 'redundant'},
+    
+  ]}>
+
+  <TabItem value="default">
+
+ In this default configuration, fields are uniquely defined upfront and reused across file definitions.
+
+  ```json
+  gwen {
+    report {
+      results {
+        fields {
+          feature {
+            status = [
+              { field = "EVAL_STATUS", ref = "gwen.feature.eval.status.keyword.upperCased" }
+              { field = "EVAL_STARTED", ref = "gwen.feature.eval.started" }
+              { field = "EVAL_FINISHED", ref = "gwen.feature.eval.finished" }
+            ]
+            details = [
+              { field = "FEATURE_FILE", ref = "gwen.feature.file.path" }
+              { field = "FEATURE_NAME", ref = "gwen.feature.displayName" }
+            ]
+            duration = [
+              { field = "EVAL_DURATION", ref = "gwen.feature.eval.duration" }
+            ]
+            message = [
+              { field = "EVAL_MESSAGE", ref = "gwen.feature.eval.status.message" }
+            ]
+          }
+          scenario {
+            status = [
+              { field = "EVAL_STATUS", ref = "gwen.scenario.eval.status.keyword.upperCased" }
+              { field = "EVAL_STARTED", ref = "gwen.scenario.eval.started" }
+              { field = "EVAL_FINISHED", ref = "gwen.scenario.eval.finished" }
+            ]
+            details = [
+              ${gwen.report.results.fields.feature.details}
+              { field = "SCENARIO_NAME", ref = "gwen.scenario.displayName" }
+            ]
+            duration = [
+              { field = "EVAL_DURATION", ref = "gwen.scenario.eval.duration" }
+            ]
+            message = [
+              { field = "EVAL_MESSAGE", ref = "gwen.scenario.eval.status.message" }
+            ]
+          }
+          input {
+              data = [
+              { field = "*", ref = "$<gwen.options.dataFile>" }
+            ]
+          }
+        }
+        files {
+          feature {
+            passed {
+              file = "feature-results-PASSED.csv"
+              scope = "Feature"
+              status = "Passed"
+              fields = [ 
+                ${gwen.report.results.fields.feature.status}
+                ${gwen.report.results.fields.feature.details}
+                ${gwen.report.results.fields.feature.duration}
+                ${gwen.report.results.fields.input.data}
+              ]
+            }
+            failed {
+              file = "feature-results-FAILED.csv"
+              scope = "Feature"
+              status = "Failed"
+              fields = [ 
+                ${gwen.report.results.fields.feature.status}
+                ${gwen.report.results.fields.feature.details}
+                ${gwen.report.results.fields.feature.duration}
+                ${gwen.report.results.fields.input.data}
+                ${gwen.report.results.fields.feature.message}
+              ]
+            }
+            all {
+              file = "feature-results-ALL.csv"
+              scope = "Feature"
+              fields = [ 
+                ${gwen.report.results.fields.feature.status}
+                ${gwen.report.results.fields.feature.details}
+                ${gwen.report.results.fields.feature.duration}
+                ${gwen.report.results.fields.input.data}
+                ${gwen.report.results.fields.feature.message}
+              ]
+            }
+          }
+          scenario {
+            passed {
+              file = "scenario-results-PASSED.csv"
+              scope = "Scenario"
+              status = "Passed"
+              fields = [
+                ${gwen.report.results.fields.scenario.status}
+                ${gwen.report.results.fields.scenario.details}
+                ${gwen.report.results.fields.scenario.duration}
+                ${gwen.report.results.fields.input.data}
+              ]
+            }
+            failed {
+              file = "scenario-results-FAILED.csv"
+              scope = "Scenario"
+              status = "Failed"
+              fields = [
+                ${gwen.report.results.fields.scenario.status}
+                ${gwen.report.results.fields.scenario.details}
+                ${gwen.report.results.fields.scenario.duration}
+                ${gwen.report.results.fields.input.data}
+                ${gwen.report.results.fields.scenario.message}
+              ]
+            }
+            all {
+              file = "scenario-results-ALL.csv"
+              scope = "Scenario"
+              fields = [
+                ${gwen.report.results.fields.scenario.status}
+                ${gwen.report.results.fields.scenario.details}
+                ${gwen.report.results.fields.scenario.duration}
+                ${gwen.report.results.fields.input.data}
+                ${gwen.report.results.fields.scenario.message}
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+  ```
+
+</TabItem>
+
+
+  <TabItem value="redundant">
+
+  In this redendant configuration, fields are replicated across file definitions.
+
+  ```json
+  gwen {
+    report {
+      results {
+        files {
+          feature {
+            passed {
+              file = "feature-results-PASSED.csv"
+              scope = "Feature"
+              status = "Passed"
+              fields = [ 
+                { field = "EVAL_STATUS", ref = "gwen.feature.eval.status.keyword.upperCased" }
+                { field = "EVAL_STARTED", ref = "gwen.feature.eval.started" }
+                { field = "EVAL_FINISHED", ref = "gwen.feature.eval.finished" }
+                { field = "FEATURE_FILE", ref = "gwen.feature.file.path" }
+                { field = "FEATURE_NAME", ref = "gwen.feature.displayName" }
+                { field = "EVAL_DURATION", ref = "gwen.feature.eval.duration" }
+                { field = "*", ref = "$<gwen.options.dataFile>" }
+              ]
+            }
+            failed {
+              file = "feature-results-FAILED.csv"
+              scope = "Feature"
+              status = "Failed"
+              fields = [ 
+                { field = "EVAL_STATUS", ref = "gwen.feature.eval.status.keyword.upperCased" }
+                { field = "EVAL_STARTED", ref = "gwen.feature.eval.started" }
+                { field = "EVAL_FINISHED", ref = "gwen.feature.eval.finished" }
+                { field = "FEATURE_FILE", ref = "gwen.feature.file.path" }
+                { field = "FEATURE_NAME", ref = "gwen.feature.displayName" }
+                { field = "EVAL_DURATION", ref = "gwen.feature.eval.duration" }
+                { field = "*", ref = "$<gwen.options.dataFile>" }
+                { field = "EVAL_MESSAGE", ref = "gwen.feature.eval.status.message" }
+              ]
+            }
+            all {
+              file = "feature-results-ALL.csv"
+              scope = "Feature"
+              fields = [ 
+                { field = "EVAL_STATUS", ref = "gwen.feature.eval.status.keyword.upperCased" }
+                { field = "EVAL_STARTED", ref = "gwen.feature.eval.started" }
+                { field = "EVAL_FINISHED", ref = "gwen.feature.eval.finished" }
+                { field = "FEATURE_FILE", ref = "gwen.feature.file.path" }
+                { field = "FEATURE_NAME", ref = "gwen.feature.displayName" }
+                { field = "EVAL_DURATION", ref = "gwen.feature.eval.duration" }
+                { field = "*", ref = "$<gwen.options.dataFile>" }
+                { field = "EVAL_MESSAGE", ref = "gwen.feature.eval.status.message" }
+              ]
+            }
+          }
+          scenario {
+            passed {
+              file = "scenario-results-PASSED.csv"
+              scope = "Scenario"
+              status = "Passed"
+              fields = [
+                { field = "EVAL_STATUS", ref = "gwen.scenario.eval.status.keyword.upperCased" }
+                { field = "EVAL_STARTED", ref = "gwen.scenario.eval.started" }
+                { field = "EVAL_FINISHED", ref = "gwen.scenario.eval.finished" }
+                { field = "FEATURE_FILE", ref = "gwen.feature.file.path" }
+                { field = "FEATURE_NAME", ref = "gwen.feature.displayName" }
+                { field = "SCENARIO_NAME", ref = "gwen.scenario.displayName" }
+                { field = "EVAL_DURATION", ref = "gwen.scenario.eval.duration" }
+                { field = "*", ref = "$<gwen.options.dataFile>" }
+              ]
+            }
+            failed {
+              file = "scenario-results-FAILED.csv"
+              scope = "Scenario"
+              status = "Failed"
+              fields = [
+                { field = "EVAL_STATUS", ref = "gwen.scenario.eval.status.keyword.upperCased" }
+                { field = "EVAL_STARTED", ref = "gwen.scenario.eval.started" }
+                { field = "EVAL_FINISHED", ref = "gwen.scenario.eval.finished" }
+                { field = "FEATURE_FILE", ref = "gwen.feature.file.path" }
+                { field = "FEATURE_NAME", ref = "gwen.feature.displayName" }
+                { field = "SCENARIO_NAME", ref = "gwen.scenario.displayName" }
+                { field = "EVAL_DURATION", ref = "gwen.scenario.eval.duration" }
+                { field = "*", ref = "$<gwen.options.dataFile>" }
+                { field = "EVAL_MESSAGE", ref = "gwen.scenario.eval.status.message" }
+              ]
+            }
+            all {
+              file = "scenario-results-ALL.csv"
+              scope = "Scenario"
+              fields = [
+                { field = "EVAL_STATUS", ref = "gwen.scenario.eval.status.keyword.upperCased" }
+                { field = "EVAL_STARTED", ref = "gwen.scenario.eval.started" }
+                { field = "EVAL_FINISHED", ref = "gwen.scenario.eval.finished" }
+                { field = "FEATURE_FILE", ref = "gwen.feature.file.path" }
+                { field = "FEATURE_NAME", ref = "gwen.feature.displayName" }
+                { field = "SCENARIO_NAME", ref = "gwen.scenario.displayName" }
+                { field = "EVAL_DURATION", ref = "gwen.scenario.eval.duration" }
+                { field = "*", ref = "$<gwen.options.dataFile>" }
+                { field = "EVAL_MESSAGE", ref = "gwen.scenario.eval.status.message" }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+  ```
+
+</TabItem>
+</Tabs>
+</TabItem>
+
+<TabItem value="json">
+
+  In this redunant configuration, fields are replicated across file definitions (note: field reuse is only supported in <code>conf</code> format and not <code>json</code>).
+
+  ```json
+  {
+    "gwen": {
+      "report": {
+        "results": {
+          "files": {
+            "feature": {
+              "passed": {
+                "file": "feature-results-PASSED.csv",
+                "scope": "Feature",
+                "status": "Passed",
+                "fields": [ 
+                    { "field": "EVAL_STATUS", "ref": "gwen.feature.eval.status.keyword.upperCased" },
+                    { "field": "EVAL_STARTED", "ref": "gwen.feature.eval.started" },
+                    { "field": "EVAL_FINISHED", "ref": "gwen.feature.eval.finished" },
+                    { "field": "FEATURE_FILE", "ref": "gwen.feature.file.path" },
+                    { "field": "FEATURE_NAME", "ref": "gwen.feature.displayName" },
+                    { "field": "EVAL_DURATION", "ref": "gwen.feature.eval.duration" },
+                    { "field": "*", "ref": "$<gwen.options.dataFile>" }
+                ]
+              },
+              "failed": {
+                "file": "feature-results-FAILED.csv",
+                "scope": "Feature",
+                "status": "Failed",
+                "fields": [ 
+                    { "field": "EVAL_STATUS", "ref": "gwen.feature.eval.status.keyword.upperCased" },
+                    { "field": "EVAL_STARTED", "ref": "gwen.feature.eval.started" },
+                    { "field": "EVAL_FINISHED", "ref": "gwen.feature.eval.finished" },
+                    { "field": "FEATURE_FILE", "ref": "gwen.feature.file.path" },
+                    { "field": "FEATURE_NAME", "ref": "gwen.feature.displayName" },
+                    { "field": "EVAL_DURATION", "ref": "gwen.feature.eval.duration" },
+                    { "field": "*", "ref": "$<gwen.options.dataFile>" },
+                    { "field": "EVAL_MESSAGE", "ref": "gwen.feature.eval.status.message" }
+                ]
+              },
+              "all": {
+                "file": "feature-results-ALL.csv",
+                "scope": "Feature",
+                "fields": [ 
+                    { "field": "EVAL_STATUS", "ref": "gwen.feature.eval.status.keyword.upperCased" },
+                    { "field": "EVAL_STARTED", "ref": "gwen.feature.eval.started" },
+                    { "field": "EVAL_FINISHED", "ref": "gwen.feature.eval.finished" },
+                    { "field": "FEATURE_FILE", "ref": "gwen.feature.file.path" },
+                    { "field": "FEATURE_NAME", "ref": "gwen.feature.displayName" },
+                    { "field": "EVAL_DURATION", "ref": "gwen.feature.eval.duration" },
+                    { "field": "*", "ref": "$<gwen.options.dataFile>" },
+                    { "field": "EVAL_MESSAGE", "ref": "gwen.feature.eval.status.message" }
+                ]
+              }
+            },
+            "scenario": {
+              "passed": {
+                "file": "scenario-results-PASSED.csv",
+                "scope": "Scenario",
+                "status": "Passed",
+                "fields": [
+                    { "field": "EVAL_STATUS", "ref": "gwen.scenario.eval.status.keyword.upperCased" },
+                    { "field": "EVAL_STARTED", "ref": "gwen.scenario.eval.started" },
+                    { "field": "EVAL_FINISHED", "ref": "gwen.scenario.eval.finished" },
+                    { "field": "FEATURE_FILE", "ref": "gwen.feature.file.path" },
+                    { "field": "FEATURE_NAME", "ref": "gwen.feature.displayName" },
+                    { "field": "SCENARIO_NAME", "ref": "gwen.scenario.displayName" },
+                    { "field": "EVAL_DURATION", "ref": "gwen.scenario.eval.duration" },
+                    { "field": "*", "ref": "$<gwen.options.dataFile>" }
+                ]
+              },
+              "failed": {
+                "file": "scenario-results-FAILED.csv",
+                "scope": "Scenario",
+                "status": "Failed",
+                "fields": [
+                    { "field": "EVAL_STATUS", "ref": "gwen.scenario.eval.status.keyword.upperCased" },
+                    { "field": "EVAL_STARTED", "ref": "gwen.scenario.eval.started" },
+                    { "field": "EVAL_FINISHED", "ref": "gwen.scenario.eval.finished" },
+                    { "field": "FEATURE_FILE", "ref": "gwen.feature.file.path" },
+                    { "field": "FEATURE_NAME", "ref": "gwen.feature.displayName" },
+                    { "field": "SCENARIO_NAME", "ref": "gwen.scenario.displayName" },
+                    { "field": "EVAL_DURATION", "ref": "gwen.scenario.eval.duration" },
+                    { "field": "*", "ref": "$<gwen.options.dataFile>" },
+                    { "field": "EVAL_MESSAGE", "ref": "gwen.scenario.eval.status.message" }
+                ]
+              },
+              "all": {
+                "file": "scenario-results-ALL.csv",
+                "scope": "Scenario",
+                "fields": [
+                    { "field": "EVAL_STATUS", "ref": "gwen.scenario.eval.status.keyword.upperCased" },
+                    { "field": "EVAL_STARTED", "ref": "gwen.scenario.eval.started" },
+                    { "field": "EVAL_FINISHED", "ref": "gwen.scenario.eval.finished" },
+                    { "field": "FEATURE_FILE", "ref": "gwen.feature.file.path" },
+                    { "field": "FEATURE_NAME", "ref": "gwen.feature.displayName" },
+                    { "field": "SCENARIO_NAME", "ref": "gwen.scenario.displayName" },
+                    { "field": "EVAL_DURATION", "ref": "gwen.scenario.eval.duration" },
+                    { "field": "*", "ref": "$<gwen.options.dataFile>" },
+                    { "field": "EVAL_MESSAGE", "ref": "gwen.scenario.eval.status.message" }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ```
+
+</TabItem>
+<TabItem value="properties">
+
+In this redunant configuration, fields are replicated across file definitions (note: field reuse is only supported in <code>conf</code> format and not <code>properties</code>).
+
+  ```properties
+  gwen.report.results.files.feature.passed.file   = feature-results-PASSED.csv
+  gwen.report.results.files.feature.passed.scope  = Feature
+  gwen.report.results.files.feature.passed.status = Passed
+  gwen.report.results.files.feature.passed.fields.feature.status.01.field   = EVAL_STATUS
+  gwen.report.results.files.feature.passed.fields.feature.status.01.ref     = gwen.feature.eval.status.keyword.upperCased
+  gwen.report.results.files.feature.passed.fields.feature.status.02.field   = EVAL_STARTED
+  gwen.report.results.files.feature.passed.fields.feature.status.02.ref     = gwen.feature.eval.started
+  gwen.report.results.files.feature.passed.fields.feature.status.03.field   = EVAL_FINISHED
+  gwen.report.results.files.feature.passed.fields.feature.status.03.ref     = gwen.feature.eval.finished
+  gwen.report.results.files.feature.passed.fields.feature.details.01.field  = FEATURE_FILE
+  gwen.report.results.files.feature.passed.fields.feature.details.01.ref    = gwen.feature.file.path
+  gwen.report.results.files.feature.passed.fields.feature.details.02.field  = FEATURE_NAME
+  gwen.report.results.files.feature.passed.fields.feature.details.02.ref    = gwen.feature.displayName
+  gwen.report.results.files.feature.passed.fields.feature.duration.01.field = EVAL_DURATION
+  gwen.report.results.files.feature.passed.fields.feature.duration.01.ref   = gwen.feature.eval.duration
+  gwen.report.results.files.feature.passed.fields.input.data.01.field       = *
+  gwen.report.results.files.feature.passed.fields.input.data.01.ref         = $<gwen.options.dataFile>
+
+  gwen.report.results.files.feature.failed.file   = feature-results-FAILED.csv
+  gwen.report.results.files.feature.failed.scope  = Feature
+  gwen.report.results.files.feature.failed.status = Failed
+  gwen.report.results.files.feature.failed.fields.feature.status.01.field   = EVAL_STATUS
+  gwen.report.results.files.feature.failed.fields.feature.status.01.ref     = gwen.feature.eval.status.keyword.upperCased
+  gwen.report.results.files.feature.failed.fields.feature.status.02.field   = EVAL_STARTED
+  gwen.report.results.files.feature.failed.fields.feature.status.02.ref     = gwen.feature.eval.started
+  gwen.report.results.files.feature.failed.fields.feature.status.03.field   = EVAL_FINISHED
+  gwen.report.results.files.feature.failed.fields.feature.status.03.ref     = gwen.feature.eval.finished
+  gwen.report.results.files.feature.failed.fields.feature.details.01.field  = FEATURE_FILE
+  gwen.report.results.files.feature.failed.fields.feature.details.01.ref    = gwen.feature.file.path
+  gwen.report.results.files.feature.failed.fields.feature.details.02.field  = FEATURE_NAME
+  gwen.report.results.files.feature.failed.fields.feature.details.02.ref    = gwen.feature.displayName
+  gwen.report.results.files.feature.failed.fields.feature.duration.01.field = EVAL_DURATION
+  gwen.report.results.files.feature.failed.fields.feature.duration.01.ref   = gwen.feature.eval.duration
+  gwen.report.results.files.feature.failed.fields.input.data.01.field       = *
+  gwen.report.results.files.feature.failed.fields.input.data.01.ref         = $<gwen.options.dataFile>
+  gwen.report.results.files.feature.failed.fields.feature.message.01.field  = EVAL_MESSAGE
+  gwen.report.results.files.feature.failed.fields.feature.message.01.ref    = gwen.feature.eval.status.message
+
+  gwen.report.results.files.feature.all.file   = feature-results-ALL.csv
+  gwen.report.results.files.feature.all.scope  = Feature
+  gwen.report.results.files.feature.all.fields.feature.status.01.field   = EVAL_STATUS
+  gwen.report.results.files.feature.all.fields.feature.status.01.ref     = gwen.feature.eval.status.keyword.upperCased
+  gwen.report.results.files.feature.all.fields.feature.status.02.field   = EVAL_STARTED
+  gwen.report.results.files.feature.all.fields.feature.status.02.ref     = gwen.feature.eval.started
+  gwen.report.results.files.feature.all.fields.feature.status.03.field   = EVAL_FINISHED
+  gwen.report.results.files.feature.all.fields.feature.status.03.ref     = gwen.feature.eval.finished
+  gwen.report.results.files.feature.all.fields.feature.details.01.field  = FEATURE_FILE
+  gwen.report.results.files.feature.all.fields.feature.details.01.ref    = gwen.feature.file.path
+  gwen.report.results.files.feature.all.fields.feature.details.02.field  = FEATURE_NAME
+  gwen.report.results.files.feature.all.fields.feature.details.02.ref    = gwen.feature.displayName
+  gwen.report.results.files.feature.all.fields.feature.duration.01.field = EVAL_DURATION
+  gwen.report.results.files.feature.all.fields.feature.duration.01.ref   = gwen.feature.eval.duration
+  gwen.report.results.files.feature.all.fields.input.data.01.field       = *
+  gwen.report.results.files.feature.all.fields.input.data.01.ref         = $<gwen.options.dataFile>
+  gwen.report.results.files.feature.all.fields.feature.message.01.field  = EVAL_MESSAGE
+  gwen.report.results.files.feature.all.fields.feature.message.01.ref    = gwen.feature.eval.status.message
+
+  gwen.report.results.files.scenario.passed.file   = scenario-results-PASSED.csv
+  gwen.report.results.files.scenario.passed.scope  = Scenario
+  gwen.report.results.files.scenario.passed.status = Passed
+  gwen.report.results.files.scenario.passed.fields.scenario.status.01.field   = EVAL_STATUS
+  gwen.report.results.files.scenario.passed.fields.scenario.status.01.ref     = gwen.scenario.eval.status.keyword.upperCased
+  gwen.report.results.files.scenario.passed.fields.scenario.status.02.field   = EVAL_STARTED
+  gwen.report.results.files.scenario.passed.fields.scenario.status.02.ref     = gwen.scenario.eval.started
+  gwen.report.results.files.scenario.passed.fields.scenario.status.03.field   = EVAL_FINISHED
+  gwen.report.results.files.scenario.passed.fields.scenario.status.03.ref     = gwen.scenario.eval.finished
+  gwen.report.results.files.scenario.passed.fields.scenario.details.01.field  = FEATURE_FILE
+  gwen.report.results.files.scenario.passed.fields.scenario.details.01.ref    = gwen.feature.file.path
+  gwen.report.results.files.scenario.passed.fields.scenario.details.02.field  = FEATURE_NAME
+  gwen.report.results.files.scenario.passed.fields.scenario.details.02.ref    = gwen.feature.displayName
+  gwen.report.results.files.scenario.passed.fields.scenario.details.03.field  = SCENARIO_NAME
+  gwen.report.results.files.scenario.passed.fields.scenario.details.03.ref    = gwen.scenario.displayName
+  gwen.report.results.files.scenario.passed.fields.scenario.duration.01.field = EVAL_DURATION
+  gwen.report.results.files.scenario.passed.fields.scenario.duration.01.ref   = gwen.scenario.eval.duration
+  gwen.report.results.files.scenario.passed.fields.input.data.01.field        = *
+  gwen.report.results.files.scenario.passed.fields.input.data.01.ref          = $<gwen.options.dataFile>
+
+  gwen.report.results.files.scenario.failed.file   = scenario-results-FAILED.csv
+  gwen.report.results.files.scenario.failed.scope  = Scenario
+  gwen.report.results.files.scenario.failed.status = Failed
+  gwen.report.results.files.scenario.failed.fields.scenario.status.01.field   = EVAL_STATUS
+  gwen.report.results.files.scenario.failed.fields.scenario.status.01.ref     = gwen.scenario.eval.status.keyword.upperCased
+  gwen.report.results.files.scenario.failed.fields.scenario.status.02.field   = EVAL_STARTED
+  gwen.report.results.files.scenario.failed.fields.scenario.status.02.ref     = gwen.scenario.eval.started
+  gwen.report.results.files.scenario.failed.fields.scenario.status.03.field   = EVAL_FINISHED
+  gwen.report.results.files.scenario.failed.fields.scenario.status.03.ref     = gwen.scenario.eval.finished
+  gwen.report.results.files.scenario.failed.fields.scenario.details.01.field  = FEATURE_FILE
+  gwen.report.results.files.scenario.failed.fields.scenario.details.01.ref    = gwen.feature.file.path
+  gwen.report.results.files.scenario.failed.fields.scenario.details.02.field  = FEATURE_NAME
+  gwen.report.results.files.scenario.failed.fields.scenario.details.02.ref    = gwen.feature.displayName
+  gwen.report.results.files.scenario.failed.fields.scenario.details.03.field  = SCENARIO_NAME
+  gwen.report.results.files.scenario.failed.fields.scenario.details.03.ref    = gwen.scenario.displayName
+  gwen.report.results.files.scenario.failed.fields.scenario.duration.01.field = EVAL_DURATION
+  gwen.report.results.files.scenario.failed.fields.scenario.duration.01.ref   = gwen.scenario.eval.duration
+  gwen.report.results.files.scenario.failed.fields.input.data.01.field        = *
+  gwen.report.results.files.scenario.failed.fields.input.data.01.ref          = $<gwen.options.dataFile>
+  gwen.report.results.files.scenario.failed.fields.scenario.message.01.field  = EVAL_MESSAGE
+  gwen.report.results.files.scenario.failed.fields.scenario.message.01.ref    = gwen.scenario.eval.status.message
+
+  gwen.report.results.files.scenario.all.file   = scenario-results-ALL.csv
+  gwen.report.results.files.scenario.all.scope  = Scenario
+  gwen.report.results.files.scenario.all.fields.scenario.status.01.field   = EVAL_STATUS
+  gwen.report.results.files.scenario.all.fields.scenario.status.01.ref     = gwen.scenario.eval.status.keyword.upperCased
+  gwen.report.results.files.scenario.all.fields.scenario.status.02.field   = EVAL_STARTED
+  gwen.report.results.files.scenario.all.fields.scenario.status.02.ref     = gwen.scenario.eval.started
+  gwen.report.results.files.scenario.all.fields.scenario.status.03.field   = EVAL_FINISHED
+  gwen.report.results.files.scenario.all.fields.scenario.status.03.ref     = gwen.scenario.eval.finished
+  gwen.report.results.files.scenario.all.fields.scenario.details.01.field  = FEATURE_FILE
+  gwen.report.results.files.scenario.all.fields.scenario.details.01.ref    = gwen.feature.file.path
+  gwen.report.results.files.scenario.all.fields.scenario.details.02.field  = FEATURE_NAME
+  gwen.report.results.files.scenario.all.fields.scenario.details.02.ref    = gwen.feature.displayName
+  gwen.report.results.files.scenario.all.fields.scenario.details.03.field  = SCENARIO_NAME
+  gwen.report.results.files.scenario.all.fields.scenario.details.03.ref    = gwen.scenario.displayName
+  gwen.report.results.files.scenario.all.fields.scenario.duration.01.field = EVAL_DURATION
+  gwen.report.results.files.scenario.all.fields.scenario.duration.01.ref   = gwen.scenario.eval.duration
+  gwen.report.results.files.scenario.all.fields.input.data.01.field        = *
+  gwen.report.results.files.scenario.all.fields.input.data.01.ref          = $<gwen.options.dataFile>
+  gwen.report.results.files.scenario.all.fields.scenario.message.01.field  = EVAL_MESSAGE
+  gwen.report.results.files.scenario.all.fields.scenario.message.01.ref    = gwen.scenario.eval.status.message      
+  ```
+
+</TabItem>
+
+</Tabs>
+
+## Logging Results
+
+With the above settings in place, CSV files containing evaluated results will automatiacally be logged when you launch Gwen to execute with the `-f results` [CLI](/docs/cli) option.
+
+<Tabs
+  groupId="setup"
+  defaultValue="project"
+  values={[
+    {label: 'Project', value: 'project'},
+    {label: 'Standalone', value: 'standalone'}
+  ]}>
+
+<TabItem value="project">
+
+<Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+<TabItem value="yarn">
+
+:::note Example
+
+Executing features in the `gwen/features/todo` folder and log CSV reports.
+
+To generate CSV files only
+
+```shell
+yarn gwen -b -f results gwen/features/todo
+```
+
+To generate HTML reports and CSV files
+
+```shell
+yarn  -b f html,results gwen/features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+<TabItem value="npm">
+
+:::note Example
+
+Executing features in the `gwen/features/todo` folder and log CSV reports.
+
+To generate CSV files only
+
+```shell
+npm run gwen -- -b -f results gwen/features/todo
+```
+
+To generate HTML reports and CSV files
+
+```shell
+npm run gwen -- -b f html,results gwen/features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+:::note Example
+
+Executing features in the `gwen/features/todo` folder and log CSV reports.
+
+To generate CSV files only
+
+```shell
+pnpm gwen -b -f results gwen/features/todo
+```
+
+To generate HTML reports and CSV files
+
+```shell
+pnpm  -b f html,results gwen/features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+### Output
+
+- The CSV results logged to:
+  - `output/reports/results/`
+- The HTML report will be generated at
+  - `output/reports/index.html`.
+  
+</TabItem>
+
+<TabItem value="standalone">
+
+<Tabs
+  groupId="os"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+:::note Example
+
+Executing features in the `gwen/features/todo` folder and log CSV reports.
+
+To generate CSV files only
+
+```shell
+gwen -b -f results features/todo
+```
+
+To generate HTML reports and CSV files
+
+```shell
+gwen -b f html,results features/todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+<TabItem value="windows">
+
+:::note Example
+
+Executing features in the `gwen/features/todo` folder and log CSV reports.
+
+To generate CSV files only
+
+```shell
+gwen -b -f results features\todo
+```
+
+To generate HTML reports and CSV files
+
+```shell
+gwen -b f html,results features\todo
+```
+
+[Gwen CLI](/docs/cli)
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+### Output
+
+- The CSV results logged to:
+  - `output/reports/results/`
+- The HTML report will be generated at
+  - `output/reports/index.html`.
+
+</TabItem>
+
+</Tabs>
