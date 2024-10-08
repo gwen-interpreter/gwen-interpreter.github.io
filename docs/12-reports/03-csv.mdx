@@ -13,9 +13,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 > Coming soon to [v3.77.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.77.0)
 
-Gwen can also generate CSV reports for you.
-
-## Configuration
+Gwen can also generate CSV reports for you when you specify the `results` in the [format](/docs/settings#gwen-cli-options-format) option.
 
 By default, Gwen will generate the following CSV files under `reports/results` subdirectory in your configured [`output`](/docs/settings#gwen-outDir) directory, but you can completely reconfigure this to suit your own requirements:
 - Feature level results:
@@ -751,7 +749,7 @@ Feature: My meta
 
 ## Logging Results
 
-With the above settings in place, CSV files containing evaluated results will automatiacally be logged when you launch Gwen to execute with the `-f results` [CLI](/docs/cli) option.
+With the above settings in place, CSV files containing evaluated results will automatiacally be logged when you launch Gwen to execute with the `-f results` [format](/docs/settings#gwen-cli-options-format) option.
 
 <Tabs
   groupId="setup"
