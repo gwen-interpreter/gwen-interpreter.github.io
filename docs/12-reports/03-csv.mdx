@@ -37,10 +37,10 @@ CSV files can be configured within the `gwen.reports.results.files` element in y
   scope = "[scope]"
   status = "[status]"
   fields = [
-    { name = "<fieldName 1>", ref = [reference 1], optional = [optionality 1] }
-    { name = "<fieldName 2>", ref = [reference 2], optional = [optionality 2] }
+    { name = "<fieldName 1>", ref = "[reference 1]", optional = [optionality 1], excludes = "[excludeFields 1]"}
+    { name = "<fieldName 2>", ref = "[reference 2]", optional = [optionality 2], excludes = "[excludeFields 2]" }
     ..
-    { name = "<fieldName N>", ref = [reference N], optional = [optionality N] }
+    { name = "<fieldName N>", ref = "[reference N]", optional = [optionality N], excludes = "[excludeFields N]" }
   ]
 }
 ```
@@ -98,7 +98,7 @@ Where:
 CSV fields are configured as arrays witihin the `fields` attribute and have the following structure:
 
 ```json
-{ name = "<fieldName>", ref = [reference], optional = [optionality] }
+{ name = "<fieldName>", ref = "[reference]", optional = [optionality], excludes = "[excludeFields]" }
 ```
 
 Where:
@@ -123,6 +123,12 @@ Where:
     <ul>
       <li><code>true</code> - (Default) - To make this field mandatory. Will result in an undefined binding error being raised at runtime if the field binding does does not exist (i.e: is not in scope) at the time the record is written. </li>
       <li><code>false</code> - To make this field optional. Will resolve to blank at runtime if the field binding does does not exist (i.e: is not in scope) at the time the record is written. </li>
+    </ul>
+  </li>
+  <li>
+    <code>[excludeFields]</code> - (Optional) - Comma separated list of fields to exclude when <code>&lt;fieldName&gt;</code> is set to <code>*</code>:
+    <ul>
+      <li>All fields in the template file (referred to by <code>[reference]</code>) that match those in the excludes list will be excluded</li>
     </ul>
   </li>
 </ul>
