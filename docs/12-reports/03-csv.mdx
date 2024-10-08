@@ -59,12 +59,27 @@ Where:
   <li>
     <code>[scope]</code> - (Optional) is either:
     <ul>
-      <li><code>Feature</code> - To log the results of all features to the CSV file as they complete</li>
-      <li><code>Rule</code> - To log the results of all rules to the CSV file as they complete</li>
-      <li><code>Scenario</code> - To log the results of all scenarios to the CSV file as they complete</li>
-      <li><code>Examples</code> - To log the results of all examples to the CSV file as they complete</li>
-      <li><code>StepDef</code> - To log the results of all <Link to="/docs/meta#stepdefs">StepDefs</Link> to the CSV file as they complete</li>
-      <li>Or blank to not log any results automatically; for when you want to explicitly control the scope and where the logging will occur using a [`@Results`](#results-annotation) annotation</li>
+      <li>
+        <code>Feature</code> - To log the results of all features to the CSV file as they complete.
+        <ul><li>or <code>Feature: &lt;name&gt;</code> - To log the results of a specifically named Feature only, where <code>&lt;name&gt;</code> is the name of the Feature to log the results for. Alternatively, omit the scope attribute and place the [`@Results`](#results-annotation) annotation directly on the Feature itself in the feature or meta file to make it more explict and avoid potential name clashes (preferred approach).</li></ul>
+      </li>
+      <li>
+        <code>Rule</code> - To log the results of all rules to the CSV file as they complete.
+        <ul><li>or <code>Rule: &lt;name&gt;</code> - To log the results of a specifically named Rule only, where <code>&lt;name&gt;</code> is the name of the Rule to log the results for. Alternatively, omit the scope attribute and place the [`@Results`](#results-annotation) annotation directly on the Rule itself in the feature or meta file to make it more explict and avoid potential name clashes (preferred approach).</li></ul>
+      </li>
+      <li>
+        <code>Scenario</code> - To log the results of all scenarios to the CSV file as they complete.
+        <ul><li>or <code>Scenario: &lt;name&gt;</code> - To log the results of a specifically named Scenario only, where <code>&lt;name&gt;</code> is the name of the Scenario to log the results for. Alternatively, omit the scope attribute and place the [`@Results`](#results-annotation) annotation directly on the Scenario itself in the feature or meta file to make it more explict and avoid potential name clashes (preferred approach).</li></ul>
+      </li>
+      <li>
+        <code>Examples</code> - To log the results of all examples to the CSV file as they complete.
+        <ul><li>or <code>Examples: &lt;name&gt;</code> - To log the results of a specifically named Examples only, where <code>&lt;name&gt;</code> is the name of the Examples to log the results for. Alternatively, omit the scope attribute and place the [`@Results`](#results-annotation) annotation directly on the Examples itself in the feature or meta file to make it more explict and avoid potential name clashes (preferred approach).</li></ul>
+      </li>
+      <li>
+        <code>StepDef</code> - To log the results of all <Link to="/docs/meta#stepdefs">StepDefs</Link> to the CSV file as they complete.
+        <ul><li>or <code>StepDef: &lt;name&gt;</code> - To log the results of a specifically named StepDef only, where <code>&lt;name&gt;</code> is the name of the StepDef to log the results for. Alternatively, omit the scope attribute and place the [`@Results`](#results-annotation) annotation directly on the StepDef itself in the feature or meta file to make it more explict and avoid potential name clashes (preferred approach).</li></ul>
+      </li>
+      <li>Omit the scope to not log any results automatically; for when you want to explicitly control the scope and where the logging will occur using a [`@Results`](#results-annotation) annotation</li>
     </ul>
   </li>
   <li>
