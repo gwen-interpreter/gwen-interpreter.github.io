@@ -15,15 +15,15 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Gwen will generate CSV reports for you when you include `results` in the [format](/docs/settings#gwen-cli-options-format) option.
 
-By default, Gwen will generate the following CSV files under `reports/results` subdirectory in your configured [`output`](/docs/settings#gwen-outDir) directory, but you can completely reconfigure this to suit your own requirements:
+By default, the following CSV files will be generated in the `reports/results` subdirectory of your configured [`output`](/docs/settings#gwen-outDir) directory, but you can completely reconfigure this and create your own CSVs to suit your requirements:
 - Feature level results:
-  - feature-results-PASSED.csv - A log of all passed feature results
-  - feature-results-FAILED.csv - A log of all failed feature results including the failed reason
-  - feature-results-ALL.csv - A log of all feature results (passed or failed) including the failed reason (for failed)
+  - `feature-results-PASSED.csv` - A log of all passed feature results
+  - `feature-results-FAILED.csv` - A log of all failed feature results including the failed reason
+  - `feature-results-ALL.csv` - A log of all feature results (passed or failed) including the failed reason (for failed)
 - Scenario level results:
-  - scenario-results-PASSED.csv - A log of all passed scenario results
-  - scenario-results-FAILED.csv - A log of all failed scenario results including the failed reason
-  - scenario-results-ALL.csv - A log of all scenario results (passed or failed) including the failed reason (for failed)
+  - `scenario-results-PASSED.csv` - A log of all passed scenario results
+  - `scenario-results-FAILED.csv` - A log of all failed scenario results including the failed reason
+  - `scenario-results-ALL.csv` - A log of all scenario results (passed or failed) including the failed reason (for failed)
 
 ## Configuration
 
