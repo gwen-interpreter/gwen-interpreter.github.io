@@ -213,9 +213,9 @@ Lists can be stored in settings in various ways. For example, a list of values c
   ```json
     my {
       values = [
-        "Gwen", 
-        "Jenkins", 
-        "Yarn", 
+        "Gwen"
+        "Jenkins"
+        "Yarn"
         "Docker"
       ]
     }
@@ -5328,7 +5328,7 @@ Will expand to:
       web {
         chrome {
           args = [
-            "--ignore-certificate-errors",
+            "--ignore-certificate-errors"
             "--incognito"
           ]
         }
@@ -5889,7 +5889,7 @@ Will expand to:
       web {
         edge {
           args = [
-            "--ignore-certificate-errors",
+            "--ignore-certificate-errors"
             "--incognito"
           ]
         }
@@ -7066,7 +7066,7 @@ Will expand to:
       cli {
         options {
           format = [ 
-            "html",
+            "html"
             "results"
           ]
         }
@@ -7182,7 +7182,7 @@ Default value (empty to pick up Gwen default format: html)
       cli {
         options {
           tags = [ 
-            "@includeTag",
+            "@includeTag"
             "~@excludeTag"
           ]
         }
@@ -7436,7 +7436,7 @@ Default value (empty to pick up Gwen default format: html)
       cli {
         options {
           meta = [ 
-            "meta/file1.meta",
+            "meta/file1.meta"
             "meta/file2.meta"
           ]
         }
@@ -7552,7 +7552,7 @@ Default value (empty to pick up Gwen default format: html)
       cli {
         options {
           features = [ 
-            "features/file1.feature",
+            "features/file1.feature"
             "features/file2.feature"
           ]
         }
