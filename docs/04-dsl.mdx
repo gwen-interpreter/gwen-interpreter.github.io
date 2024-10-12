@@ -4804,7 +4804,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin
-     When I download "https://gweninterpreter.org/assets/docs/gwen-reportportal-userguide.pdf" to "output/download/gwen-reportportal-userguide.pdf"
+     When I download "https://example.com/file.pdf" to "output/download/file.pdf"
   ```
 
   <div class="grid-3">
@@ -4830,8 +4830,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin {2}
-    Given my out file is "output/download/gwen-reportportal-userguide.pdf"
-     When I download "https://gweninterpreter.org/assets/docs/gwen-reportportal-userguide.pdf" to my out file
+    Given my out file is "output/download/file.pdf"
+     When I download "https://example.com/file.pdf" to my out file
   ```
 
   <div class="grid-3">
@@ -4856,8 +4856,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin {2}
-     When I navigate to "https://gweninterpreter.org/assets/docs/gwen-reportportal-userguide.pdf"
-      And I download the current URL to "output/download/gwen-reportportal-userguide.pdf"
+     When I navigate to "https://example.com/file.pdf"
+      And I download the current URL to "output/download/file.pdf"
   ```
 
   <div class="grid-3">
@@ -4882,8 +4882,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin {3}
-    Given my out file is "output/download/gwen-reportportal-userguide.pdf"
-     When I navigate to "https://gweninterpreter.org/assets/docs/gwen-reportportal-userguide.pdf"
+    Given my out file is "output/download/file.pdf"
+     When I navigate to "https://example.com/file.pdf"
       And I download the current URL to my out file
   ```
 
