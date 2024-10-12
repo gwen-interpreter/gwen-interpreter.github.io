@@ -38,19 +38,35 @@ The following settings changes have been made to Gwen 3. Scan all your *.propert
 
 The following settings have been renamed.
 
-| Gwen 2 name                    | Gwen 3 name                                                                                            |
+| Renamed                        | To this                                                                                            |
 | :----------------------------- | :------------------------------------------------------------------------------------------------------ |
 | `gwen.feature.failfast`        | [`gwen.feature.failfast.enabled`](/docs/settings#gwen-feature-failfast-enabled)               |
 | `gwen.web.capture.screenshots` | [`gwen.web.capture.screenshots.enabled`](/docs/settings#gwen-web-capture-screenshots-enabled) |
 | `gwen.web.browser`             | [`gwen.target.browser`](/docs/settings#gwen-target-browser)                                   |
 
-#### Removed alias
+#### Implicit values
 
-The following settings alias has been removed.
+| Rename this                           | To this                                                                                                            |
+| :------------------------------------ | :----------------------------------------------------------------------------------------------------------------- |
+| `gwen.eval.status.keyword`            | [`gwen.feature.eval.status.keyword`](/docs/implicit-values#gwen-feature-eval-status-keyword)                       |
+| `gwen.eval.status.keyword.upperCased` | [`gwen.feature.eval.status.keyword.upperCased`](/docs/implicit-values#gwen-feature-eval-status-keyword-upperCased) |
+| `gwen.eval.status.keyword.lowerCased` | [`gwen.feature.eval.status.keyword.lowerCased`](/docs/implicit-values#gwen-feature-eval-status-keyword-lowerCased) |
+| `gwen.eval.status.keyword.isPassed`   | [`gwen.feature.eval.status.keyword.isPassed`](/docs/implicit-values#gwen-feature-eval-status-isPassed)             |
+| `gwen.eval.status.keyword.isFailed`   | [`gwen.feature.eval.status.keyword.isFailed`](/docs/implicit-values#gwen-feature-eval-status-isFailed)             |
+| `gwen.eval.status.message`            | [`gwen.feature.eval.status.message`](/docs/implicit-values#gwen-feature-eval-status-message)                       |
+| `gwen.eval.status.message.escaped`    | [`gwen.feature.eval.status.message.escaped`](/docs/implicit-values#gwen-feature-eval-status-message-escaped)       |
+| `gwen.eval.status.message.csvEscaped` | [`gwen.feature.eval.status.message.csvEscaped`](/docs/implicit-values#gwen-feature-eval-status-message-csvEscaped) |
+| `gwen.eval.duration`                  | [`gwen.feature.eval.duration`](/docs/implicit-values#gwen-feature-eval-duration)                                   |
+| `gwen.eval.duration.msecs`            | [`gwen.feature.eval.duration.msecs`](/docs/implicit-values#gwen-feature-eval-duration-msecs)                       |
+| `gwen.eval.duration.secs`             | [`gwen.feature.eval.duration.secs`](/docs/implicit-values#gwen-feature-eval-duration-secs)                         |
+| `data record number`                  | [`gwen.data.record.number`](/docs/implicit-values#gwen-data-record-number)                                         |
+| `data.record.number`                  | [`gwen.data.record.number`](/docs/implicit-values#gwen-data-record-number)                                         |
+| `data.record.index`                   | [`gwen.data.record.index`](/docs/implicit-values#gwen-data-record-index)                                           |
+| `record.number`                       | [`gwen.table.record.number`](/docs/implicit-values#gwen-table-record-number)                                       |
+| `record.index`                        | [`gwen.table.record.index`](/docs/implicit-values#gwen-table-record-index)                                         |
+| `iteration.number`                    | [`gwen.iteration.number`](/docs/implicit-values#gwen-iteration-number)                                             |
+| `iteration.index`                     | [`gwen.iteration.index`](/docs/implicit-values#gwen-iteration-index)                                               |
 
-| Removed                | Always use this name                                                  |
-| :--------------------- | :-------------------------------------------------------------------- |
-| `gwen.behaviour.rules` | [`gwen.behavior.rules`](/docs/settings#gwen-behavior-rules) |
 
 #### New defaults
 
