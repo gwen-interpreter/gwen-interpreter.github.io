@@ -465,7 +465,8 @@ If you don't want any reports generated, invoke Gwen with the [`-f|--format`](/d
 
 [Interpolation](/docs/string-interpolation#interpolation-by-substitution) by concatenation has been deprecated in favor of substitution. You should convert all usages of conatenation to their substitution equivalents. Concatenation has been dropped since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.14.0">v3.14.0</Link>.
 
-### 5. Log4j
+### 5. Logback
 
-Gwen uses log4j2 as of v3.1.0 for Gwen 3 (and v2.54.0 for Gwen 2). If you are using custom `log4j.properties` files with Gwen, you will need to convert them over to [version 2 equivalents](https://logging.apache.org/log4j/2.x/manual/configuration.html#Configuration_with_Properties). 
+Gwen 4 uses [logback](https://logback.qos.ch/index.html). You can override the default logging configuration with your by specifing `-Dlogback.configurationFile=/path-to-logback-config-file` of the command line or setting `logback.configurationFile` in your settings.
+
 

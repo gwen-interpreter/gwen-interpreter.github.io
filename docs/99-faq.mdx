@@ -466,25 +466,23 @@ Yes, see [string interpolation](/docs/string-interpolation).
 
 ### How do I configure logging?
 
-Gwen uses log4j to perform all logging using the configuration shown below. 
-This default configuration is defined in a `log4j.properties` file bundled 
+Gwen uses [logback](https://logback.qos.ch/index.html) to perform all logging using the configuration shown below. 
+This default configuration is defined in a `log4back.xml` file bundled 
 in the Gwen binary. To override this and specify your own configuration, 
-add a `log4j.configuration=file:/path-to-log4j-config-file` entry to your [settings](/docs/settings) file in your user home directory. Be sure to use forward slashes instead of backslashes. For more information 
-about log4j, see [the log4j site](https://logging.apache.org/log4j/2.x/index.html).
+add a `logback.configurationFile=file:/path-to-logback-config-file` entry to your [settings](/docs/settings) file in your user home directory. Be sure to use forward slashes instead of backslashes.
 
-```
-# Set root logger level to INFO and append to STDOUT
-log4j.rootLogger=INFO, STDOUT
+```xml
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%-5level - %msg%n</pattern>
+    </encoder>
+  </appender>
 
-# STDOUT is set to be a ConsoleAppender.
-log4j.appender.STDOUT=org.apache.log4j.ConsoleAppender
-
-# STDOUT uses PatternLayout.
-log4j.appender.STDOUT.layout=org.apache.log4j.PatternLayout
-log4j.appender.STDOUT.layout.ConversionPattern=%p - %m%n
-
-# Gwen logging level
-log4j.logger.gwen=INFO
+  <root level="error">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>
 ```
 
 ### Can I access and work with database data?
