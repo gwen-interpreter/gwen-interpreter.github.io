@@ -79,14 +79,6 @@ See [REPL commands](/docs/repl#repl-commands).
 Invoke the [CLI](/docs/cli) passing in the single feature file.
 
 <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'},
-  ]}>
-<TabItem value="project">
-<Tabs
   groupId="jstool"
   defaultValue="yarn"
   values={[
@@ -116,15 +108,6 @@ pnpm gwen -b path/to/File.feature
 
 </TabItem>
 </Tabs>
-</TabItem>
-<TabItem value="standalone">
-
-```
-gwen -b path/to/File.feature
-```
-
-</TabItem>
-</Tabs>
 
 The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immediately after executing (omitting it will open the [REPL](/docs/repl) instead).
 
@@ -132,14 +115,6 @@ The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immed
 
 Invoke the [CLI](/docs/cli) passing in the directory.
 
-<Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'},
-  ]}>
-<TabItem value="project">
 <Tabs
   groupId="jstool"
   defaultValue="yarn"
@@ -194,21 +169,6 @@ pnpm gwen -b features/todo
 
 </TabItem>
 </Tabs>
-</TabItem>
-<TabItem value="standalone">
-
-```shell
-gwen -b features
-```
-
-To run all feature files in the `features/todo` directory, including all feature files in all sub-directories:
-
-```shell
-gwen -b features/todo
-```
-
-</TabItem>
-</Tabs>
 
 The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immediately after executing (omitting it will open the [REPL](/docs/repl) instead).
 
@@ -216,14 +176,6 @@ The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immed
 
 To run multiple feature files or directories of features in sequence:
 
-<Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'},
-  ]}>
-<TabItem value="project">
 <Tabs
   groupId="jstool"
   defaultValue="yarn"
@@ -254,15 +206,6 @@ pnpm gwen -b path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
 
 </TabItem>
 </Tabs>
-</TabItem>
-<TabItem value="standalone">
-
-```
-gwen -b path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
-```
-
-</TabItem>
-</Tabs>
 
 The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immediately after executing (omitting it will open the [REPL](/docs/repl) instead).
 
@@ -270,14 +213,6 @@ The [`-b`](/docs/cli#gwen-cli-options-batch) switch instructs Gwen to exit immed
 
 To run multiple feature files or directories in parallel, specify the [`--parallel`](/docs/cli#gwen-cli-options-parallel) switch:
 
-<Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'},
-  ]}>
-<TabItem value="project">
 <Tabs
   groupId="jstool"
   defaultValue="yarn"
@@ -304,15 +239,6 @@ npm run gwen -- --parallel path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/f
 
 ```shell
 pnpm gwen --parallel path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
-```
-
-</TabItem>
-</Tabs>
-</TabItem>
-<TabItem value="standalone">
-
-```
-gwen --parallel path/to/file-or-dir-1 path/to/file-or-dir-2 path/to/file-or-dir-N
 ```
 
 </TabItem>
@@ -373,14 +299,6 @@ Yes, see [JSON reports](/docs/reports/json).
 Yes, To generate JUnit, CSV, and HTML reports:
 
 <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'},
-  ]}>
-<TabItem value="project">
-<Tabs
   groupId="jstool"
   defaultValue="yarn"
   values={[
@@ -424,21 +342,6 @@ or
 
 ```shell
 pnpm gwen --batch --report reports --format "junit,results,html"
-```
-
-</TabItem>
-</Tabs>
-</TabItem>
-<TabItem value="standalone">
-
-```shell
-gwen -b -r reports -f "junit,results,html"
-```
-
-or
-
-```shell
-gwen --batch --report reports --format "junit,results,html"
 ```
 
 </TabItem>

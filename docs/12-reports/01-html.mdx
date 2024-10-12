@@ -15,16 +15,6 @@ Pretty HTML reports capture evaluated results and statistics.
 
 ## Generate reports
 
-<Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-<TabItem value="project">
-
 Launch Gwen with the `-f html` option to generate HTML reports when executing your features.
 
 <Tabs
@@ -90,69 +80,6 @@ pnpm gwen -b -f html gwen/features/todo
   - If you want reports generated in a different directory, you can either:
     - Amend the above setting to change the default
     - Or include the `-r|--report` CLI option and specify a directory on every launch
-
-</TabItem>
-
-<TabItem value="standalone">
-
-Launch Gwen with the `-f html` option to generate HTML reports when executing your features.
-
-<Tabs
-  groupId="os"
-  defaultValue="linux"
-  values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-
-<TabItem value="linux">
-
-:::note Example
-
-Execute features in the *features/todo* folder and generate HTML reports.
-
-```shell
-gwen -b -f html features/todo
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-
-<TabItem value="windows">
-
-:::note Example
-
-Execute features in the *features/todo* folder and generate HTML reports.
-
-```shell
-gwen -b -f html features\todo
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-
-</Tabs>
-
-### Output
-
-- Since [Gwen 3](/docs/gwen3)
-  - Reports will be generated in the `output/reports` directory as per the default [`gwen.cli.options.report`](/docs/settings#gwen-cli-options-report) setting
-    - The HTML index page will be generated at `gwen/output/reports/index.html`.
-    - If you want reports generated in a different directory, you can either:
-      - Amend the above setting to change the default
-      - Or include the `-r|--report` CLI option to specify a directory on every launch
-- For prior versions
-  - Include the `-r|--report` CLI option and specify a directory on every launch
-
-</TabItem>
-
-</Tabs>
 
 ## View report
 

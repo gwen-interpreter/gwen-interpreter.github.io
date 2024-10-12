@@ -9,162 +9,28 @@ import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import ThemedImage from '@theme/ThemedImage';
 
-# Gwen 3
+# Gwen 4
 
 ## What's New
 
-### Add Gwen to your JS project
+### Processes
 
-You can now [add Gwen to projects](/docs/get-started) using npm and have all your executable Gherkin living next to your code and integrated into your development and testing process.
+You can now configure one or many launch configurations to control how different processes will be executed.
 
-Thanks to [Ruby Juric](https://github.com/Sorixelle) for building [gwen-web-npm](https://github.com/gwen-interpreter/gwen-web-npm).
-
-### `Init` project command
-
-A new [`gwen init`](/docs/cli#init-command) command initialises Gwen in your project directory by creating the following:
-
-- Project, browser, and environment level settings files
-- Feature and meta subdirectories
-- Sample feature and meta files
-- Docker files
-- Jenkins pipeline file
-
-You also get automatic gwen udpates by default.
-
-### HOCON and JSON settings
-
-Two new [settings](/docs/settings) formats are now supported in addition to properties:
-
-- [HOCON](https://github.com/lightbend/config/blob/master/HOCON.md#hocon-human-optimized-config-object-notation) (Human-Optimized Config Object Notation)
-  - A superset of JSON
-- JSON
-  - Pure JSON format
-
-### Better defaults for better Gherkin
-
-The [`gwen.feature.mode`](/docs/settings#gwen-feature-mode) setting now defaults to *declarative* instead of *imperative* to keep DSL steps confined to meta and out of feature specifications.
-
-The [`gwen.behavior.rules`](/docs/settings#gwen-behavior-rules) setting now defaults to *strict* instead of *lenient* to enforce correct behavioural semantics and proper Given-When-Then order.
-
-### Pretty logging
-
-Gwen now logs pretty execution results to the [console](/docs/reports/console).
-
-<ThemedImage
-  alt="Pretty console logging"
-  sources={{
-    light: useBaseUrl('/img/log/gwen-pretty-log-w.png'),
-    dark: useBaseUrl('/img/log/gwen-pretty-log-b.png'),
-  }}
-/>
-
-#### New CLI option for verbose logging
+#### New CLI option for launching a process
 
 Use the new `-v|--verbose` CLI option for verbose logging instead (equivalent to Gwen 2 logging).
 
-### Configurable CLI options
-
-CLI options are now [configurable](/docs/settings#cli-settings) enabling you to customize your own Gwen launch profile.
-
-### Selenium 4
-
-The embedded web engine now uses Selenium 4
-
-New DSLs have been added to support:
-
-- [Relative locators](/docs/dsl#relative-locators)
-- [Windows and tabs](/docs/dsl#window-and-tab-actions)
-- [Element level screenshots](/docs/dsl#element-capture)
-
-Support for W3C compliant capabilities has been added, since [v3.20.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.20.0):
-- [Setting capabilities via protocol extensions](/docs/settings#gwen-web-capabilities)
-
 ## What's dropped
 
-- Gwen workspaces have been dropped in favor of Gwen projects
-- Applitools integration has been removed
-- [Interpolation](/docs/string-interpolation#interpolation-by-substitution) by concatenation deprecated in favor of substitution (dropped in <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.14.0">v3.14.0</Link>)
+- Report Portal integration
+- Standalone setup option no longer supported (only projects supported)
 
 ## Migration Guide
 
-:::tip 
+This guide will help you to migrate an existing Gwen 3 project over to Gwen 4. If you want to start a new project from scratch, go straight to the [getting started](/docs/get-started) guide instead.
 
-See what's new in [Gwen 3](/docs/gwen3).
-
-:::
-
-This guide will help you to migrate an existing Gwen project over to Gwen 3. If you want to start a new project from scratch, go straight to the [getting started](/docs/get-started) guide instead.
-
-### 1. Setup
-
-#### Choose your current Gwen 2 setup
-
-<Tabs
-  groupId="setup"
-  defaultValue="standalone"
-  values={[
-    {label: 'Standalone', value: 'standalone'},
-    {label: 'Workspace', value: 'workspace'},
-  ]}>
-
-<TabItem value="standalone">
-
-If you are using Gwen as a standalone application on your machine, nothing has changed in terms of setup and installation. You can continue updating Gwen in the same manner you have been with prior versions. The setup instructions on our [getting started](/docs/get-started) page contain all the details you need know in that regard. You will however need to make some settings changes as described next.
-
-</TabItem>
-
-<TabItem value="workspace">
-
-[Gwen workspaces](https://gweninterpreter.wordpress.com/2017/12/18/gwen-workspaces/) were introduced in Gwen 2 and have been deprecated in favor of projects in  [Gwen 3](/docs/gwen3).
-
-#### Choose one of two options:
-
-<Tabs
-  groupId="migrate"
-  defaultValue="gwen3"
-  values={[
-    {label: 'Migrate to a Gwen 3 project', value: 'gwen3'},
-    {label: 'Stay on a Gwen 2 workspace', value: 'gwen2'},
-  ]}>
-
-<TabItem value="gwen3">
-
-Follow the instructions on our [getting started](/docs/get-started) page to create a new project with a fresh Gwen 3 setup, and then copy the following files from your workspace to your project:
-
-- Copy your *workspace/gwen.properties* file to *js-project/gwen.properties*
-- Copy all *.feature* files from *workspace/features/* to *js-project/gwen/features/*
-- Copy all *.meta* files from *workspace/meta/* to *js-project/gwen/meta/*
-- Copy all *.properties* files from *workspace/browsers/* to *js-project/gwen/browsers/*
-- Copy all *.properties* files from *workspace/env/* to *js-project/gwen/env/*
-
-</TabItem>
-
-<TabItem value="gwen2">
-
-If you want to continue using your workspace, you will need to fix your Gwen version to a specific 2.#.# version. Workspaces are no longer maintained or released in Gwen 3, and automatic updates for them will no longer work. Open the `gwen.properties` file in your workspace directory in a text editor and amend the `gwen.gwen-web.version` property from `latest` to a specific Gwen 2 [version](https://github.com/gwen-interpreter/gwen-web/releases) that you want to use.
-
-:::note Amend setting
-
-*File: workspace/gwen.properties*
-
-```properties {4}
-# Gwen package version
-# --------------------
-# Gwen web version
-gwen.gwen-web.version = 2.53.6
-```
-
-:::
-
-</TabItem>
-
-</Tabs>
-
-</TabItem>
-
-</Tabs>
-
-### 2. Settings
+### 1. Settings
 
 The following settings changes have been made to Gwen 3. Scan all your *.properties* files and update accordingly.
 

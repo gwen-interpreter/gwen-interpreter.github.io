@@ -105,16 +105,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Usage</p>
 
   <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
-
-  <Tabs
   groupId="jstool"
   defaultValue="yarn"
   values={[
@@ -145,18 +135,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </TabItem>
 
   </Tabs>
-
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  ```shell
-  gwen --version
-  ```
-
-  </TabItem>
-  
-  </Tabs>  
 
   <p>Output</p>
 
@@ -190,16 +168,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Usage</p>
 
   <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
-
-  <Tabs
   groupId="jstool"
   defaultValue="yarn"
   values={[
@@ -230,18 +198,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </TabItem>
 
   </Tabs>
-
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  ```shell
-  gwen --help
-  ```
-
-  </TabItem>
-  
-  </Tabs>  
 
   <p>Output</p>
 
@@ -317,16 +273,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <TabItem value="feature">
 
   Features will run in parallel (one per CPU core) when the <em>parallel</em> switch is provided and <Link to="/docs/settings#gwen-state-level"><code>gwen.state.level</code></Link> is <code>feature</code>
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   <Tabs
   groupId="jstool"
@@ -423,53 +369,11 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </Tabs>
 
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  Provide <em>parallel</em> switch to execute all feature files in a given directory in parallel
-
-  ```shell
-  gwen -b --parallel features/dir
-  ```
-
-  Provide <em>parallel</em> switch to execute the given feature files in parallel
-
-  ```shell
-  gwen -b --parallel features/file1.feature features/file2.feature 
-  ```
-
-  Omit <em>parallel</em> switch to execute all feature files in a given directory in sequence
-
-  ```shell
-  gwen -b features/dir
-  ```
-
-  Omit <em>parallel</em> switch to execute the given feature files in sequence
-
-  ```shell
-  gwen -b features/file1.feature features/file2.feature 
-  ```
-
-  </TabItem>
-  
-  </Tabs>  
-
   </TabItem>
 
   <TabItem value="scenario">
 
   Scenarios will run in parallel (one per CPU core) when the <em>parallel</em> switch is provided and  <Link to="/docs/settings#gwen-state-level"><code>gwen.state.level</code></Link> is <code>scenario</code>
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   <Tabs
   groupId="jstool"
@@ -566,38 +470,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </Tabs>
 
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  Provide <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in parallel
-
-  ```shell
-  gwen -b --parallel features/dir
-  ```
-
-  Provide <em>parallel</em> switch to execute all scenarios in the given feature files in parallel
-
-  ```shell
-  gwen -b --parallel features/file1.feature features/file2.feature 
-  ```
-
-  Omit <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in sequence
-
-  ```shell
-  gwen -b features/dir
-  ```
-
-  Omit <em>parallel</em> switch to execute all scenarios in the given feature files in sequence
-
-  ```shell
-  gwen -b features/file1.feature features/file2.feature 
-  ```
-
-  </TabItem>
-  
-  </Tabs>  
-
   </TabItem>
 
   </Tabs>
@@ -631,16 +503,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </ul>
 
   <p>Examples</p>
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   <Tabs
   groupId="jstool"
@@ -737,38 +599,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </Tabs>
 
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-   Provide <em>batch</em> switch to execute all feature files in a given directory and then exit
-
-  ```shell
-  gwen -b features/dir
-  ```
-
-  Provide <em>batch</em> switch to execute the given feature file and then exit 
-
-  ```shell
-  gwen --batch features/file.feature
-  ```
-
-  Omit <em>batch</em> switch to execute the given feature file and then open the <Link to="/docs/repl">REPL</Link>
-
-  ```shell
-  gwen features/file.feature
-  ```
-
-  Omit <em>batch</em> switch to open the <Link to="/docs/repl">REPL</Link> immediately without executing anything
-
-  ```shell
-  gwen
-  ```
-
-  </TabItem>
-  
-  </Tabs>  
-
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-batch">Link</Link></div>
     <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-batch"><code>gwen.cli.options.batch</code></Link></div>
@@ -798,16 +628,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </ul>
 
   <p>Usage</p>
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   <Tabs
   groupId="jstool"
@@ -862,24 +682,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </Tabs>
 
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  ```shell
-  gwen -v
-  ```
-
-  Or 
-
-  ```shell
-  gwen --verbose
-  ```
-
-  </TabItem>
-  
-  </Tabs>  
-
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-verbose">Link</Link></div>
     <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-verbose"><code>gwen.cli.options.verbose</code></Link></div>
@@ -909,16 +711,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </ul>
 
   <p>Usage</p>
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   <Tabs
   groupId="jstool"
@@ -973,24 +765,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </Tabs>
 
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  ```shell
-  gwen -d
-  ```
-
-  Or 
-
-  ```shell
-  gwen --debug
-  ```
-
-  </TabItem>
-  
-  </Tabs>  
-
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-debug">Link</Link></div>
     <div align="center"><Link to="/docs/repl#debugging">Learn more</Link></div>
@@ -1027,16 +801,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </ul>
 
   <p>Examples</p>
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   <Tabs
   groupId="jstool"
@@ -1097,26 +861,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </Tabs>
 
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  Provide <em>dry run</em> switch to find and report any errors in all feature and meta files in a given directory
-
-  ```shell
-  gwen -b -n features/dir
-  ```
-
-  Provide <em>dry run</em> switch to find and report any errors in the given feature file and its <Link to="/docs/meta#associative-strategy">associative meta</Link>
-
-  ```shell
-  gwen --batch --dry-run features/file.feature
-  ```
-
-  </TabItem>
-  
-  </Tabs>  
-
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-dry-run">Link</Link></div>
     <div align="center">Defaults to <Link to="/docs/settings#gwen-cli-options-dry-run"><code>gwen.cli.options.dryRun</code></Link></div>
@@ -1162,16 +906,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <br />
 
   <p>Examples</p>
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   <Tabs
   groupId="jstool"
@@ -1230,26 +964,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </TabItem>
 
-  </Tabs>
-
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  To execute all feature files in a directory on the firefox browser using dev environment settings.
-  
-  ```shell
-  gwen -b -c browsers/firefox.conf,env/dev.conf features/dir
-  ```
-
-  To execute a feature file and load custom properties.
-  
-  ```shell
-  gwen --batch --config props/custom.properties features/file.feature
-  ```
-
-  </TabItem>
-  
   </Tabs>
 
   <div class="grid-3">
@@ -1350,16 +1064,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <TabItem value="gwen3">
 
   <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
-
-  <Tabs
   groupId="jstool"
   defaultValue="yarn"
   values={[
@@ -1416,26 +1120,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </TabItem>
 
-  </Tabs>
-
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  To execute a feature file and output a HTML report to the default output directory
-  
-  ```shell
-  gwen -b features/file1.feature
-  ```
-
-  To execute all feature files in a directory and output HTML reports to nominated directory
-  
-  ```shell
-  gwen -b --report nominated/outdir features/dir
-  ```
-
-  </TabItem>
-  
   </Tabs>
 
   </TabItem>
@@ -1506,16 +1190,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Examples</p>
 
   <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
-
-  <Tabs
   groupId="jstool"
   defaultValue="yarn"
   values={[
@@ -1574,26 +1248,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </Tabs>
 
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  To
-  
-  ```shell
-  gwen -b features/dir
-  ```
-
-  To
-  
-  ```shell
-  gwen --batch features/file.feature
-  ```
-
-  </TabItem>
-  
-  </Tabs>
-
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-format">Link</Link></div>
     <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-format"><code>gwen.cli.options.format</code></Link></div>
@@ -1632,16 +1286,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <p>Examples</p>
   
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
-
   <Tabs
   groupId="jstool"
   defaultValue="yarn"
@@ -1737,38 +1381,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </Tabs>
 
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  To execute all features or scenarios tagged with <code>@regression</code> in a given directory 
-  
-  ```shell
-  gwen -b -t @regression features/dir
-  ```
-
-  To execute all scenarios tagged with <code>@wip</code> in a given feature file
-  
-  ```shell
-  gwen -b --tags @wip features/file.feature
-  ```
-  
-  To execute all scenarios not tagged with <code>@wip</code> in a given feature file
-  
-  ```shell
-  gwen -b -t ~@wip features/file.feature
-  ```
-
-   To execute all features or scenarios tagged with <code>@regression</code> and not tagged with <code>@wip</code> in a given directory
-  
-  ```shell
-  gwen -b --tags @regression,~@wip features/dir
-  ```
-
-  </TabItem>
-  
-  </Tabs>
-
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-tags">Link</Link></div>
     <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-tags"><code>gwen.cli.options.tags</code></Link></div>
@@ -1806,16 +1418,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <br />
 
   <p>Examples</p>
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   <Tabs
   groupId="jstool"
@@ -1912,38 +1514,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </Tabs>
 
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  To execute all feature files in a directory for every record in a CSV file
-  
-  ```shell
-  gwen -b -i data/records.csv features/dir
-  ```
-
-  To execute a feature file for every record in a CSV file
-  
-  ```shell
-  gwen -b --input-data data/records.csv features/file.feature
-  ```
-
-  To execute all feature files in a directory for every record in a JSON file (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
-  
-  ```shell
-  gwen -b -i data/records.json features/dir
-  ```
-
-  To execute a feature file for every record in a JSON file (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
-  
-  ```shell
-  gwen -b --input-data data/records.json features/file.feature
-  ```
-
-  </TabItem>
-  
-  </Tabs>
-
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-input-data">Link</Link></div>
     <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-input-data"><code>gwen.cli.options.inputData</code></Link></div>
@@ -1975,16 +1545,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </ul>
 
   <p>Examples</p>
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   <Tabs
   groupId="jstool"
@@ -2045,26 +1605,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </Tabs>
 
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  To load all meta files in a directory before executing each feature file in a given directory
-  
-  ```shell
-  gwen -b -m meta/dir features/dir
-  ```
-  
-  To load a specific meta file before executing a feature file
-  
-  ```shell
-  gwen -b -m meta/file.meta features/file.feature
-  ```
-
-  </TabItem>
-  
-  </Tabs>
-
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-meta">Link</Link></div>
     <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-meta"><code>gwen.cli.options.meta</code></Link></div>
@@ -2091,16 +1631,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </ul>
 
   <p>Examples</p>
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   <Tabs
   groupId="jstool"
@@ -2179,32 +1709,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </Tabs>
 
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  To execute all features in two given directories
-  
-  ```shell
-  gwen -b features/dir1 features/dir2
-  ```
-
-  To execute two feature files
-  
-  ```shell
-  gwen --batch features/file1.feature features/file2.feature
-  ```
-
-  To execute all features in two given directories and another feature file
-  
-  ```shell
-  gwen --batch features/dir1 features/dir2 features/file.feature
-  ```
-
-  </TabItem>
-  
-  </Tabs>
-
   <div class="grid-3">
     <div><Link to="#gwen-cli-options-features">Link</Link></div>
     <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-features"><code>gwen.cli.options.features</code></Link></div>
@@ -2265,16 +1769,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <br />
 
   <p>Example</p>
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   <Tabs
   groupId="jstool"
@@ -2345,48 +1839,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
        │   └── README.md
        └── /samples            # Sample features and meta
   ```
-
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  To initialse Gwen in a standalone project directory (be sure to include the trailing dot)
-  
-  ```shell
-  gwen init .
-  ```
-
-  <p>The <code>init</code> command will generate the following Gwen files and subdirectories in your project</p>
-
-  ```
-  ./                       # Project root
-   ├── .gitignore          # Git ignore file
-   ├── README.md
-   ├── gwen.conf           # Gwen settings file
-   ├── /browsers           # Browser settings
-   │   ├── chrome.conf
-   │   ├── edge.conf
-   │   ├── firefox.conf
-   │   ├── ie.conf
-   │   ├── README.md
-   │   └── safari.conf
-   ├── /env                # Environment settings
-   │   ├── dev.conf
-   │   ├── local.conf
-   │   ├── prod.conf
-   │   ├── README.md
-   │   ├── staging.conf
-   │   └── test.conf
-   ├── /features           # Features and associative meta
-   │   └── README.md
-   ├── /meta               # Optional common/reusable meta
-   │   └── README.md
-   └── /samples            # Sample features and meta
-  ```
-
-  </TabItem>
-  
-  </Tabs>
 
   <div class="grid-3">
     <div><Link to="#gwen-cli-init">Link</Link></div>
@@ -2591,16 +2043,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   <p>Example</p>
 
   <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
-
-  <Tabs
   groupId="jstool"
   defaultValue="yarn"
   values={[
@@ -2699,38 +2141,6 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   </TabItem>
 
-  </Tabs>
-
-  </TabItem>
-
-  <TabItem value="standalone">
-
-  To format all feature and meta files in the current directory
-  
-  ```shell
-  gwen format --pretty .
-  ```
-
-  To format all feature and meta files in a given directory
-  
-  ```shell
-  gwen format --pretty path/to/dir
-  ```
-
-  To format a single feature file
-  
-  ```shell
-  gwen format --pretty path/to/file.feature
-  ```
-
-  To format a single meta file
-  
-  ```shell
-  gwen format --pretty path/to/file.meta
-  ```
-
-  </TabItem>
-  
   </Tabs>
 
   <div class="grid-3">

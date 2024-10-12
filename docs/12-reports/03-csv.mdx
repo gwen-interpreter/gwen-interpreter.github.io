@@ -754,16 +754,6 @@ Feature: My meta
 With the above settings in place, CSV files containing evaluated results will automatiacally be logged when you launch Gwen to execute with the `-f results` [format](/docs/settings#gwen-cli-options-format) option.
 
 <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-<TabItem value="project">
-
-<Tabs
   groupId="jstool"
   defaultValue="yarn"
   values={[
@@ -846,72 +836,6 @@ pnpm  -b f html,results gwen/features/todo
 
 </Tabs>
   
-</TabItem>
-
-<TabItem value="standalone">
-
-<Tabs
-  groupId="os"
-  defaultValue="linux"
-  values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-
-<TabItem value="linux">
-
-:::note Example
-
-Executing features in the `gwen/features/todo` folder and log CSV reports.
-
-To generate CSV files only
-
-```shell
-gwen -b -f results features/todo
-```
-
-To generate HTML reports and CSV files
-
-```shell
-gwen -b f html,results features/todo
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-
-<TabItem value="windows">
-
-:::note Example
-
-Executing features in the `gwen/features/todo` folder and log CSV reports.
-
-To generate CSV files only
-
-```shell
-gwen -b -f results features\todo
-```
-
-To generate HTML reports and CSV files
-
-```shell
-gwen -b f html,results features\todo
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-
-</Tabs>
-
-</TabItem>
-
-</Tabs>
-
 <b>Output</b>
 
 - The CSV results logged to:

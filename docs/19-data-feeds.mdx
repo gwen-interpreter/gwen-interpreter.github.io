@@ -64,16 +64,6 @@ You can execute this feature for all users in the CSV file by launching Gwen wit
 #### Examples
 
 <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
-
-  <Tabs
   groupId="jstool"
   defaultValue="yarn"
   values={[
@@ -125,24 +115,6 @@ You can execute this feature for all users in the CSV file by launching Gwen wit
 
   </TabItem>
 
-  </Tabs>
-
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  ```shell
-  gwen -b -i data/users.csv features/submit-user.feature
-  ```
-
-  or 
-
-  ```shell
-  gwen -b --input-data data/users.csv features/submit-user.feature
-  ```
-
-  </TabItem>
-  
   </Tabs>
 
 Gwen will read in the CSV file, and for each record will:
@@ -205,16 +177,6 @@ You can execute this feature for all users in the JSON file by launching Gwen wi
 
 #### Examples
 
-<Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
-
   <Tabs
   groupId="jstool"
   defaultValue="yarn"
@@ -267,24 +229,6 @@ You can execute this feature for all users in the JSON file by launching Gwen wi
 
   </TabItem>
 
-  </Tabs>
-
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  ```shell
-  gwen -b -i data/users.json features/submit-user.feature
-  ```
-
-  or 
-
-  ```shell
-  gwen -b --input-data data/users.json features/submit-user.feature
-  ```
-
-  </TabItem>
-  
   </Tabs>
 
 Gwen will read in the JSON file, and for each record will:
@@ -477,16 +421,6 @@ Will be treated the same as:
 
 #### Examples
 
-<Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
-
   <Tabs
   groupId="jstool"
   defaultValue="yarn"
@@ -539,24 +473,6 @@ Will be treated the same as:
 
   </TabItem>
 
-  </Tabs>
-
-  </TabItem>  
-
-  <TabItem value="standalone">
-
-  ```shell
-  gwen -b -i data/users.json features/submit-user.feature
-  ```
-
-  or 
-
-  ```shell
-  gwen -b --input-data data/users.json features/submit-user.feature
-  ```
-
-  </TabItem>
-  
   </Tabs>
 
 Gwen will read in the JSON file, and for each record will:

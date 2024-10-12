@@ -41,16 +41,6 @@ gwen>
 To start a REPL session, invoke the [Gwen CLI](/docs/cli) without specifying the `-b` (or `--batch`) switch.
 
 <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'},
-  ]}>
-  
-<TabItem value="project">
-
-<Tabs
   groupId="jstool"
   defaultValue="yarn"
   values={[
@@ -134,76 +124,6 @@ pnpm gwen path/to/file.feature
 ```
 
 :::
-
-</TabItem>
-
-</Tabs>
-
-</TabItem>
-
-<TabItem value="standalone">
-
-<Tabs
-  groupId="os"
-  defaultValue="linux"
-  values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-
-<TabItem value="linux">
-
-:::note Open REPL
-
-To open a new REPL session:
-
-```shell
-gwen
-```
-
-To load meta and open the REPL:
-
-```shell
-gwen -m path/to/file.meta
-```
-
-To execute a feature and open the REPL:
-
-```shell
-gwen path/to/file.feature
-```
-
-:::
-
-</TabItem>
-
-<TabItem value="windows">
-
-:::note Open REPL
-
-To open a new REPL session:
-
-```shell
-gwen
-```
-
-To load meta and open the REPL:
-
-```shell
-gwen -m path\to\file.meta
-```
-
-To execute a feature and open the REPL:
-
-```shell
-gwen path\to\file.feature
-```
-
-:::
-
-</TabItem>
-
-</Tabs>
 
 </TabItem>
 

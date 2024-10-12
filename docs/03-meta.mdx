@@ -159,16 +159,6 @@ When you launch Gwen to execute the `features/dir2/todo2.feature` file, the asso
 The external strategy enables you to manage common and reusable meta files in a directory that is separate or external to your features directory. How you name your meta files or manage your meta directory structure does not matter. This strategy can be used in conjunction with any other meta load strategy.
 
 <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-<TabItem value="project">
-
-<Tabs
   groupId="jstool"
   defaultValue="yarn"
   values={[
@@ -242,67 +232,6 @@ pnpm gwen gwen/features -m external/meta
 </TabItem>
 </Tabs>
 
-</TabItem>
-<TabItem value="standalone">
-
-<Tabs
-  groupId="os"
-  defaultValue="linux"
-  values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-
-<TabItem value="linux">
-
-:::note Example
-
-To load a single meta file from an external directory, use the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option and specify the path to the meta file:
-
-```shell
-gwen features -m external/meta/common.meta
-```
-
-To recursively load all meta files in an external directory:
-
-```shell
-gwen features -m external/meta
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-
-<TabItem value="windows">
-
-:::note Example
-
-To load a single meta file from an external directory, use the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option and specify the path to the meta file:
-
-```shell
-gwen features -m external/meta\common.meta
-```
-
-To recursively load all meta files in an external directory:
-
-```shell
-gwen features -m external/meta
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-
-</Tabs>
-
-</TabItem>
-
-</Tabs>
-
 ### Import Strategy
 
 > Since [v1.9.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.9.0)
@@ -340,16 +269,6 @@ For example, say you have your common meta files in one directory and your featu
  │    ..
  └── spec-n.feature
 ```
-
-<Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-<TabItem value="project">
 
 <Tabs
   groupId="jstool"
@@ -407,55 +326,6 @@ pnpm gwen -m gwen/meta/module-1.meta gwen/features/spec-1.feature
 </TabItem>
 </Tabs>
 
-</TabItem>
-<TabItem value="standalone">
-
-<Tabs
-  groupId="os"
-  defaultValue="linux"
-  values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-
-<TabItem value="linux">
-
-:::note Example
-
-To load only one meta file for one feature file using the external meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
-
-```shell
-gwen -m meta/module-1.meta features/spec-1.feature
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-
-<TabItem value="windows">
-
-:::note Example
-
-To load only one meta file for one feature file using the external meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
-
-```shell
-gwen -m meta\module-1.meta features\spec-1.feature
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-
-</Tabs>
-
-</TabItem>
-
-</Tabs>
-
 Having to remember exactly which meta to load for which features is inconvenient and blindly loading all meta files to execute a feature that only requires one or some of them is wasteful.
 
 With [associative meta](/docs/meta#associative-strategy) enabled, you can do away with having to explicitly specify any meta files on CLI calls to Gwen by creating an associative meta file for each feature file and specifying the required meta to import in each.
@@ -486,16 +356,6 @@ Note that this associative meta specification contains nothing except one import
  ├── module-1.meta
  |   ..
 ```
-
-<Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-<TabItem value="project">
 
 <Tabs
   groupId="jstool"
@@ -553,55 +413,6 @@ pnpm gwen gwen/features/spec-1.feature
 </TabItem>
 </Tabs>
 
-</TabItem>
-<TabItem value="standalone">
-
-<Tabs
-  groupId="os"
-  defaultValue="linux"
-  values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-
-<TabItem value="linux">
-
-:::note Example
-
-With the import in place, you could then invoke Gwen to execute the feature without having to explicitly specify the meta file in the CLI call:
-
-```shell
-gwen features/spec-1.feature
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-
-<TabItem value="windows">
-
-:::note Example
-
-With the import in place, you could then invoke Gwen to execute the feature without having to explicitly specify the meta file in the CLI call:
-
-```shell
-gwen features\spec-1.feature
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-
-</Tabs>
-
-</TabItem>
-
-</Tabs>
-
 Gwen would then load the associative meta which in turn would load the imported meta before proceeding to execute the feature.
 
 You can add any number of meta imports to a file. The following example imports two meta files for spec 2:
@@ -639,16 +450,6 @@ Now any import of `module-3.meta` will also import `module-2.meta`.
   @Import("meta/module-3.meta")
   Feature: Associative spec 3 meta
 ```
-
-<Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-<TabItem value="project">
 
 <Tabs
   groupId="jstool"
@@ -704,55 +505,6 @@ pnpm gwen gwen/features/spec-3.feature
 :::
 
 </TabItem>
-</Tabs>
-
-</TabItem>
-<TabItem value="standalone">
-
-<Tabs
-  groupId="os"
-  defaultValue="linux"
-  values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-
-<TabItem value="linux">
-
-:::note Example
-
-In this example, the `module-2.meta` and `module-3.meta` files will be loaded (in that order) before `test-3.feature` is executed.  Again, this would happen without you having to specify any meta in the CLI call to Gwen.
-
-```shell
-gwen features/spec-3.feature
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-
-<TabItem value="windows">
-
-:::note Example
-
-In this example, the `module-2.meta` and `module-3.meta` files will be loaded (in that order) before `test-3.feature` is executed.  Again, this would happen without you having to specify any meta in the CLI call to Gwen.
-
-```shell
-gwen features\spec-3.feature
-```
-
-[Gwen CLI](/docs/cli)
-
-:::
-
-</TabItem>
-
-</Tabs>
-
-</TabItem>
-
 </Tabs>
 
 The path to the meta file in all imports can be absolute or relative to the directory where Gwen is invoked. If a recursive (or cyclic) import is detected in any import chain, Gwen will report it by throwing an exception with a message identifying the offending import and the file it was declared in.

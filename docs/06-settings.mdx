@@ -1735,16 +1735,6 @@ Will expand to:
 
   <TabItem value="conf">
 
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
-
   Default value
   
   ```json
@@ -1754,33 +1744,7 @@ Will expand to:
   ```
 
   </TabItem>
-
-  <TabItem value="standalone">
-
-  Default value
-  
-  ```json
-    gwen {
-      baseDir = "."
-    }
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  </TabItem>
   <TabItem value="json">
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   Default value
 
@@ -1793,55 +1757,13 @@ Will expand to:
   ```
 
   </TabItem>
-
-  <TabItem value="standalone">
-
-  Default value
-
-  ```json
-    {
-      "gwen": {
-        "baseDir": "."
-      }
-    }
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  </TabItem>
   <TabItem value="properties">
-
-  <Tabs
-  groupId="setup"
-  defaultValue="project"
-  values={[
-    {label: 'Project', value: 'project'},
-    {label: 'Standalone', value: 'standalone'}
-  ]}>
-
-  <TabItem value="project">
 
   Default value
 
   ```properties
     gwen.baseDir = gwen
   ```
-
-  </TabItem>
-
-  <TabItem value="standalone">
-
-  Default value
-
-  ```properties
-    gwen.baseDir = .
-  ```
-
-  </TabItem>
-
-  </Tabs>
 
   </TabItem>
 
