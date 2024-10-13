@@ -61,19 +61,3 @@ The timeout annotation can be used used on various [wait](/docs/dsl#sleeps-and-w
   And @Timeout('1m30s') the username can be located by id "username"
 
 ```
-
-### DSL Approach
-
-:::caution Deprecated
-  Deprecated since v3.73.0 and will be dropped in next major Gwen 4 release. 
-  <p>Instead use above annotation approach.</p>
-  :::
-
-```gherkin
-  # will cause lookup to fail immediately if username is not present on the page
-  And the username can be located by id "username" with no wait
-
-  # will cause lookup to fail if the username is not available on the page after waiting 20 seconds
-  And the username can be located by id "username" with 20 second timeout
-
-```

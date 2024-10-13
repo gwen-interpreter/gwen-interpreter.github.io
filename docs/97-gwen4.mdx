@@ -17,11 +17,6 @@ import ThemedImage from '@theme/ThemedImage';
 
 You can now configure one or many processes with default [settings](/docs/settings) and launch options.
 
-## What's dropped?
-
-- Report Portal integration
-- Standalone setup (only [project setup](/docs/get-started#setup) now supported)
-
 ## Whats changed?
 
 ### Runtime
@@ -82,3 +77,64 @@ The following [implicit values](/docs/implicit-values) have been deprecated. Upd
 | `record.index`                        | [`gwen.table.record.index`](/docs/implicit-values#gwen-table-record-index)                                         |
 | `iteration.number`                    | [`gwen.iteration.number`](/docs/implicit-values#gwen-iteration-number)                                             |
 | `iteration.index`                     | [`gwen.iteration.index`](/docs/implicit-values#gwen-iteration-index)                                               |
+
+## What's dropped?
+
+- Report Portal integration
+- Standalone setup (only [project setup](/docs/get-started#setup) now supported)
+- DSL steps
+  - `I wait <duration> second[s] when <element> is <actioned>`
+  - `I wait until <condition> when <element> is <actioned>`
+  - Following deprecated in favour of base steps with [`@Timeout`](/docs/locator-level-timeouts#timeout-annotations) and [`@Delay`](/docs/locator-level-timeouts#delay-annotation) annotations
+    - `<step> <until|while> <condition> using <delay> <delayUnit> delay`
+    - `<step> <until|while> <condition> using <timeout> <timeoutUnit> timeout`
+    - `<step> <until|while> <condition> using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
+    - `<step> <until|while> <condition> using no delay and <timeout> <timeoutUnit> timeout`
+    - `<step> <until|while> <condition> using no delay`
+    - `<step> <until|while> <condition> using no delay and <timeout> <timeoutUnit> timeout`
+    - `I wait for <element> for <duration> second[s]`
+    - `I wait for <element> text for <duration> second[s]`
+    - `I wait until "<javascript>" using <delay> <delayUnit> delay`
+    - `I wait until "<javascript>" using <timeout> <timeoutUnit> timeout`
+    - `I wait until "<javascript>" using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
+    - `I wait until <condition> using <delay> <delayUnit> delay`
+    - `I wait until <condition> using <timeout> <timeoutUnit> timeout`
+    - `I wait until <condition> using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
+    - `<step> for each <element> located by <selector> "<expression>" with no <wait|timeout>`
+    - `<step> for each <element> located by <selector> "<expression>" with <timeoutSecs> second <wait|timeout>`
+    - `<step> for each <element> located by <selector> "<expression>" in <containerElement> with no <wait|timeout>`
+    - `<step> for each <element> located by <selector> "<expression>" in <containerElement> with <timeoutSecs> second <wait|timeout>`
+    - `<step> <until|while> <element> is[ not] <state> using <delay> <delayUnit> delay`
+    - `<step> <until|while> <element> is[ not] <state> using <timeout> <timeoutUnit> timeout`
+    - `<step> <until|while> <element> is[ not] <state> using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
+    - `<step> <until|while> <element> is[ not] <state> using no delay and <timeout> <timeoutUnit> timeout`
+    - `<element> can be located by <selector> "<expression>" with no <wait|timeout>`
+    - `<step> <until|while> <element> is[ not] <state> using no delay`
+    - `<step> <until|while> <name> is[ not] defined using <delay> <delayUnit> delay`
+    - `<step> <until|while> <name> is[ not] defined using <timeout> <timeoutUnit> timeout`
+    - `<step> <until|while> <name> is[ not] defined using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
+    - `<step> <until|while> <name> is[ not] defined using no delay and <timeout> <timeoutUnit> timeout`
+    - `<step> <until|while> <name> is[ not] defined using no delay`
+    - `<element> can be located by <selector> "<expression>" with <timeoutSecs> second <wait|timeout>`
+    - `<element> can be located by <selector> "<expression>" at index <index> with no <wait|timeout>`
+    - `<element> can be located by <selector> "<expression>" at index <index> with <timeoutSecs> second <wait|timeout>`
+    - `<element> can be located by <selector> "<expression>" at index <index> in <otherElement> with no <wait|timeout>`
+    - `<element> can be located by <selector> "<expression>" at index <index> in <otherElement>  with <timeoutSecs> second <wait|timeout>`
+    - `<element> can be located by <selector> "<expression>" <relativeTo> <otherElement> with no <wait|timeout>`
+    - `<element> can be located by <selector> "<expression>" <relativeTo> <otherElement>  with <timeoutSecs> second <wait|timeout>`
+    - ```
+      <element> can be located at index <index> with no <wait|timeout> by
+        | selector     | expression     |
+        | <selector 1> | <expression 1> |
+        | <selector 2> | <expression 2> |
+        |      ..      |       ..       |
+        | <selector n> | <expression n> |
+      ```
+    - ```
+      <element> can be located at index <index> with <timeoutSecs> second <wait|timeout> by
+        | selector     | expression     |
+        | <selector 1> | <expression 1> |
+        | <selector 2> | <expression 2> |
+        |      ..      |       ..       |
+        | <selector n> | <expression n> |
+      ```

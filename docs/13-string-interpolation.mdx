@@ -27,8 +27,6 @@ Placeholders are declared using the `${placholder}` syntax and can include:
  
 ## Examples
 
-### Interpolation by Substitution
-
 Substitution involves replacing named placeholders with their values.
 
 ```gherkin
@@ -42,23 +40,3 @@ Scenario: By Substitution
      Then my proposition should be "By substitution, my value will be ${my.property}"
 ```
 
-### Interpolation by Concatenation
-
-:::caution Deprecated
-
-The concatentation method has been deprecated in favor of substitition since [Gwen 3](/docs/gwen3) (dropped in <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.14.0">v3.14.0</Link>)
-
-:::
-
-Concatenation involves joining string literals and named values together.
-
-```gherkin
- Feature: String Interpolation
-
-Scenario: By Concatenation
-    
-    Given my mechanism is "concatenation"
-      And my value is "" + my.property
-      And my proposition is "By " + my mechanism + ", my value will be " + my value
-     Then my proposition should be "By concatenation, my value will be " + my.property
-```
