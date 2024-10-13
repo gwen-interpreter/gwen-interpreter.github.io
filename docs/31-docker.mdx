@@ -20,7 +20,7 @@ Setting up Gwen to run in a [Selenoid](https://aerokube.com/selenoid/) container
 
 ## Docker Setup
 
-> Since [v3.16.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.16.0), the [`init --docker`](/docs/cli#gwen-cli-init-options-docker) command was introduced to generate Docker and Selenoid files in your project. You will need to create the files manually if you are using an older version.
+> Since [v3.16.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.16.0), the [`init --docker`](/docs/launcher#gwen-launch-init-options-docker) command was introduced to generate Docker and Selenoid files in your project. You will need to create the files manually if you are using an older version.
 
 <Tabs
 groupId="jstool"
@@ -307,7 +307,7 @@ Run the following command in your project directory to launch Gwen in docker and
 docker-compose -f gwen/docker-compose.yml run gwen
 ```
 
-To execute features in parallel (you can pass any number of [environment varaibles](/docs/cli#environment-variables) in this manner)
+To execute features in parallel (you can pass any number of [environment varaibles](/docs/launcher#environment-variables) in this manner)
 
 ```shell
 GWEN_PARALLEL=true docker-compose -f gwen/docker-compose.yml run gwen
@@ -351,7 +351,7 @@ docker-compose -f gwen/docker-compose.yml down
 
 > See also: [Video recordings](/docs/reports/video-recordings) 
 
-If you set the [`GWEN_VIDEO`](/docs/cli#environment-variables) environment variable or the `selenoid:options.enableVideo` capability setting to `true` in your `selenoid.conf` file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html). Set this to `false` if you do not wish to capture video.
+If you set the [`GWEN_VIDEO`](/docs/launcher#environment-variables) environment variable or the `selenoid:options.enableVideo` capability setting to `true` in your `selenoid.conf` file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html). Set this to `false` if you do not wish to capture video.
 
 File: *gwen/browsers/selenoid.conf*
 
@@ -377,7 +377,7 @@ gwen {
 :::
 
 :::caution Limitation
-Videos will not be recorded when [parallel execution](/docs/parallel), [headless browser](/docs/settings#gwen-web-browser-headless), or interactive (non [--batch/-b](/docs/cli#gwen-cli-options-batch)) modes are enabled.
+Videos will not be recorded when [parallel execution](/docs/parallel), [headless browser](/docs/settings#gwen-web-browser-headless), or interactive (non [--batch/-b](/docs/launcher#gwen-launch-options-batch)) modes are enabled.
 :::
 
 

@@ -1,5 +1,5 @@
 --- 
-title: CLI
+title: Launcher
 toc_min_heading_level: 2
 toc_max_heading_level: 4
 ---
@@ -9,15 +9,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Admonition from '@theme/Admonition';
 
-# Gwen CLI
-
-## Command line interface
+# Launching Gwen
 
 > Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
 
-### Options and usage
+## Options and usage
 
-All launch operations can be invoked using the Gwen CLI. To list the usage and all available options, invoke Gwen with only the [`--help`](#gwen-cli-options-help) switch. The following output will be displayed:
+All launch operations can be invoked using the Gwen CLI. To list the usage and all available options, invoke Gwen with only the [`--help`](#gwen-launch-options-help) option. The following output will be displayed:
 
 ```
 Usage: gwen [options] [files|dirs]
@@ -60,8 +58,8 @@ The following environment variables can be set to override certain settings as b
 | :-----: |:-------------------- | --------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------- | :------------------------------------------- |
 | v3.16.0 | `GWEN_BROWSER`       | <code>chrome&#124;edge&#124;</code><br/><code>firefox&#124;safari&#124;ie</code>                          | [`gwen.target.browser`](/docs/settings#gwen-target-browser)             |                                              |
 | v3.23.0 | `GWEN_ENV`           | <code>local&#124;dev&#124;</code><br/><code>test&#124;staging&#124;</code><br/><code>prod&#124;..</code>  | [`gwen.target.env`](/docs/settings#gwen-target-env)                     |                                              |
-| v3.16.0 | `GWEN_DRY_RUN`       | <code>true&#124;false</code>                                                                              | [`gwen.cli.options.dryRun`](/docs/settings#gwen-cli-options-dry-run)    | [`-n, --dry-run`](#gwen-cli-options-dry-run) |
-| v3.16.0 | `GWEN_PARALLEL`      | <code>true&#124;false</code>                                                                              | [`gwen.cli.options.parallel`](/docs/settings#gwen-cli-options-parallel) | [`--parallel`](#gwen-cli-options-parallel)   |
+| v3.16.0 | `GWEN_DRY_RUN`       | <code>true&#124;false</code>                                                                              | [`gwen.launch.options.dryRun`](/docs/settings#gwen-launch-options-dry-run)    | [`-n, --dry-run`](#gwen-launch-options-dry-run) |
+| v3.16.0 | `GWEN_PARALLEL`      | <code>true&#124;false</code>                                                                              | [`gwen.launch.options.parallel`](/docs/settings#gwen-launch-options-parallel) | [`--parallel`](#gwen-launch-options-parallel)   |
 | v3.18.0 | `GWEN_THREADS`       | <code>auto&#124;number</code>                                                                             | [`gwen.parallel.maxThreads`](/docs/settings#gwen-parallel-maxThreads)   |                                              |
 | v3.16.0 | `GWEN_HEADLESS`      | <code>true&#124;false</code>                                                                              | [`gwen.web.browser.headless`](/docs/settings#gwen-web-browser-headless) |                                              |
 | v3.18.0 | `GWEN_VIDEO`         | <code>true&#124;false</code>                                                                              | [`selenoid:options.enableVideo`](/docs/docker#video-capture)            |                                              |
@@ -83,17 +81,16 @@ In addition to the above, you can also pass any number of Java system properties
 
 The enviornment variable overrides in the previous section however do have precedence over these.
 
-### Configurable CLI options
+## Launch Options
 
-> Since [Gwen 3](/docs/gwen3)
+:::tip Launch Settings
 
-CLI options can be configured in [settings](/docs/settings#cli-settings) enabling you to customize your own launch profile (excluding `--version` and `--help`).
+Default launch options and arguments can also be configured in [settings](/docs/settings#launch-settings) (excluding `--version` and `--help`) so you don't have to explictly specify them on the command line.
 
-## CLI reference
+:::
 
-### Options
 
-<details id="gwen-cli-options-version">
+<details id="gwen-launch-options-version">
   <summary class="cli-options">
 
   ```shell
@@ -150,13 +147,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   ```
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-version">Link</Link></div>
+    <div><Link to="#gwen-launch-options-version">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-help">
+<details id="gwen-launch-options-help">
   <summary class="cli-options">
 
   ```shell
@@ -243,13 +240,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   ```
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-help">Link</Link></div>
+    <div><Link to="#gwen-launch-options-help">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-parallel">
+<details id="gwen-launch-options-parallel">
   <summary class="cli-options">
 
   ```shell
@@ -272,7 +269,7 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="feature">
 
-  Features will run in parallel (one per CPU core) when the <em>parallel</em> switch is provided and <Link to="/docs/settings#gwen-state-level"><code>gwen.state.level</code></Link> is <code>feature</code>
+  Features will run in parallel (one per CPU core) when the <em>parallel</em> launch option is provided and <Link to="/docs/settings#gwen-state-level"><code>gwen.state.level</code></Link> is <code>feature</code>
 
   <Tabs
   groupId="jstool"
@@ -285,25 +282,25 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="yarn">
 
-  Provide <em>parallel</em> switch to execute all feature files in a given directory in parallel
+  Specify the <em>parallel</em> launch option to execute all feature files in a given directory in parallel
 
   ```shell
   yarn gwen -b --parallel gwen/features/dir
   ```
 
-  Provide <em>parallel</em> switch to execute the given feature files in parallel
+  Specify the <em>parallel</em> launch option to execute the given feature files in parallel
 
   ```shell
   yarn gwen -b --parallel gwen/features/file1.feature gwen/features/file2.feature 
   ```
 
-  Omit <em>parallel</em> switch to execute all feature files in a given directory in sequence
+  Omit <em>parallel</em> launch option to execute all feature files in a given directory in sequence
 
   ```shell
   yarn gwen -b gwen/features/dir
   ```
 
-  Omit <em>parallel</em> switch to execute the given feature files in sequence
+  Omit <em>parallel</em> launch option to execute the given feature files in sequence
 
   ```shell
   yarn gwen -b gwen/features/file1.feature gwen/features/file2.feature 
@@ -313,25 +310,25 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="npm">
 
-  Provide <em>parallel</em> switch to execute all feature files in a given directory in parallel
+  Specify the <em>parallel</em> launch option to execute all feature files in a given directory in parallel
 
   ```shell
   npm run gwen -- -b --parallel gwen/features/dir
   ```
 
-  Provide <em>parallel</em> switch to execute the given feature files in parallel
+  Specify the <em>parallel</em> launch option to execute the given feature files in parallel
 
   ```shell
   npm run gwen -- --batch --parallel gwen/features/file1.feature gwen/features/file2.feature 
   ```
 
-  Omit <em>parallel</em> switch to execute all feature files in a given directory in sequence
+  Omit <em>parallel</em> launch option to execute all feature files in a given directory in sequence
 
   ```shell
   npm run gwen -- -b gwen/features/dir
   ```
 
-  Omit <em>parallel</em> switch to execute the given feature files in sequence
+  Omit <em>parallel</em> launch option to execute the given feature files in sequence
 
   ```shell
   npm run gwen -- -b gwen/features/file1.feature gwen/features/file2.feature 
@@ -341,25 +338,25 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="pnpm">
 
-  Provide <em>parallel</em> switch to execute all feature files in a given directory in parallel
+  Specify the <em>parallel</em> launch option to execute all feature files in a given directory in parallel
 
   ```shell
   pnpm gwen -b --parallel gwen/features/dir
   ```
 
-  Provide <em>parallel</em> switch to execute the given feature files in parallel
+  Specify the <em>parallel</em> launch option to execute the given feature files in parallel
 
   ```shell
   pnpm gwen -b --parallel gwen/features/file1.feature gwen/features/file2.feature 
   ```
 
-  Omit <em>parallel</em> switch to execute all feature files in a given directory in sequence
+  Omit <em>parallel</em> launch option to execute all feature files in a given directory in sequence
 
   ```shell
   pnpm gwen -b gwen/features/dir
   ```
 
-  Omit <em>parallel</em> switch to execute the given feature files in sequence
+  Omit <em>parallel</em> launch option to execute the given feature files in sequence
 
   ```shell
   pnpm gwen -b gwen/features/file1.feature gwen/features/file2.feature 
@@ -373,7 +370,7 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="scenario">
 
-  Scenarios will run in parallel (one per CPU core) when the <em>parallel</em> switch is provided and  <Link to="/docs/settings#gwen-state-level"><code>gwen.state.level</code></Link> is <code>scenario</code>
+  Scenarios will run in parallel (one per CPU core) when the <em>parallel</em> launch option is provided and  <Link to="/docs/settings#gwen-state-level"><code>gwen.state.level</code></Link> is <code>scenario</code>
 
   <Tabs
   groupId="jstool"
@@ -386,25 +383,25 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="yarn">
 
-  Provide <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in parallel
+  Specify the <em>parallel</em> launch option to execute all scenarios in all feature files in a given directory in parallel
 
   ```shell
   yarn gwen -b --parallel gwen/features/dir
   ```
 
-  Provide <em>parallel</em> switch to execute all scenarios in the given feature files in parallel
+  Specify the <em>parallel</em> launch option to execute all scenarios in the given feature files in parallel
 
   ```shell
   yarn gwen -b --parallel gwen/features/file1.feature gwen/features/file2.feature 
   ```
 
-  Omit <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in sequence
+  Omit <em>parallel</em> launch option to execute all scenarios in all feature files in a given directory in sequence
 
   ```shell
   yarn -b gwen/features/dir
   ```
 
-  Omit <em>parallel</em> switch to execute all scenarios in the given feature files in sequence
+  Omit <em>parallel</em> launch option to execute all scenarios in the given feature files in sequence
 
   ```shell
   yarn -b gwen/features/file1.feature gwen/features/file2.feature 
@@ -414,25 +411,25 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="npm">
 
-  Provide <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in parallel
+  Specify the <em>parallel</em> launch option to execute all scenarios in all feature files in a given directory in parallel
 
   ```shell
   npm run gwen -- -b --parallel gwen/features/dir
   ```
 
-  Provide <em>parallel</em> switch to execute all scenarios in the given feature files in parallel
+  Specify the <em>parallel</em> launch option to execute all scenarios in the given feature files in parallel
 
   ```shell
   npm run gwen -- -b --parallel gwen/features/file1.feature gwen/features/file2.feature 
   ```
 
-  Omit <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in sequence
+  Omit <em>parallel</em> launch option to execute all scenarios in all feature files in a given directory in sequence
 
   ```shell
   npm run gwen -- -b gwen/features/dir
   ```
 
-  Omit <em>parallel</em> switch to execute all scenarios in the given feature files in sequence
+  Omit <em>parallel</em> launch option to execute all scenarios in the given feature files in sequence
 
   ```shell
   npm run gwen -- -b gwen/features/file1.feature gwen/features/file2.feature 
@@ -442,25 +439,25 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="pnpm">
 
-  Provide <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in parallel
+  Specify the <em>parallel</em> launch option to execute all scenarios in all feature files in a given directory in parallel
 
   ```shell
   pnpm gwen -b --parallel gwen/features/dir
   ```
 
-  Provide <em>parallel</em> switch to execute all scenarios in the given feature files in parallel
+  Specify the <em>parallel</em> launch option to execute all scenarios in the given feature files in parallel
 
   ```shell
   pnpm gwen -b --parallel gwen/features/file1.feature gwen/features/file2.feature 
   ```
 
-  Omit <em>parallel</em> switch to execute all scenarios in all feature files in a given directory in sequence
+  Omit <em>parallel</em> launch option to execute all scenarios in all feature files in a given directory in sequence
 
   ```shell
   pnpm -b gwen/features/dir
   ```
 
-  Omit <em>parallel</em> switch to execute all scenarios in the given feature files in sequence
+  Omit <em>parallel</em> launch option to execute all scenarios in the given feature files in sequence
 
   ```shell
   pnpm -b gwen/features/file1.feature gwen/features/file2.feature 
@@ -475,13 +472,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-parallel">Link</Link></div>
-    <div align="center">Defaults to <Link to="/docs/settings#gwen-cli-options-parallel"><code>gwen.cli.options.parallel</code></Link></div>
+    <div><Link to="#gwen-launch-options-parallel">Link</Link></div>
+    <div align="center">Defaults to <Link to="/docs/settings#gwen-launch-options-parallel"><code>gwen.launch.options.parallel</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-batch">
+<details id="gwen-launch-options-batch">
   <summary class="cli-options">
 
   ```shell
@@ -515,25 +512,25 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="yarn">
 
-  Provide <em>batch</em> switch to execute all feature files in a given directory and then exit
+  Specify the <em>batch</em> launch option to execute all feature files in a given directory and then exit
 
   ```shell
   yarn gwen -b gwen/features/dir
   ```
 
-  Provide <em>batch</em> switch to execute the given feature file and then exit 
+  Specify the <em>batch</em> launch option to execute the given feature file and then exit 
 
   ```shell
   yarn gwen --batch gwen/features/file.feature
   ```
 
-  Omit <em>batch</em> switch to execute the given feature file and then open the <Link to="/docs/repl">REPL</Link>
+  Omit the <em>batch</em> launch option to execute the given feature file and then open the <Link to="/docs/repl">REPL</Link>
 
   ```shell
   yarn gwen gwen/features/file.feature
   ```
 
-  Omit <em>batch</em> switch to open the <Link to="/docs/repl">REPL</Link> immediately without executing anything
+  Omit the <em>batch</em> launch option to open the <Link to="/docs/repl">REPL</Link> immediately without executing anything
 
   ```shell
   yarn gwen
@@ -543,25 +540,25 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="npm">
 
-  Provide <em>batch</em> switch to execute all feature files in a given directory and then exit
+  Specify the <em>batch</em> launch option to execute all feature files in a given directory and then exit
 
   ```shell
   npm run gwen -- -b gwen/features/dir
   ```
 
-  Provide <em>batch</em> switch to execute the given feature file and then exit 
+  Specify the <em>batch</em> launch option to execute the given feature file and then exit 
 
   ```shell
   npm run gwen -- --batch gwen/features/file.feature
   ```
 
-  Omit <em>batch</em> switch to execute the given feature file and then open the <Link to="/docs/repl">REPL</Link>
+  Omit the <em>batch</em> launch option to execute the given feature file and then open the <Link to="/docs/repl">REPL</Link>
 
   ```shell
   npm run gwen -- gwen/features/file.feature
   ```
 
-  Omit <em>batch</em> switch to open the <Link to="/docs/repl">REPL</Link> immediately without executing anything
+  Omit the <em>batch</em> launch option to open the <Link to="/docs/repl">REPL</Link> immediately without executing anything
 
   ```shell
   npm run gwen
@@ -571,25 +568,25 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="pnpm">
 
-  Provide <em>batch</em> switch to execute all feature files in a given directory and then exit
+  Specify the <em>batch</em> launch option to execute all feature files in a given directory and then exit
 
   ```shell
   pnpm gwen -b gwen/features/dir
   ```
 
-  Provide <em>batch</em> switch to execute the given feature file and then exit 
+  Specify the <em>batch</em> launch option to execute the given feature file and then exit 
 
   ```shell
   pnpm gwen --batch gwen/features/file.feature
   ```
 
-  Omit <em>batch</em> switch to execute the given feature file and then open the <Link to="/docs/repl">REPL</Link>
+  Omit the <em>batch</em> launch option to execute the given feature file and then open the <Link to="/docs/repl">REPL</Link>
 
   ```shell
   pnpm gwen gwen/features/file.feature
   ```
 
-  Omit <em>batch</em> switch to open the <Link to="/docs/repl">REPL</Link> immediately without executing anything
+  Omit the <em>batch</em> launch option to open the <Link to="/docs/repl">REPL</Link> immediately without executing anything
 
   ```shell
   pnpm gwen
@@ -600,13 +597,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-batch">Link</Link></div>
-    <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-batch"><code>gwen.cli.options.batch</code></Link></div>
+    <div><Link to="#gwen-launch-options-batch">Link</Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings#gwen-launch-options-batch"><code>gwen.launch.options.batch</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-verbose">
+<details id="gwen-launch-options-verbose">
   <summary class="cli-options">
 
   ```shell
@@ -683,13 +680,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-verbose">Link</Link></div>
-    <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-verbose"><code>gwen.cli.options.verbose</code></Link></div>
+    <div><Link to="#gwen-launch-options-verbose">Link</Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings#gwen-launch-options-verbose"><code>gwen.launch.options.verbose</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-debug">
+<details id="gwen-launch-options-debug">
   <summary class="cli-options">
 
   ```shell
@@ -766,13 +763,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-debug">Link</Link></div>
+    <div><Link to="#gwen-launch-options-debug">Link</Link></div>
     <div align="center"><Link to="/docs/repl#debugging">Learn more</Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.2.0">v3.2.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-dry-run">
+<details id="gwen-launch-options-dry-run">
   <summary class="cli-options">
 
   ```shell
@@ -813,13 +810,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="yarn">
 
-  Provide <em>dry run</em> switch to find and report any errors in all feature and meta files in a given directory
+  Specify the <em>dry run</em> launch option to find and report any errors in all feature and meta files in a given directory
 
   ```shell
   yarn gwen -b -n gwen/features/dir
   ```
 
-  Provide <em>dry run</em> switch to find and report any errors in the given feature file and its <Link to="/docs/meta#associative-strategy">associative meta</Link>
+  Specify the <em>dry run</em> launch option to find and report any errors in the given feature file and its <Link to="/docs/meta#associative-strategy">associative meta</Link>
 
   ```shell
   yarn gwen --batch --dry-run gwen/features/file.feature
@@ -829,13 +826,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="npm">
 
-  Provide <em>dry run</em> switch to find and report any errors in all feature and meta files in a given directory
+  Specify the <em>dry run</em> launch option to find and report any errors in all feature and meta files in a given directory
 
   ```shell
   npm run gwen -- -b -n gwen/features/dir
   ```
 
-  Provide <em>dry run</em> switch to find and report any errors in the given feature file and its <Link to="/docs/meta#associative-strategy">associative meta</Link>
+  Specify the <em>dry run</em> launch option to find and report any errors in the given feature file and its <Link to="/docs/meta#associative-strategy">associative meta</Link>
 
   ```shell
   npm run gwen -- --batch --dry-run gwen/features/file.feature
@@ -845,13 +842,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <TabItem value="pnpm">
 
-  Provide <em>dry run</em> switch to find and report any errors in all feature and meta files in a given directory
+  Specify the <em>dry run</em> launch option to find and report any errors in all feature and meta files in a given directory
 
   ```shell
   pnpm gwen -b -n gwen/features/dir
   ```
 
-  Provide <em>dry run</em> switch to find and report any errors in the given feature file and its <Link to="/docs/meta#associative-strategy">associative meta</Link>
+  Specify the <em>dry run</em> launch option to find and report any errors in the given feature file and its <Link to="/docs/meta#associative-strategy">associative meta</Link>
 
   ```shell
   pnpm gwen --batch --dry-run gwen/features/file.feature
@@ -862,13 +859,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-dry-run">Link</Link></div>
-    <div align="center">Defaults to <Link to="/docs/settings#gwen-cli-options-dry-run"><code>gwen.cli.options.dryRun</code></Link></div>
+    <div><Link to="#gwen-launch-options-dry-run">Link</Link></div>
+    <div align="center">Defaults to <Link to="/docs/settings#gwen-launch-options-dry-run"><code>gwen.launch.options.dryRun</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-conf">
+<details id="gwen-launch-options-conf">
   <summary class="cli-options">
 
   ```shell
@@ -967,13 +964,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-conf">Link</Link></div>
+    <div><Link to="#gwen-launch-options-conf">Link</Link></div>
     <div align="center">/Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-properties">
+<details id="gwen-launch-options-properties">
   <summary class="cli-options">
 
   ```shell
@@ -1016,13 +1013,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   ```
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-properties">Link</Link></div>
+    <div><Link to="#gwen-launch-options-properties">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-report">
+<details id="gwen-launch-options-report">
   <summary class="cli-options">
 
   ```shell
@@ -1047,7 +1044,7 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <br />
   <p>
-  Since Gwen 3, <Link to="/docs/reports/html">HTML reports</Link> are generated by default and all reports are written to the output directory defined by the <Link to="/docs/settings#gwen-cli-options-report"><code>gwen.cli.options.report</code></Link> setting (which you can change if you wish). You therefore only need to specify this report option if you want to override this default on the CLI for a particular launch. If additionally, you don't want any reports to be generated by default, you can set the <Link to="/docs/settings#gwen-cli-options-format"><code>gwen.cli.options.format</code></Link> setting to <code>none</code>.
+  Since Gwen 3, <Link to="/docs/reports/html">HTML reports</Link> are generated by default and all reports are written to the output directory defined by the <Link to="/docs/settings#gwen-launch-options-report"><code>gwen.launch.options.report</code></Link> setting (which you can change if you wish). You therefore only need to specify this report option if you want to override this default on the CLI for a particular launch. If additionally, you don't want any reports to be generated by default, you can set the <Link to="/docs/settings#gwen-launch-options-format"><code>gwen.launch.options.format</code></Link> setting to <code>none</code>.
   </p>
   <br />
 
@@ -1143,13 +1140,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-report">Link</Link></div>
-    <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-report"><code>gwen.cli.options.report</code></Link></div>
+    <div><Link to="#gwen-launch-options-report">Link</Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings#gwen-launch-options-report"><code>gwen.launch.options.report</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-format">
+<details id="gwen-launch-options-format">
   <summary class="cli-options">
 
   ```shell
@@ -1183,7 +1180,7 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <br />
   <p>
-   Since Gwen 3, <Link to="/docs/reports/html">HTML reports</Link> are generated by default and all reports are written to the output directory defined by the <Link to="/docs/settings#gwen-cli-options-report"><code>gwen.cli.options.report</code></Link> setting (which you can change if you wish). You therefore no longer need to explictly specify the <Link to="#gwen-cli-options-report"><code>-r|--report</code></Link> option with this option unless you want to override the default on the CLI for a particular launch.
+   Since Gwen 3, <Link to="/docs/reports/html">HTML reports</Link> are generated by default and all reports are written to the output directory defined by the <Link to="/docs/settings#gwen-launch-options-report"><code>gwen.launch.options.report</code></Link> setting (which you can change if you wish). You therefore no longer need to explictly specify the <Link to="#gwen-launch-options-report"><code>-r|--report</code></Link> option with this option unless you want to override the default on the CLI for a particular launch.
   </p>
   <br />
 
@@ -1249,13 +1246,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-format">Link</Link></div>
-    <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-format"><code>gwen.cli.options.format</code></Link></div>
+    <div><Link to="#gwen-launch-options-format">Link</Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings#gwen-launch-options-format"><code>gwen.launch.options.format</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-tags">
+<details id="gwen-launch-options-tags">
   <summary class="cli-options">
 
   ```shell
@@ -1382,13 +1379,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-tags">Link</Link></div>
-    <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-tags"><code>gwen.cli.options.tags</code></Link></div>
+    <div><Link to="#gwen-launch-options-tags">Link</Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings#gwen-launch-options-tags"><code>gwen.launch.options.tags</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-input-data">
+<details id="gwen-launch-options-input-data">
   <summary class="cli-options">
 
   ```shell
@@ -1515,13 +1512,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-input-data">Link</Link></div>
-    <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-input-data"><code>gwen.cli.options.inputData</code></Link></div>
+    <div><Link to="#gwen-launch-options-input-data">Link</Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings#gwen-launch-options-input-data"><code>gwen.launch.options.inputData</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-options-meta">
+<details id="gwen-launch-options-meta">
   <summary class="cli-options">
 
   ```shell
@@ -1606,15 +1603,15 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-meta">Link</Link></div>
-    <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-meta"><code>gwen.cli.options.meta</code></Link></div>
+    <div><Link to="#gwen-launch-options-meta">Link</Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings#gwen-launch-options-meta"><code>gwen.launch.options.meta</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-### Arguments
+### Launch Arguments
 
-<details id="gwen-cli-options-features">
+<details id="gwen-launch-options-features">
   <summary class="cli-options">
 
   ```shell
@@ -1710,15 +1707,15 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-options-features">Link</Link></div>
-    <div align="center">Defaults to: <Link to="/docs/settings#gwen-cli-options-features"><code>gwen.cli.options.features</code></Link></div>
+    <div><Link to="#gwen-launch-options-features">Link</Link></div>
+    <div align="center">Defaults to: <Link to="/docs/settings#gwen-launch-options-features"><code>gwen.launch.options.features</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
-### Init command
+## Project Init
 
-<details id="gwen-cli-init">
+<details id="gwen-launch-init">
   <summary class="cli-options">
 
   ```shell
@@ -1735,13 +1732,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
       <code>[options]</code> Can be one or more space separated switches including:
       <ul>
         <li>
-          <Link to="#gwen-cli-init-options-docker"><code>--docker</code></Link>
+          <Link to="#gwen-launch-init-options-docker"><code>--docker</code></Link>
           <ul>
             <li>Include to also generate files in your project for running Gwen in <Link to="/docs/docker">Docker</Link></li>
           </ul>
         </li>
         <li>
-          <Link to="#gwen-cli-init-options-jenkins"><code>--jenkins</code></Link>
+          <Link to="#gwen-launch-init-options-jenkins"><code>--jenkins</code></Link>
           <ul>
             <li>Include to also generate a Jenkins pipeline file in your project</li>
           </ul>
@@ -1841,15 +1838,15 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   ```
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-init">Link</Link></div>
+    <div><Link to="#gwen-launch-init">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
   </div>
 </details>
 
-#### Init options
+### Project Init options
 
-<details id="gwen-cli-init-options-docker">
+<details id="gwen-launch-init-options-docker">
   <summary class="cli-options">
 
   ```shell
@@ -1925,13 +1922,13 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   ```
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-init-options-docker">Link</Link></div>
+    <div><Link to="#gwen-launch-init-options-docker">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.16.0">v3.16.0</Link></div>
   </div>
 </details>
 
-<details id="gwen-cli-init-options-jenkins">
+<details id="gwen-launch-init-options-jenkins">
   <summary class="cli-options">
 
   ```shell
@@ -2003,15 +2000,15 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   ```
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-init-options-jenkins">Link</Link></div>
+    <div><Link to="#gwen-launch-init-options-jenkins">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.16.0">v3.16.0</Link></div>
   </div>
 </details>
 
-### Pretty format command
+## Pretty formatting
 
-<details id="gwen-cli-format-pretty">
+<details id="gwen-launch-format-pretty">
   <summary class="cli-options">
 
   ```
@@ -2025,7 +2022,7 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
 
   <ul>
     <li>
-      <Link to="#gwen-cli-format-pretty"><code>--pretty</code></Link>
+      <Link to="#gwen-launch-format-pretty"><code>--pretty</code></Link>
       <ul>
         <li>Is the pretty formatting option (default)</li>
         <li>This is currently the default and only supported formatting option</li>
@@ -2144,7 +2141,7 @@ CLI options can be configured in [settings](/docs/settings#cli-settings) enablin
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-cli-format-pretty">Link</Link></div>
+    <div><Link to="#gwen-launch-format-pretty">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.38.0">v3.38.0</Link></div>
   </div>

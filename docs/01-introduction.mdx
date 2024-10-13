@@ -34,7 +34,7 @@ Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter wit
 - [Parallel](/docs/parallel) and [dry run](/docs/dry-run) execution
 - Interactive [REPL](/docs/repl) console
 - Many [report formats](/docs/reports/html)
-- Configurable [settings](/docs/settings) and [CLI](/docs/cli)
+- Configurable [settings](/docs/settings) and [launch options](/docs/launcher#launch-options)
 - Multiple web element [locator mechanisms](/docs/dsl#element-locators) (including JS)
 - JavaScript [function bindings](/docs/dsl#js-bindings)
 - Multi platform (Windows, Linux and [Docker](/docs/docker))
@@ -541,7 +541,7 @@ When launched on a directory, Gwen will recursively discover and bind all meta a
     cp -R gwen/samples/* gwen/features
   ```
 
-  Execute the feature passing in the <Link to="docs/cli#gwen-cli-options-batch"><code>-b</code></Link> switch to exit when done:
+  Execute the feature passing in the <Link to="docs/cli#gwen-launch-options-batch"><code>-b</code></Link> option to exit when done:
 
   ```shell
     yarn gwen -b gwen/features/todo.feature
@@ -553,7 +553,7 @@ When launched on a directory, Gwen will recursively discover and bind all meta a
     yarn gwen -b gwen/features
   ```
 
-  [Gwen CLI](/docs/cli)
+  [Gwen Launcher](/docs/launcher)
 
 </p>
 :::
@@ -573,7 +573,7 @@ When launched on a directory, Gwen will recursively discover and bind all meta a
     cp -R gwen/samples/* gwen/features
   ```
 
-  Execute the feature passing in the <Link to="docs/cli#gwen-cli-options-batch"><code>-b</code></Link> switch to exit when done:
+  Execute the feature passing in the <Link to="docs/cli#gwen-launch-options-batch"><code>-b</code></Link> option to exit when done:
 
   ```shell
     npm run gwen -- -b gwen/features/todo.feature
@@ -585,7 +585,7 @@ When launched on a directory, Gwen will recursively discover and bind all meta a
     npm run gwen -- -b gwen/features
   ```
 
-  [Gwen CLI](/docs/cli)
+  [Gwen Launcher](/docs/launcher)
 
 </p>
 :::
@@ -605,7 +605,7 @@ When launched on a directory, Gwen will recursively discover and bind all meta a
     cp -R gwen/samples/* gwen/features
   ```
 
-  Execute the feature passing in the <Link to="docs/cli#gwen-cli-options-batch"><code>-b</code></Link> switch to exit when done:
+  Execute the feature passing in the <Link to="docs/cli#gwen-launch-options-batch"><code>-b</code></Link> option to exit when done:
 
   ```shell
     pnpm gwen -b gwen/features/todo.feature
@@ -617,7 +617,7 @@ When launched on a directory, Gwen will recursively discover and bind all meta a
     pnpm gwen -b gwen/features
   ```
 
-  [Gwen CLI](/docs/cli)
+  [Gwen Launcher](/docs/launcher)
 
 </p>
 :::

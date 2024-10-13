@@ -28,7 +28,7 @@ The maximum number of parallel threads can be controlled through the following s
 
 
 > Features will run in parallel if you specify:
-> -  the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option and your [state level](/docs/settings#gwen-state-level) is set to `feature`
+> -  the [`--parallel`](/docs/launcher#gwen-launch-options-parallel) launch option and your [state level](/docs/settings#gwen-state-level) is set to `feature`
 
 When [`maxThreads`](#maximum-threads) is `auto` (default)
 - If you launch Gwen on an 8 core machine with the `--parallel` option passing in 8 feature files (or a single directory containing 8 feature files), then the 8 features will run in parallel across the cores. If you instead provide 9 features, then 8 of them will execute in parallel and the remaining feature execution will be deferred until one of those completes.
@@ -39,7 +39,7 @@ When [`maxThreads`](#maximum-threads) is `auto` (default)
 > Since [v2.22.1](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.22.1)
 
 > Scenarios will run in parallel if you specify:
-> - the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option and your [state level](/docs/settings#gwen-state-level) is set to `scenario`
+> - the [`--parallel`](/docs/launcher#gwen-launch-options-parallel) launch option and your [state level](/docs/settings#gwen-state-level) is set to `scenario`
 
 When [`maxThreads`](#maximum-threads) is `auto` (default)
 - If you launch Gwen on a 8 core machine with the `--parallel` option passing in many feature files (or a single directory containing many feature files), then at most 8 scenarios will run in parallel across the cores at any one time. If there are a total of 9 scenarios, then 8 of them will execute in parallel and the remaining scenario execution be deferred until one of those completes.
@@ -74,7 +74,7 @@ It can also be used in conjunction with `Examples` annotations
 > <p><b>Restrictions</b></p>
 > The `Parallel` annotation:
 >  - Cannot be used in a nested manner (an error will be raised on any such detection)
->  - Will come to effect only when Gwen is invoked without the [`--parallel`](/docs/cli#gwen-cli-options-parallel) option (i.e: when no other parallel execution is taking place), and will be implicity removed otherwise.
+>  - Will come to effect only when Gwen is invoked without the [`--parallel`](/docs/launcher#gwen-launch-options-parallel) launch option (i.e: when no other parallel execution is taking place), and will be implicity removed otherwise.
 
 ## Staggering
 

@@ -58,7 +58,7 @@ Note: Interpolation of CSV fields `${name} ${surname}` in the feature name and d
 >  <li><code>gwen.data.record.index</code> = current record index starting at 0</li>
 > </ul>
 
-You can execute this feature for all users in the CSV file by launching Gwen with the [`-i|--input-data`](/docs/cli#gwen-cli-options-input-data) CLI option.
+You can execute this feature for all users in the CSV file by launching Gwen with the [`-i|--input-data`](/docs/launcher#gwen-launch-options-input-data) option.
 
 #### Examples
 
@@ -120,7 +120,7 @@ Gwen will read in the CSV file, and for each record will:
 * Bind the data to the feature
 * And execute the feature
 
-A feature detail report will be generated for each data record. If you specify the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option, the feature will execute all records in parallel.
+A feature detail report will be generated for each data record. If you specify the [`--parallel`](/docs/launcher#gwen-launch-options-parallel) launch option, the feature will execute all records in parallel.
 
 ## Flat JSON data feeds
 
@@ -171,7 +171,7 @@ Note: Interpolation of JSON fields `${name} ${surname}` is supported in the feat
 >  <li><code>gwen.data.record.index</code> = current record index starting at 0</li>
 > </ul>
 
-You can execute this feature for all users in the JSON file by launching Gwen with the [`-i|--input-data`](/docs/cli#gwen-cli-options-input-data) CLI option.
+You can execute this feature for all users in the JSON file by launching Gwen with the [`-i|--input-data`](/docs/launcher#gwen-launch-options-input-data) option.
 
 #### Examples
 
@@ -233,7 +233,7 @@ Gwen will read in the JSON file, and for each record will:
 * Bind the data to the feature
 * And execute the feature
 
-A feature detail report will be generated for each data record. If you specify the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option, the feature will execute all records in parallel.
+A feature detail report will be generated for each data record. If you specify the [`--parallel`](/docs/launcher#gwen-launch-options-parallel) launch option, the feature will execute all records in parallel.
 
 ## Structured JSON data feeds
 
@@ -303,7 +303,7 @@ Note: Interpolation of JSON fields `${user.name} ${user.surname}` is supported i
 
 :::
 
-You can execute this feature for all users in the JSON file by launching Gwen with the [`-i|--input-data`](/docs/cli#gwen-cli-options-input-data) CLI option.
+You can execute this feature for all users in the JSON file by launching Gwen with the [`-i|--input-data`](/docs/launcher#gwen-launch-options-input-data) option.
 
 > The current JSON record number or index is available as an implicit attribute:
 >
@@ -476,7 +476,7 @@ Gwen will read in the JSON file, and for each record will:
 * Bind the data to the feature
 * And execute the feature
 
-A feature detail report will be generated for each data record. If you specify the [`--parallel`](/docs/cli#gwen-cli-options-parallel) CLI option, the feature will execute all records in parallel.
+A feature detail report will be generated for each data record. If you specify the [`--parallel`](/docs/launcher#gwen-launch-options-parallel) launch option, the feature will execute all records in parallel.
 
 ## @Examples annotation
 
@@ -738,6 +738,6 @@ The `Parallel` annotation can be used on examples to force each entry to run in 
 > <p><b>Restrictions</b></p>
 > The `Parallel` annotation:
 >  - Cannot be used in a nested manner (an error will be raised on any such detection)
->  - Will come to effect only when Gwen is invoked without the [`--parallel`](/docs/cli#gwen-cli-options-parallel) option (i.e: when no other parallel execution is taking place), and will be implicity removed otherwise.
+>  - Will come to effect only when Gwen is invoked without the [`--parallel`](/docs/launcher#gwen-launch-options-parallel) launch option (i.e: when no other parallel execution is taking place), and will be implicity removed otherwise.
 
 See also: [Parallel Scenario Outline Examples](/docs/parallel#parallel-scenario-outline-examples)

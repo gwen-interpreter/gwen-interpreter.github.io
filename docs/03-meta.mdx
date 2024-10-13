@@ -171,7 +171,7 @@ The external strategy enables you to manage common and reusable meta files in a 
 
 :::note Example
 
-To load a single meta file from an external directory, use the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option and specify the path to the meta file:
+To load a single meta file from an external directory, use the [`-m|meta`](/docs/launcher#gwen-launch-options-meta) launch option and specify the path to the meta file:
 
 ```shell
 yarn gwen -m external/meta/common.meta
@@ -183,7 +183,7 @@ To recursively load all meta files in an external directory:
 yarn gwen gwen/features -m external/meta
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -192,7 +192,7 @@ yarn gwen gwen/features -m external/meta
 
 :::note Example
 
-To load a single meta file from an external directory, use the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option and specify the path to the meta file:
+To load a single meta file from an external directory, use the [`-m|meta`](/docs/launcher#gwen-launch-options-meta) launch option and specify the path to the meta file:
 
 ```shell
 npm run gwen -- -m external/meta/common.meta
@@ -204,7 +204,7 @@ To recursively load all meta files in an external directory:
 npm run gwen -- gwen/features -m external/meta
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -213,7 +213,7 @@ npm run gwen -- gwen/features -m external/meta
 
 :::note Example
 
-To load a single meta file from an external directory, use the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option and specify the path to the meta file:
+To load a single meta file from an external directory, use the [`-m|meta`](/docs/launcher#gwen-launch-options-meta) launch option and specify the path to the meta file:
 
 ```shell
 pnpm gwen -m external/meta/common.meta
@@ -225,7 +225,7 @@ To recursively load all meta files in an external directory:
 pnpm gwen gwen/features -m external/meta
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -236,7 +236,7 @@ pnpm gwen gwen/features -m external/meta
 
 > Since [v1.9.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.9.0)
 
-The import strategy enables you to selectively import one or more meta files for any given feature file so they will load automatically without you having to specify their locations using the [`-m|meta`](/docs/cli#gwen-cli-options-meta) CLI option on every launch. This is useful for cases where you have many reusable meta files and it is not practical to load all of them for every feature file.
+The import strategy enables you to selectively import one or more meta files for any given feature file so they will load automatically without you having to specify their locations using the [`-m|meta`](/docs/launcher#gwen-launch-options-meta) launch option on every launch. This is useful for cases where you have many reusable meta files and it is not practical to load all of them for every feature file.
 
 :::caution
 
@@ -289,7 +289,7 @@ To load only one meta file for one feature file using the external meta strategy
 yarn gwen -m gwen/meta/module-1.meta gwen/features/spec-1.feature
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -304,7 +304,7 @@ To load only one meta file for one feature file using the external meta strategy
 npm run gwen -- -m gwen/meta/module-1.meta gwen/features/spec-1.feature
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -319,7 +319,7 @@ To load only one meta file for one feature file using the external meta strategy
 pnpm gwen -m gwen/meta/module-1.meta gwen/features/spec-1.feature
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -376,7 +376,7 @@ With the import in place, you could then invoke Gwen to execute the feature with
 yarn gwen gwen/features/spec-1.feature
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -391,7 +391,7 @@ With the import in place, you could then invoke Gwen to execute the feature with
 npm run gwen -- gwen/features/spec-1.feature
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -406,7 +406,7 @@ With the import in place, you could then invoke Gwen to execute the feature with
 pnpm gwen gwen/features/spec-1.feature
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -470,7 +470,7 @@ In this example, the `module-2.meta` and `module-3.meta` files will be loaded (i
 yarn gwen features/spec-3.feature
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -485,7 +485,7 @@ In this example, the `module-2.meta` and `module-3.meta` files will be loaded (i
 npm run gwen -- gwen/features/spec-3.feature
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -500,7 +500,7 @@ In this example, the `module-2.meta` and `module-3.meta` files will be loaded (i
 pnpm gwen gwen/features/spec-3.feature
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 

@@ -10,7 +10,7 @@ import ReactPlayer from 'react-player'
 
 # Video Recordings
 
-Video recordings of browser sessions can be captured when running Gwen in [Docker with Selenoid](/docs/docker), and if either the [`GWEN_VIDEO`](/docs/cli#environment-variables) environment variable or the `selenoid:options.enableVideo` capability setting are set to `true`. Under these conditions, MP4 video recordings of each session will be attached to [HTML reports](/docs/reports/html) when execution completes.
+Video recordings of browser sessions can be captured when running Gwen in [Docker with Selenoid](/docs/docker), and if either the [`GWEN_VIDEO`](/docs/launcher#environment-variables) environment variable or the `selenoid:options.enableVideo` capability setting are set to `true`. Under these conditions, MP4 video recordings of each session will be attached to [HTML reports](/docs/reports/html) when execution completes.
 
 :::note
 Videos can also be captured if you run Gwen on [BrowserStack](/docs/browserstack) or [LambdaTest](/docs/lambdatest) however they are maintained on their dashboards and are not integrated into Gwen HTML reports.
@@ -31,7 +31,7 @@ gwen {
 ```
 
 :::caution Limitation
-Videos will not be recorded when [parallel execution](/docs/parallel), [headless browser](/docs/settings#gwen-web-browser-headless), or interactive (non [--batch/-b](/docs/cli#gwen-cli-options-batch)) modes are enabled.
+Videos will not be recorded when [parallel execution](/docs/parallel), [headless browser](/docs/settings#gwen-web-browser-headless), or interactive (non [--batch/-b](/docs/launcher#gwen-launch-options-batch)) modes are enabled.
 :::
 
 ### Summary reports

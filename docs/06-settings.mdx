@@ -37,32 +37,30 @@ Ideally you should use one format for all your settings files, but using combina
 2. `.json`
 3. `.properties`
 
-## Load order and precedence
+### Load order and precedence
 
 Settings are loaded in the following order of precedence, with those higher in the list overriding the lower.
 
-1. [Environment variable](/docs/cli#environment-variables) overrides
-2. [System properties](/docs/cli#system-properties-and-jvm-options)
+1. [Environment variable](/docs/launcher#environment-variables) overrides
+2. [System properties](/docs/launcher#system-properties-and-jvm-options)
 3. User settings
     - A `gwen.conf`, `gwen.json`, or `gwen.properties` file in your user directory
 4. Launch settings
-    - Comma separated list of `*.conf`, `*.json`, or `*.properies` files passed to the Gwen CLI via the [`-c|--conf`](/docs/cli#gwen-cli-options-conf) launch option (or `-p|--properties` for Gwen versions prior to v3.0.0). These are loaded in the order given with latter entries overriding the former.
+    - Comma separated list of `*.conf`, `*.json`, or `*.properies` files passed to Gwen via the [`-c|--conf`](/docs/launcher#gwen-launch-options-conf) launch option (or `-p|--properties` for Gwen versions prior to v3.0.0). These are loaded in the order given with latter entries overriding the former.
 5. Project settings
     - A `gwen.conf`, `gwen.json` or `gwen.properties` file in your root project directory
 6. Default settings
     - Internal Gwen defaults
 
-## Maintaining settings
-
 :::info System properties override all other settings
 
-`-Dname=value` pairs passed to the Gwen CLI as system properties have topmost precedence and will always override ALL other settings.
+`-Dname=value` pairs passed to Gwen as system properties have topmost precedence and will always override ALL other settings.
 
 :::
 
 You can maintain settings and override internal defaults at various levels as described here.
 
-### User settings
+### User settings files
 
 User-level settings can optionally be defined in a `gwen.conf|json|properties` file in the root of your user directory on a machine. These are useful when you want to override certain settings on a machine for a user.
 
@@ -72,11 +70,7 @@ User-level settings can optionally be defined in a `gwen.conf|json|properties` f
      └── gwen.conf           # User-level overrides
 ```
 
-### Launch settings
-
-You can maintain any settings and properties (except [CLI options](/docs/settings#cli-settings)) in your own files and explicitly pass them to Gwen at launch time using the [`-c|conf`](/docs/cli#gwen-cli-options-conf) CLI option. For convenience, you would typically store these somewhere within your project where your `features` directory lives however you are free to store them in any location you wish.
-
-### Project settings
+### Project settings files
 
 When you [set up](/docs/get-started) and initialise your project, all project level settings are stored in a `gwen.conf|json|properties` file in the root of the project. Gwen automatically discovers and loads this file for you, so you don't need to explictly pass it to Gwen when you launch in the project directory.
 
@@ -85,19 +79,409 @@ When you [set up](/docs/get-started) and initialise your project, all project le
  └── gwen.conf               # Project settings
 ```
 
-## Masked Settings
+## Settings reference
 
-> Since [v2.48.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0)
+### Launch settings
 
-It is a common security practice to never log sensitive data. To support this practice, Gwen will hide all [settings](/docs/settings) that you flag as "masked" by logging their values as `*****` in all logs, reports, error messages and console outputs.
+<details id="gwen-launch-options-parallel">
+  <summary class="setting">
 
-### Flagging masked settings
+  ```properties
+  gwen.launch.options.parallel
+  ```
+  <p>Controls whether or not the <code>--parallel</code> launch option will be passed to Gwen.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to always launch Gwen in parallel execution mode</li>
+    <li><code>false</code> to only launch Gwen in parallel execution mode if the <code>--parallel</code> launch option is explicitly passed (default).</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
 
-To flag a setting as masked, append `:masked` to its defined name.
+  <TabItem value="conf">
 
-For example, to access a password stored in an environemnt variable named `USER_PASSOWRD`, you can read it into a masked setting named `user.password` as follows:
+  Default value
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          parallel = false
+        }
+      }
+    }
+  ```
 
-<Tabs
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "parallel": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.launch.options.parallel = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-parallel">Link</Link></div>
+    <div align="center">launch option: <Link to="/docs/launcher#gwen-launch-options-parallel"><code>--parallel</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-launch-options-batch">
+  <summary class="setting">
+
+  ```properties
+  gwen.launch.options.batch
+  ```
+  <p>Controls whether or not the <code>-b|--batch</code> launch option will be passed to Gwen.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to always launch Gwen in batch mode and disable the <Link to="/docs/repl">REPL</Link>.</li>
+    <li><code>false</code> to launch Gwen in batch mode if the <code>-b|--batch</code> option is explicitly passed and in REPL mode if it is not (default).</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          batch = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "batch": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.launch.options.batch = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-batch">Link</Link></div>
+    <div align="center">launch option: <Link to="/docs/launcher#gwen-launch-options-batch"><code>-b|--batch</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-launch-options-verbose">
+  <summary class="setting">
+
+  ```properties
+  gwen.launch.options.verbose
+  ```
+  <p>Controls whether or not the <code>-v|--verbose</code> launch option will be passed to Gwen.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> for verbose logging mode</li>
+    <li><code>false</code> for pretty logging mode (default)</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          verbose = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "verbose": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.launch.options.verbose = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-verbose">Link</Link></div>
+    <div align="center">launch option: <Link to="/docs/clauncherli#gwen-launch-options-verbose"><code>-v|--verbose</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-launch-options-dry-run">
+  <summary class="setting">
+
+  ```properties
+  gwen.launch.options.dryRun
+  ```
+  <p>Controls whether or not the <code>-n|--dry-run</code> launch option will be passed to Gwen.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to always launch Gwen in dry run mode</li>
+    <li><code>false</code> to only launch Gwen in dry run mode if the <code>-n|--dry-run</code> launch option is explicitly passed (default).</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          dryRun = false
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "dryRun": false
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.launch.options.dryRun = false
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-dry-run">Link</Link></div>
+    <div align="center">launch option: <Link to="/docs/launcher#gwen-launch-options-dry-run"><code>-n|--dry-run</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-launch-options-report">
+  <summary class="setting">
+
+  ```properties
+  gwen.launch.options.report
+  ```
+  <p>Sets the <code>-r|--report</code> option to pass to Gwen.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A path to a directory to output all reports to (default = <code>$&#123;gwen.outDir&#125;/reports</code>).</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          report = "${gwen.outDir}/reports"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "report": "${gwen.outDir}/reports"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.launch.options.report = ${gwen.outDir}/reports
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-report">Link</Link></div>
+    <div align="center">launch option: <Link to="/docs/launcher#gwen-launch-options-report"><code>-r|--report</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-launch-options-format">
+  <summary class="setting">
+
+  ```properties
+  gwen.launch.options.format
+  ```
+  <p>Sets the <code>-f|--format</code> option to pass to Gwen.</p>
+  </summary>
+  
+  <p>Supported values</p>
+  <ul>
+    <li>
+      A list of zero or more of the following:
+      <ul>
+        <li><code>html</code> to output <Link to="/docs/reports/html">HTML reports</Link></li>
+        <li><code>junit</code> to output <Link to="/docs/reports/junit-xml">JUnit-XML reports</Link></li>
+        <li><code>json</code> to output <Link to="/docs/reports/json">JSON reports</Link></li>
+        <li><code>results</code> for <Link to="/docs/reports/csv">CSV results</Link> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.77.0">v3.77.0</Link>)</li>
+        <li><code>none</code> to not output any reports</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaded settings files are merged.
+
+  <Tabs
     groupId="settings"
     defaultValue="conf"
     values={[
@@ -108,9 +492,31 @@ For example, to access a password stored in an environemnt variable named `USER_
 
   <TabItem value="conf">
 
+  Default value (empty to pick up Gwen default format: html)
+
   ```json
-    user {
-      "password:masked" = "${env.USER_PASSWORD}"
+    gwen {
+      launch {
+        options {
+          format = [ 
+          ]
+        }
+      }
+    }
+  ```
+
+  Example with multiple entries
+
+  ```json
+    gwen {
+      launch {
+        options {
+          format = [ 
+            "html"
+            "results"
+          ]
+        }
+      }
     }
   ```
 
@@ -118,10 +524,34 @@ For example, to access a password stored in an environemnt variable named `USER_
 
   <TabItem value="json">
 
+  Default value (empty to pick up Gwen default format: html)
+
   ```json
     {
-      "user": {
-        "password:masked": "${env.USER_PASSWORD}"
+      "gwen": {
+        "launch": {
+          "options": {
+            "format": [ 
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  Example with multiple entries
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "format": [ 
+              "html",
+              "results"
+            ]
+          }
+        }
       }
     }
   ```
@@ -130,94 +560,79 @@ For example, to access a password stored in an environemnt variable named `USER_
 
   <TabItem value="properties">
 
+Default value (empty to pick up Gwen default format: html)
+
   ```properties
-    user.password\:masked = ${env.USER_PASSWORD}
+    gwen.launch.options.format =
   ```
 
-  *Note*: You will need to escape `:` as `\:` in properties files
+  Example with multiple entries (comma separated)
+
+  ```properties
+    gwen.launch.options.format = html,results
+  ```
 
   </TabItem>
 
   </Tabs>
 
-### Using masked settings
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-format">Link</Link></div>
+    <div align="center">launch option: <Link to="/docs/launcher#gwen-launch-options-format"><code>-f|--format</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
 
-To use a masked setting, just reference it anywhere you need to using it's name (excluding the `:masked` suffix).
+<details id="gwen-launch-options-tags">
+  <summary class="setting">
 
-Example:
-
-```gherkin
-  When I enter "${user.password}" in the password field
-```
-
-When evaluated, the above will be logged as follows in all outputs:
-
-```gherkin
-  When I enter "*****" in the password field
-```
-
-:::note Sample outputs
-
-Console output
-
-![Example masked setting logged to console](/img/settings/masked-setting-console.png)
-
-[HTML report](/docs/reports/html) output
-
-![Example masked setting logged to HTML report](/img/settings/masked-setting-html-report.png)
-
-:::
-
-:::caution
-
-It is your resposibility to enter sensitive data such as passwords into password protected fields to prevent them from being displayed in the browser.
-
-:::
-
-### Custom mask character
-
-You can change the default mask character from `*` to another character of your choice by assigning it to the [`gwen.mask.char`](/docs/settings#gwen-mask-char) setting.
-
-### Masked Data Bindings
-
-Values returned by data bindings in the following DSLs can also be masked with the `@Masked` annotation:
-
-- [`<name> is defined by <javascript|js> "<script>"`](/docs/dsl#name-is-defined-by-javascript-expression)
-- [`<name> is defined by <javascriptRef> applied to "<argument>"`](/docs/dsl#name-is-defined-by-js-function-applied-to-arg)
-- [`<name> is defined by <javascriptRef> applied to "<arguments>" delimited by "<delimiter>"`](/docs/dsl#name-is-defined-by-js-function-applied-to-args-delimited-by)
-- [`<name> is defined by system process "<expression>"`](/docs/dsl#name-is-defined-by-system-process-expression)
-- [`<name> is defined by system process "<expression>" delimited by "<delimiters>"`](/docs/dsl#name-is-defined-by-system-process-expression-delimited-by-delimiters)
-- [`<name> is defined by unix system process "<expression>"`](/docs/dsl#name-is-defined-by-unix-system-process-expression)
-- [`<name> is defined by the <nodeType> in <xmlRef> by xpath "<expression>"`](/docs/dsl#name-is-defined-by-the-node-type-in-xml-ref-by-xpath-expression)
-- [`<name> is defined in <textRef> by regex "<expression>"`](/docs/dsl#name-is-defined-in-text-ref-by-regex-expression)
-- [`<name> is defined in <jsonRef> by json path "<expression>"`](/docs/dsl#name-is-defined-in-json-ref-by-json-path-expression)
-- [`<name> is defined in the <dbName> database by sql "<selectStmt>"`](/docs/dsl#name-is-defined-by-database-select-statement)
-
-## JSONArray Notation
-
-> Since [v3.53.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.53.0)
-
-Lists can be stored in settings in various ways. For example, a list of values could be stored in your settings file as follows:
-
-<Tabs
-    groupId="settings"
-    defaultValue="conf"
-    values={[
-      {label: 'conf', value: 'conf'},
-      {label: 'json', value: 'json'},
-      {label: 'properties', value: 'properties'}
-    ]}>
+  ```properties
+  gwen.launch.options.tags
+  ```
+  <p>Sets the <code>-t|--tags</code> option to pass to Gwen.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A list of @include and ~@exclude tags to pass to Gwen on every launch</li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaded settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
 
   <TabItem value="conf">
 
+  Default value (empty for no tags)
+  
   ```json
-    my {
-      values = [
-        "Gwen"
-        "Jenkins"
-        "Yarn"
-        "Docker"
-      ]
+    gwen {
+      launch {
+        options {
+          tags = [ 
+          ]
+        }
+      }
+    }
+  ```
+
+  Example setting two default tags
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          tags = [ 
+            "@includeTag"
+            "~@excludeTag"
+          ]
+        }
+      }
     }
   ```
 
@@ -225,15 +640,34 @@ Lists can be stored in settings in various ways. For example, a list of values c
 
   <TabItem value="json">
 
+  Default value (empty for no tags)
+
   ```json
     {
-      "my": {
-        "values": [ 
-          "Gwen", 
-          "Jenkins", 
-          "Yarn", 
-          "Docker"
-        ]
+      "gwen": {
+        "launch": {
+          "options": {
+            "tags": [
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  Example setting two default tags
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "tags": [ 
+              "@includeTag",
+              "~@excludeTag"
+            ]
+          }
+        }
       }
     }
   ```
@@ -242,44 +676,398 @@ Lists can be stored in settings in various ways. For example, a list of values c
 
   <TabItem value="properties">
 
+  Default value (blank for no tags)
+
   ```properties
-    my.values = Gwen,Jenkins,Yarn,Docker
+    gwen.launch.options.tags = 
+  ```
+
+  Example setting two default tags (comma separated)
+
+  ```properties
+    gwen.launch.options.tags = @includeTag,~@excludeTag
   ```
 
   </TabItem>
 
   </Tabs>
 
-To access a list of values configured in your settings as a JSON array, append `:JSONArray` to its setting name in the placeholder references in your feature or [meta](/docs/meta) steps. A JSON array literal containing the values will then be expanded inline.
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-tags">Link</Link></div>
+    <div align="center">launch option: <Link to="/docs/launcher#gwen-launch-options-tags"><code>-t|--tags</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
 
-<p><b>Example 1</b></p>
+<details id="gwen-launch-options-input-data">
+  <summary class="setting">
 
-The following will bind the JSON Array `["Gwen","Jenkins","Yarn","Docker"]` to the `values` variable in the current scope:
-```gherkin
-  Given values is "${my.values:JSONArray}"
-```
+  ```properties
+  gwen.launch.options.inputData
+  ```
+  <p>Sets the <code>-i|--input-data</code> option to pass to Gwen.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A path to a CSV or JSON data feed file to pass to Gwen on every launch</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
 
-Will expand to:
+  <TabItem value="conf">
 
-```gherkin
-  Given values is "["Gwen","Jenkins","Yarn","Docker"]"
-```
+  Default value (blank for no input file)
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          inputData = ""
+        }
+      }
+    }
+  ```
 
-<p><b>Example 2</b></p>
+  Example setting a default CSV data file
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          inputData = "data/file1.csv"
+        }
+      }
+    }
+  ```
 
-The following will inline the JSON Array into a JavaScript expression to get the length and store that in the `length` variable in the current scope:
-```gherkin
-  Given length is defined by js "${my.values:JSONArray}.length"
-   Then length should be "4"
-```
+  Example setting a default JSON data file (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          inputData = "data/file1.json"
+        }
+      }
+    }
+  ```
 
-Will expand to:
-```gherkin
-  Given length is defined by js "["Gwen","Jenkins","Yarn","Docker"].length"
-   Then length should be "4"
-```
+  </TabItem>
 
-## Settings Reference
+  <TabItem value="json">
+
+  Default value (blank for no input file)
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "inputData": ""
+          }
+        }
+      }
+    }
+  ```
+
+  Example setting a default CSV data file
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "inputData": "data/file1.csv"
+          }
+        }
+      }
+    }
+  ```
+
+  Example setting a default JSON data file (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "inputData": "data/file1.json"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value (blank for no input file)
+
+  ```properties
+    gwen.launch.options.inputData = 
+  ```
+
+  Example setting a default CSV data file
+
+  ```properties
+    gwen.launch.options.inputData = data/file.csv
+  ```
+
+  Example setting a default JSON data file (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
+
+  ```properties
+    gwen.launch.options.inputData = data/file.json
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-input-data">Link</Link></div>
+    <div align="center">launch option: <Link to="/docs/launcher#gwen-launch-options-input-data"><code>-i|--input</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-launch-options-meta">
+  <summary class="setting">
+
+  ```properties
+  gwen.launch.options.meta
+  ```
+  <p>Sets the <code>-m|--meta</code> option to pass to Gwen.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A list of paths to meta files to pass to Gwen on every launch</li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaded settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value (blank for no meta)
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          meta = [ 
+          ]
+        }
+      }
+    }
+  ```
+
+  Example setting two default meta files
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          meta = [ 
+            "meta/file1.meta"
+            "meta/file2.meta"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value (empty for no meta)
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "meta": [
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  Example setting two default meta files
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "meta": [ 
+              "meta/file1.meta",
+              "meta/file2.meta"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value (blank for no meta)
+
+  ```properties
+    gwen.launch.options.meta = 
+  ```
+
+  Example setting two default meta files (comma separated)
+
+  ```properties
+    gwen.launch.options.meta = meta/file1.meta,meta/file2.meta
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-meta">Link</Link></div>
+    <div align="center">launch option: <Link to="/docs/launcher#gwen-launch-options-meta"><code>-m|--meta</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-launch-options-features">
+  <summary class="setting">
+
+  ```properties
+  gwen.launch.options.features
+  ```
+  <p>Sets the list of feature files or directories to pass to Gwen.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A list of paths to feature files to pass to Gwen on every launch</li>
+  </ul>
+  <p><br/>Notes</p>
+  This setting is additive, meaning that all entries in all loaded settings files are merged.
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value (empty for no feature files/dirs)
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          features = [ 
+          ]
+        }
+      }
+    }
+  ```
+
+  Example setting two default feature files
+  
+  ```json
+    gwen {
+      launch {
+        options {
+          features = [ 
+            "features/file1.feature"
+            "features/file2.feature"
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="json">
+
+  Default value (empty for no feature files/dirs)
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "features": [
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  Example setting two default feature files
+
+  ```json
+    {
+      "gwen": {
+        "launch": {
+          "options": {
+            "features": [ 
+              "features/file1.feature",
+              "features/file2.feature"
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+
+  <TabItem value="properties">
+
+  Default value (blank for no feature files/dirs)
+
+  ```properties
+    gwen.launch.options.features = 
+  ```
+
+  Example setting two default feature files (comma separated)
+
+  ```properties
+    gwen.launch.options.features = features/file1.feature,features/file2.feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-features">Link</Link></div>
+    <div align="center">CLI argument: <Link to="/docs/launcher#gwen-launch-options-features"><code>[files/dirs]</code></Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
 
 ### Core Settings
 
@@ -555,7 +1343,7 @@ Will expand to:
     <li>
       <code>false</code> to disable (default)
       <ul>
-        <li>Prevents Gwen from automatically discovering and loading CSV files in the path of an executing feature, forcing the user to explicitly specify the CSV file to load through the <Link to="/docs/cli#gwen-cli-options-input-data"><code>-i|--input-data</code></Link> CLI option at launch time.</li>
+        <li>Prevents Gwen from automatically discovering and loading CSV files in the path of an executing feature, forcing the user to explicitly specify the CSV file to load through the <Link to="/docs/launcher#gwen-launch-options-input-data"><code>-i|--input-data</code></Link> launch option at launch time.</li>
       </ul>
     </li>
   </ul>
@@ -750,7 +1538,7 @@ Will expand to:
     <li>
       <code>false</code> to disable (default)
       <ul>
-        <li>Prevents Gwen from automatically discovering and loading JSON files in the path of an executing feature, forcing the user to explicitly specify the JSON file to load through the <Link to="/docs/cli#gwen-cli-options-input-data"><code>-i|--input-data</code></Link> CLI option at launch time.</li>
+        <li>Prevents Gwen from automatically discovering and loading JSON files in the path of an executing feature, forcing the user to explicitly specify the JSON file to load through the <Link to="/docs/launcher#gwen-launch-options-input-data"><code>-i|--input-data</code></Link> launch option at launch time.</li>
       </ul>
     </li>
   </ul>
@@ -910,7 +1698,7 @@ Will expand to:
     <li>
       <code>false</code> to disable
       <ul>
-        <li>Prevents Gwen from automatically discovering and loading meta files in the path of an executing feature, forcing the user to load meta explicitly through the <Link to="/docs/cli#gwen-cli-options-meta"><code>-m|--meta</code></Link> CLI option or <Link to="/docs/meta#import-strategy">meta imports</Link>.</li>
+        <li>Prevents Gwen from automatically discovering and loading meta files in the path of an executing feature, forcing the user to load meta explicitly through the <Link to="/docs/launcher#gwen-launch-options-meta"><code>-m|--meta</code></Link> launch option or <Link to="/docs/meta#import-strategy">meta imports</Link>.</li>
       </ul>
     </li>
   </ul>
@@ -3457,7 +4245,7 @@ Will expand to:
   <p>Supported values</p>
   <ul>
     <li>
-      The name of the browser <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/browsers</i> folder to load if no other browser settings file is explicitly passed via the <Link to ="/docs/cli#gwen-cli-options-conf"><code>-c/--config</code></Link> CLI option
+      The name of the browser <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/browsers</i> folder to load if no other browser settings file is explicitly passed via the <Link to ="/docs/launcher#gwen-launch-options-conf"><code>-c/--config</code></Link> launch option
       <ul>
         <li><code>chrome</code> for Chrome browser (default)</li>
         <li><code>firefox</code> for Firefox browser</li>
@@ -3533,7 +4321,7 @@ Will expand to:
   <p>Supported values</p>
   <ul>
     <li>
-      The name of the environment <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/env</i> folder to load if no other environment settings file is explicitly passed via the <Link to ="/docs/cli#gwen-cli-options-conf"><code>-c/--config</code></Link> CLI option
+      The name of the environment <Link to="/docs/settings">settings</Link> file (minus extension) in your <i>gwen/env</i> folder to load if no other environment settings file is explicitly passed via the <Link to ="/docs/launcher#gwen-launch-options-conf"><code>-c/--config</code></Link> launch option
       <ul>
         <li><code>local</code> for your local development environment</li>
         <li><code>dev</code> for your dedicated development environment</li>
@@ -6556,407 +7344,19 @@ Will expand to:
   </div>
 </details>
 
-### CLI Settings
+## Masked Settings
 
-<details id="gwen-cli-options-parallel">
-  <summary class="setting">
+> Since [v2.48.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0)
 
-  ```properties
-  gwen.cli.options.parallel
-  ```
-  <p>Controls whether or not the <code>--parallel</code> switch will be passed to the Gwen CLI.</p>
-  </summary>
-  <p>Supported values</p>
-  <ul>
-    <li><code>true</code> to always launch Gwen in parallel execution mode</li>
-    <li><code>false</code> to only launch Gwen in parallel execution mode if the <code>--parallel</code> switch is explicitly passed (default).</li>
-  </ul>
-  <Tabs
-  groupId="settings"
-  defaultValue="conf"
-  values={[
-    {label: 'conf', value: 'conf'},
-    {label: 'json', value: 'json'},
-    {label: 'properties', value: 'properties'}
-  ]}>
+It is a common security practice to never log sensitive data. To support this practice, Gwen will hide all [settings](/docs/settings) that you flag as "masked" by logging their values as `*****` in all logs, reports, error messages and console outputs.
 
-  <TabItem value="conf">
+### Flagging masked settings
 
-  Default value
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          parallel = false
-        }
-      }
-    }
-  ```
+To flag a setting as masked, append `:masked` to its defined name.
 
-  </TabItem>
+For example, to access a password stored in an environemnt variable named `USER_PASSOWRD`, you can read it into a masked setting named `user.password` as follows:
 
-  <TabItem value="json">
-
-  Default value
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "parallel": false
-          }
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="properties">
-
-  Default value
-
-  ```properties
-    gwen.cli.options.parallel = false
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-cli-options-parallel">Link</Link></div>
-    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-parallel"><code>--parallel</code></Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-cli-options-batch">
-  <summary class="setting">
-
-  ```properties
-  gwen.cli.options.batch
-  ```
-  <p>Controls whether or not the <code>-b|--batch</code> switch will be passed to the Gwen CLI.</p>
-  </summary>
-  <p>Supported values</p>
-  <ul>
-    <li><code>true</code> to always launch Gwen in batch mode and disable the <Link to="/docs/repl">REPL</Link>.</li>
-    <li><code>false</code> to launch Gwen in batch mode if the <code>-b|--batch</code> switch is explicitly passed and in REPL mode if it is not (default).</li>
-  </ul>
-  <Tabs
-  groupId="settings"
-  defaultValue="conf"
-  values={[
-    {label: 'conf', value: 'conf'},
-    {label: 'json', value: 'json'},
-    {label: 'properties', value: 'properties'}
-  ]}>
-
-  <TabItem value="conf">
-
-  Default value
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          batch = false
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="json">
-
-  Default value
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "batch": false
-          }
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="properties">
-
-  Default value
-
-  ```properties
-    gwen.cli.options.batch = false
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-cli-options-batch">Link</Link></div>
-    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-batch"><code>-b|--batch</code></Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-cli-options-verbose">
-  <summary class="setting">
-
-  ```properties
-  gwen.cli.options.verbose
-  ```
-  <p>Controls whether or not the <code>-v|--verbose</code> switch will be passed to the Gwen CLI.</p>
-  </summary>
-  <p>Supported values</p>
-  <ul>
-    <li><code>true</code> for verbose logging mode</li>
-    <li><code>false</code> for pretty logging mode (default)</li>
-  </ul>
-  <Tabs
-  groupId="settings"
-  defaultValue="conf"
-  values={[
-    {label: 'conf', value: 'conf'},
-    {label: 'json', value: 'json'},
-    {label: 'properties', value: 'properties'}
-  ]}>
-
-  <TabItem value="conf">
-
-  Default value
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          verbose = false
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="json">
-
-  Default value
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "verbose": false
-          }
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="properties">
-
-  Default value
-
-  ```properties
-    gwen.cli.options.verbose = false
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-cli-options-verbose">Link</Link></div>
-    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-verbose"><code>-v|--verbose</code></Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-cli-options-dry-run">
-  <summary class="setting">
-
-  ```properties
-  gwen.cli.options.dryRun
-  ```
-  <p>Controls whether or not the <code>-n|--dry-run</code> switch will be passed to the Gwen CLI.</p>
-  </summary>
-  <p>Supported values</p>
-  <ul>
-    <li><code>true</code> to always launch Gwen in dry run mode</li>
-    <li><code>false</code> to only launch Gwen in dry run mode if the <code>-n|--dry-run</code> switch is explicitly passed (default).</li>
-  </ul>
-  <Tabs
-  groupId="settings"
-  defaultValue="conf"
-  values={[
-    {label: 'conf', value: 'conf'},
-    {label: 'json', value: 'json'},
-    {label: 'properties', value: 'properties'}
-  ]}>
-
-  <TabItem value="conf">
-
-  Default value
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          dryRun = false
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="json">
-
-  Default value
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "dryRun": false
-          }
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="properties">
-
-  Default value
-
-  ```properties
-    gwen.cli.options.dryRun = false
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-cli-options-dry-run">Link</Link></div>
-    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-dry-run"><code>-n|--dry-run</code></Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-cli-options-report">
-  <summary class="setting">
-
-  ```properties
-  gwen.cli.options.report
-  ```
-  <p>Sets the <code>-r|--report</code> option to pass to the Gwen CLI.</p>
-  </summary>
-  <p>Supported values</p>
-  <ul>
-    <li>A path to a directory to output all reports to (default = <code>$&#123;gwen.outDir&#125;/reports</code>).</li>
-  </ul>
-  <Tabs
-  groupId="settings"
-  defaultValue="conf"
-  values={[
-    {label: 'conf', value: 'conf'},
-    {label: 'json', value: 'json'},
-    {label: 'properties', value: 'properties'}
-  ]}>
-
-  <TabItem value="conf">
-
-  Default value
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          report = "${gwen.outDir}/reports"
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-  <TabItem value="json">
-
-  Default value
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "report": "${gwen.outDir}/reports"
-          }
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-  <TabItem value="properties">
-
-  Default value
-
-  ```properties
-    gwen.cli.options.report = ${gwen.outDir}/reports
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-cli-options-report">Link</Link></div>
-    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-report"><code>-r|--report</code></Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-cli-options-format">
-  <summary class="setting">
-
-  ```properties
-  gwen.cli.options.format
-  ```
-  <p>Sets the <code>-f|--format</code> option to pass to the Gwen CLI.</p>
-  </summary>
-  
-  <p>Supported values</p>
-  <ul>
-    <li>
-      A list of zero or more of the following:
-      <ul>
-        <li><code>html</code> to output <Link to="/docs/reports/html">HTML reports</Link></li>
-        <li><code>junit</code> to output <Link to="/docs/reports/junit-xml">JUnit-XML reports</Link></li>
-        <li><code>json</code> to output <Link to="/docs/reports/json">JSON reports</Link></li>
-        <li><code>results</code> for <Link to="/docs/reports/csv">CSV results</Link> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.77.0">v3.77.0</Link>)</li>
-        <li><code>none</code> to not output any reports</li>
-      </ul>
-    </li>
-  </ul>
-
-  <p><br/>Notes</p>
-  This setting is additive, meaning that all entries in all loaded settings files are merged.
-
-  <Tabs
+<Tabs
     groupId="settings"
     defaultValue="conf"
     values={[
@@ -6967,31 +7367,9 @@ Will expand to:
 
   <TabItem value="conf">
 
-  Default value (empty to pick up Gwen default format: html)
-
   ```json
-    gwen {
-      cli {
-        options {
-          format = [ 
-          ]
-        }
-      }
-    }
-  ```
-
-  Example with multiple entries
-
-  ```json
-    gwen {
-      cli {
-        options {
-          format = [ 
-            "html"
-            "results"
-          ]
-        }
-      }
+    user {
+      "password:masked" = "${env.USER_PASSWORD}"
     }
   ```
 
@@ -6999,34 +7377,10 @@ Will expand to:
 
   <TabItem value="json">
 
-  Default value (empty to pick up Gwen default format: html)
-
   ```json
     {
-      "gwen": {
-        "cli": {
-          "options": {
-            "format": [ 
-            ]
-          }
-        }
-      }
-    }
-  ```
-
-  Example with multiple entries
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "format": [ 
-              "html",
-              "results"
-            ]
-          }
-        }
+      "user": {
+        "password:masked": "${env.USER_PASSWORD}"
       }
     }
   ```
@@ -7035,79 +7389,94 @@ Will expand to:
 
   <TabItem value="properties">
 
-Default value (empty to pick up Gwen default format: html)
-
   ```properties
-    gwen.cli.options.format =
+    user.password\:masked = ${env.USER_PASSWORD}
   ```
 
-  Example with multiple entries (comma separated)
-
-  ```properties
-    gwen.cli.options.format = html,results
-  ```
+  *Note*: You will need to escape `:` as `\:` in properties files
 
   </TabItem>
 
   </Tabs>
 
-  <div class="grid-3">
-    <div><Link to="#gwen-cli-options-format">Link</Link></div>
-    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-format"><code>-f|--format</code></Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
-  </div>
-</details>
+### Using masked settings
 
-<details id="gwen-cli-options-tags">
-  <summary class="setting">
+To use a masked setting, just reference it anywhere you need to using it's name (excluding the `:masked` suffix).
 
-  ```properties
-  gwen.cli.options.tags
-  ```
-  <p>Sets the <code>-t|--tags</code> option to pass to the Gwen CLI.</p>
-  </summary>
-  <p>Supported values</p>
-  <ul>
-    <li>A list of @include and ~@exclude tags to pass to Gwen on every launch</li>
-  </ul>
-  <p><br/>Notes</p>
-  This setting is additive, meaning that all entries in all loaded settings files are merged.
-  <Tabs
-  groupId="settings"
-  defaultValue="conf"
-  values={[
-    {label: 'conf', value: 'conf'},
-    {label: 'json', value: 'json'},
-    {label: 'properties', value: 'properties'}
-  ]}>
+Example:
+
+```gherkin
+  When I enter "${user.password}" in the password field
+```
+
+When evaluated, the above will be logged as follows in all outputs:
+
+```gherkin
+  When I enter "*****" in the password field
+```
+
+:::note Sample outputs
+
+Console output
+
+![Example masked setting logged to console](/img/settings/masked-setting-console.png)
+
+[HTML report](/docs/reports/html) output
+
+![Example masked setting logged to HTML report](/img/settings/masked-setting-html-report.png)
+
+:::
+
+:::caution
+
+It is your resposibility to enter sensitive data such as passwords into password protected fields to prevent them from being displayed in the browser.
+
+:::
+
+### Custom mask character
+
+You can change the default mask character from `*` to another character of your choice by assigning it to the [`gwen.mask.char`](/docs/settings#gwen-mask-char) setting.
+
+### Masked Data Bindings
+
+Values returned by data bindings in the following DSLs can also be masked with the `@Masked` annotation:
+
+- [`<name> is defined by <javascript|js> "<script>"`](/docs/dsl#name-is-defined-by-javascript-expression)
+- [`<name> is defined by <javascriptRef> applied to "<argument>"`](/docs/dsl#name-is-defined-by-js-function-applied-to-arg)
+- [`<name> is defined by <javascriptRef> applied to "<arguments>" delimited by "<delimiter>"`](/docs/dsl#name-is-defined-by-js-function-applied-to-args-delimited-by)
+- [`<name> is defined by system process "<expression>"`](/docs/dsl#name-is-defined-by-system-process-expression)
+- [`<name> is defined by system process "<expression>" delimited by "<delimiters>"`](/docs/dsl#name-is-defined-by-system-process-expression-delimited-by-delimiters)
+- [`<name> is defined by unix system process "<expression>"`](/docs/dsl#name-is-defined-by-unix-system-process-expression)
+- [`<name> is defined by the <nodeType> in <xmlRef> by xpath "<expression>"`](/docs/dsl#name-is-defined-by-the-node-type-in-xml-ref-by-xpath-expression)
+- [`<name> is defined in <textRef> by regex "<expression>"`](/docs/dsl#name-is-defined-in-text-ref-by-regex-expression)
+- [`<name> is defined in <jsonRef> by json path "<expression>"`](/docs/dsl#name-is-defined-in-json-ref-by-json-path-expression)
+- [`<name> is defined in the <dbName> database by sql "<selectStmt>"`](/docs/dsl#name-is-defined-by-database-select-statement)
+
+## JSONArray Notation
+
+> Since [v3.53.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.53.0)
+
+Lists can be stored in settings in various ways. For example, a list of values could be stored in your settings file as follows:
+
+<Tabs
+    groupId="settings"
+    defaultValue="conf"
+    values={[
+      {label: 'conf', value: 'conf'},
+      {label: 'json', value: 'json'},
+      {label: 'properties', value: 'properties'}
+    ]}>
 
   <TabItem value="conf">
 
-  Default value (empty for no tags)
-  
   ```json
-    gwen {
-      cli {
-        options {
-          tags = [ 
-          ]
-        }
-      }
-    }
-  ```
-
-  Example setting two default tags
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          tags = [ 
-            "@includeTag"
-            "~@excludeTag"
-          ]
-        }
-      }
+    my {
+      values = [
+        "Gwen"
+        "Jenkins"
+        "Yarn"
+        "Docker"
+      ]
     }
   ```
 
@@ -7115,34 +7484,15 @@ Default value (empty to pick up Gwen default format: html)
 
   <TabItem value="json">
 
-  Default value (empty for no tags)
-
   ```json
     {
-      "gwen": {
-        "cli": {
-          "options": {
-            "tags": [
-            ]
-          }
-        }
-      }
-    }
-  ```
-
-  Example setting two default tags
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "tags": [ 
-              "@includeTag",
-              "~@excludeTag"
-            ]
-          }
-        }
+      "my": {
+        "values": [ 
+          "Gwen", 
+          "Jenkins", 
+          "Yarn", 
+          "Docker"
+        ]
       }
     }
   ```
@@ -7151,395 +7501,39 @@ Default value (empty to pick up Gwen default format: html)
 
   <TabItem value="properties">
 
-  Default value (blank for no tags)
-
   ```properties
-    gwen.cli.options.tags = 
-  ```
-
-  Example setting two default tags (comma separated)
-
-  ```properties
-    gwen.cli.options.tags = @includeTag,~@excludeTag
+    my.values = Gwen,Jenkins,Yarn,Docker
   ```
 
   </TabItem>
 
   </Tabs>
 
-  <div class="grid-3">
-    <div><Link to="#gwen-cli-options-tags">Link</Link></div>
-    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-tags"><code>-t|--tags</code></Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
-  </div>
-</details>
+To access a list of values configured in your settings as a JSON array, append `:JSONArray` to its setting name in the placeholder references in your feature or [meta](/docs/meta) steps. A JSON array literal containing the values will then be expanded inline.
 
-<details id="gwen-cli-options-input-data">
-  <summary class="setting">
+<p><b>Example 1</b></p>
 
-  ```properties
-  gwen.cli.options.inputData
-  ```
-  <p>Sets the <code>-i|--input-data</code> option to pass to the Gwen CLI.</p>
-  </summary>
-  <p>Supported values</p>
-  <ul>
-    <li>A path to a CSV or JSON data feed file to pass to Gwen on every launch</li>
-  </ul>
-  <Tabs
-  groupId="settings"
-  defaultValue="conf"
-  values={[
-    {label: 'conf', value: 'conf'},
-    {label: 'json', value: 'json'},
-    {label: 'properties', value: 'properties'}
-  ]}>
+The following will bind the JSON Array `["Gwen","Jenkins","Yarn","Docker"]` to the `values` variable in the current scope:
+```gherkin
+  Given values is "${my.values:JSONArray}"
+```
 
-  <TabItem value="conf">
+Will expand to:
 
-  Default value (blank for no input file)
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          inputData = ""
-        }
-      }
-    }
-  ```
+```gherkin
+  Given values is "["Gwen","Jenkins","Yarn","Docker"]"
+```
 
-  Example setting a default CSV data file
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          inputData = "data/file1.csv"
-        }
-      }
-    }
-  ```
+<p><b>Example 2</b></p>
 
-  Example setting a default JSON data file (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          inputData = "data/file1.json"
-        }
-      }
-    }
-  ```
+The following will inline the JSON Array into a JavaScript expression to get the length and store that in the `length` variable in the current scope:
+```gherkin
+  Given length is defined by js "${my.values:JSONArray}.length"
+   Then length should be "4"
+```
 
-  </TabItem>
-
-  <TabItem value="json">
-
-  Default value (blank for no input file)
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "inputData": ""
-          }
-        }
-      }
-    }
-  ```
-
-  Example setting a default CSV data file
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "inputData": "data/file1.csv"
-          }
-        }
-      }
-    }
-  ```
-
-  Example setting a default JSON data file (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "inputData": "data/file1.json"
-          }
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="properties">
-
-  Default value (blank for no input file)
-
-  ```properties
-    gwen.cli.options.inputData = 
-  ```
-
-  Example setting a default CSV data file
-
-  ```properties
-    gwen.cli.options.inputData = data/file.csv
-  ```
-
-  Example setting a default JSON data file (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0">v3.47.0</Link>)
-
-  ```properties
-    gwen.cli.options.inputData = data/file.json
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-cli-options-input-data">Link</Link></div>
-    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-input-data"><code>-i|--input</code></Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-cli-options-meta">
-  <summary class="setting">
-
-  ```properties
-  gwen.cli.options.meta
-  ```
-  <p>Sets the <code>-m|--meta</code> option to pass to the Gwen CLI.</p>
-  </summary>
-  <p>Supported values</p>
-  <ul>
-    <li>A list of paths to meta files to pass to Gwen on every launch</li>
-  </ul>
-  <p><br/>Notes</p>
-  This setting is additive, meaning that all entries in all loaded settings files are merged.
-  <Tabs
-  groupId="settings"
-  defaultValue="conf"
-  values={[
-    {label: 'conf', value: 'conf'},
-    {label: 'json', value: 'json'},
-    {label: 'properties', value: 'properties'}
-  ]}>
-
-  <TabItem value="conf">
-
-  Default value (blank for no meta)
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          meta = [ 
-          ]
-        }
-      }
-    }
-  ```
-
-  Example setting two default meta files
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          meta = [ 
-            "meta/file1.meta"
-            "meta/file2.meta"
-          ]
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="json">
-
-  Default value (empty for no meta)
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "meta": [
-            ]
-          }
-        }
-      }
-    }
-  ```
-
-  Example setting two default meta files
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "meta": [ 
-              "meta/file1.meta",
-              "meta/file2.meta"
-            ]
-          }
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="properties">
-
-  Default value (blank for no meta)
-
-  ```properties
-    gwen.cli.options.meta = 
-  ```
-
-  Example setting two default meta files (comma separated)
-
-  ```properties
-    gwen.cli.options.meta = meta/file1.meta,meta/file2.meta
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-cli-options-meta">Link</Link></div>
-    <div align="center">CLI option: <Link to="/docs/cli#gwen-cli-options-meta"><code>-m|--meta</code></Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-cli-options-features">
-  <summary class="setting">
-
-  ```properties
-  gwen.cli.options.features
-  ```
-  <p>Sets the list of feature files or directories to pass to the Gwen CLI.</p>
-  </summary>
-  <p>Supported values</p>
-  <ul>
-    <li>A list of paths to feature files to pass to Gwen on every launch</li>
-  </ul>
-  <p><br/>Notes</p>
-  This setting is additive, meaning that all entries in all loaded settings files are merged.
-  <Tabs
-  groupId="settings"
-  defaultValue="conf"
-  values={[
-    {label: 'conf', value: 'conf'},
-    {label: 'json', value: 'json'},
-    {label: 'properties', value: 'properties'}
-  ]}>
-
-  <TabItem value="conf">
-
-  Default value (empty for no feature files/dirs)
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          features = [ 
-          ]
-        }
-      }
-    }
-  ```
-
-  Example setting two default feature files
-  
-  ```json
-    gwen {
-      cli {
-        options {
-          features = [ 
-            "features/file1.feature"
-            "features/file2.feature"
-          ]
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="json">
-
-  Default value (empty for no feature files/dirs)
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "features": [
-            ]
-          }
-        }
-      }
-    }
-  ```
-
-  Example setting two default feature files
-
-  ```json
-    {
-      "gwen": {
-        "cli": {
-          "options": {
-            "features": [ 
-              "features/file1.feature",
-              "features/file2.feature"
-            ]
-          }
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-
-  <TabItem value="properties">
-
-  Default value (blank for no feature files/dirs)
-
-  ```properties
-    gwen.cli.options.features = 
-  ```
-
-  Example setting two default feature files (comma separated)
-
-  ```properties
-    gwen.cli.options.features = features/file1.feature,features/file2.feature
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-cli-options-features">Link</Link></div>
-    <div align="center">CLI argument: <Link to="/docs/cli#gwen-cli-options-features"><code>[files/dirs]</code></Link></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
-  </div>
-</details>
+Will expand to:
+```gherkin
+  Given length is defined by js "["Gwen","Jenkins","Yarn","Docker"].length"
+   Then length should be "4"
+```

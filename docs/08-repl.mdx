@@ -38,7 +38,7 @@ gwen>
 
 ### Starting the REPL
 
-To start a REPL session, invoke the [Gwen CLI](/docs/cli) without specifying the `-b` (or `--batch`) switch.
+To start a REPL session, [Launch Gwen](/docs/launcher) without specifying the `-b` (or `--batch`) option.
 
 <Tabs
   groupId="jstool"
@@ -270,7 +270,7 @@ Any scenarios in your meta that are NOT StepDefs will be re-evaluated on reload 
 
 > Since [v3.2.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.2.0)
 
-Breakpoints can be added to any feature or meta steps by prefixing their expressions with `@Breakpoint `. These are ignored unless debugging is explicitly enabled with the [-d|--debug](/docs/cli#gwen-cli-options-debug) CLI option.
+Breakpoints can be added to any feature or meta steps by prefixing their expressions with `@Breakpoint `. These are ignored unless debugging is explicitly enabled with the [-d|--debug](/docs/launcher#gwen-launch-options-debug) launch option.
 
 #####  Example
 
@@ -292,7 +292,7 @@ Feature: Add todo items
 :::
 
 :::info
-To activate breakpoints, launch Gwen in debug mode by specifying the [-d|--debug](/docs/cli#gwen-cli-options-debug) CLI option. 
+To activate breakpoints, launch Gwen in debug mode by specifying the [-d|--debug](/docs/launcher#gwen-launch-options-debug) launch option. 
 :::
 
 When a breakpoint on a step is encountered and debugging is enabled, Gwen will pause execution, open the [REPL](/docs/repl), and prompt the user to continue execution from that step or to quit (or to perform other [REPL operations](/docs/repl#repl-commands)).

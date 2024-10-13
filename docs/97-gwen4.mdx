@@ -11,42 +11,40 @@ import ThemedImage from '@theme/ThemedImage';
 
 # Gwen 4
 
-## What's New
+## What's New?
 
-### Processes
+### Process Launch Option
 
-You can now configure one or many launch configurations to control how different processes will be executed.
+You can now configure one or many processes with default [settings](/docs/settings) and launch options.
 
-#### New CLI option for launching a process
-
-Use the new `-v|--verbose` CLI option for verbose logging instead (equivalent to Gwen 2 logging).
-
-## What's dropped
+## What's dropped?
 
 - Report Portal integration
-- Standalone setup option no longer supported (only projects supported)
+- Standalone setup (only [project setup](/docs/get-started#setup) now supported)
 
-## Migration Guide
+## What's deprecated?
 
-This guide will help you to migrate an existing Gwen 3 project over to Gwen 4. If you want to start a new project from scratch, go straight to the [getting started](/docs/get-started) guide instead.
+### Settings
 
-### 1. Settings
+The following [settings](/docs/settings) have been deprecated. Update your [settings files](/docs/settings#settings-files) to use the new names as per the table below:
 
-The following settings changes have been made to Gwen 3. Scan all your *.properties* files and update accordingly.
+| Deprecated                   | Use this instead                                                                              |
+| :--------------------------- | :-------------------------------------------------------------------------------------------- |
+| `gwen.cli.options.batch`     | [`gwen.launch.options.batch`](/docs/settings#gwen-launch-options-batch)                       |
+| `gwen.cli.options.format`    | [`gwen.launch.options.format`](/docs/settings#gwen-launch-options-format)                     |
+| `gwen.cli.options.inputData` | [`gwen.launch.options.inputData`](/docs/settings#gwen-launch-options-input-data)              |
+| `gwen.cli.options.dryRun`    | [`gwen.launch.options.dryRun`](/docs/settings#gwen-launch-options-dry-run)                    |
+| `gwen.cli.options.features`  | [`gwen.launch.options.features`](/docs/settings#gwen-launch-options-features)                 |
+| `gwen.cli.options.parallel`  | [`gwen.launch.options.parallel`](/docs/settings#gwen-launch-options-parallel)                 |
+| `gwen.cli.options.meta`      | [`gwen.launch.options.meta`](/docs/settings#gwen-launch-options-meta)                         |
+| `gwen.cli.options.report`    | [`gwen.launch.options.report`](/docs/settings#gwen-launch-options-report)                     |
+| `gwen.cli.options.tags`      | [`gwen.launch.options.tags`](/docs/settings#gwen-launch-options-tags)                         |
 
-#### New names
+### Implicit values
 
-The following settings have been renamed.
+The following [implicit values](/docs/implicit-values) have been deprecated. Update your references to use the new names as per the table below:
 
-| Renamed                        | To this                                                                                            |
-| :----------------------------- | :------------------------------------------------------------------------------------------------------ |
-| `gwen.feature.failfast`        | [`gwen.feature.failfast.enabled`](/docs/settings#gwen-feature-failfast-enabled)               |
-| `gwen.web.capture.screenshots` | [`gwen.web.capture.screenshots.enabled`](/docs/settings#gwen-web-capture-screenshots-enabled) |
-| `gwen.web.browser`             | [`gwen.target.browser`](/docs/settings#gwen-target-browser)                                   |
-
-#### Implicit values
-
-| Rename this                           | To this                                                                                                            |
+| Deprecated                            | Use this instead                                                                                                   |
 | :------------------------------------ | :----------------------------------------------------------------------------------------------------------------- |
 | `gwen.eval.status.keyword`            | [`gwen.feature.eval.status.keyword`](/docs/implicit-values#gwen-feature-eval-status-keyword)                       |
 | `gwen.eval.status.keyword.upperCased` | [`gwen.feature.eval.status.keyword.upperCased`](/docs/implicit-values#gwen-feature-eval-status-keyword-upperCased) |
@@ -331,17 +329,17 @@ Continue using your properties files as before.
 
 #### New `-c|--conf` option
 
-The `-p|--properties` CLI option has been deprecated and replaced with the [`-c|--conf`](/docs/cli#gwen-cli-options-conf) option which now accepts *.conf*, *.json*, and *.properties* files. The former will still work for *.properties* files until the next major release (and will be removed then). You should use the new launch option going forward.
+The `-p|--properties` launch option has been deprecated and replaced with [`-c|--conf`](/docs/launcher#gwen-options-conf) which now accepts *.conf*, *.json*, and *.properties* files. The former will still work for *.properties* files until the next major release (and will be removed then). You should use the new launch option going forward.
 
 #### Default `-r|--report` option
 
-The output directory for all Gwen reports now has a default value configured in the new [`gwen.cli.options.report`](/docs/settings#gwen-cli-options-report) default CLI setting. So you no longer need to explicitly specify the [`-r|--report`](/docs/cli#gwen-cli-options-report) CLI option every time you launch Gwen and want reports to be generated. You can however continue to explicitly pass it through and override the default if you want to. Alternatively, change the default.
+The output directory for all Gwen reports now has a default value configured in the new [`gwen.options.report`](/docs/settings#gwen-options-report) default CLI setting. So you no longer need to explicitly specify the [`-r|--report`](/docs/launcher#gwen-options-report) option every time you launch Gwen and want reports to be generated. You can however continue to explicitly pass it through and override the default if you want to. Alternatively, change the default.
 
 #### HTML reports by default
 
-[HTML reports](/docs/reports/html) will now be generated by default when you launch Gwen since the report output directory now has a configured default. They will also be generated by default for dry runs when you specify the [`-n|--dry-run`](/docs/cli#gwen-cli-options-dry-run) switch.
+[HTML reports](/docs/reports/html) will now be generated by default when you launch Gwen since the report output directory now has a configured default. They will also be generated by default for dry runs when you specify the [`-n|--dry-run`](/docs/launcher#gwen-options-dry-run) launch option.
 
-If you don't want any reports generated, invoke Gwen with the [`-f|--format`](/docs/cli#gwen-cli-options-format) CLI option passing in `none`.
+If you don't want any reports generated, invoke Gwen with the [`-f|--format`](/docs/launcher#gwen-options-format) launch option passing in `none`.
 
 ### 4. String interpolation
 

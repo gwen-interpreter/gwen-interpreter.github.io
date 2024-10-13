@@ -13,7 +13,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 > Since [v3.77.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.77.0)
 
-Gwen will generate CSV reports for you when you include `results` in the [format](/docs/settings#gwen-cli-options-format) option.
+Gwen will generate CSV reports for you when you include `results` in the [format](/docs/settings#gwen-launch-options-format) option.
 
 By default, the following CSV files will be generated in the `reports/results` subdirectory of your configured [`output`](/docs/settings#gwen-outDir) directory, but you can completely reconfigure this and create your own CSVs to suit your requirements:
 - Feature level results:
@@ -113,7 +113,7 @@ Where:
         If <code>&lt;fieldName&gt;</code> is set to <code>*</code>, then:
         <ul>
           <li>This reference must specify a path to the CSV template file containing the names of all fields to bind in the first row (and the names of such fields will also be used as the binding references)</li>
-          <li>Can also be set to the special reference <code>$&lt;gwen.options.dataFile&gt;</code> which will resolve to the input CSV (data feed) file passed to Gwen via the [<code>-i|--input-data &lt;file&gt;</code>](/docs/cli#gwen-cli-options-input-data) CLI option. In the case all the fields present in the input file will be included and resolved by name.</li>
+          <li>Can also be set to the special reference <code>$&lt;gwen.options.dataFile&gt;</code> which will resolve to the input CSV (data feed) file passed to Gwen via the [<code>-i|--input-data &lt;file&gt;</code>](/docs/launcher#gwen-launch-options-input-data) launch option. In the case all the fields present in the input file will be included and resolved by name.</li>
         </ul>
       </li>
     </ul>
@@ -751,7 +751,7 @@ Feature: My meta
 
 ## Logging Results
 
-With the above settings in place, CSV files containing evaluated results will automatiacally be logged when you launch Gwen to execute with the `-f results` [format](/docs/settings#gwen-cli-options-format) option.
+With the above settings in place, CSV files containing evaluated results will automatiacally be logged when you launch Gwen to execute with the `-f results` [format](/docs/settings#gwen-launch-options-format) option.
 
 <Tabs
   groupId="jstool"
@@ -780,7 +780,7 @@ To generate HTML reports and CSV files
 yarn  -b f html,results gwen/features/todo
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -804,7 +804,7 @@ To generate HTML reports and CSV files
 npm run gwen -- -b f html,results gwen/features/todo
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
@@ -828,7 +828,7 @@ To generate HTML reports and CSV files
 pnpm  -b f html,results gwen/features/todo
 ```
 
-[Gwen CLI](/docs/cli)
+[Gwen Launcher](/docs/launcher)
 
 :::
 
