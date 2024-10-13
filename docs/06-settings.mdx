@@ -3832,83 +3832,6 @@ Default value (empty to pick up Gwen default format: html)
 
 ### Web Settings
 
-<details id="gwen-web-accept-untrusted-certs">
-  <summary class="setting">
-  <b>Dropped</b> since v3.18.0: Use <code>acceptInsecureCerts</code> capability instead.
-
-  ```properties
-  gwen.web.accept.untrusted.certs
-  ```
-  <p>Controls whether or not the web driver should accept untrusted (self signed) SSL certificates.</p>
-  </summary>
-  <p>Supported values</p>
-  <ul>
-    <li><code>true</code> to accept (default)</li>
-    <li><code>false</code> to decline</li>
-  </ul>
-  <Tabs
-  groupId="settings"
-  defaultValue="conf"
-  values={[
-    {label: 'conf', value: 'conf'},
-    {label: 'json', value: 'json'},
-    {label: 'properties', value: 'properties'}
-  ]}>
-  <TabItem value="conf">
-
-  Default value
-
-  ```json
-    gwen {
-      web {
-        accept {
-          untrusted {
-            certs = true
-          }
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-  <TabItem value="json">
-
-  Default value
-
-  ```json
-    {
-      "gwen": {
-        "web": {
-          "accept": {
-            "untrusted": {
-              "certs": true
-            }
-          }
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-  <TabItem value="properties">
-
-  Default value
-
-  ```properties
-    gwen.web.accept.untrusted.certs = true
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-web-accept-untrusted-certs">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
 <details id="gwen-web-assertions-delayMillisecs">
   <summary class="setting">
 
@@ -4238,7 +4161,7 @@ Default value (empty to pick up Gwen default format: html)
   gwen.target.browser
   ```
   <p>
-    Sets the default browser to target when Gwen is launched. Chrome, Firefox, Safari and Edge are supported (IE to be dropped soon).
+    Sets the default browser to target when Gwen is launched. Chrome, Firefox, Safari and Edge are supported.
     <br/><br/>Formerly <code>gwen.web.browser</code> (prior to v3.0.0)
   </p>
   </summary>
@@ -4251,7 +4174,6 @@ Default value (empty to pick up Gwen default format: html)
         <li><code>firefox</code> for Firefox browser</li>
         <li><code>safari</code> for Safari browser</li>
         <li><code>edge</code> for Edge browser, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.35.0">v2.35.0</Link></li>
-        <li><code>ie</code> for IE browser (deprecated)</li>
       </ul>
     </li>
   </ul>
