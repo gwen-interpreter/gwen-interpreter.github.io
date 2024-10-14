@@ -1,0 +1,228 @@
+--- 
+toc_min_heading_level: 2
+toc_max_heading_level: 2
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
+
+# Processes
+
+> Since [v4.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0)
+
+:::info What is a Process?
+A process in Gwen is any Gherkin feature specification (or collection thereof) that automates a repeatable process and requires specific launch options and/or settings to run.
+:::
+
+You can configure one or many automated [processes](/docs/processes#process-settings), each with its own launch options and [settings](/docs/settings). This enables you to configure unique processes in your project so you don't have to externally manage how they are launched. You simply give each process a name and define its configuration in a same named settings file. Then when you're ready to launch, you specify the name of the process you want to run with the [`-p|--process`]((/docs/launcher#gwen-launch-options-process)) option.
+
+## Process Level Settings
+
+### Example
+
+Say you have two processes in your project that need to be launched differently, and you want:
+
+<ul>
+  <li>
+   `process1` to:
+    <ul>
+      <li>Call the `gwen/features/process1.feature` only</li>
+      <li>Pass in the `gwen/input/data-feed.csv` data feed file</li>
+      <li>Load the `gwen/features/process1.meta` file and all meta files in `gwen/meta/dir-1` only</li>
+    </ul>
+  </li>
+  `process2` to:
+    <ul>
+      <li>Call the `gwen/features/process2.feature` only</li>
+      <li>Not pass any data feed file</li>
+      <li>Load the `gwen/features/process2.meta` file and all the meta files in `gwen/meta`</li>
+    </ul>
+</ul>
+
+
+The first step in configuring these is to create the `process1.conf` and `process2.conf` files in the `gwen/conf/process` folder as shown:
+
+> The names of the settings files (minus their extensions) will serve as the names of the processes
+
+```shell {10,11}
+  ./                              # Project root
+   ├── gwen.conf                  # Common settings
+   └── /gwen
+       ├── /conf
+       │   ├── /browsers          # Browser settings
+       │   |   └── ..
+       │   ├──/env                # Environment settings
+       │   |  └── ..
+       │   └──/process            # Process settings
+       │      ├── process1.conf
+       │      └── process2.conf
+       ├── /features              # Features (and associative meta)
+       │   ├── process1.feature
+       │   ├── process1.meta
+       │   ├── process2.feature
+       │   └── process2.meta
+       ├── /input                 # Input data
+       │   └── data-feed.csv
+       └── /meta                  # Meta
+           ├── /dir-1
+           │   ├─── dir1-file-1.meta
+           │   ├─── dir1-file-2.meta
+           │   ├─── ..
+           │   └─── dir1-file-N.meta
+           └── /dir-2
+               ├─── dir2-file-1.meta
+               ├─── dir2-file-2.meta
+               ├─── ..
+               └─── dir2-file-N.meta
+```
+
+### process1.conf
+
+<ul>
+  <li>Call the `gwen/features/process1.feature` only</li>
+  <li>Pass in the `gwen/input/data-feed.csv` data feed file</li>
+  <li>Load the `gwen/features/process1.meta` file and all meta files in `gwen/meta/dir-1`</li>
+</ul>
+
+*File: gwen/conf/process/process1.conf*
+```json
+gwen {
+  launch {
+    options {
+      features = [
+        "${gwen.baseDir}/features/process1.feature"
+      ]
+      inputData = "${gwen.baseDir}/input/data-feed.csv"
+      meta = [
+        "${gwen.baseDir}/features/process1.meta"
+        "${gwen.baseDir}/meta/dir-1"
+      ]
+    }
+  }
+}
+```
+
+### process2.conf
+
+<ul>
+  <li>Call the `gwen/features/process2.feature` only</li>
+  <li>Not pass any data feed file</li>
+  <li>Load the `gwen/features/process2.meta` file and all the meta files in `gwen/meta`</li>
+</ul>
+
+*File: gwen/conf/process/process2.conf*
+```json
+gwen {
+  launch {
+    options {
+      features = [
+        "${gwen.baseDir}/features/process2.feature"
+      ]
+      inputData = ""
+      meta = [
+        "${gwen.baseDir}/features/process2.meta"
+        "${gwen.baseDir}/meta"
+      ]
+    }
+  }
+}
+```
+
+## Launching Processes
+
+  To launch a process, simply pass the name of the process (settings file name minus the extension) to the [`-p|--process`](/docs/launcher#gwen-launch-options-process) launcher option. Gwen will find and load the same named settings file in the `gwen/conf/process` directory and launch the process for you.
+
+<Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+<TabItem value="yarn">
+
+Launch process 1 and open repl when done
+
+```shell
+yarn gwen -p process1
+```
+
+Launch process 1 and exit when done
+
+```shell
+yarn gwen -p process1 -b
+```
+
+Launch process 1 in parallel mode
+
+```shell
+yarn gwen -p process1 --parallel
+```
+
+Launch process 2 in dry run mode
+
+```shell
+yarn gwen --process process2 --dry-run
+```
+
+</TabItem>
+<TabItem value="npm">
+
+Launch process 1 and open repl when done
+
+```shell
+npm run gwen -- --process process1
+```
+
+Launch process 1 and exit when done
+
+```shell
+npm run gwen -- --process process1 -b
+```
+
+Launch process 1 in parallel mode
+
+```shell
+npm run gwen -- --process process1 --parallel
+```
+
+Launch process 2 in dry run mode
+
+```shell
+npm run gwen -- --process process2 --dry-run
+```
+
+</TabItem>
+<TabItem value="pnpm">
+
+Launch process 1 and open repl when done
+
+```shell
+pnpm gwen -p process1
+```
+
+Launch process 1 and exit when done
+
+```shell
+pnpm gwen -p process1 -b
+```
+
+Launch process 1 in parallel mode
+
+```shell
+pnpm gwen -p process1 --parallel
+```
+
+Launch process 2 in dry run mode
+
+```shell
+pnpm gwen --process process2 --dry-run
+```
+
+</TabItem>
+</Tabs>

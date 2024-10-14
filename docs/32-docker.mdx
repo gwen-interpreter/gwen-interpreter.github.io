@@ -168,6 +168,7 @@ services:
       - SELENIUM_HUB
       - NO_COLOR
       - GWEN_ENV
+      - GWEN_PROCESS
       - GWEN_BROWSER
       - GWEN_DRY_RUN
       - GWEN_PARALLEL
@@ -178,7 +179,7 @@ services:
     volumes:
       - "$PWD:/project"
     working_dir: /project
-    command: bash -c "yarn install && yarn gwen -b -c gwen/browsers/selenoid.conf gwen/features"
+    command: bash -c "yarn install && yarn gwen -b -c gwen/conf/browsers/selenoid.conf gwen/features"
     networks:
       - gwen-net
   gwen-dry-run:
@@ -220,7 +221,7 @@ GWEN_BROWSER=chrome
          └──browsers.json    # Selenoid browsers file
 ```
 
-The init --docker commad will create a `gwen/browsers/browsers.json` file with the following content that will be used by Selenoid to stand up the browsers in Docker.
+The init --docker commad will create a `gwen/conf/browsers/browsers.json` file with the following content that will be used by Selenoid to stand up the browsers in Docker.
 
 ```json
 {
@@ -262,12 +263,13 @@ The init --docker commad will create a `gwen/browsers/browsers.json` file with t
 ```shell {5}
 ./project                    # Your project root
  └── /gwen
-     └── /browsers
-         ├──browsers.json    # Selenoid browsers file
-         └──selenoid.conf    # Selenoid Gwen settings
+     └── /conf
+         └── /browsers
+             ├──browsers.json    # Selenoid browsers file
+             └──selenoid.conf    # Selenoid Gwen settings
 ```
 
-The init --docker commad will create a `gwen/browsers/selenoid.conf` file with the following content that will be used by Gwen to connect to Selenoid.
+The init --docker commad will create a `gwen/conf/browsers/selenoid.conf` file with the following content that will be used by Gwen to connect to Selenoid.
 
 ```json
 gwen {
@@ -338,7 +340,7 @@ Open [http://localhost:8999](http://localhost:8999) in a browser to check that t
 Run the following command to launch Gwen against your Selenoid instance in Docker. You will see browser session(s) appear in the Selenoid UI.
 
 ```shell
-SELENIUM_HUB=localhost yarn gwen -b -c gwen/browsers/selenoid.conf gwen/features
+SELENIUM_HUB=localhost yarn gwen -b -c gwen/conf/browsers/selenoid.conf gwen/features
 ```
 
 Tear it all down when done
@@ -353,7 +355,7 @@ docker-compose -f gwen/docker-compose.yml down
 
 If you set the [`GWEN_VIDEO`](/docs/launcher#environment-variables) environment variable or the `selenoid:options.enableVideo` capability setting to `true` in your `selenoid.conf` file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html). Set this to `false` if you do not wish to capture video.
 
-File: *gwen/browsers/selenoid.conf*
+File: *gwen/conf/browsers/selenoid.conf*
 
 ```json {6}
 gwen {
@@ -383,7 +385,7 @@ Videos will not be recorded when [parallel execution](/docs/parallel), [headless
 
 ## Downloading Files in Chrome
 
-Configure the following in your `browsers/selenoid.conf` file to enable automatic file downloads for Chrome in the Selenoid/Docker container.
+Configure the following in your `conf/browsers/selenoid.conf` file to enable automatic file downloads for Chrome in the Selenoid/Docker container.
 
 ```json {8-30}
 gwen {
@@ -458,7 +460,7 @@ services:
       - gwen-net
 ```
 
-File: *gwen/browsers/browsers.json*
+File: *gwen/conf/browsers.json*
 ```json {6,16}
   {
   "chrome": {
@@ -486,7 +488,7 @@ File: *gwen/browsers/browsers.json*
 
 The Selenoid video recorder won't work with the experimental Seleniarm images, so you should disable video 
 
-File: *gwen/browsers/selenoid.conf*
+File: *gwen/conf/browsers/selenoid.conf*
 
 ```json {6}
 gwen {

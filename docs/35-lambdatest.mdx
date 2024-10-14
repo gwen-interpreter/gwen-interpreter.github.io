@@ -54,10 +54,11 @@ If you want to configure browser specific [capabilities](/docs/settings#gwen-web
 ```shell {4}
 ./project                       # Your project root
  └── /gwen
-     └── /browsers
-         ├──chrome.conf
-         ├──edge.conf
-         └──firefox.conf
+     └── /conf
+         └── /browsers
+             ├──chrome.conf
+             ├──edge.conf
+             └──firefox.conf
 ```
 
 ## HyperExecute YAML
@@ -100,7 +101,7 @@ testDiscovery:
   mode: dynamic
   command: find gwen/features -type f -name "*.feature"
 
-testRunnerCommand: yarn gwen -b -c gwen/browsers/lambdatest.conf,gwen/browsers/$browser.conf $test
+testRunnerCommand: yarn gwen -b -c gwen/conf/browsers/lambdatest.conf,gwen/conf/browsers/$browser.conf $test
 
 ```
 

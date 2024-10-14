@@ -109,30 +109,34 @@ pnpm gwen init
 The `init` command will generate the following files and subdirectories in your project:
 
 ```
-  ./                           # Project root
-   ├── .gitignore              # Git ignore file
+  ./                              # Project root
+   ├── .gitignore                 # Git ignore file
    ├── README.md
-   ├── gwen.conf               # Gwen settings file
+   ├── gwen.conf                  # Common settings
    └── /gwen
-       ├── .gitignore          # Git ignore file
-       ├── /browsers           # Browser settings
-       │   ├── chrome.conf
-       │   ├── edge.conf
-       │   ├── firefox.conf
-       │   ├── README.md
-       │   └── safari.conf
-       ├── /env                # Environment settings
-       │   ├── dev.conf
-       │   ├── local.conf
-       │   ├── prod.conf
-       │   ├── README.md
-       │   ├── staging.conf
-       │   └── test.conf
-       ├── /features           # Features and associative meta
+       ├── .gitignore             # Git ignore file
+       ├── /conf
+       │   ├── /browsers          # Browser settings
+       │   │   ├── chrome.conf
+       │   │   ├── edge.conf
+       │   │   ├── firefox.conf
+       │   │   ├── README.md
+       │   │   └── safari.conf
+       │   ├── /env               # Environment settings
+       │   │   ├── dev.conf
+       │   │   ├── local.conf
+       │   │   ├── prod.conf
+       │   │   ├── README.md
+       │   │   ├── staging.conf
+       │   │   └── test.conf
+       │   └── /process           # Process settings
+       │       ├── README.md
+       │       └── samples.conf
+       ├── /features              # Features and associative meta
        │   └── README.md
-       ├── /meta               # Optional common/reusable meta
+       ├── /meta                  # Common/reusable meta
        │   └── README.md
-       └── /samples            # Sample features and meta
+       └── /samples               # Sample features and meta
 ```
 
 :::info Automatic Updates
@@ -226,7 +230,9 @@ Gwen has an embedded web driver manager which automatically downloads and instal
 
 ### Execute the samples
 
-To confirm your setup, execute the samples in the `gwen/samples` directory and delete (or keep) them when done.
+To confirm your setup, execute the samples (and delete or keep them when done).
+
+:::note Launch Gwen
 
 <Tabs
   groupId="jstool"
@@ -239,64 +245,59 @@ To confirm your setup, execute the samples in the `gwen/samples` directory and d
 
 <TabItem value="yarn">
 
-:::note Launch Gwen
-
 Run the following command in your project to execute the samples.
 
 ```shell
-yarn gwen -b gwen/samples
+yarn gwen -p samples -b
 ```
 
-Where:
+or (with long-hand option names)
 
-- The `-b` option instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL Console](/docs/repl) instead of exiting.
-- `samples` is the directory containing the meta and feature samples to execute 
 
-[Gwen Launcher](/docs/launcher)
-
-:::
+```shell
+yarn gwen --process samples --batch
+```
 
 </TabItem>
 <TabItem value="npm">
 
-:::note Launch Gwen
-
 Run the following command in your project to execute the samples.
 
 ```shell
-npm run gwen -- -b gwen/samples
+npm run gwen -- -p samples -b
 ```
 
-Where:
+or (with long-hand option names)
 
-- The `-b` option instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL Console](/docs/repl) instead of exiting.
-- `samples` is the directory containing the meta and feature samples to execute 
-
-[Gwen Launcher](/docs/launcher)
-
-:::
+```shell
+npm run gwen -- --process samples --batch
+```
 
 </TabItem>
 <TabItem value="pnpm">
 
-:::note Launch Gwen
-
 Run the following command in your project to execute the samples.
 
 ```shell
-pnpm gwen -b gwen/samples
+pnpm gwen -p samples -b
 ```
+
+or (with long-hand option names)
+
+```shell
+pnpm gwen --process samples --batch
+```
+
+</TabItem>
+</Tabs>
 
 Where:
 
-- The `-b` option instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL Console](/docs/repl) instead of exiting.
-- `samples` is the directory containing the meta and feature samples to execute 
+- The `-p|--process samples` option instructs Gwen to execute the samples as defined in `gwen/conf/process/samples.conf`
+- The `-b|--batch` option instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL Console](/docs/repl) instead of exiting.
 
 [Gwen Launcher](/docs/launcher)
 
 :::
-
-</TabItem>
-</Tabs>
 
 The sample features will execute and a [HTML evaluation report](/docs/reports/html) will be generated at `gwen/output/reports/index.html` in your project.

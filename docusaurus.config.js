@@ -41,9 +41,9 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/reports/csv',
+          href: '/docs/gwen4',
           position: 'left',
-          label: "What's new?",
+          label: "Gwen 4 Released!",
         },
         { 
           label: 'GitHub', 

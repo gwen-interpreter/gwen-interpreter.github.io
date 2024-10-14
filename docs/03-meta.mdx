@@ -50,7 +50,7 @@ A step definition for executing this step could be defined in meta as follows:
     Given my todo list can be located by css ".todo-list"
      When I navigate to "${todo.page.url}"
      Then the page title should contain "TodoMVC"
-      And my todo list should not be displayed
+      And my todo list should be empty
 ```
 
 Calls DSL steps:

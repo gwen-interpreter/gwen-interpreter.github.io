@@ -45,11 +45,13 @@ Settings are loaded in the following order of precedence, with those higher in t
 2. [System properties](/docs/launcher#system-properties-and-jvm-options)
 3. User settings
     - A `gwen.conf`, `gwen.json`, or `gwen.properties` file in your user directory
-4. Launch settings
-    - Comma separated list of `*.conf`, `*.json`, or `*.properies` files passed to Gwen via the [`-c|--conf`](/docs/launcher#gwen-launch-options-conf) launch option (or `-p|--properties` for Gwen versions prior to v3.0.0). These are loaded in the order given with latter entries overriding the former.
-5. Project settings
+4. Process settings
+    - A `*.conf`, `*.json`, or `*.properies` file denoted name passed to [`-p|--process`](/docs/launcher#gwen-launch-options-process) launch option.
+5. Launch settings
+    - Comma separated list of `*.conf`, `*.json`, or `*.properies` files passed to Gwen via the [`-c|--conf`](/docs/launcher#gwen-launch-options-conf) launch option. These are loaded in the order given with latter entries overriding the former.
+6. Project settings
     - A `gwen.conf`, `gwen.json` or `gwen.properties` file in your root project directory
-6. Default settings
+7. Default settings
     - Internal Gwen defaults
 
 :::info System properties override all other settings
@@ -68,6 +70,21 @@ User-level settings can optionally be defined in a `gwen.conf|json|properties` f
  /Users
  └── /<username> (~/) 
      └── gwen.conf           # User-level overrides
+```
+
+### Process settings files
+
+All [process](/docs/processes) level settings are stored in `*.conf|json|properties` files in the `gwen/conf/process` subdirectory of the project. Gwen selectively discovers and loads these files when you inovke Gwen with the [`-p|--process`](/docs/launcher#gwen-launch-options-process) option passing in a process name. The settings file with the same name as the passed in process name is the one that is loaded.
+
+```
+ /project                     # Your project root
+ └── /gwen
+     └── /conf
+         └── /process         # Process settings
+             ├── name1.conf   
+             ├── name2.conf
+             ├── ..
+             └── nameN.conf
 ```
 
 ### Project settings files
@@ -7276,7 +7293,7 @@ It is a common security practice to never log sensitive data. To support this pr
 
 To flag a setting as masked, append `:masked` to its defined name.
 
-For example, to access a password stored in an environemnt variable named `USER_PASSOWRD`, you can read it into a masked setting named `user.password` as follows:
+For example, to access a password stored in an environment variable named `USER_PASSOWRD`, you can read it into a masked setting named `user.password` as follows:
 
 <Tabs
     groupId="settings"

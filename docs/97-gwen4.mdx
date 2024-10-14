@@ -11,11 +11,35 @@ import ThemedImage from '@theme/ThemedImage';
 
 # Gwen 4
 
+> Released date: TBA
+
 ## What's new?
 
-### New `-p|--process` option
+### Processes
 
-You can now configure one or many processes with default [settings](/docs/settings) and launch options.
+You can now configure one or many automated [processes](/docs/processes#process-settings), each with its own launch options and [settings](/docs/settings). This enables you to configure unique processes in your project so you don't have to externally manage how they are launched. You simply give each process a name and define its configuration in a same named settings file. Then when you're ready to launch, you specify the name of the process you want to run with the [`-p|--process`]((/docs/launcher#gwen-launch-options-process)) option.
+
+- See [processes](/docs/processes#process-settings) for more info.
+
+### Implicit values
+
+The following [implicit values](/docs/implicit-values) have been added.
+
+| Name                                                           | Description                                                   |
+| :------------------------------------------------------------- | :------------------------------------------------------------ |
+| [`gwen.process.name`](/docs/implicit-values#gwen-process-name) |  The name of the currently running process (blank if default) |
+
+### Environment variables
+
+The following [environment variables](/docs/launcher#environment-variables) have been added.
+
+| Name                 | Accepts                                      | Affects CLI option                              |
+|:-------------------- | -------------------------------------------- | :---------------------------------------------: |
+| `GWEN_PROCESS`       | Name of [process](/docs/processes) to launch | [`-p, --process`](#gwen-launch-options-process) |
+
+### DSLs
+
+Introduced `empty` literal that can be used interchangeably with `blank` in all [DSL steps](/docs/dsl#dsl-reference) where `blank` is accepted.
 
 ## Whats changed?
 
@@ -30,6 +54,44 @@ Deprecated features are now raised as errors by default instead of being logged 
   | Setting                                                                  | Old default | New default |
   | :----------------------------------------------------------------------- | :---------: | :---------: |
   | [`gwen.logLevel.deprecations`](/docs/settings#gwen-loglevel-deprecations)|   `warn`    |   `error`   |
+
+### Project structure
+
+The `env` and `browsers` folders have been moved one level down under a `conf` subfolder which now also contains a `process` subfolder where you can define [process level settings](/docs/processes#process-level-settings).
+
+The new project strucutre looks like this:
+
+```
+  ./                              # Project root
+   ├── README.md
+   ├── gwen.conf                  # Common settings
+   └── /gwen
+       ├── .gitignore             # Git ignore file
+       ├── /conf
+       │   ├── /browsers          # Browser settings
+       │   |   ├── chrome.conf
+       │   |   ├── edge.conf
+       │   |   ├── firefox.conf
+       │   |   ├── README.md
+       │   |   └── safari.conf
+       │   ├──/env                # Environment settings
+       │   |  ├── dev.conf
+       │   |  ├── local.conf
+       │   |  ├── prod.conf
+       │   |  ├── README.md
+       │   |  ├── staging.conf
+       │   |  └── test.conf
+       │   └──/process            # Process settings
+       │      ├── README.md
+       │      ├── process1.conf
+       │      ├── process3.conf
+       │      ├── ..
+       │      └── processN.conf
+       ├── /features              # Features (and associative meta)
+       │   └── README.md
+       └── /meta                  # Common meta
+           └── README.md
+```
 
 ### Logging
 

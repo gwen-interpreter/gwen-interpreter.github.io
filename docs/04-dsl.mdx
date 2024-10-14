@@ -53,7 +53,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <name> is <blank|true|false>
+  <name> is <blank|empty|true|false>
   ```
   <p>Binds a literal value to a name in the global scope.</p>
   </summary>
@@ -5169,29 +5169,23 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <textRef> should[ not] be blank
+  <textRef> should[ not] be <blank|empty>
   ```
 
-  <p>Checks whether or not the text reference matches a blank string. Reports an assertion error if the match fails.</p>
+  <p>Checks whether or not the text reference matches a blank or empty string. Reports an assertion error if the match fails.</p>
   </summary>
   <p>
 
   <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
 
   ```gherkin
-  <textRef> should[ not] be blank  @Message("my custom assert fail message")
+  <textRef> should[ not] be <blank|empty>  @Message("my custom assert fail message")
   ```
 
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <textRef> should[ not] be blank with no <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <textRef> should[ not] be blank
@@ -5200,13 +5194,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <textRef> should[ not] be blank with <timeoutSecs> second <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <textRef> should[ not] be blank
@@ -5233,7 +5221,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
      When I navigate to "https://todomvc.com/examples/react/dist"
       And I enter "Get the milk" in the todo field
       And I capture my todo list as current items
-     Then current items should not be blank
+     Then current items should not be empty
   ```
 
   Trimming (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.62.0">v3.62.0</Link>)
@@ -5268,13 +5256,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <textRef> should[ not] <match> "<expression>" with no <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <textRef> should[ not] <match> "<expression>"
@@ -5283,16 +5265,10 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
-  <textRef> should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-  
-  ```gherkin
-  @Timeout('10s') <textRef> should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
+  @Timeout('10s') <textRef> should[ not] <match> "<expression>"
   ```
 
   </p>
@@ -5367,13 +5343,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <textRef> should[ not] <match> <expressionRef> with no <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <textRef> should[ not] <match> <expressionRef>
@@ -5382,13 +5352,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <textRef> should[ not] <match> <expressionRef> with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <textRef> should[ not] <match> <expressionRef>
@@ -5466,13 +5430,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <textRef> should[ not] <match> <percentage>% similar to "<text>" with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <textRef> should[ not] <match> <percentage>% similar to "<text>"
@@ -5481,13 +5439,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <textRef> should[ not] <match> <percentage>% similar to "<text>" with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <textRef> should[ not] <match> <percentage>% similar to "<text>"
@@ -5562,13 +5514,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <textRef1> should[ not] <match> <percentage>% similar to <textRef2> with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <textRef1> should[ not] <match> <percentage>% similar to <textRef2>
@@ -5577,13 +5523,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <textRef1> should[ not] <match> <percentage>% similar to <textRef2> with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <textRef1> should[ not] <match> <percentage>% similar to <textRef2>
@@ -5771,10 +5711,10 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <xmlRef> at xpath "<path>" should[ not] be blank
+  <xmlRef> at xpath "<path>" should[ not] be <blank|empty>
   ```
   
-  <p>Extracts text from the referenced XML value using the given XPath and checks whether or not it matches a blank string. Reports an assertion error if the match fails.</p>
+  <p>Extracts text from the referenced XML value using the given XPath and checks whether or not it matches a blank or empty string. Reports an assertion error if the match fails.</p>
   </summary>
   <p>
   <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
@@ -5786,13 +5726,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <xmlRef> at xpath "<path>" should[ not] be blank with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <xmlRef> at xpath "<path>" should[ not] be blank
@@ -5801,13 +5735,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <xmlRef> at xpath "<path>" should[ not] be blank with <timeoutSecs> second <wait|timeout>
-  ```
-  
-   Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <xmlRef> at xpath "<path>" should[ not] be blank
@@ -5865,28 +5793,16 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
-  <xmlRef> at xpath "<path>" should[ not] <match> "<expression>" with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-
-  ```gherkin
-  @Timeout('0s') <xmlRef> at xpath "<path>" should[ not] <match> "<expression>" with no <wait|timeout>
+  @Timeout('0s') <xmlRef> at xpath "<path>" should[ not] <match> "<expression>"
   ```
 
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <xmlRef> at xpath "<path>" should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <xmlRef> at xpath "<path>" should[ not] <match> "<expression>"
@@ -5947,10 +5863,10 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <jsonRef> at json path "<path>" should[ not] be blank
+  <jsonRef> at json path "<path>" should[ not] be <blank|empty>
   ```
   
-  <p>Extracts text from the referenced JSON value using the given JSON path and checks whether or not it matches a blank string. Reports an assertion error if the match fails.</p>
+  <p>Extracts text from the referenced JSON value using the given JSON path and checks whether or not it matches a blank or empty string. Reports an assertion error if the match fails.</p>
   </summary>
   <p>
   <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
@@ -5962,13 +5878,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <jsonRef> at json path "<path>" should[ not] be blank with no <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <jsonRef> at json path "<path>" should[ not] be blank
@@ -5977,13 +5887,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <jsonRef> at json path "<path>" should[ not] be blank with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <jsonRef> at json path "<path>" should[ not] be blank
@@ -6041,13 +5945,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <jsonRef> at json path "<path>" should[ not] <match> "<expression>" with no <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <jsonRef> at json path "<path>" should[ not] <match> "<expression>"
@@ -6056,13 +5954,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <jsonRef> at json path "<path>" should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <jsonRef> at json path "<path>" should[ not] <match> "<expression>"
@@ -6123,10 +6015,10 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  the current URL should[ not] be blank
+  the current URL should[ not] be <blank|empty>
   ```
   
-  <p>Checks whether or not the current browser URL matches a blank string. Reports an assertion error if the match fails.</p>
+  <p>Checks whether or not the current browser URL matches a blank or empty string. Reports an assertion error if the match fails.</p>
   </summary>
   <p>
   <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
@@ -6138,13 +6030,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  the current URL should[ not] be blank with no <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the current URL should[ not] be blank
@@ -6153,13 +6039,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  the current URL should[ not] be blank with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') the current URL should[ not] be blank
@@ -6210,13 +6090,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  the current URL should[ not] <match> "<expression>" with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the current URL should[ not] <match> "<expression>"
@@ -6225,13 +6099,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  the current URL should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') the current URL should[ not] <match> "<expression>"
@@ -6299,14 +6167,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
-  ```gherkin
-  the current URL should[ not] <match> <expressionRef> with no <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-  
   ```gherkin
   @Timeout('0s') the current URL should[ not] <match> <expressionRef>
   ```
@@ -6314,14 +6176,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
-  ```gherkin
-  the current URL should[ not] <match> <expressionRef> with <timeoutSecs> second <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-  
   ```gherkin
   @Timeout('10s') the current URL should[ not] <match> <expressionRef>
   ```
@@ -6382,10 +6238,10 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  the page title should[ not] be blank
+  the page title should[ not] be <blank|empty>
   ```
   
-  <p>Checks whether or not the title of the current page matches a blank string. Reports an assertion error if the match fails.</p>
+  <p>Checks whether or not the title of the current page matches a blank or empty string. Reports an assertion error if the match fails.</p>
   </summary>
   <p>
   <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
@@ -6397,14 +6253,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
-  ```gherkin
-  the page title should[ not] be blank with no <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-  
   ```gherkin
   @Timeout('0s') the page title should[ not] be blank
   ```
@@ -6412,14 +6262,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
-  ```gherkin
-  the page title should[ not] be blank with <timeoutSecs> second <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-  
   ```gherkin
   @Timeout('10s') the page title should[ not] be blank
   ```
@@ -6468,13 +6312,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  the page title should[ not] <match> "<expression>" with no <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the page title should[ not] <match> "<expression>"
@@ -6483,13 +6321,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  the page title should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') the page title should[ not] <match> "<expression>"
@@ -6556,13 +6388,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  the page title should[ not] <match> <expressionRef> with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the page title should[ not] <match> <expressionRef>
@@ -6571,13 +6397,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  the page title should[ not] <match> <expressionRef> with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') the page title should[ not] <match> <expressionRef>
@@ -6651,13 +6471,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <element> should[ not] be <state> with no <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <element> should[ not] be <state>
@@ -6666,13 +6480,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <element> should[ not] be <state> with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <element> should[ not] be <state>
@@ -6702,7 +6510,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {3}
     Given my todo list can be located by css ".todo-list"
      When I navigate to "https://todomvc.com/examples/react/dist"
-     Then my todo list should not be displayed
+     Then my todo list should be empty
   ```
 
   <div class="grid-3">
@@ -6731,13 +6539,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <element> should[ not] <match> "<expression>" with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <element> should[ not] <match> "<expression>"
@@ -6746,13 +6548,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <element> should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <element> should[ not] <match> "<expression>"
@@ -6823,13 +6619,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <element> should[ not] <match> <expressionRef> with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <element> should[ not] <match> <expressionRef>
@@ -6838,13 +6628,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <element> should[ not] <match> <expressionRef> with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <element> should[ not] <match> <expressionRef>
@@ -6908,10 +6692,10 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <dropdown> <text|value> should[ not] be blank
+  <dropdown> <text|value> should[ not] be <blank|empty>
   ```
   
-  <p>Checks whether or not a dropdown selection matches a blank string. Reports an assertion error if the match fails.</p>
+  <p>Checks whether or not a dropdown selection matches a blank or empty string. Reports an assertion error if the match fails.</p>
   </summary>
   <p>
   <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
@@ -6923,13 +6707,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <dropdown> <text|value> should[ not] be blank with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <dropdown> <text|value> should[ not] be blank
@@ -6938,13 +6716,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <dropdown> <text|value> should[ not] be blank with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <dropdown> <text|value> should[ not] be blank
@@ -7005,13 +6777,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <dropdown> <text|value> should[ not] <match> "<expression>" with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <dropdown> <text|value> should[ not] <match> "<expression>"
@@ -7020,14 +6786,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
-  ```gherkin
-  <dropdown> <text|value> should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-  
   ```gherkin
   @Timeout('10s') <dropdown> <text|value> should[ not] <match> "<expression>"
   ```
@@ -7103,13 +6863,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <dropdown> <text|value> should[ not] <match> <expressionRef> with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <dropdown> <text|value> should[ not] <match> <expressionRef>
@@ -7118,13 +6872,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <dropdown> <text|value> should[ not] <match> <expressionRef> with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <dropdown> <text|value> should[ not] <match> <expressionRef>
@@ -7271,10 +7019,10 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  the <alert|confirmation> popup message should[ not] be blank
+  the <alert|confirmation> popup message should[ not] be <blank|empty>
   ```
   
-  <p>Checks whether or not the message in the alert or confirmation popup box matches a blank string. Reports an assertion error if the match fails.</p>
+  <p>Checks whether or not the message in the alert or confirmation popup box matches a blank or empty string. Reports an assertion error if the match fails.</p>
   </summary>
   <p>
   <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
@@ -7286,14 +7034,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
-  ```gherkin
-  the <alert|confirmation> popup message should[ not] be blank with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
- 
   ```gherkin
   @Timeout('0s') the <alert|confirmation> popup message should[ not] be blank
   ```
@@ -7301,14 +7043,8 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
-  ```gherkin
-  the <alert|confirmation> popup message should[ not] be blank with <timeoutSecs> second <wait|timeout>
-  ```
-
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
-  
   ```gherkin
   @Timeout('10s') the <alert|confirmation> popup message should[ not] be blank
   ```
@@ -7361,13 +7097,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  the <alert|confirmation> popup message should[ not] <match> "<expression>" with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the <alert|confirmation> popup message should[ not] <match> "<expression>"
@@ -7376,13 +7106,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  the <alert|confirmation> popup message should[ not] <match> "<expression>" with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') the <alert|confirmation> popup message should[ not] <match> "<expression>"
@@ -7451,13 +7175,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  the <alert|confirmation> popup message should[ not] <match> <expressionRef> with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the <alert|confirmation> popup message should[ not] <match> <expressionRef>
@@ -7466,13 +7184,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  the <alert|confirmation> popup message should[ not] <match> <expressionRef> with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') the <alert|confirmation> popup message should[ not] <match> <expressionRef>
@@ -7549,13 +7261,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <name> should be absent with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <name> should be absent
@@ -7564,13 +7270,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <name> should be absent with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <name> should be absent
@@ -7621,13 +7321,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <name> should be defined with no <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <name> should be defined
@@ -7636,13 +7330,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </p>
   <hr/>
   <p>
-  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.41.0">v3.41.0</Link>):</p>
-
-  ```gherkin
-  <name> should be defined with <timeoutSecs> second <wait|timeout>
-  ```
-  
-  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('10s') <name> should be defined
@@ -8667,9 +8355,9 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <summary class="dsl">
 
   ```gherkin
-  <step> if <name> is[ not] blank
+  <step> if <name> is[ not] <blank|empty>
   ```
-  <p>Executes a step depending on whether or not an element or attribute is bound to a blank value.</p>
+  <p>Executes a step depending on whether or not an element or attribute is bound to a blank or empty value.</p>
   </summary>
   <p>Where</p>
   <ul>

@@ -98,7 +98,7 @@ export default function Home() {
     Given my todo list can be located by css ".todo-list"
      When I navigate to "https://todomvc.com/examples/react/dist"
      Then the page title should contain "TodoMVC"
-      And my todo list should not be displayed
+      And my todo list should be empty
   
   @Action
   @DataTable

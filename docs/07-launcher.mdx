@@ -29,8 +29,8 @@ Usage: gwen [options] [files|dirs]
   -v, --verbose            Enable verbose log output
   -d, --debug              Enable breakpoints and interactive debugging
   -n, --dry-run            Check all syntax and bindings and report errors
+  -p, --process name       Name of process to launch
   -c, --conf files         Settings files: conf, json or properties (comma separated)
-  -p, --properties files   Properties files (deprecated, use -c|--conf instead)
   -r, --report dir         Directory to output generated report(s) to
   -f, --formats reports    Report formats to include in output (comma separated)
                            - html,results,junit,json,rp,none (default = html, rp deprecated)
@@ -54,16 +54,17 @@ Format feature and meta files
 
 The following environment variables can be set to override certain settings as below:
 
-| Since   | Environment variable | Values                                                                                                    | Overrides setting                                                       | Affects CLI option                           |
-| :-----: |:-------------------- | --------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------- | :------------------------------------------- |
-| v3.16.0 | `GWEN_BROWSER`       | <code>chrome&#124;edge&#124;</code><br/><code>firefox&#124;safari&#124;ie</code>                          | [`gwen.target.browser`](/docs/settings#gwen-target-browser)             |                                              |
-| v3.23.0 | `GWEN_ENV`           | <code>local&#124;dev&#124;</code><br/><code>test&#124;staging&#124;</code><br/><code>prod&#124;..</code>  | [`gwen.target.env`](/docs/settings#gwen-target-env)                     |                                              |
+| Since   | Environment variable | Values                                                                                                    | Overrides setting                                                             | Affects CLI option                              |
+| :-----: |:-------------------- | --------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- | :---------------------------------------------- |
+| v3.23.0 | `GWEN_ENV`           | <code>local&#124;dev&#124;</code><br/><code>test&#124;staging&#124;</code><br/><code>prod&#124;..</code>  | [`gwen.target.env`](/docs/settings#gwen-target-env)                           |                                                 |
+| v4.0.0  | `GWEN_PROCESS`       | Name of [process](/docs/processes) to launch                                                              |                                                                               | [`-p, --process`](#gwen-launch-options-process) |
+| v3.16.0 | `GWEN_BROWSER`       | <code>chrome&#124;edge&#124;</code><br/><code>firefox&#124;safari&#124;ie</code>                          | [`gwen.target.browser`](/docs/settings#gwen-target-browser)                   |                                                 |
 | v3.16.0 | `GWEN_DRY_RUN`       | <code>true&#124;false</code>                                                                              | [`gwen.launch.options.dryRun`](/docs/settings#gwen-launch-options-dry-run)    | [`-n, --dry-run`](#gwen-launch-options-dry-run) |
 | v3.16.0 | `GWEN_PARALLEL`      | <code>true&#124;false</code>                                                                              | [`gwen.launch.options.parallel`](/docs/settings#gwen-launch-options-parallel) | [`--parallel`](#gwen-launch-options-parallel)   |
-| v3.18.0 | `GWEN_THREADS`       | <code>auto&#124;number</code>                                                                             | [`gwen.parallel.maxThreads`](/docs/settings#gwen-parallel-maxThreads)   |                                              |
-| v3.16.0 | `GWEN_HEADLESS`      | <code>true&#124;false</code>                                                                              | [`gwen.web.browser.headless`](/docs/settings#gwen-web-browser-headless) |                                              |
-| v3.18.0 | `GWEN_VIDEO`         | <code>true&#124;false</code>                                                                              | [`selenoid:options.enableVideo`](/docs/docker#video-capture)            |                                              |
-| v3.71.3 | `GWEN_WEB_VERSION`   | Version or Semver range (Overrides Gwen web version in package.json)                                      |                                                                         |                                              |
+| v3.18.0 | `GWEN_THREADS`       | <code>auto&#124;number</code>                                                                             | [`gwen.parallel.maxThreads`](/docs/settings#gwen-parallel-maxThreads)         |                                                 |
+| v3.16.0 | `GWEN_HEADLESS`      | <code>true&#124;false</code>                                                                              | [`gwen.web.browser.headless`](/docs/settings#gwen-web-browser-headless)       |                                                 |
+| v3.18.0 | `GWEN_VIDEO`         | <code>true&#124;false</code>                                                                              | [`selenoid:options.enableVideo`](/docs/docker#video-capture)                  |                                                 |
+| v3.71.3 | `GWEN_WEB_VERSION`   | Version or Semver range (Overrides Gwen web version in package.json)                                      |                                                                               |                                                 |
 
 <br/>
 
@@ -218,8 +219,8 @@ Default launch options and arguments can also be configured in [settings](/docs/
     -b, --batch             Exit when execution completes (omit to open REPL)
     -v, --verbose           Enable verbose log output
     -n, --dry-run           Check all syntax and bindings and report errors
+    -p, --process name      Name of process to launch
     -c, --conf files        Settings files: conf, json or properties (comma separated)
-    -p, --properties files  Properties files (deprecated, use -c|--conf instead)
     -r, --report dir        Directory to output generated report(s) to
     -f, --formats reports   Report formats to include in output (comma separated)
                             - html,junit,json,rp,none (default is html)
@@ -865,6 +866,52 @@ Default launch options and arguments can also be configured in [settings](/docs/
   </div>
 </details>
 
+<details id="gwen-launch-options-process">
+  <summary class="cli-options">
+
+  ```shell
+  -p|--process <name>
+  ```
+  <p>
+  Name of process to launch.
+  </p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li>
+      You can use either:
+      <ul>
+        <li><code>-p</code> for shorthand</li>
+        <li><code>--process</code> for longhand</li>
+      </ul>
+    </li>
+    <li><code>&lt;name&gt;</code> is the name of a [process](/docs/processes) with associated <code>gwen/conf/process/&lt;name&gt;.conf</code> settings to load and launch with.</li>
+  </ul>
+
+  <p>Examples</p>
+
+  To load all settings and execute all features defined in the <code>gwen/conf/process/custom.conf</code> settings and open [REPL](/docs/repl):
+  
+  ```shell
+  gwen -p custom
+  ```
+
+  To load all settings and execute all features defined in the <code>gwen/conf/process/custom.conf</code> settings and exit when done:
+  
+  ```shell
+  gwen -p custom -b
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-process">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0">v4.0.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-launch-options-conf">
   <summary class="cli-options">
 
@@ -888,16 +935,11 @@ Default launch options and arguments can also be configured in [settings](/docs/
     <li><code>&lt;files&gt;</code> is a comma separated list of <code>.conf</code>, <code>.json</code>, or <code>.properties</code> settings file paths.</li>
   </ul>
 
-  <br />
-  <p>
-  The <code>-p|--properties</code> option in early version of Gwen has been deprecated and replaced in favor of this option since Gwen 3. The former will still work for properties files until the next major release (and will be removed then). You should use this launch option going forward.
-  </p>
-
   <p>
   The following settings files are implicity added as defaults:
   <ul>
-    <li>Browser settings file if it exists and no other browser settings file is explicitly passed: <code>{<Link to="/docs/settings#gwen-baseDir">gwen.baseDir</Link>}/browsers/${<Link to="/docs/settings#gwen-target-browser">gwen.target.browser</Link>}.conf</code></li>
-    <li>Environment settings file if it exists and no other environemnt settings file is explicitly passed: <code>{<Link to="/docs/settings#gwen-baseDir">gwen.baseDir</Link>}/env/${<Link to="/docs/settings#gwen-target-env">gwen.target.env</Link>}.conf</code></li>
+    <li>Browser settings file if it exists and no other browser settings file is explicitly passed: <code>{<Link to="/docs/settings#gwen-baseDir">gwen.baseDir</Link>}/conf/browsers/${<Link to="/docs/settings#gwen-target-browser">gwen.target.browser</Link>}.conf</code></li>
+    <li>Environment settings file if it exists and no other environment settings file is explicitly passed: <code>{<Link to="/docs/settings#gwen-baseDir">gwen.baseDir</Link>}/conf/env/${<Link to="/docs/settings#gwen-target-env">gwen.target.env</Link>}.conf</code></li>
   </ul>
   </p>
   <br />
@@ -918,7 +960,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
   To execute all feature files in a directory on the firefox browser using dev environment settings.
   
   ```shell
-  yarn gwen -b -c gwen/browsers/firefox.conf,gwen/env/dev.conf gwen/features/dir
+  yarn gwen -b -c gwen/conf/browsers/firefox.conf,gwen/conf/env/dev.conf gwen/features/dir
   ```
 
   To execute a feature file and load custom properties.
@@ -934,7 +976,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
   To execute all feature files in a directory on the firefox browser using dev environment settings.
   
   ```shell
-  npm run gwen -- -b -c gwen/browsers/firefox.conf,gwen/env/dev.conf gwen/features/dir
+  npm run gwen -- -b -c gwen/conf/firefox.conf,gwen/conf/env/dev.conf gwen/features/dir
   ```
 
   To execute a feature file and load custom properties.
@@ -950,7 +992,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
   To execute all feature files in a directory on the firefox browser using dev environment settings.
   
   ```shell
-  pnpm gwen -b -c gwen/browsers/firefox.conf,gwen/env/dev.conf gwen/features/dir
+  pnpm gwen -b -c gwen/conf/browsers/firefox.conf,gwen/conf/env/dev.conf gwen/features/dir
   ```
 
   To execute a feature file and load custom properties.
@@ -967,55 +1009,6 @@ Default launch options and arguments can also be configured in [settings](/docs/
     <div><Link to="#gwen-launch-options-conf">Link</Link></div>
     <div align="center">/Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-launch-options-properties">
-  <summary class="cli-options">
-
-  ```shell
-  -p|--properties <files>
-  ```
-  <p>
-  Optional list of properties files to load. These are loaded in the order given with latter entries overriding the former.
-  </p>
-  <p>
-  <b>Deprecated</b> since Gwen 3, use <code>-c|--conf</code> instead.
-  </p>
-
-  </summary>
-
-  <p>Where</p>
-
-  <ul>
-    <li>
-      Option name is either:
-      <ul>
-        <li><code>-p</code> for shorthand</li>
-        <li><code>--properties</code> for longhand</li>
-      </ul>
-    </li>
-    <li><code>&lt;files&gt;</code> is a comma separated list of <code>.properties</code> file paths.</li>
-  </ul>
-
-  <p>Examples</p>
-
-  To execute all feature files in a directory on the firefox browser using dev environment properties.
-  
-  ```shell
-  gwen -b -p browsers/firefox.properties,env/dev.properties features/dir
-  ```
-
-  To execute a feature file and load custom properties.
-  
-  ```shell
-  gwen --batch --properties props/custom.properties features/file.feature
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#gwen-launch-options-properties">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
   </div>
 </details>
 
@@ -1811,29 +1804,34 @@ Default launch options and arguments can also be configured in [settings](/docs/
   <p>The <code>init</code> command will generate the following Gwen files and subdirectories in your project</p>
 
   ```
-  ./                           # Project root
-   ├── .gitignore              # Git ignore file
+  ./                              # Project root
+   ├── .gitignore                 # Git ignore file
    ├── README.md
-   ├── gwen.conf               # Gwen settings file
+   ├── gwen.conf                  # Common settings
    └── /gwen
-       ├── .gitignore          # Git ignore file
-       ├── /browsers           # Browser settings
-       │   ├── chrome.conf
-       │   ├── edge.conf
-       │   ├── firefox.conf
-       │   ├── README.md
-       │   └──safari.conf
-       ├── /env                # Environment settings
-       │   ├── dev.conf
-       │   ├── local.conf
-       │   ├── prod.conf
-       │   ├── README.md
-       │   └── test.conf
-       ├── /features           # Features and associative meta
+       ├── .gitignore             # Git ignore file
+       ├── /conf
+       │   ├── /browsers          # Browser settings
+       │   │   ├── chrome.conf
+       │   │   ├── edge.conf
+       │   │   ├── firefox.conf
+       │   │   ├── README.md
+       │   │   └── safari.conf
+       │   ├── /env               # Environment settings
+       │   │   ├── dev.conf
+       │   │   ├── local.conf
+       │   │   ├── prod.conf
+       │   │   ├── README.md
+       │   │   ├── staging.conf
+       │   │   └── test.conf
+       │   └── /process           # Process settings
+       │       ├── README.md
+       │       └── samples.conf
+       ├── /features              # Features and associative meta
        │   └── README.md
-       ├── /meta               # Optional common/reusable meta
+       ├── /meta                  # Common/reusable meta
        │   └── README.md
-       └── /samples            # Sample features and meta
+       └── /samples               # Sample features and meta
   ```
 
   <div class="grid-3">

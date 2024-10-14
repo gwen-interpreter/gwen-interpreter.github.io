@@ -109,7 +109,7 @@ Feature: Todo Meta
     Given my todo list can be located by css ".todo-list"
      When I navigate to "${todo.page.url}"
      Then the page title should contain "TodoMVC"
-      And my todo list should not be displayed
+      And my todo list should be empty
   
   @Action
   @DataTable
@@ -158,7 +158,7 @@ The first StepDef in our meta example binds to the first step in the feature and
     Given my todo list can be located by css ".todo-list"
      When I navigate to "${todo.page.url}"
      Then the page title should contain "TodoMVC"
-      And my todo list should not be displayed
+      And my todo list should be empty
 ```
 
 </p>
@@ -222,7 +222,7 @@ We could have just hard coded the https://todomvc.com/examples/react/dist URL in
 :::note Conf
 <p>
 
-  *File: gwen/env/test.conf*
+  *File: gwen/conf/env/test.conf*
   ```json
   todo {
     page {
@@ -240,7 +240,7 @@ We could have just hard coded the https://todomvc.com/examples/react/dist URL in
 :::note Json
 <p>
 
- *File: gwen/env/test.json*
+ *File: gwen/conf/env/test.json*
   ```json
   {
     "todo": {
@@ -260,7 +260,7 @@ We could have just hard coded the https://todomvc.com/examples/react/dist URL in
 :::note Properties
 <p>
 
-  *File: gwen/env/test.properties*
+  *File: gwen/conf/test.properties*
   ```properties
     todo.page.url = https://todomvc.com/examples/react/dist
   ```
@@ -292,15 +292,15 @@ Calls DSL step:
 
 <p> </p>
 
-#### Verifying that an element is not displayed
+#### Verifying that an element is empty
 
-The last step in this StepDef verifies that the web element containing the current list of todo items is hidden from view. We expect it to not be displayed because we haven't added any items to it yet. Recall that we bound this element in the first step earlier to the name `my todo list`. So here we reference it by that name and if Gwen cannot see it on the page then execution will resume, otherwise an assertion error will be raised. 
+The last step in this StepDef verifies that the web element containing the current list of todo items is empty. We expect this because we haven't added any items to it yet. Recall that we bound this element in the first step earlier to the name `my todo list`. So here we reference it by that name and if Gwen sees that is is empty then execution will resume, otherwise an assertion error will be raised. 
 
 :::note StepDef 1, Step 4
 <p>
 
 ```gherkin
-  And my todo list should not be displayed
+  And my todo list should be empty
 ```
 
 Calls DSL step:
@@ -503,7 +503,7 @@ When launched on a directory, Gwen will recursively discover and bind all meta a
 
 :::note Set default environment
 
-  Set the default target environment to `test` by updating the [`gwen.target.env`](/docs/settings#gwen-target-env) setting in the `gwen.conf` file in the project root. This will ensure that all settings in the <code>env/test.conf</code> file are loaded when Gwen is launched and that all `${prop.name}` placeholder references throughout all meta and feature files are resolved.
+  Set the default target environment to `test` by updating the [`gwen.target.env`](/docs/settings#gwen-target-env) setting in the `gwen.conf` file in the project root. This will ensure that all settings in the <code>conf/env/test.conf</code> file are loaded when Gwen is launched and that all `${prop.name}` placeholder references throughout all meta and feature files are resolved.
   
   *File: gwen.conf*
 
