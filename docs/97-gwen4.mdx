@@ -93,6 +93,10 @@ The new project strucutre looks like this:
            └── README.md
 ```
 
+### Read only input 
+
+All input data sourced from files is now read only and cannot be overriden.
+
 ### Logging
 
 Gwen now uses [Logback](https://logback.qos.ch/index.html) instead of Log4j for logging . You can override the default logging configuration with your by specifing `-Dlogback.configurationFile=/path-to-logback-config-file` of the command line or by setting `logback.configurationFile` in your settings.
@@ -146,6 +150,11 @@ The following [implicit values](/docs/implicit-values) have been deprecated. Upd
 - Report Portal integration
 - Standalone setup (only [project setup](/docs/get-started#setup) now supported)
 - `gwen-web-accept-untrusted-certs` setting (use <code>acceptInsecureCerts</code> [capability](/docs/settings#gwen-web-capabilities) instead)
+- The following [settings](/docs/settings) have been dropped. Update your [settings files](/docs/settings#settings-files) to use the replacement name.
+  | Dropped                      | Use this instead                                                                |
+  | :--------------------------- | :------------------------------------------------------------------------------ |
+  | `gwen.feature.failfast`      | [`gwen.feature.failfast.enabled`](/docs/settings#gwen-feature-failfast-enabled) |
+
 - DSL steps
   - `I wait <duration> second[s] when <element> is <actioned>`
   - `I wait until <condition> when <element> is <actioned>`
