@@ -2908,7 +2908,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {4,5,7,8}
     Given the search field can be located by name "q"
      When I navigate to "https://google.com"
-      And I type "Gwen automation" in the search field
+      And I type "automation" in the search field
       And I send "COMMAND+A" to the search field
       And I send "COMMAND+C" to the search field
       And I clear the search field
@@ -4268,7 +4268,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   <p>Example</p>
 
   ```gherkin
-     When I write "Gwen automation" to "path/to/file.txt" file
+     When I write "automation" to "path/to/file.txt" file
   ```
 
   <div class="grid-3">
@@ -4308,7 +4308,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   ```gherkin {6}
      Given my content is
            """
-           Gwen automation and robotics
+           Automation and robotics
            for Gherkin
            """
      When I write my content to "path/to/file.txt" file
@@ -4377,7 +4377,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 
   ```gherkin {2}
      Given my file is "path/to/file.txt"
-      When I append "Gwen automation" to my file
+      When I append "automation" to my file
   ```
 
   <div class="grid-3">
@@ -4418,7 +4418,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
      Given my file is "path/to/file.txt"
        And my content is
            """
-           Gwen automation and robotics
+           Automation and robotics
            for Gherkin
            """
      When I write my content to my file
@@ -8251,7 +8251,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
               .length > 0
           """
      When I navigate to "https://google.com"
-      And I enter "gwen automation" in the search field
+      And I enter "automation" in the search field
       And I click topic link if topic found
      Then the page title should contain "${topic}" if topic found
   ```
@@ -8295,7 +8295,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
       And topic is "Automation"
       And topic link can be located by partial link text "${topic}"
      When I navigate to "https://google.com"
-      And I enter "gwen automation" in the search field
+      And I enter "automation" in the search field
       And I click topic link if topic link is displayed
      Then the page title should contain "${topic}"
   ```

@@ -15,47 +15,56 @@ import ThemedImage from '@theme/ThemedImage';
 
 ## What's new?
 
-### Processes
+### Launch processes
 
-You can now configure one or many automated [processes](/docs/processes#process-settings), each with its own launch options and [settings](/docs/settings). This enables you to configure unique processes in your project so you don't have to externally manage how they are launched. You simply give each process a name and define its configuration in a same named settings file. Then when you're ready to launch, you specify the name of the process you want to run with the [`-p|--process`]((/docs/launcher#gwen-launch-options-process)) option.
+You can now configure one or many [processes](/docs/processes#process-settings), each with its own launch options and [settings](/docs/settings). This enables you to configure reusable launch configurations for each process in your project so you don't have to manage them manually. You simply give each process a name and define its configuration in a same named settings file. Then when you're ready to launch, you specify the name of the process you want to run with the [`-p|--process`]((/docs/launcher#gwen-launch-options-process)) option.
 
 - See [processes](/docs/processes#process-settings) for more info.
 
-### Implicit values
+### New settings
 
-The following [implicit values](/docs/implicit-values) have been added.
+The following [settings](/docs/settings) have been added:
+
+| Setting                                                                   | Description                                                                                                                           |
+| :------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------ |
+| [`gwen.input.data.readOnly`](/docs/settings#gwen-input-data-readonly)     | Enables or disables read-only mode for all data sourced from input files. Has no effect in REPL mode where read-only is not enforced. |
+
+### New implicits
+
+The following [implicit values](/docs/implicit-values) have been added:
 
 | Name                                                           | Description                                                   |
 | :------------------------------------------------------------- | :------------------------------------------------------------ |
 | [`gwen.process.name`](/docs/implicit-values#gwen-process-name) |  The name of the currently running process (blank if default) |
 
-### Environment variables
+### New environment variables
 
-The following [environment variables](/docs/launcher#environment-variables) have been added.
+The following [environment variables](/docs/launcher#environment-variables) have been added:
 
 | Name                 | Accepts                                      | Affects CLI option                              |
 |:-------------------- | -------------------------------------------- | :---------------------------------------------: |
 | `GWEN_PROCESS`       | Name of [process](/docs/processes) to launch | [`-p, --process`](#gwen-launch-options-process) |
 
-### DSLs
+### New DSLs
 
 Introduced `empty` literal that can be used interchangeably with `blank` in all [DSL steps](/docs/dsl#dsl-reference) where `blank` is accepted.
 
 ## Whats changed?
 
-### Runtime
+### Changed runtime requirements
 
 - [Java](https://www.oracle.com/java/technologies/downloads/) 17+ is now the minimum supported Java version
 - [Node](https://nodejs.org/en/download/package-manager) 18+ is now the minimum supported Node version
 
-### Settings
+### Changed settings
 
 Deprecated features are now raised as errors by default instead of being logged as warnings.
+
   | Setting                                                                  | Old default | New default |
   | :----------------------------------------------------------------------- | :---------: | :---------: |
   | [`gwen.logLevel.deprecations`](/docs/settings#gwen-loglevel-deprecations)|   `warn`    |   `error`   |
 
-### Project structure
+### Changed project structure
 
 The `env` and `browsers` folders have been moved one level down under a `conf` subfolder which now also contains a `process` subfolder where you can define [process level settings](/docs/processes#process-level-settings).
 
@@ -93,17 +102,17 @@ The new project strucutre looks like this:
            └── README.md
 ```
 
-### Read only input 
+### Input data now read-only
 
-All input data sourced from files is now read only and cannot be overriden.
+All [input data](/docs/data-feeds) is now read-only at evaluation time by default (except in [REPL](/docs/repl) mode). This can be disabled through the [`gwen.input.data.readOnly`](/docs/settings#gwen-input-data-readonly) setting if required.
 
-### Logging
+### Chaged logging implementation
 
 Gwen now uses [Logback](https://logback.qos.ch/index.html) instead of Log4j for logging . You can override the default logging configuration with your by specifing `-Dlogback.configurationFile=/path-to-logback-config-file` of the command line or by setting `logback.configurationFile` in your settings.
 
 ## What's deprecated?
 
-### Settings
+### Deprecated settings
 
 The following [settings](/docs/settings) have been deprecated. Update your [settings files](/docs/settings#settings-files) to use the new names.
 
@@ -119,7 +128,7 @@ The following [settings](/docs/settings) have been deprecated. Update your [sett
 | `gwen.cli.options.report`    | [`gwen.launch.options.report`](/docs/settings#gwen-launch-options-report)                     |
 | `gwen.cli.options.tags`      | [`gwen.launch.options.tags`](/docs/settings#gwen-launch-options-tags)                         |
 
-### Implicit values
+### Deprecated implicits
 
 The following [implicit values](/docs/implicit-values) have been deprecated. Update your references to use the new names.
 
@@ -146,73 +155,79 @@ The following [implicit values](/docs/implicit-values) have been deprecated. Upd
 
 ## What's dropped?
 
+### Dropped integrations
 - IE browser integration
 - Report Portal integration
 - Standalone setup (only [project setup](/docs/get-started#setup) now supported)
-- `gwen-web-accept-untrusted-certs` setting (use <code>acceptInsecureCerts</code> [capability](/docs/settings#gwen-web-capabilities) instead)
-- The following [settings](/docs/settings) have been dropped. Update your [settings files](/docs/settings#settings-files) to use the replacement name.
-  | Dropped                      | Use this instead                                                                |
-  | :--------------------------- | :------------------------------------------------------------------------------ |
-  | `gwen.feature.failfast`      | [`gwen.feature.failfast.enabled`](/docs/settings#gwen-feature-failfast-enabled) |
 
-- DSL steps
-  - `I wait <duration> second[s] when <element> is <actioned>`
-  - `I wait until <condition> when <element> is <actioned>`
-  - `I navigate to the <page>`
-  - `I am on the <page>`
-  - `the <page> url is "<url>"`
-  - `the url will be "<url>`
-  - `the url will be defined by <property|setting> "<name>"`
-  - Following deprecated in favour of base steps with [`@Timeout`](/docs/locator-level-timeouts#timeout-annotations) and [`@Delay`](/docs/locator-level-timeouts#delay-annotation) annotations
-    - `<step> <until|while> <condition> using <delay> <delayUnit> delay`
-    - `<step> <until|while> <condition> using <timeout> <timeoutUnit> timeout`
-    - `<step> <until|while> <condition> using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
-    - `<step> <until|while> <condition> using no delay and <timeout> <timeoutUnit> timeout`
-    - `<step> <until|while> <condition> using no delay`
-    - `<step> <until|while> <condition> using no delay and <timeout> <timeoutUnit> timeout`
-    - `I wait for <element> for <duration> second[s]`
-    - `I wait for <element> text for <duration> second[s]`
-    - `I wait until "<javascript>" using <delay> <delayUnit> delay`
-    - `I wait until "<javascript>" using <timeout> <timeoutUnit> timeout`
-    - `I wait until "<javascript>" using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
-    - `I wait until <condition> using <delay> <delayUnit> delay`
-    - `I wait until <condition> using <timeout> <timeoutUnit> timeout`
-    - `I wait until <condition> using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
-    - `<step> for each <element> located by <selector> "<expression>" with no <wait|timeout>`
-    - `<step> for each <element> located by <selector> "<expression>" with <timeoutSecs> second <wait|timeout>`
-    - `<step> for each <element> located by <selector> "<expression>" in <containerElement> with no <wait|timeout>`
-    - `<step> for each <element> located by <selector> "<expression>" in <containerElement> with <timeoutSecs> second <wait|timeout>`
-    - `<step> <until|while> <element> is[ not] <state> using <delay> <delayUnit> delay`
-    - `<step> <until|while> <element> is[ not] <state> using <timeout> <timeoutUnit> timeout`
-    - `<step> <until|while> <element> is[ not] <state> using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
-    - `<step> <until|while> <element> is[ not] <state> using no delay and <timeout> <timeoutUnit> timeout`
-    - `<element> can be located by <selector> "<expression>" with no <wait|timeout>`
-    - `<step> <until|while> <element> is[ not] <state> using no delay`
-    - `<step> <until|while> <name> is[ not] defined using <delay> <delayUnit> delay`
-    - `<step> <until|while> <name> is[ not] defined using <timeout> <timeoutUnit> timeout`
-    - `<step> <until|while> <name> is[ not] defined using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
-    - `<step> <until|while> <name> is[ not] defined using no delay and <timeout> <timeoutUnit> timeout`
-    - `<step> <until|while> <name> is[ not] defined using no delay`
-    - `<element> can be located by <selector> "<expression>" with <timeoutSecs> second <wait|timeout>`
-    - `<element> can be located by <selector> "<expression>" at index <index> with no <wait|timeout>`
-    - `<element> can be located by <selector> "<expression>" at index <index> with <timeoutSecs> second <wait|timeout>`
-    - `<element> can be located by <selector> "<expression>" at index <index> in <otherElement> with no <wait|timeout>`
-    - `<element> can be located by <selector> "<expression>" at index <index> in <otherElement>  with <timeoutSecs> second <wait|timeout>`
-    - `<element> can be located by <selector> "<expression>" <relativeTo> <otherElement> with no <wait|timeout>`
-    - `<element> can be located by <selector> "<expression>" <relativeTo> <otherElement>  with <timeoutSecs> second <wait|timeout>`
-    - ```
-      <element> can be located at index <index> with no <wait|timeout> by
-        | selector     | expression     |
-        | <selector 1> | <expression 1> |
-        | <selector 2> | <expression 2> |
-        |      ..      |       ..       |
-        | <selector n> | <expression n> |
-      ```
-    - ```
-      <element> can be located at index <index> with <timeoutSecs> second <wait|timeout> by
-        | selector     | expression     |
-        | <selector 1> | <expression 1> |
-        | <selector 2> | <expression 2> |
-        |      ..      |       ..       |
-        | <selector n> | <expression n> |
-      ```
+### Dropped settings
+
+The following [settings](/docs/settings) have been dropped. Update your [settings files](/docs/settings#settings-files) to use the replacement name.
+
+  | Dropped                           | Use this instead                                                                                |
+  | :-------------------------------- | :---------------------------------------------------------------------------------------------- |
+  | `gwen.feature.failfast`           | [`gwen.feature.failfast.enabled`](/docs/settings#gwen-feature-failfast-enabled)                 |
+  | `gwen-web-accept-untrusted-certs` | Use <code>acceptInsecureCerts</code> [capability](/docs/settings#gwen-web-capabilities) instead |
+
+### Dropped DSLs
+
+- `I wait <duration> second[s] when <element> is <actioned>`
+- `I wait until <condition> when <element> is <actioned>`
+- `I navigate to the <page>`
+- `I am on the <page>`
+- `the <page> url is "<url>"`
+- `the url will be "<url>`
+- `the url will be defined by <property|setting> "<name>"`
+- Following deprecated in favour of base steps with [`@Timeout`](/docs/locator-level-timeouts#timeout-annotations) and [`@Delay`](/docs/locator-level-timeouts#delay-annotation) annotations
+  - `<step> <until|while> <condition> using <delay> <delayUnit> delay`
+  - `<step> <until|while> <condition> using <timeout> <timeoutUnit> timeout`
+  - `<step> <until|while> <condition> using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
+  - `<step> <until|while> <condition> using no delay and <timeout> <timeoutUnit> timeout`
+  - `<step> <until|while> <condition> using no delay`
+  - `<step> <until|while> <condition> using no delay and <timeout> <timeoutUnit> timeout`
+  - `I wait for <element> for <duration> second[s]`
+  - `I wait for <element> text for <duration> second[s]`
+  - `I wait until "<javascript>" using <delay> <delayUnit> delay`
+  - `I wait until "<javascript>" using <timeout> <timeoutUnit> timeout`
+  - `I wait until "<javascript>" using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
+  - `I wait until <condition> using <delay> <delayUnit> delay`
+  - `I wait until <condition> using <timeout> <timeoutUnit> timeout`
+  - `I wait until <condition> using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
+  - `<step> for each <element> located by <selector> "<expression>" with no <wait|timeout>`
+  - `<step> for each <element> located by <selector> "<expression>" with <timeoutSecs> second <wait|timeout>`
+  - `<step> for each <element> located by <selector> "<expression>" in <containerElement> with no <wait|timeout>`
+  - `<step> for each <element> located by <selector> "<expression>" in <containerElement> with <timeoutSecs> second <wait|timeout>`
+  - `<step> <until|while> <element> is[ not] <state> using <delay> <delayUnit> delay`
+  - `<step> <until|while> <element> is[ not] <state> using <timeout> <timeoutUnit> timeout`
+  - `<step> <until|while> <element> is[ not] <state> using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
+  - `<step> <until|while> <element> is[ not] <state> using no delay and <timeout> <timeoutUnit> timeout`
+  - `<element> can be located by <selector> "<expression>" with no <wait|timeout>`
+  - `<step> <until|while> <element> is[ not] <state> using no delay`
+  - `<step> <until|while> <name> is[ not] defined using <delay> <delayUnit> delay`
+  - `<step> <until|while> <name> is[ not] defined using <timeout> <timeoutUnit> timeout`
+  - `<step> <until|while> <name> is[ not] defined using <delay> <delayUnit> delay and <timeout> <timeoutUnit> timeout`
+  - `<step> <until|while> <name> is[ not] defined using no delay and <timeout> <timeoutUnit> timeout`
+  - `<step> <until|while> <name> is[ not] defined using no delay`
+  - `<element> can be located by <selector> "<expression>" with <timeoutSecs> second <wait|timeout>`
+  - `<element> can be located by <selector> "<expression>" at index <index> with no <wait|timeout>`
+  - `<element> can be located by <selector> "<expression>" at index <index> with <timeoutSecs> second <wait|timeout>`
+  - `<element> can be located by <selector> "<expression>" at index <index> in <otherElement> with no <wait|timeout>`
+  - `<element> can be located by <selector> "<expression>" at index <index> in <otherElement>  with <timeoutSecs> second <wait|timeout>`
+  - `<element> can be located by <selector> "<expression>" <relativeTo> <otherElement> with no <wait|timeout>`
+  - `<element> can be located by <selector> "<expression>" <relativeTo> <otherElement>  with <timeoutSecs> second <wait|timeout>`
+  - ```
+    <element> can be located at index <index> with no <wait|timeout> by
+      | selector     | expression     |
+      | <selector 1> | <expression 1> |
+      | <selector 2> | <expression 2> |
+      |      ..      |       ..       |
+      | <selector n> | <expression n> |
+    ```
+  - ```
+    <element> can be located at index <index> with <timeoutSecs> second <wait|timeout> by
+      | selector     | expression     |
+      | <selector 1> | <expression 1> |
+      | <selector 2> | <expression 2> |
+      |      ..      |       ..       |
+      | <selector n> | <expression n> |
+    ```

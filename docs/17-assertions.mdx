@@ -23,7 +23,7 @@ With hard assertions, the first assertion error to be detected will be reported 
 > Since [v3.43.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.43.0), the `@Hard` annotation can be used on any assertion step to make it fail hard.
 
 ```gherkin
-  Then @Hard the page title should contain "xGwen automation"
+  Then @Hard the page title should contain "utomation"
 ```
 
 ![Hard assertions report](/img/assertions/hard-assertions.png)
@@ -35,7 +35,7 @@ With soft assertions, every assertion error that is detected is collected and re
 > Since [v3.43.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.43.0), the `@Soft` annotation can be used on any assertion step to make it fail soft.
 
 ```gherkin
-  Then @Soft the page title should contain "xGwen automation"
+  Then @Soft the page title should contain "xAautomation"
 ```
 
 ![Soft assertions report](/img/assertions/soft-assertions.png)
@@ -47,7 +47,7 @@ With sustained assertions, every assertion error that is detected is collected a
 > Since [v3.43.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.43.0), the `@Sustained` annotation can be used on any assertion step to make it sustained.
 
 ```gherkin
-  Then @Sustained the page title should contain "xGwen automation"
+  Then @Sustained the page title should contain "xAautomation"
 ```
 
 ![Sustained assertions report](/img/assertions/sustained-assertions.png)
@@ -68,25 +68,25 @@ The `@Hard`, `@Soft` and `@Sustained` annotations introduced in [v3.43.0](https:
 For example, if the [`gwen.assertion.mode`](/docs/settings#gwen-assertion-mode) setting is set to `hard`, the following would perform a hard assertion since no overriding annotation is specified.
 
 ```gherkin
-  Then the page title should contain "xGwen automation"
+  Then the page title should contain "xAautomation"
 ```
 
 The following would also perform a hard assertion since the `@Hard` annotatation is explicitly specified (although redundant).
 
 ```gherkin
-  Then @Hard the page title should contain "xGwen automation"
+  Then @Hard the page title should contain "xAautomation"
 ```
 
 The following however, would perform a soft assertion since the `@Soft` annotatation is specified.
 
 ```gherkin
-  Then @Soft the page title should contain "xGwen automation"
+  Then @Soft the page title should contain "xAautomation"
 ```
 
 Similarly, the following would perform a sustained assertion since the `@Sustained` annotatation is specified.
 
 ```gherkin
-  Then @Sustained the page title should contain "xGwen automation"
+  Then @Sustained the page title should contain "xAautomation"
 ```
 
 ## Message Annotation
