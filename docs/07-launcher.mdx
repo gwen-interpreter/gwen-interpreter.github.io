@@ -25,11 +25,12 @@ Usage: gwen [options] [files|dirs]
   --parallel               Execute features or scenarios in parallel
                            - features if gwen.state.level = feature (default)
                            - scenarios if gwen.state.level = scenario
-  -b, --batch              Exit when execution completes (omit to open REPL)
+  --repl                   Force open REPL (even if -b|--batch specified)
+  -p, --process name       Name of process to launch
+  -b, --batch              Exit when execution completes (unless --repl is specified)
   -v, --verbose            Enable verbose log output
   -d, --debug              Enable breakpoints and interactive debugging
   -n, --dry-run            Check all syntax and bindings and report errors
-  -p, --process name       Name of process to launch
   -c, --conf files         Settings files: conf, json or properties (comma separated)
   -r, --report dir         Directory to output generated report(s) to
   -f, --formats reports    Report formats to include in output (comma separated)
@@ -479,6 +480,136 @@ Default launch options and arguments can also be configured in [settings](/docs/
   </div>
 </details>
 
+<details id="gwen-launch-options-repl">
+  <summary class="cli-options">
+
+  ```shell
+  --repl
+  ```
+  <p>Optional switch to force open REPL either immediately or after features have executed (even if batch mode is enabled).</p>
+  </summary>
+  
+  <p>Where</p>
+
+  <ul>
+    <li>
+      Option name is:
+      <ul>
+        <li><code>--repl</code> (longhand only supported)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>Examples</p>
+
+  <Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+  <TabItem value="yarn">
+
+  Specify the <em>repl</em> launch option to immediatelly open the REPL
+
+  ```shell
+  yarn gwen --repl
+  ```
+
+  Specify the <em>repl</em> launch option to execute the given feature file and then the REPL 
+
+  ```shell
+  yarn gwen --repl gwen/features/file.feature
+  ```
+
+  Specify the <em>repl</em> launch option to open REPL even if batch is specified
+
+  ```shell
+  yarn gwen --repl -b
+  yarn gwen --repl --batch
+  ```
+
+  Specify the <em>repl</em> launch option to execute the given feature file and then the REPL even if batch is specified
+
+  ```shell
+  yarn gwen --repl -b gwen/features/file.feature
+  yarn gwen --repl --batch gwen/features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="npm">
+
+  Specify the <em>repl</em> launch option to immediatelly open the REPL
+
+  ```shell
+  npm run gwen -- --repl
+  ```
+
+  Specify the <em>repl</em> launch option to execute the given feature file and then the REPL 
+
+  ```shell
+  npm run gwen -- --repl gwen/features/file.feature
+  ```
+
+  Specify the <em>repl</em> launch option to open REPL even if batch is specified
+
+  ```shell
+  npm run gwen -- --repl -b
+  npm run gwen -- --repl --batch
+  ```
+
+  Specify the <em>repl</em> launch option to execute the given feature file and then the REPL even if batch is specified
+
+  ```shell
+  npm run gwen -- --repl -b gwen/features/file.feature
+  npm run gwen -- --repl --batch gwen/features/file.feature
+  ```
+
+  </TabItem>
+
+  <TabItem value="pnpm">
+
+  Specify the <em>repl</em> launch option to immediatelly open the REPL
+
+  ```shell
+  pnpm gwen --repl
+  ```
+
+  Specify the <em>repl</em> launch option to execute the given feature file and then the REPL 
+
+  ```shell
+  pnpm gwen --repl gwen/features/file.feature
+  ```
+
+  Specify the <em>repl</em> launch option to open REPL even if batch is specified
+
+  ```shell
+  pnpm gwen --repl -b
+  pnpm gwen --repl --batch
+  ```
+
+  Specify the <em>repl</em> launch option to execute the given feature file and then the REPL even if batch is specified
+
+  ```shell
+  pnpm gwen --repl -b gwen/features/file.feature
+  pnpm gwen --repl --batch gwen/features/file.feature
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-repl">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0">v4.0.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-launch-options-batch">
   <summary class="cli-options">
 
@@ -601,6 +732,52 @@ Default launch options and arguments can also be configured in [settings](/docs/
     <div><Link to="#gwen-launch-options-batch">Link</Link></div>
     <div align="center">Defaults to: <Link to="/docs/settings#gwen-launch-options-batch"><code>gwen.launch.options.batch</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-launch-options-process">
+  <summary class="cli-options">
+
+  ```shell
+  -p|--process <name>
+  ```
+  <p>
+  Name of process to launch.
+  </p>
+
+  </summary>
+
+  <p>Where</p>
+
+  <ul>
+    <li>
+      You can use either:
+      <ul>
+        <li><code>-p</code> for shorthand</li>
+        <li><code>--process</code> for longhand</li>
+      </ul>
+    </li>
+    <li><code>&lt;name&gt;</code> is the name of a [process](/docs/processes) with associated <code>gwen/conf/process/&lt;name&gt;.conf</code> settings to load and launch with.</li>
+  </ul>
+
+  <p>Examples</p>
+
+  To load all settings and execute all features defined in the <code>gwen/conf/process/custom.conf</code> settings and open [REPL](/docs/repl):
+  
+  ```shell
+  gwen -p custom
+  ```
+
+  To load all settings and execute all features defined in the <code>gwen/conf/process/custom.conf</code> settings and exit when done:
+  
+  ```shell
+  gwen -p custom -b
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#gwen-launch-options-process">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0">v4.0.0</Link></div>
   </div>
 </details>
 
@@ -863,52 +1040,6 @@ Default launch options and arguments can also be configured in [settings](/docs/
     <div><Link to="#gwen-launch-options-dry-run">Link</Link></div>
     <div align="center">Defaults to <Link to="/docs/settings#gwen-launch-options-dry-run"><code>gwen.launch.options.dryRun</code></Link></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-launch-options-process">
-  <summary class="cli-options">
-
-  ```shell
-  -p|--process <name>
-  ```
-  <p>
-  Name of process to launch.
-  </p>
-
-  </summary>
-
-  <p>Where</p>
-
-  <ul>
-    <li>
-      You can use either:
-      <ul>
-        <li><code>-p</code> for shorthand</li>
-        <li><code>--process</code> for longhand</li>
-      </ul>
-    </li>
-    <li><code>&lt;name&gt;</code> is the name of a [process](/docs/processes) with associated <code>gwen/conf/process/&lt;name&gt;.conf</code> settings to load and launch with.</li>
-  </ul>
-
-  <p>Examples</p>
-
-  To load all settings and execute all features defined in the <code>gwen/conf/process/custom.conf</code> settings and open [REPL](/docs/repl):
-  
-  ```shell
-  gwen -p custom
-  ```
-
-  To load all settings and execute all features defined in the <code>gwen/conf/process/custom.conf</code> settings and exit when done:
-  
-  ```shell
-  gwen -p custom -b
-  ```
-
-  <div class="grid-3">
-    <div><Link to="#gwen-launch-options-process">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0">v4.0.0</Link></div>
   </div>
 </details>
 
