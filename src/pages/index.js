@@ -149,7 +149,6 @@ export default function Home() {
                       <CodeBlock language="shell">
 {`yarn add -D @gweninterpreter/gwen-web
 yarn gwen init
-cp -R gwen/samples/* gwen/features
 `}
                       </CodeBlock>
                       Execute one feature spec
@@ -166,7 +165,6 @@ cp -R gwen/samples/* gwen/features
                       <CodeBlock language="shell">
 {`npm i --save-dev @gweninterpreter/gwen-web
 npm run gwen init
-cp -R gwen/samples/* gwen/features
 `}
                       </CodeBlock>
                           Execute one feature spec
@@ -183,7 +181,6 @@ cp -R gwen/samples/* gwen/features
                       <CodeBlock language="shell">
 {`pnpm add -D @gweninterpreter/gwen-web
 pnpm gwen init
-cp -R gwen/samples/* gwen/features
 `}
                       </CodeBlock>
                       Execute one feature spec

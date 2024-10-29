@@ -133,10 +133,11 @@ The `init` command will generate the following files and subdirectories in your 
        │       ├── README.md
        │       └── samples.conf
        ├── /features              # Features and associative meta
-       │   └── README.md
-       ├── /meta                  # Common/reusable meta
-       │   └── README.md
-       └── /samples               # Sample features and meta
+       │   ├── README.md
+       │   └── /samples           # Samples
+       └── /meta                  # Common/reusable meta
+           └── README.md
+       
 ```
 
 :::info Automatic Updates
@@ -252,7 +253,6 @@ yarn gwen -p samples -b
 ```
 
 or (with long-hand option names)
-
 
 ```shell
 yarn gwen --process samples --batch

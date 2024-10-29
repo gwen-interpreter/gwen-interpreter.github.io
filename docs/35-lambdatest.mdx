@@ -107,7 +107,7 @@ testRunnerCommand: yarn gwen -b -c gwen/conf/browsers/lambdatest.conf,gwen/conf/
 
 The `testDiscovery` element locates every feature file in the `gwen/features` directory and the `matrix` element automatically distributes and executes each of those in parallel across all the combinations of OS and browsers configured. Each browser and each feature file is passed to Gwen as `$browser` and `$test` respectively.
 
-> If you want to run the Gwen samples instead, replace `gwen/features` with `gwen/samples` in the `testDiscovery command`.
+> If you want to run the Gwen samples instead, replace `gwen/features` with `gwen/features/samples` in the `testDiscovery command`.
 
 More information about the [HyperExecute YAML here](https://www.lambdatest.com/support/docs/deep-dive-into-hyperexecute-yaml).
 

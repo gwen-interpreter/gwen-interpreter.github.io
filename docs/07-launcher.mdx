@@ -25,9 +25,9 @@ Usage: gwen [options] [files|dirs]
   --parallel               Execute features or scenarios in parallel
                            - features if gwen.state.level = feature (default)
                            - scenarios if gwen.state.level = scenario
-  --repl                   Force open REPL (even if -b|--batch specified)
+  --repl                   Open REPL even if -b|--batch or feature files|dirs are specified
   -p, --process name       Name of process to launch
-  -b, --batch              Exit when execution completes (unless --repl is specified)
+  -b, --batch              Exit when execution completes (ignored if --repl is specified)
   -v, --verbose            Enable verbose log output
   -d, --debug              Enable breakpoints and interactive debugging
   -n, --dry-run            Check all syntax and bindings and report errors
@@ -486,7 +486,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
   ```shell
   --repl
   ```
-  <p>Optional switch to force open REPL either immediately or after features have executed (even if batch mode is enabled).</p>
+  <p>Optional switch to open REPL either even if batch mode is enabled or features are specified.</p>
   </summary>
   
   <p>Where</p>
@@ -513,13 +513,13 @@ Default launch options and arguments can also be configured in [settings](/docs/
 
   <TabItem value="yarn">
 
-  Specify the <em>repl</em> launch option to immediatelly open the REPL
+  Specify the <em>repl</em> launch option to open the REPL
 
   ```shell
   yarn gwen --repl
   ```
 
-  Specify the <em>repl</em> launch option to execute the given feature file and then the REPL 
+  Specify the <em>repl</em> launch option to bypass feature execution and open the REPL 
 
   ```shell
   yarn gwen --repl gwen/features/file.feature
@@ -532,7 +532,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
   yarn gwen --repl --batch
   ```
 
-  Specify the <em>repl</em> launch option to execute the given feature file and then the REPL even if batch is specified
+  Specify the <em>repl</em> launch option to bypass feature execution and open the REPL even if batch is specified
 
   ```shell
   yarn gwen --repl -b gwen/features/file.feature
@@ -549,7 +549,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
   npm run gwen -- --repl
   ```
 
-  Specify the <em>repl</em> launch option to execute the given feature file and then the REPL 
+  Specify the <em>repl</em> launch option to bypass feature execution and open the REPL 
 
   ```shell
   npm run gwen -- --repl gwen/features/file.feature
@@ -562,7 +562,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
   npm run gwen -- --repl --batch
   ```
 
-  Specify the <em>repl</em> launch option to execute the given feature file and then the REPL even if batch is specified
+  Specify the <em>repl</em> launch option to bypass feature execution and open the REPL even if batch is specified
 
   ```shell
   npm run gwen -- --repl -b gwen/features/file.feature
@@ -579,7 +579,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
   pnpm gwen --repl
   ```
 
-  Specify the <em>repl</em> launch option to execute the given feature file and then the REPL 
+  Specify the <em>repl</em> launch option to bypass feature execution and open the REPL 
 
   ```shell
   pnpm gwen --repl gwen/features/file.feature
@@ -592,7 +592,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
   pnpm gwen --repl --batch
   ```
 
-  Specify the <em>repl</em> launch option to execute the given feature file and then the REPL even if batch is specified
+  Specify the <em>repl</em> launch option to bypass feature execution and open the REPL even if batch is specified
 
   ```shell
   pnpm gwen --repl -b gwen/features/file.feature
@@ -1959,10 +1959,10 @@ Default launch options and arguments can also be configured in [settings](/docs/
        │       ├── README.md
        │       └── samples.conf
        ├── /features              # Features and associative meta
-       │   └── README.md
-       ├── /meta                  # Common/reusable meta
-       │   └── README.md
-       └── /samples               # Sample features and meta
+       │   ├── README.md
+       │   └── /samples          # Samples
+       └── /meta                  # Common/reusable meta
+           └── README.md
   ```
 
   <div class="grid-3">
