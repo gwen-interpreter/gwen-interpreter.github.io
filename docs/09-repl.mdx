@@ -139,8 +139,12 @@ Gwen REPL commands:
 help
   Displays this help text
 
-env ["filter"]
+env [switch] ["filter"]
   Lists attributes in the current environment
+    Only lists visible attributes if no options are specified
+    switch : (optional)
+      -a : to list all attributes in all scopes
+      -f : to list all attributes in the feature (global) scope
     filter : (optional) literal string or regex filter expression
 
 :paste|paste
