@@ -12,7 +12,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 > Since [v2.16.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0)
 
-Template matching allow users to compare any source content with a target template that can either be specified as a text literal or text stored in a file, and perform extract, ignore, and inject operations at the same time.
+Template matching allow users to compare any source content with a target template that can either be specified as a text literal or text stored in a file, and perform capture, ignore, and inject operations at the same time.
 
 ## Examples
 
@@ -24,46 +24,46 @@ Templates can contain JSON, XML, HTML, or any type of text and can also have mul
 ## Match and Ignore
 
 The following example will successfully match `my value` and:
-- Ignore the `id` value where `!{}` appears
+- Ignore the `id` value where `@{*}` appears
 
 ```gherkin
   Then my value should match template
        """
-       {"id":!{},"category":{"name":"pet"},"name":"tiger","status":"available"}
+       {"id":@{*},"category":{"name":"pet"},"name":"tiger","status":"available"}
        """
 ```
 
-## Match, Ignore, and Extract
+## Match, Ignore, and Capture
 
 The following example will successfully match `my value` and:
-- Ignore the `id` value where `!{}` appears
-- Extract the `tiger` value where `@{pet name}` appears and bind it to the attribute named `pet name` in the feature scope
+- Ignore the `id` value where `@{*}` appears
+- Capture the `tiger` value where `@{pet name}` appears and bind it to the attribute named `pet name` in the feature scope
 
 ```gherkin
   Then my value should match template
        """
-       {"id":!{},"category":{"name":"pet"},"name":"@{pet name}","status":"available"}
+       {"id":@{*},"category":{"name":"pet"},"name":"@{pet name}","status":"available"}
        """
 ```
 
-Subsequent steps can access the extracted `pet name` attribute like any other Gwen binding. For example, the following checks it's value:
+Subsequent steps can access the captured `pet name` attribute like any other Gwen binding. For example, the following checks it's value:
 
 ```gherkin
   And pet name should be "tiger"
 ```
 
-## Match, Ignore, Extract, and Inject
+## Match, Ignore, Capture, and Inject
 
 The following example will successfully match `my value` and:
-- Ignore the `id` value where `!{}` appears
-- Extract the `tiger` value where `@{pet name}` appears and bind it to the attribute named `pet name` in the feature scope
+- Ignore the `id` value where `@{*}` appears
+- Caputre the `tiger` value where `@{pet name}` appears and bind it to the attribute named `pet name` in the feature scope
 - Inject the value bound to the `my status` attribute into the template where `${my status}` appears.
 
 ```gherkin
   Given my status is "available"
    Then my value should match template
         """
-        {"id":!{},"category":{"name":"pet"},"name":"@{pet name}","status":"${my status}"}
+        {"id":@{*},"category":{"name":"pet"},"name":"@{pet name}","status":"${my status}"}
         """
     And pet name should be "tiger"
 ```

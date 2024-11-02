@@ -4245,6 +4245,33 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
+<details id="i-attach-filepath">
+  <summary class="dsl">
+
+  ```gherkin
+  I attach "<filepath>"
+  ```
+
+
+  <p>Attaches a local file to the Gwen report and assigns it the same name as the file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the local file to attach</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+     When I attach "path/to/data.csv"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-attach-filepath">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0">v4.0.0</Link></div>
+  </div>
+</details>
+
 <details id="i-write-append-text-to-file">
   <summary class="dsl">
 
@@ -4277,6 +4304,7 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.25.0">v3.25.0</Link></div>
   </div>
 </details>
+
 
 <details id="i-write-append-text-ref-to-file">
   <summary class="dsl">

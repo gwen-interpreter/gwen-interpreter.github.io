@@ -47,7 +47,9 @@ The following [environment variables](/docs/launcher#environment-variables) have
 
 ### New DSLs
 
-Introduced `empty` literal that can be used interchangeably with `blank` in all [DSL steps](/docs/dsl#dsl-reference) where `blank` is accepted.
+- Introduced `empty` literal that can be used interchangeably with `blank` in all [DSL steps](/docs/dsl#dsl-reference) where `blank` is accepted.
+- Introduced [`I attach "<filepath>"`](/docs/dsl#i-attach-filepath) DSL for attaching files to Gwen reports (where the name of the attachment will be the name of the file)
+
 
 ### Force open REPL option
 
@@ -113,6 +115,10 @@ All [input data](/docs/data-feeds) is now read-only at evaluation time by defaul
 ### Chaged logging implementation
 
 Gwen now uses [Logback](https://logback.qos.ch/index.html) instead of Log4j for logging . You can override the default logging configuration with your by specifing `-Dlogback.configurationFile=/path-to-logback-config-file` of the command line or by setting `logback.configurationFile` in your settings.
+
+### Changed placeholder syntax in pattern mather
+
+- The ignore placeholder syntax in the [template matcher](/docs/template-matching) has been changed from `!{}` to `@{*}`
 
 ## What's deprecated?
 
