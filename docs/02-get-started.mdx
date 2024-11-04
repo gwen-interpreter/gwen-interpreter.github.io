@@ -129,7 +129,7 @@ The `init` command will generate the following files and subdirectories in your 
        │   │   ├── README.md
        │   │   ├── staging.conf
        │   │   └── test.conf
-       │   └── /process           # Process settings
+       │   └── /profiles          # Profile settings
        │       ├── README.md
        │       └── samples.conf
        ├── /features              # Features and associative meta
@@ -255,7 +255,7 @@ yarn gwen -p samples -b
 or (with long-hand option names)
 
 ```shell
-yarn gwen --process samples --batch
+yarn gwen --profile samples --batch
 ```
 
 </TabItem>
@@ -270,7 +270,7 @@ npm run gwen -- -p samples -b
 or (with long-hand option names)
 
 ```shell
-npm run gwen -- --process samples --batch
+npm run gwen -- --profile samples --batch
 ```
 
 </TabItem>
@@ -285,7 +285,7 @@ pnpm gwen -p samples -b
 or (with long-hand option names)
 
 ```shell
-pnpm gwen --process samples --batch
+pnpm gwen --profile samples --batch
 ```
 
 </TabItem>
@@ -293,7 +293,7 @@ pnpm gwen --process samples --batch
 
 Where:
 
-- The `-p|--process samples` option instructs Gwen to execute the samples as defined in `gwen/conf/process/samples.conf`
+- The `-p|--profile samples` option instructs Gwen to execute the samples as defined in `gwen/conf/profiles/samples.conf` settings file
 - The `-b|--batch` option instructs Gwen to exit immediately after executing the samples. Omitting it will open the [REPL Console](/docs/repl) instead of exiting.
 
 [Gwen Launcher](/docs/launcher)

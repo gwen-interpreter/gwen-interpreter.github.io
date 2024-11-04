@@ -15,13 +15,13 @@ import ThemedImage from '@theme/ThemedImage';
 
 ## What's new?
 
-### Launch processes
+### Launch Profiles
 
-You can now configure one or many [processes](/docs/processes#process-settings), each with its own launch options and [settings](/docs/settings). This enables you to configure reusable launch configurations for each process in your project so you don't have to manage them manually. You simply give each process a name and define its configuration in a same named settings file. Then when you're ready to launch, you specify the name of the process you want to run with the [`-p|--process`]((/docs/launcher#gwen-launch-options-process)) option.
+You can now configure one or many launch profiles, each with its own options and [settings](/docs/settings). This enables you to configure unique launch configurations for each process in your project so you don't have to manage them externally. You simply give each process a name and define its configuration in a same named settings file in the `gwen/conf/profiles` folder of your project. Then when you're ready to launch, you specify the name of the profile you want to run with the [`-p|--profile`](/docs/launcher#gwen-launch-options-profile) option.
 
-- See [processes](/docs/processes#process-settings) for more info.
+- See [profiles](/docs/profiles) for more info.
 
-### New settings
+### New Settings
 
 The following [settings](/docs/settings) have been added:
 
@@ -29,21 +29,21 @@ The following [settings](/docs/settings) have been added:
 | :------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------ |
 | [`gwen.input.data.readOnly`](/docs/settings#gwen-input-data-readonly)     | Enables or disables read-only mode for all data sourced from input files. Has no effect in REPL mode where read-only is not enforced. |
 
-### New implicits
+### New Implicits
 
 The following [implicit values](/docs/implicit-values) have been added:
 
 | Name                                                           | Description                                                   |
 | :------------------------------------------------------------- | :------------------------------------------------------------ |
-| [`gwen.process.name`](/docs/implicit-values#gwen-process-name) |  The name of the currently running process (blank if default) |
+| [`gwen.profile.name`](/docs/implicit-values#gwen-profile-name) |  The name of the currently running profile (blank if default) |
 
-### New environment variables
+### New Environment Variables
 
 The following [environment variables](/docs/launcher#environment-variables) have been added:
 
-| Name                 | Accepts                                      | Affects CLI option                              |
-|:-------------------- | -------------------------------------------- | :---------------------------------------------: |
-| `GWEN_PROCESS`       | Name of [process](/docs/processes) to launch | [`-p, --process`](#gwen-launch-options-process) |
+| Name                 | Accepts                                      | Affects CLI option                                            |
+|:-------------------- | -------------------------------------------- | :-----------------------------------------------------------: |
+| `GWEN_PROFILE`       | Name of [profile](/docs/profiles) to launch  | [`-p, --profile`](/docs/launcher#gwen-launch-options-profile) |
 
 ### New DSLs
 
@@ -51,18 +51,18 @@ The following [environment variables](/docs/launcher#environment-variables) have
 - Introduced [`I attach "<filepath>"`](/docs/dsl#i-attach-filepath) DSL for attaching files to Gwen reports (where the name of the attachment will be the name of the file)
 
 
-### Force open REPL option
+### Force Open REPL Option
 
-New [--repl](/docs/launcher#gwen-launch-options-repl) command line option added to force open REPL even if the [-b|--batch](/docs/launcher#gwen-launch-options-batch) option or feautre [files|dirs](/docs/launcher#gwen-launch-options-features) are specified. This is handy for cases where you might have the batch option or features specified in a [process](/docs/processes) configuration but want just to use the REPL.
+New [--repl](/docs/launcher#gwen-launch-options-repl) command line option added to force open REPL even if the [-b|--batch](/docs/launcher#gwen-launch-options-batch) option or feautre [files|dirs](/docs/launcher#gwen-launch-options-features) are specified. This is handy for cases where you might have the batch option or features specified in a launch [profile](/docs/profiles) but just want to use the REPL.
 
-## Whats changed?
+## Whats Changed?
 
-### Changed runtime requirements
+### Changed Runtime Requirements
 
 - [Java](https://www.oracle.com/java/technologies/downloads/) 17+ is now the minimum supported Java version
 - [Node](https://nodejs.org/en/download/package-manager) 18+ is now the minimum supported Node version
 
-### Changed settings
+### Changed Settings
 
 Deprecated features are now raised as errors by default instead of being logged as warnings.
 
@@ -70,9 +70,9 @@ Deprecated features are now raised as errors by default instead of being logged 
   | :----------------------------------------------------------------------- | :---------: | :---------: |
   | [`gwen.logLevel.deprecations`](/docs/settings#gwen-loglevel-deprecations)|   `warn`    |   `error`   |
 
-### Changed project structure
+### Changed Project Structure
 
-The `env` and `browsers` folders have been moved one level down under a `conf` subfolder which now also contains a `process` subfolder where you can define [process level settings](/docs/processes#process-level-settings).
+The `env` and `browsers` folders have been moved one level down under a `conf` subfolder which now also contains a `profiles` subfolder where you can define launch [profiles](/docs/profiles).
 
 The new project strucutre looks like this:
 
@@ -96,33 +96,33 @@ The new project strucutre looks like this:
        │   |  ├── README.md
        │   |  ├── staging.conf
        │   |  └── test.conf
-       │   └──/process            # Process settings
+       │   └──/profiles           # Profile settings
        │      ├── README.md
-       │      ├── process1.conf
-       │      ├── process3.conf
+       │      ├── profile1.conf
+       │      ├── profile2.conf
        │      ├── ..
-       │      └── processN.conf
+       │      └── profileN.conf
        ├── /features              # Features (and associative meta)
        │   └── README.md
        └── /meta                  # Common meta
            └── README.md
 ```
 
-### Input data now read-only
+### Read-Only Input Data
 
 All [input data](/docs/data-feeds) is now read-only at evaluation time by default (except in [REPL](/docs/repl) mode). This can be disabled through the [`gwen.input.data.readOnly`](/docs/settings#gwen-input-data-readonly) setting if required.
 
-### Chaged logging implementation
+### Changed Logging Implementation
 
 Gwen now uses [Logback](https://logback.qos.ch/index.html) instead of Log4j for logging . You can override the default logging configuration with your by specifing `-Dlogback.configurationFile=/path-to-logback-config-file` of the command line or by setting `logback.configurationFile` in your settings.
 
-### Changed placeholder syntax in pattern mather
+### Changed Placeholder Syntax in Pattern Matcher
 
 The ignore placeholder syntax in the [template matcher](/docs/template-matching) has been changed from `!{}` to `@{*}`
 
-## What's deprecated?
+## What's Deprecated?
 
-### Deprecated settings
+### Deprecated Settings
 
 The following [settings](/docs/settings) have been deprecated. Update your [settings files](/docs/settings#settings-files) to use the new names.
 
@@ -138,7 +138,7 @@ The following [settings](/docs/settings) have been deprecated. Update your [sett
 | `gwen.cli.options.report`    | [`gwen.launch.options.report`](/docs/settings#gwen-launch-options-report)                     |
 | `gwen.cli.options.tags`      | [`gwen.launch.options.tags`](/docs/settings#gwen-launch-options-tags)                         |
 
-### Deprecated implicits
+### Deprecated Implicits
 
 The following [implicit values](/docs/implicit-values) have been deprecated. Update your references to use the new names.
 
@@ -163,17 +163,17 @@ The following [implicit values](/docs/implicit-values) have been deprecated. Upd
 | `iteration.number`                    | [`gwen.iteration.number`](/docs/implicit-values#gwen-iteration-number)                                             |
 | `iteration.index`                     | [`gwen.iteration.index`](/docs/implicit-values#gwen-iteration-index)                                               |
 
-## What's dropped?
+## What's Dropped?
 
-### Dropped integrations
+### Dropped Integrations
 - IE browser integration
 - Report Portal integration
 - Standalone setup (only [project setup](/docs/get-started#setup) now supported)
-- WebDriverManager support (SeleniumManager implementation now implicitly used only)
+- WebDriverManager support (implicit SeleniumManager implementation now used only)
 
-### Dropped settings
+### Dropped Settings
 
-The following [settings](/docs/settings) have been dropped. Update your [settings files](/docs/settings#settings-files) to use the alternative.
+The following [settings](/docs/settings) have been dropped. Update your [settings files](/docs/settings#settings-files) accordingly.
 
   | Dropped                           | Use this instead                                                                                |
   | :-------------------------------- | :---------------------------------------------------------------------------------------------- |

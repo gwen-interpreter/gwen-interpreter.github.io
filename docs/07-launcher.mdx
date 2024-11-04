@@ -26,7 +26,7 @@ Usage: gwen [options] [files|dirs]
                            - features if gwen.state.level = feature (default)
                            - scenarios if gwen.state.level = scenario
   --repl                   Open REPL (forcefully) regardless of other options
-  -p, --process name       Name of process to launch
+  -p, --profile name       Name of profile to launch
   -b, --batch              Exit when execution completes (ignored if --repl is specified)
   -v, --verbose            Enable verbose log output
   -d, --debug              Enable breakpoints and interactive debugging
@@ -58,7 +58,7 @@ The following environment variables can be set to override certain settings as b
 | Since   | Environment variable | Values                                                                                                    | Overrides setting                                                             | Affects CLI option                              |
 | :-----: |:-------------------- | --------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- | :---------------------------------------------- |
 | v3.23.0 | `GWEN_ENV`           | <code>local&#124;dev&#124;</code><br/><code>test&#124;staging&#124;</code><br/><code>prod&#124;..</code>  | [`gwen.target.env`](/docs/settings#gwen-target-env)                           |                                                 |
-| v4.0.0  | `GWEN_PROCESS`       | Name of [process](/docs/processes) to launch                                                              |                                                                               | [`-p, --process`](#gwen-launch-options-process) |
+| v4.0.0  | `GWEN_PROFILE`       | Name of the [profile](/docs/profiles) to launch                                                              |                                                                            | [`-p, --profile`](#gwen-launch-options-profile) |
 | v3.16.0 | `GWEN_BROWSER`       | <code>chrome&#124;edge&#124;</code><br/><code>firefox&#124;safari&#124;ie</code>                          | [`gwen.target.browser`](/docs/settings#gwen-target-browser)                   |                                                 |
 | v3.16.0 | `GWEN_DRY_RUN`       | <code>true&#124;false</code>                                                                              | [`gwen.launch.options.dryRun`](/docs/settings#gwen-launch-options-dry-run)    | [`-n, --dry-run`](#gwen-launch-options-dry-run) |
 | v3.16.0 | `GWEN_PARALLEL`      | <code>true&#124;false</code>                                                                              | [`gwen.launch.options.parallel`](/docs/settings#gwen-launch-options-parallel) | [`--parallel`](#gwen-launch-options-parallel)   |
@@ -220,7 +220,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
     -b, --batch             Exit when execution completes (omit to open REPL)
     -v, --verbose           Enable verbose log output
     -n, --dry-run           Check all syntax and bindings and report errors
-    -p, --process name      Name of process to launch
+    -p, --profile name      Name of profile to launch
     -c, --conf files        Settings files: conf, json or properties (comma separated)
     -r, --report dir        Directory to output generated report(s) to
     -f, --formats reports   Report formats to include in output (comma separated)
@@ -735,14 +735,14 @@ Default launch options and arguments can also be configured in [settings](/docs/
   </div>
 </details>
 
-<details id="gwen-launch-options-process">
+<details id="gwen-launch-options-profile">
   <summary class="cli-options">
 
   ```shell
-  -p|--process <name>
+  -p|--profile <name>
   ```
   <p>
-  Name of process to launch.
+  Name of profile to launch.
   </p>
 
   </summary>
@@ -754,28 +754,28 @@ Default launch options and arguments can also be configured in [settings](/docs/
       You can use either:
       <ul>
         <li><code>-p</code> for shorthand</li>
-        <li><code>--process</code> for longhand</li>
+        <li><code>--profile</code> for longhand</li>
       </ul>
     </li>
-    <li><code>&lt;name&gt;</code> is the name of a [process](/docs/processes) with associated <code>gwen/conf/process/&lt;name&gt;.conf</code> settings to load and launch with.</li>
+    <li><code>&lt;name&gt;</code> is the name of a [profile](/docs/profiles) with associated <code>gwen/conf/profiles/&lt;name&gt;.conf</code> settings to load and launch with.</li>
   </ul>
 
   <p>Examples</p>
 
-  To load all settings and execute all features defined in the <code>gwen/conf/process/custom.conf</code> settings and open [REPL](/docs/repl):
+  To load all settings and execute all features defined in the <code>gwen/conf/profiles/custom.conf</code> settings and open [REPL](/docs/repl):
   
   ```shell
   gwen -p custom
   ```
 
-  To load all settings and execute all features defined in the <code>gwen/conf/process/custom.conf</code> settings and exit when done:
+  To load all settings and execute all features defined in the <code>gwen/conf/profiles/custom.conf</code> settings and exit when done:
   
   ```shell
   gwen -p custom -b
   ```
 
   <div class="grid-3">
-    <div><Link to="#gwen-launch-options-process">Link</Link></div>
+    <div><Link to="#gwen-launch-options-profile">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0">v4.0.0</Link></div>
   </div>
@@ -1955,7 +1955,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
        │   │   ├── README.md
        │   │   ├── staging.conf
        │   │   └── test.conf
-       │   └── /process           # Process settings
+       │   └── /profiles          # Profile settings
        │       ├── README.md
        │       └── samples.conf
        ├── /features              # Features and associative meta

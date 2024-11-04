@@ -45,8 +45,8 @@ Settings are loaded in the following order of precedence, with those higher in t
 2. [System properties](/docs/launcher#system-properties-and-jvm-options)
 3. User settings
     - A `gwen.conf`, `gwen.json`, or `gwen.properties` file in your user directory
-4. Process settings
-    - A `*.conf`, `*.json`, or `*.properies` file denoted name passed to [`-p|--process`](/docs/launcher#gwen-launch-options-process) launch option.
+4. Profile settings
+    - A `*.conf`, `*.json`, or `*.properies` file denoted name passed to [`-p|--profile`](/docs/launcher#gwen-launch-options-profile) launch option.
 5. Launch settings
     - Comma separated list of `*.conf`, `*.json`, or `*.properies` files passed to Gwen via the [`-c|--conf`](/docs/launcher#gwen-launch-options-conf) launch option. These are loaded in the order given with latter entries overriding the former.
 6. Project settings
@@ -72,19 +72,19 @@ User-level settings can optionally be defined in a `gwen.conf|json|properties` f
      └── gwen.conf           # User-level overrides
 ```
 
-### Process settings files
+### Profile settings files
 
-All [process](/docs/processes) level settings are stored in `*.conf|json|properties` files in the `gwen/conf/process` subdirectory of the project. Gwen selectively discovers and loads these files when you inovke Gwen with the [`-p|--process`](/docs/launcher#gwen-launch-options-process) option passing in a process name. The settings file with the same name as the passed in process name is the one that is loaded.
+All [profile](/docs/profiles) settings are stored in `*.conf|json|properties` files in the `gwen/conf/profiles` subdirectory of the project. Gwen selectively discovers and loads these files when you inovke Gwen with the [`-p|--profile`](/docs/launcher#gwen-launch-options-profile) option passing in a profile name. The settings file with the same name as the passed in profile is the one that is loaded.
 
 ```
  /project                     # Your project root
  └── /gwen
      └── /conf
-         └── /process         # Process settings
-             ├── name1.conf   
-             ├── name2.conf
+         └── /profiles        # Profile settings
+             ├── profile1.conf   
+             ├── profile2.conf
              ├── ..
-             └── nameN.conf
+             └── profileN.conf
 ```
 
 ### Project settings files

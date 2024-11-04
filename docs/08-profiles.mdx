@@ -1,6 +1,6 @@
 --- 
 toc_min_heading_level: 2
-toc_max_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 import Link from '@docusaurus/Link';
@@ -9,17 +9,13 @@ import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import ThemedImage from '@theme/ThemedImage';
 
-# Processes
+# Profiles
 
 > Since [v4.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0)
 
-:::info What is a Process?
-A process in Gwen is any Gherkin feature specification (or collection thereof) that automates a repeatable process and requires specific launch options and/or settings to run.
-:::
+You can configure one or many launch profiles, each with its own options and [settings](/docs/settings). This enables you to configure unique launch configurations for each process in your project so you don't have to manage them externally. You simply give each profile a name and define its configuration in a same named settings file in the `gwen/conf/profiles` folder of your project. Then when you're ready to launch, you specify the name of the profile you want to run with the [`-p|--profile`](/docs/launcher#gwen-launch-options-profile) option.
 
-You can configure one or many automated [processes](/docs/processes#process-settings), each with its own launch options and [settings](/docs/settings). This enables you to configure reusable launch configurations for each process in your project so you don't have to manage them manually. You simply give each process a name and define its configuration in a same named settings file. Then when you're ready to launch, you specify the name of the process you want to run with the [`-p|--process`]((/docs/launcher#gwen-launch-options-process)) option.
-
-## Process Level Settings
+## Profile Settings
 
 ### Example
 
@@ -43,9 +39,9 @@ Say you have two processes in your project that need to be launched differently,
 </ul>
 
 
-The first step in configuring these is to create the `process1.conf` and `process2.conf` files in the `gwen/conf/process` folder as shown:
+The first step in configuring these is to create the `process1.conf` and `process2.conf` files in the `gwen/conf/profiles` folder as shown:
 
-> The names of the settings files (minus their extensions) will serve as the names of the processes
+> The names of the settings files (minus their extensions) will serve as the names of the profiles
 
 ```shell {10,11}
   ./                              # Project root
@@ -56,7 +52,7 @@ The first step in configuring these is to create the `process1.conf` and `proces
        │   |   └── ..
        │   ├──/env                # Environment settings
        │   |  └── ..
-       │   └──/process            # Process settings
+       │   └──/profiles           # Launch profile settings
        │      ├── process1.conf
        │      └── process2.conf
        ├── /features              # Features (and associative meta)
@@ -79,7 +75,7 @@ The first step in configuring these is to create the `process1.conf` and `proces
                └─── dir2-file-N.meta
 ```
 
-### process1.conf
+#### process1.conf
 
 <ul>
   <li>Call the `gwen/features/process1.feature` only</li>
@@ -87,7 +83,7 @@ The first step in configuring these is to create the `process1.conf` and `proces
   <li>Load the `gwen/features/process1.meta` file and all meta files in `gwen/meta/dir-1`</li>
 </ul>
 
-*File: gwen/conf/process/process1.conf*
+*File: gwen/conf/profiles/process1.conf*
 ```json
 gwen {
   launch {
@@ -105,7 +101,7 @@ gwen {
 }
 ```
 
-### process2.conf
+#### process2.conf
 
 <ul>
   <li>Call the `gwen/features/process2.feature` only</li>
@@ -113,7 +109,7 @@ gwen {
   <li>Load the `gwen/features/process2.meta` file and all the meta files in `gwen/meta`</li>
 </ul>
 
-*File: gwen/conf/process/process2.conf*
+*File: gwen/conf/profiles/process2.conf*
 ```json
 gwen {
   launch {
@@ -131,9 +127,9 @@ gwen {
 }
 ```
 
-## Launching Processes
+## Launching Profiles
 
-  To launch a process, simply pass the name of the process (settings file name minus the extension) to the [`-p|--process`](/docs/launcher#gwen-launch-options-process) launcher option. Gwen will find and load the same named settings file in the `gwen/conf/process` directory and launch the process for you.
+  To launch a profile, simply pass the profile settings file name (minus the path and extension) to the [`-p|--profile`](/docs/launcher#gwen-launch-options-profile) launcher option. Gwen will find and load the same named settings file in the `gwen/conf/profiles` directory and launch that profile for you.
 
 <Tabs
   groupId="jstool"
@@ -167,7 +163,7 @@ yarn gwen -p process1 --parallel
 Launch process 2 in dry run mode
 
 ```shell
-yarn gwen --process process2 --dry-run
+yarn gwen --profile process2 --dry-run
 ```
 
 </TabItem>
@@ -176,25 +172,25 @@ yarn gwen --process process2 --dry-run
 Launch process 1 and open repl when done
 
 ```shell
-npm run gwen -- --process process1
+npm run gwen -- --profile process1
 ```
 
 Launch process 1 and exit when done
 
 ```shell
-npm run gwen -- --process process1 -b
+npm run gwen -- --profile process1 -b
 ```
 
 Launch process 1 in parallel mode
 
 ```shell
-npm run gwen -- --process process1 --parallel
+npm run gwen -- --profile process1 --parallel
 ```
 
 Launch process 2 in dry run mode
 
 ```shell
-npm run gwen -- --process process2 --dry-run
+npm run gwen -- --profile process2 --dry-run
 ```
 
 </TabItem>
@@ -221,7 +217,7 @@ pnpm gwen -p process1 --parallel
 Launch process 2 in dry run mode
 
 ```shell
-pnpm gwen --process process2 --dry-run
+pnpm gwen --profile process2 --dry-run
 ```
 
 </TabItem>
