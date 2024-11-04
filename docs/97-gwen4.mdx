@@ -169,6 +169,7 @@ The following [implicit values](/docs/implicit-values) have been deprecated. Upd
 - IE browser integration
 - Report Portal integration
 - Standalone setup (only [project setup](/docs/get-started#setup) now supported)
+- WebDriverManager support (SeleniumManager implementation now implicitly used only)
 
 ### Dropped settings
 
@@ -180,6 +181,7 @@ The following [settings](/docs/settings) have been dropped. Update your [setting
   | `gwen-web-accept-untrusted-certs` | Use <code>acceptInsecureCerts</code> [capability](/docs/settings#gwen-web-capabilities) instead |
   | `gwen.auto.discover.data.csv`     | Use [`-i/--input`](/docs/launcher#gwen-launch-options-input-data) launch option instead         |
   | `gwen.auto.discover.data.json`    | Use [`-i/--input`](/docs/launcher#gwen-launch-options-input-data) launch option instead         |
+  | `gwen.web.driver.manager`         | No alternative (SeleniumManager always implicitly used)                                         |
 
 ### Dropped DSLs
 
