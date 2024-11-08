@@ -4492,6 +4492,32 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
+<details id="i-log-record-to-file">
+  <summary class="dsl">
+
+  ```gherkin
+  I log record to <resultsFileId> file
+  ```
+
+  <p>Logs a record to the results file having the given ID.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;resultsFileId&gt;</code> the ID of the <Link to="/docs/reports/csv#results-files">results file</Link> to log a record to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+     When I log record to my.results file
+  ```
+  
+  <div class="grid-3">
+    <div><Link to="#i-log-record-to-file">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0">v4.0.0</Link></div>
+  </div>
+</details>
+
 #### Sleeps and waits
 
 <details id="i-wait-for-element">

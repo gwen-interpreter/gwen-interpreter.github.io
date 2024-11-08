@@ -37,10 +37,10 @@ CSV files can be configured within the `gwen.reports.results.files` element in y
   scope = "[scope]"
   status = "[status]"
   fields = [
-    { name = "<fieldName 1>", ref = "[reference 1]", optional = [optionality 1], excludes = "[excludeFields 1]"}
-    { name = "<fieldName 2>", ref = "[reference 2]", optional = [optionality 2], excludes = "[excludeFields 2]" }
+    { name = "<fieldName 1>", ref = "[reference 1]", defaultValue = "[value 1]", excludes = "[excludeFields 1]"}
+    { name = "<fieldName 2>", ref = "[reference 2]", defaultValue = "[value 2]", excludes = "[excludeFields 2]" }
     ..
-    { name = "<fieldName N>", ref = "[reference N]", optional = [optionality N], excludes = "[excludeFields N]" }
+    { name = "<fieldName N>", ref = "[reference N]", defaultValue = "[value N]", excludes = "[excludeFields N]" }
   ]
 }
 ```
@@ -79,11 +79,11 @@ Where:
         <code>StepDef</code> - To log the results of all <Link to="/docs/meta#stepdefs">StepDefs</Link> to the CSV file as they complete.
         <ul><li>or <code>StepDef: &lt;name&gt;</code> - To log the results of a specifically named StepDef only, where <code>&lt;name&gt;</code> is the name of the StepDef to log the results for. Alternatively, omit the scope attribute and place the [`@Results`](#results-annotation) annotation directly on the StepDef itself in the feature or meta file to make it more explict and avoid potential name clashes (preferred approach).</li></ul>
       </li>
-      <li>Omit the scope to not log any results automatically; for when you want to explicitly control the scope and where the logging will occur using a [`@Results`](#results-annotation) annotation</li>
+      <li>Omit the scope to not log any results automatically; for when you want to explicitly control the scope and where the logging will occur using a [`@Results`](#results-annotation) annotation or the [`I log record to <resultsFileId> file`](/docs/dsl#i-log-record-to-file) DSL</li>
     </ul>
   </li>
   <li>
-    <code>[status]</code> - (Optional) is either:
+    <code>[status]</code> - (Optional, only required if above scope sttribute is set) is either:
     <ul>
       <li><code>Passed</code> - To log only passed results to the CSV file</li>
       <li><code>Failed</code> - To log only failed results to the CSV file</li>
@@ -98,7 +98,7 @@ Where:
 CSV fields are configured as arrays witihin the `fields` attribute and have the following structure:
 
 ```json
-{ name = "<fieldName>", ref = "[reference]", optional = [optionality], excludes = "[excludeFields]" }
+{ name = "<fieldName>", ref = "[reference]", defaultValue = "[value]", excludes = "[excludeFields]" }
 ```
 
 Where:
@@ -119,10 +119,9 @@ Where:
     </ul>
   </li>
   <li>
-    <code>[optionality]</code> - (Optional) - Can be either of:
+    <code>[value]</code> - (Optional) - Is a default value to use if the field binding is not in scope.
     <ul>
-      <li><code>true</code> - (Default) - To make this field mandatory. Will result in an undefined binding error being raised at runtime if the field binding does does not exist (i.e: is not in scope) at the time the record is written. </li>
-      <li><code>false</code> - To make this field optional. Will resolve to blank at runtime if the field binding does does not exist (i.e: is not in scope) at the time the record is written. </li>
+      <li>Omitting <code>defaultValue</code> altogether will make this field mandatory. Will result in an undefined binding error being raised at runtime if the field binding does does not exist (i.e: is not in scope) at the time the record is written. </li>
     </ul>
   </li>
   <li>
@@ -686,7 +685,7 @@ gwen {
 }
 ```
 
-Specifying the `@Results('my.csv')` annoation on a scenario, would then log to results to the configured file when the scenario completes. 
+Specifying the `@Results('my.csv')` annotation on a scenario, would then log to results to the configured file when the scenario completes. 
 The scope of the `my.csv` file would then be bound to this Scenario.
 
 <i>my.feature</i>
@@ -842,3 +841,9 @@ pnpm  -b f html,results gwen/features/todo
   - `output/reports/results/`
 - The HTML report will be generated at
   - `output/reports/index.html`.
+
+### Explicit logging
+
+The following DSL is also avaialble for cases where you might want to log records explicity (without automatic scoped logging).
+
+- [`I log record to <resultsFileId> file`](/docs/dsl#i-log-record-to-file)
