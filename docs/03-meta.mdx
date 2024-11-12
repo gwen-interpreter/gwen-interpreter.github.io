@@ -345,6 +345,13 @@ For example, you could import the `module-1.meta` into a new (or existing) assoc
   Feature: Associative spec 1 meta
 ```
 
+Or using relative path since [v4.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0)
+
+```gherkin
+  @Import("../meta/module-1.meta")
+  Feature: Associative spec 1 meta
+```
+
 Note that this associative meta specification contains nothing except one import annotation followed by a feature declaration and name. It contains nothing else since it serves only to import one meta file. It would sit alongside your unchanged feature file on the file system as follows:
 
 ```
@@ -507,7 +514,7 @@ pnpm gwen gwen/features/spec-3.feature
 </TabItem>
 </Tabs>
 
-The path to the meta file in all imports can be absolute or relative to the directory where Gwen is invoked. If a recursive (or cyclic) import is detected in any import chain, Gwen will report it by throwing an exception with a message identifying the offending import and the file it was declared in.
+The path to the meta file in all imports can be absolute or relative. If a recursive (or cyclic) import is detected in any import chain, Gwen will report it by throwing an exception with a message identifying the offending import and the file it was declared in.
 
 Meta files loaded through the import strategy get last precedence and therefore can be overridden by meta files loaded through any other meta load strategy.
 

@@ -529,6 +529,14 @@ Scenario outline with externalised CSV data
     When I add a <Status> "<Item>" item
 ```
 
+Or using relative path since [v4.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0)
+
+```gherkin {1}
+  @Examples("../data/items.csv")
+  Scenario Outline: I load items from data files
+    When I add a <Status> "<Item>" item
+```
+
 This will resolve to an identical outline when expanded at runtime:
 
 ```gherkin
