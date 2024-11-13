@@ -106,15 +106,13 @@ In the rare case where you might need to synchronize the execution of your StepD
 
 > Since [v2.40.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.40.0)
 
-When [associative meta](/docs/settings#gwen-associative-meta) is enabled, a meta and feature file are considered to be associated with each other if the two files are in the same directory and have the same names (excluding their file extensions). The associative strategy will, for every feature:
-1. Auto discover all the meta files in the path to the feature file and only load those that are either:
-    - Not associated with any feature (one or many)
-    - Associated with the current feature (one or none)
+A meta and feature file are considered to be associated with each other if the two files are in the same directory and have the same names (excluding their file extensions). The associative strategy will, for every feature:
+1. Load the meta file with a matching file name if it exists in the same directory as the feature
 2. Execute the feature
 
 :::info Default setting
 
-Associative meta is enabled by default since  [Gwen 3](/docs/gwen3).
+Associative meta is the default and always active strategy since  [Gwen 4](/docs/gwen4).
 
 :::
 
@@ -138,25 +136,25 @@ If you have your meta and feature files in a directory structure as follows:
 When you launch Gwen to execute on the `features` directory, the associative strategy will:
 
 - Load the `todo.meta` and execute the `todo.feature`
-- Load the `todo.meta` and `todo1.meta` and execute the `todo1.feature`
-- Load the `todo.meta` and execute the `todo1a.feature`
-- Load the `todo.meta` and `todo2.meta` and execute the `todo2.feature`
-- Load the `todo.meta` and execute the `todo3.feature`
+- Load the `todo1.meta` and execute the `todo1.feature`
+- Load no associative meta and execute the `todo1a.feature`
+- Load `todo2.meta` and execute the `todo2.feature`
+- Load no associative meta and execute the `todo3.feature`
 
 When you launch Gwen to execute on the `features/dir1` directory, the associative strategy will:
 
-- Load the `todo.meta` and `todo1.meta` and execute the `todo1.feature`
-- Load the `todo.meta` and execute the `todo1a.feature`
+- Load the `todo1.meta` and execute the `todo1.feature`
+- Load no associative meta and execute the `todo1a.feature`
 
 When you launch Gwen to execute the `features/dir2/todo2.feature` file, the associative strategy will:
 
-- Load the `todo.meta` and execute the `todo2.feature`
+- Load no associative meta and execute the `todo2.feature`
 
-## External Strategy
+### External Strategy
 
 > Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
 
-The external strategy enables you to manage common and reusable meta files in a directory that is separate or external to your features directory. How you name your meta files or manage your meta directory structure does not matter. This strategy can be used in conjunction with any other meta load strategy.
+The external strategy enables you to manage common and reusable meta files (in addition to associateve meta) in a directory that is separate or external to your features directory. How you name your meta files or manage your meta directory structure does not matter.
 
 <Tabs
   groupId="jstool"
@@ -237,12 +235,6 @@ pnpm gwen gwen/features -m external/meta
 > Since [v1.9.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.9.0)
 
 The import strategy enables you to selectively import one or more meta files for any given feature file so they will load automatically without you having to specify their locations using the [`-m|meta`](/docs/launcher#gwen-launch-options-meta) launch option on every launch. This is useful for cases where you have many reusable meta files and it is not practical to load all of them for every feature file.
-
-:::caution
-
-When using this strategy, it is important to ensure that the meta files you want to import are not located in or under any directories containing your feature files. This is to prevent them from being auto-loaded by the default or associative strategies. Similarly, they should also not reside in any directories containing meta files loaded by the external strategy if you are using that in conjunction with this strategy.
-
-:::
 
 The import strategy can be used to avoid redundant meta loads and improve performance and scalability in extreme cases where all your common meta combined exceeds or approaches 500 KB in size (that is: when you have LOTS of common meta).
 
@@ -332,7 +324,7 @@ With [associative meta](/docs/meta#associative-strategy) enabled, you can do awa
 
 :::tip Use imports in associative meta
 
-Although it's possible to specify imports directly in feature files, we do not recommend you doing so since it would introduce automation concerns into your features. Confining imports to associative meta instead will keep your features clean and untouched. You must enable [associative meta](/docs/settings#gwen-associative-meta) to use this approach (note that this setting is enabled by default in since <Link to="/docs/gwen3">Gwen 3</Link>).
+Although it's possible to specify imports directly in feature files, we do not recommend you doing so since it would introduce automation concerns into your features. Confining imports to associative meta instead will keep your features clean and untouched.
 
 :::
 
@@ -517,45 +509,3 @@ pnpm gwen gwen/features/spec-3.feature
 The path to the meta file in all imports can be absolute or relative. If a recursive (or cyclic) import is detected in any import chain, Gwen will report it by throwing an exception with a message identifying the offending import and the file it was declared in.
 
 Meta files loaded through the import strategy get last precedence and therefore can be overridden by meta files loaded through any other meta load strategy.
-
-### Default Strategy
-
-> Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
-
-The default strategy will, for every feature:
-1. Auto discover and unconditionally load all the meta in the path to the feature
-2. Execute the feature
-
-If you have your meta and feature files in a directory structure as follows:
-
-```
-/features
- ├── todo.meta
- ├── todo.feature
- ├── /dir1
- │    ├── todo1.meta
- │    ├── todo1.feature
- │    └── todo1a.feature
- └── /dir2
-      ├── todo2.meta
-      ├── todo2.feature
-      └── /dir3
-           └── todo3.feature
-```
-
-When you launch Gwen to execute on the `features` directory, the default strategy will:
-
-- Load the `todo.meta` and execute the `todo.feature`
-- Load the `todo.meta` and `todo1.meta` and execute the `todo1.feature`
-- Load the `todo.meta` and `todo1.meta` and execute the `todo1a.feature`
-- Load the `todo.meta` and `todo2.meta` and execute the `todo2.feature`
-- Load the `todo.meta` and `todo2.meta` and execute the `todo3.feature`
-
-When you launch Gwen to execute on the `features/dir1` directory, the default strategy will:
-
-- Load the `todo.meta` and `todo1.meta` and execute the `todo1.feature`
-- Load the `todo.meta` and `todo1.meta` and execute the `todo1a.feature`
-
-When you launch Gwen to execute the `features/dir2/todo2.feature` file, the default strategy will:
-
-- Load the `todo.meta` and `todo2.meta` and execute the `todo2.feature`

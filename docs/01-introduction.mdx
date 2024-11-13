@@ -468,16 +468,16 @@ Strict rules are enabled by default since <Link to="/docs/gwen3">Gwen 3</Link>. 
 
 #### Associative meta
 
-When the [`gwen.associative.meta`](/docs/settings#gwen-associative-meta) setting is enabled, Gwen will automatically associate and bind all same named feature and meta files discovered in a directory with each other. In the following case, the meta would be considered associative.
+Gwen will automatically associate and bind all same named feature and meta files discovered in a directory with each other. In the following case, the meta would be considered associative.
 
 ```
 features/todo.feature
 features/todo.meta
 ```
 
-:::info Associative by default
+:::info
 <p>
-Associative meta is enabled by default since <Link to="/docs/gwen3">Gwen 3</Link>. In prior versions, all meta files discovered in a directory were unconditionally bound to all features in that directory and it's subdirectories.
+Associative meta discovery is always enabled as of <Link to="/docs/gwen4">Gwen 4</Link>. In prior versions, it was enabled by default and could be turned off.
 </p>
 :::
 
