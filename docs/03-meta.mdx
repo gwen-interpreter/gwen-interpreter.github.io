@@ -150,11 +150,11 @@ When you launch Gwen to execute the `features/dir2/todo2.feature` file, the asso
 
 - Load no associative meta and execute the `todo2.feature`
 
-### External Strategy
+### Common Strategy
 
 > Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
 
-The external strategy enables you to manage common and reusable meta files (in addition to associateve meta) in a directory that is separate or external to your features directory. How you name your meta files or manage your meta directory structure does not matter.
+The common strategy enables you to manage common and reusable meta files (in addition to associateve meta) in a directory other than your features directory. How you name your meta files or manage your meta directory structure does not matter.
 
 <Tabs
   groupId="jstool"
@@ -169,16 +169,16 @@ The external strategy enables you to manage common and reusable meta files (in a
 
 :::note Example
 
-To load a single meta file from an external directory, use the [`-m|meta`](/docs/launcher#gwen-launch-options-meta) launch option and specify the path to the meta file:
+To load a single meta file from a `meta` directory (for example), use the [`-m|meta`](/docs/launcher#gwen-launch-options-meta) launch option and specify the path to the meta file:
 
 ```shell
-yarn gwen -m external/meta/common.meta
+yarn gwen -m meta/common.meta
 ```
 
-To recursively load all meta files in an external directory:
+To recursively load all meta files in the `meta` directory:
 
 ```shell
-yarn gwen gwen/features -m external/meta
+yarn gwen gwen/features -m meta
 ```
 
 [Gwen Launcher](/docs/launcher)
@@ -190,16 +190,16 @@ yarn gwen gwen/features -m external/meta
 
 :::note Example
 
-To load a single meta file from an external directory, use the [`-m|meta`](/docs/launcher#gwen-launch-options-meta) launch option and specify the path to the meta file:
+To load a single meta file from a `meta` directory (for example), use the [`-m|meta`](/docs/launcher#gwen-launch-options-meta) launch option and specify the path to the meta file:
 
 ```shell
-npm run gwen -- -m external/meta/common.meta
+npm run gwen -- -m meta/common.meta
 ```
 
-To recursively load all meta files in an external directory:
+To recursively load all meta files in the `meta` directory:
 
 ```shell
-npm run gwen -- gwen/features -m external/meta
+npm run gwen -- gwen/features -m meta
 ```
 
 [Gwen Launcher](/docs/launcher)
@@ -211,16 +211,16 @@ npm run gwen -- gwen/features -m external/meta
 
 :::note Example
 
-To load a single meta file from an external directory, use the [`-m|meta`](/docs/launcher#gwen-launch-options-meta) launch option and specify the path to the meta file:
+To load a single meta file from a `meta` directory (for example), use the [`-m|meta`](/docs/launcher#gwen-launch-options-meta) launch option and specify the path to the meta file:
 
 ```shell
-pnpm gwen -m external/meta/common.meta
+pnpm gwen -m meta/common.meta
 ```
 
-To recursively load all meta files in an external directory:
+To recursively load all meta files in the `meta` directory:
 
 ```shell
-pnpm gwen gwen/features -m external/meta
+pnpm gwen gwen/features -m meta
 ```
 
 [Gwen Launcher](/docs/launcher)
@@ -275,7 +275,7 @@ For example, say you have your common meta files in one directory and your featu
 
 :::note Example
 
-To load only one meta file for one feature file using the external meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
+To load only one meta file for one feature file using the common meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
 
 ```shell
 yarn gwen -m gwen/meta/module-1.meta gwen/features/spec-1.feature
@@ -290,7 +290,7 @@ yarn gwen -m gwen/meta/module-1.meta gwen/features/spec-1.feature
 
 :::note Example
 
-To load only one meta file for one feature file using the external meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
+To load only one meta file for one feature file using the common meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
 
 ```shell
 npm run gwen -- -m gwen/meta/module-1.meta gwen/features/spec-1.feature
@@ -305,7 +305,7 @@ npm run gwen -- -m gwen/meta/module-1.meta gwen/features/spec-1.feature
 
 :::note Example
 
-To load only one meta file for one feature file using the external meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
+To load only one meta file for one feature file using the common meta strategy, you would have to explicitly specify which one using the `-m|meta` CLI option as follows:
 
 ```shell
 pnpm gwen -m gwen/meta/module-1.meta gwen/features/spec-1.feature

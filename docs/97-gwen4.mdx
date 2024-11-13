@@ -11,9 +11,11 @@ import ThemedImage from '@theme/ThemedImage';
 
 # Gwen 4
 
-> Released date: TBA
+> [Released](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0): 14 November 2024
 
-## What's new?
+Gwen 4 introduces launch profiles and a much leaner and more mature automation engine. Redundant features from prior versions have been removed. The internal memory model has been simplified. The execution lifecycle has been solidified. Scalability and security have been strengthened. More code was deleted than added (smaller codebase).
+
+## What's New?
 
 ### Launch Profiles
 
@@ -113,13 +115,17 @@ The new project strucutre looks like this:
 
 All [input data](/docs/data-feeds) is now read-only at evaluation time by default (except in [REPL](/docs/repl) mode). This can be disabled through the [`gwen.input.data.readOnly`](/docs/settings#gwen-input-data-readonly) setting if required.
 
-### Changed Logging Implementation
+### Associate Meta Always On
 
-Gwen now uses [Logback](https://logback.qos.ch/index.html) instead of Log4j for logging . You can override the default logging configuration with your by specifing `-Dlogback.configurationFile=/path-to-logback-config-file` of the command line or by setting `logback.configurationFile` in your settings.
+The [associative meta](/docs/meta#associative-strategy) load stratgy is now always enabled and cannot be disabled. Furthermore, other meta files in the path of the feature are no longer auto-discovered.
 
 ### Changed Placeholder Syntax in Pattern Matcher
 
 The ignore placeholder syntax in the [template matcher](/docs/template-matching) has been changed from `!{}` to `@{*}`
+
+### Changed Logging Implementation
+
+Gwen now uses [Logback](https://logback.qos.ch/index.html) instead of Log4j for logging . You can override the default logging configuration with your by specifing `-Dlogback.configurationFile=/path-to-logback-config-file` of the command line or by setting `logback.configurationFile` in your settings.
 
 ## What's Deprecated?
 
@@ -183,7 +189,7 @@ The following [settings](/docs/settings) have been dropped. Update your [setting
   | `gwen.auto.discover.data.csv`     | Use [`-i/--input`](/docs/launcher#gwen-launch-options-input-data) launch option instead         |
   | `gwen.auto.discover.data.json`    | Use [`-i/--input`](/docs/launcher#gwen-launch-options-input-data) launch option instead         |
   | `gwen.auto.discover.meta`         | Use [`-m/--meta`](/docs/launcher#gwen-launch-options-meta) launch option instead                |
-  | `gwen.associative.meta`           | This is now always on                                                                           |
+  | `gwen.associative.meta`           | This is now [always on](#associate-meta-always-on)                                              |
 
 ### Dropped DSLs
 
