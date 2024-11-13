@@ -27,14 +27,12 @@ Say you have two processes in your project that need to be launched differently,
     <ul>
       <li>Call the `gwen/features/process1.feature` only</li>
       <li>Pass in the `gwen/input/data-feed.csv` data feed file</li>
-      <li>Load the `gwen/features/process1.meta` file and all meta files in `gwen/meta/dir-1` only</li>
     </ul>
   </li>
   `process2` to:
     <ul>
       <li>Call the `gwen/features/process2.feature` only</li>
-      <li>Not pass any data feed file</li>
-      <li>Load the `gwen/features/process2.meta` file and all the meta files in `gwen/meta`</li>
+      <li>Not pass in any data feed</li>
     </ul>
 </ul>
 
@@ -63,16 +61,7 @@ The first step in configuring these is to create the `process1.conf` and `proces
        ├── /input                 # Input data
        │   └── data-feed.csv
        └── /meta                  # Meta
-           ├── /dir-1
-           │   ├─── dir1-file-1.meta
-           │   ├─── dir1-file-2.meta
-           │   ├─── ..
-           │   └─── dir1-file-N.meta
-           └── /dir-2
-               ├─── dir2-file-1.meta
-               ├─── dir2-file-2.meta
-               ├─── ..
-               └─── dir2-file-N.meta
+           ..
 ```
 
 #### process1.conf
@@ -80,7 +69,6 @@ The first step in configuring these is to create the `process1.conf` and `proces
 <ul>
   <li>Call the `gwen/features/process1.feature` only</li>
   <li>Pass in the `gwen/input/data-feed.csv` data feed file</li>
-  <li>Load the `gwen/features/process1.meta` file and all meta files in `gwen/meta/dir-1`</li>
 </ul>
 
 *File: gwen/conf/profiles/process1.conf*
@@ -92,10 +80,6 @@ gwen {
         "${gwen.baseDir}/features/process1.feature"
       ]
       inputData = "${gwen.baseDir}/input/data-feed.csv"
-      meta = [
-        "${gwen.baseDir}/features/process1.meta"
-        "${gwen.baseDir}/meta/dir-1"
-      ]
     }
   }
 }
@@ -105,8 +89,7 @@ gwen {
 
 <ul>
   <li>Call the `gwen/features/process2.feature` only</li>
-  <li>Not pass any data feed file</li>
-  <li>Load the `gwen/features/process2.meta` file and all the meta files in `gwen/meta`</li>
+  <li>Don't pass in any data feed</li>
 </ul>
 
 *File: gwen/conf/profiles/process2.conf*
@@ -118,10 +101,6 @@ gwen {
         "${gwen.baseDir}/features/process2.feature"
       ]
       inputData = ""
-      meta = [
-        "${gwen.baseDir}/features/process2.meta"
-        "${gwen.baseDir}/meta"
-      ]
     }
   }
 }
