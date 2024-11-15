@@ -121,17 +121,19 @@ The [associative meta](/docs/meta#associative-strategy) load stratgy is now alwa
 
 ### Changed Placeholder Syntax in Pattern Matcher
 
-The ignore placeholder syntax in the [template matcher](/docs/template-matching) has been changed from `!{}` to `@{*}`
+The ignore placeholder syntax in the [template matcher](/docs/template-matching) has been changed from `!{}` to `@{*}`.
+
+Also introduced `@{**}` to ignore multiple lines.
 
 ### Changed Logging Implementation
 
-Gwen now uses [Logback](https://logback.qos.ch/index.html) instead of Log4j for logging . You can override the default logging configuration with your by specifing `-Dlogback.configurationFile=/path-to-logback-config-file` of the command line or by setting `logback.configurationFile` in your settings.
+Gwen now uses [Logback](https://logback.qos.ch/index.html) instead of Log4j for logging . You can override the default logging configuration with your by specifing `-Dlogback.configurationFile=/path-to-logback-config-file` on the command line or by setting `logback.configurationFile` in your settings file.
 
 ## What's Deprecated?
 
 ### Deprecated Settings
 
-The following [settings](/docs/settings) have been deprecated. Update your [settings files](/docs/settings#settings-files) to use the new names.
+The following [settings](/docs/settings) have been deprecated.
 
 | Deprecated                   | Use this instead                                                                              |
 | :--------------------------- | :-------------------------------------------------------------------------------------------- |
@@ -144,10 +146,11 @@ The following [settings](/docs/settings) have been deprecated. Update your [sett
 | `gwen.cli.options.meta`      | [`gwen.launch.options.meta`](/docs/settings#gwen-launch-options-meta)                         |
 | `gwen.cli.options.report`    | [`gwen.launch.options.report`](/docs/settings#gwen-launch-options-report)                     |
 | `gwen.cli.options.tags`      | [`gwen.launch.options.tags`](/docs/settings#gwen-launch-options-tags)                         |
+| `gwen.feature.failfast`      | [`gwen.feature.failfast.enabled`](/docs/settings#gwen-feature-failfast-enabled)               |
 
 ### Deprecated Implicits
 
-The following [implicit values](/docs/implicit-values) have been deprecated. Update your references to use the new names.
+The following [implicit values](/docs/implicit-values) have been deprecated.
 
 | Deprecated                            | Use this instead                                                                                                   |
 | :------------------------------------ | :----------------------------------------------------------------------------------------------------------------- |
@@ -180,11 +183,10 @@ The following [implicit values](/docs/implicit-values) have been deprecated. Upd
 
 ### Dropped Settings
 
-The following [settings](/docs/settings) have been dropped. Update your [settings files](/docs/settings#settings-files) accordingly.
+The following [settings](/docs/settings) have been dropped.
 
   | Dropped                           | Use this instead                                                                                |
   | :-------------------------------- | :---------------------------------------------------------------------------------------------- |
-  | `gwen.feature.failfast`           | [`gwen.feature.failfast.enabled`](/docs/settings#gwen-feature-failfast-enabled)                 |
   | `gwen-web-accept-untrusted-certs` | Use <code>acceptInsecureCerts</code> [capability](/docs/settings#gwen-web-capabilities) instead |
   | `gwen.auto.discover.data.csv`     | Use [`-i/--input`](/docs/launcher#gwen-launch-options-input-data) launch option instead         |
   | `gwen.auto.discover.data.json`    | Use [`-i/--input`](/docs/launcher#gwen-launch-options-input-data) launch option instead         |
@@ -193,6 +195,8 @@ The following [settings](/docs/settings) have been dropped. Update your [setting
   | `gwen.web.implicit.js.locators`   | JS locators                                                                                     |
 
 ### Dropped DSLs
+
+The following [DSL](/docs/dsl)s have been dropped.
 
 - `I wait <duration> second[s] when <element> is <actioned>`
 - `I wait until <condition> when <element> is <actioned>`
