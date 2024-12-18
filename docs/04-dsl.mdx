@@ -8258,6 +8258,168 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
+<details id="step-until-or-while-binding-blank">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <while|until> <name> is[ not] <blank|empty>
+  ```
+  <p>Repeatedly exectues a step until or while an element or attribute is bound to a blank or empty value (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the @Delay and @Timeout annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to repeatedly execute</li>
+    <li><code>&lt;name&gt;</code> is the name of the element or attribute to check</li>
+    <li><code>not</code> to negate the condition</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given the state code can be located by name "state"
+    When I navigate to "https://example.com"
+     And I refresh the current page while the state code is blank
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-binding-blank">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.1.0">v4.1.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-binding-is-value">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <while|until> <name> is[ not] "<value>"
+  ```
+  <p>Repeatedly exectues a step until or while an element or attribute is equal to a value (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the @Delay and @Timeout annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to repeatedly execute</li>
+    <li><code>&lt;name&gt;</code> is the name of the element or attribute to check</li>
+    <li><code>not</code> to negate the condition</li>
+    <li><code>value</code> is the given value</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given the state code can be located by name "state"
+    When I navigate to "https://example.com?state=Victoria"
+     And I refresh the current page while the state code is not "VIC"
+  ```
+
+  Trimming and ignoring case
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+    <li>The <code>@IgnoreCase</code> annotation can be used on step to ignore case when comparing</li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-binding-is-value">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.1.0">v4.1.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-binding-match">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <while|until> <name> <match> "<expression>"`
+  ```
+  
+  <p>Repeatedly exectues a step until or while an element or attribute matches an expression using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the @Delay and @Timeout annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to repeatedly execute</li>
+    <li><code>&lt;name&gt;</code> is the name of the element or attribute to check</li>
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>contains</code> for partial match</li>
+        <li><code>starts with</code> for partial leading match</li>
+        <li><code>ends with</code> for partial trailing match</li>
+        <li><code>matches regex</code> for regex match</li>
+        <li><code>matches xpath</code> for XML match</li>
+        <li><code>matches json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
+        <li><code>matches template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>matches template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given the state code can be located by name "state"
+    When I navigate to "https://example.com?state=${the state code}"
+     And I refresh the current page until the state code matches regex "(VIC|NSW)"
+  ```
+
+  Trimming and ignoring case
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+    <li>The <code>@IgnoreCase</code> annotation can be used on step to ignore case when comparing</li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-binding-match">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.1.0">v4.1.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-binding-not-match">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <while|until> <name> does not <match> "<expression>"`
+  ```
+  <p>Repeatedly exectues a step until or while an element or attribute does not match an expression using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the @Delay and @Timeout annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to repeatedly execute</li>
+    <li><code>&lt;name&gt;</code> is the name of the element or attribute to check</li>
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>matche regex</code> for regex match</li>
+        <li><code>matche xpath</code> for XML match</li>
+        <li><code>matche json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
+        <li><code>matche template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>matche template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given the state code can be located by name "state"
+    When I navigate to "https://example.com?state=${the state code}"
+     And I refresh the current page until the state code does not match regex "(VIC|NSW)"
+  ```
+
+  Trimming and ignoring case
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+    <li>The <code>@IgnoreCase</code> annotation can be used on step to ignore case when comparing</li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-binding-not-match">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.1.0">v4.1.0</Link></div>
+  </div>
+</details>
+
 #### If
 
 <details id="step-if-condition">
