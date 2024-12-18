@@ -3441,6 +3441,77 @@ Default value (empty to pick up Gwen default format: html)
   </div>
 </details>
 
+<details id="gwen-input-data-maskFields">
+  <summary class="setting">
+
+  ```properties
+  gwen.input.data.maskFields
+  ```
+  <p>Specifies input data fields to mask.</p>
+  </summary>
+  
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      input {
+        data {
+          maskFields = [
+          ]
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "input": {
+          "data": {
+            "maskFields": [
+            ]
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.input.data.maskFields = 
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-input-data-maskFields">Link</Link></div>
+    <div align="center"><Link to="/docs/settings#masking-input-fields">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.1.0">v4.1.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-input-data-readonly">
   <summary class="setting">
 
@@ -6876,6 +6947,12 @@ For example, to access a password stored in an environment variable named `USER_
   </TabItem>
 
   </Tabs>
+
+### Masking input fields
+
+> Since [v4.1.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.1.0)
+
+To mask an [input](/docs/data-feeds) field, add the field's name to the [gwen.input.data.maskFields](#gwen-input-data-maskFields) setting. The field value will then be masked in all Gwen outputs.
 
 ### Using masked settings
 

@@ -99,7 +99,7 @@ Where:
 CSV fields are configured as arrays witihin the `fields` attribute and have the following structure:
 
 ```json
-{ name = "<fieldName>", ref = "[reference]", defaultValue = "[value]", excludes = "[excludeFields]" }
+{ name = "<fieldName>", ref = "[reference]", defaultValue = "[value]", excludes = "[excludeFields]", unmask = [true|false] }
 ```
 
 Where:
@@ -129,6 +129,13 @@ Where:
     <code>[excludeFields]</code> - (Optional) - Comma separated list of fields to exclude when <code>&lt;fieldName&gt;</code> is set to <code>*</code>:
     <ul>
       <li>All fields in the template file (referred to by <code>[reference]</code>) that match those in the excludes list will be excluded</li>
+    </ul>
+  </li>
+  <li>
+    <code>[unmask]</code> - (Optional since [v4.1.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.1.0)) - Whether or not to unmask a [masked value](/docs/settings#masked-settings) in the output:
+    <ul>
+      <li>`true` to unmask the field</li>
+      <li>`false` (default) to leave the field masked</li>
     </ul>
   </li>
 </ul>
