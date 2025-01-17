@@ -92,26 +92,19 @@ This will create the following files in your project:
      └──Dockerfile                # Docker image file
 ```
 
-The init --docker commad will create a `gwen/DockerFile` with the following content to build an Alpine Linux node and Yarn based image with bash and Open JDK 11 JRE installed.
+The init --docker commad will create a `gwen/DockerFile` with the following content to build an Alpine Linux node and Yarn based image with bash and Open JDK 17 JRE installed.
 
 ```
 # base alpine image with node
 FROM node:21-alpine
 
-# install bash and java
+# install tools
 RUN apk update \
     && apk add bash \
-    && apk add openjdk11-jre
-```
-
-Should you prefer a Red Hat Linux and Open JDK 11 based image with node and Yarn installed instead, you can change the content to this:
-```
-# base Red Hat image with open JDK 11
-FROM adoptopenjdk/openjdk11:ubi
-
-# install node & yarn
-RUN dnf module install nodejs:16 -y
-RUN npm install --global yarn
+    && apk add jq \
+    && apk add curl \
+    && apk add tzdata \
+    && apk add openjdk17-jre
 ```
 
 ### Docker compose file
@@ -142,7 +135,8 @@ services:
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_DOCKER_CONFIG_FILENAME=docker.toml
-      - SE_START_VNC=false
+      - SE_START_VNC=true
+      - TZ
     shm_size: 2gb
 
   selenium-hub:
@@ -213,6 +207,7 @@ A `gwen/.env` file containing the following environment variable defaults will a
 ```
 SELENIUM_HUB=selenium-hub
 NO_COLOR=1
+TZ=Australia/Melbourne
 ```
 
 ### Grid config file
@@ -334,10 +329,22 @@ Run the following command in your project directory to launch Gwen in docker and
 docker-compose -f gwen/docker-compose.yml run gwen
 ```
 
-To execute features in parallel (you can pass any number of [environment varaibles](/docs/launcher#environment-variables) in this manner)
+To execute features in parallel
 
 ```shell
 GWEN_PARALLEL=true docker-compose -f gwen/docker-compose.yml run gwen
+```
+
+To record video
+
+```shell
+GWEN_VIDEO=true docker-compose -f gwen/docker-compose.yml run gwen
+```
+
+To target a specific browser
+
+```shell
+GWEN_BROWSER=firefox docker-compose -f gwen/docker-compose.yml run gwen
 ```
 
 To execute dry run instead (Since [v3.35.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.35.0))
@@ -352,13 +359,13 @@ Tear it all down when done
 docker-compose -f gwen/docker-compose.yml down
 ```
 
-## Run Gwen locally against Grid in Docker
+## Run Gwen against Grid in your local Docker
 
 :::note
 If you're on a Mac or ARM, replace `gwen/docker-compose.yml` with `gwen/docker-compose-arm.yml`
 :::
 
-Set `SE_START_VNC` to `true` in your `gwen/docker-compose.yml` file if you wish to view active sessions in the Grid console.
+If you wish to view active sessions in the Grid console, ensure that `SE_START_VNC` is set to `true` in your `gwen/docker-compose.yml` file.
 
 ```yaml {17}
 services:
@@ -378,6 +385,7 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_DOCKER_CONFIG_FILENAME=docker.toml
       - SE_START_VNC=true
+      - TZ
     ..
 ```
 
