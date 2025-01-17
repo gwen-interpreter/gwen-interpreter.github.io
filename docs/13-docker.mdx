@@ -12,10 +12,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 # Running Gwen in Docker
 
 Sometimes it may be useful to run Gwen in [Docker](https://www.docker.com/). For example, if you want to run Gwen in a [Jenkins](/docs/jenkins) pipeline on a build server or node agent.
-Setting up Gwen to run in a dynamic [Se Grid](https://github.com/SeleniumHQ/docker-selenium?tab=readme-ov-file#dynamic-grid) in Docker is describe here.
+Setting up Gwen to run in a dynamic [Selenium Grid](https://github.com/SeleniumHQ/docker-selenium?tab=readme-ov-file#dynamic-grid) in Docker is describe here.
 
 :::info
-Since [v4.2.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.2.0), Gwen will generate docker files targetting the [Se Grid](https://github.com/SeleniumHQ/docker-selenium?tab=readme-ov-file#dynamic-grid) instead of [Selenoid](https://github.com/aerokube/selenoid).
+Since [v4.2.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.2.0), Gwen will generate docker files targetting the [Selenium Grid](https://github.com/SeleniumHQ/docker-selenium?tab=readme-ov-file#dynamic-grid) instead of [Selenoid](https://github.com/aerokube/selenoid).
 :::
 
 ## Get started
@@ -109,7 +109,7 @@ RUN npm install --global yarn
      └──/gwen/wait4grid.sh        # Se Grid wait script
 ```
 
-The init --docker commad will create a `gwen/docker-compose.yml` file with the following content to create a dynamic Se Grid in Docker that Gwen will connect to.
+The init --docker commad will create a `gwen/docker-compose.yml` file with the following content to create a Selenium Grid in Docker that Gwen will connect to.
 
 ```yaml
 services:
@@ -245,13 +245,13 @@ video-image = "selenium/video:ffmpeg-6.1-20231219"
 
 ### Gwen settings file
 
-```shell {6}
+```shell {5}
 ./project                      # Your project root
  └── /gwen
      └── /conf
          └── /browsers
-             ├──grid.toml      # Se Grid docker config
-             └──grid.conf      # Se Grid remote driver settings
+             ├──grid.conf      # Se Grid remote driver settings
+             └──grid.toml      # Se Grid docker config
 ```
 
 The init --docker commad will create a `gwen/conf/browsers/grid.conf` file with the following content that will be used by Gwen to connect to the Grid with remote web driver.
