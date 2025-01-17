@@ -1,0 +1,440 @@
+--- 
+title: Docker
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Running Gwen in Docker
+
+Sometimes it may be useful to run Gwen in [Docker](https://www.docker.com/). For example, if you want to run Gwen in a [Jenkins](/docs/jenkins) pipeline on a build server or node agent.
+Setting up Gwen to run in a dynamic [Se Grid](https://github.com/SeleniumHQ/docker-selenium?tab=readme-ov-file#dynamic-grid) in Docker is describe here.
+
+:::info
+Since [v4.2.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.2.0), Gwen will generate docker files targetting the [Se Grid](https://github.com/SeleniumHQ/docker-selenium?tab=readme-ov-file#dynamic-grid) instead of [Selenoid](https://github.com/aerokube/selenoid).
+:::
+
+## Get started
+
+[Start a new Gwen project](https://gweninterpreter.org/docs/get-started) or use an existing one.
+
+## Docker Setup
+
+> Since [v3.16.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.16.0), the [`init --docker`](/docs/launcher#gwen-launch-init-options-docker) command was introduced to generate Docker and Grid files in your project. You will need to create the files manually if you are using an older version.
+
+<Tabs
+groupId="jstool"
+defaultValue="yarn"
+values={[
+  {label: 'Yarn', value: 'yarn'},
+  {label: 'npm', value: 'npm'},
+  {label: 'pnpm', value: 'pnpm'}
+]}>
+
+<TabItem value="yarn">
+
+Run the following command in the root of your project to generate all the necessary Docker and Grid files
+  
+  ```shell
+  yarn gwen init --docker
+  ```
+
+</TabItem>
+
+<TabItem value="npm">
+
+Run the following command in the root of your project to generate all the necessary Docker and Grid files
+  
+  ```shell
+  npm run gwen init --docker
+  ```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+Run the following command in the root of your project to generate all the necessary Docker and Grid files
+  
+  ```shell
+  pnpm gwen init --docker
+  ```
+
+</TabItem>
+
+</Tabs>
+
+### Dockerfile
+
+```shell {3}
+./project                    # Your project root
+ └── /gwen
+     └──Dockerfile           # Docker image file
+```
+
+The init --docker commad will create a `gwen/DockerFile` with the following content to build an Alpine Linux node and Yarn based image with bash and Open JDK 11 JRE installed.
+
+```
+# base alpine image with node
+FROM node:21-alpine
+
+# install bash and java
+RUN apk update \
+    && apk add bash \
+    && apk add openjdk11-jre
+```
+
+Should you prefer a Red Hat Linux and Open JDK 11 based image with node and Yarn installed instead, you can change the content to this:
+```
+# base Red Hat image with open JDK 11
+FROM adoptopenjdk/openjdk11:ubi
+
+# install node & yarn
+RUN dnf module install nodejs:16 -y
+RUN npm install --global yarn
+```
+
+### Docker compose file
+
+```shell {4-5}
+./project                         # Your project root
+ └── /gwen
+     ├── .env                     # Docker env file
+     ├── docker-compose.yml       # Se Grid docker compose file
+     ├── docker-compose-arm.yml   # Se Grid docker compose file for ARMs
+     ├── Dockerfile               # Docker image file
+     └──/gwen/wait4grid.sh        # Se Grid wait script
+```
+
+The init --docker commad will create a `gwen/docker-compose.yml` file with the following content to create a dynamic Se Grid in Docker that Gwen will connect to.
+
+```yaml
+services:
+  node-docker:
+    image: selenium/node-docker:latest
+    volumes:
+      - $PWD/gwen/output/.assets:/opt/selenium/assets
+      - $PWD/gwen/output/downloads:/home/seluser/Downloads
+      - $PWD/gwen/conf/browsers/grid.toml:/opt/selenium/docker.toml
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_DOCKER_CONFIG_FILENAME=docker.toml
+      - SE_START_VNC=false
+    shm_size: 2gb
+
+  selenium-hub:
+    image: selenium/hub:latest
+    container_name: selenium-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+
+  chrome:
+    image: selenium/standalone-chrome:latest
+
+  edge:
+    image: selenium/standalone-edge:latest
+
+  firefox:
+    image: selenium/standalone-firefox:latest
+
+  video:
+    image: selenium/video:ffmpeg-6.1-20231219
+
+  gwen:
+    depends_on:
+      - node-docker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - GWEN_ENV
+      - GWEN_PROFILE
+      - GWEN_BROWSER
+      - GWEN_DRY_RUN
+      - GWEN_PARALLEL
+      - GWEN_THREADS
+      - GWEN_HEADLESS
+      - GWEN_VIDEO
+      - GWEN_WEB_VERSION
+      - SELENIUM_HUB
+      - NO_COLOR
+      - TZ
+    volumes:
+      - "$PWD:/project"
+    working_dir: /project
+    command: bash -c "./gwen/wait4grid.sh && yarn install && yarn gwen -b -c gwen/conf/browsers/grid.conf gwen/features"
+
+  gwen-dry-run:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - GWEN_ENV
+      - GWEN_WEB_VERSION
+      - NO_COLOR
+      - TZ
+    volumes:
+      - "$PWD:/project"
+    working_dir: /project
+    command: bash -c "yarn install && yarn gwen -bn --parallel gwen/features"
+```
+
+### Docker env file
+
+> Since [v3.35.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.35.0)
+
+A `gwen/.env` file containing the following environment variable defaults will also be generated by `init --docker`. 
+
+```
+SELENIUM_HUB=selenium-hub
+NO_COLOR=1
+```
+
+### Grid config file
+
+```shell {4}
+./project                      # Your project root
+ └── /gwen
+     └── /browsers
+         └──grid.toml          # Se Grid docker config
+```
+
+The init --docker command will create a `gwen/conf/browsers/grid.toml` file with the following content that will be used to configure the `node-docker` service and spin up browser containers as specified.
+
+```toml
+[docker]
+# Configs have a mapping between the Docker image to use and the capabilities that need to be matched to
+# start a container with the given image.
+configs = [
+    "selenium/standalone-chrome:latest", '{"browserName": "chrome"}',
+    "selenium/standalone-edge:latest", '{"browserName": "edge"}',
+    "selenium/standalone-firefox:latest", '{"browserName": "firefox"}'
+]
+
+host-config-keys = ["Dns", "DnsOptions", "DnsSearch", "ExtraHosts", "Binds", "Mounts"]
+
+# URL for connecting to the docker daemon
+# Most simple approach, leave it as http://127.0.0.1:2375, and mount /var/run/docker.sock.
+# 127.0.0.1 is used because internally the container uses socat when /var/run/docker.sock is mounted 
+# If var/run/docker.sock is not mounted: 
+#   Windows: make sure Docker Desktop exposes the daemon via tcp, and use http://host.docker.internal:2375.
+#     macOS: install socat and run the following command, socat -4 TCP-LISTEN:2375,fork UNIX-CONNECT:/var/run/docker.sock,
+#            then use http://host.docker.internal:2375.
+#     Linux: varies from machine to machine, please mount /var/run/docker.sock. If this does not work, please create an issue.
+url = "http://127.0.0.1:2375"
+
+# Docker image used for video recording
+video-image = "selenium/video:ffmpeg-6.1-20231219"
+
+# Uncomment the following section if you are running the node on a separate VM
+# Fill out the placeholders with appropriate values
+#[server]
+#host = <ip-from-node-machine>
+#port = <port-from-node-machine>
+```
+
+### Gwen settings file
+
+```shell {6}
+./project                      # Your project root
+ └── /gwen
+     └── /conf
+         └── /browsers
+             ├──grid.toml      # Se Grid docker config
+             └──grid.conf      # Se Grid remote driver settings
+```
+
+The init --docker commad will create a `gwen/conf/browsers/grid.conf` file with the following content that will be used by Gwen to connect to the Grid with remote web driver.
+
+```json
+gwen {
+  web {
+    capabilities {
+      "se:recordVideo" = true
+      "se:recordVideo" = ${?GWEN_VIDEO}
+      "se:screenResolution" = "1920x1080"
+    }
+    remote {
+      url = "http://${env.SELENIUM_HUB}:4444/wd/hub"
+    }
+  }
+}
+```
+
+## Run Gwen in docker
+
+Start your docker desktop engine app (see [getting started with Docker](https://docs.docker.com/get-started/) for more info).
+
+:::note
+If you're on a Mac or ARM, replace `gwen/docker-compose.yml` with `gwen/docker-compose-arm.yml`
+:::
+
+Create the Gwen output directory if it does not already exist.
+
+```shell
+mkdir -p gwen/output
+```
+
+Run the following command to build your docker image
+
+```shell
+docker-compose -f gwen/docker-compose.yml build
+```
+
+Run the following command in your project directory to launch Gwen in docker and run your features
+
+```shell
+docker-compose -f gwen/docker-compose.yml run gwen
+```
+
+To execute features in parallel (you can pass any number of [environment varaibles](/docs/launcher#environment-variables) in this manner)
+
+```shell
+GWEN_PARALLEL=true docker-compose -f gwen/docker-compose.yml run gwen
+```
+
+To execute dry run instead (Since [v3.35.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.35.0))
+
+```shell
+docker-compose -f gwen/docker-compose.yml run gwen-dry-run
+```
+
+Tear it all down when done
+
+```shell
+docker-compose -f gwen/docker-compose.yml down
+```
+
+## Run Gwen locally against Grid in Docker
+
+:::note
+If you're on a Mac or ARM, replace `gwen/docker-compose.yml` with `gwen/docker-compose-arm.yml`
+:::
+
+Set `SE_START_VNC` to `true` in your `gwen/docker-compose.yml` file if you wish to view active sessions in the Grid console.
+
+```yaml {16}
+services:
+  node-docker:
+    image: selenium/node-docker:latest
+    volumes:
+      - $PWD/gwen/output/.assets:/opt/selenium/assets
+      - $PWD/gwen/output/downloads:/home/seluser/Downloads
+      - $PWD/gwen/conf/browsers/grid.toml:/opt/selenium/docker.toml
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_DOCKER_CONFIG_FILENAME=docker.toml
+      - SE_START_VNC=true
+    ..
+```
+
+Run the following command to launch the Grid in Docker
+
+```shell
+docker-compose -f gwen/docker-compose.yml run -d --service-ports node-docker
+```
+
+Open [http://localhost:4444/ui#](http://localhost:4444/ui#) to access the Grid console and verify that it is running and avaialable
+
+Run the following command to launch Gwen against your Grid.
+
+```shell
+SELENIUM_HUB=localhost yarn gwen -b -c gwen/conf/browsers/grid.conf gwen/features
+```
+
+If you have VNC enabled, you can click the active browser session in the Grid console to see it in action.
+
+Tear it all down when done
+
+```shell
+docker-compose -f gwen/docker-compose.yml down
+```
+
+## Video capture
+
+> See also: [Video recordings](/docs/reports/video-recordings) 
+
+If you set the [`GWEN_VIDEO`](/docs/launcher#environment-variables) environment variable or the `se:recordVideo` capability setting to `true` in your `grid.conf` file, MP4 video recordings of each session will be attached to the feature level [HTML reports](/docs/reports/html). Set this to `false` if you do not wish to capture video.
+
+File: *gwen/conf/browsers/grid.conf*
+
+```json {4}
+gwen {
+  web {
+    capabilities {
+      "se:recordVideo" = true
+    }
+    ..
+  }
+}
+```
+
+:::note video settings
+- [`gwen-video.timeoutSecs`](/docs/settings#gwen-video.timeoutSecs) 
+  - Time to wait for asyncronous video writes to complete (override only if default does not suffice)
+:::
+
+:::caution Limitation
+Videos will not be recorded when [headless browser](/docs/settings#gwen-web-browser-headless) or interactive (non [--repl](/docs/launcher#gwen-launch-options-repl)) modes are enabled.
+:::
+
+
+## Downloading Files in Chrome
+
+Configure the following in your `conf/browsers/grid.conf` file to enable automatic file downloads for Chrome in the Grid.
+
+```json {8-30}
+gwen {
+  web {
+    capabilities {
+      "se:startVNC" = true
+      "se:recordVideo" = true
+      "se:recordVideo" = ${?GWEN_VIDEO}
+      "se:screenResolution" = "1920x1080"
+      "goog:chromeOptions" {
+        prefs {
+           download {
+             prompt_for_download = false
+             directory_upgrade = true
+             default_directory = "/home/seluser/Downloads"
+           }
+           profile {
+             default_content_settings {
+               popups = 0
+             }
+             default_content_setting_values {
+               automatic_downloads = 1
+             }
+           }
+           safebrowsing {
+             enabled = false
+           }
+           plugins: {
+             plugins_disabled = false
+           }
+         }
+      }
+    }
+    remote {
+      url = "http://${env.SELENIUM_HUB}:4444/wd/hub"
+    }
+  }
+}
+```
+
+Downloaded files will be saved to the `gwen/output/downloads` folder of your project

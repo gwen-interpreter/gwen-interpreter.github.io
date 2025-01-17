@@ -34,7 +34,7 @@ Usage: gwen [options] [files|dirs]
   -c, --conf files         Settings files: conf, json or properties (comma separated)
   -r, --report dir         Directory to output generated report(s) to
   -f, --formats reports    Report formats to include in output (comma separated)
-                           - html,results,junit,json,rp,none (default = html, rp deprecated)
+                           - html,results,junit,json,none (default = html)
   -t, --tags filter        Tags to @include or ~@exclude (comma separated)
   -i, --input-data file    Input data feed (csv or json file)
   -m, --meta files|dirs    Meta files or directories to load (comma separated)
@@ -64,7 +64,7 @@ The following environment variables can be set to override certain settings as b
 | v3.16.0 | `GWEN_PARALLEL`      | <code>true&#124;false</code>                                                                              | [`gwen.launch.options.parallel`](/docs/settings#gwen-launch-options-parallel) | [`--parallel`](#gwen-launch-options-parallel)   |
 | v3.18.0 | `GWEN_THREADS`       | <code>auto&#124;number</code>                                                                             | [`gwen.parallel.maxThreads`](/docs/settings#gwen-parallel-maxThreads)         |                                                 |
 | v3.16.0 | `GWEN_HEADLESS`      | <code>true&#124;false</code>                                                                              | [`gwen.web.browser.headless`](/docs/settings#gwen-web-browser-headless)       |                                                 |
-| v3.18.0 | `GWEN_VIDEO`         | <code>true&#124;false</code>                                                                              | [`selenoid:options.enableVideo`](/docs/docker#video-capture)                  |                                                 |
+| v3.18.0 | `GWEN_VIDEO`         | <code>true&#124;false</code>                                                                              | [`se:recordVideo`](/docs/docker#video-capture)                                |                                                 |
 | v3.71.3 | `GWEN_WEB_VERSION`   | Version or Semver range (Overrides Gwen web version in package.json)                                      |                                                                               |                                                 |
 
 <br/>
@@ -486,7 +486,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
   ```shell
   --repl
   ```
-  <p>Optional switch to open REPL either even if batch mode is enabled or features are specified.</p>
+  <p>Optional switch to open REPL (even if batch mode is enabled or features are specified).</p>
   </summary>
   
   <p>Where</p>
@@ -2012,11 +2012,11 @@ Default launch options and arguments can also be configured in [settings](/docs/
   ./                           # Project root
    └── /gwen
        ├── .env                # Docker env file
-       ├── docker-compose.yml  # Docker compose file
-       ├── Dockerfile          # Docker image file
+       ├── docker-compose.yml  # Se Grid docker compose file
+       ├── Dockerfile          # Docker file for Gwen
        └── /browsers           # Browser settings
-           ├── browsers.json   # Selenoid browsers file
-           └── selenoid.conf   # Selenoid settings
+           ├── grid.conf       # Se Grid remote driver settings
+           └── grid.toml       # Se Grid docker config
   ```
 
   <div class="grid-3">

@@ -3217,81 +3217,7 @@ Default value (empty to pick up Gwen default format: html)
   </div>
 </details>
 
-<details id="gwen-video.dir">
-  <summary class="setting">
-
-  ```properties
-  gwen.video.dir
-  ```
-  <p>Sets the output directory for video recordings.</p>
-  </summary>
-  <p>
-    Video capture is currently only supported in <Link href="/docs/docker">Docker with Selenoid</Link>. 
-    This setting is used to set the host directory mounted to <code>/opt/selenoid/video</code> in docker where the Selenoid video-recorder 
-    will write video files to. If you mount this directory to a different location other than the default, 
-    then you will need to explicitly configure it to match.
-  </p>
-  <p>Supported values</p>
-  <ul>
-    <li>A relative or absolute directory location (default = <code>$&#123;gwen.outDir&#125;/.video</code>)</li>
-  </ul>
-  <Tabs
-  groupId="settings"
-  defaultValue="conf"
-  values={[
-    {label: 'conf', value: 'conf'},
-    {label: 'json', value: 'json'},
-    {label: 'properties', value: 'properties'}
-  ]}>
-
-  <TabItem value="conf">
-
-  Default value
-  
-  ```json
-    gwen {
-      video {
-        dir = ${gwen.outDir}/.video
-      }
-    }
-  ```
-
-  </TabItem>
-  <TabItem value="json">
-
-  Default value
-
-  ```json
-    {
-      "gwen": {
-        "video": {
-          "dir": "${gwen.outDir}/.video"
-        }
-      }
-    }
-  ```
-
-  </TabItem>
-  <TabItem value="properties">
-
-  Default value
-
-  ```properties
-    gwen.web.dir = ${gwen.outDir}/.video
-  ```
-
-  </TabItem>
-
-  </Tabs>
-
-  <div class="grid-3">
-    <div><Link to="#gwen-video.dir">Link</Link></div>
-    <div align="center"></div>
-    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.7.0">v3.7.0</Link></div>
-  </div>
-</details>
-
-<details id="gwen-video.timeoutSecs">
+<details id="gwen-video-timeoutSecs">
   <summary class="setting">
 
   ```properties
@@ -3300,9 +3226,9 @@ Default value (empty to pick up Gwen default format: html)
   <p>Sets the number of seconds wait for video files to be ready when including them in generated HTML reports.</p>
   </summary>
   <p>
-    Video capture is currently only supported in <Link href="/docs/docker">Docker with Selenoid</Link>.
+    Video capture is currently only supported in <Link href="/docs/docker">Docker</Link>.
     This setting is used to set the maximum time to wait for video files to be asynchronously written out to the host 
-    directory by the Selenoid video recorder after a browser session is closed. If the video files in your environment 
+    directory by the video recorder after a browser session is closed. If the video files in your environment 
     take longer than the default, then you will need to explicitly configure this setting to a higher value.
   </p>
   <p>Supported values</p>
@@ -3359,7 +3285,7 @@ Default value (empty to pick up Gwen default format: html)
   </Tabs>
 
   <div class="grid-3">
-    <div><Link to="#gwen-video.timeoutSecs">Link</Link></div>
+    <div><Link to="#gwen-video-timeoutSecs">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.7.0">v3.7.0</Link></div>
   </div>
@@ -4286,14 +4212,13 @@ Default value (empty to pick up Gwen default format: html)
     <li>
       <code>&lt;capabilities&gt;</code> can include one more standard, browser specific or vendor specific capabilities.
       <ul>
-        <li><Link to="https://www.selenium.dev/documentation/webdriver/capabilities/shared/">Standard capabilities</Link> at top level</li>
+        <li><Link to="https://www.selenium.dev/documentation/webdriver/capabilities/shared/">Standard</Link> or <Link to="https://github.com/SeleniumHQ/docker-selenium?tab=readme-ov-file#video-recording-screen-resolution-and-time-zones-in-a-dynamic-grid">Dynamic Selenid grid</Link> capabilities at top level</li>
         <li>
           Nested browser and vendor specific capabilities (protocol extensions)
           <ul>
             <li><Link to="https://chromedriver.chromium.org/capabilities#h.p_ID_106">Chrome capabilities</Link> inside a <code>goog:chromeOptions</code> block</li>
             <li><Link to="https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class">Edge capabilities</Link> inside a <code>ms:edgeOptions</code> block</li>
             <li><Link to="https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html">Firefox capabilities</Link> inside a <code>moz:firefoxOptions</code> block</li>
-            <li><Link to="https://aerokube.com/selenoid/latest/#_special_capabilities">Selenoid capabilities</Link> inside a <code>selenoid:options</code> block</li>
             <li><Link to="https://www.browserstack.com/automate/capabilities?tag=selenium-4#">BrowserStack capabilities</Link> inside a <code>bstack:options</code> block</li>
             <li><Link to="https://www.lambdatest.com/support/docs/selenium-automation-capabilities/#desired-capabilities-in-selenium-4">LambdaTest capabilities</Link> inside a <code>LT:Options</code> block</li>
             <li>And similarly for other vendors. See vendor documentation for nested block (protocol key) name</li>
@@ -4320,9 +4245,7 @@ Default value (empty to pick up Gwen default format: html)
       web {
         capabilities {
           acceptInsecureCerts = false
-          "selenoid:options" {
-            enableVideo = true
-          }
+          "se:recordVideo" = true
         }
       }
     }
@@ -4339,9 +4262,7 @@ Default value (empty to pick up Gwen default format: html)
         "web": {
           "capabilities": {
             "acceptInsecureCerts": false
-            "selenoid:options": {
-              "enableVideo": true
-            }
+            "se:recordVideo": true
           }
         }
       }
@@ -4355,7 +4276,7 @@ Default value (empty to pick up Gwen default format: html)
 
   ```properties
     gwen.web.capabilities.acceptInsecureCerts = false
-    gwen.web.capabilities.selenoid\:options.enableVideo = true
+    gwen.web.capabilities.se\:recordVideo = true
   ```
 
   </TabItem>
@@ -5055,7 +4976,7 @@ Default value (empty to pick up Gwen default format: html)
   ```properties
   gwen.web.remote.url
   ```
-  <p>Remote web driver url for connecting to a selenium grid server.</p>
+  <p>Remote web driver url for connecting to a Se Grid server.</p>
   </summary>
   <Tabs
   groupId="settings"
@@ -5074,7 +4995,7 @@ Default value (empty to pick up Gwen default format: html)
     gwen {
       web {
         remote {
-          url = "http://selenoid:4444/wd/hub"
+          url = "http://selenium-hub:4444/wd/hub"
         }
       }
     }
@@ -5090,7 +5011,7 @@ Default value (empty to pick up Gwen default format: html)
       "gwen": {
         "web": {
           "remote": {
-            "url": "http://selenoid:4444/wd/hub"
+            "url": "http://selenium-hub:4444/wd/hub"
           }
         }
       }
@@ -5103,7 +5024,7 @@ Default value (empty to pick up Gwen default format: html)
   Example
 
   ```properties
-    gwen.web.remote.url = http://selenoid:4444/wd/hub
+    gwen.web.remote.url = http://selenium-hub:4444/wd/hub
   ```
 
   </TabItem>
