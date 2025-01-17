@@ -295,7 +295,7 @@ gwen {
       "se:recordVideo" = true
       "se:recordVideo" = ${?GWEN_VIDEO}
       "se:screenResolution" = "1920x1080"
-      "se:timeZone": ${TZ}
+      "se:timeZone" = "${env.TZ}"
     }
     remote {
       url = "http://${env.SELENIUM_HUB}:4444/wd/hub"
