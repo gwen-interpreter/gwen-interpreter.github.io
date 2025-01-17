@@ -72,16 +72,16 @@ This will create the following files in your project:
 ```shell
 ./project                         # Your project root
  └── /gwen
-     |── conf
-     |   └── /browsers
-     |       ├──grid.conf         # Se Grid remote driver settings
-     |       ├──grid.toml         # Se Grid docker config
-     |       └──grid-arm.toml     # Se Grid docker config for ARMs
      ├── .env                     # Docker env file
      ├── Dockerfile               # Docker image file
      ├── docker-compose.yml       # Se Grid docker compose file
      ├── docker-compose-arm.yml   # Se Grid docker compose file for ARMs
-     └── wait4grid.sh             # Se Grid wait script
+     ├── wait4grid.sh             # Se Grid wait script
+     └── conf
+         └── /browsers
+             ├──grid.conf         # Se Grid remote driver settings
+             ├──grid.toml         # Se Grid docker config
+             └──grid-arm.toml     # Se Grid docker config for ARMs
 ```
 
 ### Dockerfile
