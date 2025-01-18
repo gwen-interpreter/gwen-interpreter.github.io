@@ -5038,6 +5038,82 @@ Default value (empty to pick up Gwen default format: html)
   </div>
 </details>
 
+<details id="gwen-web-remote.connectTimeout-seconds">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.remote.connectTimeout.seconds
+  ```
+  <p>Sets the maximum time to wait for a remote grid connection before timing out.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A positive integer denoting a number of seconds (default = <code>30</code>)</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        remote {
+          connectTimeout {
+           seconds = 30
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "remote": {
+            "connectTimeout": {
+              "seconds": 30
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.remote.connectTimeout.seconds = 30
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-remote-connectTimeout-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.2.3">v4.2.3</Link></div>
+  </div>
+</details>
+
 <details id="gwen-web-remote-sessionRetries">
   <summary class="setting">
 

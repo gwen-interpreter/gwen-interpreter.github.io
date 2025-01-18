@@ -76,7 +76,6 @@ This will create the following files in your project:
      ├── Dockerfile               # Docker image file
      ├── docker-compose.yml       # Se Grid docker compose file
      ├── docker-compose-arm.yml   # Se Grid docker compose file for ARMs
-     ├── wait4grid.sh             # Se Grid wait script
      └── conf
          └── /browsers
              ├──grid.conf         # Se Grid remote driver settings
@@ -169,7 +168,7 @@ services:
     volumes:
       - "$PWD:/project"
     working_dir: /project
-    command: bash -c "./gwen/wait4grid.sh && yarn install && yarn gwen -b -c gwen/conf/browsers/grid.conf gwen/features"
+    command: bash -c "yarn install && yarn gwen -b -c gwen/conf/browsers/grid.conf gwen/features"
 
   gwen-dry-run:
     build:
@@ -264,18 +263,6 @@ configs = [
 ]
 ```
 
-### Grid wait script
-
-> Since [v4.2.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.2.0)
-
-```shell {3-4}
-./project                         # Your project root
- └── /gwen
-     └── wait4grid.sh             # Se Grid wait script
-```
-
-This script is used by the `gwen` service in the docker compose file to wait for the Grid to be ready.
-
 ### Remote driver settings file
 
 ```shell {5}
@@ -299,6 +286,13 @@ gwen {
     }
     remote {
       url = "http://${env.SELENIUM_HUB}:4444/wd/hub"
+      localFileDetector = auto    # auto|true|false
+      sessionRetries = auto       # auto|true|false
+      connect {
+        timeout {
+          seconds = 30
+        }
+      }
     }
   }
 }
