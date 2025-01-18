@@ -298,7 +298,7 @@ gwen {
 
 ## Run Gwen in docker
 
-Start your docker desktop engine app (see [getting started with Docker](https://docs.docker.com/get-started/) for more info).
+Start your docker desktop engine app if not already done so (see [getting started with Docker](https://docs.docker.com/get-started/) for more info).
 
 :::note
 If you're on a Mac or ARM, replace `gwen/docker-compose.yml` with `gwen/docker-compose-arm.yml`
@@ -354,6 +354,8 @@ docker-compose -f gwen/docker-compose.yml down
 
 ## Run Gwen against Grid in your local Docker
 
+Start your docker desktop engine app if not already done so (see [getting started with Docker](https://docs.docker.com/get-started/) for more info).
+
 :::note
 If you're on a Mac or ARM, replace `gwen/docker-compose.yml` with `gwen/docker-compose-arm.yml`
 :::
@@ -388,9 +390,9 @@ Run the following command to launch the Grid in Docker
 docker-compose -f gwen/docker-compose.yml run -d --service-ports node-docker
 ```
 
-Open [http://localhost:4444/ui#](http://localhost:4444/ui#) to access the Grid console and verify that it is running and avaialable
+Open [http://localhost:4444/ui#](http://localhost:4444/ui#) to access the Grid console and verify that it is running and available. It may take a few seconds.
 
-Run the following command to launch Gwen against your Grid.
+Run the following command to launch Gwen against your Grid, specifying SELENIUM_HUB as localhost
 
 ```shell
 SELENIUM_HUB=localhost yarn gwen -b -c gwen/conf/browsers/grid.conf gwen/features
