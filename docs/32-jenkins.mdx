@@ -101,7 +101,7 @@ pipeline {
         script {
           // Clean up docker
           sh 'docker rm -f $(docker ps -a -q) || true'
-          sh 'docker volume rm gwen_assets gwen_downloads || true'
+          sh 'docker volume rm -f $(docker volume -q) || true'
           // Prepare output dir
           sh 'rm -rf gwen/output/**'
           sh 'mkdir -p gwen/output'
@@ -145,7 +145,7 @@ pipeline {
     always {
       script {
         sh 'docker rm -f $(docker ps -a -q) || true'
-        sh 'docker volume rm gwen_assets gwen_downloads || true'
+        sh 'docker volume rm -f $(docker volume -q) || true'
       }
     }
     failure {
