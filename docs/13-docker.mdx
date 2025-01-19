@@ -104,6 +104,12 @@ RUN apk update \
     && apk add curl \
     && apk add tzdata \
     && apk add openjdk17-jre
+
+# Run as a non root gwen user
+RUN addgroup -S gwen && adduser -S gwen -G gwen -u 4936
+USER gwen
+RUN mkdir -p ~/Downloads
+RUN mkdir -p ~/.assets
 ```
 
 ### Docker compose file
@@ -123,8 +129,8 @@ services:
   node-docker:
     image: selenium/node-docker:4
     volumes:
-      - $PWD/gwen/output/.assets:/opt/selenium/assets
-      - $PWD/gwen/output/downloads:/home/seluser/Downloads
+      - assets:/opt/selenium/assets
+      - downloads:/home/seluser/Downloads
       - $PWD/gwen/conf/browsers/grid.toml:/opt/selenium/docker.toml
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
@@ -166,7 +172,9 @@ services:
       - NO_COLOR
       - TZ
     volumes:
-      - "$PWD:/project"
+      - $PWD:/project
+      - assets:/home/gwen/.assets
+      - downloads:/home/gwen/Downloads
     working_dir: /project
     command: bash -c "yarn install && yarn gwen -b -c gwen/conf/browsers/grid.conf gwen/features"
 
@@ -183,6 +191,10 @@ services:
       - "$PWD:/project"
     working_dir: /project
     command: bash -c "yarn install && yarn gwen -bn --parallel gwen/features"
+
+volumes:
+  assets: 
+  downloads:
 ```
 
 It will also create a `gwen/docker-compose-arm.toml` file for ARMs, with the only difference being the toml file mapping.
@@ -245,7 +257,7 @@ host-config-keys = ["Dns", "DnsOptions", "DnsSearch", "ExtraHosts", "Binds", "Mo
 url = "http://127.0.0.1:2375"
 
 # Docker image used for video recording
-video-image = "selenium/video:ffmpeg-6.1-20231219"
+video-image = "selenium/video:ffmpeg-7.1-20250101"
 
 # Uncomment the following section if you are running the node on a separate VM
 # Fill out the placeholders with appropriate values
@@ -292,6 +304,10 @@ gwen {
         seconds = 30
       }
     }
+  }
+  video {
+    dir = "$<user.home>/.assets/$<gwen.web.sessionId>"
+    timeoutSecs = 10
   }
 }
 ```
