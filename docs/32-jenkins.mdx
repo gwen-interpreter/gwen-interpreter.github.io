@@ -138,11 +138,6 @@ pipeline {
                         reportName            : "Gwen-Report"
           ])
         }
-        failure {
-          script {
-            // something went wrong, raise alert here
-          }
-        }
       }
     }
   }
@@ -151,6 +146,11 @@ pipeline {
       script {
         sh 'docker rm -f $(docker ps -a -q) || true'
         sh 'docker volume rm gwen_assets gwen_downloads || true'
+      }
+    }
+    failure {
+      script {
+        // something went wrong, raise alert here
       }
     }
   }
