@@ -291,7 +291,7 @@ The init --docker commad will create a `gwen/conf/browsers/grid.conf` file with 
 gwen {
   web {
     capabilities {
-      "se:recordVideo" = true
+      "se:recordVideo" = false
       "se:recordVideo" = ${?GWEN_VIDEO}
       "se:screenResolution" = "1920x1080"
       "se:timeZone" = "${env.TZ}"
@@ -384,8 +384,8 @@ services:
   node-docker:
     image: selenium/node-docker:4
     volumes:
-      - $PWD/gwen/output/.assets:/opt/selenium/assets
-      - $PWD/gwen/output/downloads:/home/seluser/Downloads
+      - assets:/opt/selenium/assets
+      - downloads:/home/seluser/Downloads
       - $PWD/gwen/conf/browsers/grid.toml:/opt/selenium/docker.toml
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
@@ -449,49 +449,3 @@ gwen {
 :::caution Limitation
 Videos will not be recorded when [headless browser](/docs/settings#gwen-web-browser-headless) or interactive (non [--repl](/docs/launcher#gwen-launch-options-repl)) modes are enabled.
 :::
-
-
-## Downloading Files in Chrome
-
-Configure the following in your `conf/browsers/grid.conf` file to enable automatic file downloads for Chrome in the Grid.
-
-```json {8-30}
-gwen {
-  web {
-    capabilities {
-      "se:startVNC" = true
-      "se:recordVideo" = true
-      "se:recordVideo" = ${?GWEN_VIDEO}
-      "se:screenResolution" = "1920x1080"
-      "goog:chromeOptions" {
-        prefs {
-           download {
-             prompt_for_download = false
-             directory_upgrade = true
-             default_directory = "/home/seluser/Downloads"
-           }
-           profile {
-             default_content_settings {
-               popups = 0
-             }
-             default_content_setting_values {
-               automatic_downloads = 1
-             }
-           }
-           safebrowsing {
-             enabled = false
-           }
-           plugins: {
-             plugins_disabled = false
-           }
-         }
-      }
-    }
-    remote {
-      url = "http://${env.SELENIUM_HUB}:4444/wd/hub"
-    }
-  }
-}
-```
-
-Downloaded files will be saved to the `gwen/output/downloads` folder of your project
