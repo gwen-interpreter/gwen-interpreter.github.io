@@ -148,8 +148,10 @@ pipeline {
   }
   post {
     always {
-      sh 'docker rm -f $(docker ps -a -q) || true'
-      sh 'docker volume rm gwen_assets gwen_downloads || true'
+      script {
+        sh 'docker rm -f $(docker ps -a -q) || true'
+        sh 'docker volume rm gwen_assets gwen_downloads || true'
+      }
     }
   }
 }
