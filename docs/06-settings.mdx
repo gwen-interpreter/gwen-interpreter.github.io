@@ -3217,6 +3217,65 @@ Default value (empty to pick up Gwen default format: html)
   </div>
 </details>
 
+<details id="gwen-video.dir">
+  <summary class="setting">
+  ```properties
+  gwen.video.dir
+  ```
+  <p>Sets the output directory for video recordings.</p>
+  </summary>
+  <p>
+    Video capture is currently only supported in docker. This setting is used to set the location where the selenium video recorder will output mp4 files.
+  </p>
+  <p>Supported values</p>
+  <ul>
+    <li>A relative or absolute directory location (default = <code>$&#123;gwen.outDir&#125;/.video</code>)</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+  <TabItem value="conf">
+  Default value
+  
+  ```json
+    gwen {
+      video {
+        dir = "$<user.home>/.assets/$<gwen.web.sessionId>"
+      }
+    }
+  ```
+  </TabItem>
+  <TabItem value="json">
+  Default value
+  ```json
+    {
+      "gwen": {
+        "video": {
+          "dir": $<user.home>/.assets/$<gwen.web.sessionId>"
+        }
+      }
+    }
+  ```
+  </TabItem>
+  <TabItem value="properties">
+  Default value
+  ```properties
+    gwen.web.dir = $<user.home>/.assets/$<gwen.web.sessionId>
+  ```
+  </TabItem>
+  </Tabs>
+  <div class="grid-3">
+    <div><Link to="#gwen-video.dir">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.7.0">v3.7.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-video-timeoutSecs">
   <summary class="setting">
 
