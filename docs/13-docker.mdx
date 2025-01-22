@@ -108,8 +108,8 @@ RUN apk update \
 # Run as a non root gwen user
 RUN addgroup -S gwen && adduser -S gwen -G gwen -u 4936
 USER gwen
-RUN mkdir -p ~/Downloads
-RUN mkdir -p ~/.assets
+
+RUN mkdir /tmp/assets
 ```
 
 ### Docker compose file
@@ -129,8 +129,7 @@ services:
   node-docker:
     image: selenium/node-docker:4
     volumes:
-      - assets:/opt/selenium/assets
-      - downloads:/home/seluser/Downloads
+      - $PWD/gwen/output/assets:/opt/selenium/assets
       - $PWD/gwen/conf/browsers/grid.toml:/opt/selenium/docker.toml
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
@@ -173,8 +172,7 @@ services:
       - TZ
     volumes:
       - $PWD:/project
-      - assets:/home/gwen/.assets
-      - downloads:/home/gwen/Downloads
+      - $PWD/gwen/output/assets:/tmp/assets
     working_dir: /project
     command: bash -c "yarn install && yarn gwen -b -c gwen/conf/browsers/grid.conf gwen/features"
 
@@ -192,9 +190,6 @@ services:
     working_dir: /project
     command: bash -c "yarn install && yarn gwen -bn --parallel gwen/features"
 
-volumes:
-  assets: 
-  downloads:
 ```
 
 It will also create a `gwen/docker-compose-arm.toml` file for ARMs, with the only difference being the toml file mapping.
@@ -301,12 +296,12 @@ gwen {
       localFileDetector = auto    # auto|true|false
       sessionRetries = auto       # auto|true|false
       connectTimeout {
-        seconds = 30
+        seconds = 60
       }
     }
   }
   video {
-    dir = "$<user.home>/.assets/$<gwen.web.sessionId>"
+    dir = "${gwen.outDir}/assets/$<gwen.web.sessionId>"
     timeoutSecs = 10
   }
 }
@@ -365,7 +360,7 @@ docker-compose -f gwen/docker-compose.yml run gwen-dry-run
 Tear it all down when done
 
 ```shell
-docker-compose -f gwen/docker-compose.yml down
+docker-compose -f gwen/docker-compose.yml down --remove-orphans
 ```
 
 ## Run Gwen against Grid in your local Docker
@@ -384,8 +379,7 @@ services:
   node-docker:
     image: selenium/node-docker:4
     volumes:
-      - assets:/opt/selenium/assets
-      - downloads:/home/seluser/Downloads
+      - $PWD/gwen/output/assets:/opt/selenium/assets
       - $PWD/gwen/conf/browsers/grid.toml:/opt/selenium/docker.toml
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
@@ -419,7 +413,7 @@ If you have VNC enabled, you can click the active browser session in the Grid co
 Tear it all down when done
 
 ```shell
-docker-compose -f gwen/docker-compose.yml down
+docker-compose -f gwen/docker-compose.yml down --remove-orphans
 ```
 
 ## Video capture
