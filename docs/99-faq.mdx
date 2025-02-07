@@ -512,5 +512,19 @@ Define a locator for the file input field and set the path to the file you want 
    When I type "${custom.dir}/file.ext" in the file input field
   ```
 
+### Can I log a performance trace?
+Yes (since v4.3.0), configure the following in your chrome settings file and a performance log will be attached to the HTML gwen report next to each [navigation step](/docs/dsl#i-navigate-to-url).
+```json
+gwen {
+  web {
+    capabilties {
+      "goog:loggingPrefs" {
+        performance = "ALL"
+      }
+    }
+  }
+}
+```
+
 ### Can I get support?
 Support is offered through [sponsorships](https://github.com/sponsors/gwen-interpreter). By purchasing support you will be sponsoring our open source work on this project.
