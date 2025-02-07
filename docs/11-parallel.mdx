@@ -18,7 +18,8 @@ The maximum number of parallel threads can be controlled through the following s
 
 - [`gwen.parallel.maxThreads`](/docs/settings#gwen-parallel-maxThreads)
   - By default this is set to `auto`, meaning that one thread will execute on each available CPU core (for example: 8 threads would execute on an 8 core machine)
-  - This can be set to a desired number of threads
+  - This can be set to a percentage of the total number of cores available (for example, 80% would mean that 8 threads would execute on a 10 core machine)
+  - Or a desired number of threads
     - When less than the number of available cores, the remaining cores will be free
     - When greater than the number of available cores, more than one thread may execute on some or all cores (use judiciously)
 
