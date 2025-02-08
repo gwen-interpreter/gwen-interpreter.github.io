@@ -513,11 +513,11 @@ Define a locator for the file input field and set the path to the file you want 
   ```
 
 ### Can I log a performance trace?
-Yes (since v4.3.0), configure the following in your chrome settings file and a performance log will be attached to the HTML gwen report next to each [navigation step](/docs/dsl#i-navigate-to-url).
+Yes (since v4.3.0), configure the following in your `chrome.conf` settings file and a performance log will be attached to the HTML gwen report next to each [navigation step](/docs/dsl#i-navigate-to-url).
 ```json
 gwen {
   web {
-    capabilties {
+    capabilities {
       "goog:loggingPrefs" {
         performance = "ALL"
       }
