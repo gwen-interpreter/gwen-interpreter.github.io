@@ -41,9 +41,9 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/gwen4',
+          href: '/docs/string-interpolation#elvis-operator',
           position: 'left',
-          label: "Gwen 4 Released!",
+          label: "What's New?",
         },
         { 
           label: 'GitHub', 

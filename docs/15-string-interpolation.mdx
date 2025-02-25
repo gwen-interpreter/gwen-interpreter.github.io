@@ -1,6 +1,6 @@
 --- 
 toc_min_heading_level: 2
-toc_max_heading_level: 3
+toc_max_heading_level: 2
 ---
 
 import Link from '@docusaurus/Link';
@@ -12,9 +12,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 > Since [v1.0.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0)
 
-It is often useful to reference settings, captured values and other text throughout your feature and meta files. To support this, Gwen provides a placholder substitution mechanism.
+String interpolation is often useful to reference settings, captured values and other text throughout your feature and meta files. To support this, Gwen provides a placholder substitution mechanism.
 
-### Placeholder Syntax
+## Placeholder Syntax
 
 Placeholders are declared using the `${placholder}` syntax and can include:
 
@@ -25,7 +25,7 @@ Placeholders are declared using the `${placholder}` syntax and can include:
 - A named binding in the currently accessible scope
 - [JS arrow functions](/docs/js-functions#inlined-functions)
  
-## Examples
+### Examples
 
 Substitution involves replacing named placeholders with their values.
 
@@ -40,3 +40,24 @@ Scenario: By Substitution
      Then my proposition should be "By substitution, my value will be ${my.property}"
 ```
 
+## Elvis Operator
+
+> Since [v4.4.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.4.0)
+
+The elvis `?:` syntax can be used to define default values for references which may not exist
+
+### Examples
+
+```gherkin
+ Given a is "${some.string :? 'default'}"
+   And b is "${some.string :? '${some.other.string}'}"
+   And c is "${some.string :? blank}"
+   And d is "${some.boolean :? false}"
+   And e is "${some.string1 :? '${some.string2 ?: blank}'}"
+```
+
+- Set `a` to value bound to `some.string` or to `default` string value if undefined
+- Set `b` to value bound to `some.string` or to value bound to `some.other.string` if undefined
+- Set `c` to value bound to `some.string` or to a blank string value if undefined:
+- Set `d` to value bound to `some.string` or to a false Boolean value if undefined:
+- Set `e` to value bound to `some.string1` or value bound to `some.string2` if undefined, or to a blank string value if both are undefined:
