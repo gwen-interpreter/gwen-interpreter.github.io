@@ -497,6 +497,59 @@ All Gherkin steps that match the DSL expressions described here are readily exec
   </div>
 </details>
 
+<details id="name-is-defined-by-js-function-applied-to-element">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by <javascriptRef> applied to <element>
+  ```
+  <p>Applies a JavaScript function to an element and binds the result to <code>&lt;name&gt;</code> in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the function result to</li>
+    <li><code>&lt;javascriptRef&gt;</code> is the name of the binding containing the javascript single argument function to apply</li>
+    <li><code>&lt;element&gt;</code> is the name of the web element to apply the function to</li>
+  </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately applies the function to the element and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> applies the function to the element and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either of the above annotations, the function is applied to the element every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
+    </ul>
+  </p>
+  <p>Examples</p>
+
+  ```gherkin {3}
+    Given getHref is defined by js "(elem) => elem.getAttribute('href')"
+      And the todo link can be located by xpath "//a[contains(text(),'TodoMVC')]"
+      And href is defined by getHref applied to the todo link
+     When I navigate to "https://todomvc.com/examples/react/dist/"
+     Then href should be "http://todomvc.com"
+  ```
+  
+  ```gherkin {9}
+    Given getHref is defined by js 
+      """
+      (elem) => { 
+        return elem.getAttribute('href')
+      }
+      """
+      And the todo link can be located by xpath "//a[contains(text(),'TodoMVC')]"
+     When I navigate to "https://todomvc.com/examples/react/dist/"
+      And @Eager href is defined by getHref applied to the todo link
+     Then href should be "http://todomvc.com"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-js-function-applied-to-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.6.0">v4.6.0</Link></div>
+  </div>
+</details>
+
 #### System Processes bindings
 
 <details id="name-is-defined-by-system-process-expression">
