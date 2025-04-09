@@ -3387,7 +3387,7 @@ Default value (empty to pick up Gwen default format: html)
   ```json
     gwen {
       logLevel {
-        deprecations = "error"
+        deprecations = "warn"
       }
     }
   ```
@@ -3401,7 +3401,7 @@ Default value (empty to pick up Gwen default format: html)
     {
       "gwen": {
         "logLevel": {
-          "deprecations": "error"
+          "deprecations": "warn"
         }
       }
     }
@@ -3413,7 +3413,7 @@ Default value (empty to pick up Gwen default format: html)
   Default value
 
   ```properties
-    gwen.logLevel.deprecations = error
+    gwen.logLevel.deprecations = warn
   ```
 
   </TabItem>
@@ -4193,7 +4193,6 @@ Default value (empty to pick up Gwen default format: html)
       </ul>
     </li>
   </ul>
-  <p>This setting has no default value and will not be honoured if <Link to="/docs/settings#gwen-web-maximize"><code>gwen.web.maximize</code></Link> is set to <code>true</code>.</p>
   <Tabs
   groupId="settings"
   defaultValue="conf"
@@ -4211,7 +4210,7 @@ Default value (empty to pick up Gwen default format: html)
     gwen {
       web {
         browser {
-          size = "1200x800"
+          size = "1920x1080"
         }
       }
     }
@@ -4227,7 +4226,7 @@ Default value (empty to pick up Gwen default format: html)
       "gwen": {
         "web": {
           "browser": {
-            "size": "1200x800"
+            "size": "1920x1080"
           }
         }
       }
@@ -4240,7 +4239,7 @@ Default value (empty to pick up Gwen default format: html)
   Example
 
   ```properties
-    gwen.web.browser.size = 1200x800
+    gwen.web.browser.size = 1920x1080
   ```
 
   </TabItem>
@@ -4889,6 +4888,7 @@ Default value (empty to pick up Gwen default format: html)
 <details id="gwen-web-maximize">
   <summary class="setting">
 
+  <b>Deprecated since v4.5.0</b> : Use <code>gwen.web.browser.size</code> to set desired size instead.
   ```properties
   gwen.web.maximize
   ```
@@ -5395,6 +5395,83 @@ Default value (empty to pick up Gwen default format: html)
     <div><Link to="#gwen-web-sendKeys-clickFirst">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.43.0">v2.43.0</Link></div>
+  </div>
+</details>
+
+<details id="gwen-web-session-expired-autoreplace">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.session.expired.autoReplace
+  ```
+  <p>Controls whether or not Gwen will auto replace expired sessions with new ones.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li><code>true</code> to auto replace (default)</li>
+    <li><code>false</code> to throw exception</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      web {
+        session {
+          expired {
+            autoReplace = true
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "session": {
+            "expired": {
+              "autoReplace": true
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.session.expired.autoReplace = true
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-session-expired-autoreplace">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.5.0">v4.5.0</Link></div>
   </div>
 </details>
 
