@@ -3726,7 +3726,6 @@ All Gherkin steps that match the DSL expressions described here are readily exec
 <details id="i-maximize-the-window">
   <summary class="dsl">
 
-  <b>Deprecated since v4.5.0</b> : Use <code>I resize the window to width &lt;w&gt; and height &lt;h&gt;</code> to set desired size instead.
   ```gherkin
   I <maximize|maximise> the window
   ```
@@ -3774,6 +3773,65 @@ All Gherkin steps that match the DSL expressions described here are readily exec
     <div><Link to="#i-resize-the-window-to-width-w-and-height-h">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.2.0">v2.2.0</Link></div>
+  </div>
+</details>
+
+<details id="i-send-keys">
+  <summary class="dsl">
+
+  ```gherkin
+  I send "<keys>"
+  ```
+  <p>Sends a sequence of keys to the browser (for emulating keyboard shortcuts).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;keys&gt;</code> is a <code>,</code> or <code>+</code> (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link>) separated list of keys to send.
+      <ul>
+        <li>Keys can be single keyboard characters or any supported <Link to="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/Keys.html">key constants</Link></li>
+        <li><i>Note:</i> Keys behave differently on different platforms</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+     When I navigate to "https://google.com"
+      And I send "COMMAND+t"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-send-keys">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.44.0">v2.44.0</Link></div>
+  </div>
+</details>
+
+<details id="i-set-the-window-position-to-x-and-y">
+  <summary class="dsl">
+
+  ```gherkin
+  I set the window position to x <x> and y <y>
+  ```
+  <p>Positions the currently active browser window to the given co-ordinates.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;x&gt;</code> is the x co-ordinate</li>
+    <li><code>&lt;y&gt;</code> is the y co-ordinate</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    When I navigate to "https://todomvc.com/examples/react/dist"
+     And I set the window position to x 40 and y 20
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-set-the-window-position-to-x-and-y">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.7.0">v4.7.0</Link></div>
   </div>
 </details>
 

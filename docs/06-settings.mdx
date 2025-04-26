@@ -4253,6 +4253,84 @@ Default value (empty to pick up Gwen default format: html)
   </div>
 </details>
 
+<details id="gwen-web-browser-position">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.browser.position
+  ```
+  <p>Sets the position of the main browser window.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>
+      String of format <code>&lt;x&gt;,&lt;y&gt;</code>, where:
+      <ul>
+        <li><code>&lt;x&gt;</code> is a positive integer denoting the x co-ordinate</li>
+        <li><code>&lt;y&gt;</code> is a positive integer denoting the y co-ordinate</li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example
+
+  ```json
+    gwen {
+      web {
+        browser {
+          size = "0,0"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Example
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "browser": {
+            "size": "0,0"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Example
+
+  ```properties
+    gwen.web.browser.size = 0,0
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-browser-position">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.7.0">v4.7.0</Link></div>
+  </div>
+</details>
+
 <details id="gwen-web-capabilities">
   <summary class="setting">
 
@@ -4888,7 +4966,6 @@ Default value (empty to pick up Gwen default format: html)
 <details id="gwen-web-maximize">
   <summary class="setting">
 
-  <b>Deprecated since v4.5.0</b> : Use <code>gwen.web.browser.size</code> to set desired size instead.
   ```properties
   gwen.web.maximize
   ```
