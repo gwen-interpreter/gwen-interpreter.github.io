@@ -1088,10 +1088,10 @@ Default launch options and arguments can also be configured in [settings](/docs/
 
   <TabItem value="yarn">
 
-  To execute all feature files in a directory on the firefox browser using dev environment settings.
+  To execute all feature files in a directory on the firefox browser using test environment settings.
   
   ```shell
-  yarn gwen -b -c gwen/conf/browsers/firefox.conf,gwen/conf/env/dev.conf gwen/features/dir
+  yarn gwen -b -c gwen/conf/browsers/firefox.conf,gwen/conf/env/test.conf gwen/features/dir
   ```
 
   To execute a feature file and load custom properties.
@@ -1104,10 +1104,10 @@ Default launch options and arguments can also be configured in [settings](/docs/
 
   <TabItem value="npm">
 
-  To execute all feature files in a directory on the firefox browser using dev environment settings.
+  To execute all feature files in a directory on the firefox browser using test environment settings.
   
   ```shell
-  npm run gwen -- -b -c gwen/conf/firefox.conf,gwen/conf/env/dev.conf gwen/features/dir
+  npm run gwen -- -b -c gwen/conf/firefox.conf,gwen/conf/env/test.conf gwen/features/dir
   ```
 
   To execute a feature file and load custom properties.
@@ -1120,10 +1120,10 @@ Default launch options and arguments can also be configured in [settings](/docs/
 
   <TabItem value="pnpm">
 
-  To execute all feature files in a directory on the firefox browser using dev environment settings.
+  To execute all feature files in a directory on the firefox browser using test environment settings.
   
   ```shell
-  pnpm gwen -b -c gwen/conf/browsers/firefox.conf,gwen/conf/env/dev.conf gwen/features/dir
+  pnpm gwen -b -c gwen/conf/browsers/firefox.conf,gwen/conf/env/test.conf gwen/features/dir
   ```
 
   To execute a feature file and load custom properties.
@@ -1907,8 +1907,8 @@ Default launch options and arguments can also be configured in [settings](/docs/
   ```
   ./                              # Project root
    ├── .gitignore                 # Git ignore file
-   ├── README.md
    ├── gwen.conf                  # Common settings
+   ├── package.json               # Package json file
    └── /gwen
        ├── .gitignore             # Git ignore file
        ├── /conf
@@ -1916,23 +1916,15 @@ Default launch options and arguments can also be configured in [settings](/docs/
        │   │   ├── chrome.conf
        │   │   ├── edge.conf
        │   │   ├── firefox.conf
-       │   │   ├── README.md
        │   │   └── safari.conf
        │   ├── /env               # Environment settings
-       │   │   ├── dev.conf
-       │   │   ├── local.conf
        │   │   ├── prod.conf
-       │   │   ├── README.md
-       │   │   ├── staging.conf
        │   │   └── test.conf
        │   └── /profiles          # Profile settings
-       │       ├── README.md
        │       └── samples.conf
        ├── /features              # Features and associative meta
-       │   ├── README.md
        │   └── /samples          # Samples
        └── /meta                  # Common/reusable meta
-           └── README.md
   ```
 
   <div class="grid-3">

@@ -81,8 +81,8 @@ The new project strucutre looks like this:
 
 ```
   ./                              # Project root
-   ├── README.md
    ├── gwen.conf                  # Common settings
+   ├── package.json               # Package json file
    └── /gwen
        ├── .gitignore             # Git ignore file
        ├── /conf
@@ -90,25 +90,17 @@ The new project strucutre looks like this:
        │   |   ├── chrome.conf
        │   |   ├── edge.conf
        │   |   ├── firefox.conf
-       │   |   ├── README.md
        │   |   └── safari.conf
        │   ├──/env                # Environment settings
-       │   |  ├── dev.conf
-       │   |  ├── local.conf
        │   |  ├── prod.conf
-       │   |  ├── README.md
-       │   |  ├── staging.conf
        │   |  └── test.conf
        │   └──/profiles           # Profile settings
-       │      ├── README.md
        │      ├── profile1.conf
        │      ├── profile2.conf
        │      ├── ..
        │      └── profileN.conf
        ├── /features              # Features (and associative meta)
-       │   └── README.md
        └── /meta                  # Common meta
-           └── README.md
 ```
 
 ### Read-Only Input Data

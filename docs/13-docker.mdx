@@ -174,7 +174,7 @@ services:
       - $PWD:/project
       - $PWD/gwen/output/assets:/tmp/assets
     working_dir: /project
-    command: bash -c "yarn install && yarn gwen -b -c gwen/conf/browsers/grid.conf gwen/features"
+    command: bash -c "yarn install && yarn gwen:grid"
 
   gwen-dry-run:
     build:
@@ -188,7 +188,7 @@ services:
     volumes:
       - "$PWD:/project"
     working_dir: /project
-    command: bash -c "yarn install && yarn gwen -bn --parallel gwen/features"
+    command: bash -c "yarn install && yarn gwen:dryRun"
 
 ```
 
