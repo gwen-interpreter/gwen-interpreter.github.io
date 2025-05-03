@@ -41,7 +41,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/string-interpolation#elvis-operator',
+          href: '/docs/dsl#element-locators',
           position: 'left',
           label: "What's New?",
         },
