@@ -1818,6 +1818,32 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </div>
 </details>
 
+<details id="i-capture-pdf-text-from-bas64-blob">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the base64 encoded PDF text from <blobRef>
+  ```
+  <p>Captures the text in a PDF document from a base64 encoded BLOB and binds it to <code>the PDF text</code> variable in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;blobRef&gt;</code> is the name of the binding containing the base64 encoded PDF</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the pdf blob is "Some base64 encoded PDF blob"
+     When I capture the base64 encoded PDF text from the pdf blob
+     Then the PDF text should contain "Some expected text"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-pdf-text-from-bas64-blob">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.9.0">v4.9.0</Link></div>
+  </div>
+</details>
 
 #### Base64 capture
 
