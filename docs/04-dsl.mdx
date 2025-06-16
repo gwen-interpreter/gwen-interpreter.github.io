@@ -4002,9 +4002,9 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   <p>Example</p>
 
   ```gherkin {4}
-    Given the alert button can be located by css ".btn" at index 0
-     When I navigate to "https://www.seleniumeasy.com/test/javascript-alert-box-demo.html"
-      And I click the alert button
+    Given the alert link can be located by id "alert"
+     When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+      And I click the alert link
       And I accept the alert popup
   ```
 
@@ -4026,9 +4026,9 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   <p>Example</p>
 
   ```gherkin {4}
-    Given the confirmation button can be located by css ".btn" at index 1
-     When I navigate to "https://www.seleniumeasy.com/test/javascript-alert-box-demo.html"
-      And I click the confirmation button
+    Given the confirmation link can be located by id "prompt-with-default"
+     When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+      And I click the confirmation link
       And I dismiss the confirmation popup
   ```
 
@@ -4060,9 +4060,9 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   <p>Example</p>
 
   ```gherkin {4}
-    Given the alert button can be located by css ".btn" at index 0
-     When I navigate to "https://www.seleniumeasy.com/test/javascript-alert-box-demo.html"
-      And I click the alert button
+    Given the alert link can be located by id "alert"
+     When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+      And I click the alert link
       And I capture the alert popup message
   ```
 
@@ -4094,9 +4094,9 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   <p>Example</p>
 
   ```gherkin {4}
-    Given the confirmation button can be located by css ".btn" at index 1
-     When I navigate to "https://www.seleniumeasy.com/test/javascript-alert-box-demo.html"
-      And I click the confirmation button
+    Given the confirmation link can be located by id "prompt-with-default"
+     When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+      And I click the confirmation link
       And I capture the confirmation popup message as the alert message
   ```
 
@@ -5035,6 +5035,34 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </div>
 </details>
 
+<details id="i-wait-for-alert-or-confirmation-popup">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for the <alert|confirmation> popup
+  ```
+  <p>Waits for the alert/confirmation popup to appear on a page for a default number of seconds before timing out. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+  Given the alert link can be located by id "alert"
+   When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+    And I click the alert link
+    And I wait for the alert popup
+   Then the alert popup message should not be blank
+  ```
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-alert-or-confirmation-popup">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.11.0">v4.11.0</Link></div>
+  </div>
+</details>
+
 <details id="i-wait-duration-seconds">
   <summary class="dsl">
 
@@ -5410,7 +5438,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <textRef> should[ not] be blank
@@ -5481,7 +5509,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <textRef> should[ not] <match> "<expression>"
@@ -5568,7 +5596,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <textRef> should[ not] <match> <expressionRef>
@@ -5655,7 +5683,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <textRef> should[ not] <match> <percentage>% similar to "<text>"
@@ -5739,7 +5767,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <textRef1> should[ not] <match> <percentage>% similar to <textRef2>
@@ -5951,7 +5979,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <xmlRef> at xpath "<path>" should[ not] be blank
@@ -6018,7 +6046,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <xmlRef> at xpath "<path>" should[ not] <match> "<expression>"
@@ -6103,7 +6131,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <jsonRef> at json path "<path>" should[ not] be blank
@@ -6170,7 +6198,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <jsonRef> at json path "<path>" should[ not] <match> "<expression>"
@@ -6255,7 +6283,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the current URL should[ not] be blank
@@ -6315,7 +6343,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the current URL should[ not] <match> "<expression>"
@@ -6392,7 +6420,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the current URL should[ not] <match> <expressionRef>
@@ -6478,7 +6506,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the page title should[ not] be blank
@@ -6537,7 +6565,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the page title should[ not] <match> "<expression>"
@@ -6613,7 +6641,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the page title should[ not] <match> <expressionRef>
@@ -6696,7 +6724,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <element> should[ not] be <state>
@@ -6764,7 +6792,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <element> should[ not] <match> "<expression>"
@@ -6844,7 +6872,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <element> should[ not] <match> <expressionRef>
@@ -6932,7 +6960,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <dropdown> <text|value> should[ not] be blank
@@ -7002,7 +7030,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <dropdown> <text|value> should[ not] <match> "<expression>"
@@ -7088,7 +7116,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <dropdown> <text|value> should[ not] <match> <expressionRef>
@@ -7238,6 +7266,81 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </div>
 </details>
 
+#### Tab or Window asserts
+
+<details id="i-should-have-1-open-tab-or-window">
+  <summary class="dsl">
+
+  ```gherkin
+  I should have 1 open <tab|window>
+  ```
+  <p>Checks that only one tab or window is currently open. Reports an assertion error if not.</p>
+  </summary>
+
+  <p>
+
+  <p>With custom assertion error message:</p>
+
+  ```gherkin
+  I should have 1 open <tab|window>  @Message("my custom assert fail message")
+  ```
+  
+  </p>
+
+  <p>Example</p>
+
+  ```gherkin {2}
+    When I navigate to "https://todomvc.com/examples/react/dist"
+    Then I should have 1 open window
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-should-have-1-open-tab-or-window">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.49.0">v2.49.0</Link></div>
+  </div>
+</details>
+
+<details id="i-should-have-count-open-tabs-or-windows">
+  <summary class="dsl">
+
+  ```gherkin
+  I should have <count> open <tab|window>s
+  ```
+  <p>Checks that a given number of tabs or windows are currently open. Reports an assertion error if not.</p>
+  </summary>
+
+  <p>
+
+  <p>With custom assertion error message:</p>
+
+  ```gherkin
+  I should have <count> open <tab|window>s  @Message("my custom assert fail message")
+  ```
+
+  </p>
+
+  <p>Where</p>
+  <ul>
+    <li><code>count</code> the expected number of open tabs or windows</li>
+  </ul>
+
+  <p>Example</p>
+
+  ```gherkin {4}
+    When I navigate to "https://todomvc.com/examples/react/dist"
+     And I start a browser for Vue
+     And I navigate to "https://todomvc.com/examples/vue"
+    Then I should have 2 open browsers
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-should-have-count-open-tabs-or-windows">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.49.0">v2.49.0</Link></div>
+  </div>
+</details>
+
 #### Alert and Popup asserts
 
 <details id="the-alert-or-confirmation-popup-message-should-match-blank">
@@ -7259,7 +7362,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the <alert|confirmation> popup message should[ not] be blank
@@ -7284,9 +7387,9 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   <p>Example</p>
 
   ```gherkin {4}
-    Given the alert button can be located by css ".btn" at index 0
-     When I navigate to "https://www.seleniumeasy.com/test/javascript-alert-box-demo.html"
-      And I click the alert button
+    Given the alert link can be located by id "alert"
+     When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+      And I click the alert link
      Then the alert popup message should not be blank
   ```
 
@@ -7301,7 +7404,6 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.26.0">v3.26.0</Link></div>
   </div>
 </details>
-
 
 <details id="the-alert-or-confirmation-popup-message-should-match-expression">
   <summary class="dsl">
@@ -7322,7 +7424,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the <alert|confirmation> popup message should[ not] <match> "<expression>"
@@ -7362,10 +7464,10 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   <p>Example</p>
 
   ```gherkin {4}
-    Given the alert button can be located by css ".btn" at index 0
-     When I navigate to "https://www.seleniumeasy.com/test/javascript-alert-box-demo.html"
-      And I click the alert button
-     Then the alert popup message should be "I am an alert box!"
+    Given the alert link can be located by id "alert"
+     When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+      And I click the alert link
+     Then the alert popup message should be "cheese"
   ```
 
   Trimming and ignoring case (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.62.0">v3.62.0</Link>)
@@ -7400,7 +7502,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') the <alert|confirmation> popup message should[ not] <match> <expressionRef>
@@ -7445,10 +7547,10 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   <p>Example</p>
 
   ```gherkin {5}
-    Given the confirmation button can be located by css ".btn" at index 1
-      And the expected message is "Press a button!"
-     When I navigate to "https://www.seleniumeasy.com/test/javascript-alert-box-demo.html"
-      And I click the confirmation button
+    Given the confirmation link can be located by id "prompt-with-default"
+      And the expected message is "Enter something"
+     When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+      And I click the confirmation link
      Then the confirmation popup message should be the expected message
   ```
 
@@ -7462,6 +7564,68 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
     <div><Link to="#the-alert-or-confirmation-popup-message-should-match-expression-ref">Link</Link></div>
     <div align="center"></div>
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.24.0">v2.24.0</Link></div>
+  </div>
+</details>
+
+<details id="the-alert-or-confirmation-popup-should-be-displayed">
+  <summary class="dsl">
+
+  ```gherkin
+  the <alert|confirmation> popup should[ not] be displayed
+  ```
+  
+  <p>Checks whether or not the alert/comnfirmation popup should be displayed or not. Reports an assertion error if the assertion fails.</p>
+  </summary>
+  <p>
+  <p>With custom assertion error message:</p>
+
+  ```gherkin
+  the <alert|confirmation> popup should[ not] be displayed  @Message("my custom assert fail message")
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>Without any timeout:</p>
+
+  ```gherkin
+  @Timeout('0s') the <alert|confirmation> popup should[ not] be displayed
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>With custom timeout:</p>
+
+  ```gherkin
+  @Timeout('10s') the <alert|confirmation> popup should[ not] be displayed
+  ```
+
+  </p>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;alert|confirmation&gt;</code> is either:
+      <ul>
+        <li><code>alert</code> for an alert box with an OK button</li>
+        <li><code>confirmation</code> for a confirmation box with OK and Cancel buttons</li>
+      </ul>
+    </li>
+    <li><code>not</code> negates the assertion if included (should not be displayed)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the confirmation link can be located by id "prompt-with-default"
+     When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+      And I click the confirmation link
+     Then the confirmation popup should be displayed
+  ```
+  
+  <div class="grid-3">
+    <div><Link to="#the-alert-or-confirmation-popup-should-be-displayed">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.11.0">v4.11.0</Link></div>
   </div>
 </details>
 
@@ -7486,7 +7650,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <name> should be absent
@@ -7546,7 +7710,7 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
   </p>
   <hr/>
   <p>
-  <p>Without any timeout(as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
 
   ```gherkin
   @Timeout('0s') <name> should be defined
