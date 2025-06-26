@@ -41,7 +41,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/dsl#element-locators',
+          href: '/docs/dsl#data-asserts',
           position: 'left',
           label: "What's New?",
         },
