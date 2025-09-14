@@ -9397,3 +9397,58 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
     <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
   </div>
 </details>
+
+<details id="step-if-1-open-tab-or-window">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> if there is 1 open <tab|window>
+  ```
+  <p>Executes a step if there is 1 open tab or window.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;tab|window&gt;</code> is either <code>tab</code> or <code>window</code></li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {2}
+    When I navigate to "https://google.com"
+    Then call step 1 if there is 1 open window
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-if-1-open-tab-or-window">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.15.0">v4.15.0</Link></div>
+  </div>
+</details>
+
+
+<details id="step-if-n-open-tab-or-window">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> if there are <count> open <tab|window>s
+  ```
+  <p>Executes a step if the given number of tabs/windows are open.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;count&gt;</code> is the number of open tabs/windows to check</li>
+    <li><code>&lt;tab|window&gt;</code> is either <code>tab</code> or <code>window</code></li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {3}
+    When I navigate to "https://google.com"
+     And I start a new browser tab
+    Then call step 1 if there are 2 open windows
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-if-n-open-tab-or-window">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.15.0">v4.15.0</Link></div>
+  </div>
+</details>
