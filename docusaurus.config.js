@@ -9,7 +9,11 @@ module.exports = {
   url: 'https://gweninterpreter.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn'
+    }
+  },
   favicon: 'img/favicon.ico',
   organizationName: 'gwen-interpreter', // Usually your GitHub org/user name.
   projectName: 'gwen-interpreter.github.io', // Usually your repo name.
@@ -41,7 +45,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/dsl#data-asserts',
+          href: '/docs/dsl#js-actions',
           position: 'left',
           label: "What's New?",
         },

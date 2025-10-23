@@ -4238,12 +4238,89 @@ Since [v4.8.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.8.0)
 
 #### JS actions
 
+<details id="i-execute-js-on-element">
+  <summary class="dsl">
+ 
+  ```gherkin
+  I execute <js|javascript> on <element> "<function>"
+  ```
+
+  <p>Executes a javascript function on a web element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to execute the function on</li>
+    <li>
+      <code>&lt;function&gt;</code> is the javascript function that will perform the action (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+      <ul>
+        <li>The function must use <Link to="/docs/js-functions">Arrow syntax</Link> and define a single argument for accepting the web element.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the todo link can be located by xpath "//a[contains(text(),'TodoMVC')]"
+     When I navigate to "https://todomvc.com/examples/react/dist/"
+      And I execute js on the todo link "(elem) => elem.click()"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-execute-js-on-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.16.0">v4.16.0</Link></div>
+  </div>
+</details>
+
+<details id="i-execute-jsref-on-element">
+  <summary class="dsl">
+ 
+  ```gherkin
+  I execute <functionRef> on <element>
+  ```
+
+  <p>Executes a javascript function on a web element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;functionRef&gt;</code> is the name of the binding containing the javascript function to execute
+      <ul>
+        <li>The referenced function must use <Link to="/docs/js-functions">Arrow syntax</Link> and define a single argument for accepting the web element.</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to execute the function on</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the todo link can be located by xpath "//a[contains(text(),'TodoMVC')]"
+      And the click function is defined by js "(elem) => elem.click()"
+     When I navigate to "https://todomvc.com/examples/react/dist/"
+      And I execute the click function on the todo link
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-execute-jsref-on-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.16.0">v4.16.0</Link></div>
+  </div>
+</details>
+
 <details id="element-can-be-actioned-by-javascript">
   <summary class="dsl">
+ 
+  :::caution Deprecated since v4.16.0 and will be dropped in next major Gwen 5 release.
 
   ```gherkin
   <element> can be <actioned> by <javascript|js> "<script>"
   ```
+
+  Instead use one of:
+
+  - `I execute <js|javascript> on <element> "<function>"`
+  - `I execute <functionRef> on <element>`
+:::
   <p>Registers a javascript action on an element. When the action is performed, then the javascript will execute in place of the default behaviour.</p>
   </summary>
   <p>Where</p>
