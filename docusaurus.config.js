@@ -69,11 +69,6 @@ module.exports = {
           href: 'https://gwenify.com',
           position: 'right'
         },
-        {
-          label: '♡ Sponsor',
-          href: 'https://github.com/sponsors/gwen-interpreter',
-          position: 'right'
-        },
       ],
     },
     footer: {
@@ -85,10 +80,6 @@ module.exports = {
             {
               label: 'Apache 2 license',
               href: 'https://www.apache.org/licenses/LICENSE-2.0',
-            },
-            {
-              label: 'Sponsor',
-              href: 'https://github.com/sponsors/gwen-interpreter',
             },
           ],
         },
@@ -137,16 +128,6 @@ module.exports = {
             {
               label: 'Gwenify',
               href: 'https://gwenify.com',
-            },
-          ],
-        },
-        {
-          title: 'Sponsors',
-          items: [
-            {
-              label: 'LambdaTest',
-              href: 'https://www.lambdatest.com/',
-              className: 'navicon icon-lambdatest'
             },
           ],
         },
