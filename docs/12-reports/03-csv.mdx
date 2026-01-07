@@ -37,10 +37,10 @@ CSV files can be configured within the `gwen.reports.results.files` element in y
   scope = "[scope]"
   status = "[status]"
   fields = [
-    { name = "<fieldName 1>", ref = "[reference 1]", defaultValue = "[value 1]", excludes = "[excludeFields 1]"}
-    { name = "<fieldName 2>", ref = "[reference 2]", defaultValue = "[value 2]", excludes = "[excludeFields 2]" }
+    { name = "<fieldName 1>", ref = "[reference 1]", defaultValue = "[value 1]", excludes = "[excludeFields 1]", sort="[ascending|descending]" }
+    { name = "<fieldName 2>", ref = "[reference 2]", defaultValue = "[value 2]", excludes = "[excludeFields 2]", sort="[ascending|descending]" }
     ..
-    { name = "<fieldName N>", ref = "[reference N]", defaultValue = "[value N]", excludes = "[excludeFields N]" }
+    { name = "<fieldName N>", ref = "[reference N]", defaultValue = "[value N]", excludes = "[excludeFields N]", sort="[ascending|descending]" }
   ]
 }
 ```
@@ -136,6 +136,13 @@ Where:
     <ul>
       <li>`true` to unmask the field</li>
       <li>`false` (default) to leave the field masked</li>
+    </ul>
+  </li>
+  <li>
+    <code>[sort]</code> - (Optional since [v4.17.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.17.0)) - To sort generated results in the file by this field in ascending or descending order (defaults to evaluated order if not specified):
+    <ul>
+      <li>`ascending` to sort by this field in ascending order</li>
+      <li>`descending` to sort by this field in descending order</li>
     </ul>
   </li>
 </ul>
