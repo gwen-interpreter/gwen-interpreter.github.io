@@ -24,7 +24,7 @@ import ThemedImage from '@theme/ThemedImage';
 
 > Gwen = [G]iven [W]hen Th[en]
 
-Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter with built-in automation capabilities that can readily be utilised for end-to-end testing and robotic processing. Automation is achieved through Gherkin bindings in [meta](/docs/meta) specs, composed with the [Gwen DSL](/docs/dsl) and maintained alongside your feature files. An embedded [Selenium](https://www.selenium.dev/) engine executes scenarios according to the meta you provide to perform [operations](/docs/dsl#actions) in browsers for you.
+Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter with built-in automation capabilities that can readily be utilised. Automation is achieved through Gherkin bindings in [meta](/docs/meta) specs, composed with the [Gwen DSL](/docs/dsl) and maintained alongside your feature files. An embedded [Selenium](https://www.selenium.dev/) engine executes scenarios according to the meta you provide to perform [operations](/docs/dsl#actions) in browsers for you.
 
 ## Key features
 
@@ -93,7 +93,7 @@ Meta specs are used to describe execution and are written in Gherkin too. [Step 
   <p>Write meta specs with execution and automation in mind.</p>
 :::
 
-For example, the following meta describes how each step in the scenario above can be executed to automate a test against a running [todo application](https://todomvc.com/examples/react/dist).
+For example, the following meta describes how each step in the scenario above can be executed to automate a process on a running [todo application](https://todomvc.com/examples/react/dist).
 
 :::note Meta Spec
 <p>
@@ -206,7 +206,7 @@ Calls DSL step:
 
 #### Accessing externalised properties
 
-We could have just hard coded the https://todomvc.com/examples/react/dist URL in the above step, but externalising it enables us to target different environments through [string interpolation](/docs/string-interpolation) without changing our meta. This is useful during development when you want to execute against a locally running instance of the application or during testing when it is running on a different host or port. With this approach you can define a [settings](/docs/settings) file per environment and assign the URL for that environment to the `todo.page.url` property in each file. Then when you want to target an environment, you pass the settings file for that environment to Gwen and the URL will be resolved accordingly.
+We could have just hard coded the https://todomvc.com/examples/react/dist URL in the above step, but externalising it enables us to target different environments through [string interpolation](/docs/string-interpolation) without changing our meta. This is useful during development when you want to execute against a locally running instance of the application or for verification when it is running on a different host or port. With this approach you can define a [settings](/docs/settings) file per environment and assign the URL for that environment to the `todo.page.url` property in each file. Then when you want to target an environment, you pass the settings file for that environment to Gwen and the URL will be resolved accordingly.
 
 <Tabs
   groupId="settings"
@@ -626,6 +626,6 @@ When launched on a directory, Gwen will recursively discover and bind all meta a
 
 :::tip Testing & Robotics
 <p>
-Your Gwen usage need not be confined to just testing. You can automate manually intensive and repetitive processes too!
+You can use Gwen to automate testing or robotic processing!
 </p>
 :::
