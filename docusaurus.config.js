@@ -55,16 +55,6 @@ module.exports = {
           position: 'right'
         },
         {
-          label: 'Blog',
-          href: 'https://gweninterpreter.wordpress.com',
-          position: 'right'
-        },
-        {
-          label: 'Twitter',
-          href: 'https://twitter.com/gweninterpreter',
-          position: 'right'
-        },
-        {
           label: 'Gwenify',
           href: 'https://gwenify.com',
           position: 'right'
