@@ -1,0 +1,406 @@
+---
+title: Sleeps and waits
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-wait-for-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for <element>
+  ```
+  <p>Waits for an element to appear on a page for a default number of seconds before timing out. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # Wait for a dynamically rendered input field 
+    Given the dynamic input field can be located by tag "input"
+     When I wait for the dynamic input field
+     Then the dynamic input field should be displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-for-element-text">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for <element> text
+  ```
+  <p>Waits for the text of an element to appear on a page for a default number of seconds before timing out.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for the text to appear</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # Wait for a dynamically displayed token
+    Given the one time token can be located by javascript "$('.token').get(0)"
+     When I wait for the one time token text
+      And I capture the one time token
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-element-text">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-element-is-state">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <element> is[ not] <state>
+  ```
+  <p>Waits for an element to transition to a given state. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
+    <li><code>not</code> negates the state if included</li>
+    <li>
+      <code>&lt;state&gt;</code> is one of:
+      <ul>
+        <li><code>displayed</code> to wait until the element is displayed</li>
+        <li><code>hidden</code> to wait until the element is not displayed</li>
+        <li><code>checked</code> (or <code>ticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to wait until a checkbox is ticked</li>
+        <li><code>unchecked</code> (or <code>unticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to wait until a checkbox is not ticked</li>
+        <li><code>enabled</code> to wait until the element is enabled</li>
+        <li><code>disabled</code> to wait until the element is disabled</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given my todo list can be located by css ".todo-list"
+      And the todo field can be located by class "new-todo"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Get the milk" in the todo field
+      And I wait until my todo list is displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-element-is-state">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.25.0">v2.25.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-javascript">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until "<javascript>"
+  ```
+  <p>Repeatedly executes the given javascript expression or function until true is returned using no delay interval and default timeout period. The default timeout period is equal to the configured <code>gwen.web.wait.seconds</code> setting value. The default timeout can be overridden using the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;javascript&gt;</code> is the javascript expression or function that will return a boolean value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+      <ul>
+        <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
+        <li>
+          For a function, use either:
+          <ul>
+            <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
+            <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given the heading can be located by tag "h1"
+    When I navigate to "https://challengers.flood.io/start"
+     And I wait until "!!$('h1')"
+    Then the heading should be "Welcome to our Script Challenge"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-javascript">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-filepath-exists">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until "<filepath>" file[ not] exists
+  ```
+  <p>Waits until a file exists (or not). The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the @Timeout annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the file</li>
+    <li><code>not</code> to wait until the file does not exist (negation)</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin
+     Then I wait until "path/to/filename1.csv" file exists
+      And I wait until "path/to/filename2.csv" file not exists
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-filepath-exists">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-filepath-does-not-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until "<filepath>" file does not exist
+  ```
+  <p>Waits until a file does not exist. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the @Timeout annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the file</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin
+      And I wait until "path/to/filename2.csv" file does not exist
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-filepath-does-not-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-filepathref-exists">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <filepathRef file>[ not] exists
+  ```
+  <p>Waits until a file exists (or not). The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the @Timeout annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file</li>
+    <li><code>not</code> to wait until the file does not exist (negation)</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {2-3}
+    Given my file is "path/to/filename.csv""
+     Then I wait until my file exists
+      And I wait until my file not exists
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-filepathref-exists">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-filepathref-does-not-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <filepathRef file> does not exist
+  ```
+  <p>Waits until a file does not exist. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the @Timeout annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {2}
+    Given my file is "path/to/filename.csv""
+      And I wait until my file does not exist
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-filepathref-does-not-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-filepath-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until "<filepath>" file is[ not] empty
+  ```
+  <p>Waits until a file is empty. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the @Timeout annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the file</li>
+    <li><code>not</code> to wait until the file is not empty (negation)</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin
+     Then I wait until "path/to/filename1.csv" file is empty
+      And I wait until "path/to/filename2.csv" file is not empty
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-filepath-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-filepathref-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <filepathRef file> is[ not] empty
+  ```
+  <p>Waits until a file is empty. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the @Timeout annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file</li>
+    <li><code>not</code> to wait until the file is not empty (negation)</li>
+  </ul>
+  <p>Examples</p>
+
+  ```gherkin {2-3}
+    Given my file is "path/to/filename.csv""
+     Then I wait until my file is empty
+      And I wait until my file is not empty
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-filepathref-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-until-condition">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait until <condition>
+  ```
+  <p>Waits until a condition is satisfied. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;condition&gt;</code> is either:
+      <ul>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+          <ul>
+            <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
+          </ul>
+        </li>
+        <li>
+          Or in prior versions
+          <ul>
+            <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
+            <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+   Given the heading can be located by tag "h1"
+     And the heading is displayed is defined by javascript "!!$('h1')"
+    When I navigate to "https://challengers.flood.io/start"
+     And I wait until the heading is displayed
+    Then the heading should be "Welcome to our Script Challenge"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-until-condition">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-for-alert-or-confirmation-popup">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait for the <alert|confirmation> popup
+  ```
+  <p>Waits for the alert/confirmation popup to appear on a page for a default number of seconds before timing out. The default timeout period is equal to the configured gwen.web.wait.seconds setting value. The default timeout can be overridden using the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to wait for</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+  Given the alert link can be located by id "alert"
+   When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+    And I click the alert link
+    And I wait for the alert popup
+   Then the alert popup message should not be blank
+  ```
+  <div class="grid-3">
+    <div><Link to="#i-wait-for-alert-or-confirmation-popup">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.11.0">v4.11.0</Link></div>
+  </div>
+</details>
+
+<details id="i-wait-duration-seconds">
+  <summary class="dsl">
+
+  ```gherkin
+  I wait <duration> second[s]
+  ```
+  <p>Sleeps for the given number of seconds.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;duration&gt;</code> is the number of seconds to sleep</li>
+    <li>Include trailing <code>s</code> when specifying a <code>&lt;duration&gt;</code> that is not 1, omit otherwise</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    When I wait for 5 seconds
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-wait-duration-seconds">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>

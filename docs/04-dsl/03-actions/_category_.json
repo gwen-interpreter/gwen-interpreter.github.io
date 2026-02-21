@@ -1,0 +1,8 @@
+{
+  "label": "Actions",
+  "position": 3,
+  "link": {
+    "type": "doc",
+    "id": "dsl/actions/index"
+  }
+}

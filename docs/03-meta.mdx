@@ -11,7 +11,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Meta Specs
 
-Meta specs are [Gherkin](https://cucumber.io/docs/gherkin/reference/) specifications that describe how steps in features will execute and are the automation glue in Gwen. They define all the step definitions and [bindings](/docs/dsl#bindings) required for automation and attach to features at runtime.
+Meta specs are [Gherkin](https://cucumber.io/docs/gherkin/reference/) specifications that describe how steps in features will execute and are the automation glue in Gwen. They define all the step definitions and [bindings](/docs/dsl/bindings) required for automation and attach to features at runtime.
 
 ## StepDefs
 
@@ -55,10 +55,10 @@ A step definition for executing this step could be defined in meta as follows:
 
 Calls DSL steps:
 
-- [`<element> can be located by <selector> "<expression>"`](/docs/dsl#element-can-be-located-by-selector-expression)
-- [`I navigate to "<url>"`](/docs/dsl#i-navigate-to-url)
-- [`the page title should[ not] <match> "<expression>"`](/docs/dsl#the-page-title-should-match-expression)
-- [`<element> should[ not] be <state>`](/docs/dsl#element-should-be-state)
+- [`<element> can be located by <selector> "<expression>"`](/docs/dsl/bindings/element-locators#element-can-be-located-by-selector-expression)
+- [`I navigate to "<url>"`](/docs/dsl/actions/page-actions#i-navigate-to-url)
+- [`the page title should[ not] <match> "<expression>"`](/docs/dsl/assertions/page-title-asserts#the-page-title-should-match-expression)
+- [`<element> should[ not] be <state>`](/docs/dsl/assertions/element-asserts#element-should-be-state)
 
 :::
 
@@ -88,8 +88,8 @@ StepDefs can also be declared to accept parameters using one or more `<param-nam
 
 Calls DSL steps:
 
-- [`<element> can be located by <selector> "<expression>"`](/docs/dsl#element-can-be-located-by-selector-expression)
-- [`<textRef> should[ not] <match> "<expression>"`](/docs/dsl#text-ref-should-match-expression)
+- [`<element> can be located by <selector> "<expression>"`](/docs/dsl/bindings/element-locators#element-can-be-located-by-selector-expression)
+- [`<textRef> should[ not] <match> "<expression>"`](/docs/dsl/assertions/text-asserts#text-ref-should-match-expression)
 
 :::
 

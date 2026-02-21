@@ -1,0 +1,229 @@
+---
+title: URL asserts
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="the-current-url-should-match-blank">
+  <summary class="dsl">
+
+  ```gherkin
+  the current URL should[ not] be <blank|empty>
+  ```
+  
+  <p>Checks whether or not the current browser URL matches a blank or empty string. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
+
+  ```gherkin
+  the current URL should[ not] be blank  @Message("my custom assert fail message")
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('0s') the current URL should[ not] be blank
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('10s') the current URL should[ not] be blank
+  ```
+
+  </p>
+  <p>Where</p>
+  <ul>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    When I navigate to "https://todomvc.com/examples/react/dist"
+    Then the current URL should not be blank
+  ```
+
+  Trimming (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.62.0">v3.62.0</Link>)
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+  </ul>
+  
+  <div class="grid-3">
+    <div><Link to="#the-current-url-should-match-blank">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.26.0">v3.26.0</Link></div>
+  </div>
+</details>
+
+<details id="the-current-url-should-match-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  the current URL should[ not] <match> "<expression>"
+  ```
+  
+  <p>Checks whether or not the current browser URL matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
+
+  ```gherkin
+  the current URL should[ not] <match> "<expression>"  @Message("my custom assert fail message")
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('0s') the current URL should[ not] <match> "<expression>"
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('10s') the current URL should[ not] <match> "<expression>"
+  ```
+
+  </p>
+  <p>Where</p>
+  <ul>
+    <li><code>not</code> negates the match if included</li>
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>match regex</code> for regex match</li>
+        <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2,3}
+    When I navigate to "https://todomvc.com/examples/react/dist"
+    Then the current URL should contain "todomvc.com"
+     And the current URL should not contain "other.com"
+  ```
+
+  Trimming and ignoring case (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.62.0">v3.62.0</Link>)
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+    <li>The <code>@IgnoreCase</code> annotation can be used on step to ignore case when comparing</li>
+  </ul>
+  
+  <div class="grid-3">
+    <div><Link to="#the-current-url-should-match-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="the-current-url-should-match-expression-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  the current URL should[ not] <match> <expressionRef>
+  ```
+  
+  <p>Checks whether or not the current URL in the browser matches a referenced expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+  <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
+
+  ```gherkin
+  the current URL should[ not] <match> <expressionRef>  @Message("my custom assert fail message")
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('0s') the current URL should[ not] <match> <expressionRef>
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('10s') the current URL should[ not] <match> <expressionRef>
+  ```
+
+  </p>
+  <p>Where</p>
+  <ul>
+    <li><code>not</code> negates the match if included</li>
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>match regex</code> for regex match</li>
+        <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li>
+      <code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4,5}
+    Given my domain is "todomvc.com"
+      And some other domain is "someother.com"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+     Then the current URL should contain my domain
+      And the current URL should not contain some other domain
+  ```
+
+  Trimming and ignoring case (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.62.0">v3.62.0</Link>)
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+    <li>The <code>@IgnoreCase</code> annotation can be used on step to ignore case when comparing</li>
+  </ul>
+  
+  <div class="grid-3">
+    <div><Link to="#the-current-url-should-match-expression-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>

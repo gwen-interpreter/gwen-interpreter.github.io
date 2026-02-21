@@ -1,0 +1,137 @@
+---
+title: Existential asserts
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="name-should-be-absent">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> should be absent
+  ```
+
+  <p>Checks that a named binding is absent from the current scope.</p>
+  </summary>
+  <p>
+  <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
+
+  ```gherkin
+  <name> should be absent  @Message("my custom assert fail message")
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('0s') <name> should be absent
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('10s') <name> should be absent
+  ```
+
+  </p>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name of the binding to check</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    Then this should be absent
+  ```
+  
+  or equivalently (as of v3.29.0)
+
+  ```gherkin
+    Then that should not be defined
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-should-be-absent">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.6.0">v2.6.0</Link></div>
+  </div>
+</details>
+
+<details id="name-should-be-defined">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> should[ not] be defined
+  ```
+
+  <p>Checks whether or not a named binding exists in the current scope.</p>
+  </summary>
+  <p>
+  <p>With custom assertion error message:</p>
+
+  ```gherkin
+  <name> should be defined  @Message("my custom assert fail message")
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('0s') <name> should be defined
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('10s') <name> should be defined
+  ```
+
+  </p>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name of the binding to check</li>
+    <li><code>not</code> negates the check (for absence/non existence)</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  To check for the presence of a binding
+  
+  ```gherkin
+    Then this should be defined
+  ```
+
+  To check for the absence of a binding
+  
+  ```gherkin
+    Then that should not be defined
+  ```
+
+  or equivalently
+
+  ```gherkin
+    Then that should be absent
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-should-be-defined">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.29.0">v3.29.0</Link></div>
+  </div>
+</details>

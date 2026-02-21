@@ -1,0 +1,8 @@
+{
+  "label": "Control structures",
+  "position": 5,
+  "link": {
+    "type": "doc",
+    "id": "dsl/control-structures/index"
+  }
+}

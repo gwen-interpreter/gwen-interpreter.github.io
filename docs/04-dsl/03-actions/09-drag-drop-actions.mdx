@@ -1,0 +1,39 @@
+---
+title: Drag Drop actions
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-drag-and-drop-source-element-to-target-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I drag and drop <sourceElement> to <targetElement>
+  ```
+  <p>Drags and drops a source element onto a target element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;sourceElement&gt;</code> is the name of the source element to drag</li>
+    <li><code>&lt;targetElement&gt;</code> is the name of the target element to drop the <code>&lt;sourceElement&gt;</code> into</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the box can be located by xpath "//*[@id='credit2']/a"
+      And the cell can be located by xpath "//*[@id='bank']/li"
+     When I navigate to "http://demo.guru99.com/test/drag_drop.html"
+      And I capture the box as the box text
+      And I drag and drop the box to the cell
+     Then the cell should contain "${the box text}"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-drag-and-drop-source-element-to-target-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.17.0">v2.17.0</Link></div>
+  </div>
+</details>

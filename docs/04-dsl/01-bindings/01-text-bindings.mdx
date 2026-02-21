@@ -1,0 +1,61 @@
+---
+title: Text bindings
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="name-is-value">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is "<value>"
+  ```
+  <p>Binds the given value to a name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the value to</li>
+    <li><code>&lt;value&gt;</code> is the value to bind (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+    
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    Given my name is "Gwen"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-value">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="name-is-literal">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is <blank|empty|true|false>
+  ```
+  <p>Binds a literal value to a name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the literal value to</li>
+    
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    Given my name is blank
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-literal">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.59.0">v3.59.0</Link></div>
+  </div>
+</details>

@@ -1,0 +1,317 @@
+---
+title: File actions
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-attach-filepath-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I attach "<filepath>" as "<name>"
+  ```
+  or since v3.0.0
+  ```gherkin
+  I attach "<filepath>" as <name>
+  ```
+
+  <p>Attaches a local file to the Gwen report and assigns it a name. The link to the attachment in the report will have the given name.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the local file to attach</li>
+    <li><code>&lt;name&gt;</code> the name to assign to the file attachment</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+     When I attach "path/to/data.csv" as "data"
+  ```
+  Or since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link>
+
+  ```gherkin
+     When I attach "path/to/data.csv" as data
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-attach-filepath-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link></div>
+  </div>
+</details>
+
+<details id="i-attach-filepath">
+  <summary class="dsl">
+
+  ```gherkin
+  I attach "<filepath>"
+  ```
+
+
+  <p>Attaches a local file to the Gwen report and assigns it the same name as the file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the local file to attach</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+     When I attach "path/to/data.csv"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-attach-filepath">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0">v4.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-write-append-text-to-file">
+  <summary class="dsl">
+
+  ```gherkin
+  I <write|append> "<text>" to "<filepath>" file
+  ```
+  <p>Writes or appends text to a file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;write|append&gt;</code> is one of:
+      <ul>
+        <li><code>&lt;write&gt;</code> to overwrite entire content of file with the provided text</li>
+        <li><code>&lt;append&gt;</code> to append the provided text to existing content in file</li>
+      </ul>
+    </li>
+    <li><code>&lt;text&gt;</code> the text to write or append to the file</li>
+    <li><code>&lt;filepath&gt;</code> the path to the local file to write or append the text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+     When I write "automation" to "path/to/file.txt" file
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-write-append-text-to-file">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.25.0">v3.25.0</Link></div>
+  </div>
+</details>
+
+
+<details id="i-write-append-text-ref-to-file">
+  <summary class="dsl">
+
+  ```gherkin
+  I <write|append> <textRef> to "<filepath>" file
+  ```
+  <p>Writes or appends a text reference value to a file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;write|append&gt;</code> is one of:
+      <ul>
+        <li><code>&lt;write&gt;</code> to overwrite entire content of file with the provided text</li>
+        <li><code>&lt;append&gt;</code> to append the provided text to existing content in file</li>
+      </ul>
+    </li>
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to write or append to the file
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepath&gt;</code> the path to the local file to write or append the text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {6}
+     Given my content is
+           """
+           Automation and robotics
+           for Gherkin
+           """
+     When I write my content to "path/to/file.txt" file
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-write-append-text-ref-to-file">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.25.0">v3.25.0</Link></div>
+  </div>
+</details>
+
+<details id="i-write-append-new-line-to-file">
+  <summary class="dsl">
+
+  ```gherkin
+  I <write|append> new line to "<filepath>" file
+  ```
+  <p>Writes or appends a new line to a file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;write|append&gt;</code> is one of:
+      <ul>
+        <li><code>&lt;write&gt;</code> to overwrite entire content of file with a new line</li>
+        <li><code>&lt;append&gt;</code> to append a new line to existing content in file</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepath&gt;</code> the path to the local file to write or append the new line to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+     When I append new line to "path/to/file.txt" file
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-write-append-new-line-to-file">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.25.0">v3.25.0</Link></div>
+  </div>
+</details>
+
+<details id="i-write-append-text-to-file-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  I <write|append> "<text>" to <filepathRef file>
+  ```
+  <p>Writes or appends text to a referenced file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;write|append&gt;</code> is one of:
+      <ul>
+        <li><code>&lt;write&gt;</code> to overwrite entire content of file with the provided text</li>
+        <li><code>&lt;append&gt;</code> to append the provided text to existing content in file</li>
+      </ul>
+    </li>
+    <li><code>&lt;text&gt;</code> the text to write or append to the file</li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to write or append the provided text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+     Given my file is "path/to/file.txt"
+      When I append "automation" to my file
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-write-append-text-to-file-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.25.0">v3.25.0</Link></div>
+  </div>
+</details>
+
+<details id="i-write-append-text-ref-to-file-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  I <write|append> <textRef> to <filepathRef file>
+  ```
+  <p>Writes or appends a text reference value to a referenced file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;write|append&gt;</code> is one of:
+      <ul>
+        <li><code>&lt;write&gt;</code> to overwrite entire content of file with the provided text</li>
+        <li><code>&lt;append&gt;</code> to append the provided text to existing content in file</li>
+      </ul>
+    </li>
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to write or append to the file
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to write or append the provided text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {7}
+     Given my file is "path/to/file.txt"
+       And my content is
+           """
+           Automation and robotics
+           for Gherkin
+           """
+     When I write my content to my file
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-write-append-text-ref-to-file-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.25.0">v3.25.0</Link></div>
+  </div>
+</details>
+
+<details id="i-write-append-new-line-to-file-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  I <write|append> new line to <filepathRef file>
+  ```
+  <p>Writes or appends a new line to a referenced file.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;write|append&gt;</code> is one of:
+      <ul>
+        <li><code>&lt;write&gt;</code> to overwrite entire content of file with a new line</li>
+        <li><code>&lt;append&gt;</code> to append a new line to existing content in file</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to write or append the new line to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+     Given my file is "path/to/file.txt"
+      When I append new line to my file
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-write-append-new-line-to-file-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.25.0">v3.25.0</Link></div>
+  </div>
+</details>
+
+<details id="i-log-record-to-file">
+  <summary class="dsl">
+
+  ```gherkin
+  I log record to <resultsFileId> file
+  ```
+
+  <p>Logs a record to the results file having the given ID (if results is specifed in the format launch option only).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;resultsFileId&gt;</code> the ID of the <Link to="/docs/reports/csv#results-files">results file</Link> to log a record to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+     When I log record to my.results file
+  ```
+  
+  <div class="grid-3">
+    <div><Link to="#i-log-record-to-file">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.0.0">v4.0.0</Link></div>
+  </div>
+</details>

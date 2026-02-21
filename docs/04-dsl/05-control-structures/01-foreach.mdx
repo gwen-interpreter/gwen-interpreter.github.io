@@ -1,0 +1,329 @@
+---
+title: ForEach
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+> Since [v3.48.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0), the following implicit attributes are available to <code>&lt;step&gt;</code>s:
+> <ul>
+>  <li><code>gwen.iteration.number</code> = current iteration starting at 1</li>
+>  <li><code>gwen.iteration.index</code> = current iteration starting at 0</li>
+> </ul>
+
+<details id="step-for-each-element-located-by-selector-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <element> located by <selector> "<expression>"
+  ```
+  <p>Executes a step for each element in a list of elements in the current scope with a default lookup timeout that can be overridden with the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
+    <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression returning one or many elements</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {6}
+    Given the todo field can be located by class "new-todo"
+      And the active count can be located by css ".todo-count"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And I tick todo item for each todo item located by css ".todo-list .toggle"
+     Then the active count should contain "0"
+  ```
+
+  With explicit timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {6}
+    Given the todo field can be located by class "new-todo"
+      And the active count can be located by css ".todo-count"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And @Timeout('10s') I tick todo item for each todo item located by css ".todo-list .toggle"
+     Then the active count should contain "0"
+  ```
+
+  Without any timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {6}
+    Given the todo field can be located by class "new-todo"
+      And the active count can be located by css ".todo-count"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And @Timeout('0s') I tick todo item for each todo item located by css ".todo-list .toggle"
+     Then the active count should contain "0"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-for-each-element-located-by-selector-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link></div>
+  </div>
+</details>
+
+<details id="step-for-each-element-located-by-selector-expression-in-container">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <element> located by <selector> "<expression>" in <containerElement>
+  ```
+  <p>Executes a step for each element in a list of elements in a container element in the current scope with a default lookup timeout that can be overridden with the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
+    <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li>
+      <code>&lt;selector&gt;</code> is the selector type, one of:
+      <ul>
+        <li><code>id</code> for selecting by id attribute</li>
+        <li><code>name</code> for selecting by name attribute</li>
+        <li><code>tag name</code> (or <code>tag</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by tag name</li>
+        <li><code>css selector</code> (or <code>css</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by css expression</li>
+        <li><code>class name</code> (or <code>class</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting by class attribute</li>
+        <li><code>xpath</code> for selecting by XPath</li>
+        <li><code>link text</code> for selecting by link text</li>
+        <li><code>partial link text</code> for selecting by partial link text</li>
+        <li><code>javascript</code> (or <code>js</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>) for selecting <Link to="https://gweninterpreter.wordpress.com/2019/08/13/locating-web-elements-with-gwen/#byJavaScript">by JavaScript</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the selector expression returning one or many elements</li>
+    <li><code>&lt;containerElement&gt;</code> is the name assigned to the container element</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {7}
+    Given the todo field can be located by class "new-todo"
+      And the todo list can be located by class "todo-list"
+      And the active count can be located by css ".todo-count"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And I tick todo item for each todo item located by class "toggle" in the todo list
+     Then the active count should contain "0"
+  ```
+
+  With explicit timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+ ```gherkin {7}
+    Given the todo field can be located by class "new-todo"
+      And the todo list can be located by class "todo-list"
+      And the active count can be located by css ".todo-count"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And @Timeout('10s') I tick todo item for each todo item located by class "toggle" in the todo list
+     Then the active count should contain "0"
+  ```
+
+  Without any timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {7}
+    Given the todo field can be located by class "new-todo"
+      And the todo list can be located by class "todo-list"
+      And the active count can be located by css ".todo-count"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And @Timeout('0s') I tick todo item for each todo item located by class "toggle" in the todo list
+     Then the active count should contain "0"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-for-each-element-located-by-selector-expression-in-container">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link></div>
+  </div>
+</details>
+
+<details id="step-for-each-element-in-elements">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <element> in <elements>
+  ```
+  <p>Executes a step for each element in a list of elements in the current scope with a default lookup timeout that can be overridden with the `@Timeout` annotation.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each element</li>
+    <li><code>&lt;element&gt;</code> is the name that will be assigned to the current element occurrence (element is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li><code>&lt;elements&gt;</code> is the name of the locator binding returning multiple elements</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {7}
+    Given the todo field can be located by class "new-todo"
+      And the active count can be located by css ".todo-count"
+      And all todo items can be located by css ".todo-list .toggle"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Walk the dog" in the todo field
+      And I enter "Feed the cat" in the todo field
+      And I tick todo item for each todo item in all todo items
+     Then the active count should contain "0"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-for-each-element-in-elements">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link></div>
+  </div>
+</details>
+
+<details id="step-for-each-data-record">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each data record
+  ```
+  <p>Executes a step for each record in a data table.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each record</li>
+    <li>Each field in a record can be accessed in <code>&lt;step&gt;</code> using the field's associated header name</li>
+    <li>
+      The following implicit bindings are available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>gwen.table.record.number</code> is the current record number (starting at 1)</li>
+        <li><code>gwen.table.record.index</code> is the record index (starting at 0), since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.30.1">v2.30.1</Link></li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+  
+  <em>Feature</em>
+
+  ```gherkin
+    Scenario: my scenario
+      Given I have the following active items
+ Item         |
+ Walk the dog |
+ Get the milk |
+ Feed the cat |
+  ```
+
+  <em>Meta</em>
+
+  ```gherkin {7}
+    @StepDef
+    @DataTable
+    Scenario: I have the following active items
+      Given the todo field can be located by class "new-todo"
+        And the active count can be located by css ".todo-count"
+       When I navigate to "https://todomvc.com/examples/react/dist"
+        And I enter Item in the todo field for each data record
+       Then the active count should contain "3"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-for-each-data-record">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></div>
+  </div>
+</details>
+
+<details id="for-each-entry-in-text-ref-delimited-by">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <entry> in <textRef> delimited by "<delimiter>"
+  ```
+  <p>Executes a step for each delimited text entry.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each delimited entry</li>
+    <li><code>&lt;entry&gt;</code> is the name that will be assigned to the current entry occurrence (entry is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the delimitted values
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a delmited list of values, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;delimiter&gt;</code> the delimiter used in <code>&lt;textRef&gt;</code> to separate each value</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+    Given the todo field can be located by class "new-todo"
+      And the active count can be located by css ".todo-count"
+      And my items is "Walk the dog, Feed the cat, Get the milk"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter item in the todo field for each item in my items delimited by ","
+     Then the active count should contain "3"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#for-each-entry-in-text-ref-delimited-by">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link></div>
+  </div>
+</details>
+
+<details id="for-each-entry-in-json-array">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> for each <entry> in <arrayRef> array"
+  ```
+  <p>Executes a step for each text entry in a JSON array.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute for each entry</li>
+    <li><code>&lt;entry&gt;</code> is the name that will be assigned to the current entry occurrence (entry is accessible in <code>&lt;step&gt;</code> by this name)</li>
+    <li>
+      <code>&lt;arrayRef&gt;</code> is the name of the binding containing the string repersentation of the JSON array
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a JSON array string, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {12}
+    Given the todo field can be located by class "new-todo"
+      And the active count can be located by css ".todo-count"
+      And my items is
+          """
+          [ 
+            "Walk the dog", 
+            "Feed the cat", 
+            "Get the milk" 
+          ]
+          """
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter item in the todo field for each item in my items array
+     Then the active count should contain "3"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#for-each-entry-in-json-array">Link</Link></div>
+    <div align="center"><Link to="/docs/data-feeds#looping-nested-arrays">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.66.0">v3.66.0</Link></div>
+  </div>
+</details>

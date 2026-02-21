@@ -1,0 +1,430 @@
+---
+title: Text asserts
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="text-ref-should-match-blank">
+  <summary class="dsl">
+
+  ```gherkin
+  <textRef> should[ not] be <blank|empty>
+  ```
+
+  <p>Checks whether or not the text reference matches a blank or empty string. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+
+  <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
+
+  ```gherkin
+  <textRef> should[ not] be <blank|empty>  @Message("my custom assert fail message")
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('0s') <textRef> should[ not] be blank
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('10s') <textRef> should[ not] be blank
+  ```
+  
+  </p>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to check
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>not</code> negates the match if included</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {6}
+    Given the todo field can be located by class "new-todo"
+      And my todo list can be located by css ".todo-list"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Get the milk" in the todo field
+      And I capture my todo list as current items
+     Then current items should not be empty
+  ```
+
+  Trimming (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.62.0">v3.62.0</Link>)
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+  </ul>
+  
+  <div class="grid-3">
+    <div><Link to="#text-ref-should-match-blank">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.26.0">v3.26.0</Link></div>
+  </div>
+</details>
+
+<details id="text-ref-should-match-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <textRef> should[ not] <match> "<expression>"
+  ```
+
+  <p>Checks whether or not the text reference matches a given expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+
+  <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
+
+  ```gherkin
+  <textRef> should[ not] <match> "<expression>"  @Message("my custom assert fail message")
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('0s') <textRef> should[ not] <match> "<expression>"
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('10s') <textRef> should[ not] <match> "<expression>"
+  ```
+
+  </p>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to check
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>not</code> negates the match if included</li>
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>match regex</code> for regex match</li>
+        <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {6}
+    Given the todo field can be located by class "new-todo"
+      And my todo list can be located by css ".todo-list"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Get the milk" in the todo field
+      And I capture my todo list as current items
+     Then current items should contain "Get the milk"
+  ```
+
+  Trimming and ignoring case (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.62.0">v3.62.0</Link>)
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+    <li>The <code>@IgnoreCase</code> annotation can be used on step to ignore case when comparing</li>
+  </ul>
+  
+  <div class="grid-3">
+    <div><Link to="#text-ref-should-match-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="text-ref-should-match-expression-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  <textRef> should[ not] <match> <expressionRef>
+  ```
+  
+  <p>Checks whether or not the value of a variable or setting matches a referenced expression. Reports an assertion error if the match fails.</p>
+  </summary>
+  <p>
+
+  <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
+
+  ```gherkin
+  <textRef> should[ not] <match> <expressionRef>  @Message("my custom assert fail message")
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('0s') <textRef> should[ not] <match> <expressionRef>
+  ```
+  
+  </p>
+  <hr/>
+  <p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('10s') <textRef> should[ not] <match> <expressionRef>
+  ```
+
+  </p>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;variable&gt;</code> is the name of the variable or setting to check</li>
+    <li><code>not</code> negates the match if included</li>
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>match regex</code> for regex match</li>
+        <li><code>match xpath</code> for XML match</li>
+        <li><code>match json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
+        <li><code>match template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>match template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li>
+      <code>&lt;expressionRef&gt;</code> is the name of the binding containing the expression to match
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to an expression value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {7}
+    Given the todo field can be located by class "new-todo"
+      And my todo list can be located by css ".todo-list"
+      And my item is "Feed the cat"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter my item in the todo field
+      And I capture my todo list as current items
+     Then current items should contain my item
+  ```
+
+  Trimming and ignoring case (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.62.0">v3.62.0</Link>)
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+    <li>The <code>@IgnoreCase</code> annotation can be used on step to ignore case when comparing</li>
+  </ul>
+  
+  <div class="grid-3">
+    <div><Link to="#text-ref-should-match-expression-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="text-ref-should-be-similar-to-text">
+  <summary class="dsl">
+
+  ```gherkin
+  <textRef> should[ not] <match> <percentage>% similar to "<text>"
+  ```
+
+  <p>Compares a text reference with a text value for similarity using the DSC (Dice Similarity Coefficient) algorithm.</p>
+  </summary>
+  <p>
+  <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
+
+  ```gherkin
+  <textRef> should[ not] <match> <percentage>% similar to "<text>"  @Message("my custom assert fail message")
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('0s') <textRef> should[ not] <match> <percentage>% similar to "<text>"
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('10s') <textRef> should[ not] <match> <percentage>% similar to "<text>"
+  ```
+
+  </p>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing a text reference
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>not</code> negates the match if included</li>
+    <li>
+      <code>match</code> is one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>be less than</code> for less than match</li>
+        <li><code>be at most</code> for less than or equal to match</li>
+        <li><code>be more than</code> for greater than match</li>
+        <li><code>be at least</code> for greater than or equal to match</li>
+      </ul>
+    </li>
+    <li><code>&lt;text&gt;</code> is the text to compare <code>&lt;textRef&gt;</code> against</li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  The calculated similarity score is implicity bound to the <code>similarity score</code> attribute in the global scope.
+  <p>Examples</p>
+
+  ```gherkin {2-7}
+    Given the phrase is "Hello world!"
+     Then the phrase should be more than 90% similar to "Hello world"
+      And @IgnoreCase the phrase should be at least 90% similar to "hello world"
+      And the phrase should be 94.12% similar to "Hello world"
+      And @IgnoreCase the phrase should be 94.12% similar to "hello world"
+      And the phrase should be 82.35% similar to "hello world"
+      And the phrase should not be less than 90% similar to "Hello world"
+  ```
+
+  Trimming and ignoring case (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.62.0">v3.62.0</Link>)
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+    <li>The <code>@IgnoreCase</code> annotation can be used on step to ignore case when comparing</li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#text-ref-should-be-similar-to-text">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.0">v3.12.0</Link></div>
+  </div>
+</details>
+
+<details id="text-ref-1-should-be-similar-to-text-ref-2">
+  <summary class="dsl">
+
+  ```gherkin
+  <textRef1> should[ not] <match> <percentage>% similar to <textRef2>
+  ```
+
+  <p>Compares a text reference with another for similarity using the DSC (Dice Similarity Coefficient) algorithm.</p>
+  </summary>
+  <p>
+  <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
+
+  ```gherkin
+  <textRef1> should[ not] <match> <percentage>% similar to <textRef2>  @Message("my custom assert fail message")
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>Without any timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('0s') <textRef1> should[ not] <match> <percentage>% similar to <textRef2>
+  ```
+
+  </p>
+  <hr/>
+  <p>
+  <p>With custom timeout (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>):</p>
+
+  ```gherkin
+  @Timeout('10s') <textRef1> should[ not] <match> <percentage>% similar to <textRef2>
+  ```
+
+  </p>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;textRef1&gt;</code> is the name of the binding containing the first text reference
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>not</code> negates the match if included</li>
+    <li>
+      <code>match</code> is one of:
+      <ul>
+        <li><code>be</code> for exact match</li>
+        <li><code>be less than</code> for less than match</li>
+        <li><code>be at most</code> for less than or equal to match</li>
+        <li><code>be more than</code> for greater than match</li>
+        <li><code>be at least</code> for greater than or equal to match</li>
+      </ul>
+    </li>
+    <li><code>&lt;percentage&gt;</code> is a percentage number between 0 and 100 (internally rounded to 2 decimal places)</li>
+    <li>
+      <code>&lt;textRef2&gt;</code> is the name of the binding containing the second text reference to compare <code>&lt;textRef1&gt;</code> against
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;timeoutSecs&gt;</code> is the timeout period in seconds</li>
+    <li><code>&lt;wait|timeout&gt;</code> is either <code>wait</code> or <code>timeout</code></li>
+  </ul>
+  The calculated similarity score is implicity bound to the <code>similarity score</code> attribute in the global scope.
+  <p>Examples</p>
+
+  ```gherkin {4-9}
+    Given phrase 1 is "Hello world!"
+      And phrase 2 is "Hello world"
+      And phrase 3 is "hello world"
+     Then phrase 1 should be more than 90% similar to phrase 2
+      And @IgnoreCase phrase 1 should be at least 90% similar to phrase 2
+      And phrase 1 should be 94.12% similar to phrase 2
+      And @IgnoreCase phrase 1 should be 94.12% similar to phrase 3
+      And phrase 1 should be 82.35% similar to phrase 3
+      And phrase 1 should not be less than 90% similar to phrase 2
+  ```
+
+  Trimming and ignoring case (since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.62.0">v3.62.0</Link>)
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+    <li>The <code>@IgnoreCase</code> annotation can be used on step to ignore case when comparing</li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#text-ref-1-should-be-similar-to-text-ref-2">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.12.0">v3.12.0</Link></div>
+  </div>
+</details>

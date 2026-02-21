@@ -14,7 +14,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Assertion Modes
 
-Assertion modes only apply to steps that perform [assertions](/docs/dsl#assertions).
+Assertion modes only apply to steps that perform [assertions](/docs/dsl/assertions).
 
 ### Hard assertions (default)
 
@@ -121,7 +121,7 @@ This will now output a more meaninful error and include the contents of the form
 
 > Since [v3.61.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.61.0)
 
-Error messages raised by a series [soft](#soft-assertions) or [sustained](#sustained-assertions) assertions can be aggregated into a single errWith a [cumulative assert](/docs/dsl#cumulative-asserts).
+Error messages raised by a series [soft](#soft-assertions) or [sustained](#sustained-assertions) assertions can be aggregated into a single errWith a [cumulative assert](/docs/dsl/assertions/cumulative-asserts).
 
 ### Usage
 
@@ -142,7 +142,7 @@ Error messages raised by a series [soft](#soft-assertions) or [sustained](#susta
 
   ### Resetting
 
-  You can also [reset accumulated errors](/docs/dsl#i-reset-accumulated-errors) if you need to start a new series of asserts. All currently accumulated errors will be cleared.
+  You can also [reset accumulated errors](/docs/dsl/assertions/cumulative-asserts#i-reset-accumulated-errors) if you need to start a new series of asserts. All currently accumulated errors will be cleared.
 
   ```gherkin
     And I reset accumulated errors

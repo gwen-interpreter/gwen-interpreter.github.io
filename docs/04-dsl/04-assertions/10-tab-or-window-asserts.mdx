@@ -1,0 +1,81 @@
+---
+title: Tab or Window asserts
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-should-have-1-open-tab-or-window">
+  <summary class="dsl">
+
+  ```gherkin
+  I should have 1 open <tab|window>
+  ```
+  <p>Checks that only one tab or window is currently open. Reports an assertion error if not.</p>
+  </summary>
+
+  <p>
+
+  <p>With custom assertion error message:</p>
+
+  ```gherkin
+  I should have 1 open <tab|window>  @Message("my custom assert fail message")
+  ```
+  
+  </p>
+
+  <p>Example</p>
+
+  ```gherkin {2}
+    When I navigate to "https://todomvc.com/examples/react/dist"
+    Then I should have 1 open window
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-should-have-1-open-tab-or-window">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.49.0">v2.49.0</Link></div>
+  </div>
+</details>
+
+<details id="i-should-have-count-open-tabs-or-windows">
+  <summary class="dsl">
+
+  ```gherkin
+  I should have <count> open <tab|window>s
+  ```
+  <p>Checks that a given number of tabs or windows are currently open. Reports an assertion error if not.</p>
+  </summary>
+
+  <p>
+
+  <p>With custom assertion error message:</p>
+
+  ```gherkin
+  I should have <count> open <tab|window>s  @Message("my custom assert fail message")
+  ```
+
+  </p>
+
+  <p>Where</p>
+  <ul>
+    <li><code>count</code> the expected number of open tabs or windows</li>
+  </ul>
+
+  <p>Example</p>
+
+  ```gherkin {4}
+    When I navigate to "https://todomvc.com/examples/react/dist"
+     And I start a browser for Vue
+     And I navigate to "https://todomvc.com/examples/vue"
+    Then I should have 2 open browsers
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-should-have-count-open-tabs-or-windows">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.49.0">v2.49.0</Link></div>
+  </div>
+</details>

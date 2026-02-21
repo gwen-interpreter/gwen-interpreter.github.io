@@ -1,0 +1,136 @@
+---
+title: System Processes bindings
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="name-is-defined-by-system-process-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by system process "<expression>"
+  ```
+  <p>Associates a name with the return value of a local system process. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to associated the returned value to</li>
+    <li><code>&lt;expression&gt;</code> is the system process that will return the value to assign (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+  </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
+    </ul>
+  </p>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given my hostname is defined by system process "hostname"
+     Then my hostname should not be ""
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-system-process-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="name-is-defined-by-system-process-expression-delimited-by-delimiters">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by system process "<expression>" delimited by "<delimiters>"
+  ```
+  <p>Associates a name with the return value of a delimited local system process. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to associated the returned value to</li>
+    <li>
+      <code>&lt;expression&gt;</code> is the system process that will return the value to assign (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+      <ul>
+        <li>Delmiters are required for special cases such as when unbalanced quoted strings are passed as arguments (see example).</li>
+      </ul>
+    </li>
+    <li><code>&lt;delmiters&gt;</code> is a regex pattern defining the delimiter(s) used in <code>&lt;expression&gt;</code></li>
+  </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
+    </ul>
+  </p>
+  <p>Example</p>
+
+  ```gherkin {1}
+    Given my message is defined by system process "echo,"quoted text " and orphan quote"" delimited by ","
+     Then my message should be ""quoted text " and orphan quote""
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-system-process-expression-delimited-by-delimiters">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.53.0">v2.53.0</Link></div>
+  </div>
+</details>
+
+<details id="name-is-defined-by-unix-system-process-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined by unix system process "<expression>"
+  ```
+  <p>Associates a name with the return value of a local unix system process. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to associated the returned value to</li>
+    <li><code>&lt;expression&gt;</code> is the unix system process that will return the value to assign (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+  </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
+    </ul>
+  </p>
+  <p>Example</p>
+
+  Given a <i>file.csv</i> with content:
+  ```
+  Word1,Word2,Compound
+  basket,ball,basketball
+  sun,flower,sunflower
+  ```
+
+  The following will print the data and line up each column
+
+  ```gherkin {1}
+    Given my table is defined by unix system process "cat file.csv | column -t -s\,"
+     Then my table should be 
+          """
+          Word1   Word2   Compound
+          basket  ball    basketball
+          sun     flower  sunflower
+          """
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-unix-system-process-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.19.0">v3.19.0</Link></div>
+  </div>
+</details>

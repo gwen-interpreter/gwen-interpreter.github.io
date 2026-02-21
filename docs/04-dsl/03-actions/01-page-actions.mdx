@@ -1,0 +1,56 @@
+---
+title: Page actions
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-navigate-to-url">
+  <summary class="dsl">
+
+  ```gherkin
+  I navigate to "<url>"
+  ```
+
+  <p>Navigates the browser to the given URL. Starts a new browser window if one is not open.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;url&gt;</code> is the URL to navigate to (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    When I navigate to "https://todomvc.com/examples/react/dist"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-navigate-to-url">Link</Link></div>
+    <div align="center">Supports [performance trace](/docs/faq#can-i-log-a-performance-trace) capture (since v4.3.0)</div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-refresh-the-current-page">
+  <summary class="dsl">
+
+  ```gherkin
+  I refresh the current page
+  ```
+
+  <p>Refreshes the current page in the browser.</p>
+  </summary>
+  <p>Example</p>
+
+  ```gherkin
+    When I refresh the current page
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-refresh-the-current-page">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>

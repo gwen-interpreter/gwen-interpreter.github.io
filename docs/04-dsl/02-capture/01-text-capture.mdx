@@ -1,0 +1,149 @@
+---
+title: Text capture
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-capture-text-ref-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <textRef> as <name>
+  ```
+  <p>Captures the referenced text and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the source text
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the username is "Gwen"
+     When I capture the username as my username
+     Then my username should be the username
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-text-ref-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <element>
+  ```
+  <p>Captures the text value of an element and binds it to the element name in the global scode.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to capture the text of</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the heading can be located by tag "h1"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I capture the heading
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-element-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <element> as <name>
+  ```
+  <p>Captures the text value of an element and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to capture the text of</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the heading can be located by tag "h1"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I capture the heading as my heading
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-element-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-name-of-element-by-javascript-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture <name> <of|on|in> <element> by <javascript|js> "<script>"
+  ```
+  <p>Executes a JavaScript expression or function on an element and binds the result to the given name.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the javascript return value to</li>
+    <li><code>&lt;of|on|in&gt;</code> is <code>of</code>, <code>on</code> or <code>in</code></li>
+    <li><code>&lt;element&gt;</code> is the name of the element to execute the javascript on</li>
+    <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
+    <li>
+      <code>&lt;script&gt;</code> is the javascript expression or function that will return the value (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+      <ul>
+        <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
+        <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
+        <li>
+          For a function, use either:
+          <ul>
+            <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
+            <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4-11}
+    Given the red checkbox can be located by id "red"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I click the red checkbox
+      And I capture my favorite color in the red checkbox by js
+          """
+          () => {
+            var color = element.value
+            if (!element.checked) color = "Blue"
+            return color;
+          }
+          """
+     Then my favorite color should be "Red"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-name-of-element-by-javascript-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
+  </div>
+</details>

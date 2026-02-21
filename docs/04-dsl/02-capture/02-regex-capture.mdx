@@ -1,0 +1,72 @@
+---
+title: Regex capture
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-capture-the-text-in-text-ref-by-regex-expression-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the text in <textRef> by regex "<expression>" as <name>
+  ```
+  <p>Captures the referenced text using the given regex expression and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the source text
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the regex selector expression</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the date is "2021-09-22"
+     When I capture the text in the date by regex "(\d{4})" as the year
+     Then the year should be "2021"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-text-in-text-ref-by-regex-expression-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-text-in-element-by-regex-expression-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the text in <element> by regex "<expression>" as <name>
+  ```
+  <p>Captures text content from a web element using the given regex expression and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to capture text from</li>
+    <li><code>&lt;expression&gt;</code> is the regex selector expression</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # assuming a web element contains date: 2021-09-22
+    Given the date field can be located by class "date"
+     When I capture the text in the date field by regex "(\d{4})" as the year
+     Then the year should be "2021"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-text-in-element-by-regex-expression-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>

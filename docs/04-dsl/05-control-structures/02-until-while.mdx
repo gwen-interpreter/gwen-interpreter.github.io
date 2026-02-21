@@ -1,0 +1,609 @@
+---
+title: Until/While
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+> Since [v3.48.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.47.0), the following implicit attributes are available to <code>&lt;step&gt;</code>s:
+> <ul>
+>  <li><code>gwen.iteration.number</code> = current iteration starting at 1</li>
+>  <li><code>gwen.iteration.index</code> = current iteration starting at 0</li>
+> </ul>
+
+
+<details id="step-until-or-while-condition">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <condition>
+  ```
+  <p>Repeatedly exectues a step until or while a condition is satisfied using a default delay and timeout period. The default delay between iterations is one tenth of the configured <code>gwen.web.wait.seconds</code> setting (or 1 second if not set). The default timeout period is 30 times the delay. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li>
+      <code>&lt;condition&gt;</code> is either:
+      <ul>
+        <li>
+          Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.54.0">v3.54.0</Link>
+          <ul>
+            <li>the name of any binding that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
+          </ul>
+        </li>
+        <li>
+          Or in prior versions
+          <ul>
+            <li>the name of a binding containing a javascript function or expression that will return <code>true</code> when the condition is satisfied or <code>false</code> when it is not</li>
+            <li>the name of a binding containing a <code>true</code> or <code>false</code> value literal, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.50.0">v3.50.0</Link></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>gwen.iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {13}
+      Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+        And topic is "what is gwen"
+        And topic link can be located by partial link text "${topic}"
+        And topic not found is defined by js
+            """
+            [...document.querySelectorAll("a")]
+              .filter(a => a.textContent.includes('${topic}'))
+              .length == 0
+            """
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And I click the next page link while topic not found
+        And I click topic link
+       Then the page title should contain "${topic}"
+  ```
+
+  With explicit delay and timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {13}
+      Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+        And topic is "what is gwen"
+        And topic link can be located by partial link text "${topic}"
+        And topic not found is defined by js
+            """
+            [...document.querySelectorAll("a")]
+              .filter(a => a.textContent.includes('${topic}'))
+              .length == 0
+            """
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And @Delay('10s') @Timeout('1m') I click the next page link while topic not found
+        And I click topic link
+       Then the page title should contain "${topic}"
+  ```
+
+  With no delay or timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+  ```gherkin {13}
+      Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+        And topic is "what is gwen"
+        And topic link can be located by partial link text "${topic}"
+        And topic not found is defined by js
+            """
+            [...document.querySelectorAll("a")]
+              .filter(a => a.textContent.includes('${topic}'))
+              .length == 0
+            """
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And @Delay('0s') @Timeout('0s') I click the next page link while topic not found
+        And I click topic link
+       Then the page title should contain "${topic}"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-condition">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-element-state">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <element> is[ not] <state>
+  ```
+  <p>Repeatedly exectues a step until or while an element is in a given state using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the condition is satisfied</li>
+        <li><code>while</code> to repeat while the condition is satisfied</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to check the state of</li>
+    <li><code>not</code> negates the state if included</li>
+    <li>
+      <code>&lt;state&gt;</code> is one of:
+      <ul>
+        <li><code>displayed</code> to execute the step until or while the element is displayed</li>
+        <li><code>hidden</code> to execute the step until or while the element is not displayed</li>
+        <li><code>checked</code> or <code>ticked</code> to execute the step until or while a checkbox is ticked</li>
+        <li><code>unchecked</code> or <code>unticked</code> to execute the step until or while a checkbox is not ticked</li>
+        <li><code>enabled</code> to execute the step until or while the element is enabled</li>
+        <li><code>disabled</code> to execute the step until or while the element is disabled</li>
+      </ul>
+    </li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>gwen.iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {5}
+      Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And I click the next page link while the next page link is displayed
+       Then the next page link should not be displayed
+  ```
+
+  With explicit delay and timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+   ```gherkin {5}
+      Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And @Delay('5s') @Timeout('40s') I click the next page link while the next page link is displayed
+       Then the next page link should not be displayed
+  ```
+
+  With no delay or timeout since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.73.0">v3.73.0</Link>
+
+   ```gherkin {5}
+      Given the search field can be located by name "q"
+        And the next page link can be located by id "pnnext"
+       When I navigate to "https://google.com"
+        And I enter "gwen interpreter" in the search field
+        And @Delay('0s') @Timeout('0s') I click the next page link while the next page link is displayed
+       Then the next page link should not be displayed
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-element-state">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.44.0">v3.44.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-defined">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <name> is[ not] defined
+  ```
+  <p>Repeatedly exectues a step until or while an attribute is defined (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;name&gt;</code> is the name of the attribute (or StepDef &lt;param&gt; since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.11.0">v4.11.0</Link>) to check</li>
+    <li><code>not</code> include to execute step until or while attribute is not defined</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>gwen.iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-defined">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.57.0">v3.57.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-filepath-exists">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> "<filepath>" file[ not] exists
+  ```
+  <p>Repeatedly exectues a step until or while a file exists (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepath&gt;</code> the path to the file to check</li>
+    <li><code>not</code>to wait until the file does not exist (negation)</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>gwen.iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-filepath-exists">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-filepath-does-not-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> "<filepath>" file does not exist
+  ```
+  <p>Repeatedly exectues a step until or while a file does not exist using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepath&gt;</code> the path to the file to check</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>gwen.iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-filepath-does-not-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+
+<details id="step-until-or-while-filepath-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> "<filepath>" file is[ not] empty
+  ```
+  <p>Repeatedly exectues a step until or while a file is empty (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepath&gt;</code> the path to the file to check</li>
+    <li><code>not</code>to wait until the file is not empty (negation)</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>gwen.iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-filepath-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-filepathref-exists">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <filepathRef file>[ not] exists
+  ```
+  <p>Repeatedly exectues a step until or while a file exists (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to check</li>
+    <li><code>not</code>to wait until the file does not exist (negation)</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>gwen.iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-filepathref-exists">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-filepathref-does-not-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <filepathRef file> does not exist
+  ```
+  <p>Repeatedly exectues a step until or while a file does not exist using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to check</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>gwen.iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-filepathref-does-not-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-filepathref-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <until|while> <filepathRef file> is[ not] empty
+  ```
+  <p>Repeatedly exectues a step until or while a file is empty (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the `@Delay` and `@Timeout` annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to execute in each iteration</li>
+    <li>
+      <code>&lt;until|while&gt;</code> is one of:
+      <ul>
+        <li><code>until</code> to repeat until the attribute is defined (or not)</li>
+        <li><code>while</code> to repeat while the attribute is defined (or not)</li>
+      </ul>
+    </li>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to check</li>
+    <li><code>not</code>to wait until the file is not empty (negation)</li>
+    <li>
+      The following implicit binding is available in <code>&lt;step&gt;</code>:
+      <ul>
+        <li><code>iteration number</code> (or <code>gwen.iteration.number</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.52.0">v2.52.0</Link>) is the current iteration number (starting at 1)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-filepathref-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-binding-blank">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <while|until> <name> is[ not] <blank|empty>
+  ```
+  <p>Repeatedly exectues a step until or while an element or attribute is bound to a blank or empty value (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the @Delay and @Timeout annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to repeatedly execute</li>
+    <li><code>&lt;name&gt;</code> is the name of the element or attribute (or StepDef &lt;param&gt; since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.11.0">v4.11.0</Link>) to check</li>
+    <li><code>not</code> to negate the condition</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given the state code can be located by name "state"
+    When I navigate to "https://example.com"
+     And I refresh the current page while the state code is blank
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-binding-blank">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.1.0">v4.1.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-binding-is-value">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <while|until> <name> is[ not] "<value>"
+  ```
+  <p>Repeatedly exectues a step until or while an element or attribute is equal to a value (or not) using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the @Delay and @Timeout annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to repeatedly execute</li>
+    <li><code>&lt;name&gt;</code> is the name of the element or attribute (or StepDef &lt;param&gt; since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.11.0">v4.11.0</Link>) to check</li>
+    <li><code>not</code> to negate the condition</li>
+    <li><code>value</code> is the given value</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given the state code can be located by name "state"
+    When I navigate to "https://example.com?state=Victoria"
+     And I refresh the current page while the state code is not "VIC"
+  ```
+
+  Trimming and ignoring case
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+    <li>The <code>@IgnoreCase</code> annotation can be used on step to ignore case when comparing</li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-binding-is-value">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.1.0">v4.1.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-binding-match">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <while|until> <name> <match> "<expression>"`
+  ```
+  
+  <p>Repeatedly exectues a step until or while an element or attribute matches an expression using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the @Delay and @Timeout annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to repeatedly execute</li>
+    <li><code>&lt;name&gt;</code> is the name of the element or attribute (or StepDef &lt;param&gt; since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.11.0">v4.11.0</Link>) to check</li>
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>contains</code> for partial match</li>
+        <li><code>starts with</code> for partial leading match</li>
+        <li><code>ends with</code> for partial trailing match</li>
+        <li><code>matches regex</code> for regex match</li>
+        <li><code>matches xpath</code> for XML match</li>
+        <li><code>matches json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
+        <li><code>matches template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>matches template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given the state code can be located by name "state"
+    When I navigate to "https://example.com?state=${the state code}"
+     And I refresh the current page until the state code matches regex "(VIC|NSW)"
+  ```
+
+  Trimming and ignoring case
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+    <li>The <code>@IgnoreCase</code> annotation can be used on step to ignore case when comparing</li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-binding-match">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.1.0">v4.1.0</Link></div>
+  </div>
+</details>
+
+<details id="step-until-or-while-binding-not-match">
+  <summary class="dsl">
+
+  ```gherkin
+  <step> <while|until> <name> does not <match> "<expression>"`
+  ```
+  <p>Repeatedly exectues a step until or while an element or attribute does not match an expression using a 1 second delay interval and 1 minute timeout period. The default delay and timeout can be overridden using the @Delay and @Timeout annotations.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;step&gt;</code> is the DSL step or StepDef to repeatedly execute</li>
+    <li><code>&lt;name&gt;</code> is the name of the element or attribute (or StepDef &lt;param&gt; since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.11.0">v4.11.0</Link>) to check</li>
+    <li>
+      <code>&lt;match&gt;</code> is the type of match to perform, one of:
+      <ul>
+        <li><code>contain</code> for partial match</li>
+        <li><code>start with</code> for partial leading match</li>
+        <li><code>end with</code> for partial trailing match</li>
+        <li><code>matche regex</code> for regex match</li>
+        <li><code>matche xpath</code> for XML match</li>
+        <li><code>matche json path</code> for <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON match</Link>, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></li>
+        <li><code>matche template</code> for <Link to="/docs/template-matching">template</Link> match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+        <li><code>matche template file</code> for <Link to="/docs/template-matching">template</Link> file match, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.16.0">v2.16.0</Link></li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the expression to match (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given the state code can be located by name "state"
+    When I navigate to "https://example.com?state=${the state code}"
+     And I refresh the current page until the state code does not match regex "(VIC|NSW)"
+  ```
+
+  Trimming and ignoring case
+  <ul>
+    <li>The <code>@Trim</code> annotation can be used on step to trim strings when comparing</li>
+    <li>The <code>@IgnoreCase</code> annotation can be used on step to ignore case when comparing</li>
+  </ul>
+
+  <div class="grid-3">
+    <div><Link to="#step-until-or-while-binding-not-match">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.1.0">v4.1.0</Link></div>
+  </div>
+</details>
