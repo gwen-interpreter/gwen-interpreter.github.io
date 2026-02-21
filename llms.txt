@@ -1,0 +1,143 @@
+# Gwen
+
+> Gwen is a Gherkin interpreter with built-in web automation — write plain-English feature specs and Gwen executes them in a real browser using its built-in DSL, with no glue code required.
+
+## Docs
+
+- [Documentation] <url> = https://gweninterpreter.org/docs/: Full Gwen documentation index – start here to navigate all topics
+
+## Getting Started
+
+- [Introduction](<url>/introduction): Overview of Gwen – a Gherkin interpreter with built-in automation capabilities
+- [Get Started](<url>/get-started): Setup guide: install Gwen, initialise a project, and run sample features
+- [Meta](<url>/meta): Meta specs define step definitions and bindings that drive feature execution
+- [Annotations](<url>/annotations): Explanation of annotation tags (e.g., @StepDef, @Import) used in meta files
+- [Settings](<url>/settings): Configuration options (gwen.conf, JSON, properties) for browsers, environments, and behaviour rules
+- [Launcher](<url>/launcher): Command-line launcher options for running features, specifying meta, profiles, and batch mode
+- [Profiles](<url>/profiles): Profile settings for grouping launch parameters (e.g., samples, CI)
+- [REPL](<url>/repl): Interactive REPL console for on-the-fly execution and debugging of steps
+- [Dry Run](<url>/dry-run): Dry-run mode to validate specs without performing real actions
+- [FAQ](<url>/faq): Frequently asked questions covering Gwen basics, usage, and integrations
+
+## DSL
+
+- [DSL Overview](<url>/dsl): DSL reference explaining Gwen's domain-specific language for browser actions and assertions
+
+### DSL - Bindings
+
+- [Bindings Overview](<url>/dsl/bindings): Overview of all Gwen DSL binding categories and navigation links
+- [Text Bindings](<url>/dsl/bindings/text-bindings): Defines literal value binding syntax for text, blank, empty, true, false
+- [File Bindings](<url>/dsl/bindings/file-bindings): Binds a name to file contents, with optional encoding and evaluation mode
+- [Regex Bindings](<url>/dsl/bindings/regex-bindings): Captures text using regex from a source and binds it to a name
+- [XML Bindings](<url>/dsl/bindings/xml-bindings): Extracts XML data via XPath, binding text, node, or nodeset to a name
+- [JSON Bindings](<url>/dsl/bindings/json-bindings): Bind a name to JSON data via JSONPath, supporting eager, lazy, and masked options
+- [JS Bindings](<url>/dsl/bindings/js-bindings): Define a name from JavaScript code or function, with eager, lazy, and masked settings
+- [System Process Bindings](<url>/dsl/bindings/system-processes-bindings): Associate a name with output of a local system command, optionally delimited, supporting eager/lazy/masked
+- [Element Locators](<url>/dsl/bindings/element-locators): Locate web elements using various selectors, indexes, fallbacks, and relative or shadow DOM options
+- [Settings Overrides](<url>/dsl/bindings/settings-overrides): Override or reset Gwen settings within a scenario using simple DSL commands
+
+### DSL - Capture
+
+- [Capture Overview](<url>/dsl/capture): Overview of capture DSL linking to specific capture methods
+- [Text Capture](<url>/dsl/capture/text-capture): Capture text from a binding or element and bind it to a name
+- [Regex Capture](<url>/dsl/capture/regex-capture): Capture text using a regex expression and bind the result to a name
+- [XPath Capture](<url>/dsl/capture/xpath-capture): Capture XML content via XPath (text, node, nodeset) and bind to a name
+- [JSON Capture](<url>/dsl/capture/json-capture): Capture JSON content using a JSONPath expression and bind result to a name
+- [Similarity Capture](<url>/dsl/capture/similarity-capture): Capture Dice similarity score between texts or references, optionally binding to a name
+- [PDF Capture](<url>/dsl/capture/pdf-capture): Capture text from PDF at URL, file, or base64 blob, with optional variable name
+- [Base64 Capture](<url>/dsl/capture/base64-capture): Base64 decode a text reference, element, or assign result to a new name
+- [URL Capture](<url>/dsl/capture/url-capture): Capture the current browser URL or regex-extracted substring, optionally naming the variable
+- [Dropdown Capture](<url>/dsl/capture/dropdown-capture): Capture selected text or value from a dropdown element, with optional custom variable name
+- [Screenshot Capture](<url>/dsl/capture/screenshot-capture): Captures the current page screenshot and optionally binds its path to a name
+- [Element Capture](<url>/dsl/capture/element-capture): Captures a screenshot of a specified web element, optionally naming the saved image
+- [Data Lookups](<url>/dsl/capture/data-lookups): Looks up values in CSV/JSON files using predicates and binds them to variables
+
+### DSL - Actions
+
+- [Actions Overview](<url>/dsl/actions): Overview page listing all DSL action categories
+- [Page Actions](<url>/dsl/actions/page-actions): Actions to navigate to a URL and refresh the current page
+- [Element Actions](<url>/dsl/actions/element-actions): Element interactions: click, right-click, double-click, type, check, move, send keys, etc.
+- [Dropdown Actions](<url>/dsl/actions/dropdown-actions): Select or deselect dropdown options by position, visible text, or hidden value
+- [Form Actions](<url>/dsl/actions/form-actions): Submit a form identified by name, id, or other locator
+- [Window and Tab Actions](<url>/dsl/actions/window-and-tab-actions): DSL commands for opening, closing, switching, and resizing browser windows/tabs
+- [Frame Actions](<url>/dsl/actions/frame-actions): DSL steps to switch to the default page or a specific iframe
+- [Alert and Popup Actions](<url>/dsl/actions/alert-and-popup-actions): DSL actions to accept, dismiss, and capture messages from alerts or confirmations
+- [Scroll Actions](<url>/dsl/actions/scroll-actions): DSL commands to scroll the page or an element to the top or bottom
+- [Drag and Drop Actions](<url>/dsl/actions/drag-drop-actions): DSL step to drag an element and drop it onto a target location
+- [JS Actions](<url>/dsl/actions/js-actions): Executes JavaScript functions on web elements via Gwen DSL
+- [Download Actions](<url>/dsl/actions/download-actions): Downloads resources from URLs to specified file paths
+- [File Actions](<url>/dsl/actions/file-actions): Attaches files to reports and writes/appends text to files
+- [Sleeps and Waits](<url>/dsl/actions/sleeps-and-waits): Provides waiting for elements, files, conditions and sleep durations
+- [JS Execution](<url>/dsl/actions/js-execution): Runs arbitrary JavaScript expressions or functions in Gwen scripts
+- [System Process Execution](<url>/dsl/actions/system-process-execution): Step to execute a local system or Unix process/script, with optional delimiters
+- [SQL Execution](<url>/dsl/actions/sql-execution): Step to bind or update SQL query results in a configured database using Gwen DSL
+
+### DSL - Assertions
+
+- [Assertions Overview](<url>/dsl/assertions): Overview of all Gwen DSL assertion categories
+- [Text Asserts](<url>/dsl/assertions/text-asserts): Assertions for text values: blank, matching, and similarity checks
+- [File Asserts](<url>/dsl/assertions/file-asserts): Assertions to verify file existence and whether a file is empty
+- [XML Asserts](<url>/dsl/assertions/xml-asserts): Assertions that validate XML content using XPath expressions
+- [JSON Asserts](<url>/dsl/assertions/json-asserts): Assertions that validate JSON content using JSONPath expressions
+- [URL Asserts](<url>/dsl/assertions/url-asserts): Assert the current browser URL against blank, exact, contain, or regex patterns
+- [Page Title Asserts](<url>/dsl/assertions/page-title-asserts): Assert the page title against blank, exact, contain, or regex patterns
+- [Element Asserts](<url>/dsl/assertions/element-asserts): Assertions on element state and text/value matching
+- [Dropdown Asserts](<url>/dsl/assertions/dropdown-asserts): Assert dropdown selections by blank, text, or value matching
+- [Browser Asserts](<url>/dsl/assertions/browser-asserts): Assert the number of open browser sessions
+- [Tab or Window Asserts](<url>/dsl/assertions/tab-or-window-asserts): Assert the number of open browser tabs or windows
+- [Alert and Popup Asserts](<url>/dsl/assertions/alert-and-popup-asserts): Validate alert or confirmation popup messages and display state
+- [Existential Asserts](<url>/dsl/assertions/existential-asserts): Check whether a named binding is defined or absent
+- [Cumulative Asserts](<url>/dsl/assertions/cumulative-asserts): Handle and verify accumulated soft assertion errors
+- [Data Asserts](<url>/dsl/assertions/data-asserts): Verify field values are unique within a CSV or JSON file
+
+### DSL - Control Structures
+
+- [Control Structures Overview](<url>/dsl/control-structures): Overview page listing all DSL control-structure keywords
+- [ForEach](<url>/dsl/control-structures/foreach): Iterate over elements, records, or arrays using the for each DSL
+- [Until / While](<url>/dsl/control-structures/until-while): Loop with conditions using until/while DSL on element states, files, etc.
+- [If](<url>/dsl/control-structures/if): Conditional execution based on conditions, element states, files, and more
+
+## Advanced Features
+
+- [String Interpolation](<url>/string-interpolation): String interpolation syntax for injecting externalised property values
+- [JS Functions](<url>/js-functions): Binding JavaScript arrow functions as custom actions in Gwen DSL
+- [Implicit Values](<url>/implicit-values): Implicit values feature for automatic value resolution in steps
+- [Assertions](<url>/assertions): Assertion DSL constructs for verifying page titles, element states, and text
+- [Doc Strings](<url>/doc-strings): Doc-string support for multi-line textual data within steps
+- [Data Feeds](<url>/data-feeds): Data-feed mechanism for supplying external data sources to scenarios
+- [Data Tables](<url>/data-tables): Data-table syntax for tabular input used with @StepDef and @DataTable annotations
+- [Try Steps](<url>/try-steps): Use @Try to ignore failures on individual steps, marking them passed
+- [Finally Steps](<url>/finally-steps): Use @Finally to force steps to run regardless of prior failures
+- [Eager or Lazy](<url>/eager-or-lazy): @Eager evaluates bindings immediately; @Lazy evaluates on first use
+- [Locator Chaining](<url>/locator-chaining): Chain locators to find elements inside frames or other elements
+- [Locator Level Timeouts](<url>/locator-level-timeouts): Set @Timeout on locators to override default wait periods
+- [Context Sensitive Actions](<url>/context-sensative-actions): Perform actions on elements visible only after hovering via context-sensitive DSL
+- [Named Browser Sessions](<url>/named-browser-sessions): Create and switch between multiple named browser sessions within a feature
+- [Template Matching](<url>/template-matching): Match content against templates, allowing ignore, capture, and inject operations
+- [State Levels](<url>/state-levels): Explanation of state levels (e.g., present, absent) for element-state assertions
+- [Parallel Execution](<url>/parallel): Parallel execution support for running multiple scenarios concurrently
+- [Mobile Emulation](<url>/mobile-emulatioin): Configure Chrome/Edge mobile emulation via device names or custom metrics
+
+## Reports
+
+- [Reports Overview](<url>/reports): Documentation hub for Gwen's various report formats (HTML, Console, CSV, etc.)
+- [HTML Reports](<url>/reports/html): Generates pretty HTML reports with summary and detailed feature view
+- [Console Reports](<url>/reports/console): Logs execution results and statistics to the console with optional color
+- [CSV Reports](<url>/reports/csv): Creates CSV files for feature- and scenario-level results, configurable via settings
+- [Screenshots](<url>/reports/screenshots): Captures screenshots on step execution and attaches them to reports
+- [Slideshows](<url>/reports/slideshows): Enables screenshot capture and HTML slideshow generation for visual test playback
+- [JUnit XML Reports](<url>/reports/junit-xml): Generates JUnit-XML reports for CI integration, e.g., Jenkins, with configurable output
+- [JSON Reports](<url>/reports/json): Produces JSON reports to feed test results into custom formatters or downstream tools
+- [Video Recordings](<url>/reports/video-recordings): Captures MP4 video recordings in Docker and attaches them to HTML test reports
+
+## Integrations & Deployment
+
+- [Docker](<url>/docker): Using Gwen inside Docker containers for consistent CI/CD environments
+- [Jenkins](<url>/jenkins): Generate Jenkinsfile and run Gwen projects in Docker pipelines
+- [BrowserStack](<url>/browserstack): Run Gwen tests on BrowserStack with remote capabilities config
+- [LambdaTest](<url>/lambdatest): Execute Gwen features on LambdaTest HyperExecute grid with YAML settings
+- [Web Driver Management](<url>/web-driver-management): Automatic SeleniumManager driver handling; manual driver setup options
+
+## Reference
+
+- [Gwen 4](<url>/gwen4): Overview of Gwen 4 features: launch profiles, new settings, and deprecations
