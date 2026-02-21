@@ -1,0 +1,42 @@
+---
+title: JSON capture
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-capture-the-content-in-json-ref-by-json-path-expression-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the content in <jsonRef> by json path "<expression>" as <name>
+  ```
+  <p>Captures JSON content from a referenced JSON string using the given JSON Path expression and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;jsonRef&gt;</code> is the name of the binding containing the source JSON source
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a JSON text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON selector</Link> expression</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the json is "{ "status": "passed" }"
+     When I capture the content in the json by json path "$.status" as the status
+     Then the status should be "passed"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-content-in-json-ref-by-json-path-expression-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></div>
+  </div>
+</details>

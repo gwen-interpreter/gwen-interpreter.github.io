@@ -1,0 +1,61 @@
+---
+title: Screenshot capture
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-capture-the-current-screenshot">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the current screenshot
+  ```
+  <p>Captures the current screenshot and attaches it to the Gwen report.</p>
+  </summary>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the todo field can be located by class "new-todo"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Walk the dog" in the todo field
+      And I capture the current screenshot
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-current-screenshot">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.6.0">v1.6.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-current-screenshot-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the current screenshot as <name>
+  ```
+  <p>Captures the current screenshot, attaches it to the Gwen report, and binds the filepath of the saved image to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> the name to bind the captured image filepath to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the todo field can be located by class "new-todo"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I enter "Walk the dog" in the todo field
+      And I capture the current screenshot as the screenshot image
+     Then the screenshot image should contain "path/to/image.png"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-current-screenshot-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.49.0">v2.49.0</Link></div>
+  </div>
+</details>

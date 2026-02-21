@@ -1,0 +1,124 @@
+---
+title: File asserts
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="filepath-should-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  "<filepath>" file should[ not] exist
+  ```
+  <p>Asserts that a file should exist (or not).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the file to check</li>
+    <li><code>not</code>to check that the file does not exist (negation)</li>
+  </ul>
+  
+  <p>Example</p>
+
+  ```gherkin
+     Then "path/to/existing.txt" file should exist
+      And "path/to/missing.txt" file should not exist
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#filepath-should-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="filepathref-should-exist">
+  <summary class="dsl">
+
+  ```gherkin
+  <filepathRef file> should[ not] exist
+  ```
+  <p>Asserts that a file should exist (or not).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to check</li>
+    <li><code>not</code>to check that the file does not exist (negation)</li>
+  </ul>
+  
+  <p>Example</p>
+
+  ```gherkin {3-4}
+    Given my existing file is "path/to/existing.txt"
+      And my missing file is "path/to/missing.txt"
+     Then my existing file should exist
+     Then my missing file should not exist
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#filepathref-should-exist">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="filepath-should-be-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  "<filepath>" file should[ not] be empty
+  ```
+  <p>Asserts that a file should be empty (or not).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the file to check</li>
+    <li><code>not</code>to check that the file is not empty (negation)</li>
+  </ul>
+  
+  <p>Example</p>
+
+  ```gherkin
+     Then "path/to/empty.txt" file should be empty
+      And "path/to/populated.txt" file should not be empty
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#filepath-should-be-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>
+
+<details id="filepathref-should-be-empty">
+  <summary class="dsl">
+
+  ```gherkin
+  <filepathRef file> should[ not] be empty
+  ```
+  <p>Asserts that a file should be empty (or not).</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepathRef file&gt;</code> is the name of the binding containing the path of the file to check</li>
+    <li><code>not</code>to check that the file is not empty (negation)</li>
+  </ul>
+  
+  <p>Example</p>
+
+  ```gherkin {3-4}
+    Given my empty file is "path/to/empty.txt"
+      And my populated file is "path/to/populated.txt"
+     Then my empty file should be empty
+     Then my populated file should not be empty
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#filepathref-should-be-empty">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.75.0">v3.75.0</Link></div>
+  </div>
+</details>

@@ -1,0 +1,171 @@
+---
+title: SQL execution
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="name-is-defined-by-database-select-statement">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined in the <dbName> database by sql "<selectStmt>"
+  ```
+  
+  <p>Associates the result of an SQL database query to the given name in the global scope. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name to bind the SQL query result to</li>
+    <li><code>&lt;dbName&gt;</code> the name of the configured database to execute the query on</li>
+    <li><code>&lt;selectStmt&gt;</code> is the SQL query that will return the value to assign (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+  </ul>
+
+  <p>Configuration</p>
+  <ul>
+    <li>The `GWEN_CLASSPATH` environment variable must be set to include a path to the JDBC driver JAR</li>
+    <li>A <code>gwen.db.&lt;dbName&gt;.driver</code> setting must be set to the name of the JDBC driver implementation class</li>
+    <li>A <code>gwen.db.&lt;dbName&gt;.url</code> setting must be set to the JDBC URL of the database</li>
+  </ul>
+
+  <p>
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
+    </ul>
+  </p>
+
+  <p>Example</p>
+
+  ```gherkin {1-4}
+    Given the email address is defined in the feedback database by sql
+          """
+          select email from comments
+          """
+     Then the email address should be "some.person@example.com"
+  ```
+
+<Tabs
+  groupId="setup"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+  
+<TabItem value="linux">
+
+  Set GWEN_CLASSPATH variable in the environment to include the JDBC driver JAR
+
+  ```shell
+  export GWEN_CLASSPATH=/path-to-driver/mysql-connector-java-5.1.40-bin.jar
+  ```
+
+</TabItem>
+<TabItem value="windows">
+
+  Set GWEN_CLASSPATH variable in the environment to include the JDBC driver JAR
+
+  ```shell
+  set GWEN_CLASSPATH c:/path-to-driver/mysql-connector-java-5.1.40-bin.jar
+  ```
+
+</TabItem>
+</Tabs>
+
+  Configure the database in your settings. In this example, <code>&lt;dbName&gt;</code>=feedback
+
+  ```properties
+  gwen.db.feedback.driver = com.mysql.jdbc.Driver
+  gwen.db.feedback.url = jdbc:mysql://localhost/feedback?user=myUser&amp;password=myPassword&amp;
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-by-database-select-statement">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2017/02/13/sql-data-bindings-for-gwen">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.10.0">v2.10.0</Link></div>
+  </div>
+</details>
+
+<details id="i-update-database-by-sql-update-statement">
+  <summary class="dsl">
+
+  ```gherkin
+  I update the <dbName> database by sql "<updateStmt>"
+  ```
+  <p>Executes an SQL udpate statement on a configured database.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;dbName&gt;</code> the name of the configured database to run the update statement on</li>
+    <li><code>&lt;updateStmt&gt;</code> is the SQL update statement to execute (can be in <Link to="/docs/doc-strings">DocString</Link> position)</li>
+  </ul>
+
+  <p>Returns</p>
+  <ul>
+    <li><code>&lt;dbName&gt; rows affected</code> = the number of rows affected by the update</li>
+  </ul>
+
+  <p>Configuration</p>
+  <ul>
+    <li>The `GWEN_CLASSPATH` environment variable must be set to include a path to the JDBC driver JAR</li>
+    <li>A <code>gwen.db.&lt;dbName&gt;.driver</code> setting must be set to the name of the JDBC driver implementation class</li>
+    <li>A <code>gwen.db.&lt;dbName&gt;.url</code> setting must be set to the JDBC URL of the database</li>
+  </ul>
+
+  <p>Example</p>
+
+  ```gherkin
+    When I update the feedback database by sql
+         """
+         update comments set email='new@example.com' where email='old@example.com'
+         """
+    Then feedback rows affected should be "1"
+  ```
+
+  <Tabs
+  groupId="setup"
+  defaultValue="linux"
+  values={[
+    {label: 'Linux', value: 'linux'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+
+<TabItem value="linux">
+
+  Set GWEN_CLASSPATH variable in the environment to include the JDBC driver JAR
+
+  ```shell
+  export GWEN_CLASSPATH=/path-to-driver/mysql-connector-java-5.1.40-bin.jar
+  ```
+
+</TabItem>
+<TabItem value="windows">
+
+  Set GWEN_CLASSPATH variable in the environment to include the JDBC driver JAR
+
+  ```shell
+  set GWEN_CLASSPATH c:/path-to-driver/mysql-connector-java-5.1.40-bin.jar
+  ```
+
+</TabItem>
+</Tabs>
+
+  Configure the database in your settings. In this example, <code>&lt;dbName&gt;</code>=feedback
+
+  ```properties
+  gwen.db.feedback.driver = com.mysql.jdbc.Driver
+  gwen.db.feedback.url = jdbc:mysql://localhost/feedback?user=myUser&amp;password=myPassword&amp;
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-update-database-by-sql-update-statement">Link</Link></div>
+    <div align="center"><Link to="https://gweninterpreter.wordpress.com/2017/02/13/sql-data-bindings-for-gwen">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></div>
+  </div>
+</details>

@@ -1,0 +1,145 @@
+---
+title: JS actions
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-execute-js-on-element">
+  <summary class="dsl">
+ 
+  ```gherkin
+  I execute <js|javascript> on <element> "<function>"
+  ```
+
+  <p>Executes a javascript function on a web element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to execute the function on</li>
+    <li>
+      <code>&lt;function&gt;</code> is the javascript function that will perform the action (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+      <ul>
+        <li>The function must use <Link to="/docs/js-functions">Arrow syntax</Link> and define a single argument for accepting the web element.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the todo link can be located by xpath "//a[contains(text(),'TodoMVC')]"
+     When I navigate to "https://todomvc.com/examples/react/dist/"
+      And I execute js on the todo link "(elem) => elem.click()"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-execute-js-on-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.16.0">v4.16.0</Link></div>
+  </div>
+</details>
+
+<details id="i-execute-jsref-on-element">
+  <summary class="dsl">
+ 
+  ```gherkin
+  I execute <functionRef> on <element>
+  ```
+
+  <p>Executes a javascript function on a web element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;functionRef&gt;</code> is the name of the binding containing the javascript function to execute
+      <ul>
+        <li>The referenced function must use <Link to="/docs/js-functions">Arrow syntax</Link> and define a single argument for accepting the web element.</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> is the name of the element to execute the function on</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the todo link can be located by xpath "//a[contains(text(),'TodoMVC')]"
+      And the click function is defined by js "(elem) => elem.click()"
+     When I navigate to "https://todomvc.com/examples/react/dist/"
+      And I execute the click function on the todo link
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-execute-jsref-on-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.16.0">v4.16.0</Link></div>
+  </div>
+</details>
+
+<details id="element-can-be-actioned-by-javascript">
+  <summary class="dsl">
+ 
+  :::caution Deprecated since v4.16.0 and will be dropped in next major Gwen 5 release.
+
+  ```gherkin
+  <element> can be <actioned> by <javascript|js> "<script>"
+  ```
+
+  Instead use one of:
+
+  - `I execute <js|javascript> on <element> "<function>"`
+  - `I execute <functionRef> on <element>`
+:::
+  <p>Registers a javascript action on an element. When the action is performed, then the javascript will execute in place of the default behaviour.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element to register the action on</li>
+    <li>
+      <code>&lt;actioned&gt;</code> is one of:
+      <ul>
+        <li><code>clicked</code> to perform the action when the element is clicked</li>
+        <li><code>right clicked</code> to perform the action when the element is right clicked, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.8.0">v2.8.0</Link></li>
+        <li><code>double clicked</code> to perform the action when the element is double clicked, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.12.0">v2.12.0</Link></li>
+        <li><code>submitted</code> to perform the action when the form element is submitted</li>
+        <li><code>checked</code> (or <code>ticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to perform the action when the checkbox element is ticked</li>
+        <li><code>unchecked</code> (or <code>unticked</code> since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.4.0">v2.4.0</Link>) to perform the action when the checkbox element is unticked</li>
+        <li><code>selected</code> to perform the action when a dropdown option is selected in the element</li>
+        <li><code>deselected</code> to perform the action when a mutli-select dropdown option is deselected in the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.13.0">v2.13.0</Link></li>
+        <li><code>typed</code> to perform the action when text is typed into the element</li>
+        <li><code>entered</code> to perform the action when text is entered into the element</li>
+        <li><code>tabbed</code> to perform the action when the tab key is pressed in the element, since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.17.1">v2.17.1</Link></li>
+        <li><code>cleared</code> to perform the action when the text is cleared in the element</li>
+        <li><code>moved to</code> to perform the action when the focus is moved to the element</li>
+      </ul>
+    </li>
+    <li><code>&lt;javascript|js&gt;</code> is <code>javascript</code> (or <code>js</code> , since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.46.0">v2.46.0</Link>)</li>
+    <li>
+      <code>&lt;script&gt;</code> is the javascript expression or function that will perform the action (can be in <Link to="/docs/doc-strings">DocString</Link> position)
+      <ul>
+        <li>The reference to the element will be provided to the javascript through an implicit object named <code>element</code>.</li>
+        <li>For a one liner expression, no function, arrow declaration or <code>return</code> prefix is required</li>
+        <li>
+          For a function, use either:
+          <ul>
+            <li><Link to="/docs/js-functions">Arrow syntax</Link> (preferred): <code>() =&gt; &#123; body &#125;</code> (Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.56.0">v3.56.0</Link>)</li>
+            <li>Or anonymous function syntax (legacy): <code>(function()&#123; body &#125;)()</code></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the submit button can be located by css ".submit"
+      And the submit button can be clicked by js "element.click()"
+     When I click the submit button
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#element-can-be-actioned-by-javascript">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.8.0">v1.8.0</Link></div>
+  </div>
+</details>

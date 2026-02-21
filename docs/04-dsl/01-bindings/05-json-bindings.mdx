@@ -1,0 +1,89 @@
+---
+title: JSON bindings
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="name-is-defined-in-json-ref-by-json-path-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined in <jsonRef> by json path "<expression>"
+  ```
+  <p>Captures content from a referenced JSON value using the given JSON path expression and associates it with the given name. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name of the name to associate the captured value to</li>
+    <li>
+      <code>&lt;nodeType&gt;</code> is one of:
+      <ul>
+        <li><code>text</code> to capture the text node</li>
+        <li><code>node</code> to capture a single node</li>
+        <li><code>nodeset</code> to capture multiple nodes</li>
+      </ul>
+    </li>
+    <li>
+      <code>&lt;sourceRef&gt;</code> is the name of the binding containing the XML source
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to XML text, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the XPath selector expression</li>
+  </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
+    </ul>
+  </p>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the json is "{ "status": "passed" }"
+      And the status is defined in the json by json path "$.status"
+     Then the status should be "passed"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-in-json-ref-by-json-path-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-content-in-element-by-json-path-expression-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the content in <element> by json path "<expression>" as <name>
+  ```
+  <p>Captures JSON content from a web element using the given JSON Path expression and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element containing the JSON content</li>
+    <li><code>&lt;expression&gt;</code> is the <Link to="https://github.com/json-path/JsonPath/blob/master/README.md">JSON selector</Link> expression</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the captured value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    # assuming a web element contains json: { "status": "passed" }
+    Given the json web element can be located by id "json"
+     When I capture the content in the json web element by json path "$.status" as the status
+     Then the status should be "passed"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-content-in-element-by-json-path-expression-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></div>
+  </div>
+</details>

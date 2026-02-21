@@ -1,0 +1,71 @@
+---
+title: Settings overrides
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="my-name-setting-is-value">
+  <summary class="dsl">
+
+  ```gherkin
+  my <name> setting is "<value>"
+  ```
+  <p> Overrides a Gwen setting.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is name of the setting to override</li>
+    <li><code>&lt;value&gt;</code> is the value to set</li>
+  </ul>
+  <p>Notes</p>
+  <ul>
+    <li>
+      Or as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.21.0">v2.21.0</Link>, this DSL stores all values as thread local settings (instead of system properties).
+      <ul>
+        <li>This supports different settings for different features in the case of parallel execution.</li>
+        <li>Settings loaded from properties files and system properties at startup time are not replaced, but can be overridden with values set here.</li>
+        <li>Setting arbitrary system properties (that is: non Gwen settings that do not start with <code>gwen.</code>) is not supported.</li>
+      </ul>
+    </li>
+    <li>Prior to <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.21.0">v2.21.0</Link>, this DSL stored all values as JVM-global system properties and caution was advised because race conditions could occur if multiple features changed the same system property.</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    Given my gwen.web.useragent setting is "I am robot"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#my-name-setting-is-value">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-reset-my-name-setting">
+  <summary class="dsl">
+
+  ```gherkin
+  I reset my <name> setting
+  ```
+  <p> Resets a Gwen setting to remove a previous override.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;setting&gt;</code> is name of the setting to reset</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin
+    Given I reset my gwen.web.useragent setting
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-reset-my-name-setting">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.21.0">v2.21.0</Link></div>
+  </div>
+</details>

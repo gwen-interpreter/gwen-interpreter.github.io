@@ -1,0 +1,65 @@
+---
+title: Element capture
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-capture-element-screenshot-of-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture element screenshot of <element>
+  ```
+  <p>Captures the screenshot of a web element and attaches it to the Gwen report.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> the name of the web element to capture the screenshot of</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the todo field can be located by class "new-todo"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I type "Walk the dog" in the todo field
+      And I capture element screenshot of the todo field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-element-screenshot-of-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-element-screenshot-of-element-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture element screenshot of <element> as <name>
+  ```
+  <p>Captures the screenshot of a web element, attaches it to the Gwen report, and binds the filepath of the saved image to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> the name of the web element to capture the screenshot of</li>
+    <li><code>&lt;name&gt;</code> the name to bind the captured image filepath to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the todo field can be located by class "new-todo"
+     When I navigate to "https://todomvc.com/examples/react/dist"
+      And I type "Walk the dog" in the todo field
+      And I capture element screenshot of the todo field as my element screenshot
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-element-screenshot-of-element-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.0.0">v3.0.0</Link></div>
+  </div>
+</details>

@@ -1094,7 +1094,7 @@ Default value (empty to pick up Gwen default format: html)
   ```properties
   gwen.assertion.mode
   ```
-  <p>Controls whether or not hard, soft or sustained [assertions](/docs/dsl#assertions) are enabled by default.</p>
+  <p>Controls whether or not hard, soft or sustained [assertions](/docs/dsl/assertions) are enabled by default.</p>
   </summary>
   <p>Supported values</p>
   <ul>
@@ -7207,16 +7207,16 @@ You can change the default mask character from `*` to another character of your 
 
 Values returned by data bindings in the following DSLs can also be masked with the `@Masked` annotation:
 
-- [`<name> is defined by <javascript|js> "<script>"`](/docs/dsl#name-is-defined-by-javascript-expression)
-- [`<name> is defined by <javascriptRef> applied to "<argument>"`](/docs/dsl#name-is-defined-by-js-function-applied-to-arg)
-- [`<name> is defined by <javascriptRef> applied to "<arguments>" delimited by "<delimiter>"`](/docs/dsl#name-is-defined-by-js-function-applied-to-args-delimited-by)
-- [`<name> is defined by system process "<expression>"`](/docs/dsl#name-is-defined-by-system-process-expression)
-- [`<name> is defined by system process "<expression>" delimited by "<delimiters>"`](/docs/dsl#name-is-defined-by-system-process-expression-delimited-by-delimiters)
-- [`<name> is defined by unix system process "<expression>"`](/docs/dsl#name-is-defined-by-unix-system-process-expression)
-- [`<name> is defined by the <nodeType> in <xmlRef> by xpath "<expression>"`](/docs/dsl#name-is-defined-by-the-node-type-in-xml-ref-by-xpath-expression)
-- [`<name> is defined in <textRef> by regex "<expression>"`](/docs/dsl#name-is-defined-in-text-ref-by-regex-expression)
-- [`<name> is defined in <jsonRef> by json path "<expression>"`](/docs/dsl#name-is-defined-in-json-ref-by-json-path-expression)
-- [`<name> is defined in the <dbName> database by sql "<selectStmt>"`](/docs/dsl#name-is-defined-by-database-select-statement)
+- [`<name> is defined by <javascript|js> "<script>"`](/docs/dsl/bindings/js-bindings#name-is-defined-by-javascript-expression)
+- [`<name> is defined by <javascriptRef> applied to "<argument>"`](/docs/dsl/bindings/js-bindings#name-is-defined-by-js-function-applied-to-arg)
+- [`<name> is defined by <javascriptRef> applied to "<arguments>" delimited by "<delimiter>"`](/docs/dsl/bindings/js-bindings#name-is-defined-by-js-function-applied-to-args-delimited-by)
+- [`<name> is defined by system process "<expression>"`](/docs/dsl/bindings/system-processes-bindings#name-is-defined-by-system-process-expression)
+- [`<name> is defined by system process "<expression>" delimited by "<delimiters>"`](/docs/dsl/bindings/system-processes-bindings#name-is-defined-by-system-process-expression-delimited-by-delimiters)
+- [`<name> is defined by unix system process "<expression>"`](/docs/dsl/bindings/system-processes-bindings#name-is-defined-by-unix-system-process-expression)
+- [`<name> is defined by the <nodeType> in <xmlRef> by xpath "<expression>"`](/docs/dsl/bindings/xml-bindings#name-is-defined-by-the-node-type-in-xml-ref-by-xpath-expression)
+- [`<name> is defined in <textRef> by regex "<expression>"`](/docs/dsl/bindings/regex-bindings#name-is-defined-in-text-ref-by-regex-expression)
+- [`<name> is defined in <jsonRef> by json path "<expression>"`](/docs/dsl/bindings/json-bindings#name-is-defined-in-json-ref-by-json-path-expression)
+- [`<name> is defined in the <dbName> database by sql "<selectStmt>"`](/docs/dsl/actions/sql-execution#name-is-defined-by-database-select-statement)
 
 ## JSONArray Notation
 

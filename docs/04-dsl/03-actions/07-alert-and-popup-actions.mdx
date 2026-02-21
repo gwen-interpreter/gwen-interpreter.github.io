@@ -1,0 +1,134 @@
+---
+title: Alert and Popup actions
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-accept-the-alert-or-confirmation-popup">
+  <summary class="dsl">
+
+  ```gherkin
+  I accept the <alert|confirmation> popup
+  ```
+  <p>Accepts and closes an alert or confirmation popup by clicking OK.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;alert|confirmation&gt;</code> is either:
+      <ul>
+        <li><code>alert</code> for an alert box with an OK button</li>
+        <li><code>confirmation</code> for a confirmation box with OK and Cancel buttons</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the alert link can be located by id "alert"
+     When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+      And I click the alert link
+      And I accept the alert popup
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-accept-the-alert-or-confirmation-popup">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></div>
+  </div>
+</details>
+
+<details id="i-dismiss-the-confirmation-popup">
+  <summary class="dsl">
+
+  ```gherkin
+  I dismiss the confirmation popup
+  ```
+  <p>Dismisses and closes a confirmation popup by clicking Cancel.</p>
+  </summary>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the confirmation link can be located by id "prompt-with-default"
+     When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+      And I click the confirmation link
+      And I dismiss the confirmation popup
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-dismiss-the-confirmation-popup">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.4.0">v1.4.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-alert-or-confirmation-popup-message">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the <alert|confirmation> popup message
+  ```
+  <p>Captures the alert or confirmation popup message and binds it to <code>the &lt;alert|confirmation&gt; popup message</code> in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;alert|confirmation&gt;</code> is either:
+      <ul>
+        <li><code>alert</code> for an alert box with an OK button</li>
+        <li><code>confirmation</code> for a confirmation box with OK and Cancel buttons</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the alert link can be located by id "alert"
+     When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+      And I click the alert link
+      And I capture the alert popup message
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-alert-or-confirmation-popup-message">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.24.0">v2.24.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-the-alert-or-confirmation-popup-message-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the <alert|confirmation> popup message as <name>
+  ```
+  <p>Captures the alert or confirmation popup message and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;alert|confirmation&gt;</code> is either:
+      <ul>
+        <li><code>alert</code> for an alert box with an OK button</li>
+        <li><code>confirmation</code> for a confirmation box with OK and Cancel buttons</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {4}
+    Given the confirmation link can be located by id "prompt-with-default"
+     When I navigate to "https://www.selenium.dev/selenium/web/alerts.html"
+      And I click the confirmation link
+      And I capture the confirmation popup message as the alert message
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-the-alert-or-confirmation-popup-message-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.24.0">v2.24.0</Link></div>
+  </div>
+</details>

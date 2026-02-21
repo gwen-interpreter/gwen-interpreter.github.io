@@ -1,0 +1,223 @@
+---
+title: PDF capture
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-capture-pdf-text-from-the-current-url">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the PDF text from the current URL
+  ```
+  <p>Captures the text in a PDF document from the current URL in the browser and binds it to <code>the PDF text</code> variable in the global scope.</p>
+  </summary>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the pdf url is "https://example.com/file.pdf"
+     When I navigate to "${the pdf url}"
+      And I capture the PDF text from the current URL
+     Then the PDF text should contain "Some expected text"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-pdf-text-from-the-current-url">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.53.0">v3.53.0</Link></div>
+  </div>
+</details>
+
+
+<details id="i-capture-pdf-text-from-the-current-url-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the PDF text from the current URL as <name>
+  ```
+  <p>Captures the text in a PDF document from the current URL in the browser and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name in the global scope to bind the captured PDF text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the pdf url is "https://example.com/file.pdf"
+     When I navigate to "${the pdf url}"
+      And I capture the PDF text from the current URL as content
+     Then content should contain "Some expected text"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-pdf-text-from-the-current-url-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.53.0">v3.53.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-pdf-text-from-url">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the PDF text from url "<url>"
+  ```
+  <p>Captures the text in a PDF document from a given URL location and binds it to <code>the PDF text</code> variable in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;url&gt;</code> is the web URL of the PDF document to capture the text of</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+     When I capture the PDF text from url "https://example.com/file.pdf"
+     Then the PDF text should contain "Some expected text"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-pdf-text-from-url">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.53.0">v3.53.0</Link></div>
+  </div>
+</details>
+
+
+<details id="i-capture-pdf-text-from-url-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the PDF text from url "<url>" as <name>
+  ```
+  <p>Captures the text in a PDF document from a given URL location and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;url&gt;</code> is the web URL of the PDF document to capture the text of</li>
+    <li><code>&lt;name&gt;</code> is the name in the global scope to bind the captured PDF text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+     When I capture the PDF text from url "https://example.com/file.pdf" as content
+     Then content should contain "Some expected text"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-pdf-text-from-url-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.53.0">v3.53.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-pdf-text-from-file">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the PDF text from file "<filepath>"
+  ```
+  <p>Captures the text in a PDF document from a local file and binds it to <code>the PDF text</code> variable in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the local PDF document file to capture the text of</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+     When I capture the PDF text from file "/path/to/file.pdf"
+     Then the PDF text should contain "Some expected text"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-pdf-text-from-file">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.53.0">v3.53.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-pdf-text-from-file-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the PDF text from file "<filepath>" as <name>
+  ```
+  <p>Captures the text in a PDF document from a local file and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;filepath&gt;</code> the path to the local PDF document file to capture the text of</li>
+    <li><code>&lt;name&gt;</code> is the name in the global scope to bind the captured PDF text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {1}
+     When I capture the PDF text from file "/path/to/file.pdf" as content
+     Then content should contain "Some expected text"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-pdf-text-from-file-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.53.0">v3.53.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-pdf-text-from-bas64-blob">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the base64 encoded PDF text from <blobRef>
+  ```
+  <p>Captures the text in a PDF document from a base64 encoded BLOB and binds it to <code>the PDF text</code> variable in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;blobRef&gt;</code> is the name of the binding containing the base64 encoded PDF</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the pdf blob is "Some base64 encoded PDF blob"
+     When I capture the base64 encoded PDF text from the pdf blob
+     Then the PDF text should contain "Some expected text"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-pdf-text-from-bas64-blob">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.9.0">v4.9.0</Link></div>
+  </div>
+</details>
+
+<details id="i-capture-pdf-text-from-bas64-blob-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I capture the base64 encoded PDF text from <blobRef> as <name>
+  ```
+  <p>Captures the text in a PDF document from a base64 encoded BLOB and binds it to the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;blobRef&gt;</code> is the name of the binding containing the base64 encoded PDF</li>
+    <li><code>&lt;name&gt;</code> is the name in the global scope to bind the captured PDF text to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the pdf blob is "Some base64 encoded PDF blob"
+     When I capture the base64 encoded PDF text from the pdf blob as content
+     Then content should contain "Some expected text"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-capture-pdf-text-from-bas64-blob-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.9.1">v4.9.1</Link></div>
+  </div>
+</details>

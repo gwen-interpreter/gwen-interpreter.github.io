@@ -1,0 +1,35 @@
+---
+title: Form actions
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-submit-form">
+  <summary class="dsl">
+
+  ```gherkin
+  I submit <form>
+  ```
+  <p>Submits a web form.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;form&gt;</code> is the name of the form to submit</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the form can be located by name "contactform"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I submit the form
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-submit-form">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>

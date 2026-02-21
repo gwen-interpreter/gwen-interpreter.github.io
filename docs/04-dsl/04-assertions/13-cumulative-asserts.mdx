@@ -1,0 +1,73 @@
+---
+title: Cumulative asserts
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="there-should-be-no-accumulated-errors">
+  <summary class="dsl">
+
+  ```gherkin
+  there should be no accumulated errors
+  ```
+
+  <p>Checks that no errors were raised prior to this been called and raises all accumulated error messages (if any) in one assertion error.</p>
+  </summary>
+
+  <p>Example</p>
+
+  ```gherkin {4} showLineNumbers
+    Then @Soft x should not be blank
+     And @Soft y should be "1"
+     And @Soft z should be true
+     And there should be no accumulated errors
+  ```
+
+  Line 4 will pass if all the preceeding assertions pass. If however, the assertions on line 1 and 3 fail (and the one on line 2 passes), then it will raise an assertion error containing the two messages as follows:
+
+  ```
+  2 errors:
+  (1) x should not be blank
+  (2) z should be true but got false
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#there-should-be-no-accumulated-errors">Link</Link></div>
+    <div align="center"><Link to="/docs/assertions#cumulative-assertions">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.61.0">v3.61.0</Link></div>
+  </div>
+</details>
+
+<details id="i-reset-accumulated-errors">
+  <summary class="dsl">
+
+  ```gherkin
+  I reset accumulated errors
+  ```
+
+  <p>Resets (clears) any previously accumulated errors.</p>
+  </summary>
+
+  <p>Example</p>
+
+  ```gherkin {1} showLineNumbers
+    When I reset accumulated errors
+    Then @Soft x should not be blank
+     And @Soft y should be "1"
+     And @Soft z should be true
+     And there should be no accumulated errors
+  ```
+
+  Line 1 will clear any previously accumulated errors from the currently executing context.
+
+  So only the messages of all failed assertions leading up to line 4 will be included.
+
+  <div class="grid-3">
+    <div><Link to="#i-reset-accumulated-errors">Link</Link></div>
+    <div align="center"><Link to="/docs/assertions#cumulative-assertions">Learn more</Link></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.61.0">v3.61.0</Link></div>
+  </div>
+</details>

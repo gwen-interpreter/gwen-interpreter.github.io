@@ -24,7 +24,7 @@ import ThemedImage from '@theme/ThemedImage';
 
 > Gwen = [G]iven [W]hen Th[en]
 
-Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter with built-in automation capabilities that can readily be utilised. Automation is achieved through Gherkin bindings in [meta](/docs/meta) specs, composed with the [Gwen DSL](/docs/dsl) and maintained alongside your feature files. An embedded [Selenium](https://www.selenium.dev/) engine executes scenarios according to the meta you provide to perform [operations](/docs/dsl#actions) in browsers for you.
+Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter with built-in automation capabilities that can readily be utilised. Automation is achieved through Gherkin bindings in [meta](/docs/meta) specs, composed with the [Gwen DSL](/docs/dsl) and maintained alongside your feature files. An embedded [Selenium](https://www.selenium.dev/) engine executes scenarios according to the meta you provide to perform [operations](/docs/dsl/actions) in browsers for you.
 
 ## Key features
 
@@ -34,8 +34,8 @@ Gwen is a [Gherkin](https://cucumber.io/docs/gherkin/reference/) interpreter wit
 - [Parallel](/docs/parallel) and [dry run](/docs/dry-run) execution
 - Interactive [REPL](/docs/repl) console
 - Configurable [settings](/docs/settings) and launch [profiles](/docs/profiles)
-- Multiple web element [locator mechanisms](/docs/dsl#element-locators) (including JS)
-- JavaScript [function bindings](/docs/dsl#js-bindings)
+- Multiple web element [locator mechanisms](/docs/dsl/bindings/element-locators) (including JS)
+- JavaScript [function bindings](/docs/dsl/bindings/js-bindings)
 - Multiple [report formats](/docs/reports/html)
 - Multi platform (Windows, Linux and [Docker](/docs/docker))
 
@@ -87,7 +87,7 @@ Feature: Add todo items
 
 > Compose [meta specs](/docs/meta) to describe how scenarios will execute.
 
-Meta specs are used to describe execution and are written in Gherkin too. [Step definitions](/docs/meta#stepdefs) and [bindings](/docs/dsl#bindings) are defined in meta so your features remain clean and unconcerned with automation details.
+Meta specs are used to describe execution and are written in Gherkin too. [Step definitions](/docs/meta#stepdefs) and [bindings](/docs/dsl/bindings) are defined in meta so your features remain clean and unconcerned with automation details.
 
 :::tip Meta is necessarily imperative
   <p>Write meta specs with execution and automation in mind.</p>
@@ -177,7 +177,7 @@ The first thing the above will do is bind the selector for locating the todo lis
 
 Calls DSL step:
 
-- [`<element> can be located by <selector> "<expression>"`](/docs/dsl#element-can-be-located-by-selector-expression)
+- [`<element> can be located by <selector> "<expression>"`](/docs/dsl/bindings/element-locators#element-can-be-located-by-selector-expression)
 
 </p>
 :::
@@ -197,7 +197,7 @@ The next step in this StepDef will open a new browser window and navigate to the
 
 Calls DSL step:
 
-- [`I navigate to "<url>"`](/docs/dsl#i-navigate-to-url)
+- [`I navigate to "<url>"`](/docs/dsl/actions/page-actions#i-navigate-to-url)
 
 </p>
 :::
@@ -285,7 +285,7 @@ The next step in the same StepDef checks that the page title in the browser wind
 
 Calls DSL step:
 
-- [`the page title should[ not] <match> "<expression>"`](/docs/dsl#the-page-title-should-match-expression)
+- [`the page title should[ not] <match> "<expression>"`](/docs/dsl/assertions/page-title-asserts#the-page-title-should-match-expression)
 
 </p>
 :::
@@ -305,7 +305,7 @@ The last step in this StepDef verifies that the web element containing the curre
 
 Calls DSL step:
 
-- [`<element> should[ not] be <state>`](/docs/dsl#element-should-be-state)
+- [`<element> should[ not] be <state>`](/docs/dsl/assertions/element-asserts#element-should-be-state)
 
 </p>
 :::
@@ -358,8 +358,8 @@ Gwen will call the StepDef for each record in the table and bind each field valu
 
 Calls DSL steps:
 
-- [`I <enter|type> <textRef> in <element>`](/docs/dsl#i-enter-or-type-text-ref-in-element)
-- [`<element> should[ not] <match> <expressionRef>`](/docs/dsl#element-should-match-expression-ref)
+- [`I <enter|type> <textRef> in <element>`](/docs/dsl/actions/element-actions#i-enter-or-type-text-ref-in-element)
+- [`<element> should[ not] <match> <expressionRef>`](/docs/dsl/assertions/element-asserts#element-should-match-expression-ref)
 
 </p>
 :::
@@ -394,7 +394,7 @@ The last StepDef accepts the number of expected items from the last step in the 
 
 Calls DSL step:
 
-- [`<element> should[ not] <match> "<expression>"`](/docs/dsl#element-should-match-expression)
+- [`<element> should[ not] <match> "<expression>"`](/docs/dsl/assertions/element-asserts#element-should-match-expression)
 
 </p>
 :::
@@ -412,7 +412,7 @@ Lastly, the final step in this StepDef verifies that the web element containing 
 
 Calls DSL step:
 
-- [`<element> should[ not] be <state>`](/docs/dsl#element-should-be-state)
+- [`<element> should[ not] be <state>`](/docs/dsl/assertions/element-asserts#element-should-be-state)
 
 </p>
 :::

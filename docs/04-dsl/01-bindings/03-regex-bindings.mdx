@@ -1,0 +1,51 @@
+---
+title: Regex bindings
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="name-is-defined-in-text-ref-by-regex-expression">
+  <summary class="dsl">
+
+  ```gherkin
+  <name> is defined in <textRef> by regex "<expression>"
+  ```
+  <p>Captures text from a text reference using the given regex expression and associates it with the given name. The value is resolved every time the name is referenced.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;name&gt;</code> is the name of the name to associate the captured value to</li>
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the source text
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;expression&gt;</code> is the regex selector expression</li>
+  </ul>
+  <p>
+    Optionally accepts the <Link href="/docs/eager-or-lazy"><code>@Eager</code>, <code>@Lazy</code></Link> or <code>@Masked</code> annotations.
+    <ul>
+      <li><code>@Eager</code> immediately evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code></li>
+      <li><code>@Lazy</code> evaluates the <code>&lt;expression&gt;</code> and binds the result to <code>&lt;name&gt;</code> when it is first referenced</li>
+      <li>In the absence of either of the above annotations, <code>&lt;expression&gt;</code> is evaluated every time <code>&lt;name&gt;</code> is referenced</li>
+      <li><code>@Masked</code> masks the captured value to prevent it from being logged as clear text</li>
+    </ul>
+  </p>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the date is "2021-09-22"
+      And the year is defined in the date by regex "(\d{4})"
+     Then the year should be "2021"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#name-is-defined-in-text-ref-by-regex-expression">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>

@@ -1,0 +1,83 @@
+---
+title: Browser asserts
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-should-have-1-open-browser">
+  <summary class="dsl">
+
+  ```gherkin
+  I should have 1 open browser
+  ```
+  <p>Checks that only one browser session is currently open. Reports an assertion error if not.</p>
+  </summary>
+
+  <p>
+
+  <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
+
+  ```gherkin
+  I should have 1 open browser  @Message("my custom assert fail message")
+  ```
+  
+  </p>
+
+  <p>Example</p>
+
+  ```gherkin {3}
+   Given I have no open browser
+    When I navigate to "https://todomvc.com/examples/react/dist"
+    Then I should have 1 open browser
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-should-have-1-open-browser">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">v2.41.0</Link></div>
+  </div>
+</details>
+
+<details id="i-should-have-count-open-browsers">
+  <summary class="dsl">
+
+  ```gherkin
+  I should have <count> open browsers
+  ```
+  <p>Checks that a given number of browsers are currently open. Reports an assertion error if not.</p>
+  </summary>
+
+  <p>
+
+  <p>With custom assertion error message (as of <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.9.0">v3.9.0</Link>):</p>
+
+  ```gherkin
+  I should have <count> open browsers  @Message("my custom assert fail message")
+  ```
+
+  </p>
+
+  <p>Where</p>
+  <ul>
+    <li><code>count</code> the expected number of open browsers</li>
+  </ul>
+
+  <p>Example</p>
+
+  ```gherkin {5}
+   Given I have no open browser
+    When I navigate to "https://todomvc.com/examples/react/dist"
+     And I start a browser for Vue
+     And I navigate to "https://todomvc.com/examples/vue"
+    Then I should have 2 open browsers
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-should-have-count-open-browsers">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.41.0">v2.41.0</Link></div>
+  </div>
+</details>

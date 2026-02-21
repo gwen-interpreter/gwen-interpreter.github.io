@@ -45,7 +45,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/dsl#js-actions',
+          href: '/docs/dsl/actions#js-actions',
           position: 'left',
           label: "What's New?",
         },

@@ -1,0 +1,128 @@
+---
+title: Base64 capture
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-base64-decode-text-ref">
+  <summary class="dsl">
+
+  ```gherkin
+  I base64 decode <textRef>
+  ```
+  <p>Base64 decodes the text reference and binds the result to the same name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to decode
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the data is "c29tZSBiaW5hcnkgZGF0YQ=="
+     When I base64 decode the data
+     Then the data should be "some binary data"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-base64-decode-text-ref">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-base64-decode-text-ref-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I base64 decode <textRef> as <name>
+  ```
+  <p>Base64 decodes the text reference and binds the result to the give name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;textRef&gt;</code> is the name of the binding containing the text to decode
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a text value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    </li>
+    <li><code>&lt;name&gt;</code> is the name to bind the decoded value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the encoded data is "c29tZSBiaW5hcnkgZGF0YQ=="
+     When I base64 decode the encoded data as the decoded data
+     Then the decoded data should be "some binary data"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-base64-decode-text-ref-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-base64-decode-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I base64 decode <element>
+  ```
+  <p>Base64 decodes the text in the given element and binds the result to the same name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element containing the text to decode</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the data can be located by class "encoded-data"
+     When I base64 decode the data
+     Then the data should be "some binary data"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-base64-decode-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
+
+<details id="i-base64-decode-element-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  I base64 decode <element> as <name>
+  ```
+  <p>Base64 decodes the text in the given element and binds the result to the give name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li><code>&lt;element&gt;</code> is the name of the element containing the text to decode</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the decoded value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given the encoded data field can be located by class "encoded-data"
+     When I base64 decode the encoded data as the decoded data
+     Then the decoded data should be "some binary data"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-base64-decode-element-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>

@@ -1,0 +1,74 @@
+---
+title: Scroll actions
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-scroll-to-the-top-or-bottom-of-page">
+  <summary class="dsl">
+
+  ```gherkin
+  I scroll to the <top|bottom> of the page
+  ```
+  <p>Scrolls to the top or bottom of the current page.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;top|bottom&gt;</code> is one of:
+      <ul>
+        <li><code>top</code> to scroll to the top of the page</li>
+        <li><code>bottom</code> to scroll to the bottom of the page</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given I navigate to "https://automationintesting.com/selenium/testpage"
+      And I scroll to the bottom of the page
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-scroll-to-the-top-or-bottom-of-page">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v3.20.1">v3.20.1</Link></div>
+  </div>
+</details>
+
+<details id="i-scroll-to-the-top-or-bottom-of-element">
+  <summary class="dsl">
+
+  ```gherkin
+  I scroll to the <top|bottom> of <element>
+  ```
+  <p>Scrolls to the top or bottom of the given element.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <li>
+      <code>&lt;top|bottom&gt;</code> is one of:
+      <ul>
+        <li><code>top</code> to scroll to the top of the element</li>
+        <li><code>bottom</code> to scroll to the bottom of the element</li>
+      </ul>
+    </li>
+    <li><code>&lt;element&gt;</code> the name of the element to scroll to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {3}
+    Given the surname field can be located by id "surname"
+     When I navigate to "https://automationintesting.com/selenium/testpage"
+      And I scroll to the top of the surname field
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-scroll-to-the-top-or-bottom-of-element">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v1.0.0">v1.0.0</Link></div>
+  </div>
+</details>
