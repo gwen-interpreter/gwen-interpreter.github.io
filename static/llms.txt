@@ -1,0 +1,139 @@
+# Gwen
+
+> Gwen is a Gherkin interpreter with built-in web automation — write plain-English feature specs and Gwen executes them in a real browser using its built-in DSL, with no glue code required.
+
+## Getting Started
+
+- [Introduction](https://gweninterpreter.org/docs/introduction): Overview of Gwen – a Gherkin interpreter with built-in automation capabilities
+- [Get Started](https://gweninterpreter.org/docs/get-started): Setup guide: install Gwen, initialise a project, and run sample features
+- [Meta](https://gweninterpreter.org/docs/meta): Meta specs define step definitions and bindings that drive feature execution
+- [Annotations](https://gweninterpreter.org/docs/annotations): Explanation of annotation tags (e.g., @StepDef, @Import) used in meta files
+- [Settings](https://gweninterpreter.org/docs/settings): Configuration options (gwen.conf, JSON, properties) for browsers, environments, and behaviour rules
+- [Launcher](https://gweninterpreter.org/docs/launcher): Command-line launcher options for running features, specifying meta, profiles, and batch mode
+- [Profiles](https://gweninterpreter.org/docs/profiles): Profile settings for grouping launch parameters (e.g., samples, CI)
+- [REPL](https://gweninterpreter.org/docs/repl): Interactive REPL console for on-the-fly execution and debugging of steps
+- [Dry Run](https://gweninterpreter.org/docs/dry-run): Dry-run mode to validate specs without performing real actions
+- [FAQ](https://gweninterpreter.org/docs/faq): Frequently asked questions covering Gwen basics, usage, and integrations
+
+## DSL
+
+- [DSL Overview](https://gweninterpreter.org/docs/dsl): DSL reference explaining Gwen's domain-specific language for browser actions and assertions
+
+### DSL - Bindings
+
+- [Bindings Overview](https://gweninterpreter.org/docs/dsl/bindings): Overview of all Gwen DSL binding categories and navigation links
+- [Text Bindings](https://gweninterpreter.org/docs/dsl/bindings/text-bindings): Defines literal value binding syntax for text, blank, empty, true, false
+- [File Bindings](https://gweninterpreter.org/docs/dsl/bindings/file-bindings): Binds a name to file contents, with optional encoding and evaluation mode
+- [Regex Bindings](https://gweninterpreter.org/docs/dsl/bindings/regex-bindings): Captures text using regex from a source and binds it to a name
+- [XML Bindings](https://gweninterpreter.org/docs/dsl/bindings/xml-bindings): Extracts XML data via XPath, binding text, node, or nodeset to a name
+- [JSON Bindings](https://gweninterpreter.org/docs/dsl/bindings/json-bindings): Bind a name to JSON data via JSONPath, supporting eager, lazy, and masked options
+- [JS Bindings](https://gweninterpreter.org/docs/dsl/bindings/js-bindings): Define a name from JavaScript code or function, with eager, lazy, and masked settings
+- [System Process Bindings](https://gweninterpreter.org/docs/dsl/bindings/system-processes-bindings): Associate a name with output of a local system command, optionally delimited, supporting eager/lazy/masked
+- [Element Locators](https://gweninterpreter.org/docs/dsl/bindings/element-locators): Locate web elements using various selectors, indexes, fallbacks, and relative or shadow DOM options
+- [Settings Overrides](https://gweninterpreter.org/docs/dsl/bindings/settings-overrides): Override or reset Gwen settings within a scenario using simple DSL commands
+
+### DSL - Capture
+
+- [Capture Overview](https://gweninterpreter.org/docs/dsl/capture): Overview of capture DSL linking to specific capture methods
+- [Text Capture](https://gweninterpreter.org/docs/dsl/capture/text-capture): Capture text from a binding or element and bind it to a name
+- [Regex Capture](https://gweninterpreter.org/docs/dsl/capture/regex-capture): Capture text using a regex expression and bind the result to a name
+- [XPath Capture](https://gweninterpreter.org/docs/dsl/capture/xpath-capture): Capture XML content via XPath (text, node, nodeset) and bind to a name
+- [JSON Capture](https://gweninterpreter.org/docs/dsl/capture/json-capture): Capture JSON content using a JSONPath expression and bind result to a name
+- [Similarity Capture](https://gweninterpreter.org/docs/dsl/capture/similarity-capture): Capture Dice similarity score between texts or references, optionally binding to a name
+- [PDF Capture](https://gweninterpreter.org/docs/dsl/capture/pdf-capture): Capture text from PDF at URL, file, or base64 blob, with optional variable name
+- [Base64 Capture](https://gweninterpreter.org/docs/dsl/capture/base64-capture): Base64 decode a text reference, element, or assign result to a new name
+- [URL Capture](https://gweninterpreter.org/docs/dsl/capture/url-capture): Capture the current browser URL or regex-extracted substring, optionally naming the variable
+- [Dropdown Capture](https://gweninterpreter.org/docs/dsl/capture/dropdown-capture): Capture selected text or value from a dropdown element, with optional custom variable name
+- [Screenshot Capture](https://gweninterpreter.org/docs/dsl/capture/screenshot-capture): Captures the current page screenshot and optionally binds its path to a name
+- [Element Capture](https://gweninterpreter.org/docs/dsl/capture/element-capture): Captures a screenshot of a specified web element, optionally naming the saved image
+- [Data Lookups](https://gweninterpreter.org/docs/dsl/capture/data-lookups): Looks up values in CSV/JSON files using predicates and binds them to variables
+
+### DSL - Actions
+
+- [Actions Overview](https://gweninterpreter.org/docs/dsl/actions): Overview page listing all DSL action categories
+- [Page Actions](https://gweninterpreter.org/docs/dsl/actions/page-actions): Actions to navigate to a URL and refresh the current page
+- [Element Actions](https://gweninterpreter.org/docs/dsl/actions/element-actions): Element interactions: click, right-click, double-click, type, check, move, send keys, etc.
+- [Dropdown Actions](https://gweninterpreter.org/docs/dsl/actions/dropdown-actions): Select or deselect dropdown options by position, visible text, or hidden value
+- [Form Actions](https://gweninterpreter.org/docs/dsl/actions/form-actions): Submit a form identified by name, id, or other locator
+- [Window and Tab Actions](https://gweninterpreter.org/docs/dsl/actions/window-and-tab-actions): DSL commands for opening, closing, switching, and resizing browser windows/tabs
+- [Frame Actions](https://gweninterpreter.org/docs/dsl/actions/frame-actions): DSL steps to switch to the default page or a specific iframe
+- [Alert and Popup Actions](https://gweninterpreter.org/docs/dsl/actions/alert-and-popup-actions): DSL actions to accept, dismiss, and capture messages from alerts or confirmations
+- [Scroll Actions](https://gweninterpreter.org/docs/dsl/actions/scroll-actions): DSL commands to scroll the page or an element to the top or bottom
+- [Drag and Drop Actions](https://gweninterpreter.org/docs/dsl/actions/drag-drop-actions): DSL step to drag an element and drop it onto a target location
+- [JS Actions](https://gweninterpreter.org/docs/dsl/actions/js-actions): Executes JavaScript functions on web elements via Gwen DSL
+- [Download Actions](https://gweninterpreter.org/docs/dsl/actions/download-actions): Downloads resources from URLs to specified file paths
+- [File Actions](https://gweninterpreter.org/docs/dsl/actions/file-actions): Attaches files to reports and writes/appends text to files
+- [Sleeps and Waits](https://gweninterpreter.org/docs/dsl/actions/sleeps-and-waits): Provides waiting for elements, files, conditions and sleep durations
+- [JS Execution](https://gweninterpreter.org/docs/dsl/actions/js-execution): Runs arbitrary JavaScript expressions or functions in Gwen scripts
+- [System Process Execution](https://gweninterpreter.org/docs/dsl/actions/system-process-execution): Step to execute a local system or Unix process/script, with optional delimiters
+- [SQL Execution](https://gweninterpreter.org/docs/dsl/actions/sql-execution): Step to bind or update SQL query results in a configured database using Gwen DSL
+
+### DSL - Assertions
+
+- [Assertions Overview](https://gweninterpreter.org/docs/dsl/assertions): Overview of all Gwen DSL assertion categories
+- [Text Asserts](https://gweninterpreter.org/docs/dsl/assertions/text-asserts): Assertions for text values: blank, matching, and similarity checks
+- [File Asserts](https://gweninterpreter.org/docs/dsl/assertions/file-asserts): Assertions to verify file existence and whether a file is empty
+- [XML Asserts](https://gweninterpreter.org/docs/dsl/assertions/xml-asserts): Assertions that validate XML content using XPath expressions
+- [JSON Asserts](https://gweninterpreter.org/docs/dsl/assertions/json-asserts): Assertions that validate JSON content using JSONPath expressions
+- [URL Asserts](https://gweninterpreter.org/docs/dsl/assertions/url-asserts): Assert the current browser URL against blank, exact, contain, or regex patterns
+- [Page Title Asserts](https://gweninterpreter.org/docs/dsl/assertions/page-title-asserts): Assert the page title against blank, exact, contain, or regex patterns
+- [Element Asserts](https://gweninterpreter.org/docs/dsl/assertions/element-asserts): Assertions on element state and text/value matching
+- [Dropdown Asserts](https://gweninterpreter.org/docs/dsl/assertions/dropdown-asserts): Assert dropdown selections by blank, text, or value matching
+- [Browser Asserts](https://gweninterpreter.org/docs/dsl/assertions/browser-asserts): Assert the number of open browser sessions
+- [Tab or Window Asserts](https://gweninterpreter.org/docs/dsl/assertions/tab-or-window-asserts): Assert the number of open browser tabs or windows
+- [Alert and Popup Asserts](https://gweninterpreter.org/docs/dsl/assertions/alert-and-popup-asserts): Validate alert or confirmation popup messages and display state
+- [Existential Asserts](https://gweninterpreter.org/docs/dsl/assertions/existential-asserts): Check whether a named binding is defined or absent
+- [Cumulative Asserts](https://gweninterpreter.org/docs/dsl/assertions/cumulative-asserts): Handle and verify accumulated soft assertion errors
+- [Data Asserts](https://gweninterpreter.org/docs/dsl/assertions/data-asserts): Verify field values are unique within a CSV or JSON file
+
+### DSL - Control Structures
+
+- [Control Structures Overview](https://gweninterpreter.org/docs/dsl/control-structures): Overview page listing all DSL control-structure keywords
+- [ForEach](https://gweninterpreter.org/docs/dsl/control-structures/foreach): Iterate over elements, records, or arrays using the for each DSL
+- [Until / While](https://gweninterpreter.org/docs/dsl/control-structures/until-while): Loop with conditions using until/while DSL on element states, files, etc.
+- [If](https://gweninterpreter.org/docs/dsl/control-structures/if): Conditional execution based on conditions, element states, files, and more
+
+## Advanced Features
+
+- [String Interpolation](https://gweninterpreter.org/docs/string-interpolation): String interpolation syntax for injecting externalised property values
+- [JS Functions](https://gweninterpreter.org/docs/js-functions): Binding JavaScript arrow functions as custom actions in Gwen DSL
+- [Implicit Values](https://gweninterpreter.org/docs/implicit-values): Implicit values feature for automatic value resolution in steps
+- [Assertions](https://gweninterpreter.org/docs/assertions): Assertion DSL constructs for verifying page titles, element states, and text
+- [Doc Strings](https://gweninterpreter.org/docs/doc-strings): Doc-string support for multi-line textual data within steps
+- [Data Feeds](https://gweninterpreter.org/docs/data-feeds): Data-feed mechanism for supplying external data sources to scenarios
+- [Data Tables](https://gweninterpreter.org/docs/data-tables): Data-table syntax for tabular input used with @StepDef and @DataTable annotations
+- [Try Steps](https://gweninterpreter.org/docs/try-steps): Use @Try to ignore failures on individual steps, marking them passed
+- [Finally Steps](https://gweninterpreter.org/docs/finally-steps): Use @Finally to force steps to run regardless of prior failures
+- [Eager or Lazy](https://gweninterpreter.org/docs/eager-or-lazy): @Eager evaluates bindings immediately; @Lazy evaluates on first use
+- [Locator Chaining](https://gweninterpreter.org/docs/locator-chaining): Chain locators to find elements inside frames or other elements
+- [Locator Level Timeouts](https://gweninterpreter.org/docs/locator-level-timeouts): Set @Timeout on locators to override default wait periods
+- [Context Sensitive Actions](https://gweninterpreter.org/docs/context-sensative-actions): Perform actions on elements visible only after hovering via context-sensitive DSL
+- [Named Browser Sessions](https://gweninterpreter.org/docs/named-browser-sessions): Create and switch between multiple named browser sessions within a feature
+- [Template Matching](https://gweninterpreter.org/docs/template-matching): Match content against templates, allowing ignore, capture, and inject operations
+- [State Levels](https://gweninterpreter.org/docs/state-levels): Explanation of state levels (e.g., present, absent) for element-state assertions
+- [Parallel Execution](https://gweninterpreter.org/docs/parallel): Parallel execution support for running multiple scenarios concurrently
+- [Mobile Emulation](https://gweninterpreter.org/docs/mobile-emulatioin): Configure Chrome/Edge mobile emulation via device names or custom metrics
+
+## Reports
+
+- [Reports Overview](https://gweninterpreter.org/docs/reports): Documentation hub for Gwen's various report formats (HTML, Console, CSV, etc.)
+- [HTML Reports](https://gweninterpreter.org/docs/reports/html): Generates pretty HTML reports with summary and detailed feature view
+- [Console Reports](https://gweninterpreter.org/docs/reports/console): Logs execution results and statistics to the console with optional color
+- [CSV Reports](https://gweninterpreter.org/docs/reports/csv): Creates CSV files for feature- and scenario-level results, configurable via settings
+- [Screenshots](https://gweninterpreter.org/docs/reports/screenshots): Captures screenshots on step execution and attaches them to reports
+- [Slideshows](https://gweninterpreter.org/docs/reports/slideshows): Enables screenshot capture and HTML slideshow generation for visual test playback
+- [JUnit XML Reports](https://gweninterpreter.org/docs/reports/junit-xml): Generates JUnit-XML reports for CI integration, e.g., Jenkins, with configurable output
+- [JSON Reports](https://gweninterpreter.org/docs/reports/json): Produces JSON reports to feed test results into custom formatters or downstream tools
+- [Video Recordings](https://gweninterpreter.org/docs/reports/video-recordings): Captures MP4 video recordings in Docker and attaches them to HTML test reports
+
+## Integrations & Deployment
+
+- [Docker](https://gweninterpreter.org/docs/docker): Using Gwen inside Docker containers for consistent CI/CD environments
+- [Jenkins](https://gweninterpreter.org/docs/jenkins): Generate Jenkinsfile and run Gwen projects in Docker pipelines
+- [BrowserStack](https://gweninterpreter.org/docs/browserstack): Run Gwen tests on BrowserStack with remote capabilities config
+- [LambdaTest](https://gweninterpreter.org/docs/lambdatest): Execute Gwen features on LambdaTest HyperExecute grid with YAML settings
+- [Web Driver Management](https://gweninterpreter.org/docs/web-driver-management): Automatic SeleniumManager driver handling; manual driver setup options
+
+## Reference
+
+- [Gwen 4](https://gweninterpreter.org/docs/gwen4): Overview of Gwen 4 features: launch profiles, new settings, and deprecations
