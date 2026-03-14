@@ -27,6 +27,7 @@
 
 - [Bindings Overview](<url>/dsl/bindings): Overview of all Gwen DSL binding categories and navigation links
 - [Text Bindings](<url>/dsl/bindings/text-bindings): Defines literal value binding syntax for text, blank, empty, true, false
+- [Format Bindings](<url>/dsl/bindings/format-bindings): Defines format conversion bindings for date/time and numeric values
 - [File Bindings](<url>/dsl/bindings/file-bindings): Binds a name to file contents, with optional encoding and evaluation mode
 - [Regex Bindings](<url>/dsl/bindings/regex-bindings): Captures text using regex from a source and binds it to a name
 - [XML Bindings](<url>/dsl/bindings/xml-bindings): Extracts XML data via XPath, binding text, node, or nodeset to a name

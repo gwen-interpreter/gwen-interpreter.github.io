@@ -1,0 +1,74 @@
+---
+title: Format bindings
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<details id="i-format-date-time-from-pattern-to-pattern-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  @DateTime I format <valueRef> from "<source-format>" to "<target-format>" as <name>
+  ```
+  <p>Converts the given date/time value to another format and stores the result in the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <code>&lt;valueRef&gt;</code> is the name of the binding containing the source date/time value
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a date/time value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    <li><code>&lt;source-format&gt;</code> is the source <Link to="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">date time format pattern</Link> to convert from</li>
+    <li><code>&lt;source-format&gt;</code> is the target <Link to="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">date time format pattern</Link> to convert to</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the formatted date/time value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given ISO date is "2026-03-14"
+     When @DateTime I format ISO date from "yyyy-MM-dd" to "dd/MM/yyyy" as dmy date
+     Then dmy date should be "14/03/2026"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-format-date-time-from-pattern-to-pattern-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.18.0">v4.18.0</Link></div>
+  </div>
+</details>
+
+<details id="i-format-number-from-pattern-to-pattern-as-name">
+  <summary class="dsl">
+
+  ```gherkin
+  @Number I format <valueRef> from "<source-format>" to "<target-format>" as <name>
+  ```
+  <p>Converts the given numeric value to another format and stores the result in the given name in the global scope.</p>
+  </summary>
+  <p>Where</p>
+  <ul>
+    <code>&lt;valueRef&gt;</code> is the name of the binding containing the source numeric value
+      <ul>
+        <li>Can be the name of any binding that contains or resolves to a numeric value, including a web element in which case the text in the element will be dynamically retrieved and used.</li>
+      </ul>
+    <li><code>&lt;source-format&gt;</code> is the source <Link to="https://docs.oracle.com/javase/8/docs/api/java/text/DecimalFormat.html">decimal number format pattern</Link> to convert from</li>
+    <li><code>&lt;source-format&gt;</code> is the target <Link to="https://docs.oracle.com/javase/8/docs/api/java/text/DecimalFormat.html">decimal number format pattern</Link> to convert to</li>
+    <li><code>&lt;name&gt;</code> is the name to bind the formatted numeric value to</li>
+  </ul>
+  <p>Example</p>
+
+  ```gherkin {2}
+    Given number is "1234"
+     When @Number I format number from "#" to "$#,##0.00" as dollars
+     Then dollars should be "$1,234.00"
+  ```
+
+  <div class="grid-3">
+    <div><Link to="#i-format-number-from-pattern-to-pattern-as-name">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.18.0">v4.18.0</Link></div>
+  </div>
+</details>
