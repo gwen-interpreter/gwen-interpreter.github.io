@@ -45,7 +45,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/dsl/formatting/text-formatting',
+          href: '/docs/dsl/formatting/date-formatting',
           position: 'left',
           label: "What's New?",
         },

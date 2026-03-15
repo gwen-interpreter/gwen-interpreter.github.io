@@ -54,7 +54,9 @@
 
 ### DSL - Text formatting
 
-- [Text Formatters](<url>/dsl/formatting/text-formatting): Defines text formatting for date/time and numeric value conversions
+- [Text Formatting](<url>/dsl/formatting): Text formatting and conversions
+- [Date Formatting](<url>/dsl/formatting/date-formatting): Date/time formatting and conversions
+- [Number Formatting](<url>/dsl/formatting/number-formatting): Number formatting and conversions
 
 ### DSL - Actions
 
