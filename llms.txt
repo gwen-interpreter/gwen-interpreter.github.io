@@ -27,7 +27,6 @@
 
 - [Bindings Overview](<url>/dsl/bindings): Overview of all Gwen DSL binding categories and navigation links
 - [Text Bindings](<url>/dsl/bindings/text-bindings): Defines literal value binding syntax for text, blank, empty, true, false
-- [Format Bindings](<url>/dsl/bindings/format-bindings): Defines format conversion bindings for date/time and numeric values
 - [File Bindings](<url>/dsl/bindings/file-bindings): Binds a name to file contents, with optional encoding and evaluation mode
 - [Regex Bindings](<url>/dsl/bindings/regex-bindings): Captures text using regex from a source and binds it to a name
 - [XML Bindings](<url>/dsl/bindings/xml-bindings): Extracts XML data via XPath, binding text, node, or nodeset to a name
@@ -52,6 +51,10 @@
 - [Screenshot Capture](<url>/dsl/capture/screenshot-capture): Captures the current page screenshot and optionally binds its path to a name
 - [Element Capture](<url>/dsl/capture/element-capture): Captures a screenshot of a specified web element, optionally naming the saved image
 - [Data Lookups](<url>/dsl/capture/data-lookups): Looks up values in CSV/JSON files using predicates and binds them to variables
+
+### DSL - Text formatting
+
+- [Text Formatters](<url>/dsl/formatting/text-formatting): Defines text formatting for date/time and numeric value conversions
 
 ### DSL - Actions
 
