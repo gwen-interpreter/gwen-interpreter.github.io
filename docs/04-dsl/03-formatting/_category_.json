@@ -1,0 +1,9 @@
+{
+  "label": "Formatting",
+  "position": 3
+  ,
+  "link": {
+    "type": "doc",
+    "id": "dsl/formatting/text-formatting"
+  }
+}
