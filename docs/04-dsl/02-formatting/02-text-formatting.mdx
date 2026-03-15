@@ -1,5 +1,5 @@
 ---
-title: Format bindings
+title: Text Formatting
 ---
 
 import Link from '@docusaurus/Link';
@@ -33,6 +33,22 @@ import TabItem from '@theme/TabItem';
      Then dmy date should be "14/03/2026"
   ```
 
+  Gwen also supports ordinal suffixes (1st, 2nd, 3rd, 4th, etc..)
+
+  ```gherkin {2}
+    Given ISO date is "2026-03-02"
+     When @DateTime I format ISO date from "yyyy-MM-dd" to "d(st|nd|rd|th) MMMM yyyy" as display date
+     Then display date should be "2nd March 2026"
+  ```
+
+  And (going the other way)
+
+    ```gherkin {2}
+    Given display date is "23rd March 2026"
+     When @DateTime I format display date from "d(st|nd|rd|th) MMMM yyyy" to "yyyy-MM-dd" as ISO date
+     Then ISO date should be "2026-03-23"
+  ```
+
   <div class="grid-3">
     <div><Link to="#i-format-date-time-from-pattern-to-pattern-as-name">Link</Link></div>
     <div align="center"></div>
@@ -64,6 +80,22 @@ import TabItem from '@theme/TabItem';
     Given number is "1234"
      When @Number I format number from "#" to "$#,##0.00" as dollars
      Then dollars should be "$1,234.00"
+  ```
+
+  Gwen also supports ordinal suffixes (1st, 2nd, 3rd, 4th, etc..)
+
+  ```gherkin {2}
+    Given number is "22"
+     When @Number I format number from "#" to "#(st|nd|rd|th)" as ordingal number
+     Then ordingal number should be "22nd"
+  ```
+
+  And (going the other way)
+
+    ```gherkin {2}
+    Given ordingal number is "1st"
+     When @Number I format ordingal number from "#(st|nd|rd|th)" to "00" as leading zero number
+     Then leading zero number should be "01"
   ```
 
   <div class="grid-3">
