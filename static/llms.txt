@@ -52,11 +52,11 @@
 - [Element Capture](<url>/dsl/capture/element-capture): Captures a screenshot of a specified web element, optionally naming the saved image
 - [Data Lookups](<url>/dsl/capture/data-lookups): Looks up values in CSV/JSON files using predicates and binds them to variables
 
-### DSL - Text formatting
+### DSL - Formatting
 
-- [Text Formatting](<url>/dsl/formatting): Text formatting and conversions
-- [Date Formatting](<url>/dsl/formatting/date-formatting): Date/time formatting and conversions
-- [Number Formatting](<url>/dsl/formatting/number-formatting): Number formatting and conversions
+- [Formatting](<url>/dsl/formatting): Formatting and conversions
+- [Date Formatting](<url>/dsl/formatting/date-formatting): Date/time formatting and conversion
+- [Number Formatting](<url>/dsl/formatting/number-formatting): Number formatting and conversion
 
 ### DSL - Actions
 
