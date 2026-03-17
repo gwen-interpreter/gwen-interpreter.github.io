@@ -32,7 +32,7 @@
 - [XML Bindings](<url>/dsl/bindings/xml-bindings): Extracts XML data via XPath, binding text, node, or nodeset to a name
 - [JSON Bindings](<url>/dsl/bindings/json-bindings): Bind a name to JSON data via JSONPath, supporting eager, lazy, and masked options
 - [JS Bindings](<url>/dsl/bindings/js-bindings): Define a name from JavaScript code or function, with eager, lazy, and masked settings
-- [System Process Bindings](<url>/dsl/bindings/system-processes-bindings): Associate a name with output of a local system command, optionally delimited, supporting eager/lazy/masked
+- [System Process Bindings](<url>/dsl/bindings/system-process-bindings): Associate a name with output of a local system command, optionally delimited, supporting eager/lazy/masked
 - [Element Locators](<url>/dsl/bindings/element-locators): Locate web elements using various selectors, indexes, fallbacks, and relative or shadow DOM options
 - [Settings Overrides](<url>/dsl/bindings/settings-overrides): Override or reset Gwen settings within a scenario using simple DSL commands
 
