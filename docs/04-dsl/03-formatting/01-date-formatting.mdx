@@ -51,6 +51,15 @@ import TabItem from '@theme/TabItem';
      Then ISO date should be "2026-03-23"
   ```
 
+  Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.10.0">v4.19.0</Link>, Gwen also supports getting the current date and time in any format through the <Link href="/docs/implicit-values#current-date-and-time">gwen.now</Link> implicit setting.
+
+  ```gherkin
+    Given the current ISO date is "${gwen.now:yyyy-MM-dd}"
+      And the current display date is "${gwen.now:d(st|nd|rd|th) MMM yyyy}"
+      And the current 24hr time is "${gwen.now:HH:mm}"
+      And the current 12hr time is "${gwen.now:h:mm a}"
+  ```
+
   <div class="grid-3">
     <div><Link to="#i-format-date-time-from-pattern-to-pattern-as-name">Link</Link></div>
     <div align="center"></div>
