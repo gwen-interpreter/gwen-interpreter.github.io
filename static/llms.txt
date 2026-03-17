@@ -23,6 +23,10 @@
 
 - [DSL Overview](<url>/dsl): DSL reference explaining Gwen's domain-specific language for browser actions and assertions
 
+## Annotations
+
+- [Annotations Overview](<url>/annotations): Overview of all feature, scenario and step level annotations
+
 ### DSL - Bindings
 
 - [Bindings Overview](<url>/dsl/bindings): Overview of all Gwen DSL binding categories and navigation links
