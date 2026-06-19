@@ -21,10 +21,10 @@ These accept no arguments and have either:
 - a block containing zero or more statements, followed by a return expression
 
 ```gherkin
-  Given today is defined by js "() => new Date().toISOString().substring(0, 10)"
+  Given today UTC is defined by js "() => new Date().toISOString().substring(0, 10)"
 ```
 ```gherkin
-    And tomorrow is defined by js
+    And tomorrow UTC is defined by js
         """
         () => { 
             const today = new Date()
@@ -38,7 +38,7 @@ These accept no arguments and have either:
 Prior to arrow functions being introduced, the equivalent of the above was:
 
 ```gherkin
-    And tomorrow is defined by js
+    And tomorrow UTC is defined by js
         """
         (function() { 
             const today = new Date()
