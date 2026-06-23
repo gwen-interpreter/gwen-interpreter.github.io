@@ -31,23 +31,26 @@ import TabItem from '@theme/TabItem';
   ```gherkin {2}
     Given number is "1234"
      When @Number I format number from "#" to "$#,##0.00" as dollars
-     Then dollars should be "$1,234.00"
+     Then dollars should match number format "$#,##0.00"
+      And dollars should be "$1,234.00"
   ```
 
   Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.18.1">v4.18.1</Link>, Gwen also supports ordinal suffixes (1st, 2nd, 3rd, 4th, etc..)
 
   ```gherkin {2}
     Given number is "22"
-     When @Number I format number from "#" to "#(st|nd|rd|th)" as ordingal number
-     Then ordingal number should be "22nd"
+     When @Number I format number from "#" to "#(st|nd|rd|th)" as ordinal number
+     Then ordinal number should match number format "#(st|nd|rd|th)"
+      And ordinal number should be "22nd"
   ```
 
   And (converting the other way)
 
   ```gherkin {2}
-    Given ordingal number is "1st"
-     When @Number I format ordingal number from "#(st|nd|rd|th)" to "00" as leading zero number
-     Then leading zero number should be "01"
+    Given ordinal number is "1st"
+     When @Number I format ordinal number from "#(st|nd|rd|th)" to "00" as leading zero number
+     Then leading zero should match number format "00"
+      And leading zero number should be "01"
   ```
 
   <div class="grid-3">
