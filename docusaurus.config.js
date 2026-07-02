@@ -45,7 +45,7 @@ module.exports = {
           label: 'FAQ',
         },
         {
-          href: '/docs/dsl/formatting/date-formatting',
+          href: '/docs/profiles#launching-mutiple-profiles',
           position: 'left',
           label: "What's New?",
         },
