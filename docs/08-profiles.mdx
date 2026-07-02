@@ -108,7 +108,9 @@ gwen {
 
 ## Launching Profiles
 
-  To launch a profile, simply pass the profile settings file name (minus the path and extension) to the [`-p|--profile`](/docs/launcher#gwen-launch-options-profile) launcher option. Gwen will find and load the same named settings file in the `gwen/conf/profiles` directory and launch that profile for you.
+### Launching a single profile
+
+  To launch a single profile, simply pass the profile settings file name (minus the path and extension) to the [`-p|--profile`](/docs/launcher#gwen-launch-options-profile) launcher option. Gwen will find and load the same named settings file in the `gwen/conf/profiles` directory and launch that profile for you.
 
 <Tabs
   groupId="jstool"
@@ -133,7 +135,7 @@ Launch process 1 and exit when done
 yarn gwen -p process1 -b
 ```
 
-Launch process 1 in parallel mode
+Launch process 1 irunning input records in parallel
 
 ```shell
 yarn gwen -p process1 --parallel
@@ -160,7 +162,7 @@ Launch process 1 and exit when done
 npm run gwen -- --profile process1 -b
 ```
 
-Launch process 1 in parallel mode
+Launch process 1 irunning input records in parallel
 
 ```shell
 npm run gwen -- --profile process1 --parallel
@@ -187,7 +189,7 @@ Launch process 1 and exit when done
 pnpm gwen -p process1 -b
 ```
 
-Launch process 1 in parallel mode
+Launch process 1 irunning input records in parallel
 
 ```shell
 pnpm gwen -p process1 --parallel
@@ -197,6 +199,104 @@ Launch process 2 in dry run mode
 
 ```shell
 pnpm gwen --profile process2 --dry-run
+```
+
+</TabItem>
+</Tabs>
+
+### Launching mutiple profiles
+
+> Since [v4.21.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.21.0)
+
+To launch multiple profiles one after the other, simply pass the names of the profile settings files (minus the path and extension) separated by a comma to the [`-p|--profile`](/docs/launcher#gwen-launch-options-profile) launcher option. Gwen will find and load each same named settings file in the `gwen/conf/profiles` directory and launch the profiles for each in the order given.
+
+<Tabs
+  groupId="jstool"
+  defaultValue="yarn"
+  values={[
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'npm', value: 'npm'},
+    {label: 'pnpm', value: 'pnpm'}
+  ]}>
+
+<TabItem value="yarn">
+
+Launch process 1 followed by process 2 and open repl when done
+
+```shell
+yarn gwen -p process1,process2
+```
+
+Launch process 1 followed by process 2 and exit when done
+
+```shell
+yarn gwen -p process1,process2 -b
+```
+
+Launch process 1 followed by process 2, running input records in parallel for each
+
+```shell
+yarn gwen -p process1,process2 --parallel
+```
+
+Launch process 1 followed by process 2 in dry run mode
+
+```shell
+yarn gwen --profile process1,process2 --dry-run
+```
+
+</TabItem>
+<TabItem value="npm">
+
+Launch process 1 followed by process 2 and open repl when done
+
+```shell
+npm run gwen -- --profile process1,process2
+```
+
+Launch process 1 followed by process 2 and exit when done
+
+```shell
+npm run gwen -- --profile process1,process2 -b
+```
+
+Launch process 1 followed by process 2, running input records in parallel for each
+
+```shell
+npm run gwen -- --profile process1,process2 --parallel
+```
+
+Launch process 1 followed by process 2 in dry run mode
+
+```shell
+npm run gwen -- --profile process1,process2 --dry-run
+```
+
+</TabItem>
+<TabItem value="pnpm">
+
+Launch process 1 followed by process 2 and open repl when done
+
+```shell
+pnpm gwen -p process1,process2
+```
+
+Launch process 1 followed by process 2 and exit when done
+
+```shell
+pnpm gwen -p process1,process2 -b
+```
+
+Launch process 1 followed by process 2, running input records in parallel for each
+
+```shell
+pnpm gwen -p process1,process2 --parallel
+```
+
+Launch process 1 followed by process 2 in dry run mode
+
+```shell
+pnpm gwen --profile process1,process2 --dry-run
 ```
 
 </TabItem>

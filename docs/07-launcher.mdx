@@ -26,7 +26,7 @@ Usage: gwen [options] [files|dirs]
                            - features if gwen.state.level = feature (default)
                            - scenarios if gwen.state.level = scenario
   --repl                   Open REPL (forcefully) regardless of other options
-  -p, --profile name       Name of profile to launch
+  -p, --profile names      Names of profiles to launch (comma separated)
   -b, --batch              Exit when execution completes (ignored if --repl is specified)
   -v, --verbose            Enable verbose log output
   -d, --debug              Enable breakpoints and interactive debugging
@@ -220,7 +220,7 @@ Default launch options and arguments can also be configured in [settings](/docs/
     -b, --batch             Exit when execution completes (omit to open REPL)
     -v, --verbose           Enable verbose log output
     -n, --dry-run           Check all syntax and bindings and report errors
-    -p, --profile name      Name of profile to launch
+    -p, --profile names      Names of profiles to launch (comma separated)
     -c, --conf files        Settings files: conf, json or properties (comma separated)
     -r, --report dir        Directory to output generated report(s) to
     -f, --formats reports   Report formats to include in output (comma separated)
