@@ -3593,6 +3593,89 @@ Default value (empty to pick up Gwen default format: html)
   </div>
 </details>
 
+<details id="gwen-format-date-locale">
+  <summary class="setting">
+
+  ```properties
+  gwen.format.date.locale
+  ```
+  <p>Controls which locale is used for date formatting.</p>
+  </summary>
+  
+  <p>Supported values</p>
+  <ul>
+    <li>
+      A valid locale string of one of the following formats:
+      <ul>
+        <li>[language]<ul><li>Example: <code>en</code></li></ul></li>
+        <li>[language]\_[COUNTRY]<ul><li>Example: <code>en-US</code></li></ul></li>
+        <li>[language]-[COUNTRY]<ul><li>Example: <code>en-US</code></li></ul></li>
+        <li>[language]\_[NUMERIC\_CODE]<ul><li>Example: <code>en_001</code></li></ul></li>
+        <li>[language]\_[COUNTRY]\_[variant]<ul><li>Example: <code>en_GB_xxx</code></li></ul></li>
+        <li>\_[COUNTRY]<ul><li>Example: <code>_US</code></li></ul></li>
+      </ul>
+    </li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Default value
+
+  ```json
+    gwen {
+      format {
+        date {
+          locale = "en-US"
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "format": {
+          "date": {
+            "locale": "en-US"
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.format.date.locale = en-US
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-format-date-locale">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.22.0">v4.22.0</Link></div>
+  </div>
+</details>
+
 ### Web Settings
 
 <details id="gwen-web-assertions-delayMillisecs">
