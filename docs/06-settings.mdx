@@ -7270,6 +7270,86 @@ Default value (empty to pick up Gwen default format: html)
   </div>
 </details>
 
+<details id="gwen-web-browser-text-filter-exclude">
+  <summary class="setting">
+
+  ```properties
+  gwen.web.browser.text.filter.exclude
+  ```
+  <p>Controls whether or not to exclude certain characters from captured or evaluated text in browsers based on a regex filter. Handy for automatically stripping out unwanted special characters that might be encoded in browser rendered text.</p>
+  </summary>
+  <p>Supported values</p>
+  <ul>
+    <li>A regex exclusion filter (optional, no filtering if setting is unspecified)</li>
+  </ul>
+  <Tabs
+  groupId="settings"
+  defaultValue="conf"
+  values={[
+    {label: 'conf', value: 'conf'},
+    {label: 'json', value: 'json'},
+    {label: 'properties', value: 'properties'}
+  ]}>
+
+  <TabItem value="conf">
+
+  Example value (to filter out all non-standard invisible characters)
+
+  ```json
+    gwen {
+      web {
+        browser {
+          text {
+            filter {
+              exclude = "[^\\p{Graph}\\s]"
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  Default value
+
+  ```json
+    {
+      "gwen": {
+        "web": {
+          "browser": {
+            "text": {
+              "filter": {
+                "exclude": "[^\\p{Graph}\\s]"
+              }
+            }
+          }
+        }
+      }
+    }
+  ```
+
+  </TabItem>
+  <TabItem value="properties">
+
+  Default value
+
+  ```properties
+    gwen.web.browser.text.filter.exclude = [^\\p{Graph}\\s]
+  ```
+
+  </TabItem>
+
+  </Tabs>
+
+  <div class="grid-3">
+    <div><Link to="#gwen-web-browser-text-filter-exclude">Link</Link></div>
+    <div align="center"></div>
+    <div align="right">Since <Link to="https://github.com/gwen-interpreter/gwen-web/releases/tag/v4.23.0">v4.23.0</Link></div>
+  </div>
+</details>
+
 ## Masked Settings
 
 > Since [v2.48.0](https://github.com/gwen-interpreter/gwen-web/releases/tag/v2.48.0)
